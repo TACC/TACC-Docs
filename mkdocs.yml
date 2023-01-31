@@ -23,7 +23,7 @@ nav:
     - Testing Extensions: testingextensions.md
     - Code Examples: code-examples.md
   - HPC :
-    - Corral: hpcugs/corral/corral.md
+    - Corral: hpcugs/corral/index.md
     - Frontera: hpcugs/frontera/frontera.md
     - Lonestar6: hpcugs/6lonestar/lonestar6.md
     - Maverick2: hpcugs/2mav/maverick2.md
