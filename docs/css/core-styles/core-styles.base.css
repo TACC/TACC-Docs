@@ -3,7 +3,7 @@
  * - @import from a CDN
  * - paste minified code from unpublished version
  */
-/* TODO: Use @import NOT minified code AFTER release of TACC/Core-Styles#150 */
+/* TODO: Use @import NOT minified code AFTER release of TACC/Core-Styles#149 */
 /* @import url('https://unpkg.com/@tacc/core-styles@2.5.0/dist/core-styles.base.css'); */
 /*! @tacc/core-styles 2.6.1+ | MIT | github.com/TACC/Core-Styles */@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap");
 /*! core-styles.base.css */
