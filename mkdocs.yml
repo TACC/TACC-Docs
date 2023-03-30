@@ -33,7 +33,6 @@ theme:
 extra_css:
     - css/bootstrap.css
     - css/core-styles.css
-    - css/tup-cms.css
     - css/tacc-docs.css
 
 # These must be modules
