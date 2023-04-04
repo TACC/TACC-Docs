@@ -10,6 +10,7 @@ edit_uri: edit/main/docs/
 theme:
     name: readthedocs
     logo: /img/tacc-logo-with-words.svg
+    collapse_navigation: false
     highlightjs: true
     hljs_languages:
         - bash

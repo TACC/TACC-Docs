@@ -154,8 +154,8 @@ svg.logo [fill]:not([fill="none"]) {
 }
 .wy-menu-vertical li.on ul,
 .wy-menu-vertical li.current ul {
-  padding-left: 25px;
-  padding-block: 10px;
+  padding-left: calc( var(--link-pad-horz) + var(--button-space) );
+  padding-bottom: 10px;
 }
 /* .wy-menu-vertical header, *//* NOTE: not seen in markup yet */
 .wy-menu-vertical p.caption {
@@ -171,11 +171,12 @@ svg.logo [fill]:not([fill="none"]) {
 /* To make whole link clickable, not just button */
 /* To prevent open/close buttons dynamic arrival from moving text */
 
-.wy-menu-vertical li a {
+.wy-menu-vertical {
   --button-width: 1ch; /* estimate, based on icon (e.g. ▾, ▸) */
   --button-buffer: 0.5em;
   --button-space: calc( var(--button-width) + var(--button-buffer) );
-
+}
+.wy-menu-vertical li a {
   position: relative; /* support `position: absolute` child */
 }
 .wy-menu-vertical li a button.toctree-expand {
@@ -188,18 +189,6 @@ svg.logo [fill]:not([fill="none"]) {
   padding: var(--link-pad-vert) var(--link-pad-horz);
   width: 100%;
   text-align: left; /* to prevent width: 100% from moving ::before to center */
-}
-/* To make space for button which is on top of link text */
-.wy-menu-vertical li.current a /* before opened or closed */,
-.wy-menu-vertical li[aria-expanded] /* after opened or closed */ a {
-  padding-left: calc( var(--link-pad-horz) + var(--button-space) );
-}
-@supports selector(:has(*)) {
-  /* Overwrite edge cases */
-  /* FAQ: Edge case of link to page that has no headings nor child pages */
-  .wy-menu-vertical li.current a:not(:has(button.toctree-expand)) {
-    padding-left: var(--link-pad-horz);
-  }
 }
 
 
@@ -273,7 +262,12 @@ svg.logo [fill]:not([fill="none"]) {
 
 /* To change icons */
 
+/* To reposition icon */
 .wy-menu-vertical li button.toctree-expand:before {
+  text-indent: calc( -1 * var(--link-pad-horz) ); /* leftward, outside text */
+  height: 100%; /* upward, inline with first line of mult-line text */
+}
+.wy-menu-vertical li:not(.on, .current) button.toctree-expand:before {
   content: "\f0da";
 }
 .wy-menu-vertical li.current > a button.toctree-expand::before,
