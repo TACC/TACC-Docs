@@ -432,27 +432,8 @@ details > summary > :is(h1, h2, h3, h4, h5, h6) {
 
 
 /* To add border around figures */
-/* FAQ: The figure border does not wrap the caption, so both need borders */
-/* FAQ: The figcaption is styled as table caption by core-styles */
-/* https://github.com/TACC/Core-Styles/blob/dd2bbb0/src/lib/_imports/elements/html-elements.cms.css#L97-L100 */
-figure,
-figcaption {
-  --pad: var(--buffer-top);
-
-  border: var(--global-border--normal);
-  padding-inline: var(--pad);
-}
 figure {
-  border-bottom: none;
-  padding-block: var(--pad) 0;
-}
-figcaption {
-  border-top: none;
-  padding-bottom: var(--pad);
-
-  /* To move CMS margin-top to padding-top */
-  margin-top: unset;
-  padding-top: var(--buffer-top);
+  border: var(--global-border--normal);
 }
 
 
