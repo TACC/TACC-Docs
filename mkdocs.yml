@@ -43,6 +43,7 @@ extra_javascript:
     - js/modules/styleLinksOutsideMainContent.js
     - js/modules/swapImgSvgWithRawSvg.js
     - js/modules/removeThemeClasses.js
+    - js/modules/addNavClasses.js
 
 nav:
   - TACC Basics :

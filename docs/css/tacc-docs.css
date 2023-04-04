@@ -167,9 +167,8 @@ svg.logo [fill]:not([fill="none"]) {
 
 
 
-/* To style open/close buttons */
+/* To position open/close buttons */
 /* To make whole link clickable, not just button */
-/* To prevent open/close buttons dynamic arrival from moving text */
 
 .wy-menu-vertical {
   --button-width: 1ch; /* estimate, based on icon (e.g. ▾, ▸) */
@@ -179,7 +178,10 @@ svg.logo [fill]:not([fill="none"]) {
 .wy-menu-vertical li a {
   position: relative; /* support `position: absolute` child */
 }
-.wy-menu-vertical li a button.toctree-expand {
+.wy-menu-vertical li:not(.has-list) a button.toctree-expand {
+  display: none;
+}
+.wy-menu-vertical li.has-list a button.toctree-expand {
   margin-left: unset; /* undo theme.css */
 
   /* To expand button over entire link */
@@ -189,6 +191,11 @@ svg.logo [fill]:not([fill="none"]) {
   padding: var(--link-pad-vert) var(--link-pad-horz);
   width: 100%;
   text-align: left; /* to prevent width: 100% from moving ::before to center */
+}
+.wy-menu-vertical li button.toctree-expand:before {
+  /* To move button icon */
+  text-indent: calc( -1 * var(--link-pad-horz) ); /* leftward, outside text */
+  height: 100%; /* upward, inline with first line of mult-line text */
 }
 
 
@@ -262,11 +269,6 @@ svg.logo [fill]:not([fill="none"]) {
 
 /* To change icons */
 
-/* To reposition icon */
-.wy-menu-vertical li button.toctree-expand:before {
-  text-indent: calc( -1 * var(--link-pad-horz) ); /* leftward, outside text */
-  height: 100%; /* upward, inline with first line of mult-line text */
-}
 .wy-menu-vertical li:not(.on, .current) button.toctree-expand:before {
   content: "\f0da";
 }
