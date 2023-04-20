@@ -38,7 +38,7 @@ All VNC connections are tunneled through SSH for extra security.  Follow the ste
 	* <code>-p <i>partition</i></code> specify an alternate queue   
 
 
-	See [Table 6.](../running/#table-6-common-sbatch-options) for more `sbatch` options.
+	See [Table 7. Commond `sbatch` Options](#table7) for more `sbatch` options.
 
 	All arguments after the job script name are sent to the vncserver command. For example, to set the desktop resolution to 1440x900, use:
 

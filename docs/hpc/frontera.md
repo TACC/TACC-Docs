@@ -1,10 +1,10 @@
 # Frontera User Guide
-Last update: September 15, 2022
+Last update: April 19, 2022
 <!-- SDL <a href="https://frontera-xortal.tacc.utexas.edu/user-guide/docs/user-guide.pdf">Download PDF <i class="fa fa-file-pdf-o"></i></a></span>-->
 
 ## [Notices](#notices) { #notices }
 
-* **New Queue: A new queue: `small` has been created specifically for one and two node jobs**. Jobs of one or two nodes that will run for up to 48 hours should be submitted to this new [`small` queue](#queues).  The `normal` queue now has a lower limit of three nodes for all jobs. These new limits will improve the turnaround time for all jobs in the `normal` and `small` queues.
+* Navigate to the [Frontera Web Portal](https://frontera-portal.tacc.utexas.edu/) to manage your Frontera allocations and access your [Frontera Workbench](https://frontera-portal.tacc.utexas.edu/workbench/dashboard). (04/19/2023)
 
 ## [Introduction](#intro) { #intro } 
 
@@ -52,7 +52,7 @@ Use your TACC User Portal password for direct logins to TACC resources. You can 
 
 ### [Access the System](#admin-access) { #admin-access }
 
-#### [Secure Shell (SSH)](#admin-access-ssh)
+#### [Secure Shell (SSH)](#admin-access-ssh) { #admin-access-ssh }
 
 The `ssh` command (SSH protocol) is the standard way to connect to Frontera. SSH also includes support for the file transfer utilities `scp` and `sftp`. [Wikipedia](https://en.wikipedia.org/wiki/Secure_Shell) is a good source of information on SSH. SSH is available within Linux and from the terminal app in the Mac OS. If you are using Windows, you will need an SSH client that supports the SSH-2 protocol: e.g. [Bitvise](http://www.bitvise.com), [OpenSSH](http://www.openssh.com), [PuTTY](http://www.putty.org), or [SecureCRT](https://www.vandyke.com/products/securecrt/). Initiate a session using the `ssh` command or the equivalent; from the Linux command line the launch command looks like this:
 
@@ -104,7 +104,7 @@ For more information see the [Bash Users' Startup Files: Quick Start Guide][TACC
 
 #### [Environment Variables](#admin-configuring-envvars) { #admin-configuring-envvars }
 
-Your environment includes the environment variables and functions defined in your current shell: those initialized by the system, those you define or modify in your account-level startup scripts, and those defined or modified by the [modules](#using-modules-to-manage-your-environment) that you load to configure your software environment. Be sure to distinguish between an environment variable's name (e.g. `HISTSIZE`) and its value (`$HISTSIZE`). Understand as well that a sub-shell (e.g. a script) inherits environment variables from its parent, but does not inherit ordinary shell variables or aliases. Use `export` (in Bash) or `setenv` (in `csh`) to define an environment variable.
+Your environment includes the environment variables and functions defined in your current shell: those initialized by the system, those you define or modify in your account-level startup scripts, and those defined or modified by the [modules](#admin-configuring-modules) that you load to configure your software environment. Be sure to distinguish between an environment variable's name (e.g. `HISTSIZE`) and its value (`$HISTSIZE`). Understand as well that a sub-shell (e.g. a script) inherits environment variables from its parent, but does not inherit ordinary shell variables or aliases. Use `export` (in Bash) or `setenv` (in `csh`) to define an environment variable.
 
 Execute the `env` command to see the environment variables that define the way your shell and child shells behave. 
 
@@ -256,7 +256,7 @@ Frontera has two computing subsystems, a primary computing system focused on dou
 
 Frontera hosts 8,368 Cascade Lake (CLX) compute nodes contained in 101 racks. 
 
-#### [Table 4. CLX Specifications](#table4) { #table4 }
+#### [Table 1. CLX Specifications](#table1) { #table1 }
 
 Model       | Intel Xeon Platinum 8280 ("Cascade Lake")
 ----------- | ------------
@@ -271,7 +271,7 @@ Local storage: | 144GB /tmp partition on a 240GB SSD.
 
 Frontera hosts 16 large memory nodes featuring 2.1TB of Optane memory. Access these nodes via the [`nvdimm` queue](#queues).
 
-#### [Table 5. Large Memory Nodes ](#table5) { #table5 }
+#### [Table 2. Large Memory Nodes ](#table2) { #table2 }
 
 Model | Intel Xeon Platinum 8280M ("Cascade Lake")
 ----------- | ------------
@@ -286,7 +286,7 @@ Local storage: | 144GB /tmp partition on a 240GB SSD<br> 4x 833 GB /mnt/fsdax[0,
 
 Frontera hosts 90 GPU nodes contained in 4 Green Revolution Cooling ICEraQ racks. Access these nodes via the [`rtx` and `rtx-dev` queues](#queues).
 
-#### [Table 6. Frontera GPU node specifications](#table6) { #table6 }
+#### [Table 3. Frontera GPU node specifications](#table3) { #table3 }
 
 Feature                          | Specifications
 ------------------------         | ------------------------------------
@@ -314,19 +314,19 @@ Frontera mounts three Lustre file systems that are shared across all nodes: the 
 
 ### [File Systems](#files-filesystems) { #files-filesystems } 
 
-Frontera's startup mechanisms define corresponding account-level environment variables <code>$HOME</code>, <code>$SCRATCH</code> and <code>$WORK</code><!--,and <code>$FASTIO</code>--> that store the paths to directories that you own on each of these file systems. Consult the <a href="#table-2-frontera-file-systems">Frontera File Systems</a> table below for the basic characteristics of these file systems, <!--"File Operations: I/O Performance" for advice on performance issues,--> and the <a href="../../basics/conduct">Good Conduct</a> sections for guidance on file system etiquette.</p>
+Frontera's startup mechanisms define corresponding account-level environment variables <code>$HOME</code>, <code>$SCRATCH</code> and <code>$WORK</code><!--,and <code>$FASTIO</code>--> that store the paths to directories that you own on each of these file systems. Consult <a href="#table4">Table 4. Frontera File Systems</a> below for the basic characteristics of these file systems, <!--"File Operations: I/O Performance" for advice on performance issues,--> and the <a href="../../basics/conduct">Good Conduct</a> sections for guidance on file system etiquette.</p>
 
-#### [Table 2. File Systems](#table2) { #table2 } 
+#### [Table 4a. File Systems](#table4a) { #table4a } 
 
 File System | Quota | Key Features
 -------     | ------- | -------
 `$HOME`	    | 25GB, 400,000 files          | **Not intended for parallel or high-intensity file operations**.<br>Backed up regularly.<br>Defaults: 1 stripe, 1MB stripe size.<br> Not purged. |
 `$WORK`	    | 1TB, 3,000,000 files across all TACC systems,<br>regardless of where on the file system the files reside. | **Not intended for high-intensity file operations or jobs involving very large files.**<br>On the Global Shared File System that is mounted on most TACC systems.<br>Defaults: 1 stripe, 1MB stripe size.<br>Not backed up.<br> Not purged.
-`$SCRATCH`  | no quota	 |  Overall capacity 44 PB.<br>Defaults: 1 stripe, 1MB stripe size.<br>Not backed up.<br>Decomposed into three separate file systems, `scratch1`, `scratch2`, and `scratch3` described below.<br>**Files are [subject to purge](#scratch-purge-policy) if access time&#42; is more than 10 days old**.  
+`$SCRATCH`  | no quota	 |  Overall capacity 44 PB.<br>Defaults: 1 stripe, 1MB stripe size.<br>Not backed up.<br>Decomposed into three separate file systems, `scratch1`, `scratch2`, and `scratch3` described below.<br>**Files are [subject to purge](#scratchpolicy) if access time&#42; is more than 10 days old**.  
 
 All new projects are assigned to `/scratch1` as their default `$SCRATCH` file system.  After running on Frontera, TACC staff may reassign users and projects to `/scratch2` or `/scratch3` depending on the resources required by their workflow.  The `/scratch3` file system employs twice as many OST's offering twice the available I/O bandwidth of `/scratch1` and `/scratch2`.  Frontera's three `$SCRATCH` file systems are further described below:
 
-#### [Table 2a. Scratch File Systems](#table2a) { #table2a } 
+#### [Table 4b. Scratch File Systems](#table4b) { #table4b } 
 
 File System | Characteristics	| Purpose |
 ---         | ---               | ---     |
@@ -334,13 +334,8 @@ File System | Characteristics	| Purpose |
 `/scratch2` | Size:	 10.6 PB <br>OSTs:	16 <br>Bandwidth: 60 GB/s  | Designated for workflows with intensive I/O operations.
 `/scratch3` | Size:	 21.2 PB <br>OSTs:	32 <br>Bandwidth: 120 GB/s | Designated for workflows with large scale parallel I/O operations.
 
-### [Scratch Purge Policy](#scratchpurgepolicy) { #scratchpurgepolicy } 
 
-!!! caution
-	The <code>$SCRATCH</code> file system, as its name indicates, is a temporary storage space.  Files that have not been accessed&#42; in ten days are subject to purge.  Deliberately modifying file access time (using any method, tool, or program) for the purpose of circumventing purge policies is prohibited.
-
-&#42;The operating system updates a file's access time when that file is modified on a login or compute node or any time that file is read. Reading or executing a file/script will update the access time.  Use the `ls -ul` command to view access times.
-
+{%include './include/scratchpolicy.md' %}
 
 
 ### [Navigating the Shared File Systems](#files-navigating) { #files-navigating } 
@@ -349,7 +344,7 @@ Frontera's `/home` and `/scratch` file systems are mounted only on Frontera, but
 
 The `$STOCKYARD` environment variable points to the highest-level directory that you own on the Global Shared File System. The definition of the `$STOCKYARD` environment variable is of course account-specific, but you will see the same value on all TACC systems that provide access to the Global Shared File System. This directory is an excellent place to store files you want to access regularly from multiple TACC resources.
 
-Your account-specific `$WORK` environment variable varies from system to system and is a sub-directory of `$STOCKYARD` ([Figure 3](#figure-3-stockyard-file-system)). The sub-directory name corresponds to the associated TACC resource. The `$WORK` environment variable on Frontera points to the `$STOCKYARD/stampede2` subdirectory, a convenient location for files you use and jobs you run on Frontera. Remember, however, that all subdirectories contained in your `$STOCKYARD` directory are available to you from any system that mounts the file system. If you have accounts on both Frontera and Stampede2, for example, the `$STOCKYARD/frontera` directory is available from your Stampede2 account, and `$STOCKYARD/stampede2` is available from your Frontera account. 
+Your account-specific `$WORK` environment variable varies from system to system and is a sub-directory of `$STOCKYARD` ([Figure 3](#figure3)). The sub-directory name corresponds to the associated TACC resource. The `$WORK` environment variable on Frontera points to the `$STOCKYARD/stampede2` subdirectory, a convenient location for files you use and jobs you run on Frontera. Remember, however, that all subdirectories contained in your `$STOCKYARD` directory are available to you from any system that mounts the file system. If you have accounts on both Frontera and Stampede2, for example, the `$STOCKYARD/frontera` directory is available from your Stampede2 account, and `$STOCKYARD/stampede2` is available from your Frontera account. 
 
 !!! tip
 	Your quota and reported usage on the Global Shared File System reflects all files that you own on Stockyard, regardless of their actual location on the file system.
@@ -364,7 +359,7 @@ See the example for fictitious user `bjones` in the figure below. All directorie
 
 Note that resource-specific subdirectories of `$STOCKYARD` are simply convenient ways to manage your resource-specific files. You have access to any such subdirectory from any TACC resources. If you are logged into Frontera, for example, executing the alias `cdw` (equivalent to `cd $WORK`) will take you to the resource-specific subdirectory `$STOCKYARD/frontera`. But you can access this directory from other TACC systems as well by executing `cd $STOCKYARD/frontera`. These commands allow you to share files across TACC systems. In fact, several convenient account-level aliases make it even easier to navigate across the directories you own in the shared file systems:
 
-#### [Table 3. Built-in Account Level Aliases](#table3) { #table3 } 
+#### [Table 5. Built-in Account Level Aliases](#table5) { #table5 } 
 
 Alias | Command
 ---- | ----
@@ -709,7 +704,8 @@ $ module load launcher
 $ module help launcher
 ```
 
-### [Frontera Production Queues](#running-queues)  { #running-queues } { #queues }
+<a id="queues">
+### [Frontera Production Queues](#running-queues)  { #running-queues } 
 
 Frontera's Slurm partitions (queues), maximum node limits and charge rates are summarized in the table below. **Queues and limits are subject to change without notice.** Execute `qlimits` on Frontera for real-time information regarding limits on available queues. See [Job Accounting](#job-accounting) to learn how jobs are charged to your allocation.
 
@@ -720,7 +716,7 @@ The `nvdimm` queue features 16 [large-memory (2.1TB) nodes](#system-largememory)
 Frontera's `flex` queue offers users a low cost queue for lower priority/node count jobs and jobs running software with checkpointing capabilities. Jobs in the `flex` queue are scheduled with lower priority and are also eligible for preemption after running for one hour.  That is, if other jobs in the other queues are currently waiting for nodes and there are jobs running in the `flex` queue, the Slurm scheduler will cancel any jobs in the `flex` queue that have run more than one hour in order to give resources back to the higher priority jobs. Any job started in the `flex` queue is guaranteed to run for at least an hour (assuming the requested wallclock time was >= 1 hour). If there remain no outstanding requests from other queues, then these jobs will continue to run until they hit their wallclock requested time. This flexibility in runtime is rewarded by a reduced charge rate of .8 SUs/hour. Also, the max total node count for one user with many jobs in the flex queue is 6400 nodes.
 
 
-#### [Table 5. Frontera Production Queues](#table5) { #table5 } 
+#### [Table 6. Frontera Production Queues](#table6) { #table6 } 
 Queue status as of March 14, 2022.   
 **Queues and limits are subject to change without notice.** 
 
@@ -757,11 +753,11 @@ You can use your command-line prompt, or the `hostname` command, to discern whet
 
 While some workflows, tools, and applications hide the details, there are three basic ways to access the compute nodes:
 
-1.	[Submit a **batch job** using the `sbatch` command](#submitting-batch-jobs-with-sbatch). This directs the scheduler to run the job unattended when there are resources available. Until your batch job begins it will wait in a [queue](#queues). You do not need to remain connected while the job is waiting or executing. Note that the scheduler does not start jobs on a first come, first served basis; it juggles many variables to keep the machine busy while balancing the competing needs of all users. The best way to minimize wait time is to request only the resources you really need: the scheduler will have an easier time finding a slot for the two hours you need than for the 24 hours you unnecessarily request.
+1.	[Submit a **batch job** using the `sbatch` command](#running-sbatch). This directs the scheduler to run the job unattended when there are resources available. Until your batch job begins it will wait in a [queue](#queues). You do not need to remain connected while the job is waiting or executing. Note that the scheduler does not start jobs on a first come, first served basis; it juggles many variables to keep the machine busy while balancing the competing needs of all users. The best way to minimize wait time is to request only the resources you really need: the scheduler will have an easier time finding a slot for the two hours you need than for the 24 hours you unnecessarily request.
 
-1.	Begin an [interactive session using **`ssh`**](#interactive-sessions-using-ssh) to connect to a compute node on which you are already running a job. This is a good way to open a second window into a node so that you can monitor a job while it runs.
+1.	Begin an [interactive session using **`ssh`**](#running-ssh) to connect to a compute node on which you are already running a job. This is a good way to open a second window into a node so that you can monitor a job while it runs.
 
-1.	Begin an [**interactive session** using `idev` or `srun`](#interactive-sessions-with-idev-and-srun). This will log you into a compute node and give you a command prompt there, where you can issue commands and run code as if you were doing so on your personal machine. An interactive session is a great way to develop, test, and debug code. Both the `srun` and `idev` commands submit a new batch job on your behalf, providing interactive access once the job starts. You will need to remain logged in until the interactive session begins.
+1.	Begin an [**interactive session** using `idev` or `srun`](#running-interactive). This will log you into a compute node and give you a command prompt there, where you can issue commands and run code as if you were doing so on your personal machine. An interactive session is a great way to develop, test, and debug code. Both the `srun` and `idev` commands submit a new batch job on your behalf, providing interactive access once the job starts. You will need to remain logged in until the interactive session begins.
 
 
 ### [Submitting Batch Jobs with `sbatch`](#running-sbatch) { #running-sbatch } 
@@ -781,15 +777,16 @@ In each job script:
 
 There are many possibilities: you might elect to launch a single application, or you might want to accomplish several steps in a workflow. You may even choose to launch more than one application at the same time. The details will vary, and there are many possibilities. But your own job script will probably include at least one launch line that is a variation of one of the examples described here.
 
-!!! info
-   <a href="#scripts">See the customizable job script examples</a>.
+!!! tip
+
+   	See the [customizable job script examples](#scripts) below.
 
 Your job will run in the environment it inherits at submission time; this environment includes the modules you have loaded and the current working directory. In most cases you should **run your application(s) after loading the same modules that you used to build them**. You can of course use your job submission script to modify this environment by defining new environment variables; changing the values of existing environment variables; loading or unloading modules; changing directory; or specifying relative or absolute paths to files. **Do not use the Slurm `--export` option to manage your job's environment**: doing so can interfere with the way the system propagates the inherited environment.
 
-Consult the [Common `sbatch` Options table](#table6) below describes some of the most common `sbatch` command options. Slurm directives begin with `#SBATCH`; most have a short form (e.g. `-N`) and a long form (e.g. `--nodes`). You can pass options to `sbatch` using either the command line or job script; most users find that the job script is the easier approach. The first line of your job script must specify the interpreter that will parse non-Slurm commands; in most cases `#!/bin/bash` or `#!/bin/csh` is the right choice. Avoid `#!/bin/sh` (its startup behavior can lead to subtle problems on Frontera), and do not include comments or any other characters on this first line. All `#SBATCH` directives must precede all shell commands. Note also that certain `#SBATCH` options or combinations of options are mandatory, while others are not available on Frontera.
+The [Common `sbatch` Options table](#table7) below describes some of the most common `sbatch` command options. Slurm directives begin with `#SBATCH`; most have a short form (e.g. `-N`) and a long form (e.g. `--nodes`). You can pass options to `sbatch` using either the command line or job script; most users find that the job script is the easier approach. The first line of your job script must specify the interpreter that will parse non-Slurm commands; in most cases `#!/bin/bash` or `#!/bin/csh` is the right choice. Avoid `#!/bin/sh` (its startup behavior can lead to subtle problems on Frontera), and do not include comments or any other characters on this first line. All `#SBATCH` directives must precede all shell commands. Note also that certain `#SBATCH` options or combinations of options are mandatory, while others are not available on Frontera.
 
 
-#### [Table 6. Common <code>sbatch</code> Options](#table6) { #table6 } 
+#### [Table 7. Common <code>sbatch</code> Options](#table7) { #table7 } 
 
 | Option | Argument | Comments |
 | --- | --- | -- |
@@ -893,7 +890,7 @@ Similarly, you cannot use paths like `$WORK` or `$SCRATCH` in an `#SBATCH` direc
 For more information on this and other matters related to Slurm job submission, see the [Slurm online documentation](https://slurm.schedmd.com/sbatch.html); the man pages for both Slurm itself (`man slurm`) and its individual commands (e.g. `man sbatch`); as well as numerous other online resources.
 
 
-## [Sample Job Scripts](#jobscripts)
+## [Sample Job Scripts](#scripts)
 
 Copy and customize the following jobs scripts by specifying and refining your job's requirements.
 
@@ -902,7 +899,7 @@ Copy and customize the following jobs scripts by specifying and refining your jo
 * specify tasks per node with the `-n` option
 * specify the project to be charged with the `-A` option.
 
-Consult [Table 6](#table-6-common-sbatch-options) for a listing of common Slurm `#SBATCH` options.
+Consult [Table 7](#table7) for a listing of common Slurm `#SBATCH` options.
 
 Click on a tab header below to display it's job script, then copy and customize to suit your own application.
 
@@ -1289,7 +1286,7 @@ This section of the user guide does nothing more than introduce the big ideas wi
 
 #### [Intel Compilers](#building-basics-intel) { #building-basics-intel }
 
-Intel is the recommended and default compiler suite on Frontera. Each Intel module also gives you direct access to `mkl` without loading an `mkl` module; see [Intel MKL](#the-intel-math-kernel-library-mkl) for more information. Here are simple examples that use the Intel compiler to build an executable from source code:
+Intel is the recommended and default compiler suite on Frontera. Each Intel module also gives you direct access to `mkl` without loading an `mkl` module; see [Intel MKL](#building-mkl) for more information. Here are simple examples that use the Intel compiler to build an executable from source code:
 
 
 Compiling a code that uses OpenMP would look like this:
@@ -1351,7 +1348,7 @@ On Frontera, both the `hdf5` and `phdf5` modules define the environment variable
 
 The details of the linking process vary, and order sometimes matters. Much depends on the type of library: static (`.a` suffix; library's binary code becomes part of executable image at link time) versus dynamically-linked shared (.so suffix; library's binary code is not part of executable; it's located and loaded into memory at run time). The link line can use rpath to store in the executable an explicit path to a shared library. In general, however, the `LD_LIBRARY_PATH` environment variable specifies the search path for dynamic libraries. For software installed at the system-level, TACC's modules generally modify `LD_LIBRARY_PATH` automatically. To see whether and how an executable named `myexe` resolves dependencies on dynamically linked libraries, execute `ldd myexe`.
 
-A separate section below addresses the [Intel Math Kernel Library](#the-intel-math-kernel-library-mkl) (MKL).
+A separate section below addresses the [Intel Math Kernel Library](#building-mkl) (MKL).
 
 #### [Compiling and Linking MPI Programs](#building-basics-mpi) { #building-basics-mpi }
 
@@ -1402,7 +1399,7 @@ $ R                             # launch R
 > install.packages('devtools')  # R will prompt for install location
 ```
  
-You may, of course, need to customize the build process in other ways. It's likely, for example, that you'll need to edit a `makefile` or other build artifacts to specify Frontera-specific [include and library paths](#include-and-library-paths) or other compiler settings. A good way to proceed is to write a shell script that implements the entire process: definitions of environment variables, module commands, and calls to the build utilities. Include `echo` statements with appropriate diagnostics. Run the script until you encounter an error. Research and fix the current problem. Document your experience in the script itself; including dead-ends, alternatives, and lessons learned. Re-run the script to get to the next error, then repeat until done. When you're finished, you'll have a repeatable process that you can archive until it's time to update the software or move to a new machine.
+You may, of course, need to customize the build process in other ways. It's likely, for example, that you'll need to edit a `makefile` or other build artifacts to specify Frontera-specific [include and library paths](#building-basics-paths) or other compiler settings. A good way to proceed is to write a shell script that implements the entire process: definitions of environment variables, module commands, and calls to the build utilities. Include `echo` statements with appropriate diagnostics. Run the script until you encounter an error. Research and fix the current problem. Document your experience in the script itself; including dead-ends, alternatives, and lessons learned. Re-run the script to get to the next error, then repeat until done. When you're finished, you'll have a repeatable process that you can archive until it's time to update the software or move to a new machine.
 
 If you wish to share a software package with collaborators, you may need to modify file permissions. See [Sharing Files with Collaborators][TACCSHARINGPROJECTFILES] for more information.
 
@@ -1792,7 +1789,7 @@ All VNC connections are tunneled through SSH for extra security.  Follow the ste
 	* <code>-p <i>partition</i></code> specify an alternate queue   
 
 
-	See [Table 6.](../running/#table-6-common-sbatch-options) for more `sbatch` options.
+	See [Table 7. Commond `sbatch` Options](#table7) for more `sbatch` options.
 
 	All arguments after the job script name are sent to the vncserver command. For example, to set the desktop resolution to 1440x900, use:
 

@@ -14,7 +14,7 @@ A single user running computationally expensive or disk intensive task/s will ne
 Think of the login nodes as a prep area, where users may edit and manage files, compile code, perform file management, issue transfers, submit new and track existing batch jobs etc. The login nodes provide an interface to the "back-end" compute nodes. 
 
 
-The compute nodes are where actual computations occur and where research is done. Hundreds of jobs may be running on all compute nodes, with hundreds more queued up to run. All batch jobs and executables, as well as development and debugging sessions, must be run on the compute nodes. To access compute nodes on TACC resources, one must either [submit a job to a batch queue](#running-sbatch) or initiate an interactive session using the [`idev`](../../software/idev) utility. 
+The compute nodes are where actual computations occur and where research is done. Hundreds of jobs may be running on all compute nodes, with hundreds more queued up to run. All batch jobs and executables, as well as development and debugging sessions, must be run on the compute nodes. To access compute nodes on TACC resources, one must either [submit a job to a batch queue](../../hpc/stampede2#running-sbatch) or initiate an interactive session using the [`idev`](../../software/idev) utility. 
 
 !!! important
 	Do not run jobs or perform intensive computational activity on the login nodes or the shared file systems.  Your account may be suspended if your jobs are impacting other users.
@@ -81,13 +81,13 @@ Compute nodes should not reference `$WORK` unless it's to stage data in/out only
 * Once your job is finished, move your output files to `$WORK` to avoid any data purges.
 	
 
-Consider that `$HOME` and `$WORK` are for storage and keeping track of important items. Actual job activity, reading and writing to disk, should be offloaded to your resource's `$SCRATCH` file system (see [Table. File System Usage Recommendations](#table-file-system-usage-recommendations). You can start a job from anywhere but the actual work of the job should occur only on the `$SCRATCH` partition. You can save original items to `$HOME` or `$WORK` so that you can copy them over to `$SCRATCH` if you need to re-generate results.
+Consider that `$HOME` and `$WORK` are for storage and keeping track of important items. Actual job activity, reading and writing to disk, should be offloaded to your resource's `$SCRATCH` file system (see [File System Usage Recommendations](#table-file-system-usage-recommendations). You can start a job from anywhere but the actual work of the job should occur only on the `$SCRATCH` partition. You can save original items to `$HOME` or `$WORK` so that you can copy them over to `$SCRATCH` if you need to re-generate results.
 
 
 * **Run I/O intensive jobs in `$SCRATCH` rather than `$WORK`.** If you stress `$WORK`, you affect every user on every TACC system. Significant I/O might include reading/writing 100+ GBs to checkpoint/restart files, running with 4096+ MPI tasks all reading/writing individual files, but is not limited to just those two cases. **If you stress `$WORK`, you affect every user on every TACC system.**
 
 
-### [File System Usage Recommendations](#table-file-system-usage-recommendations) { table-file-system-usage-recommendations }
+### [File System Usage Recommendations](#table-file-system-usage-recommendations) { #table-file-system-usage-recommendations }
 
 TACC resources, with a few exceptions&#42;, mount three file systems: `/home`, `/work` and `/scratch`. **Please follow each file system's recommended usage.**
 

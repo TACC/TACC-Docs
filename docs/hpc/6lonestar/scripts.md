@@ -7,7 +7,7 @@ Copy and customize the following scripts to specify and refine your job's requir
 * specify tasks per node with the `-n` option
 * specify the project to be charged with the `-A` option.
 
-In general, the fewer resources (nodes) you specify in your batch script, the less time your job will wait in the queue. See [5. Job Submissions Tips](../basics/conduct#https://docs.tacc.utexas.edu/basics/conduct#conduct-jobs) in the [Good Conduct](../basics/conduct) document. 
+In general, the fewer resources (nodes) you specify in your batch script, the less time your job will wait in the queue. See [5. Job Submissions Tips](../../basics/conduct#conduct-jobs) in the [Good Conduct](../../basics/conduct) document. 
 
 Consult [Table 6](../stampede2#table6) in the [Stampede2 User Guide](../stampede2) for a listing of common Slurm `#SBATCH` options.
 

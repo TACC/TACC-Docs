@@ -208,7 +208,7 @@ This policy applies to both the main and "protected" areas of Corral4.
 * [Lonestar6 User Guide](../lonestar6)  
 * [iRODS](http://irods.org/)  
 * [Cyberduck home page](http://cyberduck.io/)  
-* [UNIX man pages](https://www.freebsd.org/cgi/man.cgi)
+* [UNIX manual pages](https://www.freebsd.org/cgi/man.cgi)
 
 
 {%include 'aliases.md' %}

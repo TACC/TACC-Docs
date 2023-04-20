@@ -10,9 +10,7 @@ Lonestar6's new queue, `vm-small` is designed for users who only need a subset o
 
 The jobs in this queue consume 1/7 the resources of a full node.  Jobs are charged accordingly at .143 SUs per node hour.
 
-#### [Table. Production Queues](#tablex) { #tablex }
-
-<!--- SDL --->
+#### [Table 5. Production Queues](#table5) { #table5 }
 
 **Queue limits are subject to change without notice.**  Use TACC's `qlimits` utility to see the latest configuration.
 

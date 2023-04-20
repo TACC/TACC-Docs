@@ -7,7 +7,7 @@
 </style>
 
 # Documentation Overview
-*April 18, 2023*
+*April 19, 2023*
 
 <!-- To not use <h3> so this heading does not show in nav -->
 /// html | p.h3
@@ -17,7 +17,7 @@ Welcome to TACC's Technical Documentation Site.
 
 TACC's technical documentation is broadly divided into three categories: High Performance Computing (HPC) Resource Guides, Software Packages at TACC, and Tutorials which can be accessed via the left-hand navigation.
 
-Additional training opportunities such as the TACC Institute Series, can be found on the [Training Page](https://tacc.utexas.edu/use-tacc/training/) on our main site.
+Additional training opportunities such as the TACC Institute Series, can be found on the [Training Page](https://www.tacc.utexas.edu/use-tacc/training/#institutes) on our main site.
 
 
 /// html | section.section--muted.section--has-border
@@ -202,7 +202,7 @@ TACC offers a variety of training and education programs. You may search and reg
 
 /////
 
-///// html | a.card--plain.card--image-top[href="./xxx"]
+///// html | a.card--plain.card--image-top[href="https://www.tacc.utexas.edu/use-tacc/training/#institutes"]
      markdown: block
 
 ////// html | img[alt="a photograph of rows of tables with trainees using laptops"][src="/img/home/institutes.png"]
@@ -231,24 +231,3 @@ Self-guided training videos ranging from short how-to guides to detailed topical
 ///
 
 
-
-<!--
-For additional HPC training, check out the following resources and contacts:
-
-* transfer any files
-* manage and monitor your allocation
-* establish DN's
-* training resources
-* software search
-* allocation managers
-
-
-* Our Training Links
-* CI
-* Cornell
-* YouTube
-
-- TACC Tutorials - A set of hands on classes with specific focus.
-- TACC Institute Series - 
-- Some External Resource - E.g. Cornell workshop.
--->

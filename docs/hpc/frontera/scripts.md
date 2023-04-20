@@ -1,4 +1,4 @@
-## [Sample Job Scripts](#jobscripts)
+## [Sample Job Scripts](#scripts)
 
 Copy and customize the following jobs scripts by specifying and refining your job's requirements.
 
@@ -7,7 +7,7 @@ Copy and customize the following jobs scripts by specifying and refining your jo
 * specify tasks per node with the `-n` option
 * specify the project to be charged with the `-A` option.
 
-Consult [Table 6](#table-6-common-sbatch-options) for a listing of common Slurm `#SBATCH` options.
+Consult [Table 7](#table7) for a listing of common Slurm `#SBATCH` options.
 
 Click on a tab header below to display it's job script, then copy and customize to suit your own application.
 

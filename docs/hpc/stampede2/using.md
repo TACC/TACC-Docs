@@ -49,7 +49,7 @@ Execute `module help sanitytool` for more information.
 
 ### [Accessing the Compute Nodes](#using-computenodes) { #using-computenodes }
 
-You connect to Stampede2 through one of four "front-end" login nodes. The login nodes are shared resources: at any given time, there are many users logged into each of these login nodes, each preparing to access the "back-end" compute nodes ([Figure 2. Login and Compute Nodes](#figure2)). What you do on the login nodes affects other users directly because you are competing for the same memory and processing power. This is the reason you should not run your applications on the login nodes or otherwise abuse them. Think of the login nodes as a prep area where you can manage files and compile code before accessing the compute nodes to perform research computations. See [Good Conduct](#using-using) for more information. 
+You connect to Stampede2 through one of four "front-end" login nodes. The login nodes are shared resources: at any given time, there are many users logged into each of these login nodes, each preparing to access the "back-end" compute nodes ([Figure 2. Login and Compute Nodes](#figure2)). What you do on the login nodes affects other users directly because you are competing for the same memory and processing power. This is the reason you should not run your applications on the login nodes or otherwise abuse them. Think of the login nodes as a prep area where you can manage files and compile code before accessing the compute nodes to perform research computations. See [Good Conduct](../../basics/conduct/#conduct-loginnodes) for more information. 
 
 **You can use your command-line prompt, or the `hostname` command, to tell you whether you are on a login node or a compute node**. The default prompt, or any custom prompt containing `\h`, displays the short form of the hostname (e.g. `c401-064`). The hostname for a Stampede2 login node begins with the string `login` (e.g. `login2.stampede2.tacc.utexas.edu`), while compute node hostnames begin with the character `c` (e.g. `c401-064.stampede2.tacc.utexas.edu`). Note that the default prompts on the compute nodes include the node type (`knl`, `skx` or `icx`) as well. The environment variable `TACC_NODE_TYPE`, defined only on the compute nodes, also displays the node type. The simplified prompts in the User Guide examples are shorter than Stampede2's actual default prompts.
 
@@ -72,7 +72,7 @@ $ module load launcher
 $ module help launcher
 ```
 
-<figure id="figure-logincomputenodes">
+<figure id="figure2">
 <img alt="Stampede2" src="../../imgs/stampede2/Stampede2.jpg">
 <figcaption>Figure 2. Login and compute nodes</figcaption></figure>
 

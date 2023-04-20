@@ -56,7 +56,7 @@ ibrun vasp_std > vasp_test.out
 
 ## [Sample Job Script: VASP on Frontera](#jobscript-frontera) { #jobscript-frontera }
 
-The script below submits a VASP job to [Frontera's normal queue](../../hpc/frontera#table-5-frontera-production-queues) (CLX compute nodes), requesting 4 nodes and 224 tasks for a maximum of 4 hours. Refer to Frontera's [Running Jobs](../../hpc/frontera#running) section for more Slurm options.
+The script below submits a VASP job to [Frontera's normal queue](../../hpc/frontera#queues) (CLX compute nodes), requesting 4 nodes and 224 tasks for a maximum of 4 hours. Refer to Frontera's [Running Jobs](../../hpc/frontera#running) section for more Slurm options.
 
 ``` job-script
 #!bin/bash 

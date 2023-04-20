@@ -27,7 +27,7 @@ Connect to the TACC Analysis Portal at <https://tap.tacc.utexas.edu>. Everyone w
 <figure id="figure1"><img alt="TACC Vis Portal" src="../../imgs/tutorials/RDA-1.png">  
 <figcaption>Figure 1. TACC Visualization Portal</figcaption></figure>
 
-## [DCV & VNC at TACC](#jobscripts) { #jobscripts }
+## [DCV & VNC at TACC](#scripts) { #scripts }
 
 TACC resources [Frontera](../../hpc/frontera), [Stampede2](../../hpc/stampede2), [Lonestar6](../../hpc/6lonestar), and [Maverick2](../../hpc/maverick2) all offer remote desktop capabilities via a VNC (Virtual Network Computing) connection. Frontera and Stampede2 also provide remote desktop access through a DCV (Desktop Cloud Visualization) connection to one or more nodes.  
 

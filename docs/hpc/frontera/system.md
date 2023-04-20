@@ -10,7 +10,7 @@ Frontera has two computing subsystems, a primary computing system focused on dou
 
 Frontera hosts 8,368 Cascade Lake (CLX) compute nodes contained in 101 racks. 
 
-#### [Table 4. CLX Specifications](#table4) { #table4 }
+#### [Table 1. CLX Specifications](#table1) { #table1 }
 
 Model       | Intel Xeon Platinum 8280 ("Cascade Lake")
 ----------- | ------------
@@ -25,7 +25,7 @@ Local storage: | 144GB /tmp partition on a 240GB SSD.
 
 Frontera hosts 16 large memory nodes featuring 2.1TB of Optane memory. Access these nodes via the [`nvdimm` queue](#queues).
 
-#### [Table 5. Large Memory Nodes ](#table5) { #table5 }
+#### [Table 2. Large Memory Nodes ](#table2) { #table2 }
 
 Model | Intel Xeon Platinum 8280M ("Cascade Lake")
 ----------- | ------------
@@ -40,7 +40,7 @@ Local storage: | 144GB /tmp partition on a 240GB SSD<br> 4x 833 GB /mnt/fsdax[0,
 
 Frontera hosts 90 GPU nodes contained in 4 Green Revolution Cooling ICEraQ racks. Access these nodes via the [`rtx` and `rtx-dev` queues](#queues).
 
-#### [Table 6. Frontera GPU node specifications](#table6) { #table6 }
+#### [Table 3. Frontera GPU node specifications](#table3) { #table3 }
 
 Feature                          | Specifications
 ------------------------         | ------------------------------------

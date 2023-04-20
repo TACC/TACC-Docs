@@ -83,7 +83,7 @@ Maverick2 hosts a single login node:
 
 ### [File Systems](#overview-filesystems) { #overview-filesystems }
 
-Maverick2 mounts two shared Lustre file systems on which each user has corresponding account-specific directories [`$HOME` and `$WORK`](#files-filesystems). **Unlike most TACC resources, Maverick2 does not mount a `/scratch` file system.**  Both the `/home` and `/work` file systems are available from all Maverick2 nodes; the [Stockyard-hosted `/work` file system](https://www.tacc.utexas.edu/systems/stockyard) is available on other TACC systems as well. A Lustre file system looks and acts like a single logical hard disk, but is actually a sophisticated integrated system involving many physical drives (dozens of physical drives for `$HOME` and thousands for `$WORK`).
+Maverick2 mounts [two shared Lustre file systems](#table4) on which each user has corresponding account-specific directories `$HOME` and `$WORK`. **Unlike most TACC resources, Maverick2 does not mount a `/scratch` file system.**  Both the `/home` and `/work` file systems are available from all Maverick2 nodes; the [Stockyard-hosted `/work` file system](https://www.tacc.utexas.edu/systems/stockyard) is available on other TACC systems as well. A Lustre file system looks and acts like a single logical hard disk, but is actually a sophisticated integrated system involving many physical drives (dozens of physical drives for `$HOME` and thousands for `$WORK`).
 
 
 

@@ -71,7 +71,7 @@ The interconnect is a 100Gb/sec Intel Omni-Path (OPA) network with a fat tree to
 
 ### [File Systems Introduction](#overview-filesystems) { #overview-filesystems }
 
-Stampede2 mounts three shared Lustre file systems on which each user has corresponding account-specific directories [`$HOME`, `$WORK`, and `$SCRATCH`](#files-filesystems). Each file system is available from all Stampede2 nodes; the [Stockyard-hosted work file system](https://www.tacc.utexas.edu/systems/stockyard) is available on most other TACC HPC systems as well.  See [Navigating the Shared File Systems](#files-filesystems) for detailed information as well as the [Good Conduct](#table-file-system-usage-recommendations) file system guidelines. 
+Stampede2 mounts three shared Lustre file systems on which each user has corresponding account-specific directories [`$HOME`, `$WORK`, and `$SCRATCH`](#files-filesystems). Each file system is available from all Stampede2 nodes; the [Stockyard-hosted work file system](https://www.tacc.utexas.edu/systems/stockyard) is available on most other TACC HPC systems as well.  See [Navigating the Shared File Systems](#files-filesystems) for detailed information as well as the [Good Conduct](##conduct-filesystems) file system guidelines. 
 
 		
 #### [Table 3. Stampede2 File Systems](#table3) { #table3 }

@@ -7,7 +7,7 @@ Last update: January 13, 2023
 * **Lonestar6 has a [new queue, `vm-small`](#queues), for jobs requiring only a subset of a node's cores.** (11/11/2022) 
 * **Lonestar6 will transition from the early user phase into production on Tuesday, January 11, 2022.** For our researchers who currently have access to Lonestar6, we will start charging usage against your allocation. (01/06/2002)
 * TACC has transitioned to a new allocations management system for Lonestar6, and there are new Project Names. See [Sharing Project Files on TACC Systems](../../tutorials/sharingprojectfiles) to learn about managing file permissions across projects. 
-* **All users: read the [Good Conduct](../basics/conduct) section.** Lonestar6 is a shared resource and your actions can impact other users. (10/18/2021) 
+* **All users: read the [Good Conduct](../../basics/conduct) section.** Lonestar6 is a shared resource and your actions can impact other users. (10/18/2021) 
 * **[Subscribe][TACCSUBSCRIBE] to Lonestar6 User News**. Stay up-to-date on Lonestar6's status, scheduled maintenances and other notifications.
 
 
@@ -120,18 +120,19 @@ File System | Quota | Key Features
 
 ### [Navigating the Shared File Systems](#files-navigating) { #files-navigating }
 
-Lonestar6 mounts three Lustre file systems that are shared across all nodes: the home, work, and scratch file systems. Lonestar6's startup mechanisms define corresponding account-level environment variables `$HOME`, `$SCRATCH` and `$WORK` that store the paths to directories that you own on each of these file systems. Consult the [Lonestar6 File Systems](#table3) table above for the basic characteristics of these file systems, <!--"File Operations: I/O Performance" for advice on performance issues,--> and the [Good Conduct](../basics/conduct) document for guidance on file system etiquette.
+Lonestar6 mounts three Lustre file systems that are shared across all nodes: the home, work, and scratch file systems. Lonestar6's startup mechanisms define corresponding account-level environment variables `$HOME`, `$SCRATCH` and `$WORK` that store the paths to directories that you own on each of these file systems. Consult the [Lonestar6 File Systems](#table3) table above for the basic characteristics of these file systems, <!--"File Operations: I/O Performance" for advice on performance issues,--> and the [Good Conduct](../../basics/conduct) document for guidance on file system etiquette.
 
 Lonestar6's home and scratch file systems are mounted only on Lonestar6, but the work file system mounted on Lonestar6 is the Global Shared File System hosted on Stockyard. This is the same work file system that is currently available on Frontera, Stampede2 and most other TACC resources.
 
 The `$STOCKYARD` environment variable points to the highest-level directory that you own on the Global Shared File System. The definition of the `$STOCKYARD` environment variable is of course account-specific, but you will see the same value on all TACC systems that provide access to the Global Shared File System (see [Table 3](#table3)). This directory is an excellent place to store files you want to access regularly from multiple TACC resources. 
 
-[Figure. Stockyard Global File System](#stockyard)
+<figure id="figure1">
+[Figure 1. Stockyard Global File System](#figure1)
 
-<figure><img src="../../imgs/stockyard-2022.jpg">
+<img src="../../imgs/stockyard-2022.jpg">
 <figcaption>Account-level directories on the <code>/work</code> file system (Global Shared File System hosted on Stockyard). Example for fictitious user `bjones`. All directories usable from all systems. Sub-directories (e.g. `stampede2`, `frontera`) exist only when you have allocations on the associated system.</figcaption></figure>
 
-Your account-specific `$WORK` environment variable varies from system to system and is a subdirectory of `$STOCKYARD` (Figure 3). The subdirectory name corresponds to the associated TACC resource. The `$WORK` environment variable on Lonestar6 points to the `$STOCKYARD/ls6` subdirectory, a convenient location for files you use and jobs you run on Lonestar6. Remember, however, that all subdirectories contained in your `$STOCKYARD` directory are available to you from any system that mounts the file system. If you have accounts on both Lonestar6 and Stampede2, for example, the `$STOCKYARD/ls6` directory is available from your Stampede2 account, and `$STOCKYARD/stampede2` directory is available from your Lonestar6 account. Your quota and reported usage on the Global Shared File System reflects **all files** that you own on Stockyard, regardless of their actual location on the file system.
+Your account-specific `$WORK` environment variable varies from system to system and is a subdirectory of `$STOCKYARD` (Figure 1). The subdirectory name corresponds to the associated TACC resource. The `$WORK` environment variable on Lonestar6 points to the `$STOCKYARD/ls6` subdirectory, a convenient location for files you use and jobs you run on Lonestar6. Remember, however, that all subdirectories contained in your `$STOCKYARD` directory are available to you from any system that mounts the file system. If you have accounts on both Lonestar6 and Stampede2, for example, the `$STOCKYARD/ls6` directory is available from your Stampede2 account, and `$STOCKYARD/stampede2` directory is available from your Lonestar6 account. Your quota and reported usage on the Global Shared File System reflects **all files** that you own on Stockyard, regardless of their actual location on the file system.
 
 Note that resource-specific subdirectories of `$STOCKYARD` are simply convenient ways to manage your resource-specific files. You have access to any such subdirectory from any TACC resources. If you are logged into Lonestar6, for example, executing the alias `cdw` (equivalent to `cd $WORK`) will take you to the resource-specific subdirectory `$STOCKYARD/ls6`. But you can access this directory from other TACC systems as well by executing `cd $STOCKYARD/ls6`. These commands allow you to share files across TACC systems. In fact, several convenient account-level aliases make it even easier to navigate across the directories you own in the shared file systems:
 
@@ -281,7 +282,7 @@ For more information see the [Bash Users' Startup Files: Quick Start Guide](../.
 
 ### [Environment Variables](#admin-envvars) { #admin-envvars }
 
-Your environment includes the environment variables and functions defined in your current shell: those initialized by the system, those you define or modify in your account-level startup scripts, and those defined or modified by the [modules](#using-modules-to-manage-your-environment) that you load to configure your software environment. Be sure to distinguish between an environment variable's name (e.g. `HISTSIZE`) and its value (`$HISTSIZE`). Understand as well that a sub-shell (e.g. a script) inherits environment variables from its parent, but does not inherit ordinary shell variables or aliases. Use `export` (in Bash) or `setenv` (in `csh`) to define an environment variable.
+Your environment includes the environment variables and functions defined in your current shell: those initialized by the system, those you define or modify in your account-level startup scripts, and those defined or modified by the [modules](#admin-modules) that you load to configure your software environment. Be sure to distinguish between an environment variable's name (e.g. `HISTSIZE`) and its value (`$HISTSIZE`). Understand as well that a sub-shell (e.g. a script) inherits environment variables from its parent, but does not inherit ordinary shell variables or aliases. Use `export` (in Bash) or `setenv` (in `csh`) to define an environment variable.
 
 Execute the `env` command to see the environment variables that define the way your shell and child shells behave. 
 
@@ -700,9 +701,7 @@ Lonestar6's new queue, `vm-small` is designed for users who only need a subset o
 
 The jobs in this queue consume 1/7 the resources of a full node.  Jobs are charged accordingly at .143 SUs per node hour.
 
-#### [Table. Production Queues](#tablex) { #tablex }
-
-<!--- SDL --->
+#### [Table 5. Production Queues](#table5) { #table5 }
 
 **Queue limits are subject to change without notice.**  Use TACC's `qlimits` utility to see the latest configuration.
 
@@ -729,7 +728,7 @@ Copy and customize the following scripts to specify and refine your job's requir
 * specify tasks per node with the `-n` option
 * specify the project to be charged with the `-A` option.
 
-In general, the fewer resources (nodes) you specify in your batch script, the less time your job will wait in the queue. See [5. Job Submissions Tips](../basics/conduct#https://docs.tacc.utexas.edu/basics/conduct#conduct-jobs) in the [Good Conduct](../basics/conduct) document. 
+In general, the fewer resources (nodes) you specify in your batch script, the less time your job will wait in the queue. See [5. Job Submissions Tips](../../basics/conduct#conduct-jobs) in the [Good Conduct](../../basics/conduct) document. 
 
 Consult [Table 6](../stampede2#table6) in the [Stampede2 User Guide](../stampede2) for a listing of common Slurm `#SBATCH` options.
 
@@ -1282,47 +1281,9 @@ TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for 
 [DOWNLOADCYBERDUCK]: https://cyberduck.io/download/ "Download Cyberduck"
 
 
-
-
-<!--  hpc ug links 
-[STAMPEDE2UG]: http://portal.tacc.utexas.edu/user-guides/stampede2  "Stampede2 User Guide"
-[LONESTAR6UG]: http://portal.tacc.utexas.edu/user-guides/lonestar6  "Lonestar6 User Guide"
-[FRONTERAUG]: https://frontera-portal.tacc.utexas.edu/user-guide/  "Frontera User Guide"
-[CORRALUG]: http://portal.tacc.utexas.edu/user-guides/corral  "Corral User Guide" 
-[RANCHUG]: http://portal.tacc.utexas.edu/user-guides/ranch  "Ranch User Guide"
-[MAVERICK2UG]: http://portal.tacc.utexas.edu/user-guides/maverick2  "Maverick2 User Guide" -->
-
-<!-- common links -->
-<!--
-[STAMPEDE2UGRUNNING]: http://portal.tacc.utexas.edu/user-guides/stampede2#running  "Stampede2 User Guide - Running"
-[STAMPEDE2UGBUILDING]: http://portal.tacc.utexas.edu/user-guides/stampede2#building  "Stampede2 User Guide - Running"
-[FRONTERAUGRUNNING]: https://frontera-portal.tacc.utexas.edu/user-guide/#running  "Frontera User Guide - Running"
-[LONESTAR6UGRUNNING]:http://portal.utexas.edu/user-guide/lonestar6#running  "Lonestar6 User Guide - Running" -->
-
-
-
-
-<!-- software links -->
-<!--
-[TACCIDEV]: http://portal.tacc.utexas.edu/software/idev "idev User Guide"
-[TACCIRODS]: http://portal.tacc.utexas.edu/software/irods "IRODS at TACC"
-[TACCREMORA]: http://portal.tacc.utexas.edu/software/remora "REMORA at TACC"
-[TACCTENSORFLOW]: http://portal.tacc.utexas.edu/software/tensorflow "Tensorflow at TACC"
--->
-
-<!-- tutorial links -->
-<!-- 
-[TACCACLS]: http://portal.tacc.utexas.edu/tutorials/acls "Manage Permissions with Access Control Lists"
--->
-<!-- 
-[TACCMANAGINGIO]: http://portal.tacc.utexas.edu/tutorials/managingio "Managing I/O at TACC"
-[TACCMFA]: http://portal.tacc.utexas.edu/tutorials/multifactor-authentication "Multi-Factor Authentication at TACC"
--->
-[TACCREMOTEDESKTOPACCESS]: http://portal.tacc.utexas.edu/tutorials/remote-desktop-access "TACC Remote Desktop Access"
-[TACCSHARINGPROJECTFILES]: http://portal.tacc.utexas.edu/tutorials/sharing-project-files "Sharing Project Files"
-[TACCBASHQUICKSTART]: http://portal.tacc.utexas.edu/tutorials/bashquickstart "Bash Quick Start Guide"
-[TACCACCESSCONTROLLISTS]: http://portal.tacc.utexas.edu/tutorials/acls "Access Control Lists"
-
-
+[TACCREMOTEDESKTOPACCESS]: https://docs.tacc.utexas.edu/tutorials/remotedesktopaccess "TACC Remote Desktop Access"
+[TACCSHARINGPROJECTFILES]: https://docs.tacc.utexas.edu/tutorials/sharingprojectfiles "Sharing Project Files"
+[TACCBASHQUICKSTART]: https://docs.tacc.utexas.edu/tutorials/bashstartup "Bash Quick Start Guide"
+[TACCACCESSCONTROLLISTS]: https://docs.tacc.utexas.edu/tutorials/acls "Access Control Lists"
 
 

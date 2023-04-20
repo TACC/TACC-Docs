@@ -47,7 +47,7 @@ Users with Apple iOS and Android devices may set up device pairing using a one o
 
 Download and install your preferred MFA App on your Apple IOS or Android device, then follow the app instructions to pair your mobile device.  Table 1. features a few of the more popular applications along with links to the respective Apple App and Google Play stores.
 
-[Table 1. MFA Authentication Apps](#table1) { #table1 }
+#### [Table 1. MFA Apps](#table1) { #table1 }
 
 Operating System | MFA Authentication Apps
 --- | ---

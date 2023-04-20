@@ -1,6 +1,6 @@
 ## [Software](#software) { #software }
 
-As of January 17, 2023, the following software modules are currently installed on Maverick2. You can discover already installed software using TACC's [Software Search](https://www.tacc.utexas.edu/systems/software) tool or via `module` commands e.g., `module spider`, `module avail` to retrieve the most up-to-date listing.
+As of January 17, 2023, the following software modules are currently installed on Maverick2. You can discover already installed software using TACC's [Software Search](https://tacc.utexas.edu/use-tacc/software-list/) tool or via `module` commands e.g., `module spider`, `module avail` to retrieve the most up-to-date listing.
 
 ``` cmd-line
 login1$ module avail
@@ -46,7 +46,7 @@ You are welcome to install packages in your own `$HOME` or `$WORK` directories. 
 
 ### [Deep Learning Packages](#software-ml) { #software-ml }
 
-See: [Tensorflow at TACC](../../software)
+See: [Tensorflow at TACC](../../software/tensorflow)
 
 
 See the [Remote Desktop Access at TACC][TACCREMOTEDESKTOPACCESS] tutorial to set up a VNC or DCV connection.

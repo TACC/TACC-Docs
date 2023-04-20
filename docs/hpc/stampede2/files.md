@@ -1,6 +1,6 @@
 ## [Managing Your Files](#files) { #files }
 
-Stampede2 mounts three file Lustre file systems that are shared across all nodes: the home, work, and scratch file systems. Stampede2's startup mechanisms define corresponding account-level environment variables `$HOME`, `$SCRATCH`, and `$WORK` that store the paths to directories that you own on each of these file systems. Consult the [Stampede2 File Systems](#table3) table for the basic characteristics of these file systems, [File Operations: I/O Performance](#programming-fileio) for advice on performance issues, and [Good Conduct](../basics/conduct) for tips on file system etiquette.
+Stampede2 mounts three file Lustre file systems that are shared across all nodes: the home, work, and scratch file systems. Stampede2's startup mechanisms define corresponding account-level environment variables `$HOME`, `$SCRATCH`, and `$WORK` that store the paths to directories that you own on each of these file systems. Consult the [Stampede2 File Systems](#table3) table for the basic characteristics of these file systems, [File Operations: I/O Performance](#programming-fileio) for advice on performance issues, and [Good Conduct](../../basics/conduct) for tips on file system etiquette.
 
 
 ### [Navigating the Shared File Systems](#files-filesystems) { #files-filesystems }
@@ -117,7 +117,7 @@ The options on the second transfer are typical and appropriate when synching a d
 
 See [Striping Large Files](#files-striping) for additional important advice about striping the receiving directory when transferring or creating large files on TACC systems. 
 
-As detailed in [Good Conduct](../basics/conduct), it is important to monitor your quotas on the `$HOME` and `$WORK` file systems, and limit the number of simultaneous transfers. Remember also that `$STOCKYARD` (and your `$WORK` directory on each TACC resource) is available from several other TACC systems: there's no need for `scp` when both the source and destination involve sub-directories of `$STOCKYARD`. See [Managing Your Files](#files) for more information about transfers on `$STOCKYARD`.
+As detailed in [Good Conduct](../../basics/conduct), it is important to monitor your quotas on the `$HOME` and `$WORK` file systems, and limit the number of simultaneous transfers. Remember also that `$STOCKYARD` (and your `$WORK` directory on each TACC resource) is available from several other TACC systems: there's no need for `scp` when both the source and destination involve sub-directories of `$STOCKYARD`. See [Managing Your Files](#files) for more information about transfers on `$STOCKYARD`.
 
 ### [with  Grid Community Toolkit](#transferring-gct) { #transferring-gct }
 
