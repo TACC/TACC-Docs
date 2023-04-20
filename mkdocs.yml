@@ -140,6 +140,13 @@ markdown_extensions:
 
 plugins:
   - search
+  - exclude-search:
+      exclude:
+        - aliases.md
+        - include/*
+        - index-sample/*
+        - code-examples/*
+        - testingextensions.md
   - macros # allows {% include ... %} (and macros)
 #  - with-pdf:
 #      copyright: TACC
