@@ -240,8 +240,6 @@ Remember that it's not possible to change the striping on a file that already ex
 
 ## [Running Jobs](#running) { #running}
 
-{% include 'include/tinfo.md' %}
-
 {% include 'include/maverick2-jobaccounting.md' %}
 
 ### [Slurm Job Scheduler](#running-slurm) { #running-slurm }
@@ -252,8 +250,9 @@ The [Stampede2 User Guide](../stampede2) discusses Slurm extensively.  See the f
 
 * [Submitting Jobs with `sbatch`](../stampede2#running-sbatch)
 * [Common `sbatch` options](../stampede2#table6)
-* [Launching Applications](../stampede2#launching)
+* [Launching Applications](../stampede2#running-launching)
 
+<a id="queues">
 ### [Slurm Partitions (Queues)](#running-queues) { #running-queues }
 
 **Queues and limits are subject to change without notice.** 

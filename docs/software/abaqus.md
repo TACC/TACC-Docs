@@ -53,7 +53,7 @@ login1$ module load abaqus
 	* [Stampede2 - Running Jobs](../../hpc/stampede2#running)
 	* [Frontera - Running Jobs](../../hpc/frontera#running)
 
-	As with all other software packages, do not run ABAQUS on the login nodes. All ABAQUS invocations must occur within an `idev` session or submitted to the compute nodes as a batch job using the [job script](#job-script) below.
+	As with all other software packages, do not run ABAQUS on the login nodes. All ABAQUS invocations must occur within an `idev` session or submitted to the compute nodes as a batch job using the [job script](#jobscript) below.
 
 
 ### [Interactively](#running-interactive) { #running-interactive }

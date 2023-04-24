@@ -105,26 +105,26 @@ The KNL can do this in several ways, each of which is called a cluster mode. Eac
 
 <figure id="figure-knlclustermodes"><img src="../../imgs/KNL-Cluster-Modes.png"><figcaption>Figure 5. KNL Cluster Modes</figcaption></figure>
 
-TACC's early experience with the KNL suggests that there is little reason to deviate from Intel's recommended default memory and cluster modes. Cache-quadrant tends to be a good choice for almost all workflows; it offers a nice compromise between performance and ease of use for the applications we have tested. Flat-quadrant is the most promising alternative and sometimes offers moderately better performance, especially when memory requirements per node are less than 16GB. We have not yet observed significant performance differences across cluster modes, and our current recommendation is that configurations other than cache-quadrant and flat-quadrant are worth considering only for very specialized needs. For more information see [Managing Memory](#knl-programming-managingmemory) and [Best Known Practices...](#knl-programming-bestpractices).
+TACC's early experience with the KNL suggests that there is little reason to deviate from Intel's recommended default memory and cluster modes. Cache-quadrant tends to be a good choice for almost all workflows; it offers a nice compromise between performance and ease of use for the applications we have tested. Flat-quadrant is the most promising alternative and sometimes offers moderately better performance, especially when memory requirements per node are less than 16GB. We have not yet observed significant performance differences across cluster modes, and our current recommendation is that configurations other than cache-quadrant and flat-quadrant are worth considering only for very specialized needs. For more information see [Managing Memory](#programming-knl-managingmemory) and [Best Known Practices...](#programming-knl-bestpractices).
 
 
 #### [Managing Memory](#programming-knl-managingmemory) { #programming-knl-managingmemory }
 
 By design, any application can run in any memory and cluster mode, and applications always have access to all available RAM. Moreover, regardless of memory and cluster modes, there are no code changes or other manual interventions required to run your application safely. However, there are times when explicit manual memory management is worth considering to improve performance. The Linux `numactl` (pronounced "NUMA Control") utility allows you to specify at runtime where your code should allocate memory.
 
-When running in flat-quadrant mode, launch your code with [simple `numactl` settings](#example) to specify whether memory allocations occur in DDR or MCDRAM. See [TACC Training Materials](/training) for additional information.
+When running in flat-quadrant mode, launch your code with [simple `numactl` settings](#example) to specify whether memory allocations occur in DDR or MCDRAM. See [TACC Training Materials](https://tacc.utexas.edu/use-tacc/training/) for additional information.
 
 ```job-script
 numactl       --membind=0    ./a.out    # launch a.out (non-MPI); use DDR (default)
 ibrun numactl --membind=0    ./a.out    # launch a.out (MPI-based); use DDR (default)
 
 numactl       --membind=1    ./a.out    # use only MCDRAM
-numactl       --preferred=1  ./a.out    # (<b>RECOMMENDED</b>) MCDRAM if possible; else DDR
+numactl       --preferred=1  ./a.out    # (RECOMMENDED) MCDRAM if possible; else DDR
 numactl       --hardware                # show numactl settings
 numactl       --help                    # list available numactl options
 ```
 
-Examples. Controlling memory in flat-quadrant mode: `numactl` options  
+##### [Example: Controlling memory in flat-quadrant mode: `numactl` options  ](#example) { #example }
 
 Intel's new `memkind` library adds the ability to manage memory in source code with a special memory allocator for C code and a corresponding attribute for Fortran. This makes possible a level of control over memory allocation down to the level of the individual data element. As this library matures it will likely become an important tool for those who need fine-grained control of memory.
 
@@ -144,7 +144,7 @@ On Stampede2 the keyword `tacc_affinity` was originally an older name for what i
 
 **General Expectations**. From a pure hardware perspective, a single Stampede2 KNL node could outperform Stampede1's dual socket Sandy Bridge nodes by as much as 6x; this is true for both memory bandwidth-bound and compute-bound codes. This assumes the code is running out of (fast) MCDRAM on nodes configured in flat mode (450 GB/s bandwidth vs 75 GB/s on Sandy Bridge) or using cache-contained workloads on nodes configured in cache mode (memory footprint &lt; 16GB). It also assumes perfect scalability and no latency issues. In practice we have observed application improvements between 1.3x and 5x for several HPC workloads typically run in TACC systems. Codes with poor vectorization or scalability could see much smaller improvements. In terms of network performance, the Omni-Path network provides 100 Gbits per second peak bandwidth, with point-to-point exchange performance measured at over 11 GBytes per second for a single task pair across nodes. Latency values will be higher than those for the Sandy Bridge FDR Infiniband network: on the order of 2-4 microseconds for exchanges across nodes.
 
-**MCDRAM in Flat-Quadrant Mode**. Unless you have specialized needs, we recommend using `mem_affinity` or launching your application with `numactl --preferred=1` when running in flat-quadrant mode (see [Managing Memory](#knl-programming-managingmemory) above). If you mistakenly use `--membind=1`, only the 16GB of fast MCDRAM will be available. If you mistakenly use `--membind=0`, you will not be able to access fast MCDRAM at all.
+**MCDRAM in Flat-Quadrant Mode**. Unless you have specialized needs, we recommend using `mem_affinity` or launching your application with `numactl --preferred=1` when running in flat-quadrant mode (see [Managing Memory](#programming-knl-managingmemory) above). If you mistakenly use `--membind=1`, only the 16GB of fast MCDRAM will be available. If you mistakenly use `--membind=0`, you will not be able to access fast MCDRAM at all.
 
 **Task Affinity**. If you're running one threaded, MPI, or hybrid application at a time, default affinity settings are usually sensible and often optimal. <!-- SDL See [TACC training materials](https://xortal.tacc.utexas.edu/training#/session/41) for more information.--> If you run more than one threaded, MPI, or hybrid application at a time, you'll want to pay attention to affinity. For more information see the appropriate sub-sections under [Launching Applications](#running-launching). 
 
@@ -180,7 +180,7 @@ The `qopt-zmm-usage` flag affects the algorithms the compiler uses to decide whe
 
 This section includes general advice intended to help you achieve good performance during file operations. See [Navigating the Shared File Systems](#files-filesystems) for a brief overview of Stampede2's Lustre file systems and the concept of striping. See [TACC Training material](https://learn.tacc.utexas.edu/) for additional information on I/O performance.
 
-**Follow the advice in [Good Conduct](#shared-lustre-file-systems)** to avoid stressing the file system.
+**Follow the advice in [Good Conduct](#conduct-filesystems)** to avoid stressing the file system.
 
 **Stripe for performance**. If your application writes large files using MPI-based parallel I/O (including [MPI-IO](http://mpi-forum.org/docs/mpi-3.1/mpi31-report.pdf), [parallel HDF5](https://support.hdfgroup.org/HDF5/PHDF5/), and [parallel netCDF](https://www.unidata.ucar.edu/software/netcdf/docs/parallel_io.html), you should experiment with stripe counts larger than the default values (2 stripes on `$SCRATCH`, 1 stripe on `$WORK`). See [Striping Large Files](#files-striping) for the simplest way to set the stripe count on the directory in which you will create new output files. You may also want to try larger stripe sizes up to 16MB or even 32MB; execute `man lfs` for more information. If you write many small files you should probably leave the stripe count at its default value, especially if you write each file from a single process. Note that it's not possible to change the stripe parameters on files that already exist. This means that you should make decisions about striping when you *create* input files, not when you read them.
 

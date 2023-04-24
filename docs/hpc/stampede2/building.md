@@ -8,7 +8,7 @@ This section of the user guide does nothing more than introduce the big ideas wi
 
 #### [Intel Compilers](#building-basics-intel) { #building-basics-intel }
 
-Intel is the recommended and default compiler suite on Stampede2. Each Intel module also gives you direct access to `mkl` without loading an `mkl` module; see [Intel MKL](#intel-math-kernel-library-mkl) for more information. Here are simple examples that use the Intel compiler to build an executable from source code:
+Intel is the recommended and default compiler suite on Stampede2. Each Intel module also gives you direct access to `mkl` without loading an `mkl` module; see [Intel MKL](#mkl) for more information. Here are simple examples that use the Intel compiler to build an executable from source code:
 
 ```cmd-line
 $ icc mycode.c                    # C source file; executable a.out
@@ -77,7 +77,7 @@ On Stampede2, both the `hdf5` and `phdf5` modules define the environment variabl
 
 The details of the linking process vary, and order sometimes matters. Much depends on the type of library: static (`.a` suffix; library's binary code becomes part of executable image at link time) versus dynamically-linked shared (.so suffix; library's binary code is not part of executable; it's located and loaded into memory at run time). The link line can use rpath to store in the executable an explicit path to a shared library. In general, however, the `LD_LIBRARY_PATH` environment variable specifies the search path for dynamic libraries. For software installed at the system-level, TACC's modules generally modify `LD_LIBRARY_PATH` automatically. To see whether and how an executable named `myexe` resolves dependencies on dynamically linked libraries, execute `ldd myexe`.
 
-A separate section below addresses the [Intel Math Kernel Library](#intel-math-kernel-library-mkl) (MKL).
+A separate section below addresses the [Intel Math Kernel Library](#mkl) (MKL).
 
 #### [Compiling and Linking MPI Programs](#building-basics-mpi) { #building-basics-mpi }
 

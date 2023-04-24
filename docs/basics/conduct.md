@@ -34,7 +34,7 @@ The compute nodes are where actual computations occur and where research is done
 	DO THIS: Start an interactive session on a compute node, then run Matlab.
 	```cmd-line
 	login1$ idev
-	nid00181$ matlab
+	c123-456$ matlab
 	```
 
 !!! danger
