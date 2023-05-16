@@ -29,26 +29,26 @@ theme:
           lang: bash
         - name: syntax
           lang: plaintext
-    custom_dir: themes/readthedocs
+    custom_dir: themes/tacc-readthedocs
     cms_url: https://tacc.utexas.edu # TACC Feature
     cms_name: tacc.utexas.edu # TACC Feature
     # These must be modules
     # SEE: /themes/readthedocs/main.html @ "block scripts"
     tacc_javascript:
-        - js/modules/setTargetForExternalLinks.js
-        - js/modules/styleLinksOutsideMainContent.js
-        - js/modules/swapImgSvgWithRawSvg.js
-        - js/modules/removeThemeClasses.js
-        - js/modules/changeNavMarkup.js
+        - js/core/modules/setTargetForExternalLinks.js
+        - js/core/modules/styleLinksOutsideMainContent.js
+        - js/core/modules/swapImgSvgWithRawSvg.js
+        - js/core/modules/removeThemeClasses.js
+        - js/core/modules/changeNavMarkup.js
 
 extra_css:
-    - css/bootstrap.css
-    - css/core-styles.css
-    - css/tacc-docs.css
+    - css/core/bootstrap.css
+    - css/core/core-styles.css
+    - css/core/tacc-docs.css
 
 # TACC uses JS modules when possible (see theme.tacc_javascript)
 extra_javascript:
-    - js/addPageId.js # not a module, because it relies on a global JS variable
+    - js/core/addPageId.js # not a module, because it relies on a global JS variable
 
 nav:
   - TACC Essentials :
