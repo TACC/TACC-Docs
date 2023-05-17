@@ -16,6 +16,7 @@ ENV POETRY_VERSION=1.4.2 \
 ENV PATH="$POETRY_HOME/bin:$VENV_PATH/bin:$PATH"
 
 FROM python-base as builder-base
+
 # install locales for en_us.utf-8
 RUN apt-get update && apt-get install -y \
     dialog \
@@ -27,6 +28,7 @@ RUN apt-get update && apt-get install -y \
 ENV LC_ALL en_US.utf-8
 ENV LANG en_US.utf-8
 
+# install buildtime deps
 RUN pip3 install --upgrade pip setuptools wheel
 
 # Install Poetry - respects $POETRY_VERSION & $POETRY_HOME
@@ -38,6 +40,7 @@ COPY pyproject.toml poetry.lock ./
 
 # install runtime deps - uses $POETRY_VIRTUALENVS_IN_PROJECT internally
 RUN poetry install --no-dev
+RUN apt-get install -y yq
 
 # `production` image is used for deployed runtime environments
 FROM python-base as production
