@@ -1,5 +1,5 @@
 # <code>idev</code>: (Interactive Development) User Guide
-*Last update: April 27, 2023*
+*Last update: May 17, 2023*
 
 ## [Introduction](#intro) { #intro }
 
@@ -26,17 +26,17 @@ login2$ idev -help
    #                   -A account_name
    #  default values: -p development -m 30 -N 1 -n <max_for_node> -->
 
-If this is your first time launching `idev` and you have multiple projects/allocations, `idev` will prompt you for the allocation number and then save your selection as the default interactive account (in `~/.idevrc`); otherwise, it will automatically use your only account. 
+If this is your first time launching `idev` and you have multiple projects/allocations, `idev` will prompt you for the project name and then save your selection as the default interactive account (in `~/.idevrc`); otherwise, it will automatically use your only account. 
 
 By default only a single node is requested for 30 minutes in the development queue.  The limits can be changed with command line options, using syntax similar to the batch request specifications used in a job script.  Also, the common defaults can be changed in the ~/.idevrc file (See idev help.)
 
 ##  [Accessing Nodes Interactively](#interactive) { #interactive }
 
-It is important to realize that idev acquires compute nodes through the Slurm batch system (this is the normal/only mode for acquiring resources on a supercomputer).  This often means there is a wait to acquire nodes in the normal (production) partitions.  Fortunately, at TACC there is a "development" queue on each TACC system (`idev`'s default partition), and it is often a short wait for `idev` to acquire (one or a few) nodes and allow interactive input.  When you run `idev`, it reports back every 4 seconds the progress of accessing the nodes through the batch system.
+It is important to realize that idev acquires compute nodes through the Slurm batch system (this is the normal/only mode for acquiring resources on a supercomputer).  This often means there is a wait to acquire nodes in the normal (production) partitions.  Fortunately, at TACC there is a `development` queue on each TACC system (`idev`'s default partition), and it is often a short wait for `idev` to acquire (one or a few) nodes and allow interactive input.  When you run `idev`, it reports back every 4 seconds the progress of accessing the nodes through the batch system.
 
 ### [Examples](#examples) { #examples }
 
-Below is an example of `idev`'s progress in creating a session on a Skylake development node (in the skx-dev partition, the development default partition is for knl nodes):
+Below is an example of `idev`'s progress in creating a session on a Stampede2 Skylake development node (in the `skx-dev` partition, the development default partition is for knl nodes):
 
 ``` cmd-line
 login1$ idev -p skx-dev
@@ -82,7 +82,6 @@ OPTION ARGUMENTS         DESCRIPTION  (only common options shown)
   -N   nodes              Number of nodes
   -tpn tpn                Tasks per node
   -p   queue_name         sets queue to named queue (default: -p development)
-  -r   reservation_name   requests use of a specific reservation
   -t   hh:mm:ss           sets time to hh:mm:ss (default: 00:30:00, 30 min.)
 
   -queues                   lists queues for the system
@@ -93,6 +92,9 @@ OPTION ARGUMENTS         DESCRIPTION  (only common options shown)
 
 * Only a subset of the options is presented above. 
 * Options may be used in any order. 
-* The `-r` option may be used on any system to request a specific resource (e.g. requesting a specific set of nodes).
+
+<!--
+  -r   reservation_name   requests use of a specific reservation
+ * The `-r` option may be used on any system to request a specific resource (e.g. requesting a specific set of nodes). -->
 
 

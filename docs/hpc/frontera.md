@@ -1,5 +1,5 @@
 # Frontera User Guide
-Last update: April 19, 2023
+Last update: May 17, 2023
 <!-- SDL <a href="https://frontera-xortal.tacc.utexas.edu/user-guide/docs/user-guide.pdf">Download PDF <i class="fa fa-file-pdf-o"></i></a></span>-->
 
 ## [Notices](#notices) { #notices }
@@ -1530,31 +1530,35 @@ Frontera is well equipped to provide researchers with the latest in Machine Lear
 
 ### [Running PyTorch ](#ml-pytorch) { #ml-pytorch }
 
-1. Request a single compute node in Frontera's `rtx-dev` queue using the [`idev`](../../software/idev) utility:
+Install Pytorch and TensorBoard.
+
+1. Request a single compute node in Frontera's `rtx-dev` queue using the [`idev`](https://docs.tacc.utexas.edu/software/idev) utility:
 
 	```cmd-line
 	login2.frontera$ idev -N 1 -n 1 -p rtx-dev -t 02:00:00
 	```
 
-1. Create a Python virtual environment
+1. Create a Python virtual environment: 
 
 	```cmd-line
+	c123-456$ module load python3/3.9.2
 	c123-456$ python3 -m venv /path/to/virtual-env  # (e.g., $SCRATCH/python-envs/test)
 	```
 
-1. Activate the Python virtual environment
+1. Activate the Python virtual environment:
 
 	```cmd-line
 	c123-456$ source /path/to/virtual-env/bin/activate
 	```
 
-1. Install PyTorch 
+1. Now install PyTorch and TensorBoard: 
 
 	```cmd-line
-	c123-456$ pip3 install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu113
+	c123-456$ pip3 install torch==1.12.1 torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu113
+	c123-456$ pip3 install tensorboard
 	```
 
-#### [Single-Node](#ml-pytorch-single) { #ml-pytorch-single }
+#### [Single-Node](#ml-pytorch-singlnode) { #ml-pytorch-singlnode }
 
 1. Download the benchmark:
 
@@ -1574,9 +1578,9 @@ Frontera is well equipped to provide researchers with the latest in Machine Lear
 	c123-456$ python3 -m torch.distributed.launch --nproc_per_node=4 examples/torch_cifar10_resnet.py --kfac-update-freq 0
 	```
 
-#### [Multi-Node](#ml-pytorch-multi) { #ml-pytorch-multi }
+#### [Multi-Node](#ml-pytorch-multinode) { #ml-pytorch-multinode }
 
-1. Request two nodes in the `rtx-dev` queue using the [`idev`](../../software/idev) utility:
+1. Request two nodes in the `rtx-dev` queue using the [`idev`](https://docs.tacc.utexas.edu/software/idev) utility:
 
 	```cmd-line
 	login2.frontera$ idev -N 2 -n 2 -p rtx-dev -t 02:00:00
@@ -1588,19 +1592,16 @@ Frontera is well equipped to provide researchers with the latest in Machine Lear
 	c123-456$ cd $SCRATCH/kfac-pytorch
 	```
 
-1. Create a script called `run.sh`. This script needs two parameters, the hostname of the master node and the number of nodes.
+1. Create a script called "`run.sh`". This script needs two parameters, the hostname of the master node and the number of nodes.
 
 	```job-script
 	#!/bin/bash
-
 	HOST=$1
 	NODES=$2
 	LOCAL_RANK=${PMI_RANK}
-
-	python3 -m torch.distributed.launch --nproc_per_node=4 --nnodes=$NODES --node_rank=${LOCAL_RANK} --master_addr=$HOST \
-	   examples/torch_cifar10_resnet.py --kfac-update-freq 0
+	python3 -m torchdistributed.launch --nproc_per_node=4  --nnodes=$NODES --node_rank=${LOCAL_RANK} --master_addr=$HOST \
+		examples/torch_cifar10_resnet.py --kfac-update-freq 0
 	```
-
 
 1. Run multi-gpu training:
 	
@@ -1613,7 +1614,7 @@ Frontera is well equipped to provide researchers with the latest in Machine Lear
 
 Follow these instructions to install and run TensorFlow benchmarks on Frontera RTX. Frontera RTX runs TensorFlow 2.8.0 with Python 3.8.2. Frontera supports CUDA/10.1, CUDA/11.0, and CUDA/11.1. By default, we use CUDA/11.3. Select the appropriate CUDA version for your TensorFlow version.
 
-1. Request a single compute node in Frontera's `rtx-dev` queue using the [`idev`](../../software/idev) utility:
+1. Request a single compute node in Frontera's `rtx-dev` queue using the [`idev`](https://docs.tacc.utexas.edu/software/idev) utility:
 
 	```cmd-line
 	login2.frontera$ idev -N 1 -n 1 -p rtx-dev -t 02:00:00
@@ -1631,7 +1632,7 @@ Follow these instructions to install and run TensorFlow benchmarks on Frontera R
 	c123-456$ source /path/to/virtual-env/bin/activate
 	```
 
-1. Install TensorFlow and Horovod
+1. Install TensorFlow and Horovod:
 
 	```cmd-line
 	c123-456$ module load cuda/11.3 cudnn nccl
@@ -1645,7 +1646,7 @@ Follow these instructions to install and run TensorFlow benchmarks on Frontera R
     	HOROVOD_GPU_ALLREDUCE=NCCL HOROVOD_GPU_BROADCAST=NCCL HOROVOD_WITH_TENSORFLOW=1 pip3 install horovod==0.25.0
 	```
 
-#### [Single-Node](#ml-tensorflow-single) { ml-tensorflow-single }
+#### [Single-Node](#ml-tensorflow-singlenode) { #ml-tensorflow-singlenode }
 
 1. Download the tensorflow benchmark to your $SCRATCH directory, then check out the branch that matches your tensorflow version.
 
@@ -1655,20 +1656,20 @@ Follow these instructions to install and run TensorFlow benchmarks on Frontera R
 	c123-456$ git checkout 51d647f     # master head as of 08/18/2022
 	```
 
-1. Activate the Python virtual environment
+1. Activate the Python virtual environment:
 
 	```cmd-line
 	c123-456$ source /path/to/virtual-env/bin/activate
 	```
 
-1. Benchmark the performance with synthetic dataset on 1 GPU
+1. Benchmark the performance with synthetic dataset on 1 GPU:
 
 	```cmd-line
 	c123-456$ cd scripts/tf_cnn_benchmarks
 	c123-456$ python3 tf_cnn_benchmarks.py --num_gpus=1 --model resnet50 --batch_size 32 --num_batches 200
 	```
 
-1. Benchmark the performance with synthetic dataset on 4 GPUs
+1. Benchmark the performance with synthetic dataset on 4 GPUs:
 
 	```cmd-line
 	c123-456$ cd scripts/tf_cnn_benchmarks
@@ -1676,9 +1677,6 @@ Follow these instructions to install and run TensorFlow benchmarks on Frontera R
     	--model resnet50 --batch_size 32 --num_batches 200 --allow_growth=True
 	```
 
-#### [Multi-Node](#ml-tensorflow-multi) { #ml-tensorflow-multi }
-
-*Coming Soon*
 ## [Visualization and VNC Sessions](#vis)
 
 <p class="introtext">Frontera uses Intel's Cascade Lake (CLX) processors for all visualization and rendering operations. We use the Intel OpenSWR library to render raster graphics with OpenGL, and the Intel OSPRay framework for ray traced images inside visualization software. OpenSWR can be loaded by executing <code>module load swr</code>.</p>
