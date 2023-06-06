@@ -1,5 +1,5 @@
 # TensorFlow at TACC
-*Last update: November 16, 2021*
+*Last update: June 02, 2023*
 
 Scientists across domains are actively exploring and adopting deep learning as a cutting-edge methodology to make research breakthrough. At TACC, our mission is to enable discoveries that advance science and society through the application of advanced computing technologies. Thus, we are embracing this new type of application on our high end computing platforms.
 
@@ -9,9 +9,9 @@ This document details how to install TensorFlow, then download and run benchmark
 
 ## [Installations](#installations) { #installations }
 
-TensorFlow is installed on TACC's [Lonestar6](../../hpc/lonestar6), [Frontera](../../hpc/frontera), [Stampede2](../../hpc/stampede2), and [Maverick2](../../hpc/maverick2) resources.
+TensorFlow is installed on TACC's [Lonestar6](../../hpc/lonestar6), [Frontera](../../hpc/frontera), and [Stampede2](../../hpc/stampede2) resources.
 
-* Parallel Training with TensorFlow and Horovod is available on both Stampede2 and Maverick2.
+* Parallel Training with TensorFlow and Horovod is available on Stampede2. 
 * TensorFlow v2.1 is available on Stampede2.
 
 !!! caution
@@ -80,7 +80,7 @@ c305-000$ ibrun -np 4 python3 scripts/tf_cnn_benchmarks/tf_cnn_benchmarks.py \
 			--num_gpus=1 --variable_update=horovod --model resnet50 --batch_size 32 --num_batches 200
 ```
 
-
+<!--
 ## [TensorFlow on Maverick2](#maverick2) { #maverick2 }
 
 These instructions detail installing and running TensorFlow benchmarks on Maverick2. Maverick2 runs TensorFlow 2.1.0 with Python 3.7.0 and Intel 18.
@@ -152,6 +152,7 @@ c123-456$ module load intel/18.0.2 python3/3.7.0 cuda/10.1 cudnn/7.6.5 nccl/2.5.
 c123-456$ ibrun -np 8 python3 tf_cnn_benchmarks.py --variable_update=horovod \
             --num_gpus=1 --model resnet50 --batch_size 32 --num_batches 200 --allow_growth=True
 ```
+-->
 
 ## [TensorFlow on Frontera](#frontera) { #frontera }
 
@@ -332,7 +333,7 @@ $ pip install --user package-name
 
 ## [References](#refs) { #refs }
 
-* [Maverick2 User Guide](../../hpc/maverick2)
+<!-- * [Maverick2 User Guide](../../hpc/maverick2) -->
 * [Github: TensorFlow](https://github.com/tensorflow/tensorflow)
 * [Stampede2 User Guide](../../hpc/stampede2)
 

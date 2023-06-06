@@ -105,7 +105,7 @@ Follow these instructions to enable MFA on your account. **Do not navigate away 
 Now that your account is set up, you have access to the AWS S3 functionality. See the full documentation at <https://docs.aws.amazon.com/s3/index.html>.
 
 
-### [Microsoft's Azure Cloud Service](#cloudservices-azure) { #cloudservices-azure }
+### [Microsoft's Azure](#cloudservices-azure) { #cloudservices-azure }
 
 Frontera's cloud service integration begins with Microsoft's Azure Service. 
 

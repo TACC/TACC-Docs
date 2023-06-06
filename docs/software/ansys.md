@@ -31,7 +31,7 @@ Lonestar6 | 2022R1 | Structures, Fluids, LS-Dyna | <code>/scratch/tacc/apps/ANSY
 
 ### [Interactive Mode](#running-interactive)
 
-ANSYS can be launched with the ANSYS GUI used in interactive mode. Use the [TACC Vis Portal](https://vis.tacc.utexas.edu/) or create a VNC session following the directions in the [Remote Desktop Access](../../hpc/stampede2#vis-remote) section.
+ANSYS can be launched with the ANSYS GUI used in interactive mode. Use the [TACC Analysis Portal](https://tap.tacc.utexas.edu/) or create a VNC session following the directions in the [Remote Desktop Access](../../hpc/stampede2#vis-remote) section.
 
 !!! caution
 	Do NOT launch ANSYS, or any other codes, on the login nodes.

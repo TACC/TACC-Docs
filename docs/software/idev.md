@@ -1,8 +1,6 @@
 # <code>idev</code>: (Interactive Development) User Guide
 *Last update: May 17, 2023*
 
-## [Introduction](#intro) { #intro }
-
 **The need for interactive access to compute nodes**: While large HPC systems are excellent resources for running production work, they are not configured for development. Often developers use departmental systems, or patiently submit a sequence of jobs to validate code changes. This can be particularly frustrating to new users, who want to "kick the tires", port applications and debug codes on supercomputers.
 
 What most users need for development is interactive access to a set of compute nodes, in order to quickly compile, run and validate MPI or other applications multiple times in rapid succession. To help users with their code development, TACC has created an app that will do that, by allowing users to acquire a set of compute nodes for interactive access. The app is called `idev`, for **I**nteractive **DEV**elopment.

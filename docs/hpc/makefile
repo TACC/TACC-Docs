@@ -1,5 +1,5 @@
 
-all:	include frontera lonestar6 maverick2 stampede2 
+all:	include frontera lonestar6 stampede2 
 
 
 include:

@@ -1,13 +1,13 @@
-## [Sample Job Scripts](#scripts)
+## [Sample Job Scripts](#scripts) { #scripts }
 
 Copy and customize the following jobs scripts by specifying and refining your job's requirements.
 
 * specify the maximum run time with the `-t` option. 
 * specify number of nodes needed with the `-N` option
-* specify tasks per node with the `-n` option
+* specify total number of MPI tasks with the `-n` option
 * specify the project to be charged with the `-A` option.
 
-Consult [Table 7](#table7) for a listing of common Slurm `#SBATCH` options.
+Consult [Table 7](#table7) for a more detailed listing of common Slurm `#SBATCH` options.
 
 Click on a tab header below to display it's job script, then copy and customize to suit your own application.
 
