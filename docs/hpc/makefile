@@ -18,9 +18,9 @@ lonestar6: FORCE
 	echo "====== Building Lonestar6  ======"
 	cd 6lonestar; make; 
 
-maverick2: FORCE
-	echo "====== Building Maverick2 ======"
-	cd 2mav; make;
+#maverick2: FORCE
+#	echo "====== Building Maverick2 ======"
+#	cd 2mav; make;
 
 #ranch: FORCE
 #	echo "====== Building Ranch  ======"

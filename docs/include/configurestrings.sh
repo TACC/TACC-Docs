@@ -44,16 +44,16 @@ then
 	# 	-e "s/STRIPING/$striping/g"  < conductsrc.md > $conductoutputfile
 
 ### Maverick2 
-elif [ "$1" = "maverick2" ] 
-then
-	echo "building includes for Maverick2 user guide"
-	machinename="Maverick2"
-	helpoutputfile="maverick2-help.md"
-	jobaccountingoutputfile="maverick2-jobaccounting.md"
-
-	sed	-e "s/MACHINENAME/$machinename/g" \
-		-e "s/TACCINFOPATH/$taccinfopath/g" < jobaccountingsrc.md > $jobaccountingoutputfile
-	sed	-e "s/MACHINENAME/$machinename/g" < helpsrc.md > $helpoutputfile
+#elif [ "$1" = "maverick2" ] 
+#then
+#	echo "building includes for Maverick2 user guide"
+#	machinename="Maverick2"
+#	helpoutputfile="maverick2-help.md"
+#	jobaccountingoutputfile="maverick2-jobaccounting.md"
+#
+#	sed	-e "s/MACHINENAME/$machinename/g" \
+#		-e "s/TACCINFOPATH/$taccinfopath/g" < jobaccountingsrc.md > $jobaccountingoutputfile
+#	sed	-e "s/MACHINENAME/$machinename/g" < helpsrc.md > $helpoutputfile
 
 
 ### Stampede2

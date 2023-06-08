@@ -1,5 +1,5 @@
 # Sharing Project Files on TACC Systems
-*Last update: December 3, 2021* 
+*Last update: June 8, 2023* 
 
 
 Collaborators on the same project/allocation often wish to share code, data or other project files with each other, but not necessarily with the world. Users with Educational allocations may wish to have a repository accessible to their students. This page will instruct allocation managers and their delegates how to set up a project workspace that is accessible only to users in the same allocation. 
@@ -62,7 +62,7 @@ login1$ man chgrp
 
 It is not possible to make a shared, writable directory under a user's `$HOME` directory and the `$SCRATCH` file system is subject to periodic purging. Therefore, TACC staff strongly recommends placing all files to be shared in the top level of the user's area of the `/work` filesystem, defined in the `$STOCKYARD` environment variable. This new shared directory will be accessible only to members of the unix group and by extension the project members.
 
-Note that `$STOCKYARD` points to the highest level directory you own on Stockyard, TACC's [Global Shared File System](https://www.tacc.utexas.edu/systems/stockyard), which is mounted and available across all TACC systems. Your `$WORK` environment variable points to a resource-specific eponymous subdirectory of `$STOCKYARD`. For example on Stampede2, `$WORK` is defined as `$STOCKYARD/stampede2` while on Maverick2 `$WORK` points to `$STOCKYARD/maverick2`. All subdirectories are accessible to you on any TACC system where you have an allocation.
+Note that `$STOCKYARD` points to the highest level directory you own on Stockyard, TACC's [Global Shared File System](https://www.tacc.utexas.edu/systems/stockyard), which is mounted and available across all TACC systems. Your `$WORK` environment variable points to a resource-specific eponymous subdirectory of `$STOCKYARD`. For example on Stampede2, `$WORK` is defined as `$STOCKYARD/stampede2`.  All subdirectories are accessible to you on any TACC system where you have an allocation.
 
 ### [Readable](#createworkspace-read) { #createworkspace-read }
 

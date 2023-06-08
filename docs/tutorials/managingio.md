@@ -1,5 +1,5 @@
 # Managing I/O on TACC Resources
-*Last update: June 1, 2021*
+*Last update: June 8, 2023*
 
 The TACC Global Shared File System, <a href="https://www.tacc.utexas.edu/systems/stockyard">Stockyard</a>, is mounted on nearly all TACC HPC resources as the `/work` (`$WORK`) directory. This file system is accessible to all TACC users, and therefore experiences a huge amount of I/O activity (reading and writing to disk) as users run their jobs. This document presents best practices for reducing and mitigating such activity to keep all systems running at maximum efficiency for all TACC users.
 
@@ -24,7 +24,7 @@ Consider that your `/home` (`$HOME`) and `/work` (`$WORK`) directories are for s
 
 **Actual job activity, reading and writing to disk, should be offloaded to your resource's `$SCRATCH` file system.** You can start a job from anywhere but the actual work of the job should occur only on the `$SCRATCH` partition. You can save original items to `$HOME` or `$WORK` so that you can copy them over to `$SCRATCH` if you need to re-generate results.
 
-[Table 1](#table1) outlines TACC's new recommended guidelines for file system usage. Note that two TACC systems, Longhorn and Maverick2, differ in their file system configurations. Longhorn does not mount the Stockyard file system and therefore has no `$WORK` access. Maverick2 has no `/scratch` file system. 
+[Table 1](#table1) outlines TACC's new recommended guidelines for file system usage. <!-- Note that two TACC systems, Longhorn and Maverick2, differ in their file system configurations. Longhorn does not mount the Stockyard file system and therefore has no `$WORK` access. Maverick2 has no `/scratch` file system. -->
 
 ## [Table 1. TACC File System Usage Recommendations](#table1) { #table1 }
 
@@ -35,7 +35,7 @@ File System | Recommended Use | Notes
 <span style="white-space: nowrap;"><code>$SCRATCH</code> <sup><a href="#sup1">1</a></sup></span> | Reproducible datasets, I/O files: temporary files, checkpoint/restart files, job output files | Not backed up.<br>All <code>$SCRATCH</code> file systems are <b>subject to purge</b> if access time <sup><a href="#sup2">2</a></sup> is more than 10 days old.
 
 
-<a id="#sup1">1</a> Maverick2 does not have its own `$SCRATCH` file system. Consult the <a href="../../hpc/maverick2">Maverick2 User Guide</a>'s File Systems section for further guidance.  
+<!-- <a id="#sup1">1</a> Maverick2 does not have its own `$SCRATCH` file system. Consult the <a href="../../hpc/maverick2">Maverick2 User Guide</a>'s File Systems section for further guidance.  -->
 
 <a id="#sup2">2</a> The operating system updates a file's access time when that file is modified on a login or compute node. Reading or executing a file/script on a login node does not update the access time, but reading or executing on a compute node does update the access time. This approach helps us distinguish between routine management tasks (e.g. `tar`, `scp`) and production use. Use the command `ls -ul` to view access times.
 
@@ -57,12 +57,10 @@ Compute Resource | Storage per Compute Node
 Frontera | 144 GB
 Stampede2 SKX | 144 GB
 Stampede2 KNL | 107 GB normal/large<br>32 GB development
-Longhorn | 900 GB
-Maverick2 | 32 GB p100/v100<br>60 GB gtx
 
 ### [Run Jobs Out of Each Resource's Scratch File System](#bestpractices-redirect-scratch) { #bestpractices-redirect-scratch }
 
-Each TACC resource (except <a href="../../hpc/maverick2#files">Maverick2</a>) has its own Scratch file system, `/scratch`, accessible by the `$SCRATCH` environment variable and the `cds` alias.
+Each TACC resource has its own Scratch file system, `/scratch`, accessible by the `$SCRATCH` environment variable and the `cds` alias.
 
 **Scratch file systems are not shared across TACC production systems but are specific to one resource. Scratch file systems have neither file count or file size quotas, but are subject to periodic and unscheduled file purges should total disk usage exceed a safety threshold.**
 

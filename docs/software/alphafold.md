@@ -1,5 +1,5 @@
 # AlphaFold at TACC
-*Last update: May 31, 2022*
+*Last update: June 8, 2023*
 
 
 <table cellpadding="5" cellspacing="5"><tr>
@@ -12,7 +12,6 @@ System | What's Available
 --- | ---
 Frontera | AlphaFold: v2.2.0<br> Data: <code>/scratch2/projects/bio/alphafold/data</code><br> Module: <code>/scratch2/projects/bio/alphafold/modulefiles</code><br> Examples: <code>/scratch2/projects/bio/alphafold/test</code>
 Stampede2 | AlphaFold: v2.2.0<br> Data: <code>/scratch/projects/tacc/bio/alphafold/data</code><br> Module: <code>/scratch/projects/tacc/bio/alphafold/modulefiles</code><br> Examples: <code>/scratch/projects/tacc/bio/alphafold/test</code>
-Maverick2 | AlphaFold: v2.2.0<br> Data: <code>/work/projects/tacc/bio/alphafold/data</code><br> Module: <code>/work/projects/tacc/bio/alphafold/modulefiles</code><br> Examples: <code>/work/projects/tacc/bio/alphafold/test</code>
 Lonestar6 | AlphaFold: v2.2.0<br> Data: <code>/scratch/tacc/apps/bio/alphafold/data</code><br> Module: <code>/scratch/tacc/apps/bio/alphafold/modulefiles</code><br> Examples: <code>/scratch/tacc/apps/bio/alphafold/test</code>
 
 

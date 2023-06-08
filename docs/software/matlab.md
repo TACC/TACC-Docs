@@ -1,12 +1,12 @@
 # MATLAB at TACC
-*Last update: January 15, 2020* 
+*Last update: June 8, 2023* 
 
 <table cellpadding="5" cellspacing="5"><tr>
 <td><img src="../imgs/matlab-logo.png" style="width:50%"></td>
 <td></td>
 </tr></table>
 
-[Mathwork's](https://www.mathworks.com/) MATLAB is installed and supported at TACC and is available on the following TACC resources: [Frontera](../../hpc/frontera), [Stampede2](../../hpc/stampede2), [Lonestar6](../../hpc/lonestar6), and [Maverick2](../../hpc/maverick2).  
+[Mathwork's](https://www.mathworks.com/) MATLAB is installed and supported at TACC and is available on the following TACC resources: [Frontera](../../hpc/frontera), [Stampede2](../../hpc/stampede2) and [Lonestar6](../../hpc/lonestar6).  
 
 ## [Licenses](#license) { #license }
 
@@ -42,7 +42,7 @@ The following figure shows how MATLAB is launched inside the VNC session.
 
 ## [Batch Mode](#batch) { #batch }
 
-You can also submit your MATLAB job to the batch nodes (compute nodes) on the TACC resources, e.g. Frontera, Stampede2, Lonestar5, or Maverick2. To do so, first make sure that the MATLAB module has been loaded, and then launch `matlab` with the `-nodesktop -nodisplay -nosplash` option as shown in the sample Stampede2 job script below.
+You can also submit your MATLAB job to the batch nodes (compute nodes) on the TACC resources, e.g. Frontera, Stampede2, or Lonestar6. To do so, first make sure that the MATLAB module has been loaded, and then launch `matlab` with the `-nodesktop -nodisplay -nosplash` option as shown in the sample Stampede2 job script below.
 
 ### [Example 1. Sample MATLAB job script to run on Stampede2](#example1)
 
@@ -68,7 +68,6 @@ Resource | Submit a batch job
 Frontera | <code>login1$ <b>sbatch myjobscript</b></code> | <a href="../../hpc/frontera#running/">Running jobs on Frontera</a>
 Stampede2 | <code>login1$ <b>sbatch myjobscript</b></code> | <a href="../../hpc/stampede2#running">Running jobs on Stampede2</a>
 Lonestar6 | <code>login1$ <b>sbatch myjobscript</b></code> | <a href="../../hpc/lonestar6#running">Running jobs on Lonestar6</a>
-Maverick2 | <code>login1$ <b>sbatch myjobscript</b></code> | <a href="../../hpc/maverick2#running">Running jobs on Maverick2</a>
 
 ## [Parallel MATLAB](#parallelmatlab) { #parallelmatlab }
 
