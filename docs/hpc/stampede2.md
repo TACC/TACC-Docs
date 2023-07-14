@@ -1,12 +1,25 @@
 # Stampede2 User Guide
-Last update: September 16, 2022 
+Last update: July 10, 2023 
 see <a href="#history">revision history</a>
   
 ## [Notices](#notices) { #notices }
 
  
-* **The XSEDE project concluded formal operations as an NSF-funded project on August 31, 2022**.  Similar services are now operated through NSF's follow-on program, Advanced Cyberinfrastructure Coordination Ecosystem: Services &amp; Support, or ACCESS.  Find out more at the [ACCESS website](http://access-ci.org). (09/01/2022)
-* **Stampede2 has deployed 240 Intel "Ice Lake" (ICX) compute nodes, replacing 448 KNL compute nodes.**  Each ICX processor has 80 cores on 2 sockets (40 cores/socket). Hyperthreading is enabled: there are two hardware threads per core, for a total of 80 x 2 = 160 hardware threads per node. See [ICX Compute Node](#table2a) specifications, new [ICX job scripts](#scripts), and the new [`icx-normal` queue](#queues) for more information. (03/09/22)
+
+<span style="color:red; font-weight:bold">July 15, 2023 is the last day to submit to the Stampede2 `normal` and `development` queues. The SKX and ICX queues will remain open. (07/10/2023)</span>
+
+**Stampede2 will reach end-of-life and will no longer be available as of November 30, 2023. Decommission will begin when the `normal` queue nodes with Intel's Knight's Landing (KNL) processors will no longer be available.  The rest of the system, the Skylake (SKX) and Ice Lake (ICX) nodes, will be retired at the end of November, 2023.**
+
+**Stampede2's `/work` file system and its contents will continue to exist since it stands outside of Stampede2 on its own hardware. However, Stampede2's `/home` and `/scratch` file systems will be decommissioned along with the system.  We recommend transferring this data if it is still needed prior to decommissioning.**
+
+**The new Stampede3 system will be available for allocation in November, 2023 via the [ACCESS allocation process](http://allocations.access-ci.org).**
+
+
+
+
+
+
+
 
 ## [Introduction](#intro) { #intro }
 
@@ -386,6 +399,10 @@ To delay wildcard expansion until reaching Stampede2, use a backslash (`\`) as a
 localhost$ scp bjones@stampede2.tacc.utexas.edu:/work/01234/bjones/stampede2/\*.txt .
 ```
 
+!!! note
+	Using `scp` with wildcard expansion on the remote host is unreliable.  Specify absolute paths wherever possible.
+
+<!-- 
 You can of course use shell or environment variables in your calls to `scp`. For example:
 
 ``` cmd-line
@@ -398,17 +415,18 @@ You can also issue `scp` commands on your local client that use Stampede2 enviro
 ``` cmd-line 
 localhost$ scp ./myfile bjones@stampede2.tacc.utexas.edu:\$WORK/data   # Note backslash
 ```
+-->
 
 Avoid using `scp` for recursive (`-r`) transfers of directories that contain nested directories of many small files:
 
 ``` cmd-line 
-localhost$ <s>scp -r  ./mydata     bjones@stampede2.tacc.utexas.edu:\$WORK  # DON'T DO THIS
+localhost$ scp -r  ./mydata     bjones@stampede2.tacc.utexas.edu:\$WORK  # DON'T DO THIS
 ```
 
 Instead, use `tar` to create an archive of the directory, then transfer the directory as a single file:
 
 ``` cmd-line
-localhost$ tar cvf ./mydata.tar mydata</b>                                   # create archive
+localhost$ tar cvf ./mydata.tar mydata                                   # create archive
 localhost$ scp     ./mydata.tar bjones@stampede2.tacc.utexas.edu:\$WORK  # transfer archive
 ```
 

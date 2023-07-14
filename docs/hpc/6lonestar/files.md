@@ -65,6 +65,10 @@ To delay wildcard expansion until reaching Lonestar6, use a backslash (`\`) as a
 localhost$ scp bjones@ls6.tacc.utexas.edu:/work/01234/bjones/ls6/\*.txt .
 ```
 
+!!! note
+	Using `scp` with wildcard expansion on the remote host is unreliable.  Specify absolute paths wherever possible.
+
+<!--
 You can of course use shell or environment variables in your calls to `scp`. For example:
 
 ```cmd-line
@@ -77,6 +81,7 @@ You can also issue `scp` commands on your local client that use Lonestar6 enviro
 ```cmd-line
 localhost$ scp ./myfile bjones@ls6.tacc.utexas.edu:\$SCRATCH/data   # Note backslash
 ```
+-->
 
 Avoid using `scp` for recursive transfers of directories that contain nested directories of many small files:
 

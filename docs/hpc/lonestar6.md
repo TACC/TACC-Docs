@@ -1,5 +1,5 @@
 # Lonestar6 User Guide
-Last update: May 28, 2023
+Last update: June 15, 2023
 
 
 ## [Notices](#notices) { #notices }
@@ -166,6 +166,10 @@ To delay wildcard expansion until reaching Lonestar6, use a backslash (`\`) as a
 localhost$ scp bjones@ls6.tacc.utexas.edu:/work/01234/bjones/ls6/\*.txt .
 ```
 
+!!! note
+	Using `scp` with wildcard expansion on the remote host is unreliable.  Specify absolute paths wherever possible.
+
+<!--
 You can of course use shell or environment variables in your calls to `scp`. For example:
 
 ```cmd-line
@@ -178,6 +182,7 @@ You can also issue `scp` commands on your local client that use Lonestar6 enviro
 ```cmd-line
 localhost$ scp ./myfile bjones@ls6.tacc.utexas.edu:\$SCRATCH/data   # Note backslash
 ```
+-->
 
 Avoid using `scp` for recursive transfers of directories that contain nested directories of many small files:
 
@@ -706,6 +711,7 @@ Queue Name | Min/Max Nodes per Job<br /> (assoc'd cores)&#42; | Max Job Duration
 --- | --- | --- | --- | --- | ---
 <code>development</code> | 4 nodes<br>(512 cores) | 2 hours | 6 | 1 | 1 SU
 <code>gpu-a100</code> | 16 nodes<br>(2048 cores) | 48 hours | 16 | 8 | 4 SUs
+<code>gpu-a100-dev</code> | 4 nodes<br>(512 cores) | 48 hours | 2 | 1 | 4 SUs
 <code>large</code><sup>&#42;</sup> | 65/256 nodes<br>(65536 cores) | 48 hours | 256 | 1 | 1 SU
 <code>normal</code> | 1/64 nodes<br>(8192 cores) | 48 hours | 96 | 15 | 1 SU
 <code>vm-small</code><sup>&#42;&#42;</sup> | 1/1 node<br>(16 cores) | 48 hours | 4 | 4 | 0.143 SU

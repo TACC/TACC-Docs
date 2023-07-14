@@ -1,5 +1,5 @@
 
-all:	include frontera lonestar6 stampede2 
+all:	include frontera lonestar6 stampede2 stampede3
 
 
 include:
@@ -29,5 +29,9 @@ lonestar6: FORCE
 stampede2: FORCE
 	echo "====== Building Stampede2 ======"
 	cd stampede2; make;
+
+stampede3: FORCE
+	echo "====== Building Stampede3 ======"
+	cd 3stampede; make;
 
 FORCE:	

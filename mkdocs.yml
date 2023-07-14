@@ -66,6 +66,7 @@ nav:
 #    - Maverick2: hpc/maverick2.md
     - Ranch: hpc/ranch.md
     - Stampede2: hpc/stampede2.md
+    - Stampede3: hpc/stampede3.md
     - Stallion: hpc/stallion.md
   - Software :
     - ABAQUS: software/abaqus.md
@@ -75,7 +76,7 @@ nav:
     - Gaussian: software/gaussian.md
     - GROMACS: software/gromacs.md
     - idev: software/idev.md
-    - IRODS: software/irods.md
+#    - IRODS: software/irods.md
     - LAMMPS: software/lammps.md
     - Launcher: software/launcher.md
     - Lmod: https://lmod.readthedocs.io/en/latest

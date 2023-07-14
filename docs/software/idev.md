@@ -1,5 +1,5 @@
 # <code>idev</code>: (Interactive Development) User Guide
-*Last update: May 17, 2023*
+*Last update: June 11, 2023*
 
 **The need for interactive access to compute nodes**: While large HPC systems are excellent resources for running production work, they are not configured for development. Often developers use departmental systems, or patiently submit a sequence of jobs to validate code changes. This can be particularly frustrating to new users, who want to "kick the tires", port applications and debug codes on supercomputers.
 
@@ -30,7 +30,7 @@ By default only a single node is requested for 30 minutes in the development que
 
 ##  [Accessing Nodes Interactively](#interactive) { #interactive }
 
-It is important to realize that idev acquires compute nodes through the Slurm batch system (this is the normal/only mode for acquiring resources on a supercomputer).  This often means there is a wait to acquire nodes in the normal (production) partitions.  Fortunately, at TACC there is a `development` queue on each TACC system (`idev`'s default partition), and it is often a short wait for `idev` to acquire (one or a few) nodes and allow interactive input.  When you run `idev`, it reports back every 4 seconds the progress of accessing the nodes through the batch system.
+It is important to realize that idev acquires compute nodes through the Slurm batch system (this is the normal/only mode for acquiring resources on a supercomputer).  This often means there is a wait to acquire nodes in the normal (production) partitions.  Fortunately, at TACC there is a `development` queue on each TACC system (`idev`'s default partition), and it is often a short wait for `idev` to acquire (one or a few) nodes and allow interactive input.  The `idev` output will report every 4 seconds the progress of accessing the nodes through the batch system.
 
 ### [Examples](#examples) { #examples }
 
@@ -90,6 +90,10 @@ OPTION ARGUMENTS         DESCRIPTION  (only common options shown)
 
 * Only a subset of the options is presented above. 
 * Options may be used in any order. 
+
+## [Exiting `idev`](#exit)	{ #exit }
+
+To exit `idev` and return to your terminal session, type `exit` or `ctrl-D`.
 
 <!--
   -r   reservation_name   requests use of a specific reservation

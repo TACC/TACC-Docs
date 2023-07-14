@@ -60,6 +60,10 @@ To delay wildcard expansion until reaching Frontera, use a backslash (`\`) as an
 localhost$ scp bjones@frontera.tacc.utexas.edu:/work/01234/bjones/frontera/\*.txt .
 ```
 
+!!! note
+	Using `scp` with wildcard expansion on the remote host is unreliable.  Specify absolute paths wherever possible.
+
+<!--
 You can of course use shell or environment variables in your calls to `scp`. For example:
 
 ```cmd-line
@@ -72,6 +76,7 @@ You can also issue `scp` commands on your local client that use Frontera environ
 ```cmd-line
 localhost$ scp ./myfile bjones@frontera.tacc.utexas.edu:\$WORK/data   # Note backslash
 ```
+-->
 
 Avoid using `scp` for recursive transfers of directories that contain nested directories of many small files:
 

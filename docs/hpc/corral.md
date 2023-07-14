@@ -1,19 +1,21 @@
 # Corral User Guide
-*Last update: May 03, 2023*
+*Last update: July 10, 2023*
 
 
 ## [System Overview](#overview) { #overview }
 
 Corral is a collection of storage and data management resources located at TACC, with 40PB of on-line storage located in the primary TACC datacenter, and a tape-based replica located in a secondary TACC datacenter for additional data protection.  Corral services provide high-reliability, high-performance storage for research requiring persistent access to large quantities of structured or unstructured data. Such data could include data used in analysis or other computational and visualization tasks on other TACC resources, as well as data used in collaborations involving many researchers who need to share large amounts of data.
 
-PIs may request any quantity of storage across multiple allocations.  The first 5TB of storage for each PI, on one project, is available to researchers at all UT System institutions at no cost. For storage needs larger than 5TB, and for multiple project allocations, access to Corral is available at a cost of $118/TB/year.  There is also a limit of 200,000 files per allocated terabyte imposed on all Corral allocations - for example, if you are allocated 5TB of storage, you may store 1 million files within that 5TB, and if you need to store additional files you must request a larger allocation.  This policy is subject to change, and users with long-term storage needs are encouraged to plan for the costs of storing their data in future years.
+PIs may request any quantity of storage across multiple allocations.  The first 5TB of storage for each PI, on one project, is available to researchers at all UT System institutions at no cost. For storage needs larger than 5TB, and for multiple project allocations, access to Corral is available at a cost of $60/TB/year.  There is also a limit of 200,000 files per allocated terabyte imposed on all Corral allocations - for example, if you are allocated 5TB of storage, you may store 1 million files within that 5TB, and if you need to store additional files you must request a larger allocation.  This policy is subject to change, and users with long-term storage needs are encouraged to plan for the costs of storing their data in future years.
 
 
+<!--
 ### [Available Services](#overview-services) { #overview-services }
 
 There are two primary mechanisms for storing and managing data stored on Corral: simple file storage ("file system access" and the iRODS data management service. File system access is appropriate for users who will make use of their data on Lonestar6 or other TACC systems and are comfortable with UNIX command-line utilization, while the iRODS service is appropriate for users who have complex metadata associated with their data, users who wish to manage their data using web and/or GUI interfaces, and users who wish to develop a data collection for open web sharing. 
 
 In addition, there are a variety of more specialized data management and sharing applications that may be supported on Corral, including open-source databases such as Postgres and MySQL, discipline- or data-specific web applications, and tools for generating metadata or other derivative file formats. Users are encouraged to contact the Data Management and Collections group at TACC <data@tacc.utexas.edu> to discuss specialized needs or to ask about specific applications.
+-->
 
 
 ### [Consulting and Data Management Plans](#overview-plans) { #overview-plans }

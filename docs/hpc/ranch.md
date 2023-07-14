@@ -1,5 +1,5 @@
 # Ranch User Guide
-*Last update: September 16, 2022*
+*Last update: June 12, 2023*
 
 ## [Notices](#notices) { #notices }
 
@@ -142,7 +142,7 @@ Alternatively, sometimes you can actually do this in one step as part of the tra
 To use `tar`, `ssh`, and `cat` to create a good tarfile in Ranch from a source directory on your compute resource, all in one command line:
 
 ```cmd-line
-stampede2$ tar cf - dirname/ | ssh ${ARCHIVER} "cat &gt; ${ARCHIVE}/dirname.tar"
+stampede2$ tar cf - dirname/ | ssh ${ARCHIVER} "cat > ${ARCHIVE}/dirname.tar"
 ```
 
 where `dirname/` is the path to the directory you want to archive, and `dirname.tar` is the name of the tarfile to be created on Ranch.
@@ -151,14 +151,14 @@ To be very UNIX specific about what the command above is doing:
 
 * `tar` creates a stream of bytes in `tar` format of the directory "dirname/" (recursively) and writes that to its standard output.  
 * The pipe (`|`) reads that stream of bytes and writes that stream to the `ssh` command which has started the `cat` command over on a Ranch login node.  
-* The `cat` command reads its standard input, which is the stream of `tar` formatted bytes, and then redirects that stream of bytes to its standard output via the "&gt;" creating or overwriting the file `dirname.tar`.  
+* The `cat` command reads its standard input, which is the stream of `tar` formatted bytes, and then redirects that stream of bytes to its standard output via the `>` symbol creating or overwriting the file `dirname.tar`.  
 * When the `tar` command is complete and exits, the stream of bytes will stop, and `cat` will gracefully close the file `dirname.tar`, `ssh` will exit, and you will be returned to the command line on stampede2.
 
 And in one simple command line, you have created a single tar file, `dirname.tar`, containing the entire data structure of the directory dirname/ over on Ranch, and ideally that tarfile is quite large as per the recommendations above.
 
 Note that when transferring to Ranch, any destination directory specified must already exist. If not, `scp` will respond with:
 
-```cmd-line
+```syntax
 No such file or directory
 ```
 
@@ -167,12 +167,14 @@ The following command-line examples also demonstrate how to transfer files to an
 * Copy a tarfile from Stampede2 to Ranch:
 
 	```cmd-line
-stampede2$ scp data_2020.tar \  ${ARCHIVER}:${ARCHIVE}/final_2020.tar
+	stampede2$ scp data_2020.tar ${ARCHIVER}:${ARCHIVE}/final_2020.tar
+	```
 
 * Copy a tarfile from Ranch to my computer, retaining the file modification time
 
 	```cmd-line
-stampede2$ scp -p \ ${ARCHIVER}:${ARCHIVE}/final_data_2017.tar \ ./ranch_data_2017.tar
+	stampede2$ scp -p ${ARCHIVER}:${ARCHIVE}/final_data_2017.tar ./ranch_data_2017.tar
+	```
 
 
 #### [Remote Sync with `rsync` command](#transferring-methods-rsync)  { #transferring-methods-rsync }
@@ -224,7 +226,7 @@ Again, use the `du -sh .` and `find . -type f | wc` commands to see how much dat
 	The split parts of a file can be always be joined together again with the `cat` command.  See the `split` man page for more options.
 
 	```cmd-line
-	stampede2$ cat bigfile_tar_part_?? &gt; bigfile.tar
+	stampede2$ cat bigfile_tar_part_?? > bigfile.tar
 	```
 
 1. A subsequent `tar tvf bigfile.tar` should be used immediately to ensure `bigfile.tar` contains all the data you expect, and `tar` generates no errors.

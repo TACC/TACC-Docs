@@ -106,13 +106,14 @@ ${LAUNCHER_DIR}/paramrun
 
 `hello_openmp` is the job file that contains all the OpenMP jobs you plan to run simultaneously. 
 
-``` syntax
+```syntax
 ./openMP1.exe
 ./openMP2.exe
 ./openMP3.exe
 ./openMP4.exe
 ./openMP5.exe
 ./openMP6.exe
+```
 
 In this example, users can use Launcher to run 16 tasks in parallel (`-n 16`) on 2 nodes (`-N 2`), that is, 16 tasks/2 nodes= 8 tasks per node. For each single OpenMP run, `$OMP_NUM_THREADS` sets the maximum number of threads to be 6.
 

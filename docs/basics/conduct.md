@@ -1,5 +1,5 @@
 # [Good Conduct on TACC's HPC Systems](#conduct) { #conduct }
-Last Update: June 8, 2023
+*Last Update: June 8, 2023*
 
 **You share TACC's HPC resources with many, sometimes hundreds, of other users, and what you do on the resource affects others**. All TACC account holders  must follow a set of good practices which entail limiting activities that may impact the system for other users. Exercise good conduct to ensure that your activity does not adversely impact the resource and the research community with whom you share it.
 
