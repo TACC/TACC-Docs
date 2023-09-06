@@ -1,5 +1,5 @@
 # TensorFlow at TACC
-*Last update: June 02, 2023*
+*Last update: August 14, 2023*
 
 Scientists across domains are actively exploring and adopting deep learning as a cutting-edge methodology to make research breakthrough. At TACC, our mission is to enable discoveries that advance science and society through the application of advanced computing technologies. Thus, we are embracing this new type of application on our high end computing platforms.
 
@@ -37,10 +37,10 @@ login1$ HOROVOD_CUDA_HOME=$TACC_CUDA_DIR HOROVOD_NCCL_HOME=$TACC_NCCL_DIR \
 
 ### [Single-Node](#lonestar6-singlenode) { #lonestar6-singlenode }
 
-To run a single-node job benchmark on one GPU, first create an `idev` session in LS6's [`gpu_a100`](../../hpc/lonestar6#queues) queue: 
+To run a single-node job benchmark on one GPU, first create an `idev` session in LS6's [`gpu-a100`](../../hpc/lonestar6#queues) queue: 
 
 ``` cmd-line
-login1$ idev -N 1 -n 2 -p gpu_a100
+login1$ idev -N 1 -n 2 -p gpu-a100
 ```
 
 Once the `idev` session is created, run the benchmark on a single node, using one GPU:
@@ -64,10 +64,10 @@ c307-001.ls6$ python3 scripts/tf_cnn_benchmarks/tf_cnn_benchmarks.py \
 
 ### [Multi-Node](#lonestar6-multinode) { #lonestar6-multinode }
 
-To run a multi-node job benchmark, first create a multi-node `idev` session in LS6's [`gpu_a100`](../../hpc/lonestar6#queues) queue: 
+To run a multi-node job benchmark, first create a multi-node `idev` session in LS6's [`gpu-a100`](../../hpc/lonestar6#queues) queue: 
 
 ``` cmd-line
-login1$ idev -N 2 -n 4 -p gpu_a100
+login1$ idev -N 2 -n 4 -p gpu-a100
 ```
 
 Once the `idev` session is created, run the benchmarks on two nodes, using four GPUs:
