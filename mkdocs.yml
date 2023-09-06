@@ -49,6 +49,7 @@ extra_css:
 # To load custom global JavaScript (not recommended)
 # FAQ: Use JS modules when possible (see theme.tacc_javascript)
 extra_javascript:
+    - js/autoScrollNav.js
     - js/addPageId.js
 
 nav:
