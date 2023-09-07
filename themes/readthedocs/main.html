@@ -87,6 +87,9 @@
       <script src="{{ path|url }}" type="module"></script>
     {%- endfor %}
     {# /TACC #}
+    {# TACC: HELP: Often fails to auto-scroll nav to anchor link on page load #}
+    {# TACC: NOTE: Fails MORE often when testing locally than on production #}
+    {# TACC: NOTE: Fails LESS often when testing on throttled network conn. #}
     <script defer>
         window.onload = function () {
             SphinxRtdTheme.Navigation.enable({{ 'true' if config.theme.sticky_navigation else 'false' }});
