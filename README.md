@@ -48,7 +48,7 @@ Verify both versions in [Dockerfile] at `python:` and `POETRY_VERSION`.
 **Without Docker**:
 
 1. **Create and/or Activate a [Python venv](https://docs.python.org/3/library/venv.html).**
-2. Confirm Python and Poetry versions match or exceed those in [Dockerfile].
+2. Confirm Python and Poetry versions match or exceed those in [the `Dockerfile`].
 3. Install dependencies:
     * `poetry install`
 4. Build and/or Serve the website:
