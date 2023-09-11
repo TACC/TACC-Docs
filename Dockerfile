@@ -37,7 +37,7 @@ WORKDIR $PYSETUP_PATH
 COPY pyproject.toml poetry.lock ./
 
 # install runtime deps - uses $POETRY_VIRTUALENVS_IN_PROJECT internally
-RUN poetry install --no-dev
+RUN poetry install --without dev
 
 # `production` image is used for deployed runtime environments
 FROM python-base as production
