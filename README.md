@@ -50,7 +50,7 @@ Verify both versions in [Dockerfile] at `python:` and `POETRY_VERSION`.
 
 0. Be inside the TACC-Docs repo folder, wherever you cloned it e.g. `cd ./TACC-Docs`.
 1. Create and/or Activate a [Python venv](https://docs.python.org/3/library/venv.html).
-2. Confirm Python and Poetry versions match or exceed those in [the `Dockerfile`].
+2. Confirm Python and Poetry versions match or exceed those in [the `Dockerfile`][Dockerfile].
 3. Install dependencies:
     * `poetry install`
 4. Build and/or Serve the website:
