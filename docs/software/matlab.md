@@ -1,5 +1,5 @@
 # MATLAB at TACC
-*Last update: June 8, 2023* 
+*Last update: August 29, 2023* 
 
 <table cellpadding="5" cellspacing="5"><tr>
 <td><img src="../imgs/matlab-logo.png" style="width:50%"></td>
@@ -71,7 +71,7 @@ Lonestar6 | <code>login1$ <b>sbatch myjobscript</b></code> | <a href="../../hpc/
 
 ## [Parallel MATLAB](#parallelmatlab) { #parallelmatlab }
 
-The parallel computing toolbox is available on the TACC resources as well.  Our MathWorks Total Academic Headcount (TAH) license for the UT-Austin campus does not include MATLAB Distributed Computing Server. Therefore, multi-node parallel operations are not supported.
+The parallel computing toolbox is available on the TACC resources as well.  
 
 The following two examples demonstrate parallel operations using the `parfor` and `matlabpool` functions. Here are the basic examples.
 

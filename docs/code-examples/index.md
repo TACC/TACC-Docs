@@ -162,7 +162,7 @@ Languages
 :  [Highlight.js: Supported Languages](https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md#supported-languages)
 
 Themes
-:  [Highlight.js: Demo](https://highlightjs.org/static/demo/)
+:  [Highlight.js: Demo](https://highlightjs.org/demo)
 
 ### Examples
 

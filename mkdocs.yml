@@ -46,9 +46,11 @@ extra_css:
     - css/core/core-styles.css
     - css/core/tacc-docs.css
 
-# TACC uses JS modules when possible (see theme.tacc_javascript)
+# To load custom global JavaScript (not recommended)
+# FAQ: Use JS modules when possible (see theme.tacc_javascript)
 extra_javascript:
-    - js/core/addPageId.js # not a module, because it relies on a global JS variable
+    - js/autoScrollNav.js
+    - js/addPageId.js
 
 nav:
   - TACC Essentials :

@@ -1,5 +1,5 @@
 # Corral User Guide
-*Last update: July 10, 2023*
+*Last update: July 26, 2023*
 
 
 ## [System Overview](#overview) { #overview }
@@ -42,7 +42,7 @@ Please direct any further questions you may have regarding the cloud storage int
 ## [System Access](#access) { #access }
 Corral is available to researchers at all UT System campuses, including both academic and health institutions. Corral is intended to support research activities involving large quantities of data and/or complex data management requirements. There is no requirement that users have allocations on other TACC systems, and Corral can be utilized independently of TACC computational and visualization resources. <!-- SDL All Corral users must have TACC accounts; if you do not yet have a TACC account you can create one on the [TACC user portal](https://xortal.tacc.utexas.edu/). -->
 
-You may request an allocation on Corral through the TACC User Portal. When requesting an allocation, indicate the quantity of storage you expect to utilize in terabytes, the nature of the research project that will be supported through the use of Corral, and the service or services you expect to utilize. It is also helpful if you provide a suggested name for the directory or a collection name under which your data will be stored on Corral.  Once your allocation has been granted, you will receive an e-mail indicating the location of your data within iRODS and/or directly in the file system accessible from the Corral login/data movement nodes.
+You may request an allocation on Corral through the TACC User Portal. When requesting an allocation, indicate the quantity of storage you expect to utilize in terabytes, the nature of the research project that will be supported through the use of Corral, and the service or services you expect to utilize. It is also helpful if you provide a suggested name for the directory or a collection name under which your data will be stored on Corral.  Once your allocation has been granted, you will receive an e-mail indicating the location of your data <!-- within iRODS and/or directly --> in the file system accessible from the Corral login/data movement nodes.
 
 
 ### [Basic File System Access from Lonestar6 and Other TACC systems](#access-external) { #access-external }
@@ -51,7 +51,8 @@ The access mechanism you will use will be based on the specific service or servi
 
 Users with the basic file system allocation type can directly access their data on Lonestar6 and the Corral login node, as well as most TACC system login nodes.  The full path to your project directory will be provided to you when your allocation is granted. The file system may be mounted on other systems within TACC at the discretion of the system administrators. Please submit a help ticket if you have questions about whether a system has Corral mounted or wish to request that it be mounted.
 
-Note that while the Corral file systems are mounted on Lonestar6 compute nodes, the local Lustre `SCRATCH` and `WORK` file systems may provide better performance for compute jobs, and users are encouraged to incorporate staging of their data to and from the SCRATCH file systems in particular as part of their job scripts.
+!!! note
+	**Corral is not intended for direct computational use**. While the Corral file systems are mounted on Lonestar6 compute nodes, the local Lustre `$SCRATCH` and `$WORK` file systems will provide better performance for compute jobs, and users are encouraged to incorporate staging of their data to and from the `$SCRATCH` file systems in particular as part of their job scripts.
 
 
 ## [Usage Policies](#policies) { #policies }
@@ -213,9 +214,9 @@ This policy applies to both the main and "protected" areas of Corral4.
 
 * [Manage Permissions with Access Control Lists](../../tutorials/acls)
 * [Lonestar6 User Guide](../lonestar6)  
-* [iRODS](http://irods.org/)  
 * [Cyberduck home page](http://cyberduck.io/)  
 * [UNIX manual pages](https://www.freebsd.org/cgi/man.cgi)
+<!-- * [iRODS](http://irods.org/)  -->
 
 
 {%include 'aliases.md' %}
