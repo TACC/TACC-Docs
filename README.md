@@ -37,7 +37,8 @@ Verify both versions in [Dockerfile] at `python:` and `POETRY_VERSION`.
 
 **Via Docker**:
 
-2. [Create and run][docker-compose-up] the CMS and database containers:
+0. Be inside the TACC-Docs repo folder, wherever you cloned it e.g. `cd ./TACC-Docs`.
+1. [Create and run][docker-compose-up] the CMS and database containers:
 
     ```bash
     docker-compose up
@@ -47,7 +48,8 @@ Verify both versions in [Dockerfile] at `python:` and `POETRY_VERSION`.
 
 **Without Docker**:
 
-1. **Create and/or Activate a [Python venv](https://docs.python.org/3/library/venv.html).**
+0. Be inside the TACC-Docs repo folder, wherever you cloned it e.g. `cd ./TACC-Docs`.
+1. Create and/or Activate a [Python venv](https://docs.python.org/3/library/venv.html).
 2. Confirm Python and Poetry versions match or exceed those in [the `Dockerfile`].
 3. Install dependencies:
     * `poetry install`
