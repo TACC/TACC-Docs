@@ -25,7 +25,7 @@ If you are on a Mac or a Windows machine, the recommended method is to install
 [Docker Desktop](https://www.docker.com/products/docker-desktop), which will install both Docker and Docker Compose as well as Docker
 Machine, which is required to run Docker on Mac/Windows hosts.
 
-#### Manually
+#### Without Docker
 
 * Python v3.10 (minimum)
 * Poetry v1.4 (minimum)
@@ -45,7 +45,7 @@ Verify both versions in [Dockerfile] at `python:` and `POETRY_VERSION`.
 
 [docker-compose-up]: https://docs.docker.com/compose/reference/up/
 
-**Manually**:
+**Without Docker**:
 
 1. **Create and/or Activate a [Python venv](https://docs.python.org/3/library/venv.html).**
 2. Confirm Python and Poetry versions match or exceed those in [Dockerfile].
