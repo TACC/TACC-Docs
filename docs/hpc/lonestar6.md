@@ -1,5 +1,5 @@
 # Lonestar6 User Guide
-Last update: June 15, 2023
+Last update: September 11, 2023
 
 
 ## [Notices](#notices) { #notices }
@@ -13,7 +13,7 @@ Last update: June 15, 2023
 
 Lonestar6 provides a balanced set of resources to support simulation, data analysis, visualization, and machine learning.  It is the next system in TACC's Lonestar series of high performance computing systems that are deployed specifically to support Texas researchers. Lonestar6 is funded through collaboration with TACC, the University of Texas System, Texas A&amp;M University, Texas Tech University, and the University of North Texas, as well as a number of research centers and faculty at UT-Austin, including the Oden Institute for Computational Engineering &amp; Sciences and the Center for Space Research.
 
-The system employs Dell Servers with  AMD's highly performant Epyc Milan processor, Mellanox's HDR Infiniband technology, and 8 PB of BeeGFS based storage on Dell storage hardware.  Additionally, Lonestar6 supports GPU nodes utilizing NVIDIA's Ampere A100 GPUs to support machine learning workflows and other GPU-enabled applications.  Lonestar6 will continue to support the TACC HPC environment, providing numerical libraries, parallel applications, programming tools, and performance monitoring capabilities to the user community.
+The system employs Dell Servers with AMD's highly performant Epyc Milan processor, Mellanox's HDR Infiniband technology, and 8 PB of BeeGFS based storage on Dell storage hardware.  Additionally, Lonestar6 supports GPU nodes utilizing NVIDIA's A100 and H100 GPUs to support machine learning workflows and other GPU-enabled applications.  Lonestar6 will continue to support the TACC HPC environment, providing numerical libraries, parallel applications, programming tools, and performance monitoring capabilities to the user community.
 
 ### [Allocations](#intro-allocations) { #intro-allocations }
 
@@ -32,7 +32,7 @@ Researchers at our partner institutions may submit allocation requests through t
 
 All Lonestar6 nodes run Rocky 8.4 and are managed with batch services through native Slurm 20.11.8. Global storage areas are supported by an NFS file system (`$HOME`), a BeeGFS parallel file system (`$SCRATCH`), and a Lustre parallel file system (`$WORK`). Inter-node communication is supported by a Mellanox HDF Infiniband network. Also, the TACC Ranch tape archival system is available from Lonestar6.
 
-The system is composed of 560 compute nodes and 32 GPU nodes.  The compute nodes are housed in 4 dielectric liquid coolant cabinets and ten air-cooled racks.  The air cooled racks also contain the 32 GPU nodes.  Each node has two AMD EPYC 7763 64-core processors (Milan) and 256 GB of DDR4 memory. Twenty-four of the compute nodes are reserved for development and are accessible interactively for up to two hours. Each GPU node also contains two AMD EPYC 7763 64-core processes and three NVIDIA A100 GPUs each with 40 GB of high bandwidth memory (HBM2).
+The system is composed of 560 compute nodes and 88 GPU nodes.  The compute nodes are housed in 4 dielectric liquid coolant cabinets and ten air-cooled racks.  The air cooled racks also contain the 88 GPU nodes.  Each node has two AMD EPYC 7763 64-core processors (Milan) and 256 GB of DDR4 memory. Twenty-four of the compute nodes are reserved for development and are accessible interactively for up to two hours. Each A100 GPU node also contains two AMD EPYC 7763 64-core processes and three NVIDIA A100 GPUs each with 40 GB of high bandwidth memory (HBM2).  In addition, there are four H100 GPU nodes with 2 NVIDIA H100 GPUs each.  
 
 
 ### [Compute Nodes](#system-compute) { #system-compute }
@@ -76,14 +76,15 @@ Local storage:  | 112G <code>/tmp</code> partition
 
 ### [GPU Nodes](#system-gpu) { #system-gpu }
 
-Lonestar6 hosts **32** GPU nodes that are configured identically to the compute nodes with the addition of 3 NVIDIA A100 GPUs.  Each A100 gpu has a peak performance of 9.7 TFlops in double precision and 312 TFlops in FP16 precision using the Tensor Cores.
+Lonestar6 hosts 84 A100 GPU nodes that are configured identically to the compute nodes with the addition of 3 NVIDIA A100 GPUs. Each A100 GPU has a peak performance of 9.7 TFlops in double precision and 312 TFlops in FP16 precision using the Tensor Cores. Additionally, there are 4 H100 GPU nodes that support 2 NVIDIA H100 GPUs.  Each H100 GPU has a peak performance of 26 TFlops in double precision and 1513 TFlops in FP16 precision using the Tensor cores.
+
 
 #### [Table 2. GPU Node Specifications](#table2) { #table2 }
 
 
 Specification | Value
 --- | ---
-GPU:  | 3x NVIDIA A100 PCIE 40GB<br>(1 per socket )<br>gpu0:   socket 0<br>gpu1:   socket1<br>gpu2:   socket1
+GPU:  | 3x NVIDIA A100 PCIE 40GB<br>gpu0:   socket 0<br>gpu1:   socket1<br>gpu2:   socket1
 GPU Memory:  | 40 GB HBM2
 CPU:   | 2x AMD EPYC 7763 64-Core Processor ("Milan")
 Total cores per node:   | 128 cores on two sockets (64 cores / socket )
@@ -92,7 +93,22 @@ Hardware threads per node:   | 128 x 1 = 128
 Clock rate:   | 2.45 GHz
 RAM:   | 256 GB
 Cache:   | 32KB L1 data cache per core<br>512KB L2 per core<br>32 MB L3 per core complex<br>(1 core complex contains 8 cores)<br>256 MB L3 total (8 core complexes )<br>Each socket can cache up to 288 MB<br>(sum of L2 and L3 capacity)
-Local storage:   | 144GB /tmp partition on a 288GB SSD.
+Local storage:   | 288GB /tmp partition 
+
+#### [Table 2.5 H100 GPU Node Specifications](#table25) { #table25 }
+
+Specification | Value
+--- | ---
+GPU: 	| 2x NVIDIA H100 PCIE 80GB<br> gpu0:    socket 0<br> gpu1:    socket 1
+GPU Memory: 	| 80 GB HBM2e
+CPU:  	| 2x AMD EPYC 9454 48-Core Processor ("Genoa")
+Total cores per node:  	 | 96 cores on two sockets (48 cores / socket )
+Hardware threads per core:  	| 1 per core
+Hardware threads per node:  	| 96 x 1 = 96
+Clock rate:  	| 2.75 GHz
+RAM:  	| 384 GB
+Cache:  | 64KB L1 data cache per core<br> 1MB  L2 per core<br> 32 MB L3 per core complex<br> (1 core complex contains 8 cores)<br> 256 MB L3 total (8 core complexes )<br> Each socket can cache up to 304 MB<br> (sum of L2 and L3 capacity)
+Local storage:  	| 288GB /tmp partition 
 
 ### [Network](#system-network) { #system-network }
 
@@ -710,11 +726,13 @@ The jobs in this queue consume 1/7 the resources of a full node.  Jobs are charg
 Queue Name | Min/Max Nodes per Job<br /> (assoc'd cores)&#42; | Max Job Duration | Max Nodes<br> per User | Max Jobs<br> per User | Charge Rate<br /><u>(per node-hour)</u>
 --- | --- | --- | --- | --- | ---
 <code>development</code> | 4 nodes<br>(512 cores) | 2 hours | 6 | 1 | 1 SU
-<code>gpu-a100</code> | 16 nodes<br>(2048 cores) | 48 hours | 16 | 8 | 4 SUs
-<code>gpu-a100-dev</code> | 4 nodes<br>(512 cores) | 48 hours | 2 | 1 | 4 SUs
+<code>gpu-a100</code> | 4 nodes<br>(512 cores) | 48 hours | 6 | 2 | 4 SUs
+<code>gpu-a100-dev</code> | 4 nodes<br>(512 cores) | 2 hours | 2 | 1 | 4 SUs
 <code>large</code><sup>&#42;</sup> | 65/256 nodes<br>(65536 cores) | 48 hours | 256 | 1 | 1 SU
 <code>normal</code> | 1/64 nodes<br>(8192 cores) | 48 hours | 96 | 15 | 1 SU
 <code>vm-small</code><sup>&#42;&#42;</sup> | 1/1 node<br>(16 cores) | 48 hours | 4 | 4 | 0.143 SU
+<code>gpu-h100</code> | 1 node | 48 hours | 1 | 1 | 6 SUs | (96 cores)
+
 
 &#42; Access to the `large` queue is restricted. To request more nodes than are available in the normal queue, submit a consulting (help desk) ticket through the TACC User Portal. Include in your request reasonable evidence of your readiness to run under the conditions you're requesting. In most cases this should include your own strong or weak scaling results from Lonestar6.
 
