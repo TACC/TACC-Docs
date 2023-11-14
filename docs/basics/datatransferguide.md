@@ -1,4 +1,4 @@
-# Data Transfer and Management Guide
+## Data Transfer and Management Guide
 *Last update: August 1, 2023*
 
 Transferring Portal data from your local machine to <a href="#storage">one of TACC's remote storage systems</a> can be accomplished using two methods: command line tools (<code>scp</code>, <code>sftp</code>, <code>rsync</code>) and graphical user interface (Cyberduck).
@@ -34,11 +34,11 @@ All portal users will need to create a TACC account in the TACC User Portal (whi
 Access to all TACC resources requires a completed Multi-Factor Authentication pairing with your TACC credentials. To set up MFA, please reference TACC Portal's <a href="https://portal.tacc.utexas.edu/tutorials/multifactor-authentication">Multi-Factor Authentication tutorial</a>.
 -->
 
-## Using Command Line Tools to Transfer and Organize Data
+### Using Command Line Tools to Transfer and Organize Data
 
 A common method of transferring files between TACC resources and/or your local machine is through the command line.
 
-## <code>scp</code>, <code>sftp</code>, &amp; <code>rsync</code>
+### <code>scp</code>, <code>sftp</code>, &amp; <code>rsync</code>
 
 These three command line tools are secure and can be used to accomplish data transfer. You can run these commands directly from the terminal if your local system runs Linux or macOS.
 
@@ -49,14 +49,14 @@ To simplify the data transfer process, it is recommended that Windows users foll
 
 For users that are new to the command line, using either `scp` or `sftp` to transfer data is advised.
 
-## Prerequisites
+### Prerequisites
 
 Before beginning data transfer with command-line tools, you will need to know:
 
 * the path to your data file(s) on your local system
 * the path to your transfer directory on the remote storage server
 
-## Determining the Path to Your Data File(s) on Your Local System
+### Determining the Path to Your Data File(s) on Your Local System
 
 In order to transfer your project data, you will first need to know where the files are located on your local system.
 
@@ -64,7 +64,7 @@ To do so, navigate to the location of the files on your computer. This can be ac
       
 Once you have identified the location of the files, you can right-click on them and select either Get Info (on Mac) or Properties (on Windows) to view the path location on your local system.
       
-### Figure 1. Use Get Info to determine "Where" the path of your data file(s) is
+#### Figure 1. Use Get Info to determine "Where" the path of your data file(s) is
 
 <figure id="figure1"><img src="../imgs/dtg-1-determine-path.png" /></a>
 <figcaption> Figure 1. Use Get Info to determine "Where" the path of your data file(s) is</figcaption></figure>
@@ -77,7 +77,7 @@ For example, a file located in a folder named <kbd>portal-data</kbd> under <code
 <tr><td><code>\Users\<kbd>username</kbd>\My Documents\<kbd>portal-data</kbd>\my_file.txt</code></td></tr>
 </table>
 
-## Determining the Path to Your Transfer Directory
+### Determining the Path to Your Transfer Directory
 
 A transfer directory on the remote storage server associated with the portal you are accessing it through will be established when your account is given access to the portal and completes the on-boarding procedure. The transfer directory path will be unique for every institution and project.
       
@@ -87,7 +87,7 @@ A transfer directory on the remote storage server associated with the portal you
       
 If you are unsure of your transfer directory path, please consult your project PI directly.
         
-## How to Transfer Data with <code>scp</code>
+### How to Transfer Data with <code>scp</code>
 
 The <code>scp</code> command copies files between hosts on a network. To transfer a file (ex. <code>my_file.txt</code>) to the remote secure system via <code>scp</code>, open a terminal on your local computer and navigate to the path where your data file is located.
       
@@ -118,7 +118,7 @@ If you wish to learn more about <code>scp</code> and how to synchronize your fil
 * <a target="_blank" href="https://docs.tacc.utexas.edu/hpc/frontera/#transferring-scp">Frontera User Guide</a>
 * <a target="_blank" href="https://https://docs.tacc.utexas.edu/hpc/lonestar6/#files-transferring-scp">Lonestar6 User Guide</a>
 
-## Using <code>sftp</code>
+### Using <code>sftp</code>
 
 <code>sftp</code> is a file transfer program that allows you to interactively navigate between your local file system and the remote secure system. To transfer a file (ex. <code>my_file.txt</code>) to the remote secure system via <code>sftp</code>, open a terminal on your local computer and navigate to the path where your data file is located.&nbsp;
       
@@ -183,7 +183,7 @@ To exit out of <code>sftp</code> on the terminal:
 If you wish to learn more about <code>sftp</code>, you can do so at <a target="_blank" href="https://man7.org/linux/man-pages/man1/sftp.1.html">the online <code>man</code> page for <code>scp</code></a>.
       
 
-## How to Transfer Data with <code>rsync</code>
+### How to Transfer Data with <code>rsync</code>
 
       
 <code>rsync</code>is a file copying tool that can reduce the amount of data transferred by sending only the differences between the source files on your local system and the existing files in your transfer directory. To transfer a file (ex. <code>my_file.txt</code>) to the remote secure system via <code>rsync</code>, open a terminal on your local computer and navigate to the path where your data file is located.
@@ -210,12 +210,12 @@ Consult your resource's respective user guide's "Transferring Files" section for
 * <a href="../hpc/lonestar6/#files-transferring-rsync">Lonestar6 User Guide</a>
 * <a href="../hpc/frontera/#transferring-rsync">Frontera User Guide</a>
 
-## How to Transfer Data with Cyberduck
+### How to Transfer Data with Cyberduck
 
 <a target="_blank" href="https://cyberduck.io/">Cyberduck</a> is a free graphical user interface for data transfer and is an alternative to using the command line. With a drag-and-drop interface, it is easy to transfer a file from your local system to the remote secure system. You can use <a target="_blank" href="https://cyberduck.io/">Cyberduck</a> for Windows or macOS.
 
 
-### [Windows](#windows)
+#### [Windows](#windows)
 
 <a target="_blank" href="https://cyberduck.io/download/">Download and install Cyberduck for Windows</a> on your local machine.
       
@@ -236,7 +236,7 @@ Consult Figure 3. below to ensure the information you have provided is correct. 
 
 Once connected, you can navigate through your remote file hierarchy using the graphical user interface. You may also drag-and-drop files from your local computer into the Cyberduck window to transfer files to the system.
       
-### [Mac](#mac)
+#### [Mac](#mac)
 
 <a target="_blank" href="https://cyberduck.io/download/">Download and install Cyberduck for macOS</a> on your local machine.
       
@@ -260,7 +260,7 @@ Once connected, you can navigate through your remote file hierarchy using the gr
 <a target="_blank" href="https://cyberduck.io/">Cyberduck</a> is a free graphical user interface for data transfer and is an alternative to using the command line. With a drag-and-drop interface, it is easy to transfer a file from your local system to the remote secure system. You can use <a target="_blank" href="https://cyberduck.io/">Cyberduck</a> for Windows or macOS.
       
       
-## <a href="#references">References</a> 
+### <a href="#references">References</a> 
 
 * [`scp` manual page](https://man7.org/linux/man-pages/man1/scp.1.html)
 * [`sftp` manual page](https://man7.org/linux/man-pages/man1/sftp.1.html)
