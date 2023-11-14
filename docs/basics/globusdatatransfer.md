@@ -6,12 +6,12 @@ To get these benefits there are a few setup steps you have to do beyond the norm
 
 To start using Globus, you need to do two things: Generate a unique identifier for all Globus services, and enroll the machine you are transferring data to/from with Globus (this can be your personal laptop or desktop, or a server to which you have access). Follow this one-time process to set up the Globus file transfer capability.
 
-*   [Step 1: Retrieve and Associate a Distinguished Name (DN) with Your TACC Account](https://dev.cep.tacc.utexas.edu/guides/globus-data-transfer-guide/#step-1-distinguished-name)
-*   [Step 2: Activate Your Desktop/Laptop as a Globus Endpoint and Transfer Files](https://dev.cep.tacc.utexas.edu/guides/globus-data-transfer-guide/#step-2-globus-endpoint)
+*   [Step 1: Retrieve and Associate a Distinguished Name (DN) with Your TACC Account](#step-1-distinguished-name)
+*   [Step 2: Activate Your Desktop/Laptop as a Globus Endpoint and Transfer Files](#step-2-globus-endpoint)
 
 PLEASE NOTE: You must use _your institution’s credentials and not your personal Google account_ when setting up Globus. If you use a personal account, you will encounter an issue with the transfer endpoint (Frontera, Stampede2, Corral, Ranch, etcetera).
 
-### Step 1: Retrieve and Associate a Distinguished Name (DN) with Your TACC Account
+### Step 1: Retrieve and Associate a Distinguished Name (DN) with Your TACC Account { #step-1-distinguished-name }
 
 In order for Globus to know who you are when you move data in and out of the CEP portal from your computer, or between any other pair of systems, Globus needs a unique identifier for you, which is called a “Distinguished Name”, or DN. You can generate a DN instantly for free. To create a DN, you need to log in from some authoritative source that can verify your identity, typically your university or employer. If you already have a DN from another source, you can use that. If you do not, you can associate one with your account from many of the major universities in the world via the “CI Logon” service.
 
@@ -31,7 +31,7 @@ On the left of the page is a list of account actions, select "Manage DNs". You w
 
 [![](../imgs/gdt-step-1c-asociate-dn.png)](../imgs/gdt-step-1c-asociate-dn.png)
 
-### Step 2: Activate Your Desktop/Laptop as a Globus Endpoint and Transfer Files
+### Step 2: Activate Your Desktop/Laptop as a Globus Endpoint and Transfer Files { #step-2-globus-endpoint }
 
 Now that you have associated the DN with your TACC account and given the DN time to propagate to the systems (up to thirty minutes), you can activate the Globus transfer endpoints and begin transferring files.
 
