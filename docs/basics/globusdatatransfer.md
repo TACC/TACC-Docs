@@ -67,7 +67,30 @@ You can now access the files on your desktop/laptop via Globus.
 
 You can also click on Panels to look at two endpoints at the same time. In the other transfer endpoint, search for "TACC" and select the appropriate allocation storage system (Frontera, Stampede2, Corral, Ranch, etcetera) for the desired data.
 
-<details><summary>Examples:</summary></details>
+??? "Examples:"
+
+    UTRC Portal
+    :   Example A
+        :   Data
+            :   My Data
+        :   System
+            : TACC Stampede2
+    :   Example B
+        :   Data
+            :   Shared Workspaces
+        :   System
+            :   TACC Corral 3
+    Frontera Portal
+    :   Example A
+        :   Data
+            :   My Data
+        :   System
+            :   Frontera, Longhorn, Stockyard
+    :   Example B
+        :   Data
+            :   Shared Workspaces
+        :   System
+            :   Corral
 
 [![](../imgs/gdt-step-2f-select-system.png)](../imgs/gdt-step-2f-select-system.png)
 
@@ -84,35 +107,66 @@ After successfully authenticating, you will be redirected back to Globus and you
             login2(#)$ cd $WORK
             login2(#)$ pwd
 
-    *   The output of the `pwd` command is your path to your <var>$WORK</var> directory.<details><summary>Examples:</summary></details>
-*   To access a project in "My Projects" use the appropriate endpoint and set <samp>Path</samp> to: `/<kbd>path/to/storage</kbd>/<kbd>PORTAL</kbd>/projects/<kbd>PORTAL-ProjectIDNumber</kbd>`
+    *   The output of the `pwd` command is your path to your <var>$WORK</var> directory.
 
-    <details><summary>Examples:</summary></details>
+    ??? "Examples:"
+
+        Stampede
+        :   Endpoint
+            :    Stampede2
+        :    Host
+            :    `stampede2.tacc.utexas.edu`
+        Frontera
+        :    Endpoint
+            :    Frontera
+        :    Host
+            :    `frontera.tacc.utexas.edu`
+        Longhorn
+        :    Endpoint
+            :    Longhorn
+        :    Host
+            :    `longhorn.tacc.utexas.edu`
+
+*   To access a project in "My Projects" use the appropriate endpoint and set <samp>Path</samp> to: <code>/<kbd>path/to/storage</kbd>/<kbd>PORTAL</kbd>/projects/<kbd>PORTAL-ProjectIDNumber</kbd></code>
+
+    ??? "Examples:"
+
+        `/corral-repl/tacc/aci/FRONTERA/projects/FRONTERA-26`
+
     *   You will find the Project ID on your “My Projects” list in the second column.
 
-        [![](../imgs/gdt-step-2g-project-id.CEP.png)](../imgs/gdt-step-2g-project-id.CEP.png) <details><summary>Examples:</summary>
+        [![](../imgs/gdt-step-2g-project-id.CEP.png)](../imgs/gdt-step-2g-project-id.CEP.png)
 
-        <dl>
+        ??? "Examples:"
 
-        <dd>[![](../imgs/gdt-step-2g-project-id.3DEM.png)](../imgs/gdt-step-2g-project-id.3DEM.png)</dd>
+            3DEM
+            :   [![](../imgs/gdt-step-2g-project-id.3DEM.png)](../imgs/gdt-step-2g-project-id.3DEM.png)
 
-        <dd>[![](../imgs/gdt-step-2g-project-id.A2CPS.png)](../imgs/gdt-step-2g-project-id.A2CPS.png)</dd>
+            A2CPS
+            :   [![](../imgs/gdt-step-2g-project-id.A2CPS.png)](../imgs/gdt-step-2g-project-id.A2CPS.png)
 
-        <dd>[![](../imgs/gdt-step-2g-project-id.ECCO.png)](../imgs/gdt-step-2g-project-id.ECCO.png)</dd>
+            ECCO
+            :   [![](../imgs/gdt-step-2g-project-id.ECCO.png)](../imgs/gdt-step-2g-project-id.ECCO.png)
 
-        <dd>[![](../imgs/gdt-step-2g-project-id.PT2050.png)](../imgs/gdt-step-2g-project-id.PT2050.png)</dd>
+            PT2050
+            :   [![](../imgs/gdt-step-2g-project-id.PT2050.png)](../imgs/gdt-step-2g-project-id.PT2050.png)
 
-        <dd>[![](../imgs/gdt-step-2g-project-id.UTRC.png)](../imgs/gdt-step-2g-project-id.UTRC.png)</dd>
+            UTRC
+            :   [![](../imgs/gdt-step-2g-project-id.UTRC.png)](../imgs/gdt-step-2g-project-id.UTRC.png)
 
-        </dl>
-
-        </details>
     *   If you are viewing a project, the Project ID will be appended to the URL in your browser as:
 
-            https://portal.domain/workbench/data/tapis/projects/portal.project.PORTAL-ProjectIDNumber
+        <code>https://<kbd>portal.domain</kbd>/workbench/data/tapis/projects/<kbd>portal</kbd>.project.<kbd>PORTAL-ProjectIDNumber</kbd></code>
 
-        <details><summary>Examples:</summary></details>
-*   To access "Community Data", use the appropriate endpoint and set <samp>Path</samp> to: `/<kbd>path/to/portal/data</kbd>/<kbd>PORTAL</kbd>/community/` <details><summary>Examples:</summary></details>
+        ??? "Examples:"
+
+            `https://frontera-portal.tacc.utexas.edu/workbench/data/tapis/projects/frontera.project.FRONTERA-23`
+
+*   To access "Community Data", use the appropriate endpoint and set <samp>Path</samp> to: <code>/<kbd>path/to/portal/data</kbd>/<kbd>PORTAL</kbd>/community/</code>
+
+    ??? "Examples:"
+
+        `/corral-repl/tacc/aci/UTRC/community/`, `/corral-repl/tacc/aci/Frontera/community/`
 
 You can transfer files between the selected endpoints.
 
