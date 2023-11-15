@@ -56,8 +56,6 @@ nav:
   - TACC Essentials :
     - Documentation Overview: index.md
     - Getting Started: https://www.tacc.utexas.edu/use-tacc/getting-started/
-    - Data Transfer: basics/datatransfer.md
-    - Good Conduct: basics/conduct.md
     - Multi-Factor Authentication: basics/mfa.md
     - Help: basics/help.md
   - HPC :
