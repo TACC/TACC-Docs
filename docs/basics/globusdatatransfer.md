@@ -17,7 +17,7 @@ In order for Globus to know who you are when you move data in and out of the CEP
 
 To retrieve your DN, go to [https://cilogon.org](https://cilogon.org/) in your browser. Select an Identity Provider from the drop-down list, and click "Log On" which will take you to the login screen for the Identity Provider you selected. If your university or employer is not in the list, we recommend [registering for an XSEDE account](https://portal.xsede.org/#/guest) as XSEDE is a CILogon Identity Provider.
 
-[![](../imgs/gdt-step-1a-get-dn.png)](../imgs/gdt-step-1a-get-dn.png)
+<img src="../imgs/gdt-step-1a-get-dn.png">
 
 After successfully authenticating at your chosen Identity Provider, you are redirected back to CILogon, where you can find your Certificate Subject that you will need to copy and paste in the next step:
 
@@ -25,11 +25,11 @@ After successfully authenticating at your chosen Identity Provider, you are redi
 
 Login to the [TACC User Portal](https://portal.tacc.utexas.edu/) and select "Account Profile" from the main menu under the "Home" dropdown.
 
-[![](../imgs/gdt-step-1b-tacc-profile.png)](../imgs/gdt-step-1b-tacc-profile.png)
+<img src="../imgs/gdt-step-1b-tacc-profile.png">
 
 On the left of the page is a list of account actions, select "Manage DNs". You will be presented with a list of the DNs currently associated with your TACC account and a text field to associate a new DN to your account. Enter the Certificate Subject obtained from [CILogon.org](http://cilogon.org/) in the text field. Click the button to "Associate DN". This will associate the new DN with your account. Please note, it may take up to 30 minutes for this change to propagate to all TACC systems.
 
-[![](../imgs/gdt-step-1c-asociate-dn.png)](../imgs/gdt-step-1c-asociate-dn.png)
+<img src="../imgs/gdt-step-1c-asociate-dn.png">
 
 ### Step 2: Activate Your Desktop/Laptop as a Globus Endpoint and Transfer Files { #step-2-globus-endpoint }
 
@@ -37,19 +37,19 @@ Now that you have associated the DN with your TACC account and given the DN time
 
 Go to [https://globus.org](https://globus.org/) and log in.
 
-[![](../imgs/gdt-step-2a-login.png)](../imgs/gdt-step-2a-login.png)
+<img src="../imgs/gdt-step-2a-login.png">
 
 Upon successful login you, you will be directed to the "File Manager" landing page.
 
-[![](../imgs/gdt-step-2b-file-manager.png)](../imgs/gdt-step-2b-file-manager.png)
+<img src="../imgs/gdt-step-2b-file-manager.png">
 
 Click on Endpoints.
 
-[![](../imgs/gdt-step-2c-endpoints.png)](../imgs/gdt-step-2c-endpoints.png)
+<img src="../imgs/gdt-step-2c-endpoints.png">
 
 Click “+ Create new endpoint” and follow the instructions to set up your desktop/laptop as an endpoint.
 
-[![](../imgs/gdt-step-2d-access-computer.png)](../imgs/gdt-step-2d-access-computer.png)
+<img src="../imgs/gdt-step-2d-access-computer.png">
 
 Enter a Display Name to identify your local endpoint like My Laptop, My Desktop at Home, etcetera and then click Generate Setup Key and click copy to copy the Personal Setup Key.
 
@@ -59,11 +59,11 @@ After install, open the Globus Connect Personal application. A pop menu pops up 
 
 Click on “File Manager”, and next click on the Collection field. You can choose "Your collections" and click on "My Laptop" to select the created endpoint to your computer.
 
-[![](../imgs/gdt-step-2d-create-endpoint.png)](../imgs/gdt-step-2d-create-endpoint.png)
+<img src="../imgs/gdt-step-2d-create-endpoint.png">
 
 You can now access the files on your desktop/laptop via Globus.
 
-[![](../imgs/gdt-step-2e-your-collections.png)](../imgs/gdt-step-2e-your-collections.png)
+<img src="../imgs/gdt-step-2e-your-collections.png">
 
 You can also click on Panels to look at two endpoints at the same time. In the other transfer endpoint, search for "TACC" and select the appropriate allocation storage system (Frontera, Stampede2, Corral, Ranch, etcetera) for the desired data.
 
@@ -92,7 +92,7 @@ You can also click on Panels to look at two endpoints at the same time. In the o
         :   System
             :   Corral
 
-[![](../imgs/gdt-step-2f-select-system.png)](../imgs/gdt-step-2f-select-system.png)
+<img src="../imgs/gdt-step-2f-select-system.png">
 
 After successfully authenticating, you will be redirected back to Globus and you will now be able to access your data on the allocation storage system (Frontera, Stampede2, Corral, Ranch):
 
@@ -135,24 +135,24 @@ After successfully authenticating, you will be redirected back to Globus and you
 
     *   You will find the Project ID on your “My Projects” list in the second column.
 
-        [![](../imgs/gdt-step-2g-project-id.CEP.png)](../imgs/gdt-step-2g-project-id.CEP.png)
+        <img src="../imgs/gdt-step-2g-project-id.CEP.png">
 
         ??? "Examples:"
 
             3DEM
-            :   [![](../imgs/gdt-step-2g-project-id.3DEM.png)](../imgs/gdt-step-2g-project-id.3DEM.png)
+            :   <img src="../imgs/gdt-step-2g-project-id.3DEM.png">
 
             A2CPS
-            :   [![](../imgs/gdt-step-2g-project-id.A2CPS.png)](../imgs/gdt-step-2g-project-id.A2CPS.png)
+            :   <img src="../imgs/gdt-step-2g-project-id.A2CPS.png">
 
             ECCO
-            :   [![](../imgs/gdt-step-2g-project-id.ECCO.png)](../imgs/gdt-step-2g-project-id.ECCO.png)
+            :   <img src="../imgs/gdt-step-2g-project-id.ECCO.png">
 
             PT2050
-            :   [![](../imgs/gdt-step-2g-project-id.PT2050.png)](../imgs/gdt-step-2g-project-id.PT2050.png)
+            :   <img src="../imgs/gdt-step-2g-project-id.PT2050.png">
 
             UTRC
-            :   [![](../imgs/gdt-step-2g-project-id.UTRC.png)](../imgs/gdt-step-2g-project-id.UTRC.png)
+            :   <img src="../imgs/gdt-step-2g-project-id.UTRC.png">
 
     *   If you are viewing a project, the Project ID will be appended to the URL in your browser as:
 
