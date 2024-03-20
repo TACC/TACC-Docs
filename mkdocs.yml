@@ -139,7 +139,7 @@ markdown_extensions:
   #     use_pygments: true
 
 plugins:
-  - search
+  - search: {}
   - exclude-search:
       exclude:
         - aliases.md
@@ -148,7 +148,7 @@ plugins:
         - code-examples/*
         - testingextensions.md
         - archives/*
-  - macros # allows {% include ... %} (and macros)
+  - macros: {} # allows {% include ... %} (and macros)
 #  - with-pdf:
 #      copyright: TACC
 #      cover_subtitle: TACC User Guide
