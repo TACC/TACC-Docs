@@ -1,15 +1,20 @@
 S3_OBJS	=	\
 	notices.md \
-	system.md 
-#	files.md \
-#	admin.md \
-#	building.md \
-#	launching.md \
-#	running.md \
-#	scripts.md \
-#	jobmanagement.md \
+	system.md \
+	access.md \
+	admin.md \
+	files.md \
+	running.md \
+	launching.md \
+	building.md \
+	scripts.md \
+	jobmanagement.md \
+	ml.md \
+	../../include/stampede3-help.md 
+#	mkl.md \
+#	programming.md \
 #	vis.md \
-#	../../include/stampede3-help.md 
+#	refs.md
 
 all:	stampede3
 

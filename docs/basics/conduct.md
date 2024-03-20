@@ -1,5 +1,5 @@
 # [Good Conduct on TACC's HPC Systems](#conduct) { #conduct }
-*Last Update: June 8, 2023*
+*Last Update: December 15, 2023*
 
 **You share TACC's HPC resources with many, sometimes hundreds, of other users, and what you do on the resource affects others**. All TACC account holders  must follow a set of good practices which entail limiting activities that may impact the system for other users. Exercise good conduct to ensure that your activity does not adversely impact the resource and the research community with whom you share it.
 
@@ -8,8 +8,7 @@ TACC staff has developed the following guidelines to good conduct on all TACC re
 
 ## [1. Do Not Run Jobs on the Login Nodes](#conduct-loginnodes) { #conduct-loginnodes }
 
-Each HPC resource's login nodes are shared amongst all users. Depending on the resource, dozens of users may be logged on at one time accessing the shared file systems. 
-A single user running computationally expensive or disk intensive task/s will negatively impact performance for other users. Running jobs on the login nodes is one of the fastest routes to account suspension. Instead, run on the compute nodes via an interactive session <u>([`idev`](../../software/idev))</u> or by submitting a batch job.
+Each HPC resource's login nodes are shared amongst all users. Depending on the resource, dozens of users may be logged on at one time accessing the shared file systems.  A single user running computationally expensive or disk intensive task/s will negatively impact performance for other users. Running jobs on the login nodes is one of the fastest routes to account suspension. Instead, run on the compute nodes via an interactive session <u>([`idev`](../../software/idev))</u> or by submitting a batch job.
 
 Think of the login nodes as a prep area, where users may edit and manage files, compile code, perform file management, issue transfers, submit new and track existing batch jobs etc. The login nodes provide an interface to the "back-end" compute nodes. 
 
@@ -21,7 +20,7 @@ The compute nodes are where actual computations occur and where research is done
 
 
 <figure id="figure-logincomputenodes">
-<img src="../../imgs/login-compute-nodes.jpg">
+<img src="../imgs/login-compute-nodes.jpg">
 <figcaption>Figure 2. Login and compute nodes</figcaption></figure>
 
 

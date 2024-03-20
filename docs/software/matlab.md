@@ -1,81 +1,84 @@
 # MATLAB at TACC
-*Last update: August 29, 2023* 
+*Last update: January 16, 2024* 
 
 <table cellpadding="5" cellspacing="5"><tr>
 <td><img src="../imgs/matlab-logo.png" style="width:50%"></td>
 <td></td>
 </tr></table>
 
-[Mathwork's](https://www.mathworks.com/) MATLAB is installed and supported at TACC and is available on the following TACC resources: [Frontera](../../hpc/frontera), [Stampede2](../../hpc/stampede2) and [Lonestar6](../../hpc/lonestar6).  
+[Mathwork's](https://www.mathworks.com/) MATLAB is installed and supported at TACC and is available on the following TACC resources: [Frontera](../../hpc/frontera), [Stampede3](../../hpc/stampede3) and [Lonestar6](../../hpc/lonestar6).  
 
 ## [Licenses](#license) { #license }
 
-MathWork's agreement with the University of Texas now allows TACC users to access MATLAB for **non-commercial**, **academic** use. If you would like access to MATLAB [submit a help desk ticket][HELPDESK].  Include in your ticket your institutional affiliation and a brief statement confirming that you will use MATLAB only for **non-commercial**, **academic** purposes. If you are affiliated with the University of Texas, include your academic department in your help desk ticket.
+MathWork's agreement with the University of Texas now allows TACC users to access MATLAB for **non-commercial**, **academic** use. If you have your own network licenses for toolboxes that are not available through the University of Texas, we can help you configure these licenses on TACC systems.  If you would like access to MATLAB [submit a help desk ticket][HELPDESK].  Include in your ticket: 
 
-If you have your own network licenses for toolboxes that are not available through the University of Texas, we can help you configure these licenses on TACC systems. Again, submit a help desk ticket for assistance.
+* your institutional affiliation If you are affiliated with the University of Texas, include your academic department in your help desk ticket.
+* and a brief statement confirming that you will use MATLAB only for **non-commercial**, **academic** purposes. 
+
 
 ## [Interactive Mode](#interactive) { #interactive }
 
-MATLAB is normally launched with the MATLAB Desktop UI and used in interactive mode. Create a VNC session following the directions in the [Remote Desktop Access][TACCREMOTEDESKTOPACCESS] section.  
+MATLAB is normally launched with the MATLAB Desktop UI and used in interactive mode. Create a DCV or VNC session following the directions in the [Remote Desktop Access][TACCREMOTEDESKTOPACCESS] tutorial.  You can also launch a non-GUI enabled MATLAB from within an [`idev`](./idev) session.
 
+MATLAB is managed under the [Lmod](https://lmod.readthedocs.io/en/latest/) modules system on TACC resources. Whether within an `idev`, VNC, or DCV session, launch MATLAB by loading the MATLAB module with the following command:
 
-MATLAB is managed under the modules system on the TACC resources. Before you launch MATLAB load the MATLAB module with the following command:
+	c202-002$ module load matlab
 
-``` cmd-line
-login1$ module load matlab
-```
+You can always get the MATLAB help information by typing the following standard `module help` command.
 
-You can always get the MATLAB help information by typing the following module help command.
+	c202-002$ module help matlab
 
-``` cmd-line
-login1$ module help matlab
-```
+### [DCV session](#interactive-dcv) 
 
-The following figure shows how MATLAB is launched inside the VNC session.
+The following figures demonstrate how to launch MATLAB inside a DCV session in the [TACC Analysis Portal](TACCANALYSISPORTAL).
 
-### [Figure 1. MATLAB launched in a VNC session](#figure1) { #figure1 }
+1. Submit a New Job request, this may take a few minutes:
 
-<figure id="figure1"> <img alt="MATLAB-1" src="../imgs/MATLAB-1.png"><figcaption></figcaption></figure>
+	<figure id="figure1"> <img alt="" src="../imgs/matlab-dcv-1.png" width="600"><figcaption></figcaption></figure>
+
+2. Once your DCV session is established, click "Connect" to launch.  This will open a separate window where you may be required to enter your TACC credentials once again.
+
+	<figure id="figure3"> <img alt="" src="../imgs/matlab-dcv-3.png" width="600"><figcaption></figcaption></figure>
+
+3. Then invoke MATLAB as described above: 
+
+	<figure id="figure2"> <img alt="" src="../imgs/matlab-dcv-2.png" width="600"><figcaption></figcaption></figure>
 
 !!! important
-	Do NOT launch MATLAB on the login nodes. This may fail and, more importantly, it will prevent other users from doing their work, as your execution will take up too many cycles on the shared login node. Using MATLAB on the login nodes is considered system abuse, and will be treated as such.  See TACC [usage policies][TACCUSAGEPOLICY].
+	Do NOT launch MATLAB on the login nodes. This may fail and, more importantly, it will prevent other users from doing their work, as your execution will take up too many cycles on the shared login node. Using MATLAB on the login nodes is considered system abuse, and will be treated as such.  See TACC [Usage Policies][TACCUSAGEPOLICY].
 
 ## [Batch Mode](#batch) { #batch }
 
-You can also submit your MATLAB job to the batch nodes (compute nodes) on the TACC resources, e.g. Frontera, Stampede2, or Lonestar6. To do so, first make sure that the MATLAB module has been loaded, and then launch `matlab` with the `-nodesktop -nodisplay -nosplash` option as shown in the sample Stampede2 job script below.
+You can also start a MATLAB session with a batch script.  submit your MATLAB job to each resources' compute nodes on the TACC resources, e.g. Frontera, Stampede3, or Lonestar6. To do so, first make sure that the MATLAB module has been loaded, and then launch matlab with the `-nodesktop`, `-nodisplay`, `-nosplash` options as shown in the sample Frontera job script below.
 
-### [Example 1. Sample MATLAB job script to run on Stampede2](#example1)
+### [Sample Frontera Job Script](#example1)
 
-``` job-script
+```job-script
 #!/bin/bash
-#SBATCH -J matlabjob              # job name
-#SBATCH -e matlabjob.%j.err       # error file name 
-#SBATCH -o matlabjob.%j.out       # output file name 
-#SBATCH -N 1                      # request 1 node
-#SBATCH -n 16                     # request all 16 cores 
-#SBATCH -t 01:00:00               # designate max run time 
-#SBATCH -A myproject              # charge job to myproject 
-#SBATCH -p skx-normal             # designate queue 
+#SBATCH -J matlabjob                # job name
+#SBATCH -e matlabjob.%j.err         # error file name
+#SBATCH -o matlabjob.%j.out         # output file name
+#SBATCH -N 1                        # request 1 node
+#SBATCH -n 16                       # request all 16 cores
+#SBATCH -t 01:00:00                 # designate max run time
+#SBATCH -A myproject                # charge job to myproject
+#SBATCH -p small                    # designate queue
 
 module load matlab
-matlab -nodesktop -nodisplay -nosplash &lt; mymatlabprog.m
+matlab -nodesktop -nodisplay -nosplash < mymatlabprog.m
 ```
 
-Then submit the job to the scheduler in the standard way. See the Running Jobs section in the respective user guides
+Then submit the job to the Slurm scheduler in the standard way. 
 
-Resource | Submit a batch job
---- | ---
-Frontera | <code>login1$ <b>sbatch myjobscript</b></code> | <a href="../../hpc/frontera#running/">Running jobs on Frontera</a>
-Stampede2 | <code>login1$ <b>sbatch myjobscript</b></code> | <a href="../../hpc/stampede2#running">Running jobs on Stampede2</a>
-Lonestar6 | <code>login1$ <b>sbatch myjobscript</b></code> | <a href="../../hpc/lonestar6#running">Running jobs on Lonestar6</a>
+```cmd-line
+login1$ sbatch myjobscript
+```
 
 ## [Parallel MATLAB](#parallelmatlab) { #parallelmatlab }
 
-The parallel computing toolbox is available on the TACC resources as well.  
+The parallel computing toolbox is available on the TACC resources as well.  The following two examples demonstrate parallel operations **across one node** using the `parfor` and `matlabpool` functions.  Consult the [MATLAB Parallel Toolbox](https://www.mathworks.com/products/parallel-computing.html) documentation for detailed descriptions and advanced features.
 
-The following two examples demonstrate parallel operations using the `parfor` and `matlabpool` functions. Here are the basic examples.
-
-### [Example 2. MATLAB `parfor`](#example2)
+### [MATLAB `parfor`](#example2)
 ``` syntax
 Mat=zeros(100,1);
 parfor i = 1:100
@@ -83,7 +86,7 @@ parfor i = 1:100
 end
 ```
 
-### [Example 3. MATLAB `matlabpool`](#example3)
+### [MATLAB `matlabpool`](#example3)
 
 ``` syntax
 if (matlabpool('size') ) == 0 
@@ -94,41 +97,43 @@ else
 end
 ```
 
-Consult the [MATLAB Parallel Toolbox](https://www.mathworks.com/products/parallel-computing.html) documentation for detailed descriptions and advanced features.
+!!! note
+	We do not recommend using TACC's [`launcher`](./launcher) utility for multi-node jobs due to licensing issues.   
+
 
 ## [MATLAB Toolboxes](#toolbox) { #toolbox } 
 
-MATLAB, Simulink, and a lot of MATLAB toolboxes are available on the TACC resources.  Listed below is the complete set of Toolboxes on the TACC resources:
+MATLAB, Simulink, and many other MATLAB toolboxes are available on the TACC resources. To see a complete list of installations and version information, type the `ver` command at the MATLAB prompt:
 
-<table><tr>
-<td valign="top"> Aerospace Blockset<br>Aerospace Toolbox<br>Bioinformatics Toolbox<br>Communications System Toolbox<br>Computer Vision System Toolbox<br>Control System Toolbox<br>Curve Fitting Toolbox<br>DSP System Toolbox<br>Database Toolbox<br>Econometrics Toolbox<br>Embedded Coder<br>Financial Instruments Toolbox<br>Financial Toolbox<br>Fixed-Point Designer</td>
-
-<td valign="top"> Fuzzy Logic Toolbox <br>Global Optimization Toolbox <br>HDL Verifier <br>Image Acquisition Toolbox <br>Image Processing Toolbox <br>Instrument Control Toolbox <br>LTE System Toolbox <br>MATLAB Coder <br>MATLAB Compiler <br>MATLAB Compiler SDK <br>MATLAB Report Generator <br>Mapping Toolbox <br>Model Predictive Control Toolbox <br>Neural Network Toolbox</td>
-
-<td valign="top"> Optimization Toolbox <br>Parallel Computing Toolbox <br>Partial Differential Equation Toolbox <br>Phased Array System Toolbox <br>RF Blockset <br>RF Toolbox <br>Robust Control Toolbox <br>Signal Processing Toolbox <br>SimBiology <br>Simscape <br>Simscape Driveline <br>Simscape Electronics <br>Simscape Fluids <br>Simscape Multibody</td>
-
-<td valign="top"> Simscape Power Systems <br>Simulink <br>Simulink Check <br>Simulink Coder <br>Simulink Control Design <br>Simulink Coverage <br>Simulink Design Optimization                          <br>Simulink Requirements <br>Stateflow <br>Statistics and Machine Learning Toolbox <br>Symbolic Math Toolbox <br>System Identification Toolbox <br>WLAN System Toolbox <br>Wavelet Toolbox</td></tr></table>
-
-
-To see a complete list of MATLAB, Simulink, and MATLAB Toolboxes and their version information, type the `ver` command at the MATLAB prompt
-
-``` syntax
->> ver
-```
+	>> ver
+	-----------------------------------------------------------------------------------------------------
+	MATLAB Version: 9.14.0.2206163 (R2023a)
+	MATLAB License Number: 875352
+	Operating System: Linux 3.10.0-1160.90.1.el7.x86_64 #1 SMP Thu May 4 15:21:22 UTC 2023 x86_64
+	Java Version: Java 1.8.0_202-b08 with Oracle Corporation Java HotSpot(TM) 64-Bit Server VM mixed mode
+	-----------------------------------------------------------------------------------------------------
+	5G Toolbox                                            Version 2.6         (R2023a)
+	AUTOSAR Blockset                                      Version 3.1         (R2023a)
+	Aerospace Blockset                                    Version 6.0         (R2023a)
+	Aerospace Toolbox                                     Version 4.4         (R2023a)
+	Antenna Toolbox                                       Version 5.4         (R2023a)
+	Audio Toolbox                                         Version 3.4         (R2023a)
+	...
+	Wireless Testbench                                    Version 1.2         (R2023a)
+	>> exit
+	
 
 ## [Mathworks References](#refs) { #refs }
 
-Mathworks has an excellent collection of documentation, videos and webinars.
+Explore Mathworks' excellent collection of documentation, videos and webinars.
 
-* [Parallel Computing Overview](https://www.mathworks.com/products/parallel-computing.html)
-* [Parallel Computing Coding Examples](https://www.mathworks.com/products/parallel-computing/code-examples.html)
-* [Parallel Computing Documentation](https://www.mathworks.com/help/distcomp/index.html)
-* [Parallel Computing Tutorials](https://www.mathworks.com/videos/series/parallel-and-gpu-computing-tutorials-97719.html)
-* [Parallel Computing Videos](https://www.mathworks.com/products/parallel-computing/videos.html)
-* [Parallel Computing Webinars](https://www.mathworks.com/products/parallel-computing/webinars.html)
+* [Parallel Computing Toolbox](https://www.mathworks.com/products/parallel-computing.html)
+* [Parallel Computing Coding Examples](https://www.mathworks.com/help/parallel-computing/examples.html)
+* [MATLAB and Simulink Videos](https://www.mathworks.com/videos/series/parallel-and-gpu-computing-tutorials-97719.html)
 
 ## [Help](#help) { #help } 
 
-MATLAB is a commercial product of MathWorks. Please solicit help from Mathworks regarding MATLAB code. If you need any further assistance related to access issues or running issues, request help via the [TACC User Portal][TACCUSERPORTAL].
+MATLAB is a commercial product of MathWorks. Please solicit help from [Mathworks](https://www.mathworks.com/) regarding MATLAB code. If you need further assistance related to access or running issues, request help via your [TACC Dashboard][TACCUSERPORTAL].
 
 {% include 'aliases.md' %}
+

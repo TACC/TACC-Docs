@@ -19,7 +19,7 @@ login1$ mpiCC -g mycode.c
 
 Leave in any optimization flags to ensure that optimization is still enabled.  If there were no other optimization flags, add the `-O2` flag.  Otherwise, the `-g` flag by itself will drop the default optimization from `-O2` to `-O0`.
 
-Follow these steps to set up your profiling environment on Frontera, Stampede2, Lonestar5 and other TACC compute resources.
+Follow these steps to set up your profiling environment on Frontera, Stampede2, Lonestar6 and other TACC compute resources.
 
 1. **Enable X11 forwarding**. To use the MAP GUI, ensure that X11 forwarding is enabled when you ssh to the TACC system. Use the `-X` option on the ssh command line if X11 forwarding is not enabled in your ssh client by default.
 

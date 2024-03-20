@@ -1,5 +1,5 @@
 # Manage Permissions with Access Control Lists
-*Last update: March 29, 2018* 
+*Last update: February 19, 2024* 
 
 Access Control Lists (ACLs) are a very powerful tool for managing permissions within a file system. ACLs allow for arbitrary lists of specific users and groups to be given read, write, and/or execute permissions on any file or directory that you own. They provide a much more flexible mechanism for managing permissions than the traditional Unix "user, group, and other" permissions system.  ACLs provide the common UNIX read, write, and execute permissions for individual users or groups of users, and you may have as many ACL entries as necessary to achieve the precise set of permissions you need on a given file or directory. 
 
@@ -103,8 +103,8 @@ The capital `X` in the ACL specification means "add execute permission for direc
 Note that default ACLs do not alter the permissions for any currently existing files; they only apply to files created after the default ACL is set.
 
 
-## [References](#refs) { #refs }
+<!-- ## [References](#refs) { #refs } -->
 
-* [iRODS at TACC](../../software/irods)
+<!-- * [iRODS at TACC](../../software/irods) -->
 
 {% include 'aliases.md' %}

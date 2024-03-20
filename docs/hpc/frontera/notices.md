@@ -1,5 +1,5 @@
 # Frontera User Guide
-Last update: June 09, 2023
+Last update: January 8, 2024
 <!-- SDL <a href="https://frontera-xortal.tacc.utexas.edu/user-guide/docs/user-guide.pdf">Download PDF <i class="fa fa-file-pdf-o"></i></a></span>-->
 
 ## [Notices](#notices) { #notices }

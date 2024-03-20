@@ -27,7 +27,7 @@ Please fill out the [Usage Agreement](../taccdocs/UT_gaussian_user_agreement.pdf
 
 ## [Running Gaussian](#running) { #running }
 
-Gaussian 16 is currently installed on TACC's Stampede2, Frontera and Lonestar5 compute resources. Gaussian is accessed via TACC's Lmod module system. Use `module spider gaussian` and `module help gaussian` to list and explore installed versions. Then, either interactively or via a batch script, load the appropriate module:
+Gaussian 16 is currently installed on TACC's Stampede2, Frontera and Lonestar6 compute resources. Gaussian is accessed via TACC's Lmod module system. Use `module spider gaussian` and `module help gaussian` to list and explore installed versions. Then, either interactively or via a batch script, load the appropriate module:
 
 ``` cmd-line
 login1$ module load gaussian

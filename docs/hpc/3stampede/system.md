@@ -1,60 +1,96 @@
 ## [System Architecture](#system) { #system }
 
-Stampede3's projected node configuration will include: 
+### [Sapphire Rapids Compute Nodes](#system-spr) { #system-spr }
 
-* Intel Skylake nodes with 48 cores/node 
-* Intel Ice Lake nodes with 80 cores/node 
-* Intel Sapphire Rapids High Bandwidth Memory (HBM) nodes with 56 cores/node
+Stampede3 hosts 560 "Sapphire Rapids" HBM (SPR) nodes with 112 cores each.  Each SPR node provides a performance increase of 2 - 3x over the SKX nodes due to increased core count and greatly increased memory bandwidth.  The available memory bandwidth per core increases by a factor of 3.5x.  Applications that were starved for memory bandwidth should exhibit improved performance close to 3x. 
 
+#### [Table 1. SPR Specifications](#table1) { #table1 }
 
-<!--
-### [Compute Nodes](#system-compute) { #system-compute }
-#### [Table 1. Compute Node Specifications](#table1) { #table1 }
+Specification | Value 
+--- | ---
+CPU: | Intel Xeon CPU MAX 9480 ("Sapphire Rapids HBM")
+Total cores per node: | 112 cores on two sockets (2x 56 cores)
+Hardware threads per core: | 1
+Hardware threads per node: | 2x56 = 112
+Clock rate: | 1.9GHz
+Memory: | 128 GB HBM 2e
+Cache: | 48 KB L1 data cache per core; 1MB L2 per core; 112.5 MB L3 per socket. Each socket can cache up to 168.5 MB (sum of L2 and L3 capacity).
+Local storage: | 150 GB /tmp partition
+
+### [Ponte Vecchio Compute Nodes](#system-pvc) { #system-pvc }
+
+Stampede3 hosts 20 nodes with four Intel Data Center GPU Max 1550s "Ponte Vecchio" (PVC) each.  Each PVC GPU has 128 GB of HBM2e and 128 Xe cores providing a peak performance of 4x 52 FP64 TFLOPS per node for scientific workflows and 4x 832 BF16 TFLOPS for ML workflows. 
+
+#### [Table 2. PVC Specifications](#table2) { #table2 }
 
 Specification | Value
 --- | ---
-CPU:   | TBD
-Total cores per node:   | TBD
-Hardware threads per core:   | X per core 
-Hardware threads per node:   | X x Y = Z
-Clock rate:   | TBD
-RAM:   | TBD
-Cache:   | TBD
-Local storage:  | TBD
+GPU: | 4x Intel Data Center GPU Max 1550s ("Ponte Vecchio)
+GPU Memory: | 128 GB HBM 2e
+CPU: | Intel Xeon CPU MAX 8480 ("Sapphire Rapids")
+Total cores per node: | 112 cores on two sockets (2x 56 cores)
+Hardware threads per core: | 1
+Hardware threads per node: | 2x56 = 112
+Clock rate: | 2.0 GHz
+Memory: | 512 GB DDR5
+Cache: | 48 KB L1 data cache per core; 1MB L2 per core; 112.5 MB L3 per socket. Each socket can cache up to 168.5 MB (sum of L2 and L3 capacity).
+Local storage: | 150 GB /tmp partition
+
+### [Skylake Compute Nodes](#system-skx)  { #system-skx }
+
+Stampede3 hosts 1,060 "Skylake" (SKX) compute nodes.
+
+#### [Table 3. SKX Specifications](#table3) { #table3 }
+
+Specification | Value
+--- | ---
+Model: | Intel Xeon Platinum 8160 ("Skylake")
+Total cores per SKX node: | 48 cores on two sockets (24 cores/socket)
+Hardware threads per core: | 1
+Hardware threads per node: | 48
+Clock rate: | 2.1GHz nominal (1.4-3.7GHz depending on instruction set and number of active cores)
+RAM: | 192GB (2.67GHz) DDR4
+Cache: | 32 KB L1 data cache per core; 1 MB L2 per core; 33 MB L3 per socket. Each socket can cache up to 57 MB (sum of L2 and L3 capacity).
+Local storage: | 90 GB /tmp 
+
+### [ICX Compute Nodes](#system-icx) { #system-icx }
+
+Stampede3 hosts 224 "Ice Lake" (ICX) compute nodes.
+
+#### [Table 4. ICX Specifications](#table4) { #table4 }
+
+Specification | Value
+--- | ---
+Model: | Intel Xeon Platinum 8380 ("Ice Lake")
+Total cores per ICX node: | 80 cores on two sockets (40 cores/socket)
+Hardware threads per core: | 1
+Hardware threads per node: | 80
+Clock rate: | 2.3 GHz nominal (3.4GHz max frequency depending on instruction set and number of active cores)
+RAM: | 256GB (3.2 GHz) DDR4
+Cache: | 48KB L1 data cache per core; 1.25 MB L2 per core; 60 MB L3 per socket. Each socket can cache up to 110 MB (sum of L2 and L3 capacity)
+Local storage: | 200 GB /tmp partition
 
 ### [Login Nodes](#system-login) { #system-login }
 
-#### [Table 2. `vm-small` Compute Node Specifications](#table15) { #table15 }
+The Stampede3 login nodes are Intel Xeon Platinum 8468 "Sapphire Rapids" (SPR) nodes, each with 96 cores on two sockets (48 cores/socket) with 250 GB of DDR. 
 
-Specification | Value
---- | ---
-CPU:   | <b>1/4th</b> of an AMD EPYC 7763 64-Core Processor ("Milan")
-Total cores per VM:   | 16 cores
-Hardware threads per core:   | 1 per core 
-Hardware threads per VM:   | 16 x 1 = 16
-Clock rate:   | 2.45 GHz (Boost up to 3.5 GHz)
-RAM:   | 32 GB (3200 <b>shared</b> MT/s) DDR4
-Cache:   | <b>Shared caches with all other VMs.</b><br>32KB L1 data cache per core<br>512KB L2 per core<br>32 MB L3 per core complex<br>(1 core complex contains 8 cores)<br>64 MB L3 total (2 core complexes)
-Local storage:  | 112G <code>/tmp</code> partition
+### [Network](#network) { #system-network }
 
+The interconnect is a 100Gb/sec Omni-Path (OPA) network with a fat tree topology. There is one leaf switch for each 28-node half rack, each with 20 leaf-to-core uplinks (28/20 oversubscription) for the SKX nodes.  The ICX and SKX nodes are fully connected.  The SPR and PVC nodes are fully connected with a fat tree topology with no oversubscription. 
 
-### [GPU Nodes](#system-gpu) { #system-gpu }
+The SPR and PVC networks will be upgraded to use Cornelis' CN5000 Omni-Path technology in 2024.  The backbone network will also be upgraded. 
 
-#### [Table 2. GPU Node Specifications](#table2) { #table2 }
+### [File Systems](#system-filesystems) { #system-filesystems }
+ 
+Stampede3 will use a shared VAST filesystem for the `$HOME` and `$SCRATCH` directories.  As with Stampede2, the `$WORK` lustre filesystem will also be mounted. Each file system is available from all Stampede3 nodes; the Stockyard-hosted work file system is available on most other TACC HPC systems as well. <!-- See Navigating the Shared File Systems for detailed information as well as the Good Conduct file system guidelines. -->
 
-Specification | Value
---- | ---
-GPU:  | 3x NVIDIA A100 PCIE 40GB<br>(1 per socket )<br>gpu0:   socket 0<br>gpu1:   socket1<br>gpu2:   socket1
-GPU Memory:  | 40 GB HBM2
-CPU:   | 2x AMD EPYC 7763 64-Core Processor ("Milan")
-Total cores per node:   | 128 cores on two sockets (64 cores / socket )
-Hardware threads per core:   | 1 per core 
-Hardware threads per node:   | 128 x 1 = 128
-Clock rate:   | 2.45 GHz
-RAM:   | 256 GB
-Cache:   | 32KB L1 data cache per core<br>512KB L2 per core<br>32 MB L3 per core complex<br>(1 core complex contains 8 cores)<br>256 MB L3 total (8 core complexes )<br>Each socket can cache up to 288 MB<br>(sum of L2 and L3 capacity)
-Local storage:   | 144GB /tmp partition on a 288GB SSD.
+#### [Table 5. File Systems](#table5) { #table5 }
 
-### [Network](#system-network) { #system-network }
+File System | Quota | Key Features
+--- | --- | ---
+`$HOME` | 15 GB, 300,000 files | Not intended for parallel or high−intensity file operations. <br> Backed up regularly. | Not purged.  
+`$WORK` | 1 TB, 3,000,000 files across all TACC systems<br>Not intended for parallel or high−intensity file operations.<br>See [Stockyard system description](#xxx) for more information. | Not backed up. | Not purged.
+`$SCRATCH` | no quota<br>Overall capacity ~10 PB. | Not backed up.<br>Files are subject to purge if access time* is more than 10 days old. See TACC's [Scratch File System Purge Policy](#scratchpolicy) below.
 
--->
+{% include 'include/scratchpolicy.md' %}
+

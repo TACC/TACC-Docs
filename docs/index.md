@@ -79,6 +79,18 @@ Learn how to configure your default shell for optimal performance.
 Each of our HPC resources has a user guide, with extensive instructions and information.  Learn how to access and use our High Performance Computing (HPC) resources.
 /////
 
+///// html | a.card--plain.card--image-top[href="./hpc/stampede3/"]
+     markdown: block
+
+////// html | img[alt="the Stampede3 supercomputer"][src="/img/home/stampede3.jpg"]
+//////
+
+### Stampede3
+
+TACC debut's the latest supercomputer in the Stampede systems in early 2024. 
+
+/////
+
 ///// html | a.card--plain.card--image-top[href="./hpc/frontera/"]
      markdown: block
 
@@ -88,18 +100,6 @@ Each of our HPC resources has a user guide, with extensive instructions and info
 ### Frontera
 
 The largest cluster dedicated to open science in the United States.
-/////
-
-///// html | a.card--plain.card--image-top[href="./hpc/lonestar6/"]
-     markdown: block
-
-////// html | img[alt="the Lonestar6 supercomputer"][src="/img/home/lonestar6.png"]
-//////
-
-### Lonestar6
-
-A balanced set of resources to support simulation, data analysis, visualization and machine learning.
-
 /////
 ////
 ///

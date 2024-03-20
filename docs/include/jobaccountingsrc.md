@@ -9,8 +9,10 @@ The Slurm scheduler tracks and charges for usage to a granularity of a few secon
 !!! note
 	TACC does not implement node-sharing on any compute resource. Each MACHINENAME node can be assigned to only one user at a time; hence a complete node is dedicated to a user's job and accrues wall-clock time for all the node's cores whether or not all cores are used.
 
+<!--- this doesn't belong here 
 !!! tip 
 	Your queue wait times will be less if you request only the time you need: the scheduler will have a much easier time finding a slot for the 2 hours you really need than say, for the 12 hours requested in your job script. 
+-->
 
 Principal Investigators can monitor allocation usage via the [TACC User Portal][TACCUSERPORTAL] under ["Allocations->Projects and Allocations"][TACCALLOCATIONS]. Be aware that the figures shown on the portal may lag behind the most recent usage. Projects and allocation balances are also displayed upon command-line login.
 

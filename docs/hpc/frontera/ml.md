@@ -60,13 +60,13 @@ Install Pytorch and TensorBoard.
 	login2.frontera$ idev -N 2 -n 2 -p rtx-dev -t 02:00:00
 	```
 
-1. Go to the benchmark directory:
+1. Move to the benchmark directory:
 
 	```cmd-line
 	c123-456$ cd $SCRATCH/kfac-pytorch
 	```
 
-1. Create a script called "`run.sh`". This script needs two parameters, the hostname of the master node and the number of nodes.
+1. Create a script called "`run.sh`". This script needs two parameters, the hostname of the master node and the number of nodes. Add execution permission for the file "run.sh".
 
 	```job-script
 	#!/bin/bash

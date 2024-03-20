@@ -24,7 +24,7 @@ $ cd $TACC_QE_DIR/PW/Doc		# explore PWscf documentation
 
 Quantum Espresso executables have many optional command line arguments described in the [user manual](http://www.quantum-espresso.org/resources/users-manual). QE users may run with their default settings usually with no problem. QE contains many packages and executables and `pw.x` is the most popular. **We strongly recommend you refer to the [QE manual](http://www.quantum-espresso.org/resources/users-manual) to learn how to construct input files, and learn the correct and optimal way to run your codes**.
 
-Use the following job scripts for Quantum Espresso runs on Stampede2 and Frontera. To configure a script for Lonestar5, vary the `-N` and `-n` directives.
+Use the following job scripts for Quantum Espresso runs on Stampede2 and Frontera. To configure a script for Lonestar6, vary the `-N` and `-n` directives.
 
 ### [Sample Job Script: Frontera](#jobscript-frontera) { #jobscript-frontera }
 

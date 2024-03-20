@@ -1,11 +1,10 @@
 # Lonestar6 User Guide
-Last update: June 15, 2023
+*Last update: Febuary 15, 2024*
 
 
 ## [Notices](#notices) { #notices }
 
-* TACC has transitioned to a new allocations management system for Lonestar6, and there are new Project Names. See [Sharing Project Files on TACC Systems](../../tutorials/sharingprojectfiles) to learn about managing file permissions across projects. 
-* **All users: read the [Good Conduct](../../basics/conduct) section.** Lonestar6 is a shared resource and your actions can impact other users. (10/18/2021) 
+* **Lonestar6 has a new [queue](#running-queues), `gpu-a100-small`, for jobs needing only a single GPU.** (11/13/2023)  
 * **[Subscribe][TACCSUBSCRIBE] to Lonestar6 User News**. Stay up-to-date on Lonestar6's status, scheduled maintenances and other notifications.
 
 
@@ -13,7 +12,7 @@ Last update: June 15, 2023
 
 Lonestar6 provides a balanced set of resources to support simulation, data analysis, visualization, and machine learning.  It is the next system in TACC's Lonestar series of high performance computing systems that are deployed specifically to support Texas researchers. Lonestar6 is funded through collaboration with TACC, the University of Texas System, Texas A&amp;M University, Texas Tech University, and the University of North Texas, as well as a number of research centers and faculty at UT-Austin, including the Oden Institute for Computational Engineering &amp; Sciences and the Center for Space Research.
 
-The system employs Dell Servers with  AMD's highly performant Epyc Milan processor, Mellanox's HDR Infiniband technology, and 8 PB of BeeGFS based storage on Dell storage hardware.  Additionally, Lonestar6 supports GPU nodes utilizing NVIDIA's Ampere A100 GPUs to support machine learning workflows and other GPU-enabled applications.  Lonestar6 will continue to support the TACC HPC environment, providing numerical libraries, parallel applications, programming tools, and performance monitoring capabilities to the user community.
+The system employs Dell Servers with AMD's highly performant Epyc Milan processor, Mellanox's HDR Infiniband technology, and 8 PB of BeeGFS based storage on Dell storage hardware.  Additionally, Lonestar6 supports GPU nodes utilizing NVIDIA's A100 and H100 GPUs to support machine learning workflows and other GPU-enabled applications.  Lonestar6 will continue to support the TACC HPC environment, providing numerical libraries, parallel applications, programming tools, and performance monitoring capabilities to the user community.
 
 ### [Allocations](#intro-allocations) { #intro-allocations }
 
@@ -32,7 +31,7 @@ Researchers at our partner institutions may submit allocation requests through t
 
 All Lonestar6 nodes run Rocky 8.4 and are managed with batch services through native Slurm 20.11.8. Global storage areas are supported by an NFS file system (`$HOME`), a BeeGFS parallel file system (`$SCRATCH`), and a Lustre parallel file system (`$WORK`). Inter-node communication is supported by a Mellanox HDF Infiniband network. Also, the TACC Ranch tape archival system is available from Lonestar6.
 
-The system is composed of 560 compute nodes and 32 GPU nodes.  The compute nodes are housed in 4 dielectric liquid coolant cabinets and ten air-cooled racks.  The air cooled racks also contain the 32 GPU nodes.  Each node has two AMD EPYC 7763 64-core processors (Milan) and 256 GB of DDR4 memory. Twenty-four of the compute nodes are reserved for development and are accessible interactively for up to two hours. Each GPU node also contains two AMD EPYC 7763 64-core processes and three NVIDIA A100 GPUs each with 40 GB of high bandwidth memory (HBM2).
+The system is composed of 560 compute nodes and 88 GPU nodes: 84 A100 GPU nodes and 4 H100 nodes with 2 NVIDIA H100 GPUs each.  The compute nodes are housed in 4 dielectric liquid coolant cabinets and ten air-cooled racks.  The air cooled racks also contain the 88 GPU nodes.  Each node has two AMD EPYC 7763 64-core processors (Milan) and 256 GB of DDR4 memory. Twenty-four of the compute nodes are reserved for development and are accessible interactively for up to two hours. Each of the system's 84 A100 GPU nodes also contains two AMD EPYC 7763 64-core processes and three NVIDIA A100 GPUs each with 40 GB of high bandwidth memory (HBM2).  
 
 
 ### [Compute Nodes](#system-compute) { #system-compute }
@@ -50,7 +49,7 @@ Hardware threads per node:   | 128 x 1 = 128
 Clock rate:   | 2.45 GHz (Boost up to 3.5 GHz)
 RAM:   | 256 GB (3200 MT/s) DDR4
 Cache:   | 32KB L1 data cache per core<br>512KB L2 per core<br>32 MB L3 per core complex<br>(1 core complex contains 8 cores)<br>256 MB L3 total (8 core complexes )<br>Each socket can cache up to 288 MB<br>(sum of L2 and L3 capacity)
-Local storage:  | 144GB /tmp partition on a 288GB SSD.
+Local storage:  | 288GB /tmp partition on a 288GB SSD.
 
 ### [Login Nodes](#system-login) { #system-login }
 
@@ -71,19 +70,20 @@ Hardware threads per VM:   | 16 x 1 = 16
 Clock rate:   | 2.45 GHz (Boost up to 3.5 GHz)
 RAM:   | 32 GB (3200 <b>shared</b> MT/s) DDR4
 Cache:   | <b>Shared caches with all other VMs.</b><br>32KB L1 data cache per core<br>512KB L2 per core<br>32 MB L3 per core complex<br>(1 core complex contains 8 cores)<br>64 MB L3 total (2 core complexes)
-Local storage:  | 112G <code>/tmp</code> partition
+Local storage:  | 288G <code>/tmp</code> partition
 
 
 ### [GPU Nodes](#system-gpu) { #system-gpu }
 
-Lonestar6 hosts **32** GPU nodes that are configured identically to the compute nodes with the addition of 3 NVIDIA A100 GPUs.  Each A100 gpu has a peak performance of 9.7 TFlops in double precision and 312 TFlops in FP16 precision using the Tensor Cores.
+Lonestar6 hosts 84 A100 GPU nodes that are configured identically to the compute nodes with the addition of 3 NVIDIA A100 GPUs. Each A100 GPU has a peak performance of 9.7 TFlops in double precision and 312 TFlops in FP16 precision using the Tensor Cores. Additionally, there are 4 H100 GPU nodes that support 2 NVIDIA H100 GPUs.  Each H100 GPU has a peak performance of 26 TFlops in double precision and 1513 TFlops in FP16 precision using the Tensor cores.
 
-#### [Table 2. GPU Node Specifications](#table2) { #table2 }
+
+#### [Table 2. A100 GPU Node Specifications](#table2) { #table2 }
 
 
 Specification | Value
 --- | ---
-GPU:  | 3x NVIDIA A100 PCIE 40GB<br>(1 per socket )<br>gpu0:   socket 0<br>gpu1:   socket1<br>gpu2:   socket1
+GPU:  | 3x NVIDIA A100 PCIE 40GB<br>gpu0:   socket 0<br>gpu1:   socket1<br>gpu2:   socket1
 GPU Memory:  | 40 GB HBM2
 CPU:   | 2x AMD EPYC 7763 64-Core Processor ("Milan")
 Total cores per node:   | 128 cores on two sockets (64 cores / socket )
@@ -92,7 +92,22 @@ Hardware threads per node:   | 128 x 1 = 128
 Clock rate:   | 2.45 GHz
 RAM:   | 256 GB
 Cache:   | 32KB L1 data cache per core<br>512KB L2 per core<br>32 MB L3 per core complex<br>(1 core complex contains 8 cores)<br>256 MB L3 total (8 core complexes )<br>Each socket can cache up to 288 MB<br>(sum of L2 and L3 capacity)
-Local storage:   | 144GB /tmp partition on a 288GB SSD.
+Local storage:   | 288GB /tmp partition 
+
+#### [Table 2.5 H100 GPU Node Specifications](#table25) { #table25 }
+
+Specification | Value
+--- | ---
+GPU: 	| 2x NVIDIA H100 PCIE 80GB<br> gpu0:    socket 0<br> gpu1:    socket 1
+GPU Memory: 	| 80 GB HBM2e
+CPU:  	| 2x AMD EPYC 9454 48-Core Processor ("Genoa")
+Total cores per node:  	 | 96 cores on two sockets (48 cores / socket )
+Hardware threads per core:  	| 1 per core
+Hardware threads per node:  	| 96 x 1 = 96
+Clock rate:  	| 2.75 GHz
+RAM:  	| 384 GB
+Cache:  | 64KB L1 data cache per core<br> 1MB  L2 per core<br> 32 MB L3 per core complex<br> (1 core complex contains 8 cores)<br> 256 MB L3 total (8 core complexes )<br> Each socket can cache up to 304 MB<br> (sum of L2 and L3 capacity)
+Local storage:  	| 288GB /tmp partition 
 
 ### [Network](#system-network) { #system-network }
 
@@ -126,7 +141,7 @@ The `$STOCKYARD` environment variable points to the highest-level directory that
 
 <figure id="figure1">
 <img src="../imgs/stockyard-2022.jpg">
-<figcaption>Figure 1. Account-level directories on the <code>/work</code> file system (Global Shared File System hosted on Stockyard). Example for fictitious user `bjones`. All directories usable from all systems. Sub-directories (e.g. `stampede2`, `frontera`) exist only when you have allocations on the associated system.</figcaption></figure>
+<figcaption>Figure 1. Account-level directories on the <code>/work</code> file system (Global Shared File System hosted on Stockyard). Example for fictitious user <code>bjones</code>. All directories usable from all systems. Sub-directories (e.g. <code>stampede2</code>, <code>frontera</code>) exist only when you have allocations on the associated system.</figcaption></figure>
 
 Your account-specific `$WORK` environment variable varies from system to system and is a subdirectory of `$STOCKYARD` ([Figure 1](#figure1)). The subdirectory name corresponds to the associated TACC resource. The `$WORK` environment variable on Lonestar6 points to the `$STOCKYARD/ls6` subdirectory, a convenient location for files you use and jobs you run on Lonestar6. Remember, however, that all subdirectories contained in your `$STOCKYARD` directory are available to you from any system that mounts the file system. If you have accounts on both Lonestar6 and Stampede2, for example, the `$STOCKYARD/ls6` directory is available from your Stampede2 account, and `$STOCKYARD/stampede2` directory is available from your Lonestar6 account. Your quota and reported usage on the Global Shared File System reflects **all files** that you own on Stockyard, regardless of their actual location on the file system.
 
@@ -141,6 +156,36 @@ Alias | Command
 <code>cdy</code> or <code>cdg</code> | <code>cd $STOCKYARD</code>
 <code>cdw</code> | <code>cd $WORK</code>
 
+### [Striping Large Files](#files-striping) { #files-striping }
+
+Lonestar6's BeeGFS and Lustre file systems look and act like a single logical hard disk, but are actually sophisticated integrated systems involving many physical drives. Lustre and BeeGFS can **stripe** (distribute 'chunk's) large files over several physical disks, making it possible to deliver the high performance needed to service input/output (I/O) requests from hundreds of users across thousands of nodes.  Object Storage Targets (OSTs) manage the file system's spinning disks: a file with 16 stripes, for example, is distributed across 16 OSTs. One designated Meta-Data Server (MDS) tracks the OSTs  assigned to a file, as well as the file's descriptive data.
+
+The Lonestar6 `$SCRATCH` filesystem is a BeeGFS filesystem instead of a Lustre filesystem. However, the BeeGFS filesystem is similar to Lustre in that it distributes files across I/O servers and allows the user control over the stripe count and stripe size for directories. 
+
+The `$WORK` file system has 24 I/O targets available, while the `$SCRATCH` file system has 96.  A good rule of thumb is to allow at least one stripe for each 100GB in the file not to exceed 75% of the available stripes.   So, the max stripe count for `$SCRATCH` would be 72, while that for `$WORK` would be 18.
+
+!!! important
+	Before transferring to, or creating large files on Lonestar6, be sure to set an appropriate default chunk/stripe count on the receiving directory.  
+
+As an example, the following command sets the default stripe count on the current directory for a file 200 GB in size, then ensures that the operation was successful:
+
+* If the destination directory is on the `$SCRATCH` file system:
+
+		$ beegfs-ctl --setpattern --numtargets=20  $PWD
+		$ beegfs-ctl --getentryinfo $PWD
+
+* If the destination directory is on the `$WORK` file system:
+
+		$ lfs setstripe -c 18 $PWD    #Use stripe count of 18 instead of 20 out of 24 total targets
+		$ lfs getstripe $PWD    
+
+!!! important
+	It is not possible to change the stripe/chunk count on a file that already exists.  The `mv` command will have no effect on a file's striping unless the source and destination directories are on different file systems, e.g. `mv`ing a file from `$SCRATCH` to `$WORK`, or vice-versa.  Instead, use the `cp` command to copy the file to a directory with the intended stripe parameters.
+
+Run the following for more information on these commands: 
+
+	$ beegfs-ctl --setpattern --help 
+	$ lfs help setstripe  
 
 ### [Transferring your Files](#files-transferring) { #files-transferring }
 
@@ -710,15 +755,18 @@ The jobs in this queue consume 1/7 the resources of a full node.  Jobs are charg
 Queue Name | Min/Max Nodes per Job<br /> (assoc'd cores)&#42; | Max Job Duration | Max Nodes<br> per User | Max Jobs<br> per User | Charge Rate<br /><u>(per node-hour)</u>
 --- | --- | --- | --- | --- | ---
 <code>development</code> | 4 nodes<br>(512 cores) | 2 hours | 6 | 1 | 1 SU
-<code>gpu-a100</code> | 16 nodes<br>(2048 cores) | 48 hours | 16 | 8 | 4 SUs
-<code>gpu-a100-dev</code> | 4 nodes<br>(512 cores) | 48 hours | 2 | 1 | 4 SUs
+<code>gpu-a100</code> | 4 nodes<br>(512 cores) | 48 hours | 6 | 2 | 4 SUs
+<code>gpu-a100-dev</code> | 4 nodes<br>(512 cores) | 2 hours | 2 | 1 | 4 SUs
+<code>gpu-a100-small</code><sup>&#42;&#42;</sup> | 1/1 node<br>(32 cores) | 48 hours | 4 | 4 | 1.5 SUs
 <code>large</code><sup>&#42;</sup> | 65/256 nodes<br>(65536 cores) | 48 hours | 256 | 1 | 1 SU
 <code>normal</code> | 1/64 nodes<br>(8192 cores) | 48 hours | 96 | 15 | 1 SU
 <code>vm-small</code><sup>&#42;&#42;</sup> | 1/1 node<br>(16 cores) | 48 hours | 4 | 4 | 0.143 SU
+<code>gpu-h100</code> | 1 node | 48 hours | 1 | 1 | 6 SUs | (96 cores)
+
 
 &#42; Access to the `large` queue is restricted. To request more nodes than are available in the normal queue, submit a consulting (help desk) ticket through the TACC User Portal. Include in your request reasonable evidence of your readiness to run under the conditions you're requesting. In most cases this should include your own strong or weak scaling results from Lonestar6.
 
-&#42;&#42; The `vm-small` queue contains virtual nodes with fewer resources (cores) than the nodes in the other queues.
+&#42;&#42; The `gpu-a100-small` and `vm-small` queues contain virtual nodes with fewer resources (cores) than the nodes in the other queues.
 
 
 
@@ -795,7 +843,7 @@ date
 /// tab | MPI Jobs
 MPI Jobs
 
-This job script requests 4 nodes (`#SBATCH -N 4`) and 32 tasks (`#SBATCH -n 32`), for 8 MPI rasks per node.  
+This job script requests 4 nodes (`#SBATCH -N 4`) and 32 tasks (`#SBATCH -n 32`), for 8 MPI ranks per node.  
 
 ``` job-script
 #!/bin/bash
@@ -1103,6 +1151,166 @@ To view some **accounting data** associated with your own jobs, use `sacct`:
 login1$ sacct --starttime 2019-06-01  # show jobs that started on or after this date
 ```
 
+## [Machine Learning on LS6](#ml) { #ml }
+
+Lonestar6 is well equipped to provide researchers with the latest in Machine Learning frameworks, PyTorch and Tensorflow. We recommend using the Python virtual environment to manage machine learning packages.
+
+### [Running PyTorch ](#ml-pytorch) { #ml-pytorch }
+
+Install Pytorch and TensorBoard.
+
+1. Request a single compute node in Lonestar6's `gpu-a100-dev` queue using the [idev](../../software/idev) utility:
+
+	```cmd-line
+	login$ idev -p gpu-a100-dev -N 1 -n 1 -t 1:00:00
+	```
+
+1. Create a Python virtual environment:
+
+	```cmd-line
+	c123-456.ls6$ module load python3/3.9.7
+	c123-456.ls6$ python3 -m venv /path/to/virtual-env  # (e.g., $SCRATCH/python-envs/test)
+	```
+
+1. Activate the Python virtual environment:
+
+	```cmd-line
+	c123-456.ls6$ source /path/to/virtual-env/bin/activate
+	```
+
+1. Now install PyTorch and TensorBoard:
+
+	```cmd-line
+	c123-456.ls6$ pip3 install torch==1.12.1 torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu113
+	c123-456.ls6$ pip3 install tensorboard
+	```
+
+#### [Single-Node](#ml-pytorch-singlnode) { #ml-pytorch-singlnode }
+
+1. Download the benchmark:
+
+	```cmd-line
+	c123-456.ls6$ cd $SCRATCH
+	c123-456.ls6$ git clone https://github.com/gpauloski/kfac-pytorch.git
+	c123-456.ls6$ cd kfac-pytorch
+	c123-456.ls6$ git checkout tags/v0.3.2
+	c123-456.ls6$ pip3 install -e .
+	c123-456.ls6$ pip3 install torchinfo tqdm Pillow
+	c123-456.ls6$ export LD_LIBRARY_PATH=/usr/lib64:$LD_LIBRARY_PATH
+	```
+
+1. Run the benchmark on one node (3 GPUs):
+
+	```cmd-line
+	c123-456.ls6$ python3 -m torch.distributed.launch --nproc_per_node=3 examples/torch_cifar10_resnet.py --kfac-update-freq 0
+	```
+
+#### [Multi-Node](#ml-pytorch-multinode) { #ml-pytorch-multinode }
+
+1. Request two nodes in the `gpu-a100-dev` queue using the [`idev`](../../software/idev) utility:
+
+	```cmd-line
+	login2.ls6$ idev -N 2 -n 2 -p gpu-a100-dev -t 01:00:00
+	```
+
+1. Activate the Python virtual environment:
+
+	```cmd-line
+	c123-456.ls6$ source /path/to/virtual-env/bin/activate
+	```
+
+1. Move to the benchmark directory:
+
+	```cmd-line
+	c123-456.ls6$ cd $SCRATCH/kfac-pytorch
+	```
+
+1. Create a script called "`run.sh`". This script needs two parameters, the hostname of the master node and the number of nodes. Add execution permission for the file "run.sh".
+
+	```job-script
+	#!/bin/bash
+	HOST=$1
+	NODES=$2
+	LOCAL_RANK=${PMI_RANK}
+	python3 -m torch.distributed.launch --nproc_per_node=3  --nnodes=$NODES --node_rank=${LOCAL_RANK} --master_addr=$HOST \
+    	examples/torch_cifar10_resnet.py --kfac-update-freq 0
+	```
+
+1. Run multi-gpu training:
+
+	```cmd-line
+	c123-456.ls6$ ibrun -np 2 ./run.sh c123-456 2
+	```
+
+### [Running Tensorflow ](#ml-tensorflow) { #ml-tensorflow }
+
+Follow these instructions to install and run TensorFlow benchmarks on Lonestar6's A100. Lonestar6's A100 runs TensorFlow 2.8.2 with Python 3.7.13. Lonestar6's supports CUDA/11.3, CUDA/11.4, and CUDA/12.0. By default, we use CUDA/11.3. Select the appropriate CUDA version for your TensorFlow version.
+
+1. Request a single compute node in Lonstar6's `gpu-a100-dev` queue using the [idev](../../software/idev) utility:
+
+	```cmd-line
+	login2.ls6$ idev -N 1 -n 1 -p gpu-a100-dev -t 01:00:00
+	```
+
+1. Create a Python virtual environment:
+
+	```cmd-line
+	c123-456.ls6$ module load python3/3.7.13 cuda/11.3 cudnn nccl
+	c123-456.ls6$ python3 -m venv /path/to/virtual-env # e.g., $SCRATCH/python-envs/test
+	```
+
+1. Activate the Python virtual environment:
+
+	```cmd-line
+	c123-456.ls6$ source /path/to/virtual-env/bin/activate
+	```
+
+1. Install TensorFlow and Horovod:
+
+	```cmd-line
+	c123-456.ls6$ pip3 install tensorflow-gpu==2.8.2
+	```
+
+	We suggest installing Horovod version 0.25.0. If you wish to install other versions of Horovod, please submit a support ticket with the subject "Request for Horovod" and TACC staff will provide special instructions.
+
+	```cmd-line
+	c123-456.ls6$ HOROVOD_CUDA_HOME=$TACC_CUDA_DIR HOROVOD_NCCL_HOME=$TACC_NCCL_DIR CC=gcc \
+   	HOROVOD_GPU_ALLREDUCE=NCCL HOROVOD_GPU_BROADCAST=NCCL HOROVOD_WITH_TENSORFLOW=1 pip3 install horovod==0.25.0
+	```
+
+#### [Single-Node](#ml-tensorflow-singlenode) { #ml-tensorflow-singlenode }
+
+1. Download the tensorflow benchmark to your `$SCRATCH` directory, then check out the branch that matches your tensorflow version.
+
+	```cmd-line
+	c123-456.ls6$ cds; git clone https://github.com/tensorflow/benchmarks.git
+	c123-456.ls6$ cd benchmarks 
+	c123-456.ls6$ git checkout 51d647f     # master head as of 08/18/2022
+	```
+
+1. Load modules and activate the Python virtual environment:
+
+	```cmd-line
+	c123-456.ls6$ module load python3/3.7.13 cuda/11.3 cudnn nccl
+	c123-456.ls6$ source /path/to/virtual-env/bin/activate
+	```
+
+1. Benchmark the performance with synthetic dataset on 1 GPU:
+
+	```cmd-line
+	c123-456.ls6$ cd scripts/tf_cnn_benchmarks
+	c123-456.ls6$ python3 tf_cnn_benchmarks.py --num_gpus=1 --model resnet50 --batch_size 32 --num_batches 200
+	```
+
+1. Benchmark the performance with synthetic dataset on 3 GPUs:
+
+	```cmd-line
+	c123-456.ls6$ cd scripts/tf_cnn_benchmarks
+	c123-456.ls6$ ibrun -np 3 python3 tf_cnn_benchmarks.py --variable_update=horovod --num_gpus=1 \
+   		--model resnet50 --batch_size 32 --num_batches 200 --allow_growth=True
+	```
+
+
 ## [Visualization and VNC Sessions](#vis) { #vis }
 
 Lonestar6 uses AMD's Milan processors for all visualization and rendering operations. We use the Intel OpenSWR library to render raster graphics with OpenGL, and the Intel OSPRay framework for ray traced images inside visualization software. OpenSWR can be loaded by executing `module load swr`.
@@ -1221,14 +1429,15 @@ c301-001$ swr options application application-args
 
 ### [Parallel VisIt on Lonestar6](#vis-visit) { #vis-visit }
 
-[VisIt](https://wci.llnl.gov/simulation/computer-codes/visit) was compiled under the Intel compiler and the mvapich2 and MPI stacks.
+[VisIt](https://wci.llnl.gov/simulation/computer-codes/visit) was compiled under the GNU compiler and the MVAPICH2 and MPI stacks. 
 
 After connecting to a VNC server on Lonestar6, as described above, load the VisIt module at the beginning of your interactive session before launching the VisIt application:
 
 ```cmd-line
-c301-001$ module load swr visit
-c301-001$ swr visit
+c301-001$ module load visit
+c301-001$ visit
 ```
+Notice that VisIt does not require the explicit loading of the `swr` module. The software rendering libraries and environment provided by the `swr` module are built in to the VisIt module on LS6. 
 
 VisIt first loads a dataset and presents a dialog allowing for selecting either a serial or parallel engine. Select the parallel engine. Note that this dialog will also present options for the number of processes to start and the number of nodes to use; these options are actually ignored in favor of the options specified when the VNC server job was started.
 
@@ -1271,12 +1480,15 @@ TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for 
 
 [HELPDESK]: https://tacc.utexas.edu/about/help/ "Help Desk"
 [CREATETICKET]: https://tacc.utexas.edu/about/help/ "Create Support Ticket"
+[SUBMITTICKET]: https://tacc.utexas.edu/about/help/ "Submit Support Ticket"
 [TACCUSERPORTAL]: https://tacc.utexas.edu/portal/login "TACC Portal login"
 [TACCPORTALLOGIN]: https://tacc.utexas.edu/portal/login "TACC Portal login"
 [TACCUSAGEPOLICY]: https://tacc.utexas.edu/use-tacc/user-policies/ "TACC Usage Policy"
 [TACCALLOCATIONS]: https://tacc.utexas.edu/use-tacc/allocations/ "TACC Allocations"
 [TACCSUBSCRIBE]: https://accounts.tacc.utexas.edu/subscriptions "Subscribe to News"
 [TACCDASHBOARD]: https://tacc.utexas.edu/portal/dashboard "TACC Dashboard"
+[TACCPROJECTS]: https://tacc.utexas.edu/portal/projects "Projects & Allocations"
+
 
 [TACCANALYSISPORTAL]: http://tap.tacc.utexas.edu "TACC Analysis Portal"
 
@@ -1289,5 +1501,6 @@ TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for 
 [TACCBASHQUICKSTART]: https://docs.tacc.utexas.edu/tutorials/bashstartup "Bash Quick Start Guide"
 [TACCACCESSCONTROLLISTS]: https://docs.tacc.utexas.edu/tutorials/acls "Access Control Lists"
 [TACCMFA]: https://docs.tacc.utexas.edu/basics/mfa "Multi-Factor Authentication at TACC""
+[TACCIDEV]: https://docs.tacc.utexas.edu/software/idev "idev at TACC""
 
 
