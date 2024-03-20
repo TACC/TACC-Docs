@@ -9,9 +9,6 @@ on:
 jobs:
   docker:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        platform: ["linux/arm64"]
     steps:
       -
         name: Set up Docker Buildx
