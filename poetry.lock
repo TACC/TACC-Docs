@@ -213,6 +213,17 @@ files = [
 mkdocs = ">=1.0.4"
 
 [[package]]
+name = "mkdocs-include-markdown-plugin"
+version = "4.0.4"
+description = "Mkdocs Markdown includer plugin."
+optional = false
+python-versions = "<3.12,>=3.7"
+files = [
+    {file = "mkdocs_include_markdown_plugin-4.0.4-py3-none-any.whl", hash = "sha256:792caa91c2c46fa174ad44caa786656ac3f475f2cef5ad33ad28a106f7bc4086"},
+    {file = "mkdocs_include_markdown_plugin-4.0.4.tar.gz", hash = "sha256:a5d569a653a610cbbe5b9c0ebb257ce7f94b453e93c3ae2c503b682e77465773"},
+]
+
+[[package]]
 name = "mkdocs-macros-plugin"
 version = "1.0.5"
 description = "Unleash the power of MkDocs with macros and variables"
@@ -474,5 +485,5 @@ files = [
 
 [metadata]
 lock-version = "2.0"
-python-versions = "^3.10"
-content-hash = "e6de63c0e22a23c6a4cacd4febb59bdb4314e249113f39b6790cac16e6ef0a15"
+python-versions = ">=3.10,<3.12"
+content-hash = "070c2b481837bd7b14c48076c5bb3a4edb09cb4e62883680caaf24c1eacff961"
