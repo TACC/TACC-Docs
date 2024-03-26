@@ -2,6 +2,7 @@
 name = "tacc-docs"
 version = "0.1.0"
 description = ""
+package-mode = false
 authors = ["rstijerina <r.sal.tijerina@gmail.com>"]
 
 [tool.poetry.dependencies]
