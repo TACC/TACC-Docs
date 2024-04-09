@@ -1,11 +1,10 @@
 # Stampede3 User Guide 
 
-*Last update: March 14, 2024*
+*Last update: March 28, 2024*
 
 ## [Notices](#notices) { #notices }
 
 *This user guide is in progress and will be updated as the system is configured.*
-
 
 * Stampede3 Updated Timeline (03/14/2024)
 

@@ -1,11 +1,10 @@
 # Stampede3 User Guide 
 
-*Last update: March 14, 2024*
+*Last update: March 28, 2024*
 
 ## [Notices](#notices) { #notices }
 
 *This user guide is in progress and will be updated as the system is configured.*
-
 
 * Stampede3 Updated Timeline (03/14/2024)
 
@@ -98,9 +97,9 @@ Stampede3 hosts 20 nodes with four Intel Data Center GPU Max 1550s "Ponte Vecchi
 
 Specification | Value
 --- | ---
-GPU: | 4x Intel Data Center GPU Max 1550s ("Ponte Vecchio)
+GPU: | 4x Intel Data Center GPU Max 1550s ("Ponte Vecchio")
 GPU Memory: | 128 GB HBM 2e
-CPU: | Intel Xeon CPU MAX 8480 ("Sapphire Rapids")
+CPU: | Intel Xeon Platinum 8480+ ("Sapphire Rapids")
 Total cores per node: | 112 cores on two sockets (2x 56 cores)
 Hardware threads per core: | 1
 Hardware threads per node: | 2x56 = 112
@@ -155,7 +154,8 @@ The SPR and PVC networks will be upgraded to use Cornelis' CN5000 Omni-Path tech
 
 ### [File Systems](#system-filesystems) { #system-filesystems }
  
-Stampede3 will use a shared VAST filesystem for the `$HOME` and `$SCRATCH` directories.  As with Stampede2, the `$WORK` lustre filesystem will also be mounted. Each file system is available from all Stampede3 nodes; the Stockyard-hosted work file system is available on most other TACC HPC systems as well. <!-- See Navigating the Shared File Systems for detailed information as well as the Good Conduct file system guidelines. -->
+Stampede3 will use a shared VAST file system for the `$HOME` and `$SCRATCH` directories.  **These two file systems are NOT lustre file systems and do not support setting a stripe count or stripe size**.  There are no options for the user to set.  As with Stampede2, the `$WORK` file system will also be mounted.  Unlike `$HOME` and `$SCRATCH`, the `$WORK` file system is a Lustre file system and supports the lustre `lfs` commands.  All three file systems, `$HOME`, `$SCRATCH`, and `$WORK` are available from all Stampede3 nodes.  The `/tmp` partition is also available to users but is local to each node. The `$WORK` file system is available on most other TACC HPC systems as well. 
+
 
 #### [Table 5. File Systems](#table5) { #table5 }
 

@@ -47,6 +47,7 @@ nav:
     - NAMD: software/namd.md
     - OpenFOAM: software/openfoam.md
 #    - Paraview VisIt: software/paraview-visit.md
+    - Pylauncher: software/pylauncher.md
     - Quantum Espresso: software/quantumespresso.md 
     - REMORA: software/remora.md
     - TAU: software/tau.md
