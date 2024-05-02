@@ -66,3 +66,15 @@ nav:
 #  - Fiddling :
 #    - Testing Extensions: testingextensions.md
 #    - Code Examples: code-examples/index.md
+
+plugins:
+  - search
+  - exclude-search:
+      exclude:
+        - aliases.md
+        - include/*
+        - index-sample/*
+        - code-examples/*
+        - testingextensions.md
+        - archives/*
+  - macros # allows {% include ... %} (and macros)

@@ -75,17 +75,4 @@ markdown_extensions:
 
 plugins:
   - search
-  - exclude-search:
-      exclude:
-        - aliases.md
-        - include/*
-        - index-sample/*
-        - code-examples/*
-        - testingextensions.md
-        - archives/*
   - macros # allows {% include ... %} (and macros)
-#  - with-pdf:
-#      copyright: TACC
-#      cover_subtitle: TACC User Guide
-#      toc_title: TACC User Guide
-#      output_path: docs/user-guide.pdf
