@@ -15,9 +15,6 @@ mkdocs-include-markdown-plugin = "^5.1.0"
 # for {% include '…' %} (rel. paths in included files causes warnings) and more
 mkdocs-macros-plugin = "^1.0.4"
 
-[tool.poetry.group.dev.dependencies]
-pytest = "^5.2"
-
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
