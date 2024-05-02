@@ -6,7 +6,7 @@ package-mode = false
 authors = ["rstijerina <r.sal.tijerina@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = ">=3.10,<3.12"
+python = "^3.11"
 mkdocs = "^1.4.2"
 pymdown-extensions = "^10.0"
 mkdocs-exclude-search = "^0.6.5"
