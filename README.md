@@ -25,7 +25,7 @@ Machine, which is required to run Docker on Mac/Windows hosts.
 
 #### Without Docker
 
-* Python v3.10 (minimum)
+* Python v3.11 (minimum)
 * Poetry v1.4.2 (minimum)
 
 Verify both versions in [Dockerfile] at `python:` and `POETRY_VERSION`.
