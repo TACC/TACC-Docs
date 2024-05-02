@@ -8,10 +8,12 @@ Measure performance and experiment with both compiler and runtime options. This 
 
 Measuring performance can be as simple as prepending the shell keyword `time` or the command `perf stat` to your launch line. Both are simple to use and require no code changes. Typical calls look like this:
 
-	$ perf stat ./a.out    # report basic performance stats for a.out
-	$ time ./a.out         # report the time required to execute a.out
-	$ time ibrun ./a.out   # time an MPI code
-	$ ibrun time ./a.out   # crude timings for each MPI task (no rank info)
+```cmd-line
+$ perf stat ./a.out    # report basic performance stats for a.out
+$ time ./a.out         # report the time required to execute a.out
+$ time ibrun ./a.out   # time an MPI code
+$ ibrun time ./a.out   # crude timings for each MPI task (no rank info)
+```
 
 As your needs evolve you can add timing intrinsics to your source code to time specific loops or other sections of code. There are many such intrinsics available; some popular choices include [`gettimeofday`](https://man7.org/linux/man-pages/man2/gettimeofday.2.html), [`MPI_Wtime`](https://www.mpich.org/static/docs/v3.2/www3/MPI_Wtime.html) and [`omp_get_wtime`](https://www.openmp.org/spec-html/5.0/openmpsu160.html). The resolution and overhead associated with each of these timers is on the order of a microsecond.
 
@@ -75,7 +77,7 @@ The `qopt-zmm-usage` flag affects the algorithms the compiler uses to decide whe
 
 ### [File Operations: I/O Performance](#programming-io)
 
-This section includes general advice intended to help you achieve good performance during file operations. <!-- See TACC Training material for additional information on I/O performance. -->
+This section includes general advice intended to help you achieve good performance during file operations. See [Managing I/O at TACC][TACCMANAGINGIO] and [TACC Training](https://tacc.utexas.edu/use-tacc/training/) page for additional information on I/O performance. 
 
 **Follow the advice in [TACC Good Conduct Guide](basics/conduct) to avoid stressing the file system**.
 

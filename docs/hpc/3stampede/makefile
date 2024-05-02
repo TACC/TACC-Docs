@@ -7,12 +7,12 @@ S3_OBJS	=	\
 	running.md \
 	launching.md \
 	building.md \
+	mkl.md \
 	scripts.md \
 	jobmanagement.md \
+	programming.md \
 	ml.md \
 	../../include/stampede3-help.md 
-#	mkl.md \
-#	programming.md \
 #	vis.md \
 #	refs.md
 

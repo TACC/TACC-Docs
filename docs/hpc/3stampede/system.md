@@ -9,31 +9,31 @@ Stampede3 hosts 560 "Sapphire Rapids" HBM (SPR) nodes with 112 cores each.  Each
 Specification | Value 
 --- | ---
 CPU: | Intel Xeon CPU MAX 9480 ("Sapphire Rapids HBM")
-Total cores per node: | 112 cores on two sockets (2x 56 cores)
+Total cores per node: | 112 cores on two sockets (2 x 56 cores)
 Hardware threads per core: | 1
 Hardware threads per node: | 2x56 = 112
 Clock rate: | 1.9GHz
 Memory: | 128 GB HBM 2e
-Cache: | 48 KB L1 data cache per core; 1MB L2 per core; 112.5 MB L3 per socket. Each socket can cache up to 168.5 MB (sum of L2 and L3 capacity).
+Cache: | 48 KB L1 data cache per core; 1MB L2 per core; 112.5 MB L3 per socket.<br>Each socket can cache up to 168.5 MB (sum of L2 and L3 capacity).
 Local storage: | 150 GB /tmp partition
 
 ### [Ponte Vecchio Compute Nodes](#system-pvc) { #system-pvc }
 
-Stampede3 hosts 20 nodes with four Intel Data Center GPU Max 1550s "Ponte Vecchio" (PVC) each.  Each PVC GPU has 128 GB of HBM2e and 128 Xe cores providing a peak performance of 4x 52 FP64 TFLOPS per node for scientific workflows and 4x 832 BF16 TFLOPS for ML workflows. 
+Stampede3 hosts 20 nodes with four Intel Data Center GPU Max 1550s "Ponte Vecchio" (PVC) each.<br>Each PVC GPU has 128 GB of HBM2e and 128 Xe cores providing a peak performance of 4x 52 FP64 TFLOPS per node for scientific workflows and 4x 832 BF16 TFLOPS for ML workflows. 
 
 #### [Table 2. PVC Specifications](#table2) { #table2 }
 
 Specification | Value
---- | ---
+--- | --
 GPU: | 4x Intel Data Center GPU Max 1550s ("Ponte Vecchio")
 GPU Memory: | 128 GB HBM 2e
-CPU: | Intel Xeon Platinum 8480+ ("Sapphire Rapids")
-Total cores per node: | 112 cores on two sockets (2x 56 cores)
+CPU: | Intel Xeon Platinum 8480 ("Sapphire Rapids")
+Total cores per node: | 96 cores on two sockets (2 x 48 cores)
 Hardware threads per core: | 1
-Hardware threads per node: | 2x56 = 112
+Hardware threads per node: | 2x48 = 96
 Clock rate: | 2.0 GHz
 Memory: | 512 GB DDR5
-Cache: | 48 KB L1 data cache per core; 1MB L2 per core; 112.5 MB L3 per socket. Each socket can cache up to 168.5 MB (sum of L2 and L3 capacity).
+Cache: | 48 KB L1 data cache per core; 1MB L2 per core; 112.5 MB L3 per socket.<br>Each socket can cache up to 168.t MB (sum of L2 and L3 capacity).
 Local storage: | 150 GB /tmp partition
 
 ### [Skylake Compute Nodes](#system-skx)  { #system-skx }
@@ -50,7 +50,7 @@ Hardware threads per core: | 1
 Hardware threads per node: | 48
 Clock rate: | 2.1GHz nominal (1.4-3.7GHz depending on instruction set and number of active cores)
 RAM: | 192GB (2.67GHz) DDR4
-Cache: | 32 KB L1 data cache per core; 1 MB L2 per core; 33 MB L3 per socket. Each socket can cache up to 57 MB (sum of L2 and L3 capacity).
+Cache: | 32 KB L1 data cache per core; 1 MB L2 per core; 33 MB L3 per socket.<br>Each socket can cache up to 57 MB (sum of L2 and L3 capacity).
 Local storage: | 90 GB /tmp 
 
 ### [ICX Compute Nodes](#system-icx) { #system-icx }
@@ -67,7 +67,7 @@ Hardware threads per core: | 1
 Hardware threads per node: | 80
 Clock rate: | 2.3 GHz nominal (3.4GHz max frequency depending on instruction set and number of active cores)
 RAM: | 256GB (3.2 GHz) DDR4
-Cache: | 48KB L1 data cache per core; 1.25 MB L2 per core; 60 MB L3 per socket. Each socket can cache up to 110 MB (sum of L2 and L3 capacity)
+Cache: | 48KB L1 data cache per core; 1.25 MB L2 per core; 60 MB L3 per socket.<br>Each socket can cache up to 110 MB (sum of L2 and L3 capacity)
 Local storage: | 200 GB /tmp partition
 
 ### [Login Nodes](#system-login) { #system-login }

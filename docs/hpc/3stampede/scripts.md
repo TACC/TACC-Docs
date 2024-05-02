@@ -2,10 +2,10 @@
 
 This section provides sample Slurm job scripts for each Stampede3 node type: 
 
-* Ponte Vecchio (PVC),
-* Sapphire Rapids (SPR),
-* Ice Lake (ICX),
-* Sky Lake (SKX).
+* Ponte Vecchio (PVC)
+* Sapphire Rapids (SPR)
+* Ice Lake (ICX)
+* Sky Lake (SKX)
 
 Each section also contains sample scripts for serial, MPI, OpenMP and hybrid (MPI + OpenMP) programming models.  Copy and customize each script for your own applications.
 
@@ -17,16 +17,16 @@ Each section also contains sample scripts for serial, MPI, OpenMP and hybrid (MP
 
 Click on a tab for a customizable job-script.
 
-/// tab | MPI Job in Normal Queue
+/// tab | MPI Job in SPR Queue
 ``` job-script
 #!/bin/bash
 #----------------------------------------------------
 # Sample Slurm job script
 #   for TACC Stampede3 SPR nodes
 #
-#   *** MPI Job on SPR Normal Queue ***
+#   *** MPI Job in SPR Queue ***
 # 
-# Last revised: 14 Dec 2023
+# Last revised: 23 April 2024
 #
 # Notes:
 #
@@ -55,7 +55,7 @@ Click on a tab for a customizable job-script.
 #SBATCH -J myjob           # Job name
 #SBATCH -o myjob.o%j       # Name of stdout output file
 #SBATCH -e myjob.e%j       # Name of stderr error file
-#SBATCH -p spr-normal      # Queue (partition) name
+#SBATCH -p spr             # Queue (partition) name
 #SBATCH -N 4               # Total # of nodes 
 #SBATCH -n 448             # Total # of mpi tasks
 #SBATCH -t 01:30:00        # Run time (hh:mm:ss)
@@ -80,16 +80,16 @@ ibrun ./myprogram         # Use ibrun instead of mpirun or mpiexec
 ```
 ///
 
-/// tab | OpenMP Job in Normal Queue
+/// tab | OpenMP Job in SPR Queue
 ``` job-script
 #!/bin/bash
 #----------------------------------------------------
 # Sample Slurm job script
 #   for TACC Stampede3 SPR nodes
 #
-#   *** OpenMP Job on SPR Normal Queue ***
+#   *** OpenMP Job in SPR Queue ***
 # 
-# Last revised: 14 Dec 2023
+# Last revised: 23 April 2024
 #
 # Notes:
 #
@@ -116,7 +116,7 @@ ibrun ./myprogram         # Use ibrun instead of mpirun or mpiexec
 #SBATCH -J myjob           # Job name
 #SBATCH -o myjob.o%j       # Name of stdout output file
 #SBATCH -e myjob.e%j       # Name of stderr error file
-#SBATCH -p spr-normal      # Queue (partition) name
+#SBATCH -p spr             # Queue (partition) name
 #SBATCH -N 1               # Total # of nodes (must be 1 for OpenMP)
 #SBATCH -n 1               # Total # of mpi tasks (should be 1 for OpenMP)
 #SBATCH -t 01:30:00        # Run time (hh:mm:ss)
@@ -146,21 +146,21 @@ cd $SCRATCH
 ```
 ///
 
-/// tab | Hybrid Job in Normal Queue
+/// tab | Hybrid Job in SPR Queue
 ``` job-script
 #!/bin/bash
 #----------------------------------------------------
 # Example Slurm job script
 # for TACC Stampede3 SPR nodes
 #
-#   *** Hybrid Job on SPR Normal Queue ***
+#   *** Hybrid Job in SPR Queue ***
 # 
 #       This sample script specifies:
 #         10 nodes (capital N)
 #         40 total MPI tasks (lower case n); this is 4 tasks/node
 #         28 OpenMP threads per MPI task (112 threads per node)
 #
-# Last revised: 14 Dec 2023
+# Last revised: 23 April 2024
 #
 # Notes:
 #
@@ -194,7 +194,7 @@ cd $SCRATCH
 #SBATCH -J myjob           # Job name
 #SBATCH -o myjob.o%j       # Name of stdout output file
 #SBATCH -e myjob.e%j       # Name of stderr error file
-#SBATCH -p icx-normal      # Queue (partition) name
+#SBATCH -p icx             # Queue (partition) name
 #SBATCH -N 10              # Total # of nodes 
 #SBATCH -n 40              # Total # of mpi tasks
 #SBATCH -t 01:30:00        # Run time (hh:mm:ss)
@@ -229,16 +229,16 @@ ibrun ./myprogram         # Use ibrun instead of mpirun or mpiexec
 
 Click on a tab for a customizable job-script.
 
-/// tab | MPI Job in Normal Queue
+/// tab | MPI Job in ICX Queue
 ```job-script
 #!/bin/bash
 #----------------------------------------------------
 # Sample Slurm job script
 #   for TACC Stampede3 ICX nodes
 #
-#   *** MPI Job on ICX Normal Queue ***
+#   *** MPI Job in ICX Queue ***
 # 
-# Last revised: 09 Mar 2022
+# Last revised: 23 April 2024
 #
 # Notes:
 #
@@ -267,7 +267,7 @@ Click on a tab for a customizable job-script.
 #SBATCH -J myjob           # Job name
 #SBATCH -o myjob.o%j       # Name of stdout output file
 #SBATCH -e myjob.e%j       # Name of stderr error file
-#SBATCH -p icx-normal      # Queue (partition) name
+#SBATCH -p icx             # Queue (partition) name
 #SBATCH -N 4               # Total # of nodes 
 #SBATCH -n 320             # Total # of mpi tasks
 #SBATCH -t 01:30:00        # Run time (hh:mm:ss)
@@ -294,7 +294,7 @@ ibrun ./myprogram         # Use ibrun instead of mpirun or mpiexec
 ```
 /// 
 
-/// tab | OpenMP Job in Normal Queue
+/// tab | OpenMP Job in ICX Queue
 ```job-script
 #!/bin/bash
 #----------------------------------------------------
@@ -302,9 +302,9 @@ ibrun ./myprogram         # Use ibrun instead of mpirun or mpiexec
 # Sample Slurm job script
 #   for TACC Stampede3 ICX nodes
 #
-#   *** OpenMP Job on ICX Normal Queue ***
+#   *** OpenMP Job in ICX Queue ***
 # 
-# Last revised: 09 Mar 2022
+# Last revised: 23 April 2024
 #
 # Notes:
 #
@@ -331,7 +331,7 @@ ibrun ./myprogram         # Use ibrun instead of mpirun or mpiexec
 #SBATCH -J myjob           # Job name
 #SBATCH -o myjob.o%j       # Name of stdout output file
 #SBATCH -e myjob.e%j       # Name of stderr error file
-#SBATCH -p icx-normal      # Queue (partition) name
+#SBATCH -p icx             # Queue (partition) name
 #SBATCH -N 1               # Total # of nodes (must be 1 for OpenMP)
 #SBATCH -n 1               # Total # of mpi tasks (should be 1 for OpenMP)
 #SBATCH -t 01:30:00        # Run time (hh:mm:ss)
@@ -362,21 +362,21 @@ cd $SCRATCH
 ```
 /// 
 
-/// tab | Hybrid Job in Normal Queue
+/// tab | Hybrid Job in ICX Queue
 ```job-script
 #!/bin/bash
 #----------------------------------------------------
 # Example Slurm job script
 # for TACC Stampede3 ICX nodes
 #
-#   *** Hybrid Job on ICX Normal Queue ***
+#   *** Hybrid Job in ICX Queue ***
 # 
 #       This sample script specifies:
 #         10 nodes (capital N)
 #         40 total MPI tasks (lower case n); this is 4 tasks/node
 #         20 OpenMP threads per MPI task (80 threads per node)
 #
-# Last revised: 09 Mar 2022
+# Last revised: 23 April 2024
 #
 # Notes:
 #
@@ -410,7 +410,7 @@ cd $SCRATCH
 #SBATCH -J myjob           # Job name
 #SBATCH -o myjob.o%j       # Name of stdout output file
 #SBATCH -e myjob.e%j       # Name of stderr error file
-#SBATCH -p icx-normal      # Queue (partition) name
+#SBATCH -p icx             # Queue (partition) name
 #SBATCH -N 10              # Total # of nodes 
 #SBATCH -n 40              # Total # of mpi tasks
 #SBATCH -t 01:30:00        # Run time (hh:mm:ss)
@@ -445,16 +445,16 @@ ibrun ./myprogram         # Use ibrun instead of mpirun or mpiexec
 
 Click on a tab for a customizable job-script.
 
-/// tab | Serial Job in Normal Queue
+/// tab | Serial Job in SKX Queue
 ```job-script
 #!/bin/bash
 #----------------------------------------------------
 # Sample Slurm job script
 #   for TACC Stampede3 SKX nodes
 #
-#   *** Serial Job on SKX Normal Queue ***
+#   *** Serial Job in SKX Queue ***
 # 
-# Last revised: 20 Oct 2017
+# Last revised: 23 April 2024
 #
 # Notes:
 #
@@ -474,7 +474,7 @@ Click on a tab for a customizable job-script.
 #SBATCH -J myjob           # Job name
 #SBATCH -o myjob.o%j       # Name of stdout output file
 #SBATCH -e myjob.e%j       # Name of stderr error file
-#SBATCH -p skx-normal      # Queue (partition) name
+#SBATCH -p skx             # Queue (partition) name
 #SBATCH -N 1               # Total # of nodes (must be 1 for serial)
 #SBATCH -n 1               # Total # of mpi tasks (should be 1 for serial)
 #SBATCH -t 01:30:00        # Run time (hh:mm:ss)
@@ -495,16 +495,16 @@ date
 # ---------------------------------------------------
 ```
 ///
-/// tab | MPI Job in Normal Queue
+/// tab | MPI Job in SKX Queue
 ```job-script
 #!/bin/bash
 #----------------------------------------------------
 # Sample Slurm job script
 #   for TACC Stampede3 SKX nodes
 #
-#   *** MPI Job on SKX Normal Queue ***
+#   *** MPI Job in SKX Queue ***
 # 
-# Last revised: 20 Oct 2017
+# Last revised: 23 April 2024
 #
 # Notes:
 #
@@ -525,7 +525,7 @@ date
 #SBATCH -J myjob           # Job name
 #SBATCH -o myjob.o%j       # Name of stdout output file
 #SBATCH -e myjob.e%j       # Name of stderr error file
-#SBATCH -p skx-normal      # Queue (partition) name
+#SBATCH -p skx             # Queue (partition) name
 #SBATCH -N 4               # Total # of nodes 
 #SBATCH -n 32              # Total # of mpi tasks
 #SBATCH -t 01:30:00        # Run time (hh:mm:ss)
@@ -545,16 +545,16 @@ ibrun ./myprogram         # Use ibrun instead of mpirun or mpiexec
 
 ```
 ///
-/// tab | OpenMP Job in Normal Queue
+/// tab | OpenMP Job in SKX Queue
 ```job-script
 #!/bin/bash
 #----------------------------------------------------
 # Sample Slurm job script
 #   for TACC Stampede3 SKX nodes
 #
-#   *** OpenMP Job on SKX Normal Queue ***
+#   *** OpenMP Job in SKX Queue ***
 # 
-# Last revised: 20 Oct 2017
+# Last revised: 23 April 2024
 #
 # Notes:
 #
@@ -577,7 +577,7 @@ ibrun ./myprogram         # Use ibrun instead of mpirun or mpiexec
 #SBATCH -J myjob           # Job name
 #SBATCH -o myjob.o%j       # Name of stdout output file
 #SBATCH -e myjob.e%j       # Name of stderr error file
-#SBATCH -p skx-normal      # Queue (partition) name
+#SBATCH -p skx             # Queue (partition) name
 #SBATCH -N 1               # Total # of nodes (must be 1 for OpenMP)
 #SBATCH -n 1               # Total # of mpi tasks (should be 1 for OpenMP)
 #SBATCH -t 01:30:00        # Run time (hh:mm:ss)
@@ -602,21 +602,21 @@ export OMP_NUM_THREADS=48   # this is 1 thread/core; may want to start lower
 ```
 ///
 
-/// tab | Hybrid Job in Normal Queue
+/// tab | Hybrid Job in SKX Queue
 ```job-script
 #!/bin/bash
 #----------------------------------------------------
 # Example Slurm job script
 # for TACC Stampede3 SKX nodes
 #
-#   *** Hybrid Job on SKX Normal Queue ***
+#   *** Hybrid Job in SKX Queue ***
 # 
 #       This sample script specifies:
 #         10 nodes (capital N)
 #         40 total MPI tasks (lower case n); this is 4 tasks/node
 #         12 OpenMP threads per MPI task (48 threads per node)
 #
-# Last revised: 20 Oct 2017
+# Last revised: 23 April 2024
 #
 # Notes:
 #
@@ -639,7 +639,7 @@ export OMP_NUM_THREADS=48   # this is 1 thread/core; may want to start lower
 #SBATCH -J myjob           # Job name
 #SBATCH -o myjob.o%j       # Name of stdout output file
 #SBATCH -e myjob.e%j       # Name of stderr error file
-#SBATCH -p skx-normal      # Queue (partition) name
+#SBATCH -p skx             # Queue (partition) name
 #SBATCH -N 10              # Total # of nodes 
 #SBATCH -n 40              # Total # of mpi tasks
 #SBATCH -t 01:30:00        # Run time (hh:mm:ss)

@@ -1,13 +1,10 @@
 # Gaussian at TACC
-*Last update: April 14, 2020* 
-
-
-
+*Last update: April 22, 2024* 
 
 <table cellspacing="5" cellpadding="5" border="1"><tr>
 <td><img alt="Gaussian logo" src="../imgs/gaussian-logo.png"></td><td>Gaussian is a quantum mechanics package for calculating molecular properties from first principles. From the Gaussian website:</td></tr></table>
 
-<blockquote>Starting from the fundamental laws of quantum mechanics, Gaussian 16 predicts the energies, molecular structures, vibrational frequencies and molecular properties of compounds and reactions in a wide variety of chemical environments. Gaussian 16’s models can be applied to both stable species and compounds which are difficult or impossible to observe experimentally, whether due to their nature (e.g., toxicity, combustibility, radioactivity) or their inherent fleeting nature (e.g., short-lived intermediates and transition structures).
+<blockquote>Starting from the fundamental laws of quantum mechanics, Gaussian 16 predicts the energies, molecular structures, vibrational frequencies and molecular properties of compounds and reactions in a wide variety of chemical environments. Gaussian 16's models can be applied to both stable species and compounds which are difficult or impossible to observe experimentally, whether due to their nature (e.g., toxicity, combustibility, radioactivity) or their inherent fleeting nature (e.g., short-lived intermediates and transition structures).
 </blockquote>
 
 
@@ -27,7 +24,7 @@ Please fill out the [Usage Agreement](../taccdocs/UT_gaussian_user_agreement.pdf
 
 ## [Running Gaussian](#running) { #running }
 
-Gaussian 16 is currently installed on TACC's Stampede2, Frontera and Lonestar6 compute resources. Gaussian is accessed via TACC's Lmod module system. Use `module spider gaussian` and `module help gaussian` to list and explore installed versions. Then, either interactively or via a batch script, load the appropriate module:
+Gaussian 16 is currently installed on TACC's Stampede3, Frontera and Lonestar6 compute resources. Gaussian is accessed via TACC's [Lmod module][TACCLMOD] system. Use `module spider gaussian` and `module help gaussian` to list and explore installed versions. Then, either interactively or via a batch script, load the appropriate module:
 
 ``` cmd-line
 login1$ module load gaussian
@@ -35,17 +32,19 @@ login1$ module load gaussian
 
 ## [Sample Job Script](#script) { #script }
 
-The Linda MPI addon is not part of TACC's Gaussian module, so each Gaussian execution cannot use more than one node. In the Gaussian input file, (`input.conf` in the example below), set the `%NProcShared` variable to the number of CPU cores you wish to use. Do not use the `ibrun` invocation. Gaussian job submission scripts should look something like the following: 
+The Linda MPI addon is not part of TACC's Gaussian module, so each Gaussian execution cannot use more than one node. In the Gaussian input file, (`input.conf` in the example below), set the `%NProcShared` variable to the number of CPU cores you wish to use. Do not use the `ibrun` invocation. 
 
-``` job-script
+Gaussian job submission scripts should look something like the following: 
+
+```job-script
 #!/bin/bash
-#SBATCH -J my_job_name # Job Name
-#SBATCH -o output.%j # Output file name (%j expands to jobID)
-#SBATCH -e error.%j # Error file name (%j expands to jobID)
-#SBATCH -N 1 -n 1 # Gaussian only uses one node
-#SBATCH -p normal # Queue name -- normal, development, etc.
-#SBATCH -t 24:00:00 # Run time (hh:mm:ss)
-#SBATCH -A project_account_name  # You can remove this line if you only have one allocation
+#SBATCH -J my_job_name   # Job Name
+#SBATCH -o output.%j     # Output file name (%j expands to jobID)
+#SBATCH -e error.%j      # Error file name (%j expands to jobID)
+#SBATCH -N 1 -n 1        # Gaussian only uses one node
+#SBATCH -p normal        # Queue name -- normal, development, etc.
+#SBATCH -t 24:00:00      # Run time (hh:mm:ss)
+#SBATCH -A project       # You can remove this line if you only have one allocation
 
 module load gaussian
 
@@ -56,3 +55,5 @@ g16 < input.conf > output.log
 
 * [Gaussian site](https://gaussian.com)
 * [Gaussian manual](https://gaussian.com/man/)
+
+{% include 'aliases.md' %}

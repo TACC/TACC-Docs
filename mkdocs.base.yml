@@ -15,7 +15,7 @@ theme:
         - applescript
     hljs_aliases: # TACC Feature
         - name: cmd-line
-          lang: ruby
+          lang: bash
         - name: job-script
           lang: bash
         - name: syntax

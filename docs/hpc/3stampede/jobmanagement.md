@@ -94,7 +94,7 @@ The column labeled `ST` displays each job's status:
 * `R`  means "Running";
 * `CG` means "Completing" (cleaning up after exiting the job script).
 
-#### [Table 7. Pending Jobs Reason](#table7) { #table7 }
+#### [Table 9. Pending Jobs Reason](#table9) { #table9 }
 
 The last column, labeled `NODELIST/REASON`, includes a nodelist for running/completing jobs, or a reason for pending jobs.  
 
