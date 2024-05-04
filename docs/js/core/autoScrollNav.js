@@ -1,10 +1,9 @@
 /* https://github.com/mkdocs/mkdocs/blob/1.0.4/mkdocs/themes/readthedocs/js/theme.js#L79-L105 */
 /* All changes must start and end with comments " TACC: " and " /TACC " */
 
-// The code below is a copy of @seanmadsen code posted Jan 10, 2017 on issue 803.
+// The code below is a copy of @seanmadsen code from:
 // https://github.com/mkdocs/mkdocs/issues/803
-// This just incorporates the auto scroll into the theme itself without
-// the need for additional custom.js file.
+// This makes auto scroll work on page reload not just nav within the same page.
 //
 $(function() {
   /* TACC: Do not scroll if at an anchor */
