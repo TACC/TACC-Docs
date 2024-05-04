@@ -1,4 +1,4 @@
-FROM python:3.10-bullseye as python-base
+FROM python:3.11-bullseye as python-base
 
 LABEL maintainer="TACC-ACI-WMA <wma_prtl@tacc.utexas.edu>"
 
