@@ -39,7 +39,7 @@ extra_css:
 # FAQ: Use JS modules when possible (see theme.tacc_javascript)
 extra_javascript:
     - js/autoScrollNav.js
-    - js/addPageId.js
+    - js/core/addPageId.js
 
 # Python-Markdown extensions
 # https://python-markdown.github.io/extensions/
