@@ -1,6 +1,7 @@
 theme:
     name: readthedocs
     logo: /img/tacc-logo-with-words.svg
+    nav_redirects: [] # TACC Feature
     collapse_navigation: false
     highlightjs: true
     hljs_languages:
@@ -40,6 +41,7 @@ extra_css:
 extra_javascript:
     - js/core/autoScrollNav.js
     - js/core/addPageId.js
+    - js/core/redirectNavLinks.js
 
 # Python-Markdown extensions
 # https://python-markdown.github.io/extensions/

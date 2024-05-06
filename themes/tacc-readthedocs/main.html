@@ -75,6 +75,19 @@
 
   {%- block scripts %}
     <script>var base_url = '{{ base_url }}';</script>
+    {# TACC: #}{# To provide specific config data to scripts #}
+    {%- if config.theme.nav_redirects %}
+    <script>
+      window.NAV_REDIRECTS = [];
+      {%- for redirect in config.theme.nav_redirects %}
+      window.NAV_REDIRECTS.push({
+        oldHref: '{{ redirect.before }}',
+        newHref: '{{ redirect.after }}'
+      });
+      {%- endfor %}
+    </script>
+    {%- endif %}
+    {# /TACC #}
     {# TACC: #}{# To remove `docutils` class from tables #}
     {# <script src="{{ 'js/theme_extra.js'|url }}" defer></script> #}
     {# /TACC #}
