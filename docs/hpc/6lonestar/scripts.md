@@ -71,7 +71,7 @@ date
 /// tab | MPI Jobs
 MPI Jobs
 
-This job script requests 4 nodes (`#SBATCH -N 4`) and 32 tasks (`#SBATCH -n 32`), for 8 MPI rasks per node.  
+This job script requests 4 nodes (`#SBATCH -N 4`) and 32 tasks (`#SBATCH -n 32`), for 8 MPI ranks per node.  
 
 ``` job-script
 #!/bin/bash

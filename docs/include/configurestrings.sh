@@ -43,18 +43,6 @@ then
 	# sed	-e "s/MACHINENAME/$machinename/g" \
 	# 	-e "s/STRIPING/$striping/g"  < conductsrc.md > $conductoutputfile
 
-### Maverick2 
-#elif [ "$1" = "maverick2" ] 
-#then
-#	echo "building includes for Maverick2 user guide"
-#	machinename="Maverick2"
-#	helpoutputfile="maverick2-help.md"
-#	jobaccountingoutputfile="maverick2-jobaccounting.md"
-#
-#	sed	-e "s/MACHINENAME/$machinename/g" \
-#		-e "s/TACCINFOPATH/$taccinfopath/g" < jobaccountingsrc.md > $jobaccountingoutputfile
-#	sed	-e "s/MACHINENAME/$machinename/g" < helpsrc.md > $helpoutputfile
-
 
 ### Stampede2
 elif [ "$1" = "stampede2" ] 
@@ -67,6 +55,25 @@ then
 	helpoutputfile="stampede2-help.md"
 	# conductoutputfile="stampede2-conduct.md"
 	jobaccountingoutputfile="stampede2-jobaccounting.md"
+
+	sed	-e "s/MACHINENAME/$machinename/g" \
+		-e "s/TACCINFOPATH/$taccinfopath/g" < jobaccountingsrc.md > $jobaccountingoutputfile
+	sed	-e "s/HWTHREADS/$hwthreads/g" < mklsrc.md > $mkloutputfile
+	sed	-e "s/MACHINENAME/$machinename/g" < helpsrc.md > $helpoutputfile
+	# sed	-e "s/MACHINENAME/$machinename/g" \
+	# 	-e "s/STRIPING/$striping/g"  < conductsrc.md > $conductoutputfile
+
+### Stampede3
+elif [ "$1" = "stampede3" ] 
+then
+	echo "building includes for Stampede3 user guide"
+	machinename="Stampede3"
+	# mkloutputfile="stampede2-mkl.md"
+	# hwthreads="272 on KNL, 96 on SKX, 160 on ICX"
+	# striping="<a\ href=\"#files-striping\">Striping\ Large\ Files<\/a>"
+	helpoutputfile="stampede3-help.md"
+	# conductoutputfile="stampede2-conduct.md"
+	jobaccountingoutputfile="stampede3-jobaccounting.md"
 
 	sed	-e "s/MACHINENAME/$machinename/g" \
 		-e "s/TACCINFOPATH/$taccinfopath/g" < jobaccountingsrc.md > $jobaccountingoutputfile

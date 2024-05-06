@@ -17,7 +17,7 @@ or
 login1$ mpiCC -g -O0 mycode.c
 ```
 
-Follow these steps to set up your debugging environment on Frontera, Stampede2, Lonestar5 and other TACC compute resources.
+Follow these steps to set up your debugging environment on Frontera, Stampede2, Lonestar6 and other TACC compute resources.
 
 1. **Enable X11 forwarding**. To use the DDT GUI, ensure that X11 forwarding is enabled when you `ssh` to the TACC system. Use the `-X` option on the `ssh` command line if X11 forwarding is not enabled in your SSH client by default.
 

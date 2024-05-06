@@ -8,6 +8,7 @@ LONESTAR6_OBJS	=	\
 	running.md \
 	scripts.md \
 	jobmanagement.md \
+	ml.md \
 	vis.md \
 	../../include/lonestar6-help.md 
 

@@ -3,7 +3,7 @@
 
 TACC requires Multi-Factor Authentication (MFA) as an additional security measure when accessing all compute and storage resources.  <!-- To set up MFA pairing at TACC on your approved account, proceed directly to the [TACC pairing page](https://tacc.utexas.edu/portal/mfa). -->
 
-## [What is Multi-Factor Authentication?](#whatismfa) { #whatismfa }
+## [What is MFA?](#whatismfa) { #whatismfa }
 
 Authentication is the process of determining if you are you. Traditional methods of associating a user account with a single password have not been 100% successful. Multi-Factor Authentication (MFA) requires another step, or "factor", in the authenticaton process. In addition to the usual password users must complete authentication using another device unique to them, usually the user's mobile phone/device. 
 

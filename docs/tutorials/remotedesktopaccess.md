@@ -204,7 +204,7 @@ Follow the steps below to start an interactive session.
 	```cmd-line
 	login1$ squeue -u slindsey
 	  JOBID   PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
-	1974882 development vncserve slindsey  STYLEBLUER       0:16      1 c455-084
+	1974882 development vncserve slindsey  R       0:16      1 c455-084
 	```
 
 1. **Display the job's output file, `vncserver.out`, to extract the port connection number:**

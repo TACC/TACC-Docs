@@ -2,6 +2,8 @@
 
 There are several transfer mechanism for data to Frontera, some of which depend on where and how the data are to be stored.  Please review the following transfer mechanisms.
 
+See the [Data Transfer Guide](../../basics/datatransfer) for more detailed information.
+
 ### [Windows Users](#transferring-windows) { #transferring-windows } 
 
 TACC staff recommends the open-source [Cyberduck](https://cyberduck.io/) utility for both Windows and Mac users that do not already have a preferred tool.
@@ -13,12 +15,6 @@ Click on the "Open Connection" button in the top right corner of the Cyberduck w
 Once connected, you can navigate through your remote file hierarchy using familiar graphical navigation techniques. You may also drag-and-drop files into and out of the Cyberduck window to transfer files to and from Frontera.
 
 <!-- IMAGE3 -->
-
-### [Grid Community Toolkit](#transferring-gct) { #transferring-gct } 
-
-The Grid Community Toolkit (GCT) is an open-source fork of the [Globus Toolkit](http://toolkit.globus.org/toolkit) and was created in response to the [end-of-support](https://github.com/globus/globus-toolkit/blob/globus_6_branch/support-changes.md) of the Globus Toolkit in January 2018.  
-
-Frontera has one Grid Community Toolkit endpoint. All users may authenticate using the CILogon myproxy authentication. See [Using Grid Community Toolkit at TACC](../../tutorials/gridcommunitytoolkit) for detailed information.  
 
 ### [SSH Utilities: `scp` & `rsync`](#transferring-ssh) { #transferring-ssh } 
 

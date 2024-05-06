@@ -68,7 +68,7 @@ date
 /// tab | MPI Jobs
 MPI Jobs
 
-This script requests 4 nodes (`#SBATCH -N 4`) and 32 tasks (`#SBATCH -n 32`), for 8 MPI rasks per node.  
+This script requests 4 nodes (`#SBATCH -N 4`) and 32 tasks (`#SBATCH -n 32`), for 8 MPI ranks per node.  
 
 If your job requires only one or two nodes, submit the job to the `small` queue instead of the `normal` queue.
 

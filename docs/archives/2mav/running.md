@@ -1,6 +1,6 @@
 ## [Running Jobs](#running) { #running}
 
-{% include 'include/maverick2-jobaccounting.md' %}
+<!-- { % include 'include/maverick2-jobaccounting.md' % } -->
 
 ### [Slurm Job Scheduler](#running-slurm) { #running-slurm }
 

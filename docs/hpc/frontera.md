@@ -1,5 +1,5 @@
 # Frontera User Guide
-Last update: June 09, 2023
+Last update: January 8, 2024
 <!-- SDL <a href="https://frontera-xortal.tacc.utexas.edu/user-guide/docs/user-guide.pdf">Download PDF <i class="fa fa-file-pdf-o"></i></a></span>-->
 
 ## [Notices](#notices) { #notices }
@@ -320,7 +320,7 @@ Frontera's startup mechanisms define corresponding account-level environment var
 
 File System | Quota | Key Features
 -------     | ------- | -------
-`$HOME`	    | 25GB, 400,000 files          | **Not intended for parallel or high-intensity file operations**.<br>Backed up regularly.<br>Defaults: 1 stripe, 1MB stripe size.<br> Not purged. |
+`$HOME`	    | 25GB, 200,000 files          | **Not intended for parallel or high-intensity file operations**.<br>Backed up regularly.<br>Defaults: 1 stripe, 1MB stripe size.<br> Not purged. |
 `$WORK`	    | 1TB, 3,000,000 files across all TACC systems,<br>regardless of where on the file system the files reside. | **Not intended for high-intensity file operations or jobs involving very large files.**<br>On the Global Shared File System that is mounted on most TACC systems.<br>Defaults: 1 stripe, 1MB stripe size.<br>Not backed up.<br> Not purged.
 `$SCRATCH`  | no quota	 |  Overall capacity 44 PB.<br>Defaults: 1 stripe, 1MB stripe size.<br>Not backed up.<br>Decomposed into three separate file systems, `scratch1`, `scratch2`, and `scratch3` described below.<br>**Files are [subject to purge](#scratchpolicy) if access time&#42; is more than 10 days old**.  
 
@@ -340,7 +340,7 @@ File System | Characteristics	| Purpose |
 
 ### [Navigating the Shared File Systems](#files-navigating) { #files-navigating } 
 
-Frontera's `/home` and `/scratch` file systems are mounted only on Frontera, but the work file system mounted on Frontera is the Global Shared File System hosted on [Stockyard](https://www.tacc.utexas.edu/systems/stockyard). Stockyard is the same work file system that is currently available on Stampede2, Lonestar5, and several other TACC resources. 
+Frontera's `/home` and `/scratch` file systems are mounted only on Frontera, but the work file system mounted on Frontera is the Global Shared File System hosted on [Stockyard](https://www.tacc.utexas.edu/systems/stockyard). Stockyard is the same work file system that is currently available on Stampede2, Lonestar6, and several other TACC resources. 
 
 The `$STOCKYARD` environment variable points to the highest-level directory that you own on the Global Shared File System. The definition of the `$STOCKYARD` environment variable is of course account-specific, but you will see the same value on all TACC systems that provide access to the Global Shared File System. This directory is an excellent place to store files you want to access regularly from multiple TACC resources.
 
@@ -349,13 +349,13 @@ Your account-specific `$WORK` environment variable varies from system to system 
 !!! tip
 	Your quota and reported usage on the Global Shared File System reflects all files that you own on Stockyard, regardless of their actual location on the file system.
 
-See the example for fictitious user `bjones` in the figure below. All directories are accessible from all systems, however a given sub-directory (e.g. `lonestar5`, `stampede2`) will exist **only** if you have an allocation on that system.
+See the example for fictitious user `bjones` in the figure below. All directories are accessible from all systems, however a given sub-directory (e.g. `lonestar6`, `stampede2`) will exist **only** if you have an allocation on that system.
 
 #### [Figure 3. Stockyard File System](#figure3) { #figure3 } 
 <figure id="figure3"><img alt="Stockyard File System" src="../imgs/stockyard-2022.jpg"> 
 <figcaption></figcaption></figure>
 
-**Figure 3.** Account-level directories on the work file system (Global Shared File System hosted on Stockyard). Example for fictitious user `bjones`. All directories usable from all systems. Sub-directories (e.g. `lonestar5`, `stampede2`) exist only if you have allocations on the associated system.
+**Figure 3.** Account-level directories on the work file system (Global Shared File System hosted on Stockyard). Example for fictitious user `bjones`. All directories usable from all systems. Sub-directories (e.g. `lonestar6`, `stampede2`) exist only if you have allocations on the associated system.
 
 Note that resource-specific subdirectories of `$STOCKYARD` are simply convenient ways to manage your resource-specific files. You have access to any such subdirectory from any TACC resources. If you are logged into Frontera, for example, executing the alias `cdw` (equivalent to `cd $WORK`) will take you to the resource-specific subdirectory `$STOCKYARD/frontera`. But you can access this directory from other TACC systems as well by executing `cd $STOCKYARD/frontera`. These commands allow you to share files across TACC systems. In fact, several convenient account-level aliases make it even easier to navigate across the directories you own in the shared file systems:
 
@@ -372,21 +372,21 @@ Alias | Command
 
 Frontera's Lustre file systems look and act like a single logical hard disk, but are actually sophisticated integrated systems involving many physical drives. Lustre can **stripe** (distribute) large files over several physical disks, making it possible to deliver the high performance needed to service input/output (I/O) requests from hundreds of users across thousands of nodes. Object Storage Targets (OSTs) manage the file system's spinning disks: a file with 16 stripes, for example, is distributed across 16 OSTs. One designated Meta-Data Server (MDS) tracks the OSTs assigned to a file, as well as the file's descriptive data.
 
-!!! tip
+!!! important
 	Before transferring to, or creating large files on Frontera, be sure to set an appropriate default stripe count on the receiving directory.
 
 While the `$WORK` file system has hundreds of OSTs, Frontera's scratch system has far fewer. Therefore, the recommended stripe counts when transferring or creating large files depends on the file's destination. 
 
-* **Transferring to `$WORK`**: A good rule of thumb is to allow at least one stripe for each 100GB in the file. For example, to set the default stripe count on the current directory to 30 (a plausible stripe count for a directory receiving a file approaching 3TB in size), execute:
+* **Transferring to `$WORK`**: A good rule of thumb is to allow at least one stripe for each 100GB in the file. For example, to set the default stripe count on the current directory to 12 (a plausible stripe count for a directory receiving a file approaching 3TB in size), execute:
 
 	```cmd-line
-	$ lfs setstripe -c 30 $PWD
+	$ lfs setstripe -c 12 $PWD
 	```
 
-* **Transferring to Frontera's `$SCRATCH` file system**: The rule of thumb still applies, but limit the stripe count to no more than 16 since Frontera's `$SCRATCH` file system is served by far fewer OSTs. 
+* **Transferring to Frontera's `$SCRATCH` file system**: The rule of thumb still applies, but limit the stripe count to no more than 8 since Frontera's `$SCRATCH` file system is served by far fewer OSTs. 
 
 	```cmd-line
-	$ lfs setstripe -c 16 $PWD
+	$ lfs setstripe -c 8 $PWD
 	```
 
 Note that an `lfs setstripe` command always sets both stripe count and stripe size, even if you explicitly specify only one or the other. Since the example above does not explicitly specify stripe size, the command will set the stripe size on the directory to Frontera's system default (1MB). In general there's no need to customize stripe size when creating or transferring files.
@@ -403,6 +403,8 @@ $ lfs getstripe myfile
 
 There are several transfer mechanism for data to Frontera, some of which depend on where and how the data are to be stored.  Please review the following transfer mechanisms.
 
+See the [Data Transfer Guide](../../basics/datatransfer) for more detailed information.
+
 ### [Windows Users](#transferring-windows) { #transferring-windows } 
 
 TACC staff recommends the open-source [Cyberduck](https://cyberduck.io/) utility for both Windows and Mac users that do not already have a preferred tool.
@@ -414,12 +416,6 @@ Click on the "Open Connection" button in the top right corner of the Cyberduck w
 Once connected, you can navigate through your remote file hierarchy using familiar graphical navigation techniques. You may also drag-and-drop files into and out of the Cyberduck window to transfer files to and from Frontera.
 
 <!-- IMAGE3 -->
-
-### [Grid Community Toolkit](#transferring-gct) { #transferring-gct } 
-
-The Grid Community Toolkit (GCT) is an open-source fork of the [Globus Toolkit](http://toolkit.globus.org/toolkit) and was created in response to the [end-of-support](https://github.com/globus/globus-toolkit/blob/globus_6_branch/support-changes.md) of the Globus Toolkit in January 2018.  
-
-Frontera has one Grid Community Toolkit endpoint. All users may authenticate using the CILogon myproxy authentication. See [Using Grid Community Toolkit at TACC](../../tutorials/gridcommunitytoolkit) for detailed information.  
 
 ### [SSH Utilities: `scp` & `rsync`](#transferring-ssh) { #transferring-ssh } 
 
@@ -706,23 +702,21 @@ Frontera's `flex` queue offers users a low cost queue for lower priority/node co
 
 
 #### [Table 6. Frontera Production Queues](#table6) { #table6 } 
-Queue status as of March 14, 2022.   
+
 **Queues and limits are subject to change without notice.** 
 
 Users are limited to a maximum of 50 running and 200 pending jobs in all queues at one time. 
- 
 
-| Queue Name  | Max Nodes per Job<br>(assoc'd cores) | Pre-empt<br>Exempt Time | Max Job Duration | Max Nodes per User | Max Jobs per User  | Charge Rate<br>per node-hour 
+| Queue Name  | Min-Max Nodes per Job<br>(assoc'd cores) | Pre-empt<br>Exempt Time | Max Job Duration | Max Nodes per User | Max Jobs per User  | Charge Rate<br>per node-hour 
 | ------                        | -----                         | ----  | ----     | ----       | ----     | ----
-| <code>flex&#42;</code>        | 128 nodes<br>(7,168 cores)    | 1 hour | 48 hrs  | 6400 nodes | 15 jobs | .8 Service Units (SUs) 
-| <code>development</code>      | 40 nodes<br>(2,240 cores)     | N/A | 2 hrs       | 40 nodes   |   1 job   | 1 SU 
+| <code>flex&#42;</code>        | 1-128 nodes<br>(7,168 cores)    | 1 hour | 48 hrs  | 6400 nodes | 15 jobs | .8 Service Units (SUs) 
+| <code>development</code>      | 1-40 nodes<br>(2,240 cores)     | N/A | 2 hrs       | 40 nodes   |   1 job   | 1 SU 
 | <code>normal</code>           | 3-512 nodes<br>(28,672 cores)   | N/A | 48 hrs      | 1836 nodes | 100 jobs  | 1 SU   
 | <code>large&#42;&#42;</code>  | 513-2048 nodes<br>(114,688 cores) | N/A | 48 hrs  | 4096 nodes |   1 job  | 1 SU
 | <code>rtx</code>              | 22 nodes                       | N/A | 48 hrs     | 22 nodes   |  15 jobs  | 3 SUs
 | <code>rtx-dev</code>          | 2 nodes                        | N/A | 2 hrs      | 2          |   1 jobs  | 3 SUs
 | <code>nvdimm</code>           | 4 nodes                        | N/A   | 48 hrs   | 8  nodes   |   2 jobs  | 2 SUs 
 | <code>small</code>            | 2 nodes                       | N/A | 48 hrs     | 24 nodes | 20  jobs | 1 SU
-
 
    
 &#42; **Jobs in the `flex` queue are charged less than jobs in other queues but are eligible for preemption after running for more than one hour.**  
@@ -949,7 +943,7 @@ date
 /// tab | MPI Jobs
 MPI Jobs
 
-This script requests 4 nodes (`#SBATCH -N 4`) and 32 tasks (`#SBATCH -n 32`), for 8 MPI rasks per node.  
+This script requests 4 nodes (`#SBATCH -N 4`) and 32 tasks (`#SBATCH -n 32`), for 8 MPI ranks per node.  
 
 If your job requires only one or two nodes, submit the job to the `small` queue instead of the `normal` queue.
 
@@ -1591,13 +1585,13 @@ Install Pytorch and TensorBoard.
 	login2.frontera$ idev -N 2 -n 2 -p rtx-dev -t 02:00:00
 	```
 
-1. Go to the benchmark directory:
+1. Move to the benchmark directory:
 
 	```cmd-line
 	c123-456$ cd $SCRATCH/kfac-pytorch
 	```
 
-1. Create a script called "`run.sh`". This script needs two parameters, the hostname of the master node and the number of nodes.
+1. Create a script called "`run.sh`". This script needs two parameters, the hostname of the master node and the number of nodes. Add execution permission for the file "run.sh".
 
 	```job-script
 	#!/bin/bash

@@ -5,7 +5,7 @@ Scientists across domains are actively exploring and adopting deep learning as a
 
 TACC supports the TensorFlow+Horovod stack. This framework exposes high level interfaces for deep learning architecture specification, model training, tuning, and validation. Deep learning practitioners and domain scientists who are exploring the deep learning methodology should consider this framework for their research.
 
-This document details how to install TensorFlow, then download and run benchmarks in both single- and multi-node modes. Due to variations in TensorFlow and Python versions, and their compatabilities with the Intel compilers and CUDA libraries, the installation instructions are quite specific. Pay careful attention to the installation instructions.
+This document details how to install TensorFlow, then download and run benchmarks in both single- and multi-node modes. Due to variations in TensorFlow and Python versions, and their compatibilities with the Intel compilers and CUDA libraries, the installation instructions are quite specific. Pay careful attention to the installation instructions.
 
 ## [Installations](#installations) { #installations }
 

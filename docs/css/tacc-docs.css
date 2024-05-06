@@ -23,6 +23,46 @@
 
 
 
+/* To support .c-card on mobile (which Core-Styles does not do) */
+
+/* To add field of color in neg. space beside short image */
+/* FAQ: This field is only possibly shown:
+        - at certain screen widths
+        - for certain image dimensions */
+@media (576px <= width < 768px), (992px < width) {
+  [class*="card--image-"] {
+    overflow: hidden; /* hide box-shadow that would bleed outside of card */
+  }
+  .c-card--image-top > img,
+  .c-card--image-bottom > img {
+    box-shadow: 25vw 0 white; /* for short image on narrow screen */
+  }
+  .c-card--image-left > img,
+  .c-card--image-right > img {
+    box-shadow: 0 10vw black; /* for narrow image on wide screen */
+  }
+}
+
+/* To remove side-by-side layout when image becomes too small */
+@media (768px <= width < 992px), (width < 576px) {
+  .c-card--image-left,
+  .c-card--image-right {
+    padding: unset; /* overwrite .c-card--image-… */
+    display: block; /* overwrite .c-card--image-… */
+  }
+  .c-card--image-left > img,
+  .c-card--image-right > img {
+    margin-block: unset; /* undo .c-card--image-… */
+  }
+  .c-card--image-left > p,
+  .c-card--image-right > p {
+    padding: calc( var(--global-space--pattern-pad) / 2);
+    margin: 0; /* overwrite core-styles, bootstrap, ReadTheDocs */
+  }
+}
+
+
+
 
 
 /* SIDE NAV */
