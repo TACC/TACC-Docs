@@ -1,9 +1,11 @@
 # Stampede3 User Guide 
-*Last update: April 23, 2024*
+*Last update: May 6, 2024*
 
 ## [Notices](#notices) { #notices }
 
 *This user guide is in progress and will be updated as the system is configured.*
+
+* Attention VASP Users: DO NOT run VASP using Stampede3's SPR nodes!  TACC staff has noticed many VASP jobs causing issues on the SPR nodes and impacting overall system stability and performance.  Please run your VASP jobs using either the [SKX](../../hpc/stampede3#table3) or [ICX](../../hpc/stampede3#table4) nodes.  See [Running VASP Jobs](../../software/vasp/#running) for more information.
 
 * The new Sapphire Rapids nodes are now available via the [`spr` queue](#queues).  These nodes are still in the early-user stage and jobs in this queue will not be charged to your allocations. (04/19/2024)
 
