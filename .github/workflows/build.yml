@@ -2,13 +2,22 @@ name: TACC Docs Build
 
 on:
   workflow_dispatch:
+    inputs:
+      run_job_on:
+        required: false
+        default: 'ubuntu-latest' # default for manual run
+        type: choice
+        options:
+        - ubuntu-latest
+        - macos-latest
   push:
     branches:
       - main
 
 jobs:
   docker:
-    runs-on: ubuntu-latest
+    # default for automatic run on 'push'
+    runs-on: ${{ github.event_name == 'push' && 'ubuntu-latest' || inputs.run_job_on }}
     steps:
       -
         name: Set up Docker Buildx

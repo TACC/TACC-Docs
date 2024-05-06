@@ -11,7 +11,7 @@ VASP requires an individual license. TACC's HPC support license allows us to ins
 
 If you have your own license and want to use your own compilation, you may install it in your own account. If you wish to use TACC's installed version, then TACC will have to verify your license. [Submit a support ticket][SUBMITTICKET] and include the following information: 
 
-* full name, 
+* full name 
 * affiliated institution 
 * TACC login ID 
 * email address that was used by your VASP PI to register you under that license on VASP portal
@@ -44,10 +44,9 @@ You may use and customize the following sample job scripts for VASP jobs on TACC
 
 ### [Sample Job Script: VASP on Stampede3](#running-stampede3) { #running-stampede3 }
 
-#warning 
 
 !!! important
-	DO NOT run VASP using Stampede3's SPR nodes!<br> TACC staff has noticed many VASP jobs causing issues on the SPR nodes and impacting overall system stability and performance.<br> Please run your VASP jobs using either the [SKX](../hpc/stampede3#table3) or [ICX](../hpc/stampede3#table4) nodes.   
+	DO NOT run VASP using Stampede3's SPR nodes!<br> TACC staff has noticed many VASP jobs causing issues on the SPR nodes and impacting overall system stability and performance.<br> Please run your VASP jobs using either the [SKX](../../hpc/stampede3#table3) or [ICX](../../hpc/stampede3#table4) nodes.   
 
 The issue appears to be memory overuse: each SPR node has 112 cores on 2 sockets and only 128 GB memory in total, so each core has about 1GB memory.  Compare to the SKX (48 nodes, 192GB) and ICX (80 cores and 256GB) nodes, the SPR nodes have much less total and per task memory.  Therefore jobs running on the SPR nodes will require more nodes, yet need less tasks per node.  This is not an efficient use of resources.
 
