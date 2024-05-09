@@ -276,6 +276,11 @@ svg.logo [fill]:not([fill="none"]) {
 .wy-side-nav-search > * {
   padding-inline: calc( var(--pad-horz) + var(--link-pad-horz) );
 }
+.wy-side-nav-search .nav-name {
+  font-family: var(--global-font-family--sans);
+  font-size: var(--global-font-size--large);
+  color: var(--global-color-primary--x-dark);
+}
 
 /* To remove space (margin, padding, whitespace) around logo */
 .wy-side-nav-search a,
