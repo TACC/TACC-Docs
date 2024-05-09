@@ -12,6 +12,7 @@ site_url: https://docs.tacc.utexas.edu
 theme:
     cms_url: https://tacc.utexas.edu # TACC Feature
     cms_name: tacc.utexas.edu # TACC Feature
+    # nav_name: Documentation # TACC Feature
 
 nav:
   - TACC Essentials :

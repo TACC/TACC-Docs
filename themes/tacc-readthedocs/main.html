@@ -70,6 +70,9 @@
 
   {%- block site_name %}
     {{ super() }}
+    {%- if config.theme.nav_name %}
+    <h1 class="nav-name">{{ config.theme.nav_name }}</h1>
+    {%- endif %}
     <a href="{{ config.theme.cms_url }}" class="cms-link">{{ config.theme.cms_name }}</a>
   {%- endblock %}
 

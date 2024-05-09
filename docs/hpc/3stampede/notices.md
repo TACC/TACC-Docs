@@ -1,13 +1,14 @@
 # Stampede3 User Guide 
-*Last update: May 6, 2024*
+*Last update: May 8, 2024*
 
 ## [Notices](#notices) { #notices }
 
 *This user guide is in progress and will be updated as the system is configured.*
 
-* Attention VASP Users: DO NOT run VASP using Stampede3's SPR nodes!  TACC staff has noticed many VASP jobs causing issues on the SPR nodes and impacting overall system stability and performance.  Please run your VASP jobs using either the [SKX](../../hpc/stampede3#table3) or [ICX](../../hpc/stampede3#table4) nodes.  See [Running VASP Jobs](../../software/vasp/#running) for more information.
+* The Ponte Vecchio nodes are now available via the [`pvc` queue](#queues).  Jobs in this queue will be charged at a rate of 4 SUs per node-hour. (05/08/2024)
+* The new Sapphire Rapids nodes are now available via the [`spr` queue](#queues).  Jobs in this queue will be charged at a rate of 3 SUs per node-hour. (05/07/2024)
 
-* The new Sapphire Rapids nodes are now available via the [`spr` queue](#queues).  These nodes are still in the early-user stage and jobs in this queue will not be charged to your allocations. (04/19/2024)
+* Attention VASP Users: DO NOT run VASP using Stampede3's SPR nodes!  TACC staff has noticed many VASP jobs causing issues on the SPR nodes and impacting overall system stability and performance.  Please run your VASP jobs using either the [SKX](../../hpc/stampede3#table3) or [ICX](../../hpc/stampede3#table4) nodes.  See [Running VASP Jobs](../../software/vasp/#running) for more information.  (05/06/2024)
 
 * TACC is now charging SUs against your balance for jobs run in the `skx-dev`, `skx`, and `icx` [queues](#queues) on Stampede3. The charge rates will be 1SU per node-hour for the `skx` queues and 1.67SUs per node-hour for the `icx` queue.  (04/08/2024)
 
@@ -19,7 +20,6 @@
 	February - mid April 2024 - Early user period for Stampede3 - **Available now**    
 	late April 2024 - Stampede3 in full production   
 
-* Stampede3's Globus endpoint is now active. (02/15/2024)
 
 ## [Migrating Data](#migrating) { #migrating }
 
