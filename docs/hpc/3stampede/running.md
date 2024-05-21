@@ -40,26 +40,33 @@ In your job script you (1) use `#SBATCH` directives to request computing resourc
 
 Your job will run in the environment it inherits at submission time; this environment includes the modules you have loaded and the current working directory. In most cases you should run your applications(s) after loading the same modules that you used to build them. You can of course use your job submission script to modify this environment by defining new environment variables; changing the values of existing environment variables; loading or unloading modules; changing directory; or specifying relative or absolute paths to files. **Do not** use the Slurm `--export` option to manage your job's environment: doing so can interfere with the way the system propagates the inherited environment.
 
-The Common `sbatch` Options table below describes some of the most common `sbatch` command options. Slurm directives begin with `#SBATCH`; most have a short form (e.g. `-N`) and a long form (e.g. `--nodes`). You can pass options to `sbatch` using either the command line or job script; most users find that the job script is the easier approach. The first line of your job script must specify the interpreter that will parse non-Slurm commands; in most cases `#!/bin/bash` or `#!/bin/csh` is the right choice. Avoid `#!/bin/sh` (its startup behavior can lead to subtle problems on Stampede3), and do not include comments or any other characters on this first line. All `#SBATCH` directives must precede all shell commands. Note also that certain `#SBATCH` options or combinations of options are mandatory, while others are not available on Stampede3.
+[Table 8.](#table8) below describes some of the most common `sbatch` command options. Slurm directives begin with `#SBATCH`; most have a short form (e.g. `-N`) and a long form (e.g. `--nodes`). You can pass options to `sbatch` using either the command line or job script; most users find that the job script is the easier approach. The first line of your job script must specify the interpreter that will parse non-Slurm commands; in most cases `#!/bin/bash` or `#!/bin/csh` is the right choice. Avoid `#!/bin/sh` (its startup behavior can lead to subtle problems on Stampede3), and do not include comments or any other characters on this first line. All `#SBATCH` directives must precede all shell commands. Note also that certain `#SBATCH` options or combinations of options are mandatory, while others are not available on Stampede3.
 
-#### [Table 8. Common `sbatch` Options](#table8)
+By default, Slurm writes all console output to a file named "`slurm-%j.out`", where `%j` is the numerical job ID. To specify a different filename use the `-o` option. To save `stdout` (standard out) and `stderr` (standard error) to separate files, specify both `-o` and `-e` options.
+
+!!! tip
+	The maximum runtime for any individual job is 48 hours.  However, if you have good checkpointing implemented, you can easily chain jobs such that the outputs of one job are the inputs of the next, effectively running indefinitely for as long as needed.  See Slurm's `-d` option.
+
+#### [Table 8. Common `sbatch` Options](#table8) { #table8 }
 
 Option | Argument | Comments
 --- | --- | ---
-`-p`  | queue_name | Submits to queue (partition) designated by queue_name
-`-J`  | job_name   | Job Name
-`-N`  | total_nodes | Required. Define the resources you need by specifying either:<br>(1) `-N` and `-n`; or<br>(2) `-N` and `-ntasks-per-node`.
-`-n`  | total_tasks | This is total MPI tasks in this job. See `-N` above for a good way to use this option. When using this option in a non-MPI job, it is usually best to set it to the same value as `-N`.
-`-ntasks-per-node`<br>or<br>`-tasks-per-node` | tasks_per_node | This is MPI tasks per node. See `-N` above for a good way to use this option. When using this option in a non-MPI job, it is usually best to set `-ntasks-per-node` to 1.
-`-t`  | hh:mm:ss | Required. Wall clock time for job.
-`-mail-user=` | email_address | Specify the email address to use for notifications. Use with the `-mail-type=` flag below.
-`-mail-type=` | begin, end, fail, or all | Specify when user notifications are to be sent (one option per line).
-`-o`  | output_file | Direct job standard output to output_file (without `-e` option error goes to this file)
-`-e`  | error_file | Direct job error output to error_file
-`-d=` | afterok:jobid | Specifies a dependency: this run will start only after the specified job (jobid) successfully finishes
-`-A`  | projectid | Charge job to the specified project/allocation number. This option is only necessary for logins associated with multiple projects.
-`-a`<br>or<br>`-array` | N/A | Not available. Use the launcher module for parameter sweeps and other collections of related serial jobs.
-`-mem`  | N/A | Not available. If you attempt to use this option, the scheduler will not accept your job.
+`-A`  | *projectid* | Charge job to the specified project/allocation number. This option is only necessary for logins associated with multiple projects.
+`-a`<br>or<br>`-array` | N/A | Not available. See tip below.
+`-d=` | afterok:*jobid* | Specifies a dependency: this run will start only after the specified job (jobid) successfully finishes
 `-export=` | N/A | Avoid this option on Stampede3. Using it is rarely necessary and can interfere with the way the system propagates your environment.
+`-p`  | *queue_name* | Submits to queue (partition) designated by queue_name
+`-J`  | *job_name*   | Job Name
+`-N`  | *total_nodes* | Required. Define the resources you need by specifying either:<br>(1) `-N` and `-n`; or<br>(2) `-N` and `-ntasks-per-node`.
+`-n`  | *total_tasks* | This is total MPI tasks in this job. See `-N` above for a good way to use this option. When using this option in a non-MPI job, it is usually best to set it to the same value as `-N`.
+`-ntasks-per-node`<br>or<br>`-tasks-per-node` | tasks_per_node | This is MPI tasks per node. See `-N` above for a good way to use this option. When using this option in a non-MPI job, it is usually best to set `-ntasks-per-node` to 1.
+`-t`  | *hh:mm:ss* | Required. Wall clock time for job.
+`-mail-type=` | `begin`, `end`, `fail`, or `all` | Specify when user notifications are to be sent (one option per line).
+`-mail-user=` | *email_address* | Specify the email address to use for notifications. Use with the `-mail-type=` flag above.
+`-o`  | *output_file* | Direct job standard output to output_file (without `-e` option error goes to this file)
+`-e`  | *error_file* | Direct job error output to error_file
+`-mem`  | N/A | Not available. If you attempt to use this option, the scheduler will not accept your job.
 
-By default, Slurm writes all console output to a file named "`slurm-%j.out`", where `%j` is the numerical job ID. To specify a different filename use the `-o` option. To save `stdout` (standard out) and `stderr` (standard error) to separate files, specify both `-o` and `-e` options.
+!!!tip
+	TACC does not support Slurm's `-array` option.  Instead, use TACC's [PyLauncher](../../software/pylauncher) utility for parameter sweeps and other collections of related serial jobs.
+

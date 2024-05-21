@@ -12,6 +12,7 @@ S3_OBJS	=	\
 	jobmanagement.md \
 	programming.md \
 	ml.md \
+	python.md \
 	../../include/stampede3-help.md 
 #	vis.md \
 #	refs.md

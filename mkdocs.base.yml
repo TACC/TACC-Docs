@@ -1,0 +1,80 @@
+theme:
+    name: readthedocs
+    logo: /img/tacc-logo-with-words.svg
+    nav_redirects: [] # TACC Feature
+    collapse_navigation: false
+    highlightjs: true
+    hljs_languages:
+        - bash
+        - ruby
+        - plaintext
+        # for examples
+        - shell
+        - nginx
+        - apache
+        - xml
+        - applescript
+    hljs_aliases: # TACC Feature
+        - name: cmd-line
+          lang: bash
+        - name: job-script
+          lang: bash
+        - name: syntax
+          lang: plaintext
+    custom_dir: themes/tacc-readthedocs
+    # These must be modules
+    # SEE: /themes/readthedocs/main.html @ "block scripts"
+    tacc_javascript:
+        - js/core/modules/setTargetForExternalLinks.js
+        - js/core/modules/styleLinksOutsideMainContent.js
+        - js/core/modules/swapImgSvgWithRawSvg.js
+        - js/core/modules/removeThemeClasses.js
+        - js/core/modules/changeNavMarkup.js
+
+extra_css:
+    - css/core/bootstrap.css
+    - css/core/core-styles.css
+    - css/core/tacc-docs.css
+
+# To load custom global JavaScript (not recommended)
+# FAQ: Use JS modules when possible (see theme.tacc_javascript)
+extra_javascript:
+    - js/core/autoScrollNav.js
+    - js/core/addPageId.js
+    - js/core/redirectNavLinks.js
+
+# Python-Markdown extensions
+# https://python-markdown.github.io/extensions/
+markdown_extensions:
+  - footnotes
+  - def_list
+  - admonition
+  - attr_list
+  - abbr
+  # Enabled by MkDocs by default
+  # https://github.com/mkdocs/mkdocs/blob/1.4.2/docs/user-guide/configuration.md#markdown_extensions
+  # - meta
+  # - toc
+  # - tables
+  # - fenced_code
+  # Extensions from PyMdown
+  # https://facelessuser.github.io/pymdown-extensions
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - pymdownx.saneheaders
+  - pymdownx.details
+  - pymdownx.blocks.tab
+    # There is an alternative style that supports experimental mobile UX
+    # SEE: https://facelessuser.github.io/pymdown-extensions/extensions/tabbed/#alternate-style
+  - pymdownx.blocks.html
+  # FAQ: The `pymdownx.highlight` is useful only if Pygments is installed
+  #      because Pygments would offer:
+  #      - build-time syntax highlight markup
+  #      - custom language tags and formatters
+  # WARNING: Installing Pygments causes MkDocs build error
+  # - pymdownx.highlight
+  #     use_pygments: true
+
+plugins:
+  - search
+  - macros # allows {% include ... %} (and macros)
