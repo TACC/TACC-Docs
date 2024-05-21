@@ -31,6 +31,8 @@ jobs:
         run: |
           if [ -z "$EVENT_SHA" ]; then SHORT_SHA=${GITHUB_SHA::8}; else SHORT_SHA=${EVENT_SHA::8}; fi
           echo ::set-output name=sha_short::${SHORT_SHA}
+          VERSION=`git describe --exact-match --tags`
+          echo ::set-output name=version::${VERSION}
           BRANCH_SHORT=`git symbolic-ref --short HEAD | sed 's/[^[:alnum:]\.\_\-]/-/g'`
           echo ::set-output name=branch_short::${BRANCH_SHORT}
         env:
@@ -38,9 +40,11 @@ jobs:
       - name: Print vars
         run: |
           echo $SHORTSHA
+          echo $VERSION
           echo $BRANCH_SHORT
         env:
           SHORTSHA: ${{ steps.vars.outputs.sha_short }}
+          VERSION: ${{ steps.vars.outputs.version }}
           BRANCH_SHORT: ${{ steps.vars.outputs.branch_short }}
       -
         name: Login to DockerHub
@@ -53,7 +57,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: taccwma/tacc-docs:latest,taccwma/tacc-docs:${{ steps.vars.outputs.sha_short }},taccwma/tacc-docs:${{ steps.vars.outputs.branch_short }}
+          tags: taccwma/tacc-docs:latest,taccwma/tacc-docs:${{ steps.vars.outputs.sha_short }},taccwma/tacc-docs:${{ steps.vars.outputs.version }},taccwma/tacc-docs:${{ steps.vars.outputs.branch_short }}
       -
         name: Post build status in slack
         id: slack
