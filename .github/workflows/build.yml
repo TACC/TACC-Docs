@@ -34,7 +34,7 @@ jobs:
           if [ -z "$EVENT_SHA" ]; then SHORT_SHA=${GITHUB_SHA::8}; else SHORT_SHA=${EVENT_SHA::8}; fi
           echo ::set-output name=sha_short::${SHORT_SHA}
           VERSION=$(git describe --exact-match --tags 2>/dev/null || true)
-          if [ -n "$VERSION" ]; then VERSION="noversion"; fi
+          if [ -z "$VERSION" ]; then VERSION="noversion"; fi
           echo ::set-output name=version::${VERSION}
           BRANCH_SHORT=`git symbolic-ref --short HEAD | sed 's/[^[:alnum:]\.\_\-]/-/g'`
           echo ::set-output name=branch_short::${BRANCH_SHORT}
