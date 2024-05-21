@@ -1269,7 +1269,7 @@ This section of the user guide does nothing more than introduce the big ideas wi
 
 #### [Intel Compilers](#building-basics-intel) { #building-basics-intel }
 
-Intel is the recommended and default compiler suite on Frontera. Each Intel module also gives you direct access to `mkl` without loading an `mkl` module; see [Intel MKL](#building-mkl) for more information. Here are simple examples that use the Intel compiler to build an executable from source code:
+Intel is the recommended and default compiler suite on Frontera. Each Intel module also gives you direct access to `mkl` without loading an `mkl` module; see [Intel MKL](#mkl) for more information. Here are simple examples that use the Intel compiler to build an executable from source code:
 
 
 Compiling a code that uses OpenMP would look like this:

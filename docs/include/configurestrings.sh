@@ -77,7 +77,7 @@ then
 
 	sed	-e "s/MACHINENAME/$machinename/g" \
 		-e "s/TACCINFOPATH/$taccinfopath/g" < jobaccountingsrc.md > $jobaccountingoutputfile
-	sed	-e "s/HWTHREADS/$hwthreads/g" < mklsrc.md > $mkloutputfile
+	#sed	-e "s/HWTHREADS/$hwthreads/g" < mklsrc.md > $mkloutputfile
 	sed	-e "s/MACHINENAME/$machinename/g" < helpsrc.md > $helpoutputfile
 	# sed	-e "s/MACHINENAME/$machinename/g" \
 	# 	-e "s/STRIPING/$striping/g"  < conductsrc.md > $conductoutputfile
