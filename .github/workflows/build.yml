@@ -31,7 +31,7 @@ jobs:
         run: |
           if [ -z "$EVENT_SHA" ]; then SHORT_SHA=${GITHUB_SHA::8}; else SHORT_SHA=${EVENT_SHA::8}; fi
           echo ::set-output name=sha_short::${SHORT_SHA}
-          SHORT_REF=`git describe --exact-match --tags 2>/dev/null || git symbolic-ref --short HEAD | sed 's/[^[:alnum:]\.\_\-]/-/g`
+          SHORT_REF=`git describe --exact-match --tags 2>/dev/null || git symbolic-ref --short HEAD | sed 's/[^[:alnum:]\.\_\-]/-/g'`
           echo ::set-output name=ref_short::${SHORT_REF}
         env:
           EVENT_SHA: ${{ github.event.client_payload.sha }}
