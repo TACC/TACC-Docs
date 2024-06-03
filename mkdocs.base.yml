@@ -58,7 +58,7 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.inlinehilite
   - pymdownx.saneheaders
-  - pymdownx.details
+  - pymdownx.blocks.details
   - pymdownx.blocks.tab
     # There is an alternative style that supports experimental mobile UX
     # SEE: https://facelessuser.github.io/pymdown-extensions/extensions/tabbed/#alternate-style

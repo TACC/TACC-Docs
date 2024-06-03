@@ -106,7 +106,7 @@ You can now access the files on your desktop/laptop via Globus.
 You can also click on Panels to look at two endpoints at the same time. In the other transfer endpoint, search for "TACC" and select the appropriate allocation storage system (Frontera, Stampede2, Corral, Ranch, etcetera) for the desired data.
 
 <!--  See how this is rendered in cep.tacc. 
-??? "Examples:"
+/// details | Examples:
 
     UTRC Portal
     :   Example A
@@ -130,6 +130,8 @@ You can also click on Panels to look at two endpoints at the same time. In the o
             :   Shared Workspaces
         :   System
             :   Corral
+
+///
 -->
 
 ![](imgs/gdt-step-2f-select-system.png) 
