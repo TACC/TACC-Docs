@@ -6,14 +6,10 @@ theme:
     highlightjs: true
     hljs_languages:
         - bash
-        - ruby
         - plaintext
-        # for examples
-        - shell
-        - nginx
-        - apache
-        - xml
-        - applescript
+        # for known clients
+        - python # (DesignSafe/DS-User-Guide)
+        - json # (DesignSafe/DS-User-Guide)
     hljs_aliases: # TACC Feature
         - name: cmd-line
           lang: bash
@@ -62,7 +58,7 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.inlinehilite
   - pymdownx.saneheaders
-  - pymdownx.details
+  - pymdownx.blocks.details
   - pymdownx.blocks.tab
     # There is an alternative style that supports experimental mobile UX
     # SEE: https://facelessuser.github.io/pymdown-extensions/extensions/tabbed/#alternate-style

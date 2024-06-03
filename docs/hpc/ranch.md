@@ -1,9 +1,9 @@
 # Ranch User Guide
-*Last update: June 12, 2023*
+*Last update: May 22, 2024*
 
 ## [Notices](#notices) { #notices }
 
-**The XSEDE project concluded formal operations as an NSF-funded project on August 31, 2022**.  Similar services are now operated through NSF's follow-on program, Advanced Cyberinfrastructure Coordination Ecosystem: Services &amp; Support, or ACCESS.  Find out more at the [ACCESS website](http://access-ci.org). (09/01/2022)
+<!-- **The XSEDE project concluded formal operations as an NSF-funded project on August 31, 2022**.  Similar services are now operated through NSF's follow-on program, Advanced Cyberinfrastructure Coordination Ecosystem: Services &amp; Support, or ACCESS.  Find out more at the [ACCESS website](http://access-ci.org). (09/01/2022) -->
 
 
 ## [Introduction](#intro) { #intro }
@@ -12,12 +12,12 @@ TACC's High Performance Computing (HPC) systems are used primarily for scientifi
 
 Ranch (**`ranch.tacc.utexas.edu`**), is a Quantum StorNext-based system, with a DDN- provided front-end disk system (30PB raw), and a 5000 slot Quantum Scalar i6000 library for its back-end tape archive.
 
-Ranch is an allocated resource, meaning that Ranch is available only to users with an allocation on one of TACC's computational resources such as [Frontera](../frontera), [Stampede2](../stampede2), or [Lonestar6](../lonestar6). ACCESS PIs will be prompted automatically for the companion storage allocation as part of the proposal submission process and should include a justification of the storage needs in their proposal.  UT and UT system PIs should also make a request and justify the storage requested when applying for a Ranch shared "Project" (non-user) allocation. The default allocation on Ranch for users is 2TB. To request a [shared Ranch project space](#projects) for your team’s use, please submit a TACC user portal ticket.
+Ranch is an allocated resource, meaning that Ranch is available only to users with an allocation on one of TACC's computational resources such as [Frontera](../frontera), [Stampede3](../stampede3), or [Lonestar6](../lonestar6). ACCESS PIs will be prompted automatically for the companion storage allocation as part of the proposal submission process and should include a justification of the storage needs in their proposal.  UT and UT system PIs should also make a request and justify the storage requested when applying for a Ranch shared "Project" (non-user) allocation. The default allocation on Ranch for users is 2TB. To request a [shared Ranch project space](#projects) for your team’s use, please submit a TACC user portal ticket.
 
 
 ### [Intended Use](#intro-use) { #intro-use }
 
-**Ranch is fundamentally implemented using long-term <u>tape</u> storage and as such is designed for archiving data that is in a state wherein the data will not likely change, and will not likely need to be accessed very often.** Obviously, Ranch is to be used only for work-related data. In addition, and most importantly, Ranch is not meant for active data and is never to be used as a replication solution for your `/scratch` directory. Ranch is also not suitable for system backups, due to the large number of small files that backups inevitably generate. 
+**Ranch is fundamentally implemented using long-term *tape* storage and as such is designed for archiving data that is in a state wherein the data will not likely change, and will not likely need to be accessed very often.** Obviously, Ranch is to be used only for work-related data. In addition, and most importantly, Ranch is not meant for active data and is never to be used as a replication solution for your `/scratch` directory. Ranch is also not suitable for system backups, due to the large number of small files that backups inevitably generate. 
 
 **Ranch is a single-copy archival system.** Ranch user data is neither backed up nor replicated. This means that Ranch contains only a single, active, instance of user data. While lost data due to tape damage or other system failure is rare, please keep this possibility in mind when formulating your data management plans. If you have irreplaceable data and would like a different level of service, let us know via the ticketing system, and we may be able to help you find a solution.
 
@@ -35,7 +35,7 @@ Previously, the Ranch system was based on Oracle's HSM software, with two SL8500
 Direct login via Secure Shell's `ssh` command to Ranch is allowed so you can create directories and manage files. The Ranch archive file systems cannot be mounted on any remote system.
 
 ```cmd-line
-stampede2$ ssh taccusername@ranch.tacc.utexas.edu
+stampede3$ ssh taccusername@ranch.tacc.utexas.edu
 ```
 
 ### [Ranch Environment Variables](#access-envvars) { #access-envvars }
@@ -52,7 +52,7 @@ After over a decade of operation and servicing more than 60,000 user accounts, w
 
 When organizing your data keep in mind that reducing file count is at least as important as reducing file space. Ranch performs best manipulating large files and performance will suffer severely if Ranch is kept busy working against many small files rather than against a few large files. 
 
-For this reason, users **must** bundle up their small-file-filled directories into one or more single large files.  This bundling is best done on the computational resource ***prior*** to migration of the data to Ranch. 
+For this reason, users **must** bundle up their small-file-filled directories into one or more single large files.  This bundling is best done on the computational resource *prior* to migration of the data to Ranch. 
 
 The best way to bundle files is to use the UNIX `tar` or `gtar` commands to create single large files typically called "tarfiles". We include several examples below.  Consult the `tar` or `gtar` man pages for detailed information on these commands.
 
@@ -66,9 +66,9 @@ The new Quantum-based environment is designed to meet the demand of retrieving m
 
 ### [Ranch Quotas](#organizing-quotas)  { #organizing-quotas }
 
-!!! note
-	<b>File Count Quota:</b> Users are limited to 50,000 files in their `$HOME` directories.  
-	<b>File Space Quota:</b> Users are limited to 2 Terabytes (TB) of disk space in their `$HOME` directories.</p>
+!!! important
+	**File Count Quota**: Users are limited to 50,000 files in their `$HOME` directories.  
+	**File Space Quota**: Users are limited to 2 Terabytes (TB) of disk space in their `$HOME` directories.
 
 
 You can display your current Ranch on-disk **file space usage** by executing the following UNIX command while the current directory is either the user or Project directory:
@@ -130,7 +130,7 @@ Ranch also has two endpoints, one running Globus gridftp v5.4 software available
 The simplest way to transfer files to and from Ranch is to use the Secure Shell `scp` command:
 
 ```cmd-line
-stampede2$ scp myfile ${ARCHIVER}:${ARCHIVE}/myfilepath
+stampede3$ scp myfile ${ARCHIVER}:${ARCHIVE}/myfilepath
 ```
 
 where `myfile` is the name of the file to copy and `myfilepath` is either the new name you want the file to have in Ranch, or is a directory into which you want to place `myfile`.
@@ -142,7 +142,7 @@ Alternatively, sometimes you can actually do this in one step as part of the tra
 To use `tar`, `ssh`, and `cat` to create a good tarfile in Ranch from a source directory on your compute resource, all in one command line:
 
 ```cmd-line
-stampede2$ tar cf - dirname/ | ssh ${ARCHIVER} "cat > ${ARCHIVE}/dirname.tar"
+stampede3$ tar cf - dirname/ | ssh ${ARCHIVER} "cat > ${ARCHIVE}/dirname.tar"
 ```
 
 where `dirname/` is the path to the directory you want to archive, and `dirname.tar` is the name of the tarfile to be created on Ranch.
@@ -152,7 +152,7 @@ To be very UNIX specific about what the command above is doing:
 * `tar` creates a stream of bytes in `tar` format of the directory "dirname/" (recursively) and writes that to its standard output.  
 * The pipe (`|`) reads that stream of bytes and writes that stream to the `ssh` command which has started the `cat` command over on a Ranch login node.  
 * The `cat` command reads its standard input, which is the stream of `tar` formatted bytes, and then redirects that stream of bytes to its standard output via the `>` symbol creating or overwriting the file `dirname.tar`.  
-* When the `tar` command is complete and exits, the stream of bytes will stop, and `cat` will gracefully close the file `dirname.tar`, `ssh` will exit, and you will be returned to the command line on stampede2.
+* When the `tar` command is complete and exits, the stream of bytes will stop, and `cat` will gracefully close the file `dirname.tar`, `ssh` will exit, and you will be returned to the command line on Stampede3.
 
 And in one simple command line, you have created a single tar file, `dirname.tar`, containing the entire data structure of the directory dirname/ over on Ranch, and ideally that tarfile is quite large as per the recommendations above.
 
@@ -164,16 +164,16 @@ No such file or directory
 
 The following command-line examples also demonstrate how to transfer files to and from Ranch using `scp`, and renaming in the process:
 
-* Copy a tarfile from Stampede2 to Ranch:
+* Copy a tarfile from Stampede3 to Ranch:
 
 	```cmd-line
-	stampede2$ scp data_2020.tar ${ARCHIVER}:${ARCHIVE}/final_2020.tar
+	stampede3$ scp data_2020.tar ${ARCHIVER}:${ARCHIVE}/final_2020.tar
 	```
 
 * Copy a tarfile from Ranch to my computer, retaining the file modification time
 
 	```cmd-line
-	stampede2$ scp -p ${ARCHIVER}:${ARCHIVE}/final_data_2017.tar ./ranch_data_2017.tar
+	stampede3$ scp -p ${ARCHIVER}:${ARCHIVE}/final_data_2017.tar ./ranch_data_2017.tar
 	```
 
 
@@ -201,16 +201,16 @@ Again, use the `du -sh .` and `find . -type f | wc` commands to see how much dat
 1. Archive a large directory with `tar`, send the `tar` data stream to Ranch, splitting it into optimally sized tarfiles upon its arrival on the Ranch node:
 
 	```cmd-line
-	stampede2$ tar cf - directory/ | ssh ranch.tacc.utexas.edu \
+	stampede3$ tar cf - directory/ | ssh ranch.tacc.utexas.edu \
 		'split -b 300G - files.tar.'
 	```
 
-	Ideally, you would create, then split large, output files, or `tar` files, on the Stampede2 side, then move them to Ranch.  Large files, of more than a few TB in size, should be split into chunks, ideally between 300GB and 2TB in size.
+	Ideally, you would create, then split large, output files, or `tar` files, on the Stampede3 side, then move them to Ranch.  Large files, of more than a few TB in size, should be split into chunks, ideally between 300GB and 2TB in size.
 
-1. Use the `split` command on Stampede2 to accomplish this:
+1. Use the `split` command on Stampede3 to accomplish this:
 
 	```cmd-line
-	stampede2$ split -b 300G bigfile.tar bigfile_tar_part_
+	stampede3$ split -b 300G bigfile.tar bigfile_tar_part_
 	```
 
 	The above example will create several 300GB files, with the filenames: `bigfile_tar_part_aa`, `bigfile_tar_part_ab`, `bigfile_tar_part_ac`, etc.
@@ -218,15 +218,15 @@ Again, use the `du -sh .` and `find . -type f | wc` commands to see how much dat
 1. Then use `scp` to copy the files into Ranch:
 
 	```cmd-line
-	stampede2$ scp -p bigfile_tar_part_* ${ARCHIVER}:${ARCHIVE}/
+	stampede3$ scp -p bigfile_tar_part_* ${ARCHIVER}:${ARCHIVE}/
 	```
 
-1. After ensuring that you are satisfied with the transfer, and the viability of the data over on Ranch, the split parts of the original data could then be carefully deleted on stampede2
+1. After ensuring that you are satisfied with the transfer, and the viability of the data over on Ranch, the split parts of the original data could then be carefully deleted on Stampede3:
 
 	The split parts of a file can be always be joined together again with the `cat` command.  See the `split` man page for more options.
 
 	```cmd-line
-	stampede2$ cat bigfile_tar_part_?? > bigfile.tar
+	stampede3$ cat bigfile_tar_part_?? > bigfile.tar
 	```
 
 1. A subsequent `tar tvf bigfile.tar` should be used immediately to ensure `bigfile.tar` contains all the data you expect, and `tar` generates no errors.
@@ -234,7 +234,7 @@ Again, use the `du -sh .` and `find . -type f | wc` commands to see how much dat
 	Or, if you don’t want to wait to actually create `bigfile.tar`, you just want to validate your data, just throw the stream of bytes from the `cat` at `tar`, and you’ll achieve the same result without actually putting anything new on disk:
 
 	```cmd-line
-	stampede2$ cat bigfile_tar_part_?? | tar tvf -
+	stampede3$ cat bigfile_tar_part_?? | tar tvf -
 	```
 
 1. If you like what you see, and `tar` returns no errors, you will have validated you have good data after having split it into manageable pieces.
@@ -254,7 +254,7 @@ Again, use the `du -sh .` and `find . -type f | wc` commands to see how much dat
 
 ## [References](#refs) { #refs }
 
-* [Stampede2 User Guide](../stampede2)
+* [Stampede3 User Guide](../stampede3)
 
 {% include 'aliases.md' %}
 

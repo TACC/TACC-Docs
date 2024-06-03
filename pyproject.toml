@@ -8,7 +8,7 @@ authors = ["rstijerina <r.sal.tijerina@gmail.com>"]
 [tool.poetry.dependencies]
 python = ">=3.10,<3.13"
 mkdocs = "~1.4.2"
-pymdown-extensions = "^10.0"
+pymdown-extensions = "^10.4.0"
 mkdocs-exclude-search = "^0.6.5"
 # for {% include-markdown '…' %} (rel. paths in included files without warnings)
 mkdocs-include-markdown-plugin = "^5.1.0"

@@ -13,7 +13,7 @@ Any user with an allocation on one of TACC's HPC Systems, e.g. Frontera, Stamped
 
 ## [Accessing the Portal](#access) { #access }
 
-The [TACC Analysis Portal][TACCANALYSISPORTAL] is available to users with an allocation on any TACC HPC resource. Log in to TAP using the same username and password that you use to access the TACC User Portal. Once you've logged in you'll be directed to the Home Screen where you can being scheduling jobs.
+The [TACC Analysis Portal][TACCANALYSISPORTAL] is available to users with an allocation on any TACC HPC resource. Log in to TAP using the same username and password that you use to access the TACC User Portal. Once you've logged in you'll be directed to the Home Screen where you can begin scheduling jobs.
 
 <figure id="figure1"><img alt="" src="../imgs/1TAP.png"><br />
 <figcaption>Figure 1. TAP Home Screen</figcaption></figure>

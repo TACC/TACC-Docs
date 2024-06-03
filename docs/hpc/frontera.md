@@ -1407,7 +1407,9 @@ It's best to avoid building with `-xHost` (a flag that means "optimize for the a
 
 Also, you should not use the `-fast` flag for the Intel compiler. This flag sets the following options:
 
-<p class="syntax">-ipo -O3 -no-prec-div -static -fp-model fast=2 -xHost</p>
+```
+-ipo -O3 -no-prec-div -static -fp-model fast=2 -xHost
+```
 
 Frontera software libraries, including the MPI libraries, are installed as shared libraries in most cases. The `-static` flag included in `-fast` will cause the compile to fail at the link stage. If you’d like to use the other flags, you’ll have to include each option individually.
 
