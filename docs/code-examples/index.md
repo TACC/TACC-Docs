@@ -166,6 +166,22 @@ Themes
 
 ### Examples
 
+`plaintext`
+```plaintext
+    #!/bin/bash
+    #SBATCH -J myjob              # job name
+    #SBATCH -e myjob.%j.err       # error file name
+    #SBATCH -o myjob.%j.out       # output file name
+    #SBATCH -N 2                  # request 2 nodes
+    #SBATCH -n 96                 # request 2x48=96 MPI tasks
+    #SBATCH -p skx-normal         # designate queue
+    #SBATCH -t 24:00:00           # designate max run time
+    #SBATCH -A myproject          # charge job to myproject
+    module load gromacs/2022.1
+    
+    ibrun gmx_mpi mdrun -s topol.tpr -o traj.trr -c confout.gro -e ener.edr -g md.log
+```
+
 `bash`
 ```bash
     #!/bin/bash
@@ -182,36 +198,20 @@ Themes
     ibrun gmx_mpi mdrun -s topol.tpr -o traj.trr -c confout.gro -e ener.edr -g md.log
 ```
 
-`ruby`
-```ruby
-    #!/bin/bash
-    #SBATCH -J myjob              # job name
-    #SBATCH -e myjob.%j.err       # error file name
-    #SBATCH -o myjob.%j.out       # output file name
-    #SBATCH -N 2                  # request 2 nodes
-    #SBATCH -n 96                 # request 2x48=96 MPI tasks
-    #SBATCH -p skx-normal         # designate queue
-    #SBATCH -t 24:00:00           # designate max run time
-    #SBATCH -A myproject          # charge job to myproject
-    module load gromacs/2022.1
-    
-    ibrun gmx_mpi mdrun -s topol.tpr -o traj.trr -c confout.gro -e ener.edr -g md.log
+`json`
+```json
+{
+    "email": "user@gmail.com",
+    "pw": "pass12345"
+}
 ```
 
-`shell`
-```shell
-    #!/bin/bash
-    #SBATCH -J myjob              # job name
-    #SBATCH -e myjob.%j.err       # error file name
-    #SBATCH -o myjob.%j.out       # output file name
-    #SBATCH -N 2                  # request 2 nodes
-    #SBATCH -n 96                 # request 2x48=96 MPI tasks
-    #SBATCH -p skx-normal         # designate queue
-    #SBATCH -t 24:00:00           # designate max run time
-    #SBATCH -A myproject          # charge job to myproject
-    module load gromacs/2022.1
-    
-    ibrun gmx_mpi mdrun -s topol.tpr -o traj.trr -c confout.gro -e ener.edr -g md.log
+`python`
+```python
+import sys
+!{sys.executable} -m pip install click
+
+import click
 ```
 
 `apache`

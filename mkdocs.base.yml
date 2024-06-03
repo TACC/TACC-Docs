@@ -6,14 +6,10 @@ theme:
     highlightjs: true
     hljs_languages:
         - bash
-        - ruby
         - plaintext
-        # for examples
-        - shell
-        - nginx
-        - apache
-        - xml
-        - applescript
+        # for known clients
+        - python # (DesignSafe/DS-User-Guide)
+        - json # (DesignSafe/DS-User-Guide)
     hljs_aliases: # TACC Feature
         - name: cmd-line
           lang: bash
