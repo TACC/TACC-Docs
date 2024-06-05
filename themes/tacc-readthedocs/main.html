@@ -92,6 +92,14 @@
     {# /TACC #}
   {%- endblock %}
 
+  {% block content %}
+    {# TACC: #}{# To wrap page with an id #}{# HELP: Add id to <html> instead #}
+    <div id="tacc-readthedocs">
+      {{ page.content }}
+    </div>
+    {# /TACC #}
+  {% endblock %}
+
   {%- block scripts %}
     <script>var base_url = '{{ base_url }}';</script>
     {# TACC: #}{# To provide specific config data to scripts #}
