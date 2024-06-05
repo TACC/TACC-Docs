@@ -69,11 +69,27 @@
   {%- endblock %}
 
   {%- block site_name %}
-    {{ super() }}
+    {%- if config.theme.logo %}
+      {# TACC: #}{# To provide accessible text (in case <img> becomes <svg>) #}
+      {# FAQ: swapImgSvgWithRawSvg.js does not preserve `title` attribute #}
+      <a href="{{ nav.homepage.url|url }}" title="{{ config.site_name }} ({% trans %}Logo{% endtrans %})">
+      {# /TACC #}
+    {%- else %}
+      <a href="{{ nav.homepage.url|url }}" class="icon icon-home"> {{ config.site_name }}
+    {%- endif %}
+    {%- if config.theme.logo %}
+      {# TACC: #}{# To add site name to accessible text #}
+      <img src="{{ config.theme.logo|url }}" class="logo" alt="{{ config.site_name }} ({% trans %}Logo{% endtrans %})"/>
+      {# /TACC #}
+    {%- endif %}
+    </a>
+
+    {# TACC: #}{# To add a secondary name to the navigation #}
     {%- if config.theme.nav_name %}
     <h1 class="nav-name">{{ config.theme.nav_name }}</h1>
     {%- endif %}
     <a href="{{ config.theme.cms_url }}" class="cms-link">{{ config.theme.cms_name }}</a>
+    {# /TACC #}
   {%- endblock %}
 
   {%- block scripts %}
