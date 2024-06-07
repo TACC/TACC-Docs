@@ -44,5 +44,5 @@ FROM python-base as production
 
 COPY --from=builder-base $PYSETUP_PATH $PYSETUP_PATH
 
-COPY . /code
-WORKDIR /code
+COPY . /docs
+WORKDIR /docs
