@@ -1,101 +1,88 @@
 # TACC Docs
 
-## Local Development Setup
-
-Local development instructions assume the use of Docker.
-
-_You may choose instead to locally develop directly via [MkDocs], in which case you should install Poetry and run `poetry install` before using `mkdocs` commands._
-
-[MkDocs]: https://www.mkdocs.org/
-
-### Prequisites for Running the Docs
-
-#### Via Docker
-
-* Docker v20.10.7 (minimum)
-* Docker Compose v1.29.2 (minimum)
-
-The Docs can be run using [Docker][1] and [Docker Compose][2]. You will
-need both Docker and Docker Compose pre-installed on the system you wish to run the Docs
-on.
-
-If you are on a Mac or a Windows machine, the recommended method is to install
-[Docker Desktop](https://www.docker.com/products/docker-desktop), which will install both Docker and Docker Compose as well as Docker
-Machine, which is required to run Docker on Mac/Windows hosts.
-
-#### Without Docker
-
-* Python v3.11 (minimum)
-* Poetry v1.4.2 (minimum)
-
-Verify both versions in [Dockerfile] at `python:` and `POETRY_VERSION`.
-
-
-### Running the Docs
-
-**Via Docker**:
-
-0. Be inside the TACC-Docs repo folder, wherever you cloned it e.g. `cd ./TACC-Docs`.
-1. [Create and run][docker-compose-up] the CMS and database containers:
-
-    ```bash
-    docker-compose up
-    ```
-
-[docker-compose-up]: https://docs.docker.com/compose/reference/up/
-
-**Without Docker**:
-
-0. Be inside the TACC-Docs repo folder, wherever you cloned it e.g. `cd ./TACC-Docs`.
-1. Create and/or Activate a [Python venv](https://docs.python.org/3/library/venv.html).
-2. Confirm Python and Poetry versions match or exceed those in [the `Dockerfile`][Dockerfile].
-3. Install dependencies:
-    * `poetry install`
-4. Build and/or Serve the website:
-    * **either** `mkdocs build`\
-        and you serve the files
-    * **or** `mkdocs serve`
-
-## Linting and Formatting Conventions
-
-Not standardized. See [(internal) Formatting & Linting](https://confluence.tacc.utexas.edu/x/HoBGCw).
-
-
-## Automatic Builds
-
-Automatic builds (not deploys) should occur on pushes to any branch.[^1]
-
-
-## Automatic Deployment
-
-Automatic deploys should occur after an automatic build on the `main` branch.[^1]
-
+TACC [MkDocs](https://mkdocs.readthedocs.io/) documentation with **customized** [ReadTheDocs](https://www.mkdocs.org/user-guide/choosing-your-theme/#readthedocs) theme.
 
 ## Contributing
 
-### Development Workflow
-
-We use a modifed version of [GitFlow](https://datasift.github.io/gitflow/IntroducingGitFlow.html) as our development workflow. Our [development site](https://dev.cep.tacc.utexas.edu) (accessible behind the TACC Network) is always up-to-date with `main`, while the [production site](https://prod.cep.tacc.utexas.edu) is built to a hashed commit tag.
-- Feature branches contain major updates, bug fixes, and hot fixes with respective branch prefixes:
-    - `task/` for features and updates
-    - `bug/` for bugfixes
-    - `fix/` for hotfixes
-
-### Best Practices
-
-Sign your commits ([see this link](https://help.github.com/en/github/authenticating-to-github/managing-commit-signature-verification) for help)
+1. [Fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) this repository.\
+    <sup>(unless you are a direct collaborator)</sup>
+2. [Edit](https://docs.github.com/en/repositories/working-with-files/managing-files/editing-files) relevant files that need update.\
+    <sup>([upload images](https://docs.github.com/en/repositories/working-with-files/managing-files/adding-a-file-to-a-repository) as necessary)</sup>
+4. [Commit](https://docs.github.com/en/pull-requests/committing-changes-to-your-project/creating-and-editing-commits/about-commits) your changes.
+5. [Request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) a review.\
+    <sup>(a.k.a. create a "Pull Request")</sup>
+6. [Test](#testing) your changes.\
+    <sup>(if comfortable using a command prompt)</sup>
 
 ### Resources
 
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+* [Markdown syntax (extended)](https://www.markdownguide.org/extended-syntax/) via [MkDocs' Markdown support](https://www.mkdocs.org/user-guide/writing-your-docs/#writing-with-markdown)
+    - plus some[^1] enabled [Python-Markdown extensions](https://python-markdown.github.io/extensions/)
+    - plus some[^1] enabled [PyMdown exensions](https://facelessuser.github.io/pymdown-extensions/#extensions)
 
+[^1]: Which extensions are enabled is tracked by https://github.com/TACC/TACC-Docs/blob/main/mkdocs.base.yml under `markdown_extensions:`.
 
-<!-- Footnotes -->
+## Testing
 
-[^1]: To manually build or deploy, consult [our internal documentation](https://confluence.tacc.utexas.edu/x/uQaSEg).
+- [A. Via Python](#a-via-python)
+- [B. Via Docker](#b-via-docker)
 
-<!-- Link Aliases -->
+### A. Via Python
 
-[1]: https://docs.docker.com/get-docker/
-[2]: https://docs.docker.com/compose/install/
-[Dockerfile]: https://github.com/TACC/TACC-Docs/blob/main/Dockerfile
+> [!NOTE]
+> This solution uses a different theme than https://designsafe-ci.org/user-guide/.
+
+0. Have Python installed.\
+    <sup>Known supported versions are [from 3.10 to 3.12](https://github.com/DesignSafe-CI/DS-User-Guide/blob/6c22d2f/pyproject.toml).</sup>
+1. Navigate into your clone of this repo.
+2. Install dependencies:\
+    <sup>You should only need to do this once, or after a new release.</sup>
+    ```shell
+    pip install poetry
+
+    ```
+3. Isolate dependencies:
+    ```shell
+    poetry shell
+
+    ```
+4. Update & Serve the docs:
+    ```shell
+    poetry install
+    cd user-guide
+    mkdocs serve
+
+    ```
+    <sup>After the `poetry shell` command, you should be in a Poetry-managed environment. Your prompt might be prefixed with the name of the environment.</sup>
+5. Open the website _at the URL echoed by the program_ e.g.
+    [http://127.0.0.1:8000/user-guide/](http://127.0.0.1:8000/user-guide/).
+
+### B. Via Docker
+
+0. Have Docker installed.\
+    <sup>We recommend doing so via [Docker-Desktop](https://www.docker.com/products/docker-desktop).</sup>
+1. Navigate into your clone of this repository.
+2. Start the Docker container to serve the docs.
+    ```shell
+    make build
+    make start
+
+    ```
+3. Open the website at the URL provided e.g.
+    [http://0.0.0.1:8000/user-guide/](http://0.0.0.1:8000/user-guide/).
+
+## Automatic Builds
+
+Automatic builds (not deploys) should occur on pushes to any branch.[^2]
+
+## Automatic Deployment
+
+Automatic deploys should occur after an automatic build on the `main` branch.[^2]
+
+[^2]: To manually build or deploy, consult [our internal documentation](https://tacc-main.atlassian.net/wiki/x/aBhv).
+
+## Releases
+
+All commits to `main` will trigger a docker build and push a new image to `designsafeci/ds-user-guide:latest`.
+
+A Watchtower service will monitor new pushes to this dockerhub repo and pull down new images _on the fly_ to [https://docs.tacc.utexas.edu/](https://docs.tacc.utexas.edu/).
