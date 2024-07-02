@@ -15,7 +15,7 @@ theme:
     # nav_name: Documentation # TACC Feature
 
 nav:
-  - TACC Essentials :
+  - TACC Essentials:
     - Documentation Overview: index.md
     - Getting Started: https://www.tacc.utexas.edu/use-tacc/getting-started/
     - Portal Access: portal.md
@@ -23,17 +23,17 @@ nav:
     - TACC Good Conduct Guide: basics/conduct.md
     - Data Transfer Guide: basics/datatransfer.md
     - Help: basics/help.md
-  - HPC :
+  - HPC User Guides:
     - Chameleon: https://chameleoncloud.readthedocs.io/en/latest
     - Corral: hpc/corral.md
     - Frontera: hpc/frontera.md
     - Lonestar6: hpc/lonestar6.md
     - Jetstream2: https://docs.jetstream-cloud.org
     - Ranch: hpc/ranch.md
-    - Stampede2: hpc/stampede2.md
+#    - Stampede2: hpc/stampede2.md
     - Stampede3: hpc/stampede3.md
     - Stallion: hpc/stallion.md
-  - Software :
+  - Software Packages:
     - ABAQUS: software/abaqus.md
     - AlphaFold : software/alphafold.md
     - ANSYS: software/ansys.md
@@ -54,17 +54,18 @@ nav:
     - TAU: software/tau.md
     - Tensorflow: software/tensorflow.md
     - VASP: software/vasp.md
-  - Tutorials :
+  - TACC Tutorials:
     - Access Control Lists: tutorials/acls.md
     - Bash Quick Start Guide: tutorials/bashstartup.md
     - BLAS/LAPACK: tutorials/blas-lapack.md
+    - Containers at TACC: https://containers-at-tacc.readthedocs.io/en/latest/index.html
     - DDT Debugger: tutorials/ddt.md
     - Managing I/O: tutorials/managingio.md
     - MAP: tutorials/map.md
     - Remote Desktop Access: tutorials/remotedesktopaccess.md
     - Sharing Project Files: tutorials/sharingprojectfiles.md
     - TACC Analysis Portal: tutorials/TAP.md
-#  - Fiddling :
+#  - Fiddling:
 #    - Testing Extensions: testingextensions.md
 #    - Code Examples: code-examples/index.md
 

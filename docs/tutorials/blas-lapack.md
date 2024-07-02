@@ -1,5 +1,5 @@
 # BLAS and LAPACK at TACC
-*Last update: January 20, 2022*
+*Last update: June 12, 2024*
 
 
 ## [Implementations](#blas) { #blas }
@@ -12,10 +12,10 @@ Your makefile may contain `libblas.a` or `-lblas`. Most Linux distributions inde
 
 ### [MKL](#mkl) { #mkl }
 
-Intel's Math Kernal Library (MKL) is a high performance implementation of BLAS/LAPACK and several other packages. MKL is installed on TACC's Frontera, Stampede2 and Lonestar6 resources. See each resource's user guide for detailed information on linking the MKL into your code.
+Intel's Math Kernel Library (MKL) is a high performance implementation of BLAS/LAPACK and several other packages. MKL is installed on TACC's Frontera, Stampede2 and Lonestar6 resources. See each resource's user guide for detailed information on linking the MKL into your code.
 
 * [Frontera](../../hpc/frontera#mkl)
-* [Stampede2](../../hpc/stampede2#mkl)
+* [Stampede3](../../hpc/stampede3#mkl)
 * [Lonestar6](../../hpc/lonestar6#mkl)
 
 In general:
@@ -30,14 +30,13 @@ In general:
 
 		--with-blas-lapack-dir=${TACC_MKL_DIR}
 
-	This variable is automatically defined when using the Intel compiler. If you are compiling with `gcc`, then you must first load the MKL module:
-
-		module load mkl
+	This variable is automatically defined when using the Intel compiler. 
 
 * If you are installing software using `cmake`, add this flag (exact flag may differ by package):
 
 		-D LAPACK_LIBRARIES=${TACC_MKL_DIR}/lib/intel64_lin/libmkl_intel_lp64.so;${TACC_MKL_DIR}/lib/intel64_lin/libmkl_core.so
-	If paths and library names are separately specified:
+
+* If paths and library names are separately specified:
 
 		-D LAPACK_LIBRARY_DIRS:PATH="${TACC_MKL_LIB}"
 		-D LAPACK_LIBRARY_NAMES:STRING="mkl_intel_lp64;mkl_sequential;mkl_core;pthread"

@@ -1,5 +1,5 @@
 # Pylauncher at TACC
-*Last update: April 09, 2024*
+*Last update: June 12, 2024*
 
 ## [What is Pylauncher](#intro) { #intro }
 
@@ -46,8 +46,7 @@ Which defines the `$TACC_PYLAUNCHER_DIR` variable and sets the `$PYTHONPATH` so 
 Your batch script can then invoke python3 on the launcher code:
 
 ```syntax
-mylauncher.py.
-from pylauncher import pylauncher as launcher
+import pylauncher as launcher
 launcher.ClassicLauncher("commandlines")
 ```
 

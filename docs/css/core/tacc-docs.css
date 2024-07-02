@@ -570,7 +570,7 @@ u {
   display: none; /* undo theme.css */
 }
 [data-page-name="index.md"] .wy-nav-content {
-  padding-bottom: 0;
+  padding-bottom: 0; /* undo theme.css */
 }
 
 

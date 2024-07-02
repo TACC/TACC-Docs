@@ -2,6 +2,7 @@
 
 "Last Update" at the top of this document is the date of the most recent change to this document. This revision history is a list of non-trivial updates; it excludes routine items such as corrected typos and minor format changes.
  
+<li> 06/04/24 Stampede2 is decommissioned.  </li>
 <li> 09/14/22 XSEDE project ends. Replace Globus with Grid Community Toolkit. </li>
 <li> 03/07/22 Intel Ice Lake nodes introduced.  New `icx-normal` queue. </li>
 <li> 04/24/18 Changes to Table 1 and Table 5 associated with new `long` queue. </li>

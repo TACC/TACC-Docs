@@ -43,7 +43,7 @@ c123-456$ ibrun ./myprogram    # ibrun uses idev's arguments to properly allocat
 
 ### [One Hybrid (MPI+Threads) Application](#launching-hybrid) { #launching-hybrid }
 
-When launching a single application you generally don't need to worry about affinity: both Intel MPI and MVAPICH2 will distribute and pin tasks and threads in a sensible way.
+When launching a single application you generally don't need to worry about affinity: both Intel MPI and MVAPICH will distribute and pin tasks and threads in a sensible way.
 
 ``` job-script
 export OMP_NUM_THREADS=8    # 8 OpenMP threads per MPI rank

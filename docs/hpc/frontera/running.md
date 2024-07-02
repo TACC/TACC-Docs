@@ -21,6 +21,7 @@ Be sure to request computing resources e.g., number of nodes, number of tasks pe
 <a id="queues">
 ### [Frontera Production Queues](#running-queues)  { #running-queues } 
 
+
 Frontera's Slurm partitions (queues), maximum node limits and charge rates are summarized in the table below. **Queues and limits are subject to change without notice.** Execute `qlimits` on Frontera for real-time information regarding limits on available queues. See [Job Accounting](#job-accounting) to learn how jobs are charged to your allocation.
 
 Frontera's newest queue, `small`, has been created specifically for one and two node jobs. Jobs of one or two nodes that will run for up to 48 hours should be submitted to this new `small` queue. The `normal` queue now has a lower limit of three nodes for all jobs. 
@@ -32,7 +33,10 @@ Frontera's `flex` queue offers users a low cost queue for lower priority/node co
 
 #### [Table 6. Frontera Production Queues](#table6) { #table6 } 
 
-**Queues and limits are subject to change without notice.** 
+!!! important
+    **Queue limits are subject to change without notice.**   
+	Frontera admins may occasionally adjust the QOS settings in order to ensure fair scheduling for the entire user community.   
+    Use TACC's `qlimits` utility to see the latest queue configurations.  
 
 Users are limited to a maximum of 50 running and 200 pending jobs in all queues at one time. 
 

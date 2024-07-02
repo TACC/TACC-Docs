@@ -39,7 +39,7 @@ Follow the steps below to start an interactive session.
 	* <code>-p <i>partition</i></code> specify an alternate queue   
 
 
-	Consult [Table 6](../stampede2#table6) in the [Stampede2 User Guide](../stampede2) for a listing of common Slurm `#SBATCH` options.
+	Consult [Table 6](../stampede3#table6) in the [Stampede3 User Guide](../stampede3) for a listing of common Slurm `#SBATCH` options.
 
 	All arguments after the job script name are sent to the vncserver command. For example, to set the desktop resolution to 1440x900, use:
 
@@ -136,10 +136,10 @@ VisIt reads [nearly 150 data formats](https://github.com/visit-dav/visit/tree/de
 
 After connecting to a VNC server on Lonestar6, as described above, do the following:
 
-1. Set up your environment with the necessary modules. Load the `swr`, `qt5`, `ospray`, and `paraview` modules <b>in this order</b>:
+1. Set up your environment with the necessary modules: 
 
 	```cmd-line
-	c301-001$ module load swr qt5 ospray paraview
+	c301-001$ module load intel/19 impi qt5/5.14.2 oneapi_rk/2021.4.0 swr/21.2.5 paraview/5.10.0
 	```
 
 1. Launch ParaView:

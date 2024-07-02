@@ -73,7 +73,7 @@ The `qopt-zmm-usage` flag affects the algorithms the compiler uses to decide whe
 
 **Hardware Thread Numbering**. Execute `lscpu` or `lstopo` on SPR, ICX, or SKX nodes to see the numbering scheme for cores. Note that core numbers alternate between the sockets on SKX and ICX nodes: even numbered cores are on NUMA node 0, while odd numbered cores are on NUMA node 1. 
 
-**Tuning the Performance Scaled Messaging (PSM2) Library**. When running on SKX with MVAPICH2, setting the environment variable `PSM2_KASSIST_MODE` to the value `none` may or may not improve performance. For more information see the MVAPICH2 User Guide. Do not use this environment variable with IMPI; doing so may degrade performance. The ibrun launcher will eventually control this environment variable automatically.
+**Tuning the Performance Scaled Messaging (PSM2) Library**. When running on SKX with MVAPICH, setting the environment variable `PSM2_KASSIST_MODE` to the value `none` may or may not improve performance. For more information see the MVAPICH User Guide. Do not use this environment variable with IMPI; doing so may degrade performance. The ibrun launcher will eventually control this environment variable automatically.
 
 ### [File Operations: I/O Performance](#programming-io)
 

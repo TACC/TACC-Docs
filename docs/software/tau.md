@@ -1,5 +1,5 @@
 # TAU at TACC
-*Last update: September 19, 2018*
+*Last update: June 24, 2024*
 
 The University of Oregon's open-source TAU (**T**uning and **A**nalysis **U**tilities) package provides performance evaluation by profiling (reporting global statistics) and tracing (how events in parallel tasks interact in time) your code.  
 
@@ -143,10 +143,10 @@ After your program runs you can process TAU's output to do two things: view stat
 ## [References](#refs) { #refs }
 
 * [TAU homepage](https://www.cs.uoregon.edu/research/tau/home.php)
-* [TAU beginner's tutorial](http://tau.uoregon.edu/tau.ppt)
+* [TAU Documentation](https://www.cs.uoregon.edu/research/tau/docs.php)
 * [ParaProf User's Manual](https://www.cs.uoregon.edu/research/tau/docs/paraprof/)
 * [Jumpshot](https://www.cs.uoregon.edu/research/tau/docs/newguide/bk01ch04s03.html)
-* [`idev`](../../software/idev)
+* [`idev`][TACCIDEV]
 * [Remote Desktop Access at TACC][TACCREMOTEDESKTOPACCESS]
 
 {% include 'aliases.md' %}

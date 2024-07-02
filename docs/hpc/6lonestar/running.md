@@ -13,14 +13,17 @@ The jobs in this queue consume 1/7 the resources of a full node.  Jobs are charg
 
 #### [Table 5. Production Queues](#table5) { #table5 }
 
-**Queue limits are subject to change without notice.**  Use TACC's `qlimits` utility to see the latest configuration.
+!!! important
+    **Queue limits are subject to change without notice.**  
+    TACC Staff will occasionally adjust the QOS settings in order to ensure fair scheduling for the entire user community.  
+    Use TACC's `qlimits` utility to see the latest queue configurations.
 
 Queue Name | Min/Max Nodes per Job<br /> (assoc'd cores)&#42; | Max Job Duration | Max Nodes<br> per User | Max Jobs<br> per User | Charge Rate<br /><u>(per node-hour)</u>
 --- | --- | --- | --- | --- | ---
 <code>development</code> | 4 nodes<br>(512 cores) | 2 hours | 6 | 1 | 1 SU
 <code>gpu-a100</code> | 4 nodes<br>(512 cores) | 48 hours | 6 | 2 | 4 SUs
 <code>gpu-a100-dev</code> | 4 nodes<br>(512 cores) | 2 hours | 2 | 1 | 4 SUs
-<code>gpu-a100-small</code><sup>&#42;&#42;</sup> | 1/1 node<br>(32 cores) | 48 hours | 4 | 4 | 1.5 SUs
+<code>gpu-a100-small</code><sup>&#42;&#42;</sup> | 1/1 node<br>(32 cores) | 48 hours | 2 | 3 | 1.5 SUs
 <code>large</code><sup>&#42;</sup> | 65/256 nodes<br>(65536 cores) | 48 hours | 256 | 1 | 1 SU
 <code>normal</code> | 1/64 nodes<br>(8192 cores) | 48 hours | 96 | 15 | 1 SU
 <code>vm-small</code><sup>&#42;&#42;</sup> | 1/1 node<br>(16 cores) | 48 hours | 4 | 4 | 0.143 SU

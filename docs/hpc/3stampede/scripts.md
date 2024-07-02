@@ -9,6 +9,13 @@ This section provides sample Slurm job scripts for each Stampede3 node type:
 
 Each section also contains sample scripts for serial, MPI, OpenMP and hybrid (MPI + OpenMP) programming models.  Copy and customize each script for your own applications.
 
+Copy and customize the following jobs scripts by specifying and refining your job's requirements.
+
+* specify the maximum run time with the `-t` option.
+* specify number of nodes needed with the `-N` option
+* specify total number of MPI tasks with the `-n` option
+* specify the project to be charged with the `-A` option.
+
 ### [PVC Nodes](#scripts-pvc) { #scripts-pvc }
 
 *Coming Soon*
@@ -632,7 +639,7 @@ export OMP_NUM_THREADS=48   # this is 1 thread/core; may want to start lower
 #
 #      process access to more memory.
 #
-#   -- IMPI and MVAPICH2 both do sensible process pinning by default.
+#   -- IMPI and MVAPICH both do sensible process pinning by default.
 #
 #----------------------------------------------------
 

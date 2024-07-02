@@ -1,11 +1,13 @@
 # Frontera User Guide
-Last update: January 8, 2024
+Last update: June 28, 2024
 <!-- SDL <a href="https://frontera-xortal.tacc.utexas.edu/user-guide/docs/user-guide.pdf">Download PDF <i class="fa fa-file-pdf-o"></i></a></span>-->
 
+<!-- 
 ## [Notices](#notices) { #notices }
 
 * Navigate to the [Frontera Web Portal](https://frontera-portal.tacc.utexas.edu/) to manage your Frontera allocations and access your [Frontera Workbench](https://frontera-portal.tacc.utexas.edu/workbench/dashboard). (04/19/2023)
 
+-->
 ## [Introduction](#intro) { #intro } 
 
 Frontera is funded by the National Science Foundation (NSF) through award #1818253, [Computing for the Endless Frontier](https://www.nsf.gov/awardsearch/showAward?AWD_ID=1818253). It is the largest cluster dedicated to open science in the United States and is the Texas Advanced Computing Center's latest flagship system. Frontera enters production in early summer 2019, building on the successes of the Stampede1 and Stampede2 systems.  
@@ -304,7 +306,7 @@ Frontera's four login nodes are Intel Xeon Platinum 8280 ("Cascade Lake") nodes 
 
 ### [Network](#system-network) { #system-network }
 
-The interconnect is based on Mellanox HDR technology with full HDR (200 Gb/s) connectivity between the switches and HDR100 (100 Gb/s) connectivity to the compute nodes. A fat tree topology employing six core switches connects the compute nodes and the `$HOME` and `$SCRATCH` filesystems. There are two 40-port leaf switches in each rack. Half of the nodes in a rack (44) connect to 22 downlinks of a leaf switch as pairs of HDR100 (100 Gb/s) links into HDR200 (200 Gb/s) ports of the leaf switch. The other 18 ports are uplinks to the six cores switches. The disparity in the number of uplinks and downlinks creates an oversubscription of 22/18.
+The interconnect is based on Mellanox HDR technology with full HDR (200 Gb/s) connectivity between the switches and HDR100 (100 Gb/s) connectivity to the compute nodes. A fat tree topology employing six core switches connects the compute nodes and the `$HOME` and `$SCRATCH` file systems. There are two 40-port leaf switches in each rack. Half of the nodes in a rack (44) connect to 22 downlinks of a leaf switch as pairs of HDR100 (100 Gb/s) links into HDR200 (200 Gb/s) ports of the leaf switch. The other 18 ports are uplinks to the six cores switches. The disparity in the number of uplinks and downlinks creates an oversubscription of 22/18.
 
 
 ## [Managing Files](#files) { #files }
@@ -340,22 +342,22 @@ File System | Characteristics	| Purpose |
 
 ### [Navigating the Shared File Systems](#files-navigating) { #files-navigating } 
 
-Frontera's `/home` and `/scratch` file systems are mounted only on Frontera, but the work file system mounted on Frontera is the Global Shared File System hosted on [Stockyard](https://www.tacc.utexas.edu/systems/stockyard). Stockyard is the same work file system that is currently available on Stampede2, Lonestar6, and several other TACC resources. 
+Frontera's `/home` and `/scratch` file systems are mounted only on Frontera, but the work file system mounted on Frontera is the Global Shared File System hosted on [Stockyard](https://www.tacc.utexas.edu/systems/stockyard). Stockyard is the same work file system that is currently available on Stampede3, Lonestar6, and several other TACC resources. 
 
 The `$STOCKYARD` environment variable points to the highest-level directory that you own on the Global Shared File System. The definition of the `$STOCKYARD` environment variable is of course account-specific, but you will see the same value on all TACC systems that provide access to the Global Shared File System. This directory is an excellent place to store files you want to access regularly from multiple TACC resources.
 
-Your account-specific `$WORK` environment variable varies from system to system and is a sub-directory of `$STOCKYARD` ([Figure 3](#figure3)). The sub-directory name corresponds to the associated TACC resource. The `$WORK` environment variable on Frontera points to the `$STOCKYARD/stampede2` subdirectory, a convenient location for files you use and jobs you run on Frontera. Remember, however, that all subdirectories contained in your `$STOCKYARD` directory are available to you from any system that mounts the file system. If you have accounts on both Frontera and Stampede2, for example, the `$STOCKYARD/frontera` directory is available from your Stampede2 account, and `$STOCKYARD/stampede2` is available from your Frontera account. 
+Your account-specific `$WORK` environment variable varies from system to system and is a sub-directory of `$STOCKYARD` ([Figure 3](#figure3)). The sub-directory name corresponds to the associated TACC resource. The `$WORK` environment variable on Frontera points to the `$STOCKYARD/stampede3` subdirectory, a convenient location for files you use and jobs you run on Frontera. Remember, however, that all subdirectories contained in your `$STOCKYARD` directory are available to you from any system that mounts the file system. If you have accounts on both Frontera and Stampede3, for example, the `$STOCKYARD/frontera` directory is available from your Stampede3 account, and `$STOCKYARD/stampede3` is available from your Frontera account. 
 
 !!! tip
 	Your quota and reported usage on the Global Shared File System reflects all files that you own on Stockyard, regardless of their actual location on the file system.
 
-See the example for fictitious user `bjones` in the figure below. All directories are accessible from all systems, however a given sub-directory (e.g. `lonestar6`, `stampede2`) will exist **only** if you have an allocation on that system.
+See the example for fictitious user `bjones` in the figure below. All directories are accessible from all systems, however a given sub-directory (e.g. `lonestar6`, `stampede3`) will exist **only** if you have an allocation on that system.
 
 #### [Figure 3. Stockyard File System](#figure3) { #figure3 } 
 <figure id="figure3"><img alt="Stockyard File System" src="../imgs/stockyard-2022.jpg"> 
 <figcaption></figcaption></figure>
 
-**Figure 3.** Account-level directories on the work file system (Global Shared File System hosted on Stockyard). Example for fictitious user `bjones`. All directories usable from all systems. Sub-directories (e.g. `lonestar6`, `stampede2`) exist only if you have allocations on the associated system.
+**Figure 3.** Account-level directories on the work file system (Global Shared File System hosted on Stockyard). Example for fictitious user `bjones`. All directories usable from all systems. Sub-directories (e.g. `lonestar6`, `stampede3`) exist only if you have allocations on the associated system.
 
 Note that resource-specific subdirectories of `$STOCKYARD` are simply convenient ways to manage your resource-specific files. You have access to any such subdirectory from any TACC resources. If you are logged into Frontera, for example, executing the alias `cdw` (equivalent to `cd $WORK`) will take you to the resource-specific subdirectory `$STOCKYARD/frontera`. But you can access this directory from other TACC systems as well by executing `cd $STOCKYARD/frontera`. These commands allow you to share files across TACC systems. In fact, several convenient account-level aliases make it even easier to navigate across the directories you own in the shared file systems:
 
@@ -692,6 +694,7 @@ Be sure to request computing resources e.g., number of nodes, number of tasks pe
 <a id="queues">
 ### [Frontera Production Queues](#running-queues)  { #running-queues } 
 
+
 Frontera's Slurm partitions (queues), maximum node limits and charge rates are summarized in the table below. **Queues and limits are subject to change without notice.** Execute `qlimits` on Frontera for real-time information regarding limits on available queues. See [Job Accounting](#job-accounting) to learn how jobs are charged to your allocation.
 
 Frontera's newest queue, `small`, has been created specifically for one and two node jobs. Jobs of one or two nodes that will run for up to 48 hours should be submitted to this new `small` queue. The `normal` queue now has a lower limit of three nodes for all jobs. 
@@ -703,7 +706,10 @@ Frontera's `flex` queue offers users a low cost queue for lower priority/node co
 
 #### [Table 6. Frontera Production Queues](#table6) { #table6 } 
 
-**Queues and limits are subject to change without notice.** 
+!!! important
+    **Queue limits are subject to change without notice.**   
+	Frontera admins may occasionally adjust the QOS settings in order to ensure fair scheduling for the entire user community.   
+    Use TACC's `qlimits` utility to see the latest queue configurations.  
 
 Users are limited to a maximum of 50 running and 200 pending jobs in all queues at one time. 
 
@@ -2250,10 +2256,9 @@ More client options here: <https://docs.microsoft.com/en-us/cli/azure/install-az
 
 Frontera provides seamless, integrated support for the use of Singularity containers (both custom containers made by users and containers from standard repositories). The use of containers greatly enhances the number of people who contribute to the Frontera software base, promotes portability with other resources, and greatly expands the supported software catalog beyond that found on TACC's other HPC systems.
 
-Frontera supports application containers from any specification-compliant science community (e.g. Biocontainers, with over 3,000 containers and counting, and the Nvidia GPU Cloud Library), opening this important resource for a wide range of new applications and new science communities. To make the experience seamless, our implementation injects mount points and environment variables into the container to match the HPC system environment – the `$SCRATCH`, `$WORK`, and `$HOME` filesystems all are identical to what users see natively on any Frontera node. 
+Frontera supports application containers from any specification-compliant science community (e.g. Biocontainers, with over 3,000 containers and counting, and the Nvidia GPU Cloud Library), opening this important resource for a wide range of new applications and new science communities. To make the experience seamless, our implementation injects mount points and environment variables into the container to match the HPC system environment – the `$SCRATCH`, `$WORK`, and `$HOME` file systems all are identical to what users see natively on any Frontera node. 
 
-<! -- SDL -->
-<!-- See the [Containers@TACC](../docs/containers-at-tacc.pdf) documentation for detailed information.-->
+See the [Containers @ TACC Workshop](https://containers-at-tacc.readthedocs.io/en/latest/index.html) documentation for more information.
 ## [Help Desk](#help) { #help }
 
 TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for holidays. You can [submit a help desk ticket][HELPDESK] at any time via the TACC User Portal with &quot;Frontera&quot; in the Resource field. Help the consulting staff help you by following these best practices when submitting tickets. 

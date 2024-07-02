@@ -5,7 +5,6 @@
 striping="<a\ href=\"\/user-guides\/stampede2#files-striping\">Striping\ Large\ Files\ in\ the\ Stampede2\ User\ Guide<\/a>"
 taccinfopath="\/usr\/local\/etc\/taccinfo"
 
-# conduct - template used in Lonestar6, Longhorn, Frontera & Stampede2. Maverick2 has own conduct.
 # managingio - taccinfo
 # help 
 
@@ -44,35 +43,14 @@ then
 	# 	-e "s/STRIPING/$striping/g"  < conductsrc.md > $conductoutputfile
 
 
-### Stampede2
-elif [ "$1" = "stampede2" ] 
-then
-	echo "building includes for Stampede2 user guide"
-	machinename="Stampede2"
-	mkloutputfile="stampede2-mkl.md"
-	hwthreads="272 on KNL, 96 on SKX, 160 on ICX"
-	striping="<a\ href=\"#files-striping\">Striping\ Large\ Files<\/a>"
-	helpoutputfile="stampede2-help.md"
-	# conductoutputfile="stampede2-conduct.md"
-	jobaccountingoutputfile="stampede2-jobaccounting.md"
-
-	sed	-e "s/MACHINENAME/$machinename/g" \
-		-e "s/TACCINFOPATH/$taccinfopath/g" < jobaccountingsrc.md > $jobaccountingoutputfile
-	sed	-e "s/HWTHREADS/$hwthreads/g" < mklsrc.md > $mkloutputfile
-	sed	-e "s/MACHINENAME/$machinename/g" < helpsrc.md > $helpoutputfile
-	# sed	-e "s/MACHINENAME/$machinename/g" \
-	# 	-e "s/STRIPING/$striping/g"  < conductsrc.md > $conductoutputfile
-
 ### Stampede3
 elif [ "$1" = "stampede3" ] 
 then
 	echo "building includes for Stampede3 user guide"
 	machinename="Stampede3"
-	# mkloutputfile="stampede2-mkl.md"
 	# hwthreads="272 on KNL, 96 on SKX, 160 on ICX"
 	# striping="<a\ href=\"#files-striping\">Striping\ Large\ Files<\/a>"
 	helpoutputfile="stampede3-help.md"
-	# conductoutputfile="stampede2-conduct.md"
 	jobaccountingoutputfile="stampede3-jobaccounting.md"
 
 	sed	-e "s/MACHINENAME/$machinename/g" \

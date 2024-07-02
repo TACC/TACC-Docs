@@ -1,29 +1,30 @@
 # AlphaFold at TACC
-*Last update: Apr 3, 2024*
+*Last update: June 24, 2024*
 
 
 <table cellpadding="5" cellspacing="5"><tr>
 <td> <img alt="AlphaFold logo" src="../imgs/alphafold-logo.png"></td><td>
 AlphaFold is a protein structure prediction tool developed by DeepMind (Google). It uses a novel machine learning approach to predict 3D protein structures from primary sequences alone. In July 2021, the developers made the <a href="https://github.com/deepmind/alphafold">source code available on Github</a> and published a <a href="https://www.nature.com/articles/s41586-021-03819-2">Nature paper</a> (<a href="https://static-content.springer.com/esm/art%3A10.1038%2Fs41586-021-03819-2/MediaObjects/41586_2021_3819_MOESM1_ESM.pdf">supplementary information</a>) describing the method. In addition to the software, AlphaFold depends on ~2.9 TB of databases and model parameters. Researchers interested in making protein structure predictions with AlphaFold are encouraged to follow the guide below, and use the databases and model parameters that have been prepared.</td></tr></table>
 
+## [Installations at TACC](#installations) { #installations } 
 
-## [Installations](#installations) { #installations }
+### [Table 1. Installations at TACC](#table1) { #table1 }
 
 System | What's Available
---     | --
+-- | --
 Frontera | AlphaFold: v2.3.2<br> Data: `/scratch2/projects/bio/alphafold/2.3.2/data`<br>Examples: `/scratch2/projects/bio/alphafold/2.3.2/examples`<br> Module: `/scratch2/projects/bio/alphafold/modulefiles`
 Lonestar6 | AlphaFold: v2.3.2<br> Data: `/scratch/tacc/apps/bio/alphafold/2.3.2/data`<br>Examples: `/scratch/tacc/apps/bio/alphafold/2.3.2/examples`<br> Module: `/scratch/tacc/apps/bio/alphafold/modulefiles`
-Stampede3 | Coming Soon
+Stampede3 | AlphaFold: v2.3.2<br> Data: `/scratch/tacc/apps/bio/alphafold/2.3.2/data`<br>Examples: `/scratch/tacc/apps/bio/alphafold/2.3.2/examples`<br> Module: `/scratch/tacc/apps/bio/alphafold/modulefiles`
 
 
-## [Running AlphaFold](#running) { #running }
+## [Running AlphaFold ](#running) { #running }
 
-!!! note
-	AlphaFold is being tested for performance and I/O efficiency - the run instructions below are subject to change.
+!!! important
+	AlphaFold is being tested for performance and I/O efficiency - the instructions below are subject to change.
 
-### [Structure Prediction from Single Sequence](#running-singlesequence) { #running-singlesequence }
+### [Structure Prediction from Single Sequence](#running-singlesequence)  { #running-singlesequence } 
 
-To perform 3-D protein structure prediction with AlphaFold, first upload a fasta-formatted protein primary sequence to your `$WORK` or `$SCRATCH` (recommended) space. Sample fasta sequences are provided in the machine-specific '**Examples**' paths listed in the table above. A valid fasta sequence might look like:
+To perform 3-D protein structure prediction with AlphaFold, first upload a fasta-formatted protein primary sequence to your `$WORK` or `$SCRATCH` (recommended) space. Sample fasta sequences are provided in the machine-specific "Examples" paths listed in the table above. A valid fasta sequence might look like:
 
 ```syntax
 >sample sequence consisting of 350 residues
@@ -35,12 +36,12 @@ MVRCYKHKQQVWGNNHNESKAPCDDQPTYLCPPGEVYKGDHISKREAENMTNAWLGEDTH
 NFMEIMHCTAKMASTHFGSTTIYWAWGGHVRPAATWRVYPMIQEGSHCQC
 ```
 
-Next, prepare a batch job submission script for running AlphaFold. Two different templates for different levels of precision are provided within the '**Examples**' paths listed in the table above:
+Next, prepare a batch job submission script for running AlphaFold. Two different templates for different levels of precision are provided within the "Examples" paths listed in [Table 1.](#table1) above:
 
-* `reduced_dbs.slurm`: higher speed
 * `full_dbs.slurm`: higher precision (default)
+* `reduced_dbs.slurm`: higher speed
 
-See the AlphaFold documentation for more information on the speed / quality tradeoff of each preset. The example templates each need to be customized before they can be used. Copy the desired template to your `$WORK` or `$SCRATCH` space along with the input fasta file. After necessary customizations, a batch script for running the full databases on Lonestar6 may contain:
+See the <a href="https://github.com/deepmind/alphafold">AlphaFold documentation</a> for more information on the speed vs. quality tradeoff of each preset. The example templates each need to be customized before they can be used. Copy the desired template to your `$WORK` or `$SCRATCH` space along with the input fasta file. After necessary customizations, a batch script for running the full databases on Lonestar6 may contain:
 
 ```job-script
 #!/bin/bash
@@ -70,49 +71,42 @@ run_alphafold.sh --flagfile=$AF2_HOME/examples/flags/full_dbs.ff \
                  --use_gpu_relax=True
 ```
 
-In the batch script, make sure to use a batch queue (`#SBATCH -p`), node / wallclock limits, and allocation name (`#SBATCH -A`) appropriate to the machine you are running on. Also, make sure the path shown in the "`module use`" line matches the machine-specific '**Module**' path listed in the table above.
 
-The flagfile is a configuration file passed to AlphaFold containing parameters including the level of precision, the location of the databases for multiple sequence alignment, and more. Flag files for all presets can be found in the '**Examples'** directory, and typically they should not be edited. The other three parameters passed to AlphaFold should be customized to your input path / filename, desired output path, and the selection of models. The parameters are summarized in the following table:
+In the batch script, make sure to specify the partition (queue) (`#SBATCH -p`), node / wallclock limits, and allocation name (`#SBATCH -A`) appropriate to the machine you are running on. Also, make sure the path shown in the `module use` line matches the machine-specific "Module" path listed in the [Table 1.](#table1) above.
+
+The `flagfile` is a configuration file passed to AlphaFold containing parameters including the level of precision, the location of the databases for multiple sequence alignment, and more. Flag files for all presets can be found in the 'Examples' directory, and typically they should not be edited. The other three parameters passed to AlphaFold should be customized to your input path / filename, desired output path, and the selection of models. The parameters are summarized in the following table:
+
+
+#### [Table 2. AlphaFold Parameter Settings](#table2)  { #table1 }
 
 Parameter | Setting
---        | --
---fasta_paths       | # full path including filename to your test data<br>`=$SCRATCH/input/sample.fasta`
---output_dir        | # full path to desired output dir (`/scratch` filesystem recommended)<br>`=$SCRATCH/output`
---model_preset      | # control which AlphaFold model to run, options are:<br>`=monomer | =monomer_casp14 | =monomer_ptm | =multimer`
---max_template_date | # control which structures from PDB are used<br>`=2020-05-14`
---use_gpu_relax     | # whether to relax on GPUs (recommended if GPU available)<br>`=True | =False`
-
+-- | --
+`--fasta_paths` | # full path including filename to your test data<br>`=$SCRATCH/input/sample.fasta`
+`--output_dir`  | # full path to desired output dir (/scratch filesystem recommended)<br>`=$SCRATCH/output`
+`--model_preset`| # control which AlphaFold model to run, options are:<br>`=monomer | =monomer_casp14 | =monomer_ptm | =multimer`
+`--max_template_date` | # control which structures from PDB are used<br>`=2020-05-14`
+`--use_gpu_relax` | # whether to relax on GPUs (recommended if GPU available)<br>`=True | =False`
 
 Once the input fasta sequence and customized batch job script are prepared, submit to the queue with:
 
 ```cmd-line
-login1$ sbatch <name_of_job_script>
+login1$ sbatch <job_script>
 ```
+
 e.g.:
 
 ```cmd-line
 login1$ sbatch full_dbs.slurm
 ```
 
-Using the scheme above with `full_dbs` precision, we expect each job to take between 2 to 12 hours depending on the length of the input fasta sequence, the speed of the compute node, and the relative load on the file system at the time of run. Using `reduced_dbs` should cut the job time in half, while slightly sacrificing precision.  Refer to the [AlphaFold Documentation](https://github.com/google-deepmind/alphafold#alphafold-output) for a description of the expected output files.
+Using the scheme above with `full_dbs` precision, we expect each job to take between 2 to 12 hours depending on the length of the input fasta sequence, the speed of the compute node, and the relative load on the file system at the time of run. Using `reduced_dbs` should cut the job time in half, while slightly sacrificing precision. Refer to the <a href="https://github.com/deepmind/alphafold%23alphafold-output">AlphaFold Documentation</a> for a description of the expected output files.
 
+### [Batch Structure Predictions from Independent Sequences](#running-independentsequences) { #running-independentsequences }
 
-### [Structure Prediction from Multiple Sequences (Multimer)](#running-multiplesequence) { #running-multiplesequence }
+!!! caution
+	**Limit your concurrent AlphaFold processes per node to a maximum of three**.<br>The multiple sequence alignment step of the AlphaFold workflow is exceedingly I/O intensive. 
 
-
-!!!important
-	DISCLAIMER: Alphafold supports multimer folding, but as mentioned in the [AlphaFold Documentation](https://github.com/google-deepmind/alphafold), it is a work in progress and is not expected to be as stable as monomer folding. 
-
-Nevertheless, we provide example flag files, job scripts, and sequences in the '**Examples**' paths listed above to test multimer folding. In our experience, the success rates of multimer folding jobs decrease as input sequence length increases.
-
-
-### [Batch Structure Predictions from Independent Sequences](#running-independent) { #running-independent }
-
-!!! warning
-	The multiple sequence alignment step of the AlphaFold workflow is exceedingly I/O intensive.   
-	**Limit your concurrent AlphaFold processes per node to a maximum of three per node**.
-
-To perform 3-D protein structure prediction with AlphaFold for many protein sequences, we recommend using TACC's [launcher or launcher-gpu](https://docs.tacc.utexas.edu/software/launcher/) utility. First review the instructions for submitting single sequence predictions above, then make the following adjustments:
+To perform 3-D protein structure prediction with AlphaFold for many protein sequences, we recommend using TACC's <a href="https://docs.tacc.utexas.edu/software/pylauncher/">Pylauncher</a> utility. First review the instructions for submitting single sequence predictions above, then make the following adjustments:
 
 Fasta formatted sequences should be uniquely identifiable either by giving each a unique name or by putting each sequence in its own uniquely-named directory. The simplest way to achieve this is to have one sub directory (e.g. `$SCRATCH/inputs/`) with all uniquely named fasta sequences in it:
 
@@ -126,22 +120,23 @@ seq3.fasta
 
 Next, prepare a launcher `jobfile` that contains each command that needs to be run. There should be one line in the `jobfile` for each input fasta sequence. Each line should refer to a unique input sequence and a unique output path:
 
-#### Sample Alphafold Launcher Job File
+
+#### [Sample Alphafold Launcher Job File](#running-independentsequences-jobfile) { running-independentsequences-jobfile }
 
 ```syntax
 apptainer exec --nv $AF2_HOME/images/alphafold_2.3.2.sif /app/run_alphafold.sh --flagfile=$AF2_HOME/examples/flags/full_dbs.ff --fasta_paths=$SCRATCH/input/seq1.fasta --output_dir=$SCRATCH/output1 --model_preset=monomer --max_template_date=2020-05-14 --use_gpu_relax=True
 apptainer exec --nv $AF2_HOME/images/alphafold_2.3.2.sif /app/run_alphafold.sh --flagfile=$AF2_HOME/examples/flags/full_dbs.ff --fasta_paths=$SCRATCH/input/seq2.fasta --output_dir=$SCRATCH/output2 --model_preset=monomer --max_template_date=2020-05-14 --use_gpu_relax=True
 apptainer exec --nv $AF2_HOME/images/alphafold_2.3.2.sif /app/run_alphafold.sh --flagfile=$AF2_HOME/examples/flags/full_dbs.ff --fasta_paths=$SCRATCH/input/seq3.fasta --output_dir=$SCRATCH/output3 --model_preset=monomer --max_template_date=2020-05-14 --use_gpu_relax=True
-...
+`...`
 ```
 
-!!! note
-	Due to the way `launcher_gpu` distributes tasks to individual GPUs, the full apptainer command must be used in the `jobfile` as shown above. 
+NOTE: Due to the way `launcher_gpu` distributes tasks to individual GPUs, the full apptainer command must be used in the` jobfile` as shown above. 
 
 Prepare a batch job submission script by merging the AlphaFold template with a launcher template. Adjust the number of nodes, number of tasks, and the wall clock time appropriately for the number of jobs in the `jobfile`. For example, to run AlphaFold against six independent input sequences across two nodes (three per node) simultaneously, the job script would resemble:
 
-``` job-script
+```job-script
 #!/bin/bash
+# full_dbs_launcher.slurm
 # -----------------------------------------------------------------
 #SBATCH -J af2_launcher_job             # Job name
 #SBATCH -o af2_launcher_job.%j.out      # Name of stdout output file
@@ -172,15 +167,23 @@ Once the input sequences, the `jobfile`, and the batch job submission script are
 login1$ sbatch <name_of_job_script>
 ```
 e.g.:
+
 ```cmd-line
 login1$ sbatch full_dbs_launcher.slurm
 ```
- 
-See more examples in the 'launcher' directories at the '**Examples**' paths above.
+
+
+### [Structure Prediction from Multiple Sequences (Multimer)](#running-multiplesequences) { #running-multiplesequences } 
+
+!!! caution
+	Alphafold supports multimer folding, but as mentioned in the <a href="https://github.com/google-deepmind/alphafold">AlphaFold Documentation</a>, it is a work in progress and is not expected to be as stable as monomer folding. 
+
+Nevertheless, we provide example flag files, job scripts, and sequences in the "Examples" paths listed above to test multimer folding. In our experience, the success rates of multimer folding jobs decrease as input sequence length increases.
+
 
 ## [References](#refs) { #refs }
 
 * [Github: AlphaFold](https://github.com/deepmind/alphafold)
 * [AlphaFold Nature Paper](https://www.nature.com/articles/s41586-021-03819-2)
-	
+
 

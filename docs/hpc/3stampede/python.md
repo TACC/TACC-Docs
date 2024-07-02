@@ -2,6 +2,13 @@
 
 *This section is in progress.*
 
+Python on Stampede3 has been made into a module to mirror the environments of TACC others machines. Load the python like so:
+
+```cmd-line
+$ module load python
+```
+
+
 ### [Jupyter Notebooks](#python-jupyter) { #python-jupyter }
 
 Unlike TACC's other HPC resources, Jupyter is not installed with the Python module on Stampede3.  In order to use Jupyter notebooks, you must install notebooks locally with the following one-time setup:  

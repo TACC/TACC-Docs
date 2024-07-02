@@ -1,5 +1,5 @@
 # Stampede3 User Guide 
-*Last update: May 20, 2024*
+*Last update: June 28, 2024*
 
 ## [Notices](#notices) { #notices }
 
@@ -8,49 +8,6 @@
 * **Stampede3 is now full production.**  All jobs in all [queues](#queues) will be charged to your allocation balances. (05/15/2024)
 
 * **Attention VASP users: DO NOT run VASP using Stampede3's SPR nodes!**  TACC staff has noticed many VASP jobs causing issues on the SPR nodes and impacting overall system stability and performance.  Please run your VASP jobs using either the [SKX](../../hpc/stampede3#table3) or [ICX](../../hpc/stampede3#table4) nodes.  See [Running VASP Jobs](../../software/vasp/#running) for more information.  (05/06/2024)
-
-## [Migrating Data](#migrating) { #migrating }
-
-!!! important
-	Stampede3 is now in full production.  The Stampede2 file mounts will be removed at the end of May, 2024.
-
-The Stampede3 login nodes are now available for you to begin moving data between systems.  **If you have an active Stampede3 allocation** then you may begin the data migration process from Stampede2 to Stampede3.  During this migration period Stampede2's `/home` and `/scratch` systems will be temporarily mounted on Stampede3 and will be accessible through the `$HOME_S2` and `$SCRATCH_S2` environment variables respectively.  
-
-
-You do not need to migrate data from `$WORK` (Stockyard) as that file system will be automatically mounted on Stampede3.  However, anything in your `$HOME` or `$SCRATCH` directories that you wish to retain will need to be moved.  
-
-Migrate **only** the data you wish to keep from Stampede2.  
-
-### [Examples](#migrating-examples) { #migrating-examples }
-
-**If you have an active Stampede3 allocation** you can access Stampede3 via `ssh` as you do with other TACC resources.  Use the same password and MFA method as for accessing Stampede2.
-
-``` cmd-line
-ssh username@stampede3.tacc.utexas.edu
-```
-To move your data, we recommend using either the UNIX `cp` or `rsync` utilities.  
-
-To copy a single file from Stampede2 to Stampede3: 
-
-```cmd-line
-stampede3$ cp $HOME_S2/filename $HOME
-```
-or
-
-```cmd-line
-stampede3$ rsync -r $HOME_S2/filename $HOME
-```
-
-To copy a directory: 
-
-```cmd-line
-stampede3$ rsync -r $SCRATCH_S2/dirName $SCRATCH
-```
-or
-
-```cmd-line
-stampede3$ cp -r $SCRATCH_S2/dirName $SCRATCH
-```
 
 
 ## [Introduction](#intro) { #intro }
@@ -370,7 +327,10 @@ If you wish to share files and data with collaborators in your project, see [Sha
 Stampede3's job scheduler is the Slurm Workload Manager. Slurm commands enable you to submit, manage, monitor, and control your jobs.  See the [Job Management](#jobmanagement) section below for further information. 
 
 !!! important
-	**Queues and limits are subject to change without notice.** <br>Execute `qlimits` on Stampede3 for real-time information regarding limits on available queues.  <!-- See Monitoring Jobs and Queues for additional information. -->
+    **Queue limits are subject to change without notice.**  
+    TACC Staff will occasionally adjust the QOS settings in order to ensure fair scheduling for the entire user community.  
+    Use TACC's `qlimits` utility to see the latest queue configurations.
+
 
 #### [Table 7. Production Queues](#table7) { #table7 }
 
@@ -379,7 +339,7 @@ Queue Name   | Node Type | Max Nodes per Job<br>(assoc'd cores) | Max Duration |
 icx          | ICX       | 16 nodes<br>(1280 cores)             | 24 hrs       | 4                 | 1.67 SUs
 pvc          | PVC       | 1 node<br>(96 cores)                 | 48 hrs       | 2                 | 4 SUs
 skx          | SKX       | 64 nodes<br>(3072 cores)             | 24 hrs       | 4                 | 1 SU
-skx-dev      | SKX       | 16 nodes<br>(798 cores)              | 2 hrs        | 1                 | 1 SU
+skx-dev      | SKX       | 16 nodes<br>(768 cores)              | 2 hrs        | 1                 | 1 SU
 spr          | SPR       | 16 nodes<br>(896 cores)              | 24 hrs       | 6                 | 3 SUs
 
 
@@ -475,7 +435,7 @@ c123-456$ ibrun ./myprogram    # ibrun uses idev's arguments to properly allocat
 
 ### [One Hybrid (MPI+Threads) Application](#launching-hybrid) { #launching-hybrid }
 
-When launching a single application you generally don't need to worry about affinity: both Intel MPI and MVAPICH2 will distribute and pin tasks and threads in a sensible way.
+When launching a single application you generally don't need to worry about affinity: both Intel MPI and MVAPICH will distribute and pin tasks and threads in a sensible way.
 
 ``` job-script
 export OMP_NUM_THREADS=8    # 8 OpenMP threads per MPI rank
@@ -693,7 +653,7 @@ Consult the [Intel Math Kernel Library](#mkl) (MKL) section below.
 <!-- ### [Compiling and Linking MPI Programs](#building-mpi) { #building-mpi } -->
 ### [MPI Programs](#building-mpi) { #building-mpi }
 
-Intel MPI (module `impi`) and MVAPICH2 (module `mvapich2`) are the two MPI libraries available on Stampede3. After loading an impi or mvapich2 module, compile and/or link using an MPI wrapper (`mpicc`, `mpicxx`, `mpif90`) in place of the compiler:
+Intel MPI (module `impi`) and MVAPICH (module `mvapich`) are the two MPI libraries available on Stampede3. After loading an `impi` or mvapich module, compile and/or link using an MPI wrapper (`mpicc`, `mpicxx`, `mpif90`) in place of the compiler:
 
 ```
 $ mpicc    mycode.c   -o myexe   # C source, full build
@@ -864,6 +824,13 @@ This section provides sample Slurm job scripts for each Stampede3 node type:
 * Sky Lake (SKX)
 
 Each section also contains sample scripts for serial, MPI, OpenMP and hybrid (MPI + OpenMP) programming models.  Copy and customize each script for your own applications.
+
+Copy and customize the following jobs scripts by specifying and refining your job's requirements.
+
+* specify the maximum run time with the `-t` option.
+* specify number of nodes needed with the `-N` option
+* specify total number of MPI tasks with the `-n` option
+* specify the project to be charged with the `-A` option.
 
 ### [PVC Nodes](#scripts-pvc) { #scripts-pvc }
 
@@ -1488,7 +1455,7 @@ export OMP_NUM_THREADS=48   # this is 1 thread/core; may want to start lower
 #
 #      process access to more memory.
 #
-#   -- IMPI and MVAPICH2 both do sensible process pinning by default.
+#   -- IMPI and MVAPICH both do sensible process pinning by default.
 #
 #----------------------------------------------------
 
@@ -1769,7 +1736,7 @@ The `qopt-zmm-usage` flag affects the algorithms the compiler uses to decide whe
 
 **Hardware Thread Numbering**. Execute `lscpu` or `lstopo` on SPR, ICX, or SKX nodes to see the numbering scheme for cores. Note that core numbers alternate between the sockets on SKX and ICX nodes: even numbered cores are on NUMA node 0, while odd numbered cores are on NUMA node 1. 
 
-**Tuning the Performance Scaled Messaging (PSM2) Library**. When running on SKX with MVAPICH2, setting the environment variable `PSM2_KASSIST_MODE` to the value `none` may or may not improve performance. For more information see the MVAPICH2 User Guide. Do not use this environment variable with IMPI; doing so may degrade performance. The ibrun launcher will eventually control this environment variable automatically.
+**Tuning the Performance Scaled Messaging (PSM2) Library**. When running on SKX with MVAPICH, setting the environment variable `PSM2_KASSIST_MODE` to the value `none` may or may not improve performance. For more information see the MVAPICH User Guide. Do not use this environment variable with IMPI; doing so may degrade performance. The ibrun launcher will eventually control this environment variable automatically.
 
 ### [File Operations: I/O Performance](#programming-io)
 
@@ -1814,6 +1781,13 @@ Follow these instructions to begin using Intel's Conda environment with PyTorch 
 ## [Python](#python)  { #python }
 
 *This section is in progress.*
+
+Python on Stampede3 has been made into a module to mirror the environments of TACC others machines. Load the python like so:
+
+```cmd-line
+$ module load python
+```
+
 
 ### [Jupyter Notebooks](#python-jupyter) { #python-jupyter }
 

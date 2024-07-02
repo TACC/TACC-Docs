@@ -1,11 +1,16 @@
 # Stampede2 User Guide
-Last update: January 31, 2024  
+Last update: June 11, 2024  
 See <a href="#history">revision history</a>
-  
-## [Notices](#notices) { #notices }
 
+<span style="color:red; font-weight:bold">Stampede2 is now decommissioned.</span> (06/04/2024)
+
+---
+
+## [Notices](#notices) { #notices }
  
-<span style="color:red; font-weight:bold">**Stampede2 queues are now closed**</span>. The Stampede2 login nodes remain accessible so that you may continue to transfer data to Stampede3.  See the new [Stampede3 User Guide](https://docs.tacc.utexas.edu/hpc/stampede3)'s [Migrating Data](https://docs.tacc.utexas.edu/hpc/stampede3/#migrating) and [Allocations](https://docs.tacc.utexas.edu/hpc/stampede3/#intro-allocations) sections for further information.  (01/31/2024)
+**Stampede2 queues are now closed**</span>. (01/31/2024)
+
+<!-- The Stampede2 login nodes remain accessible so that you may continue to transfer data to Stampede3.  See the new [Stampede3 User Guide](https://docs.tacc.utexas.edu/hpc/stampede3)'s [Migrating Data](https://docs.tacc.utexas.edu/hpc/stampede3/#migrating) and [Allocations](https://docs.tacc.utexas.edu/hpc/stampede3/#intro-allocations) sections for further information.  (01/31/2024) -->
 
 Updated Timeline - Stampede2 to Stampede3 Transition.   
 *All dates subject to change based on hardware availability and condition*.
@@ -16,13 +21,13 @@ February 2024 - Early user period for Stampede3
 February 2024 - Stampede2 file system decommissioned   
 March 2024 - Stampede3 in full production   
 
-**Data Migration**: Users must migrate their own data stored in `/home` and `/scratch` directory contents to your preferred backup location, such as your such as your own local hard drive or Ranch, by the end of **February 2024**.  Stampede2's `/work` file system and its contents will persist, since the hardware stands outside of Stampede2 on its own hardware, and will be mounted on Stampede3..  
+<!-- **Data Migration**: Users must migrate their own data stored in `/home` and `/scratch` directory contents to your preferred backup location, such as your such as your own local hard drive or Ranch, by the end of **February 2024**.  Stampede2's `/work` file system and its contents will persist, since the hardware stands outside of Stampede2 on its own hardware, and will be mounted on Stampede3..  -->
 
-**Existing Allocations**: Stampede2 allocations will **not** automatically roll over to Stampede3.  You may apply for an allocation on the new Stampede3 system via the [ACCESS allocation process](http://allocations.access-ci.org).  
+<!-- **Existing Allocations**: Stampede2 allocations will **not** automatically roll over to Stampede3.  You may apply for an allocation on the new Stampede3 system via the [ACCESS allocation process](http://allocations.access-ci.org).  -->
 
-**New Allocations**: You may now submit new allocation requests for Stampede3 via ACCESS: <https://allocations.access-ci.org>.
+<!-- **New Allocations**: You may now submit new allocation requests for Stampede3 via ACCESS: <https://allocations.access-ci.org>.
 
-Additional allocation opportunities may also be available in the future
+Additional allocation opportunities may also be available in the future -->
 
 
 
@@ -2113,6 +2118,7 @@ TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for 
 
 "Last Update" at the top of this document is the date of the most recent change to this document. This revision history is a list of non-trivial updates; it excludes routine items such as corrected typos and minor format changes.
  
+<li> 06/04/24 Stampede2 is decommissioned.  </li>
 <li> 09/14/22 XSEDE project ends. Replace Globus with Grid Community Toolkit. </li>
 <li> 03/07/22 Intel Ice Lake nodes introduced.  New `icx-normal` queue. </li>
 <li> 04/24/18 Changes to Table 1 and Table 5 associated with new `long` queue. </li>

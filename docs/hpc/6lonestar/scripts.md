@@ -1,15 +1,15 @@
 ## [Sample Job Scripts](#scripts) { #scripts }
 
-Copy and customize the following scripts to specify and refine your job's requirements.</p>
+Copy and customize the following scripts to specify and refine your job's requirements.
 
 * specify the maximum run time with the `-t` option. 
 * specify number of nodes needed with the `-N` option
-* specify tasks per node with the `-n` option
+* specify total number of MPI tasks with the `-n` option
 * specify the project to be charged with the `-A` option.
 
 In general, the fewer resources (nodes) you specify in your batch script, the less time your job will wait in the queue. See [5. Job Submissions Tips](../../basics/conduct#conduct-jobs) in the [Good Conduct](../../basics/conduct) document. 
 
-Consult [Table 6](../stampede2#table6) in the [Stampede2 User Guide](../stampede2) for a listing of common Slurm `#SBATCH` options.
+Consult [Table 6](../stampede3#table6) in the [Stampede3 User Guide](../stampede3) for a listing of common Slurm `#SBATCH` options.
 
 Click on a tab header below to display it's job script, then copy and customize to suit your own application.
 

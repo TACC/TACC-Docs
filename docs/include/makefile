@@ -9,7 +9,6 @@ all:	includes
 includes:	$(SRC)
 	./configurestrings.sh frontera
 	./configurestrings.sh lonestar6
-	./configurestrings.sh stampede2
 	./configurestrings.sh stampede3
 	./configurestrings.sh ranch
 	./configurestrings.sh defaults

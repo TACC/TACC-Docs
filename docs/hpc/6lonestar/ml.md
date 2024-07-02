@@ -93,7 +93,7 @@ Install Pytorch and TensorBoard.
 
 Follow these instructions to install and run TensorFlow benchmarks on Lonestar6's A100. Lonestar6's A100 runs TensorFlow 2.8.2 with Python 3.7.13. Lonestar6's supports CUDA/11.3, CUDA/11.4, and CUDA/12.0. By default, we use CUDA/11.3. Select the appropriate CUDA version for your TensorFlow version.
 
-1. Request a single compute node in Lonstar6's `gpu-a100-dev` queue using the [idev](../../software/idev) utility:
+1. Request a single compute node in Lonestar6's `gpu-a100-dev` queue using the [idev](../../software/idev) utility:
 
 	```cmd-line
 	login2.ls6$ idev -N 1 -n 1 -p gpu-a100-dev -t 01:00:00

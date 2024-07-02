@@ -1,7 +1,7 @@
 # Ranch User Guide
-*Last update: May 22, 2024*
+*Last update: June 17, 2024*
 
-## [Notices](#notices) { #notices }
+<!-- ## [Notices](#notices) { #notices } -->
 
 <!-- **The XSEDE project concluded formal operations as an NSF-funded project on August 31, 2022**.  Similar services are now operated through NSF's follow-on program, Advanced Cyberinfrastructure Coordination Ecosystem: Services &amp; Support, or ACCESS.  Find out more at the [ACCESS website](http://access-ci.org). (09/01/2022) -->
 
@@ -12,7 +12,7 @@ TACC's High Performance Computing (HPC) systems are used primarily for scientifi
 
 Ranch (**`ranch.tacc.utexas.edu`**), is a Quantum StorNext-based system, with a DDN- provided front-end disk system (30PB raw), and a 5000 slot Quantum Scalar i6000 library for its back-end tape archive.
 
-Ranch is an allocated resource, meaning that Ranch is available only to users with an allocation on one of TACC's computational resources such as [Frontera](../frontera), [Stampede3](../stampede3), or [Lonestar6](../lonestar6). ACCESS PIs will be prompted automatically for the companion storage allocation as part of the proposal submission process and should include a justification of the storage needs in their proposal.  UT and UT system PIs should also make a request and justify the storage requested when applying for a Ranch shared "Project" (non-user) allocation. The default allocation on Ranch for users is 2TB. To request a [shared Ranch project space](#projects) for your team’s use, please submit a TACC user portal ticket.
+Ranch is an allocated resource, meaning that Ranch is available only to users with an allocation on one of TACC's computational resources such as [Frontera](../frontera), [Stampede3](../stampede3), or [Lonestar6](../lonestar6). ACCESS PIs will be prompted automatically for the companion storage allocation as part of the proposal submission process and should include a justification of the storage needs in their proposal.  UT and UT system PIs should also make a request and justify the storage requested when applying for a Ranch shared "Project" (non-user) allocation. The default allocation on Ranch for users is 2TB. To request a [shared Ranch project space](#projects) for your team's use, please submit a [TACC Helpdesk ticket][HELPDESK].
 
 
 ### [Intended Use](#intro-use) { #intro-use }
@@ -71,13 +71,13 @@ The new Quantum-based environment is designed to meet the demand of retrieving m
 	**File Space Quota**: Users are limited to 2 Terabytes (TB) of disk space in their `$HOME` directories.
 
 
-You can display your current Ranch on-disk **file space usage** by executing the following UNIX command while the current directory is either the user or Project directory:
+You can display your current Ranch on-disk **file space usage** by executing the following UNIX command while the current directory is either you or your Project's home directory:
 
 ```cmd-line
 ranch$ du -sh
 ```
 
-Keep in mind the above commands only display file **space** used, not a total file **count**.  File count can be found using the UNIX `find` and `wc` commands, again while the current directory is either the user or Project directory:
+Keep in mind the above commands only display file **space** used, not a total file **count**.  File count can be found using the UNIX `find` and `wc` commands, again while the current directory is either you or your Project's home directory:
 
 ```cmd-line
 ranch$ find . -type f | wc
@@ -95,8 +95,7 @@ Users can check their current and historical Ranch usage by looking at the conte
 ranch$ tail ~/HSM_usage
 ```
 
-This file is updated nightly as a convenience to the user.  Each entry also shows the date and time of its update. **Do not delete or edit this file.**  Note that the format of the file has changed over time, and may again as necessary, to provide better information and improved readability for users.
-
+This file is updated nightly.  Each entry also shows the date and time of its update. **Do not delete or edit this file.**  Note that the format of the file has changed over time, and may again as necessary, to provide better information and improved readability for users.
 
 
 ## [Ranch "Project" Storage](#projects) { #projects }
@@ -112,11 +111,11 @@ Ideally users should combine their data into large files in their source environ
 
 ### [Manipulating Files within Ranch](#transferring-manipulating) { #transferring-manipulating }
 
-Since Ranch is an archive system, any files which have not been accessed recently will be stored on tape. This is transparent to the user, as is, when necessary, the truncation of the file’s data to provide additional disk space. If a file has not yet been truncated, reading and manipulating the file will take place at speeds typical for the user-facing high performance disk array and file system wherein the file resides
+Since Ranch is an archive system, any files which have not been accessed recently will be stored on tape. This transfer is transparent to you, as is, when necessary, the truncation of the file's data to provide additional disk space. If a file has not yet been truncated, reading and manipulating the file will take place at speeds typical for the user-facing high performance disk array and file system wherein the file resides
 
-However, for any file that is to be read or accessed that has been truncated, it must first be read, in its entirety, from tape. These retrievals from tape take time, from minutes to hours, and the time necessary is a normal aspect of file manipulation within Ranch.  While these retrievals are transparent to the user, the user will notice that time lag during the access of the file or files.  Again, the time lag, regardless of duration, is entirely normal.
+However, for any file that is to be read or accessed that has been truncated, it must first be read, in its entirety, from tape. These retrievals from tape take time, from minutes to hours, and the time necessary is a normal aspect of file manipulation within Ranch.  While these retrievals are transparent to you, you will notice a time lag during the access of the file or files.  Again, the time lag, regardless of duration, is entirely normal.
 
-Note that simply doing an `ls -l` to look at a file's attributes or an `mv` to rename the file will not provoke file retrieval from tape, as these are operations against the file’s metadata.
+Note that simply doing an `ls -l` to look at a file's attributes or an `mv` to rename the file will not provoke file retrieval from tape, as these are operations against the file's metadata.
 
 
 ### [Data Transfer Methods](#transferring-methods) { #transferring-methods }
@@ -192,7 +191,7 @@ Using `rsync`, **without synchronization**, continues to be a viable method of t
 
 ### [Large Data Usage and Transfers](#transferring-largedata) { #transferring-largedata }
 
-If you are moving a very large amount of data into Ranch and you encounter a quota limit error, then you are bumping into one of the limits on the amount of data you can have on Ranch's user-facing file systems. These quotas limit both file count as well as total file size.  However, it is expected that these limits should only affect a small number of users.  Again, the file "HSM_usage" at the top level of both users’ and Projects’ directories is updated nightly and should be consulted to see current usage with Ranch.  If you encounter a quota error, please submit a ticket to the TACC user portal, and we will see what remediation may be possible. 
+If you are moving a very large amount of data into Ranch and you encounter a quota limit error, then you are bumping into one of the limits on the amount of data you can have on Ranch's user-facing file systems. These quotas limit both file count as well as total file size.  However, it is expected that these limits should only affect a small number of users.  Again, the file "HSM_usage" at the top level of both users' and Projects' directories is updated nightly and should be consulted to see current usage with Ranch.  If you encounter a quota error, please submit a ticket to the TACC user portal, and we will see what remediation may be possible. 
 
 Again, use the `du -sh .` and `find . -type f | wc` commands to see how much data and how many files you currently have on the disk or directory at that moment.
 
@@ -231,7 +230,7 @@ Again, use the `du -sh .` and `find . -type f | wc` commands to see how much dat
 
 1. A subsequent `tar tvf bigfile.tar` should be used immediately to ensure `bigfile.tar` contains all the data you expect, and `tar` generates no errors.
 
-	Or, if you don’t want to wait to actually create `bigfile.tar`, you just want to validate your data, just throw the stream of bytes from the `cat` at `tar`, and you’ll achieve the same result without actually putting anything new on disk:
+	Or, if you don't want to wait to actually create `bigfile.tar`, you just want to validate your data, just throw the stream of bytes from the `cat` at `tar`, and you'll achieve the same result without actually putting anything new on disk:
 
 	```cmd-line
 	stampede3$ cat bigfile_tar_part_?? | tar tvf -
@@ -246,15 +245,46 @@ Again, use the `du -sh .` and `find . -type f | wc` commands to see how much dat
 * Follow the guidelines for archiving data - file size, file count, transfer method
 * Store only data that was processed, or generated, on appropriate systems
 * Carefully delete all unneeded data off of Ranch whenever possible
-* Ideally store data that in its final form, such that it will be accessed only when truly necessary
+* Ideally store data that is in its final form, such that it will be accessed only when truly necessary
 * No workstation or other system backups
 
+## [In Depth: How it Works](#works) { #works }
+
+<!-- Ranch disk storage allocations are not implemented in the same fashion as active data storage allocations in the other TACC environments. -->
+
+Ranch is specifically designed and implemented as a long-term data archive, comprised of a large user-facing disk array, and an even larger tape-based backing store.  Ranch storage quotas, both for users as well as Projects, represent how much data a user or Project can have on the user-facing file system at any particular time.
+
+As Ranch is an archive, as files "age" by being neither accessed nor modified, they are transparently migrated to tape. This then frees up that disk space in the file system for use by all users and Projects, including your own.  This freeing of the file's disk space is known as file "truncation".  Upon access, files that have been migrated to tape are transparently pulled back off - with an expected delay of up to several minutes, and data access then resumes.
+
+Ranch disk storage grants are never implemented in toto if they are quite large. Data ingestion rates, file count quotas, as well as normal data migration to tape usually obviates the need for this.
+
+That being said, should a Project need more on-disk quota than they currently have, and they are not asking to exceed their granted storage size, their on-disk quotas will be adjusted appropriately.
+
+You will see four phenomena within Ranch, typically made manifest in your `HSM_usage` file in your home directory:
+
+1. Your on-disk storage quota is almost always smaller than your grant, and if you have been inactive since initial Project creation, it may be considerably smaller
+2. Your disk usage will drop as your files are migrated to tape, with file count staying the same
+3. Accessing old data that has been migrated to tape will initially be a slow process as your files are pulled back from tape and placed onto disk
+4. Accessing old data will consume file system disk space and thus may then cause you to exceed your on-disk storage quota - therefore you are encouraged to always be selective about reading old data
+
+
+!!! important 
+	The file truncation that the system does automatically occurs only when there is a lack of free disk space on the entire file system, not in any particular user's or Project directory.  
+
+For example, if the file system were half full, there would be NO file truncation, and while older files would be steadily copied to tape, their entire contents would remain on disk.  Conversely, if the file system were to grow to over 80% full, the system would be transparently searching for, and truncating, older files in order to create free disk space in the file system.  None of these truncation operations are driven by a particular user or Project reaching their quota of on-disk storage.  **The software is unaware that any particular directory has reached their quota and might need intervention via truncation.**
+
+Given all that was described above with regard to storge allocations and the `HSM_usage` file, if a user has reached their current quota of on-disk storage, there are two solutions that can be used.
+
+1. Perform an "early truncation" wherein your old files are explicitly discovered and truncated.  This presumes that these old files have already been written to tape.
+1. Expand you or your Project's on-disk quota.  Given that Ranch is a shared resource with hundreds of Projects and thousands of users, this on-disk quota expansion is not the preferred solution.
+
+In either case, you must [submit a helpdesk ticket][HELPDESK] to ask for an examination of the quota use in Ranch.
 
 {% include 'include/ranch-help.md' %}
 
-## [References](#refs) { #refs }
+<!-- ## [References](#refs) { #refs }
 
-* [Stampede3 User Guide](../stampede3)
+* [Stampede3 User Guide](../stampede3) -->
 
 {% include 'aliases.md' %}
 

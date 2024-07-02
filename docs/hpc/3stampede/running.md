@@ -10,7 +10,10 @@
 Stampede3's job scheduler is the Slurm Workload Manager. Slurm commands enable you to submit, manage, monitor, and control your jobs.  See the [Job Management](#jobmanagement) section below for further information. 
 
 !!! important
-	**Queues and limits are subject to change without notice.** <br>Execute `qlimits` on Stampede3 for real-time information regarding limits on available queues.  <!-- See Monitoring Jobs and Queues for additional information. -->
+    **Queue limits are subject to change without notice.**  
+    TACC Staff will occasionally adjust the QOS settings in order to ensure fair scheduling for the entire user community.  
+    Use TACC's `qlimits` utility to see the latest queue configurations.
+
 
 #### [Table 7. Production Queues](#table7) { #table7 }
 
@@ -19,7 +22,7 @@ Queue Name   | Node Type | Max Nodes per Job<br>(assoc'd cores) | Max Duration |
 icx          | ICX       | 16 nodes<br>(1280 cores)             | 24 hrs       | 4                 | 1.67 SUs
 pvc          | PVC       | 1 node<br>(96 cores)                 | 48 hrs       | 2                 | 4 SUs
 skx          | SKX       | 64 nodes<br>(3072 cores)             | 24 hrs       | 4                 | 1 SU
-skx-dev      | SKX       | 16 nodes<br>(798 cores)              | 2 hrs        | 1                 | 1 SU
+skx-dev      | SKX       | 16 nodes<br>(768 cores)              | 2 hrs        | 1                 | 1 SU
 spr          | SPR       | 16 nodes<br>(896 cores)              | 24 hrs       | 6                 | 3 SUs
 
 

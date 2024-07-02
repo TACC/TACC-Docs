@@ -81,7 +81,7 @@ Consult the [Intel Math Kernel Library](#mkl) (MKL) section below.
 <!-- ### [Compiling and Linking MPI Programs](#building-mpi) { #building-mpi } -->
 ### [MPI Programs](#building-mpi) { #building-mpi }
 
-Intel MPI (module `impi`) and MVAPICH2 (module `mvapich2`) are the two MPI libraries available on Stampede3. After loading an impi or mvapich2 module, compile and/or link using an MPI wrapper (`mpicc`, `mpicxx`, `mpif90`) in place of the compiler:
+Intel MPI (module `impi`) and MVAPICH (module `mvapich`) are the two MPI libraries available on Stampede3. After loading an `impi` or mvapich module, compile and/or link using an MPI wrapper (`mpicc`, `mpicxx`, `mpif90`) in place of the compiler:
 
 ```
 $ mpicc    mycode.c   -o myexe   # C source, full build
