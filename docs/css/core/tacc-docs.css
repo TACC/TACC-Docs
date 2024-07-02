@@ -194,7 +194,7 @@ svg.logo [fill]:not([fill="none"]) {
   padding: var(--link-pad-vert) var(--link-pad-horz); /* overwrite theme.css */
 }
 .wy-menu-vertical li.on ul,
-.wy-menu-vertical li.current ul {
+.wy-menu-vertical li.current.has-list ul {
   padding-left: var(--link-pad-horz);
   padding-bottom: 10px;
 }
