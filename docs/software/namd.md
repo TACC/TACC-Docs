@@ -1,13 +1,12 @@
 # NAMD at TACC
-*Last update: November 30, 2021*
+*Last update: July 7, 2024*
 
-	
-<img alt="NAMD logo" src="../imgs/namd-logo.png" style="width:40%;">
+<img alt="NAMD logo" src="../imgs/namd-logo.png" style="width:40%;">   
 <a href="http://www.ks.uiuc.edu/Research/namd/">NAMD</a> **Na**noscale **M**olecular **D**ynamics program, is a parallel molecular dynamics code designed for high-performance simulation of large biomolecular systems. Based on Charm++ parallel objects, NAMD scales to hundreds of cores for typical simulations and beyond 500,000 cores for the largest simulations. NAMD uses the popular molecular graphics program VMD for simulation setup and trajectory analysis, but is also file-compatible with AMBER, CHARMM, and X-PLOR. NAMD can perform geometry optimization, molecular dynamics simulations, chemical and conformational free energy calculations, enhanced sampling via replica exchange. It also supports Tcl based scripting and steering forces.  
 
 ## [Installations](#installations) { #installations }
 
-NAMD is currently installed on TACC's [Frontera](../../hpc/frontera), [Stampede2](../../hpc/stampede2), and [Lonestar6](../../hpc/lonestar6) compute resources.  NAMD is managed under the module system on TACC resources. Read the following instructions carefully. NAMD performance is particularly sensitive to its configuration.  Try running benchmarks with different configurations to find your optimal NAMD set up. You can initiate interactive [`idev`](../../software/idev) debugging sessions on all systems.
+NAMD is currently installed on TACC's [Frontera](../../hpc/frontera), [Stampede3](../../hpc/stampede3), and [Lonestar6](../../hpc/lonestar6) compute resources.  NAMD is managed under the module system on TACC resources. Read the following instructions carefully. NAMD performance is particularly sensitive to its configuration.  Try running benchmarks with different configurations to find your optimal NAMD set up. You can initiate interactive [`idev`](../../software/idev) debugging sessions on all systems.
 
 ## [NAMD on Frontera](#running-frontera) { #running-frontera }
 
@@ -38,8 +37,8 @@ ibrun namd2 +ppn 13 \
 			+commap 0,28,1,29 input &> output
 ```
 
-
 8 tasks per node:
+
 ``` job-script
 #SBATCH -J test         # Job Name
 #SBATCH -o test.o%j
@@ -65,105 +64,114 @@ compressed input files
 ```
 
 
-## [NAMD on Stampede2](#running-stampede2) { #running-stampede2 }
+## [NAMD on Stampede3](#running-stampede3) { #running-stampede3 }
 
-As of this date, the recommended and latest version is 2.14 . Users are welcome to install different NAMD versions in their own directories. See [Building Third Party Software](../../hpc/stampede2#building) in the Stampede2 User Guide. 
 
-### [Job Script](#jobscript-stampede2-knl) { #jobscript-stampede2-knl }
+Note: The way to run NAMD on Sapphire Rapids nodes is shown as following:
+Example of 4 tasks per node. Good for small number of nodes.
 
-!!! tip
-	TACC staff recommends assigning 13 tasks per node for NAMD jobs running on Stampede2's KNL compute nodes. 
-
-This job script requests 1 node and 4 MPI tasks: 4 tasks/node. 
-
-``` job-script
-#SBATCH -J test         # Job Name
+```job-script
+#!/bin/bash
+#SBATCH -J test               # Job Name
 #SBATCH -o test.o%j
-#SBATCH -N 1            # Request 1 node
-#SBATCH -n 4            # and 4 MPI tasks
-#SBATCH -p normal       # Queue (partition) name -- normal, development, etc.
-#SBATCH -t 24:00:00     # Run time (hh:mm:ss) - 24 hours
+#SBATCH -N 2                  # Total number of nodes
+#SBATCH -n 8                  # Total number of mpi tasks
+#SBATCH -p spr                # Queue name
+#SBATCH -t 24:00:00           # Run time (hh:mm:ss) - 24 hours
 
-module load namd/2.14
-ibrun namd2_knl +ppn 32 \
-				+pemap 0-63+68 \
-				+commap 64-67 input &> output
+module load namd/3.0b6
+ibrun namd3 +ppn 27 \
+			+pemap 2-54:2,58-110:2,3-55:2,59-111:2 \
+			+commap 0,56,1,57 input &> output
 ```
 
+Example of 8 tasks per node. Scale better for large number of nodes.
 
-To run the same job on more than one node, vary the `-N` and `n` `#SBATCH` directives. This job script requests 3 nodes and 39 MPI tasks: 13 tasks/node. 
-
-``` job-script
-#SBATCH -J mynamd       # Set job name
-#SBATCH -o mynamd.o%j
-#SBATCH -N 3            # Request 3 nodes
-#SBATCH -n 39           # Request 39 MPI tasks; 13 tasks per node
-#SBATCH -p normal       # Submit to the normal queue
-#SBATCH -t 24:00:00     # Set max run time of 24 hours
-
-module load namd/2.14
-ibrun namd2_knl +ppn 8 \
-				+pemap 0-51+68 \
-				+commap 52-67 input &> output
-```
-
-As well as the Slurm `#SBATCH` directives (`-N` and `-n`), try varying the [affinity](http://www.ks.uiuc.edu/Research/namd/2.12/ug/node89.html) settings to determine the optimal performance of your job. You can try both settings then use the optimal one. If your system is small or the number of nodes are large, you can try:
-
-4 tasks per node:
-
-``` job-script
-ibrun namd2_knl +ppn 16 +pemap 0-63 +commap 64-67
-```
-
-13 tasks per node:
-
-``` job-script
-ibrun namd2_knl +ppn 4 +pemap 0-51 +commap 52-67
-```
-
-### [Job Script: NAMD on Stampede2's SKX Nodes](#jobscript-stampede2-skx) { #jobscript-stampede2-skx }
-
-!!! tip
-	TACC staff recommends assigning 4 tasks per node for jobs running on Stampede2's SKX compute nodes. 
-
-``` job-script
-#SBATCH -J test         # Job Name
+```job-script
+#!/bin/bash
+#SBATCH -J test               # Job Name
 #SBATCH -o test.o%j
-#SBATCH -N 2            # Total number of nodes
-#SBATCH -n 8            # Total number of mpi tasks
-#SBATCH -p skx-normal   # Queue (partition) name -- skx-normal, skx-dev, etc.
-#SBATCH -t 24:00:00     # Run time (hh:mm:ss) - 24 hours
+#SBATCH -N 12                 # Total number of nodes
+#SBATCH -n 96                 # Total number of mpi tasks
+#SBATCH -p spr                # Queue name
+#SBATCH -t 24:00:00           # Run time (hh:mm:ss) - 24 hours
 
-module load namd/2.14
-ibrun namd2_skx +ppn 11 \
-				+pemap 2-22:2,26-46:2,3-23:2,27-47:2 \
-				+commap 0,24,1,25 input &> output
+module load namd/3.0b6
+ibrun namd3 +ppn 13 \
+			+pemap 2-26:2,30-54:2,58-82:2,86-110:2,3-27:2,31-55:2,59-83:2,87-111:2 \
+			+commap 0,28,56,84,1,29,57,85 input &> output
 ```
 
-You may also try other [affinity](http://www.ks.uiuc.edu/Research/namd/2.14/ug/node88.html) settings as in these examples for varying number of tasks per node.
+Note: The way to run NAMD on Ice Lake nodes is shown as following:
+Example of 4 tasks per node. Good for small number of nodes.
 
-6 tasks per node:
+```job-script
+#!/bin/bash
+#SBATCH -J test               # Job Name
+#SBATCH -o test.o%j
+#SBATCH -N 2                  # Total number of nodes
+#SBATCH -n 8                  # Total number of mpi tasks
+#SBATCH -p icx                # Queue name
+#SBATCH -t 24:00:00           # Run time (hh:mm:ss) - 24 hours
 
-``` job-script
-ibrun namd2_skx +ppn 7 \
-				+pemap 2-14:2,18-30:2,34-46:2,3-15:2,19-31:2,35-47:2 \
-				+commap 0,16,32,1,17,33 input &> output  
+module load namd/3.0b6
+ibrun namd3 +ppn 19 \
+			+pemap 2-38:2,42-78:2,3-39:2,43-79:2 \
+			+commap 0,40,1,41 input &> output
 ```
 
-2 tasks per node:
+Example of 8 tasks per node. Scale better for large number of nodes.
 
-``` job-script
-ibrun namd2_skx +ppn 23 \
-				+pemap 2-47:2,3-47:2 \
-				+commap 0,1 input &> output
+```job-script
+#!/bin/bash
+#SBATCH -J test               # Job Name
+#SBATCH -o test.o%j
+#SBATCH -N 12                 # Total number of nodes
+#SBATCH -n 96                 # Total number of mpi tasks
+#SBATCH -p icx                # Queue name
+#SBATCH -t 24:00:00           # Run time (hh:mm:ss) - 24 hours
+
+module load namd/3.0b6
+ibrun namd3 +ppn 9 \
+			+pemap 2-18:2,22-38:2,42-58:2,62-78:2,3-19:2,23-39:2,43-59:2,63-79:2 \
+			+commap 0,20,40,60,1,21,41,61 input &> output
 ```
 
-1 task per node:
-``` job-script
-ibrun namd2_skx +ppn 47 \
-				+pemap 2-47:2,1-47:2 \
-				+commap 0 input &> output
+Note: The way to run NAMD on Skylake nodes is shown as following:
+Example of 4 tasks per node. Good for small number of nodes.
+
+```job-script
+#!/bin/bash
+#SBATCH -J test               # Job Name
+#SBATCH -o test.o%j
+#SBATCH -N 2                  # Total number of nodes
+#SBATCH -n 8                  # Total number of mpi tasks
+#SBATCH -p skx                # Queue name
+#SBATCH -t 24:00:00           # Run time (hh:mm:ss) - 24 hours
+
+module load namd/3.0b6
+ibrun namd3 +ppn 11 \ 
+			+pemap 2-22:2,26-46:2,3-23:2,27-47:2 \ 
+			+commap 0,24,1,25 input &> output
 ```
+
+Example of 8 tasks per node. Scale better for large number of nodes.
+
+```job-script
+#!/bin/bash
+#SBATCH -J test              # Job Name
+#SBATCH -o test.o%j
+#SBATCH -N 12                # Total number of nodes
+#SBATCH -n 96                # Total number of mpi tasks
+#SBATCH -p skx               # Queue name
+#SBATCH -t 24:00:00          # Run time (hh:mm:ss) - 24 hours
+
+module load namd/3.0b6
+ibrun namd3 +ppn 5 \
+			+pemap 2-10:2,14-22:2,26-34:2,38-46:2,3-11:2,15-23:2,27-35:2,39-47:2 \
+			+commap 0,12,24,36,1,13,25,37 input &> output
+```
+
 
 ## [NAMD on Lonestar6](#running-lonestar6) { #running-lonestar6 }
 
