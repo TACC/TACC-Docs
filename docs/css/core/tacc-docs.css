@@ -645,12 +645,12 @@ pre.job-script code {
   /* To move permalink left of the heading */
   /* NOTE: Unnecessary if MkDocs config sets `permalink_leading: true` */
   /* https://github.com/mkdocs/mkdocs/blob/1.5.0/pyproject.toml#L39 */
-  :where(:has(> .headerlink)) {
+  :has(> .headerlink) {
     position: relative;
   }
   .headerlink {
     position: absolute;
-    width: 100%
+    width: 100%;
   }
 
   /* To move permalink into the document margin */
@@ -663,10 +663,12 @@ pre.job-script code {
     translate: calc( -1 * var(--offset) );
   }
 
-  /* To refine permalink states */
-  :where(:has(> .headerlink)):not(:hover) .headerlink {
+  /* To use link color only on hover over it or heading */
+  .headerlink:not(:hover, :hover > *) {
     color: inherit;
   }
+
+  /* To underline only when active */
   .headerlink:hover:not(:active) {
     text-decoration: none;
   }
