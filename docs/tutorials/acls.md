@@ -20,7 +20,7 @@ and
 login1$ man getfacl
 ```
 
-## [Viewing ACLs](#viewing) { #viewing }
+## Viewing ACLs { #viewing }
 
 Viewing ACLs for a specific file or directory is quite simple, and can be accomplished using the `getfacl` command:
 
@@ -41,7 +41,7 @@ The output will be in the format shown below.  This example shows that the owner
 
 Note that the command's output is in a specialized format that can also be used to set ACLs, as described [below](#multiplefiles).  You may use the wildcard (`*`) character to generate ACL listings for all files which match a specific pattern, however this may produce a lot of output if there are many files in a given directory. You must have read access to the file or directory in question in order to read its ACLs.
 
-## [Setting ACLs from the Command-Line](#setting) { #setting }
+## Setting ACLs from the Command-Line { #setting }
 
 The `setfacl` command is the simplest way to manage ACLs. The example below modifies (with the -m) option an ACL to add read access for the username "testuser". 
 
@@ -62,7 +62,7 @@ login1$ setfacl -x u:testuser:rwx file
 ```
 
 
-## [Setting Complex ACLs](#multiplefiles) { #multiplefiles }
+## Setting Complex ACLs { #multiplefiles }
 
 You can use a named file, or a pipe with the `getfacl` command, to set complex ACLs or to copy ACLs from one file to another. The following commands save the output of the `getfacl` command to a file named `myfile.acl`, and then reads that ACL to set the permissions on a second file:
 
@@ -90,7 +90,7 @@ login1$ man getfacl
 login1$ man setfacl
 ```
 
-## [Default ACLs](#defaultacls) { #defaultacls }
+## Default ACLs { #defaultacls }
 
 Default ACLs can be set on a directory, and once set, are assigned automatically to all new files created within that directory. Default ACLs are useful when you have a specific and/or complex set of permissions you wish to apply uniformly to all new data in a project directory. Setting default ACLs follows the same format as regular ACLs, with a `d:` prefix in the ACL specification. For example, to assign a default ACL granting user `thomas` full permissions to all NEW data in mydirectory, use the following command:
 
@@ -103,7 +103,7 @@ The capital `X` in the ACL specification means "add execute permission for direc
 Note that default ACLs do not alter the permissions for any currently existing files; they only apply to files created after the default ACL is set.
 
 
-<!-- ## [References](#refs) { #refs } -->
+<!-- ## References { #refs } -->
 
 <!-- * [iRODS at TACC](../../software/irods) -->
 

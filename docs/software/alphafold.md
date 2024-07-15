@@ -6,9 +6,9 @@
 <td> <img alt="AlphaFold logo" src="../imgs/alphafold-logo.png"></td><td>
 AlphaFold is a protein structure prediction tool developed by DeepMind (Google). It uses a novel machine learning approach to predict 3D protein structures from primary sequences alone. In July 2021, the developers made the <a href="https://github.com/deepmind/alphafold">source code available on Github</a> and published a <a href="https://www.nature.com/articles/s41586-021-03819-2">Nature paper</a> (<a href="https://static-content.springer.com/esm/art%3A10.1038%2Fs41586-021-03819-2/MediaObjects/41586_2021_3819_MOESM1_ESM.pdf">supplementary information</a>) describing the method. In addition to the software, AlphaFold depends on ~2.9 TB of databases and model parameters. Researchers interested in making protein structure predictions with AlphaFold are encouraged to follow the guide below, and use the databases and model parameters that have been prepared.</td></tr></table>
 
-## [Installations at TACC](#installations) { #installations } 
+## Installations at TACC { #installations } 
 
-### [Table 1. Installations at TACC](#table1) { #table1 }
+### Table 1. Installations at TACC { #table1 }
 
 System | What's Available
 -- | --
@@ -17,7 +17,7 @@ Lonestar6 | AlphaFold: v2.3.2<br> Data: `/scratch/tacc/apps/bio/alphafold/2.3.2/
 Stampede3 | AlphaFold: v2.3.2<br> Data: `/scratch/tacc/apps/bio/alphafold/2.3.2/data`<br>Examples: `/scratch/tacc/apps/bio/alphafold/2.3.2/examples`<br> Module: `/scratch/tacc/apps/bio/alphafold/modulefiles`
 
 
-## [Running AlphaFold ](#running) { #running }
+## Running AlphaFold  { #running }
 
 !!! important
 	AlphaFold is being tested for performance and I/O efficiency - the instructions below are subject to change.
@@ -101,7 +101,7 @@ login1$ sbatch full_dbs.slurm
 
 Using the scheme above with `full_dbs` precision, we expect each job to take between 2 to 12 hours depending on the length of the input fasta sequence, the speed of the compute node, and the relative load on the file system at the time of run. Using `reduced_dbs` should cut the job time in half, while slightly sacrificing precision. Refer to the <a href="https://github.com/deepmind/alphafold%23alphafold-output">AlphaFold Documentation</a> for a description of the expected output files.
 
-### [Batch Structure Predictions from Independent Sequences](#running-independentsequences) { #running-independentsequences }
+### Batch Structure Predictions from Independent Sequences { #running-independentsequences }
 
 !!! caution
 	**Limit your concurrent AlphaFold processes per node to a maximum of three**.<br>The multiple sequence alignment step of the AlphaFold workflow is exceedingly I/O intensive. 
@@ -173,7 +173,7 @@ login1$ sbatch full_dbs_launcher.slurm
 ```
 
 
-### [Structure Prediction from Multiple Sequences (Multimer)](#running-multiplesequences) { #running-multiplesequences } 
+### Structure Prediction from Multiple Sequences (Multimer) { #running-multiplesequences } 
 
 !!! caution
 	Alphafold supports multimer folding, but as mentioned in the <a href="https://github.com/google-deepmind/alphafold">AlphaFold Documentation</a>, it is a work in progress and is not expected to be as stable as monomer folding. 
@@ -181,7 +181,7 @@ login1$ sbatch full_dbs_launcher.slurm
 Nevertheless, we provide example flag files, job scripts, and sequences in the "Examples" paths listed above to test multimer folding. In our experience, the success rates of multimer folding jobs decrease as input sequence length increases.
 
 
-## [References](#refs) { #refs }
+## References { #refs }
 
 * [Github: AlphaFold](https://github.com/deepmind/alphafold)
 * [AlphaFold Nature Paper](https://www.nature.com/articles/s41586-021-03819-2)

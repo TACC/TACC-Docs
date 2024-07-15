@@ -1,17 +1,17 @@
-## [Running Jobs](#running) { #running }
+## Running Jobs { #running }
 
 {% include 'include/stampede2-jobaccounting.md' %}
 
-### [Slurm Job Scheduler](#running-slurm) { #running-slurm }
+### Slurm Job Scheduler { #running-slurm }
 
 Stampede2's job scheduler is the [Slurm Workload Manager](http://schedmd.com). Slurm commands enable you to submit, manage, monitor, and control your jobs. 
 
-### [Slurm Partitions (Queues)](#running-queues) { #running-queues }
+### Slurm Partitions (Queues) { #running-queues }
 
 Currently available queues include those in [Stampede2 Production Queues](#table5). See [KNL Compute Nodes](#overview-phase1computenodes), [SKX Compute Nodes](#overview-skxcomputenodes), [Memory Modes](#programming-knl-memorymodes), and [Cluster Modes](#programming-knl-clustermodes) for more information on node types.
 
 <a id="queues">
-#### [Table 5. Production Queues](#table5) { #table5 }
+#### Table 5. Production Queues { #table5 }
 
 Queue Name | Node Type | Max Nodes per Job<br /> (assoc'd cores)&#42; | Max Duration | Max Jobs in Queue &#42; | Charge Rate<br /> (per node-hour) 
 --- | --- | --- | --- | --- | ---
@@ -31,7 +31,7 @@ icx-normal | ICX | 40 nodes<br>(3,200 cores) &#42; | 48 hrs | 20 &#42; | 1.67 SU
 
 &#42;&#42;&#42; For non-hybrid memory-cluster modes or other special requirements, [submit a consulting ticket](CREATETICKET).
 
-### [Submitting Batch Jobs with `sbatch`](#running-sbatch) { #running-sbatch }
+### Submitting Batch Jobs with `sbatch` { #running-sbatch }
 
 Use Slurm's `sbatch` command to [submit a batch job](#using-computenodes) to one of the Stampede2 queues:
 
@@ -48,7 +48,7 @@ Your job will run in the environment it inherits at submission time; this enviro
 The [Common `sbatch` Options table](#table6) below describes some of the most common `sbatch` command options. Slurm directives begin with `#SBATCH`; most have a short form (e.g. `-N`) and a long form (e.g. `--nodes`). You can pass options to `sbatch` using either the command line or job script; most users find that the job script is the easier approach. The first line of your job script must specify the interpreter that will parse non-Slurm commands; in most cases `#!/bin/bash` or `#!/bin/csh` is the right choice. Avoid `#!/bin/sh` (its startup behavior can lead to subtle problems on Stampede2), and do not include comments or any other characters on this first line. All `#SBATCH` directives must precede all shell commands. Note also that certain `#SBATCH` options or combinations of options are mandatory, while others are not available on Stampede2.
 
 
-#### [Table 6. Common sbatch Options](#table6) { #table6 }
+#### Table 6. Common sbatch Options { #table6 }
 
 Option | Argument | Comments
 --- | --- | ---
@@ -71,7 +71,7 @@ Option | Argument | Comments
 By default, Slurm writes all console output to a file named `slurm-%j.out`, where `%j` is the numerical job ID. To specify a different filename use the `-o` option. To save `stdout` (standard out) and `stderr` (standard error) to separate files, specify both `-o` and `-e`.
 
 
-### [Launching Applications](#running-launching) { #running-launching }
+### Launching Applications { #running-launching }
 
 The primary purpose of your job script is to launch your research application. How you do so depends on several factors, especially (1) the type of application (e.g. MPI, OpenMP, serial), and (2) what you're trying to accomplish (e.g. launch a single instance, complete several steps in a workflow, run several applications simultaneously within the same job). While there are many possibilities, your own job script will probably include a launch line that is a variation of one of the examples described in this section:
 
@@ -83,7 +83,7 @@ The primary purpose of your job script is to launch your research application. H
 * [More than One MPI Application Running Concurrently](#running-launching-mpisimultaneous)
 * [More than One OpenMP Application Running Concurrently](#running-launching-openmpsimultaneous)
 
-#### [Launching One Serial Application](#running-launching-serial) { #running-launching-serial }
+#### Launching One Serial Application { #running-launching-serial }
 
 To launch a serial application, simply call the executable. Specify the path to the executable in either the PATH environment variable or in the call to the executable itself:
 
@@ -94,7 +94,7 @@ $WORK/apps/myprov/myprogram # explicit full path to executable
 ./myprogram -m -k 6 input1  # executable with notional input options
 ```
 
-#### [Launching One Multi-Threaded Application](#running-launching-multi) { #running-launching-multi }
+#### Launching One Multi-Threaded Application { #running-launching-multi }
 
 Launch a threaded application the same way. Be sure to specify the number of threads. **Note that the default OpenMP thread count is 1**.
 
@@ -103,7 +103,7 @@ export OMP_NUM_THREADS=68    # 68 total OpenMP threads (1 per KNL core)
 ./myprogram
 ```
 
-#### [Launching One MPI Application](#running-launching-mpi) { #running-launching-mpi }
+#### Launching One MPI Application { #running-launching-mpi }
 
 To launch an MPI application, use the TACC-specific MPI launcher `ibrun`, which is a Stampede2-aware replacement for generic MPI launchers like `mpirun` and `mpiexec`. In most cases the only arguments you need are the name of your executable followed by any arguments your executable needs. When you call `ibrun` without other arguments, your Slurm `#SBATCH` directives will determine the number of ranks (MPI tasks) and number of nodes on which your program runs.
 
@@ -123,7 +123,7 @@ c123-456$ ibrun ./myprogram    # ibrun uses idev's arguments to properly allocat
 
 ```
 
-### [Launching One Hybrid (MPI+Threads) Application](#running-launching-hybrid) { #running-launching-hybrid }
+### Launching One Hybrid (MPI+Threads) Application { #running-launching-hybrid }
 
 When launching a single application you generally don't need to worry about affinity: both Intel MPI and MVAPICH2 will distribute and pin tasks and threads in a sensible way.
 
@@ -134,11 +134,11 @@ ibrun ./myprogram           # use ibrun instead of mpirun or mpiexec
 
 As a practical guideline, the product of `$OMP_NUM_THREADS` and the maximum number of MPI processes per node should not be greater than total number of cores available per node (KNL nodes have 68 cores, SKX nodes have 48 cores, ICX nodes have 80 cores).
 
-### [More Than One Serial Application in the Same Job](#running-launching-serialmorethanone) { #running-launching-serialmorethanone }
+### More Than One Serial Application in the Same Job { #running-launching-serialmorethanone }
 
 TACC's `launcher` utility provides an easy way to launch more than one serial application in a single job. This is a great way to engage in a popular form of High Throughput Computing: running parameter sweeps (one serial application against many different input datasets) on several nodes simultaneously. The `launcher` utility will execute your specified list of independent serial commands, distributing the tasks evenly, pinning them to specific cores, and scheduling them to keep cores busy. Execute `module load launcher` followed by `module help launcher` for more information.
 
-#### [MPI Applications One at a Time](#running-launching-consecutivempi) { #running-launching-consecutivempi }
+#### MPI Applications One at a Time { #running-launching-consecutivempi }
 
 To run one MPI application after another (or any sequence of commands one at a time), simply list them in your job script in the order in which you'd like them to execute. When one application/command completes, the next one will begin.
 
@@ -150,7 +150,7 @@ ibrun ./myprogram input1	# runs after preprocess.sh completes
 ibrun ./myprogram input2    # runs after previous MPI app completes
 ```
 
-#### [More than One MPI Application Running Concurrently](#running-launching-mpisimultaneous) { #running-launching-mpisimultaneous }
+#### More than One MPI Application Running Concurrently { #running-launching-mpisimultaneous }
 
 To run more than one MPI application simultaneously in the same job, you need to do several things:
 
@@ -174,7 +174,7 @@ The `task_affinity` script does two things:
 * **Don't confuse `task_affinity` with [`tacc_affinity`](#managing-memory)**; the keyword `tacc_affinity` is now a symbolic link to `mem_affinity`. The `mem_affinity` script and the symbolic link `tacc_affinity` manage MCDRAM in flat-quadrant mode on the KNL, but they do not pin MPI tasks.
 
 
-#### [More than One OpenMP Application Running Concurrently](#running-launching-openmpsimultaneous) { #running-launching-openmpsimultaneous }
+#### More than One OpenMP Application Running Concurrently { #running-launching-openmpsimultaneous }
 
 You can also run more than one OpenMP application simultaneously on a single node, but you will need to <!-- [distribute and pin tasks appropriately](http://pages.tacc.utexas.edu/~eijkhout/pcse/html/omp-affinity.html) --> distribute and pin tasks appropriately. In the example below, `numactl -C` specifies virtual CPUs (hardware threads). According to the numbering scheme for KNL hardware threads, CPU (hardware thread) numbers 0-67 are spread across the 68 cores, 1 thread per core. Similarly for SKX: CPU (hardware thread) numbers 0-47 are spread across the 48 cores, 1 thread per core, and for ICX: CPU (hardware thread) numbers 0-79 are spread across the 80 cores, 1 thread per core. <!-- See [TACC training materials](http://xortal.tacc.utexas.edu/training#/session/64) for more information. -->
 
@@ -187,7 +187,7 @@ wait
 ```
 
 
-### [Interactive Sessions with `idev` and `srun`](#running-idev) { #running-idev }
+### Interactive Sessions with `idev` and `srun` { #running-idev }
 
 TACC's own `idev` utility is the best way to begin an interactive session on one or more compute nodes. To launch a thirty-minute session on a single node in the development queue, simply execute:
 
@@ -232,7 +232,7 @@ login1$ srun --pty -N 2 -n 8 -t 2:30:00 -p normal /bin/bash -l # same conditions
 ```
 
 
-### [Interactive Sessions using `ssh`](#running-ssh) { #running-ssh }
+### Interactive Sessions using `ssh` { #running-ssh }
 
 If you have a batch job or interactive session running on a compute node, you "own the node": you can connect via `ssh` to open a new interactive session on that node. This is an especially convenient way to monitor your applications' progress. One particularly helpful example: login to a compute node that you own, execute `top`, then press the "1" key to see a display that allows you to monitor thread ("CPU") and memory use.
 
@@ -249,7 +249,7 @@ C448-004$
 ```
 
 
-### [SLURM Environment Variables](#running-slurmenvvars) { #running-slurmenvvars }
+### SLURM Environment Variables { #running-slurmenvvars }
 
 Be sure to distinguish between internal Slurm replacement symbols (e.g. `%j` described above) and Linux environment variables defined by Slurm (e.g. `SLURM_JOBID`). Execute `env | grep SLURM` from within your job script to see the full list of Slurm environment variables and their values. You can use Slurm replacement symbols like `%j` only to construct a Slurm filename pattern; they are not meaningful to your Linux shell. Conversely, you can use Slurm environment variables in the shell portion of your job script but not in an `#SBATCH` directive. 
 

@@ -1,10 +1,10 @@
-## [Running Jobs](#running) { #running }
+## Running Jobs { #running }
 
 Frontera's job scheduler is the <a href="http://schedmd.com">Slurm Workload Manager</a>. Slurm commands enable you to submit, manage, monitor, and control your jobs. Jobs submitted to the scheduler are queued, then run on the compute nodes. Each job consumes Service Units (SUs) which are then charged to your allocation.
 
 {%include 'include/frontera-jobaccounting.md' %}
 
-### [Requesting Resources ](#running-requesting) { #running-requesting } 
+### Requesting Resources  { #running-requesting } 
 
 Be sure to request computing resources e.g., number of nodes, number of tasks per node, max time per job, that are consistent with the type of application(s) you are running:
 
@@ -31,7 +31,7 @@ The `nvdimm` queue features 16 [large-memory (2.1TB) nodes](#system-largememory)
 Frontera's `flex` queue offers users a low cost queue for lower priority/node count jobs and jobs running software with checkpointing capabilities. Jobs in the `flex` queue are scheduled with lower priority and are also eligible for preemption after running for one hour.  That is, if other jobs in the other queues are currently waiting for nodes and there are jobs running in the `flex` queue, the Slurm scheduler will cancel any jobs in the `flex` queue that have run more than one hour in order to give resources back to the higher priority jobs. Any job started in the `flex` queue is guaranteed to run for at least an hour (assuming the requested wallclock time was >= 1 hour). If there remain no outstanding requests from other queues, then these jobs will continue to run until they hit their wallclock requested time. This flexibility in runtime is rewarded by a reduced charge rate of .8 SUs/hour. Also, the max total node count for one user with many jobs in the flex queue is 6400 nodes.
 
 
-#### [Table 6. Frontera Production Queues](#table6) { #table6 } 
+#### Table 6. Frontera Production Queues { #table6 } 
 
 !!! important
     **Queue limits are subject to change without notice.**   
@@ -57,11 +57,11 @@ Users are limited to a maximum of 50 running and 200 pending jobs in all queues 
 
 
 
-### [Accessing the Compute Nodes](#running-computenodes) { #running-computenodes } 
+### Accessing the Compute Nodes { #running-computenodes } 
 
  The login nodes are shared resources: at any given time, there are many users logged into each of these login nodes, each preparing to access the "back-end" compute nodes (Figure 2. Login and Compute Nodes). What you do on the login nodes affects other users directly because you are competing for the same resources: memory and processing power. This is the reason you should not run your applications on the login nodes or otherwise abuse them. Think of the login nodes as a prep area where you can manage files and compile code before accessing the compute nodes to perform research computations. See [Good Conduct](../../basics/conduct) for more information.
 
-#### [Figure 2. Login and Compute Nodes](#figure2) { #figure2 } 
+#### Figure 2. Login and Compute Nodes { #figure2 } 
 <figure id="figure2"><img alt="[Figure 2. Login and Compute Nodes" src="../imgs/login-compute-nodes.jpg">
 <figcaption></figcaption></figure>
 
@@ -76,7 +76,7 @@ While some workflows, tools, and applications hide the details, there are three 
 1.	Begin an [**interactive session** using `idev` or `srun`](#running-interactive). This will log you into a compute node and give you a command prompt there, where you can issue commands and run code as if you were doing so on your personal machine. An interactive session is a great way to develop, test, and debug code. Both the `srun` and `idev` commands submit a new batch job on your behalf, providing interactive access once the job starts. You will need to remain logged in until the interactive session begins.
 
 
-### [Submitting Batch Jobs with `sbatch`](#running-sbatch) { #running-sbatch } 
+### Submitting Batch Jobs with `sbatch` { #running-sbatch } 
 
 Use Slurm's `sbatch` command to submit a batch job to one of the Frontera queues:
 
@@ -102,7 +102,7 @@ Your job will run in the environment it inherits at submission time; this enviro
 The [Common `sbatch` Options table](#table7) below describes some of the most common `sbatch` command options. Slurm directives begin with `#SBATCH`; most have a short form (e.g. `-N`) and a long form (e.g. `--nodes`). You can pass options to `sbatch` using either the command line or job script; most users find that the job script is the easier approach. The first line of your job script must specify the interpreter that will parse non-Slurm commands; in most cases `#!/bin/bash` or `#!/bin/csh` is the right choice. Avoid `#!/bin/sh` (its startup behavior can lead to subtle problems on Frontera), and do not include comments or any other characters on this first line. All `#SBATCH` directives must precede all shell commands. Note also that certain `#SBATCH` options or combinations of options are mandatory, while others are not available on Frontera.
 
 
-#### [Table 7. Common <code>sbatch</code> Options](#table7) { #table7 } 
+#### Table 7. Common <code>sbatch</code> Options { #table7 } 
 
 | Option | Argument | Comments |
 | --- | --- | -- |
@@ -125,7 +125,7 @@ The [Common `sbatch` Options table](#table7) below describes some of the most co
 By default, Slurm writes all console output to a file named `slurm-%j.out`, where `%j` is the numerical job ID. To specify a different filename use the `-o` option. To save `stdout` (standard out) and `stderr` (standard error) to separate files, specify both `-o` and `-e`.
 
 
-### [Interactive Sessions with `idev` and `srun`](#running-interactive) { #running-interactive } 
+### Interactive Sessions with `idev` and `srun` { #running-interactive } 
 
 TACC's own `idev` utility is the best way to begin an interactive session on one or more compute nodes. `idev` submits a batch script requesting access to a compute node. Once the scheduler allocates a compute node, you are then automatically ssh'd to that node where you can begin any compute-intensive jobs.  
 
@@ -170,7 +170,7 @@ login1$ srun --pty -N 2 -n 8 -t 2:30:00 -p normal /bin/bash -l # same conditions
 
 Consult the [`idev`](../../software/idev) documentation for further details.
 
-### [Interactive Sessions using SSH](#running-ssh) { #running-ssh } 
+### Interactive Sessions using SSH { #running-ssh } 
 
 If you have a batch job or interactive session running on a compute node, you "own the node": you can connect via `ssh` to open a new interactive session on that node. This is an especially convenient way to monitor your applications' progress. One particularly helpful example: login to a compute node that you own, execute `top`, then press the "1" key to see a display that allows you to monitor thread ("CPU") and memory use.
 
@@ -187,7 +187,7 @@ C448-004$
 ```
 
 
-### [Slurm Environment Variables](#running-slurmenvvars) { #running-slurmenvvars } 
+### Slurm Environment Variables { #running-slurmenvvars } 
 
 Be sure to distinguish between internal Slurm replacement symbols (e.g. `%j` described above) and Linux environment variables defined by Slurm (e.g. `SLURM_JOBID`). Execute `env | grep SLURM` from within your job script to see the full list of Slurm environment variables and their values. You can use Slurm replacement symbols like `%j` only to construct a Slurm filename pattern; they are not meaningful to your Linux shell. Conversely, you can use Slurm environment variables in the shell portion of your job script but not in an `#SBATCH` directive. For example, the following directive will not work the way you might think:
 

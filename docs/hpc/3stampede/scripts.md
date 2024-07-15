@@ -1,4 +1,4 @@
-## [Job Scripts](#scripts) { #scripts }
+## Job Scripts { #scripts }
 
 This section provides sample Slurm job scripts for each Stampede3 node type: 
 
@@ -16,11 +16,11 @@ Copy and customize the following jobs scripts by specifying and refining your jo
 * specify total number of MPI tasks with the `-n` option
 * specify the project to be charged with the `-A` option.
 
-### [PVC Nodes](#scripts-pvc) { #scripts-pvc }
+### PVC Nodes { #scripts-pvc }
 
 *Coming Soon*
 
-### [SPR Nodes](#scripts-spr) { #scripts-spr }
+### SPR Nodes { #scripts-spr }
 
 Click on a tab for a customizable job-script.
 
@@ -232,7 +232,7 @@ ibrun ./myprogram         # Use ibrun instead of mpirun or mpiexec
 ```
 ///
 
-### [ICX Nodes](#scripts-icx) { #scripts-icx }
+### ICX Nodes { #scripts-icx }
 
 Click on a tab for a customizable job-script.
 
@@ -448,7 +448,7 @@ ibrun ./myprogram         # Use ibrun instead of mpirun or mpiexec
 ```
 ///
 
-### [SKX Nodes](#scripts-skx) { #scripts-skx }
+### SKX Nodes { #scripts-skx }
 
 Click on a tab for a customizable job-script.
 

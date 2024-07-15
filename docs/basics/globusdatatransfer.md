@@ -1,4 +1,4 @@
-## [Globus v5.4 Transition](#globus454) { #globusv54 }
+## Globus v5.4 Transition { #globusv54 }
 *January 8, 2024*
 
 Beginning Monday, January 8th, 2024, Globus will be transitioning to version 5.4. This transition will impact all TACC researchers who use Globus and will require you to update your profile with your ePPN (an acronym-to not-worry-about) to continue using the Globus service. 
@@ -24,7 +24,7 @@ Once you've completed these steps, you will be able to use the [Globus File Mana
 
 
 ---
-## [Globus Data Transfer Guide](#globus) { #globus }
+## Globus Data Transfer Guide { #globus }
 
 Globus supplies high speed, reliable, asynchronous transfers to the portal. Globus is fast, for large volumes of data, as it uses multiple network sockets simultaneously to transfer data. It is reliable for large numbers of directories and files, as it can automatically fail and restart itself, and will only notify you when the transfers are completed successfully.
 

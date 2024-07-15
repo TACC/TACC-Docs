@@ -1,17 +1,17 @@
-## [Running Jobs](#running) { #running }
+## Running Jobs { #running }
 
 This section provides an overview of how compute jobs are charged to allocations and describes the **S**imple **L**inux **U**tility for **R**esource **M**anagement (Slurm) batch environment, Lonestar6 queue structure, lists basic Slurm job control and monitoring commands along with options.
 
 {% include 'include/lonestar6-jobaccounting.md' %}
 
 <a id="queues">
-### [Production Queues](#running-queues) { #running-queues }
+### Production Queues { #running-queues }
 
 Lonestar6's new queue, `vm-small` is designed for users who only need a subset of a node's entire 128 cores in the "normal" queue.  Run your jobs in this queue if your job requires 16 cores or less and needs less than 29 GB of memory.  If your job is memory bandwidth dependent, your performance may decrease since your job will be possibly sharing memory bandwidth with other jobs.  
 
 The jobs in this queue consume 1/7 the resources of a full node.  Jobs are charged accordingly at .143 SUs per node hour.
 
-#### [Table 5. Production Queues](#table5) { #table5 }
+#### Table 5. Production Queues { #table5 }
 
 !!! important
     **Queue limits are subject to change without notice.**  

@@ -7,7 +7,7 @@ TACC supports the TensorFlow+Horovod stack. This framework exposes high level in
 
 This document details how to install TensorFlow, then download and run benchmarks in both single- and multi-node modes. Due to variations in TensorFlow and Python versions, and their compatibilities with the Intel compilers and CUDA libraries, the installation instructions are quite specific. Pay careful attention to the installation instructions.
 
-## [Installations](#installations) { #installations }
+## Installations { #installations }
 
 TensorFlow is installed on TACC's [Lonestar6](../../hpc/lonestar6), [Frontera](../../hpc/frontera), and [Stampede2](../../hpc/stampede2) resources.
 
@@ -20,7 +20,7 @@ TensorFlow is installed on TACC's [Lonestar6](../../hpc/lonestar6), [Frontera](.
 	Use TACC's <a href="../idev"><code>idev</code></a> utility to grab compute node/s when conducting any TensorFlow activities.
 
 
-## [TensorFlow on Lonestar6](#lonestar6) { #lonestar6 }
+## TensorFlow on Lonestar6 { #lonestar6 }
 
 These instructions detail installing and running TensorFlow benchmarks on Lonestar6. Lonestar6 runs TensorFlow 2.6.1 with CUDA/11.4, Python 3.9.7 and Intel 19.
 
@@ -35,7 +35,7 @@ login1$ HOROVOD_CUDA_HOME=$TACC_CUDA_DIR HOROVOD_NCCL_HOME=$TACC_NCCL_DIR \
 ```
 
 
-### [Single-Node](#lonestar6-singlenode) { #lonestar6-singlenode }
+### Single-Node { #lonestar6-singlenode }
 
 To run a single-node job benchmark on one GPU, first create an `idev` session in LS6's [`gpu-a100`](../../hpc/lonestar6#queues) queue: 
 
@@ -62,7 +62,7 @@ c307-001.ls6$ python3 scripts/tf_cnn_benchmarks/tf_cnn_benchmarks.py \
 
 
 
-### [Multi-Node](#lonestar6-multinode) { #lonestar6-multinode }
+### Multi-Node { #lonestar6-multinode }
 
 To run a multi-node job benchmark, first create a multi-node `idev` session in LS6's [`gpu-a100`](../../hpc/lonestar6#queues) queue: 
 
@@ -81,7 +81,7 @@ c305-000$ ibrun -np 4 python3 scripts/tf_cnn_benchmarks/tf_cnn_benchmarks.py \
 ```
 
 <!--
-## [TensorFlow on Maverick2](#maverick2) { #maverick2 }
+## TensorFlow on Maverick2 { #maverick2 }
 
 These instructions detail installing and running TensorFlow benchmarks on Maverick2. Maverick2 runs TensorFlow 2.1.0 with Python 3.7.0 and Intel 18.
 
@@ -103,7 +103,7 @@ c123-456$ HOROVOD_CUDA_HOME=$TACC_CUDA_DIR HOROVOD_NCCL_HOME=$TACC_NCCL_DIR CC=g
 	--user horovod==0.19.2 --no-cache-dir
 ```
 
-### [Single-Node](#maverick2-singlenode) { #maverick2-singlenode }
+### Single-Node { #maverick2-singlenode }
 
 Download the tensorflow benchmark to your `$WORK` directory, then check out the branch that matches your tensorflow version.
 
@@ -133,7 +133,7 @@ c123-456$ ibrun -np 4 python3 tf_cnn_benchmarks.py --variable_update=horovod \
             --num_gpus=1 --model resnet50 --batch_size 32 --num_batches 200 --allow_growth=True
 ```
 
-### [Multi-Node](#maverick2-multinode) { #maverick2-multinode }
+### Multi-Node { #maverick2-multinode }
 
 Download the TensorFlow benchmark to your `$WORK` directory. Check out the branch that matches your tensorflow version. This example runs on two nodes in Maverick2's `gtx` queue (8 GPUs).
 
@@ -154,7 +154,7 @@ c123-456$ ibrun -np 8 python3 tf_cnn_benchmarks.py --variable_update=horovod \
 ```
 -->
 
-## [TensorFlow on Frontera](#frontera) { #frontera }
+## TensorFlow on Frontera { #frontera }
 
 These instructions detail installing and running TensorFlow benchmarks on Frontera RTX. Frontera RTX runs TensorFlow 2.1.0 with Python 3.7.0 and Intel 19. Frontera supports CUDA10.0 and CUDA/10.1. Use the appropriate CUDA version for your TensorFlow installation with Python 3.7.6.
 
@@ -173,7 +173,7 @@ c123-456$ HOROVOD_CUDA_HOME=$TACC_CUDA_DIR HOROVOD_NCCL_HOME=$TACC_NCCL_DIR CC=g
 	--user horovod==0.19.2 --no-cache-dir
 ```
 
-### [Single-Node](#frontera-singlenode) { #frontera-singlenode }
+### Single-Node { #frontera-singlenode }
 
 Download the tensorflow benchmark to your `$WORK` directory, then check out the branch that matches your tensorflow version.
 
@@ -203,7 +203,7 @@ c123-456$ ibrun -np 4 python3 tf_cnn_benchmarks.py --variable_update=horovod --n
 	--model resnet50 --batch_size 32 --num_batches 200 --allow_growth=True
 ```
 
-### [Multi-Node](#frontera-multinode) { #frontera-multinode }
+### Multi-Node { #frontera-multinode }
 
 Download the TensorFlow benchmark to your `$WORK` directory. Check out the branch that matches your tensorflow version. This example runs on two nodes in the `rtx queue` (8 GPUs).
 
@@ -223,7 +223,7 @@ c123-456$ ibrun -np 8 python3 tf_cnn_benchmarks.py --variable_update=horovod --n
 	--model resnet50 --batch_size 32 --num_batches 200 --allow_growth=True
 ```
 
-## [TensorFlow on Stampede2](#stampede2) { #stampede2 }
+## TensorFlow on Stampede2 { #stampede2 }
 
 These instructions detail installing and running TensorFlow benchmarks on Stampede2. Stampede2 runs TensorFlow 2.1.0 with Python 3.7 and Intel 18.
 
@@ -248,7 +248,7 @@ To install horovod v0.19.2:
 c123-456$ CC=gcc HOROVOD_WITH_TENSORFLOW=1 pip3 install --user horovod==0.19.2 --no-cache-dir --no-cache-dir
 ```
 
-### [Single-Node](#stampede2-singlenode) { #stampede2-singlenode }
+### Single-Node { #stampede2-singlenode }
 
 If you're not already on a compute node, then use TACC's `idev` utility to grab a single compute node for 1 hour:
 ``` cmd-line
@@ -278,7 +278,7 @@ c123-456$ python3 tf_cnn_benchmarks.py --model resnet50 --batch_size 128 --data_
 	--num_intra_threads 46 --num_inter_threads 2 --distortions=False --num_batches 100
 ```
 
-### [Multi-Node](#stampede2-multinode) { #stampede2-multinode }
+### Multi-Node { #stampede2-multinode }
 
 If you're not already on a compute node, then use TACC's `idev` utility to grab two compute nodes for 1 hour:
 
@@ -321,7 +321,7 @@ The parameters for this last command are defined as follows:
 * `-num_batches` specifies the total number of iterations to run
 
 		
-## [FAQ](#faq) { #faq }
+## FAQ { #faq }
 
 Q: **I have missing Python packages when using TensorFlow. What shall I do?**  
 
@@ -331,7 +331,7 @@ A: Deep learning frameworks usually depend on many other packages. e.g., the [Ca
 $ pip install --user package-name
 ```
 
-## [References](#refs) { #refs }
+## References { #refs }
 
 <!-- * [Maverick2 User Guide](../../hpc/maverick2) -->
 * [Github: TensorFlow](https://github.com/tensorflow/tensorflow)

@@ -1,7 +1,7 @@
 # Stampede3 User Guide 
 *Last update: June 28, 2024*
 
-## [Notices](#notices) { #notices }
+## Notices { #notices }
 
 * **Attention Jupyter users: learn how to [configure your environment](#python-jupyter) to enable notebooks.** (05/16/2024)
 
@@ -10,23 +10,23 @@
 * **Attention VASP users: DO NOT run VASP using Stampede3's SPR nodes!**  TACC staff has noticed many VASP jobs causing issues on the SPR nodes and impacting overall system stability and performance.  Please run your VASP jobs using either the [SKX](../../hpc/stampede3#table3) or [ICX](../../hpc/stampede3#table4) nodes.  See [Running VASP Jobs](../../software/vasp/#running) for more information.  (05/06/2024)
 
 
-## [Introduction](#intro) { #intro }
+## Introduction { #intro }
 
 The National Science Foundation (NSF) has generously awarded the University of Texas at Austin funds for TACC's Stampede3 system ([Award Abstract # 2320757](https://www.nsf.gov/awardsearch/showAward?AWD_ID=2320757)).  Please [reference TACC](https://tacc.utexas.edu/about/citing-tacc/) when providing any citations.   
 
-### [Allocations](#intro-allocations) { #intro-allocations }
+### Allocations { #intro-allocations }
 
 Submit all Stampede3 allocations requests through the NSF's [ACCESS](https://allocations.access-ci.org/) project. General information related to allocations, support and operations is available via the ACCESS website <http://access-ci.org>.
 
 Requesting and managing allocations will require creating a username and password on this site. These credentials do not have to be the same as those used to access the TACC User Portal and TACC resources. Principal Investigators (PIs) and their allocation managers will be able to add/remove users to/from their allocations and submit requests to renew, supplement, extend, etc. their allocations. PIs attempting to manage an allocation via the [TACC User Portal](https://tacc.utexas.edu/portal/dashboard) will be redirected to the ACCESS website.
 
-## [System Architecture](#system) { #system }
+## System Architecture { #system }
 
-### [Sapphire Rapids Compute Nodes](#system-spr) { #system-spr }
+### Sapphire Rapids Compute Nodes { #system-spr }
 
 Stampede3 hosts 560 "Sapphire Rapids" HBM (SPR) nodes with 112 cores each.  Each SPR node provides a performance increase of 2 - 3x over the SKX nodes due to increased core count and greatly increased memory bandwidth.  The available memory bandwidth per core increases by a factor of 3.5x.  Applications that were starved for memory bandwidth should exhibit improved performance close to 3x. 
 
-#### [Table 1. SPR Specifications](#table1) { #table1 }
+#### Table 1. SPR Specifications { #table1 }
 
 Specification | Value 
 --- | ---
@@ -39,11 +39,11 @@ Memory: | 128 GB HBM 2e
 Cache: | 48 KB L1 data cache per core; 1MB L2 per core; 112.5 MB L3 per socket.<br>Each socket can cache up to 168.5 MB (sum of L2 and L3 capacity).
 Local storage: | 150 GB /tmp partition
 
-### [Ponte Vecchio Compute Nodes](#system-pvc) { #system-pvc }
+### Ponte Vecchio Compute Nodes { #system-pvc }
 
 Stampede3 hosts 20 nodes with four Intel Data Center GPU Max 1550s "Ponte Vecchio" (PVC) each.<br>Each PVC GPU has 128 GB of HBM2e and 128 Xe cores providing a peak performance of 4x 52 FP64 TFLOPS per node for scientific workflows and 4x 832 BF16 TFLOPS for ML workflows. 
 
-#### [Table 2. PVC Specifications](#table2) { #table2 }
+#### Table 2. PVC Specifications { #table2 }
 
 Specification | Value
 --- | --
@@ -62,7 +62,7 @@ Local storage: | 150 GB /tmp partition
 
 Stampede3 hosts 1,060 "Skylake" (SKX) compute nodes.
 
-#### [Table 3. SKX Specifications](#table3) { #table3 }
+#### Table 3. SKX Specifications { #table3 }
 
 Specification | Value
 --- | ---
@@ -75,11 +75,11 @@ RAM: | 192GB (2.67GHz) DDR4
 Cache: | 32 KB L1 data cache per core; 1 MB L2 per core; 33 MB L3 per socket.<br>Each socket can cache up to 57 MB (sum of L2 and L3 capacity).
 Local storage: | 90 GB /tmp 
 
-### [ICX Compute Nodes](#system-icx) { #system-icx }
+### ICX Compute Nodes { #system-icx }
 
 Stampede3 hosts 224 "Ice Lake" (ICX) compute nodes.
 
-#### [Table 4. ICX Specifications](#table4) { #table4 }
+#### Table 4. ICX Specifications { #table4 }
 
 Specification | Value
 --- | ---
@@ -92,22 +92,22 @@ RAM: | 256GB (3.2 GHz) DDR4
 Cache: | 48KB L1 data cache per core; 1.25 MB L2 per core; 60 MB L3 per socket.<br>Each socket can cache up to 110 MB (sum of L2 and L3 capacity)
 Local storage: | 200 GB /tmp partition
 
-### [Login Nodes](#system-login) { #system-login }
+### Login Nodes { #system-login }
 
 The Stampede3 login nodes are Intel Xeon Platinum 8468 "Sapphire Rapids" (SPR) nodes, each with 96 cores on two sockets (48 cores/socket) with 250 GB of DDR. 
 
-### [Network](#network) { #system-network }
+### Network { #system-network }
 
 The interconnect is a 100Gb/sec Omni-Path (OPA) network with a fat tree topology. There is one leaf switch for each 28-node half rack, each with 20 leaf-to-core uplinks (28/20 oversubscription) for the SKX nodes.  The ICX and SKX nodes are fully connected.  The SPR and PVC nodes are fully connected with a fat tree topology with no oversubscription. 
 
 The SPR and PVC networks will be upgraded to use Cornelis' CN5000 Omni-Path technology in 2024.  The backbone network will also be upgraded. 
 
-### [File Systems](#system-filesystems) { #system-filesystems }
+### File Systems { #system-filesystems }
  
 Stampede3 will use a shared VAST file system for the `$HOME` and `$SCRATCH` directories.  **These two file systems are NOT lustre file systems and do not support setting a stripe count or stripe size**.  There are no options for the user to set.  As with Stampede2, the `$WORK` file system will also be mounted.  Unlike `$HOME` and `$SCRATCH`, the `$WORK` file system is a Lustre file system and supports the lustre `lfs` commands.  All three file systems, `$HOME`, `$SCRATCH`, and `$WORK` are available from all Stampede3 nodes.  The `/tmp` partition is also available to users but is local to each node. The `$WORK` file system is available on most other TACC HPC systems as well. 
 
 
-#### [Table 5. File Systems](#table5) { #table5 }
+#### Table 5. File Systems { #table5 }
 
 File System | Quota | Key Features
 --- | --- | ---
@@ -117,7 +117,7 @@ File System | Quota | Key Features
 
 {% include 'include/scratchpolicy.md' %}
 
-## [Accessing the System](#access) { #access }
+## Accessing the System { #access }
 
 Access to all TACC systems requires Multi-Factor Authentication (MFA). You can create an MFA pairing under "Manage Account" in the TACC Portal.  See [Multi-Factor Authentication at TACC](../../basics/mfa) for further information.
 
@@ -125,7 +125,7 @@ Access to all TACC systems requires Multi-Factor Authentication (MFA). You can c
 	You will be able to log on to Stampede3 **only if** you have an allocation on Stampede3, otherwise your password will be rejected.  
 	Monitor your projects &amp; allocations the via the [TACC Portal](https://tacc.utexas.edu/portal/projects).
 
-### [Secure Shell (SSH)](#access-ssh) { #access-ssh }
+### Secure Shell (SSH) { #access-ssh }
 
 The `ssh` command (Secure Shell, or SSH protocol) is the standard way to connect to Stampede3 and initiate a login session. SSH also includes support for the UNIX file transfer utilities `scp` and `sftp`.  These commands are available within Linux and the Terminal application within Mac OS. If you are using Windows, you will need a modern terminal application such as [Windows Terminal](https://apps.microsoft.com/detail/9N0DX20HK701?hl=en-US&gl=US), [MobaXterm](https://mobaxterm.mobatek.net/) or [Cyberduck](https://cyberduck.io/download/).  
 
@@ -279,11 +279,11 @@ TACC Staff has amassed a database of helpful tips for our users.  Access these t
 
    		Use Ctrl+E to go the end of the command line.
 
-## [Managing Your Files](#files) { #files }
+## Managing Your Files { #files }
 
 Stampede3 mounts three file systems that are shared across all nodes: the home, work, and scratch file systems. Stampede3's startup mechanisms define corresponding account-level environment variables `$HOME`, `$SCRATCH`, and `$WORK` that store the paths to directories that you own on each of these file systems. Consult the Stampede3 File Systems table for the basic characteristics of these file systems, File Operations: I/O Performance for advice on performance issues, and Good Conduct for tips on file system etiquette.
 
-### [Navigating the Shared File Systems](#files-filesystems) { #files-filesystems }
+### Navigating the Shared File Systems { #files-filesystems }
 
 Stampede3's `/home` and `/scratch` file systems are mounted only on Stampede3, but the work file system mounted on Stampede3 is the Global Shared File System hosted on [Stockyard](https://tacc.utexas.edu/systems/stockyard/).  Stockyard is the same work file system that is currently available on Frontera, Lonestar6, and several other TACC resources.
 
@@ -301,7 +301,7 @@ See the example for fictitious user bjones in the figure below.  All directories
 
 Note that the resource-specific sub-directories of `$STOCKYARD` are nothing more than convenient ways to manage your resource-specific files. You have access to any such sub-directory from any TACC resources. If you are logged into Stampede3, for example, executing the alias cdw (equivalent to cd `$WORK`) will take you to the resource-specific sub-directory `$STOCKYARD/stampede3`. But you can access this directory from other TACC systems as well by executing cd `$STOCKYARD/stampede3`. These commands allow you to share files across TACC systems. In fact, several convenient account-level aliases make it even easier to navigate across the directories you own in the shared file systems:
 
-### [Table 6. Built-in Account Level Aliases](#table6) { #table6 }
+### Table 6. Built-in Account Level Aliases { #table6 }
 
 Alias | Command
 --- | ---
@@ -311,18 +311,18 @@ Alias | Command
 `cdy` or `cdg` | `cd $STOCKYARD`
 
 
-### [Sharing Files with Collaborators](#files-sharing) { #files-sharing }
+### Sharing Files with Collaborators { #files-sharing }
 
 If you wish to share files and data with collaborators in your project, see [Sharing Project Files on TACC Systems](../../tutorials/sharingprojectfiles) for step-by-step instructions. Project managers or delegates can use Unix group permissions and commands to create read-only or read-write shared workspaces that function as data repositories and provide a common work area to all project members.
 
-## [Running Jobs](#running) { #running }
+## Running Jobs { #running }
 
 {% include 'include/stampede3-jobaccounting.md' %}
 
-<!-- ### [Slurm Job Scheduler](#running-slurm) { #running-slurm } -->
+<!-- ### Slurm Job Scheduler { #running-slurm } -->
 
 
-### [Slurm Partitions (Queues)](#queues) { #queues }
+### Slurm Partitions (Queues) { #queues }
 
 Stampede3's job scheduler is the Slurm Workload Manager. Slurm commands enable you to submit, manage, monitor, and control your jobs.  See the [Job Management](#jobmanagement) section below for further information. 
 
@@ -332,7 +332,7 @@ Stampede3's job scheduler is the Slurm Workload Manager. Slurm commands enable y
     Use TACC's `qlimits` utility to see the latest queue configurations.
 
 
-#### [Table 7. Production Queues](#table7) { #table7 }
+#### Table 7. Production Queues { #table7 }
 
 Queue Name   | Node Type | Max Nodes per Job<br>(assoc'd cores) | Max Duration | Max Jobs in Queue | Charge Rate<br>(per node-hour)
 --           | --        | --                                   | --           | --                |  
@@ -367,7 +367,7 @@ By default, Slurm writes all console output to a file named "`slurm-%j.out`", wh
 !!! tip
 	The maximum runtime for any individual job is 48 hours.  However, if you have good checkpointing implemented, you can easily chain jobs such that the outputs of one job are the inputs of the next, effectively running indefinitely for as long as needed.  See Slurm's `-d` option.
 
-#### [Table 8. Common `sbatch` Options](#table8) { #table8 }
+#### Table 8. Common `sbatch` Options { #table8 }
 
 Option | Argument | Comments
 --- | --- | ---
@@ -390,13 +390,13 @@ Option | Argument | Comments
 !!!tip
 	TACC does not support Slurm's `-array` option.  Instead, use TACC's [PyLauncher](../../software/pylauncher) utility for parameter sweeps and other collections of related serial jobs.
 
-## [Launching Applications](#launching) { #launching }
+## Launching Applications { #launching }
 
 The primary purpose of your job script is to launch your research application. How you do so depends on several factors, especially (1) the type of application (e.g. MPI, OpenMP, serial), and (2) what you're trying to accomplish (e.g. launch a single instance, complete several steps in a workflow, run several applications simultaneously within the same job). While there are many possibilities, your own job script will probably include a launch line that is a variation of one of the examples described in this section:
 
 Note that the following examples demonstrate launching within a Slurm job script or an `idev` session.  Do not launch jobs on the login nodes.
 
-### [One Serial Application](#launching-serial) { #launching-serial }
+### One Serial Application { #launching-serial }
 
 To launch a serial application, simply call the executable. Specify the path to the executable in either the `$PATH` environment variable or in the call to the executable itself:
 
@@ -407,7 +407,7 @@ $WORK/apps/myprov/myprogram    # explicit full path to executable
 ./myprogram -m -k 6 input1     # executable with notional input options
 ```
 
-### [One Multi-Threaded Application](#launching-multithreaded) { #launching-multithreaded }
+### One Multi-Threaded Application { #launching-multithreaded }
 
 Launch a threaded application the same way. Be sure to specify the number of threads. Note that the default OpenMP thread count is 1.
 
@@ -416,7 +416,7 @@ export OMP_NUM_THREADS=48      # 48 total OpenMP threads (1 per SKX core)
 ./myprogram
 ```
 
-### [One MPI Application](#launching-mpi) { #launching-mpi }
+### One MPI Application { #launching-mpi }
 
 To launch an MPI application, use the TACC-specific MPI launcher `ibrun`, which is a Stampede3-aware replacement for generic MPI launchers like `mpirun` and `mpiexec`. In most cases the only arguments you need are the name of your executable followed by any arguments your executable needs. When you call `ibrun` without other arguments, your Slurm `#SBATCH` directives will determine the number of ranks (MPI tasks) and number of nodes on which your program runs.
 
@@ -433,7 +433,7 @@ c123-456$ ibrun ./myprogram    # ibrun uses idev's arguments to properly allocat
 ```
 
 
-### [One Hybrid (MPI+Threads) Application](#launching-hybrid) { #launching-hybrid }
+### One Hybrid (MPI+Threads) Application { #launching-hybrid }
 
 When launching a single application you generally don't need to worry about affinity: both Intel MPI and MVAPICH will distribute and pin tasks and threads in a sensible way.
 
@@ -444,11 +444,11 @@ ibrun ./myprogram           # use ibrun instead of mpirun or mpiexec
 
 As a practical guideline, the product of `$OMP_NUM_THREADS` and the maximum number of MPI processes per node should not be greater than total number of cores available per node (SPR nodes have 112 cores, ICX nodes have 80 cores, SKX nodes have 48 cores).
 
-### [More Than One Serial Application in the Same Job](#launching-morethanoneserial) { #launching-morethanoneserial }
+### More Than One Serial Application in the Same Job { #launching-morethanoneserial }
 
 TACC's `launcher` utility provides an easy way to launch more than one serial application in a single job. This is a great way to engage in a popular form of High Throughput Computing: running parameter sweeps (one serial application against many different input datasets) on several nodes simultaneously. The `launcher` utility will execute your specified list of independent serial commands, distributing the tasks evenly, pinning them to specific cores, and scheduling them to keep cores busy. Execute `module load launcher` followed by `module help launcher` for more information.
 
-### [MPI Applications - Consecutive](#launching-mpiconsecutive) { #launching-mpiconsecutive }
+### MPI Applications - Consecutive { #launching-mpiconsecutive }
 
 To run one MPI application after another (or any sequence of commands one at a time), simply list them in your job script in the order in which you'd like them to execute. When one application/command completes, the next one will begin.
 
@@ -460,7 +460,7 @@ ibrun ./myprogram input1    # runs after preprocess.sh completes
 ibrun ./myprogram input2    # runs after previous MPI app completes
 ```
 
-### [MPI Application - Concurrent](#launching-mpiconcurrent) { #launching-mpiconcurrent }
+### MPI Application - Concurrent { #launching-mpiconcurrent }
 
 To run more than one MPI application simultaneously in the same job, you need to do several things:
 
@@ -491,9 +491,9 @@ numactl -C 2-3 ./myprogram inputfile2 &  # HW threads (hence cores) 2-3. Note am
 wait
 ```
 
-### [Interactive Sessions](#launching-interactive) { #launching-interactive }
+### Interactive Sessions { #launching-interactive }
 
-#### [Interactive Sessions with `idev` and `srun`](#launching-interactive-idev) { #launching-interactive-idev }
+#### Interactive Sessions with `idev` and `srun` { #launching-interactive-idev }
 
 TACC's own `idev` utility is the best way to begin an interactive session on one or more compute nodes. To launch a thirty-minute session on a single node in the development queue, simply execute:
 
@@ -536,7 +536,7 @@ You can also launch an interactive session with Slurm's `srun` command. A typica
 login1$ srun --pty -N 2 -n 8 -t 2:30:00 -p skx-normal /bin/bash -l # same conditions as above
 ```
 
-#### [Interactive Sessions using `ssh`](#launching-interactive-ssh) { #launching-interactive-ssh }
+#### Interactive Sessions using `ssh` { #launching-interactive-ssh }
 
 If you have a batch job or interactive session running on a compute node, you "own the node": you can connect via ssh to open a new interactive session on that node. This is an especially convenient way to monitor your applications' progress. One particularly helpful example: login to a compute node that you own, execute top, then press the "1" key to see a display that allows you to monitor thread ("CPU") and memory use.
 
@@ -551,7 +551,7 @@ login1$ squeue -u bjones
 C448-004$
 ```
 
-### [Slurm Environment Variables](#launching-slurmenvs) { #launching-slurmenvs }
+### Slurm Environment Variables { #launching-slurmenvs }
 
 Be sure to distinguish between internal Slurm replacement symbols (e.g. %j described above) and Linux environment variables defined by Slurm (e.g. SLURM_JOBID). Execute env | grep SLURM from within your job script to see the full list of Slurm environment variables and their values. You can use Slurm replacement symbols like %j only to construct a Slurm filename pattern; they are not meaningful to your Linux shell. Conversely, you can use Slurm environment variables in the shell portion of your job script but not in an `#SBATCH` directive.
 
@@ -570,15 +570,15 @@ Similarly, you cannot use paths like `$WORK` or `$SCRATCH` in an `#SBATCH` direc
 
 For more information on this and other matters related to Slurm job submission, see the [Slurm online documentation](https://slurm.schedmd.com/sbatch.html); the man pages for both Slurm itself (`man slurm`) and its individual commands (e.g. `man sbatch`); as well as numerous other online resources.
 
-## [Building Software](#building) { #building }
+## Building Software { #building }
 
 The phrase "building software" is a common way to describe the process of producing a machine-readable executable file from source files written in C, Fortran, or some other programming language. In its simplest form, building software involves a simple, one-line call or short shell script that invokes a compiler. More typically, the process leverages the power of makefiles, so you can change a line or two in the source code, then rebuild in a systematic way only the components affected by the change. Increasingly, however, the build process is a sophisticated multi-step automated workflow managed by a special framework like autotools or cmake, intended to achieve a repeatable, maintainable, portable mechanism for installing software across a wide range of target platforms.
 
 This section of the user guide does nothing more than introduce the big ideas with simple one-line examples. You will undoubtedly want to explore these concepts more deeply using online resources. You will quickly outgrow the examples here. We recommend that you master the basics of makefiles as quickly as possible: even the simplest computational research project will benefit enormously from the power and flexibility of a makefile-based build process.
 
-### [Compilers](#building-compilers) { #building-compilers }
+### Compilers { #building-compilers }
 
-#### [Intel Compilers](#building-intel) { #building-intel }
+#### Intel Compilers { #building-intel }
 
 Intel is the recommended and default compiler suite on Stampede3. Each Intel module also gives you direct access to mkl without loading an mkl module; see Intel MKL for more information. 
 
@@ -605,7 +605,7 @@ Compiling a code that uses OpenMP would look like this:
 
 See the published Intel documentation, available both online and in `${TACC_INTEL_DIR}/documentation`, for information on optimization flags and other Intel compiler options.
 
-#### [GNU Compilers](#building-gnu) { #building-gnu }
+#### GNU Compilers { #building-gnu }
 
 The GNU foundation maintains a number of high quality compilers, including a compiler for C (gcc), C++ (g++), and Fortran (gfortran). The gcc compiler is the foundation underneath all three, and the term "gcc" often means the suite of these three GNU compilers.
 
@@ -621,7 +621,7 @@ Here are simple examples that use the GNU compilers to produce an executable fro
 
 Note that some compiler options are the same for both Intel and GNU (e.g. `-o`), while others are different (e.g. `-qopenmp` vs `-fopenmp`). Many options are available in one compiler suite but not the other. See the online GNU documentation for information on optimization flags and other GNU compiler options.
 
-### [Compiling and Linking](#buildings-steps) { #buildings-steps }
+### Compiling and Linking { #buildings-steps }
 
 Building an executable requires two separate steps: (1) compiling (generating a binary object file associated with each source file); and (2) linking (combining those object files into a single executable file that also specifies the libraries that executable needs). The examples in the previous section accomplish these two steps in a single call to the compiler. When building more sophisticated applications or libraries, however, it is often necessary or helpful to accomplish these two steps separately.
 
@@ -637,7 +637,7 @@ You can now link the object files to produce an executable file:
 
 The compiler calls a linker utility (usually `/bin/ld`) to accomplish this task. Again, syntax for other compilers is similar.
 
-### [Include and Library Paths](#building-paths) { #building-paths }
+### Include and Library Paths { #building-paths }
 
 Software often depends on pre-compiled binaries called libraries. When this is true, compiling usually requires using the `-I` option to specify paths to so-called header or include files that define interfaces to the procedures and data in those libraries. Similarly, linking often requires using the `-L` option to specify paths to the libraries themselves. Typical compile and link lines might look like this:
 
@@ -650,8 +650,8 @@ The details of the linking process vary, and order sometimes matters. Much depen
 
 Consult the [Intel Math Kernel Library](#mkl) (MKL) section below. 
 
-<!-- ### [Compiling and Linking MPI Programs](#building-mpi) { #building-mpi } -->
-### [MPI Programs](#building-mpi) { #building-mpi }
+<!-- ### Compiling and Linking MPI Programs { #building-mpi } -->
+### MPI Programs { #building-mpi }
 
 Intel MPI (module `impi`) and MVAPICH (module `mvapich`) are the two MPI libraries available on Stampede3. After loading an `impi` or mvapich module, compile and/or link using an MPI wrapper (`mpicc`, `mpicxx`, `mpif90`) in place of the compiler:
 
@@ -668,7 +668,7 @@ These wrappers call the compiler with the options, include paths, and libraries 
 $ mpicc -show  # Show compile line generated by call to mpicc; similarly for other wrappers
 ```
 
-### [Building Third-Party Software](#building-thirdparty) { #building-thirdparty }
+### Building Third-Party Software { #building-thirdparty }
 
 You are welcome to download third-party research software and install it in your own account. In most cases you'll want to download the source code and build the software so it's compatible with the Stampede3 software environment. 
 
@@ -714,13 +714,13 @@ You may, of course, need to customize the build process in other ways. It's like
 
 If you wish to share a software package with collaborators, you may need to modify file permissions. See [Sharing Files with Collaborators](../../tutorials/sharingprojectfiles) for more information.
 
-### [Performance](#building-performance) { #building-performance }
+### Performance { #building-performance }
 
-#### [Compiler Options](#building-performance-compiler) { #building-performance-compiler }
+#### Compiler Options { #building-performance-compiler }
 
 When building software on Stampede3, we recommend using the most recent Intel compiler and Intel MPI library available on Stampede3. The most recent versions may be newer than the defaults. Execute `module spider intel` and `module spider impi` to see what's installed. When loading these modules you may need to specify version numbers explicitly (e.g. `module load intel/24.0` and `module load impi/21.11`).
 
-#### [Architecture-Specific Flags](#building-performance-archflags) { #building-performance-archflags }
+#### Architecture-Specific Flags { #building-performance-archflags }
 
 To compile for all the CPU platforms, include `-xCORE-AVX512` as a build option. The `-x` switch allows you to specify a target architecture. The `-xCORE-AVX512` is a common subset of [Intel's Advanced Vector Extensions 512-bit instruction set](https://www.intel.com/content/www/us/en/architecture-and-technology/avx-512-overview.html) that is supported on the Sapphire Rapids (SPR), Ice Lake (ICX)  and Sky Lake (SKX) nodes.  You should also consider specifying an optimization level using the `-O` flag:
 
@@ -751,7 +751,7 @@ $ icx $TACC_VEC_FLAGS -O3 mycode.c -o myexe
 ```
 
 If you use GNU compilers, see GNU x86 Options for information regarding support for SPR, ICX and SKX.
-### [Intel oneAPI Math Kernel Library (oneMKL)](#mkl) { #mkl }
+### Intel oneAPI Math Kernel Library (oneMKL) { #mkl }
 
 The [Intel oneAPI Math Kernel Library](http://software.intel.com/intel-mkl) (oneMKL) is a collection of highly optimized functions implementing some of the most important mathematical kernels used in computational science, including standardized interfaces to:
 
@@ -762,7 +762,7 @@ The [Intel oneAPI Math Kernel Library](http://software.intel.com/intel-mkl) (one
 * [ScaLAPACK](http://netlib.org/scalapack) (Scalable LAPACK), [BLACS](http://netlib.org/blacs) (Basic Linear Algebra Communication Subprograms), Cluster FFT, and other functionality that provide block-based distributed memory (multi-node) versions of selected LAPACK, BLAS, and FFT algorithms.
 
 
-#### [oneMKL with Intel C, C++, and Fortran Compilers](#mkl-intel) { #mkl-intel }
+#### oneMKL with Intel C, C++, and Fortran Compilers { #mkl-intel }
 
 There is no oneMKL module for the Intel compilers because you don't need one: the Intel compilers have built-in support for oneMKL. Unless you have specialized needs, there is no need to specify include paths and libraries explicitly. Instead, using oneMKL with the Intel modules requires nothing more than compiling and linking with the `-qmkl` option.; e.g.
 
@@ -776,7 +776,7 @@ The `-qmkl` switch is an abbreviated form of `-qmkl=parallel`, which links your 
 !!! tip
 	For additional information, including advanced linking options, see the oneMKL documentation and oneIntel oneMKL Link Line Advisor.
 
-#### [oneMKL with GNU C, C++, and Fortran Compilers](#mkl-gnu) { #mkl-gnu }
+#### oneMKL with GNU C, C++, and Fortran Compilers { #mkl-gnu }
 
 When using a GNU compiler, load the oneMKL module before compiling or running your code, then specify explicitly the oneMKL libraries, library paths, and include paths your application needs. Consult the Intel oneMKL Link Line Advisor for details. A typical compile/link process on a TACC system will look like this:
 
@@ -796,25 +796,25 @@ For your convenience the `mkl` module file also provides alternative TACC-define
 $ module help mkl 
 ```
 
-#### [Using oneMKL as BLAS/LAPACK with Third-Party Software](#mkl-thirdparty) { #mkl-thirdparty }
+#### Using oneMKL as BLAS/LAPACK with Third-Party Software { #mkl-thirdparty }
 
 When your third-party software requires BLAS or LAPACK, you can use oneMKL to supply this functionality. Replace generic instructions that include link options like `-lblas` or `-llapack` with the simpler oneMKL approach described above. There is no need to download and install alternatives like OpenBLAS.
 
-#### [Using oneMKL as BLAS/LAPACK with TACC's MATLAB, Python, and R Modules](#mkl-tacc) { #mkl-tacc }
+#### Using oneMKL as BLAS/LAPACK with TACC's MATLAB, Python, and R Modules { #mkl-tacc }
 
 TACC's MATLAB, Python, and R modules all use threaded (parallel) oneMKL as their underlying BLAS/LAPACK library. These means that even serial codes written in MATLAB, Python, or R may benefit from oneMKL's thread-based parallelism. This requires no action on your part other than specifying an appropriate max thread count for oneMKL; see the section below for more information.
 
-#### [Controlling Threading in oneMKL](#mkl-threading) { #mkl-threading }
+#### Controlling Threading in oneMKL { #mkl-threading }
 
 Any code that calls oneMKL functions can potentially benefit from oneMKL's thread-based parallelism; this is true even if your code is not otherwise a parallel application. If you are linking to the threaded oneMKL (using `-qmkl`, `-qmkl=parallel`, or the equivalent explicit link line), you need only specify an appropriate value for the max number of threads available to oneMKL. You can do this with either of the two environment variables `$MKL_NUM_THREADS` or `$OMP_NUM_THREADS`. The environment variable `$MKL_NUM_THREADS` specifies the max number of threads available to each instance of oneMKL, and has no effect on non-MKL code. If `$MKL_NUM_THREADS` is undefined, oneMKL uses `$OMP_NUM_THREADS` to determine the max number of threads available to oneMKL functions. In either case, oneMKL will attempt to choose an optimal thread count less than or equal to the specified value. Note that `$OMP_NUM_THREADS` defaults to 1 on TACC systems; if you use the default value you will get no thread-based parallelism from oneMKL.
 
 If you are running a single serial, unthreaded application (or an unthreaded MPI code involving a single MPI task per node) it is usually best to give oneMKL as much flexibility as possible by setting the max thread count to the total number of hardware threads on the node (96 on SKX, 160 on ICX, 112 on SPR). Of course things are more complicated if you are running more than one process on a node: e.g. multiple serial processes, threaded applications, hybrid MPI-threaded applications, or pure MPI codes running more than one MPI rank per node. See Intel's [Calling oneMKL Functions from Multi-threaded Applications](https://www.intel.com/content/www/us/en/docs/onemkl/developer-guide-linux/2024-1/call-onemkl-functions-from-multi-threaded-apps.html) documentation. 
 
-#### [Using ScaLAPACK, Cluster FFT, and Other oneMKL Cluster Capabilities](#mkl-othercapabilities) { #mkl-othercapabilities }
+#### Using ScaLAPACK, Cluster FFT, and Other oneMKL Cluster Capabilities { #mkl-othercapabilities }
 
 Intel provides [substantial and detailed documentation](https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl-documentation.html).  See [Working with the Intel oneAPI Math Kernel Library Cluster Software](https://www.intel.com/content/www/us/en/docs/onemkl/developer-guide-linux/2023-0/working-with-onemkl-cluster-software.html) and [Intel oneAPI Math Kernel Library Link Line Advisor](https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl-link-line-advisor.html) for information on linking to the oneMKL Cluster components.
 
-## [Job Scripts](#scripts) { #scripts }
+## Job Scripts { #scripts }
 
 This section provides sample Slurm job scripts for each Stampede3 node type: 
 
@@ -832,11 +832,11 @@ Copy and customize the following jobs scripts by specifying and refining your jo
 * specify total number of MPI tasks with the `-n` option
 * specify the project to be charged with the `-A` option.
 
-### [PVC Nodes](#scripts-pvc) { #scripts-pvc }
+### PVC Nodes { #scripts-pvc }
 
 *Coming Soon*
 
-### [SPR Nodes](#scripts-spr) { #scripts-spr }
+### SPR Nodes { #scripts-spr }
 
 Click on a tab for a customizable job-script.
 
@@ -1048,7 +1048,7 @@ ibrun ./myprogram         # Use ibrun instead of mpirun or mpiexec
 ```
 ///
 
-### [ICX Nodes](#scripts-icx) { #scripts-icx }
+### ICX Nodes { #scripts-icx }
 
 Click on a tab for a customizable job-script.
 
@@ -1264,7 +1264,7 @@ ibrun ./myprogram         # Use ibrun instead of mpirun or mpiexec
 ```
 ///
 
-### [SKX Nodes](#scripts-skx) { #scripts-skx }
+### SKX Nodes { #scripts-skx }
 
 Click on a tab for a customizable job-script.
 
@@ -1487,20 +1487,20 @@ ibrun ./myprogram         # Use ibrun instead of mpirun or mpiexec
 ```
 ///
 
-## [Job Management](#jobs) { #jobs }
+## Job Management { #jobs }
 
 In this section, we present several Slurm commands and other utilities that are available to help you plan and track your job submissions as well as check the status of the Slurm queues.
 
 !!!important
 	When interpreting queue and job status, remember that **Stampede3 does not operate on a first-come-first-served basis**. Instead, the sophisticated, tunable algorithms built into Slurm attempt to keep the system busy, while scheduling jobs in a way that is as fair as possible to everyone. At times this means leaving nodes idle ("draining the queue") to make room for a large job that would otherwise never run. It also means considering each user's "fair share", scheduling jobs so that those who haven't run jobs recently may have a slightly higher priority than those who have.
 
-### [Monitoring Queue Status](#jobs-monitoring) { #jobs-monitoring }
+### Monitoring Queue Status { #jobs-monitoring }
 
-#### [TACC's `qlimits` command](#jobs-monitoring-qlimits) { #jobs-monitoring-qlimits }
+#### TACC's `qlimits` command { #jobs-monitoring-qlimits }
 
 To display resource limits for the Lonestar queues, execute: `qlimits`. The result is real-time data; the corresponding information in this document's [table of Stampede3 queues](#queues) may lag behind the actual configuration that the `qlimits` utility displays.
 
-#### [Slurm's `sinfo` command](#jobs-monitoring-sinfo) { #jobs-monitoring-sinfo }
+#### Slurm's `sinfo` command { #jobs-monitoring-sinfo }
 
 Slurm's `sinfo` command allows you to monitor the status of the queues. If you execute `sinfo` without arguments, you'll see a list of every node in the system together with its status. To skip the node list and produce a tight, alphabetized summary of the available queues and their status, execute:
 
@@ -1519,9 +1519,9 @@ skx-dev*           up       6/70/4/80
 	
 The `AVAIL` column displays the overall status of each queue (up or down), while the column labeled `NODES(A/I/O/T)` shows the number of nodes in each of several states ("**A**llocated", "**I**dle", "**O**ffline", and "**T**otal"). Execute `man sinfo` for more information. Use caution when reading the generic documentation, however: some available fields are not meaningful or are misleading on Stampede3 (e.g. `TIMELIMIT`, displayed using the `%l` option).
 
-### [Monitoring Job Status](#jobs-monitoring-jobstatus) { #jobs-monitoring-jobstatus }
+### Monitoring Job Status { #jobs-monitoring-jobstatus }
 
-#### [Slurm's `squeue` command](#sjobs-monitoring-queuestatus) { #sjobs-monitoring-queuestatus }
+#### Slurm's `squeue` command { #sjobs-monitoring-queuestatus }
 
 Slurm's `squeue` command displays the state of all queued and running jobs.  
 
@@ -1573,7 +1573,7 @@ JOBID   PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
 	login1$ squeue --start -j 167635     # display estimated start time for job 167635
 	```
 
-#### [Queue Status Meanings](#jobs-monitoring-sqeue-status) { #jobs-monitoring-sqeue-status }
+#### Queue Status Meanings { #jobs-monitoring-sqeue-status }
 
 The `squeue` command's output displays two columns of interest.  See [Figure 2](#squeuefigure). above for sample output.
 
@@ -1583,7 +1583,7 @@ The column labeled `ST` displays each job's status:
 * `R`  means "Running";
 * `CG` means "Completing" (cleaning up after exiting the job script).
 
-#### [Table 9. Pending Jobs Reason](#table9) { #table9 }
+#### Table 9. Pending Jobs Reason { #table9 }
 
 The last column, labeled `NODELIST/REASON`, includes a nodelist for running/completing jobs, or a reason for pending jobs.  
 
@@ -1600,7 +1600,7 @@ The last column, labeled `NODELIST/REASON`, includes a nodelist for running/comp
 
 
 
-#### [TACC's `showq` utility](#jobs-monitoring-showq) { #jobs-monitoring-showq }
+#### TACC's `showq` utility { #jobs-monitoring-showq }
 
 TACC's `showq` utility mimics a tool that originated in the PBS project, and serves as a popular alternative to the Slurm `squeue` command:
 
@@ -1621,7 +1621,7 @@ Since TACC charges by the node rather than core, `showq`'s default format now re
 
 
 
-### [Dependent Jobs using `sbatch`](#jobs-dependencies) { #jobs-dependencies }
+### Dependent Jobs using `sbatch` { #jobs-dependencies }
 
 You can use `sbatch` to help manage workflows that involve multiple steps: the `--dependency` option allows you to launch jobs that depend on the completion (or successful completion) of another job. For example you could use this technique to split into three jobs a workflow that requires you to (1) compile on a single node; then (2) compute on 40 nodes; then finally (3) post-process your results using 4 nodes. 
 
@@ -1632,7 +1632,7 @@ login1$ sbatch --dependency=afterok:173210 myjobscript
 For more information see the [Slurm online documentation](http://www.schedmd.com). Note that you can use `$SLURM_JOBID` from one job to find the jobid you'll need to construct the `sbatch` launch line for a subsequent one. But also remember that you can't use `sbatch` to submit a job from a compute node.
 
 
-### [Other Job Management Commands](#jobs-other) { #jobs-other }
+### Other Job Management Commands { #jobs-other }
 
 Use `scancel` to remove one of your jobs from the queue., 
 Use `scontrol`to , and `sacct`
@@ -1752,7 +1752,7 @@ This section includes general advice intended to help you achieve good performan
 
 When using the Intel Fortran compiler, compile with the `-assume buffered_io` flag. Equivalently, set the environment variable `FORT_BUFFERED=TRUE`. Doing otherwise can dramatically slow down access to variable length unformatted files. More generally, direct access in Fortran is typically faster than sequential access, and accessing a binary file is faster than ASCII.
 
-## [Machine Learning](#ml) { #ml }
+## Machine Learning { #ml }
 
 Follow these instructions to begin using Intel's Conda environment with PyTorch and Tensorflow on Stampede3.
 
@@ -1789,7 +1789,7 @@ $ module load python
 ```
 
 
-### [Jupyter Notebooks](#python-jupyter) { #python-jupyter }
+### Jupyter Notebooks { #python-jupyter }
 
 Unlike TACC's other HPC resources, Jupyter is not installed with the Python module on Stampede3.  In order to use Jupyter notebooks, you must install notebooks locally with the following one-time setup:  
 
@@ -1808,7 +1808,7 @@ Unlike TACC's other HPC resources, Jupyter is not installed with the Python modu
 This setup enables the [TACC Analysis Portal](http://tap.tacc.utexas.edu) to find the non-standard-location Jupyter-lab or Jupyter-notebook commands. 
 
 If you prefer the old Jupyter notebook style then move the Jupyter lab executable to something else. Note that the TAP portal software is expecting a particular version of Jupyter. This version is consistent across TACC systems. 
-## [Help Desk](#help) { #help }
+## Help Desk { #help }
 
 TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for holidays. You can [submit a help desk ticket][HELPDESK] at any time via the TACC User Portal with &quot;Stampede3&quot; in the Resource field. Help the consulting staff help you by following these best practices when submitting tickets. 
 

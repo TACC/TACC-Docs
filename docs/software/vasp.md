@@ -5,7 +5,7 @@
 **V**ienna **A**b initio **S**imulation **P**ackage (VASP) is a computer program for atomic scale materials modeling, e.g. electronic structure calculations and quantum-mechanical molecular dynamics, from first principles.
 
 
-## [VASP Licenses](#licenses) { #licenses }
+## VASP Licenses { #licenses }
 
 VASP requires an individual license. TACC's HPC support license allows us to install only the compiled VASP executables and grant the access to licensed users who have accounts on our systems. We are not allowed to share source code.
 
@@ -18,7 +18,7 @@ If you have your own license and want to use your own compilation, you may insta
 
 TACC will confirm the license by using this email address on the VASP portal. If you get the license from Material Design, TACC will use that information to contact Material Design and confirm the license. 
 
-## [Installations](#installations) { #installations }
+## Installations { #installations }
 
 The latest stable release of VASP is installed on Stampede3, Lonestar6 and Frontera systems. 
 
@@ -38,11 +38,11 @@ Then, either interactively or via a batch script, load the appropriate module:
 login1$ module load vasp/6.3.0
 ```
 
-## [Running VASP Jobs](#running) { #running }
+## Running VASP Jobs { #running }
 
 You may use and customize the following sample job scripts for VASP jobs on TACC's Stampede3, Lonestar6 and Frontera resources.
 
-### [Sample Job Script: VASP on Stampede3](#running-stampede3) { #running-stampede3 }
+### Sample Job Script: VASP on Stampede3 { #running-stampede3 }
 
 
 !!! important
@@ -72,7 +72,7 @@ module load vasp/5.4.4.pl2
 ibrun vasp_std > vasp_test.out
 ```
 
-### [Sample Job Script: VASP on Frontera](#running-frontera) { #running-frontera }
+### Sample Job Script: VASP on Frontera { #running-frontera }
 
 The script below submits a VASP job to [Frontera's `normal` queue](../../hpc/frontera/#queues) (CLX compute nodes), requesting 4 nodes and 224 tasks for a maximum of 4 hours. 
 
@@ -90,7 +90,7 @@ The script below submits a VASP job to [Frontera's `normal` queue](../../hpc/fro
 module load vasp/5.4.4.pl2
 ibrun vasp_std > vasp_test.out
 ```
-### [Sample Job Script: VASP on Lonestar6](#running-lonestar6) { #running-lonestar6 }
+### Sample Job Script: VASP on Lonestar6 { #running-lonestar6 }
 
 The script below submits a VASP job to [Lonestar6's `normal` queue](../../hpc/lonestar6#queues) ( Milan compute nodes), requesting 2 nodes and 256 tasks for a maximum of 4 hours. 
 
@@ -109,7 +109,7 @@ module load vasp/5.4.4.pl2
 ibrun vasp_std > vasp_test.out
 ```
 
-## [References](#refs) { #refs }
+## References { #refs }
 
 * [The VASP Site home](https://www.vasp.at/)
 * [The VASP Manual](https://www.vasp.at/wiki/index.php/The_VASP_Manual)

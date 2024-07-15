@@ -5,7 +5,7 @@
 <img alt="Quantum Espresso logo" src="../imgs/qespresso-logo.png" style="width: 75px;" />
 Quantum Espresso (QE) is an integrated suite of open-source codes for electronic-structure calculations and materials modeling at the nanoscale. Quantum Espresso (op<b>E</b>n-<b>S</b>ource <b>P</b>ackage for <b>R</b>esearch in <b>E</b>lectronic <b>S</b>tructure, <b>S</b>imulation, and <b>O</b>ptimization) is based on density-functional theory, plane waves, and pseudopotentials.  
 
-## [Installations](#installations) { #installations }
+## Installations { #installations }
 
 The latest QE stable release is installed on TACC's [Stampede3](../../hpc/stampede3), [Lonestar6](../../hpc/lonestar6) and [Frontera](../../hpc/frontera) systems. Use `module` commands to load the latest installed version by default, and to list all installed versions.  
 
@@ -14,7 +14,7 @@ $ module load qe
 $ module spider qe
 ```
 
-## [Running QE](#running) { #running }
+## Running QE { #running }
 
 Quantum Espresso executables have many optional command line arguments described in the [user manual](http://www.quantum-espresso.org/resources/users-manual). QE users may run with their default settings usually with no problem. QE contains many packages and executables and `pw.x` is the most popular. 
 
@@ -23,7 +23,7 @@ Quantum Espresso executables have many optional command line arguments described
 
 Use the following job scripts for Quantum Espresso runs on Stampede3, Lonestar6 and Frontera. 
 
-### [Sample Job Script: Lonestar6](#jobscript-lonestar6) { #jobscript-lonestar6 }
+### Sample Job Script: Lonestar6 { #jobscript-lonestar6 }
 
 ```job-script
 #!/bin/bash 
@@ -40,7 +40,7 @@ module load qe/7.3                          # setup environment
 ibrun pw.x -input qeinput > qe_test.out     # launch job
 ```
 
-### [Sample Job Script: Frontera](#jobscript-frontera) { #jobscript-frontera }
+### Sample Job Script: Frontera { #jobscript-frontera }
 
 The script below submits a Quantum Espresso job to Frontera's normal queue (CLX compute nodes), requesting 4 nodes and 224 tasks for a maximum of 4 hours. Refer to Frontera's [Running Jobs](../../hpc/frontera#running) section for more Slurm options.
 
@@ -59,7 +59,7 @@ module load qe/7.3                          # setup environment
 ibrun pw.x -input qeinput > qe_test.out     # launch job
 ```
 
-### [Sample Job Script: Stampede3](#jobscript-stampede3) { #jobscript-stampede3 }
+### Sample Job Script: Stampede3 { #jobscript-stampede3 }
 
 The script below submits a Quantum Espresso job to Stampede3's `skx` queue (SkyLake compute nodes), requesting 4 nodes and 192 tasks for a maximum of 4 hours. Refer to Stampede3's [Running Jobs](../../hpc/stampede3#running) section for more Slurm options. 
 
@@ -79,7 +79,7 @@ ibrun pw.x -input qeinput > qe_test.out     # launch job
 
 ```
 
-## [References](#refs) { #refs }
+## References { #refs }
 
 * [Quantum Espresso home page](http://www.quantum-espresso.org/)
 * [Quantum Espresso User Manual](http://www.quantum-espresso.org/resources/users-manual)

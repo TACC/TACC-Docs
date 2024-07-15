@@ -9,7 +9,7 @@ $ module load python
 ```
 
 
-### [Jupyter Notebooks](#python-jupyter) { #python-jupyter }
+### Jupyter Notebooks { #python-jupyter }
 
 Unlike TACC's other HPC resources, Jupyter is not installed with the Python module on Stampede3.  In order to use Jupyter notebooks, you must install notebooks locally with the following one-time setup:  
 

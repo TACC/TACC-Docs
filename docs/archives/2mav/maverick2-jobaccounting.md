@@ -1,4 +1,4 @@
-### [Job Accounting](#jobaccounting) { #jobaccounting }
+### Job Accounting { #jobaccounting }
 
 Like all TACC systems, Maverick2's accounting system is based on node-hours: one unadjusted Service Unit (SU) represents a single compute node used for one hour (a node-hour). For any given job, the total cost in SUs is the use of one compute node for one hour of wall clock time plus any charges or discounts for the use of specialized queues, e.g. Frontera's `flex` queue, Stampede2's `development` queue, and Longhorn's `v100` queue. The [queue charge rates](#queues) are determined by the supply and demand for that particular queue or type of node used and are subject to change.  
 

@@ -1,4 +1,4 @@
-## [Sample Job Scripts](#scripts) { #scripts }
+## Sample Job Scripts { #scripts }
 
 Copy and customize the following scripts to specify and refine your job's requirements.
 

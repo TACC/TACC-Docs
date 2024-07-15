@@ -1,24 +1,24 @@
-## [Account Administration](#admin) { #admin }
+## Account Administration { #admin }
 
-### [Setting up Your Account](#admin-account) { #admin-account }
+### Setting up Your Account { #admin-account }
 
-#### [Check your Allocation Status](#admin-account-allocation) { #admin-account-allocation }
+#### Check your Allocation Status { #admin-account-allocation }
 
 **You must be added to a Frontera allocation in order to have access/login to Frontera.** The ability to log on to the TACC User Portal does NOT signify access to Frontera or any TACC resource. Submit Frontera allocations requests via [TACC's Resource Allocation System](https://tacc-submit.xras.org/). Continue to [manage your allocation's users][TACCALLOCATIONS] via the TACC User Portal. 
 
-#### [Multi-Factor Authentication](#admin-account-mfa) { #admin-account-mfa }
+#### Multi-Factor Authentication { #admin-account-mfa }
 
 Access to all TACC systems now requires Multi-Factor Authentication (MFA). You can create an MFA pairing on the TACC User Portal. After login on the portal, go to your account profile (Home->Account Profile), then click the "Manage" button under "Multi-Factor Authentication" on the right side of the page. See [Multi-Factor Authentication at TACC][TACCMFA] for further information. 
 
 <!-- SDL
-#### [Password Management](#admin-account-password) { #admin-account-password }
+#### Password Management { #admin-account-password }
 
 Use your TACC User Portal password for direct logins to TACC resources. You can change your TACC password through the [TACC User Portal][TACCUSERPORTAL]. Log into the portal, then select "Change Password" under the "HOME" tab. If you've forgotten your password, go to the [TACC User Portal](http://xortal.tacc.utexas.edu/) home page and select "Password Reset" under the Home tab.
 -->
 
-### [Access the System](#admin-access) { #admin-access }
+### Access the System { #admin-access }
 
-#### [Secure Shell (SSH)](#admin-access-ssh) { #admin-access-ssh }
+#### Secure Shell (SSH) { #admin-access-ssh }
 
 The `ssh` command (SSH protocol) is the standard way to connect to Frontera. SSH also includes support for the file transfer utilities `scp` and `sftp`. [Wikipedia](https://en.wikipedia.org/wiki/Secure_Shell) is a good source of information on SSH. SSH is available within Linux and from the terminal app in the Mac OS. If you are using Windows, you will need an SSH client that supports the SSH-2 protocol: e.g. [Bitvise](http://www.bitvise.com), [OpenSSH](http://www.openssh.com), [PuTTY](http://www.putty.org), or [SecureCRT](https://www.vandyke.com/products/securecrt/). Initiate a session using the `ssh` command or the equivalent; from the Linux command line the launch command looks like this:
 
@@ -50,9 +50,9 @@ After logging in again the system will generate a properly configured key pair.
 
 Regardless of your research workflow, <b>you’ll need to master Linux basics</b> and a Linux-based text editor (e.g. `emacs`, `nano`, `gedit`, or `vi/vim`) to use the system properly. However, this user guide does not address these topics. There are numerous resources in a variety of formats that are available to help you learn Linux<!-- SDL , including some listed on the <a href="https://xortal.tacc.utexas.edu/training/course-materials">TACC</a> and training sites-->. If you encounter a term or concept in this user guide that is new to you, a quick internet search should help you resolve the matter quickly.
 
-### [Configuring Your Account](#admin-configuring) { #admin-configuring }
+### Configuring Your Account { #admin-configuring }
 
-#### [Linux Shell](#admin-configuring-shell) { #admin-configuring-shell }
+#### Linux Shell { #admin-configuring-shell }
 
 The default login shell for your user account is Bash. To determine your current login shell, execute: 
 
@@ -68,7 +68,7 @@ Before editing your startup files, however, it's worth taking the time to unders
 
 For more information see the [Bash Users' Startup Files: Quick Start Guide][TACCBASHQUICKSTART] and other online resources that explain shell startup. To recover the originals that appear in a newly created account, execute `/usr/local/startup_scripts/install_default_scripts`.
 
-#### [Environment Variables](#admin-configuring-envvars) { #admin-configuring-envvars }
+#### Environment Variables { #admin-configuring-envvars }
 
 Your environment includes the environment variables and functions defined in your current shell: those initialized by the system, those you define or modify in your account-level startup scripts, and those defined or modified by the [modules](#admin-configuring-modules) that you load to configure your software environment. Be sure to distinguish between an environment variable's name (e.g. `HISTSIZE`) and its value (`$HISTSIZE`). Understand as well that a sub-shell (e.g. a script) inherits environment variables from its parent, but does not inherit ordinary shell variables or aliases. Use `export` (in Bash) or `setenv` (in `csh`) to define an environment variable.
 
@@ -82,7 +82,7 @@ $ env | grep GIT
 
 The environment variables `PATH` and `LD_LIBRARY_PATH` are especially important. `PATH` is a colon-separated list of directory paths that determines where the system looks for your executables. `LD_LIBRARY_PATH` is a similar list that determines where the system looks for shared libraries.
 
-#### [Account-Level Diagnostics](#admin-configuring-diagnostics) { #admin-configuring-diagnostics }
+#### Account-Level Diagnostics { #admin-configuring-diagnostics }
 
 TACC's `sanitytool` module loads an account-level diagnostic package that detects common account-level issues and often walks you through the fixes. You should certainly run the package's `sanitycheck` utility when you encounter unexpected behavior. You may also want to run `sanitycheck` periodically as preventive maintenance. To run `sanitytool`'s account-level diagnostics, execute the following commands:
 
@@ -93,7 +93,7 @@ login1$ sanitycheck
 
 Execute `module help sanitytool` for more information.
 
-#### [Using Modules to Manage your Environment](#admin-configuring-modules) { #admin-configuring-modules }
+#### Using Modules to Manage your Environment { #admin-configuring-modules }
 
 [Lmod](https://www.tacc.utexas.edu/research-development/tacc-projects/lmod), a module system developed and maintained at TACC, makes it easy to manage your environment so you have access to the software packages and versions that you need to conduct your research. This is especially important on a system like Frontera that serves thousands of users with an enormous range of needs. Loading a module amounts to choosing a specific package from among available alternatives:
 

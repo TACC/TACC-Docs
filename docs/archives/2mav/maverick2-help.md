@@ -1,4 +1,4 @@
-## [Help Desk](#help) { #help }
+## Help Desk { #help }
 
 TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for holidays. You can [submit a help desk ticket][HELPDESK] at any time via the TACC User Portal with &quot;Maverick2&quot; in the Resource field. Help the consulting staff help you by following these best practices when submitting tickets. 
 

@@ -1,8 +1,8 @@
-## [Job Scripts](#scripts) { #scripts }
+## Job Scripts { #scripts }
 
 This section provides sample Slurm job scripts for each Stampede2 node type: Knight's Landing (KNL), Sky Lake (SKX) and Ice Lake (ICX) nodes. Each section also contains sample scripts for serial, MPI, OpenMP and hybrid (MPI + OpenMP) programming models.  Copy and customize each script for your own applications.
 
-### [KNL Nodes](#scripts-knl) { #scripts-knl }
+### KNL Nodes { #scripts-knl }
 
 Click on a tab for a customizable job-script.
 
@@ -232,7 +232,7 @@ ibrun ./myprogram         # Use ibrun instead of mpirun or mpiexec
 
 ///
 
-### [SKX Nodes](#scripts-skx) { #scripts-skx }
+### SKX Nodes { #scripts-skx }
 
 Click on a tab for a customizable job-script.
 
@@ -460,7 +460,7 @@ ibrun ./myprogram         # Use ibrun instead of mpirun or mpiexec
 ```
 ///
 
-### [ICX Nodes](#scripts-icx) { #scripts-icx }
+### ICX Nodes { #scripts-icx }
 
 Click on a tab for a customizable job-script.
 

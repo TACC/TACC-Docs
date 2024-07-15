@@ -3,7 +3,7 @@
 
 [Arm DDT](https://www.arm.com/products/development-tools/server-and-hpc/forge/ddt) is a symbolic, parallel debugger providing graphical debugging of C, C++ and Fortran threaded and parallel codes (MPI, OpenMP, and Pthreads applications). DDT is available on all TACC compute resources. Use the DDT Debugger with the [MAP Profiler](../../tutorials/map) to develop and analyze your HPC applications.
 
-## [Set up Debugging Environment](#env) { #env }
+## Set up Debugging Environment { #env }
 
 Before running any debugger, the application code must be compiled with the `-g` and `-O0` options as shown below:
 
@@ -97,14 +97,14 @@ Follow these steps to set up your debugging environment on Frontera, Stampede2, 
 	<figcaption></figcaption></figure>
 
 
-## [Running DDT](#running) { #running }
+## Running DDT { #running }
 
 Once your job is launched by the SLURM scheduler and starts to run, the DDT GUI will fill up with a code listing, stack trace, local variables and a project file list. Double click on line numbers to set breakpoints, and then click on the play symbol (>) in the upper left corner to start the run.
 
 <figure id="figure7"><img alt="" src="../imgs/DDT-7.png">
 	<figcaption></figcaption></figure>
 
-## [DDT with Reverse Connect](#reverse) { #reverse }
+## DDT with Reverse Connect { #reverse }
 
 By starting DDT from a login node you let it use X11 graphics, which can be slow. Using a VNC connection or the visualization portal is faster, but has its own annoyances. Another way to use DDT is through DDT's Remote Client using "reverse connect". The remote client is a program running entirely on your local machine, and the reverse connection means that the client is contacted by the DDT program on the cluster, rather than the other way around.
 
@@ -135,7 +135,7 @@ By starting DDT from a login node you let it use X11 graphics, which can be slow
 
 	**Your DDT session will now use the remote client.**
 
-## [References](#refs) { #refs }
+## References { #refs }
 
 * [DDT User Guide](https://developer.arm.com/docs/101136/2003/ddt)
 * [MAP Profiler](../../tutorials/map)

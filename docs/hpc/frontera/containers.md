@@ -1,4 +1,4 @@
-## [Containers](#containers) { #containers }
+## Containers { #containers }
 
 Frontera provides seamless, integrated support for the use of Singularity containers (both custom containers made by users and containers from standard repositories). The use of containers greatly enhances the number of people who contribute to the Frontera software base, promotes portability with other resources, and greatly expands the supported software catalog beyond that found on TACC's other HPC systems.
 

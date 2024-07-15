@@ -1,4 +1,4 @@
-# [Good Conduct on TACC's HPC Systems](#conduct) { #conduct }
+# Good Conduct on TACC's HPC Systems { #conduct }
 *Last Update: December 15, 2023*
 
 **You share TACC's HPC resources with many, sometimes hundreds, of other users, and what you do on the resource affects others**. All TACC account holders  must follow a set of good practices which entail limiting activities that may impact the system for other users. Exercise good conduct to ensure that your activity does not adversely impact the resource and the research community with whom you share it.
@@ -6,7 +6,7 @@
 TACC staff has developed the following guidelines to good conduct on all TACC resources. Please familiarize yourself with all the following guidelines.
 
 
-## [1. Do Not Run Jobs on the Login Nodes](#conduct-loginnodes) { #conduct-loginnodes }
+## 1. Do Not Run Jobs on the Login Nodes { #conduct-loginnodes }
 
 Each HPC resource's login nodes are shared amongst all users. Depending on the resource, dozens of users may be logged on at one time accessing the shared file systems.  A single user running computationally expensive or disk intensive task/s will negatively impact performance for other users. Running jobs on the login nodes is one of the fastest routes to account suspension. Instead, run on the compute nodes via an interactive session <u>([`idev`](../../software/idev))</u> or by submitting a batch job.
 
@@ -24,7 +24,7 @@ The compute nodes are where actual computations occur and where research is done
 <figcaption>Figure 2. Login and compute nodes</figcaption></figure>
 
 
-### [Dos &amp; Don'ts on the Login Nodes](#conduct-loginnodes-examples) { #conduct-loginnodes-examples }
+### Dos &amp; Don'ts on the Login Nodes { #conduct-loginnodes-examples }
 
 * **Do not run research applications on the login nodes;** this includes frameworks like MATLAB and R, as well as computationally or I/O intensive Python scripts. If you need interactive access, use the `idev` utility or Slurm's `srun` to schedule one or more compute nodes.
 
@@ -64,7 +64,7 @@ The compute nodes are where actual computations occur and where research is done
 * **That script you wrote to poll job status should probably do so once every few minutes rather than several times a second.**
 
 
-## [2. Do Not Stress the Shared File Systems](#conduct-filesystems) { #conduct-filesystems }
+## 2. Do Not Stress the Shared File Systems { #conduct-filesystems }
 
 TACC HPC resources, with a few exceptions, each mount three file systems: `/home`, `/work` and `/scratch`. Please follow each file system's recommended usage.
 
@@ -86,7 +86,7 @@ Consider that `$HOME` and `$WORK` are for storage and keeping track of important
 * **Run I/O intensive jobs in `$SCRATCH` rather than `$WORK`.** If you stress `$WORK`, you affect every user on every TACC system. Significant I/O might include reading/writing 100+ GBs to checkpoint/restart files, running with 4096+ MPI tasks all reading/writing individual files, but is not limited to just those two cases. **If you stress `$WORK`, you affect every user on every TACC system.**
 
 
-### [File System Usage Recommendations](#table-file-system-usage-recommendations) { #table-file-system-usage-recommendations }
+### File System Usage Recommendations { #table-file-system-usage-recommendations }
 
 TACC resources mount three file systems: `/home`, `/work` and `/scratch`. **Please follow each file system's recommended usage.**
 
@@ -99,7 +99,7 @@ File System | Best Storage Practices | Best Activities
 
 {% include './include/scratchpolicy.md' %}
 
-### [More File System Tips](#conduct-filesystems-tips) { #conduct-filesystems-tips }
+### More File System Tips { #conduct-filesystems-tips }
 
 * **Don't run jobs in your `$HOME` directory.** The `$HOME` file system is for routine file management, not parallel jobs.
 
@@ -109,7 +109,7 @@ File System | Best Storage Practices | Best Activities
 
 
 
-## [3. Limit Input/Output (I/O) Activity](#conduct-io) { #conduct-io }
+## 3. Limit Input/Output (I/O) Activity { #conduct-io }
 
 In addition to the file system tips above, it's important that your jobs limit all I/O activity. This section focuses on ways to avoid causing problems on each resources' shared file systems. 
 
@@ -123,7 +123,7 @@ In addition to the file system tips above, it's important that your jobs limit a
 	If you know your jobs will require significant I/O, please submit a support ticket and an HPC consultant will work with you. See also [Managing I/O on TACC Resources](../../tutorials/managingio) for additional information.
 
 
-## [4. File Transfer Guidelines](#conduct-transfers) { #conduct-transfers }
+## 4. File Transfer Guidelines { #conduct-transfers }
 
 In order to not stress both internal and external networks, be mindful of the following guidelines:
 
@@ -134,7 +134,7 @@ In order to not stress both internal and external networks, be mindful of the fo
 * **Avoid recursive file transfers**, especially those involving many small files. Create a `.tar` archive before transfers. This is especially true when transferring files to or from [Ranch](../../hpc/ranch).
 
 
-## [5. Job Submission Tips](#conduct-jobs) { #conduct-jobs }
+## 5. Job Submission Tips { #conduct-jobs }
 
 * **Request Only the Resources You Need** Make sure your job scripts request only the resources that are needed for that job. Don't ask for more time or more nodes than you really need. The scheduler will have an easier time finding a slot for a job requesting 2 nodes for 2 hours, than for a job requesting 4 nodes for 24 hours. This means shorter queue waits times for you and everybody else.
 

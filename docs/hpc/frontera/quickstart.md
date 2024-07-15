@@ -1,4 +1,4 @@
-## [Quickstart](#quickstart) { #quickstart }
+## Quickstart { #quickstart }
 
 Experienced HPC/TACC users will be very familiar with many of the topics presented in this guide. Here we'll highlight some sections for a quick start on Frontera.
 

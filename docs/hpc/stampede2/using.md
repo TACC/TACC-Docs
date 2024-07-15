@@ -1,11 +1,11 @@
-## [Using Stampede2](#using) { #using }
+## Using Stampede2 { #using }
 
 Stampede2 nodes run Red Hat Enterprise Linux 7. Regardless of your research workflow, **you’ll need to master Linux basics** and a Linux-based text editor (e.g. `emacs`, `nano`, `gedit`, or `vi/vim`) to use the system properly. <!-- SDL This user guide does not address these topics, however. There are numerous resources in a variety of formats that are available to help you learn Linux, including some listed on the [TACC](https://xortal.tacc.utexas.edu/training/course-materials) training sites. --> If you encounter a term or concept in this user guide that is new to you, a quick internet search should help you resolve the matter quickly.
 
 
-### [Configuring Your Account](#using-account) { #using-account }
+### Configuring Your Account { #using-account }
 
-#### [Linux Shell](#using-account-shell) { #using-account-shell }
+#### Linux Shell { #using-account-shell }
 
 The default login shell for your user account is Bash.  To determine your current login shell, execute: 
 
@@ -21,7 +21,7 @@ Before editing your startup files, however, it's worth taking the time to unders
 
 For more information see the [Bash Users' Startup Files: Quick Start Guide][TACCBASHQUICKSTART] and other online resources that explain shell startup. To recover the originals that appear in a newly created account, execute `/usr/local/startup_scripts/install_default_scripts`.
 
-#### [Environment Variables](#using-account-envvars) { #using-account-envvars }
+#### Environment Variables { #using-account-envvars }
 
 Your environment includes the environment variables and functions defined in your current shell: those initialized by the system, those you define or modify in your account-level startup scripts, and those defined or modified by the [modules](#using-modules) that you load to configure your software environment. Be sure to distinguish between an environment variable's name (e.g. `HISTSIZE`) and its value (`$HISTSIZE`). Understand as well that a sub-shell (e.g. a script) inherits environment variables from its parent, but does not inherit ordinary shell variables or aliases. Use `export` (in Bash) or `setenv` (in `csh`) to define an environment variable.
 
@@ -35,7 +35,7 @@ $ env | grep GIT
 
 The environment variables `PATH` and `LD_LIBRARY_PATH` are especially important. `PATH` is a colon-separated list of directory paths that determines where the system looks for your executables. `LD_LIBRARY_PATH` is a similar list that determines where the system looks for shared libraries.
 
-#### [Account-Level Diagnostics](#using-account-diagnostics) { #using-account-diagnostics }
+#### Account-Level Diagnostics { #using-account-diagnostics }
 
 TACC's `sanitytool` module loads an account-level diagnostic package that detects common account-level issues and often walks you through the fixes. You should certainly run the package's `sanitycheck` utility when you encounter unexpected behavior. You may also want to run `sanitycheck` periodically as preventive maintenance. To run `sanitytool`'s account-level diagnostics, execute the following commands:
 
@@ -47,7 +47,7 @@ login1$ sanitycheck
 
 Execute `module help sanitytool` for more information.
 
-### [Accessing the Compute Nodes](#using-computenodes) { #using-computenodes }
+### Accessing the Compute Nodes { #using-computenodes }
 
 You connect to Stampede2 through one of four "front-end" login nodes. The login nodes are shared resources: at any given time, there are many users logged into each of these login nodes, each preparing to access the "back-end" compute nodes ([Figure 2. Login and Compute Nodes](#figure2)). What you do on the login nodes affects other users directly because you are competing for the same memory and processing power. This is the reason you should not run your applications on the login nodes or otherwise abuse them. Think of the login nodes as a prep area where you can manage files and compile code before accessing the compute nodes to perform research computations. See [Good Conduct](../../basics/conduct/#conduct-loginnodes) for more information. 
 
@@ -76,7 +76,7 @@ $ module help launcher
 <img alt="Stampede2" src="../imgs/stampede2/Stampede2.jpg">
 <figcaption>Figure 2. Login and compute nodes</figcaption></figure>
 
-### [Using Modules to Manage your Environment](#using-modules) { #using-modules }
+### Using Modules to Manage your Environment { #using-modules }
 
 Lmod, a module system developed and maintained at TACC, makes it easy to manage your environment so you have access to the software packages and versions that you need to using your research. This is especially important on a system like Stampede2 that serves thousands of users with an enormous range of needs. Loading a module amounts to choosing a specific package from among available alternatives:
 

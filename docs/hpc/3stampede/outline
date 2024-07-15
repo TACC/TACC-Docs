@@ -1,69 +1,69 @@
 # Stampede3 User Guide
-## [Notices](#notices) { #notices }
-## [Introduction](#intro) { #intro }
-### [Allocations](#intro-allocations) { #intro-allocations }
-## [System Architecture](#system) { #system }
-### [Compute Nodes](#system-compute) { #system-compute }
-#### [Table 1. Compute Node Specifications](#table1) { #table1 }
-### [Login Nodes](#system-login) { #system-login }
-### [`vm-small` Queue Nodes](#system-vmsmall) { #system-vmsmall }
-#### [Table 1.5. `vm-small` Compute Node Specifications](#table15) { #table15 }
-### [GPU Nodes](#system-gpu) { #system-gpu }
-#### [Table 2. GPU Node Specifications](#table2) { #table2 }
-### [Network](#system-network) { #system-network }
-## [Managing Files](#files) { #files }
-### [Table 3. File Systems](#files-table3) { #table3 }
-### [Navigating the Shared File Systems](#files-navigating) { #files-navigating }
-#### [Table 4. Built-in Account Level Aliases](#table4) { #table4 }
-### [Transferring your Files](#files-transferring) { #files-transferring }
-#### [Transferring with `scp`](#files-transferring-scp) { #files-transferring-scp }
-#### [Transferring with `rsync`](#files-transferring-rsync) { #files-transferring-rsync }
-### [Sharing Files with Collaborators](#files-sharing) { #files-sharing }
-## [Access the System](#access) { #access }
-### [Secure Shell (SSH)](#access-ssh) { #access-ssh }
-## [Account Administration](#admin) { #admin }
-### [Check your Allocation Status](#admin-allocations) { #admin-allocations }
-### [Multi-Factor Authentication](#admin-mfa) { #admin-mfa }
-### [Password Management](#admin-password) { #admin-password }
-### [Linux Shell](#admin-shell) { #admin-shell }
-### [Environment Variables](#admin-envvars) { #admin-envvars }
-### [Using Modules to Manage your Environment](#admin-modules) { #admin-modules }
-## [Building Software](#building) { #building }
-### [Basics of Building Software](#building-basics) { #building-basics }
-### [Intel Compilers](#building-intelcompiler) { #building-intelcompiler }
-### [GNU Compilers](#building-gnucompilers) { #building-gnucompilers }
-### [Compiling and Linking as Separate Steps](#building-compiling) { #building-compiling }
-### [Include and Library Paths](#building-include) { #building-include }
-### [Compiling and Linking MPI Programs](#building-mpi) { #building-mpi }
-### [Building Third-Party Software](#building-thirdparty) { #building-thirdparty }
-## [Launching Applications](#launching) { #launching }
-### [One Serial Application](#launching-serial) { #launching-serial }
-### [Parametric Sweep / HTC jobs](#launching-parametric) { #launching-parametric }
-### [One Multi-Threaded Application](#launching-multithreaded) { #launching-multithreaded }
-### [One MPI Application](#launching-mpi) { #launching-mpi }
-### [One Hybrid (MPI+Threads) Application](#launching-hybrid) { #launching-hybrid }
-### [More Than One Serial Application in the Same Job](#launching-serialmorethanone) { #launching-serialmorethanone }
-### [MPI Applications One at a Time](#launching-mpioneatatime) { #launching-mpioneatatime }
-### [More Than One MPI Application Running Concurrently](#launching-mpiconcurrent) { #launching-mpiconcurrent }
-### [More than One OpenMP Application Running Concurrently](#launching-openmpconcurrent) { #launching-openmpconcurrent }
-## [Running Jobs](#running) { #running }
-### [Production Queues](#running-queues) { #running-queues }
-#### [Table 5. Production Queues](#table5) { #table5 }
-## [Job Management](#jobs) { #jobs }
-### [Monitoring Queue Status](#jobs-monitoring) { #jobs-monitoring }
-#### [TACC's `qlimits` command](#jobs-monitoring-qlimits) { #jobs-monitoring-qlimits }
-#### [Slurm's `sinfo` command](#jobs-monitoring-sinfo) { #jobs-monitoring-sinfo }
-### [Monitoring Job Status](#jobs-monitoring-jobstatus) { #jobs-monitoring-jobstatus }
-#### [Slurm's `squeue` command](#sjobs-monitoring-queuestatus) { #sjobs-monitoring-queuestatus }
-#### [TACC's `showq` utility](#jobs-monitoring-showq) { #jobs-monitoring-showq }
-### [Dependent Jobs using `sbatch`](#jobs-dependencies) { #jobs-dependencies }
-### [Other Job Management Commands](#jobs-other) { #jobs-other }
-## [Visualization and VNC Sessions](#vis) { #vis }
-### [Remote Desktop Access](#vis-remote) { #vis-remote }
-### [Applications on the Remote Desktop](#vis-apps) { #vis-apps }
-### [Parallel Applications from the Desktop](#vis-parallelapps) { #vis-parallelapps }
-### [OpenGL/X Applications On The Desktop](#vis-opengl) { #vis-opengl }
-### [Parallel VisIt on Lonestar6](#vis-visit) { #vis-visit }
-#### [Preparing Data for Parallel Visit](#vis-visit-preparingdata) { #vis-visit-preparingdata }
-### [Parallel ParaView on Lonestar6](#vis-paraview) { #vis-paraview }
-## [Help Desk](#help) { #help }
+## Notices { #notices }
+## Introduction { #intro }
+### Allocations { #intro-allocations }
+## System Architecture { #system }
+### Compute Nodes { #system-compute }
+#### Table 1. Compute Node Specifications { #table1 }
+### Login Nodes { #system-login }
+### `vm-small` Queue Nodes { #system-vmsmall }
+#### Table 1.5. `vm-small` Compute Node Specifications { #table15 }
+### GPU Nodes { #system-gpu }
+#### Table 2. GPU Node Specifications { #table2 }
+### Network { #system-network }
+## Managing Files { #files }
+### Table 3. File Systems { #table3 }
+### Navigating the Shared File Systems { #files-navigating }
+#### Table 4. Built-in Account Level Aliases { #table4 }
+### Transferring your Files { #files-transferring }
+#### Transferring with `scp` { #files-transferring-scp }
+#### Transferring with `rsync` { #files-transferring-rsync }
+### Sharing Files with Collaborators { #files-sharing }
+## Access the System { #access }
+### Secure Shell (SSH) { #access-ssh }
+## Account Administration { #admin }
+### Check your Allocation Status { #admin-allocations }
+### Multi-Factor Authentication { #admin-mfa }
+### Password Management { #admin-password }
+### Linux Shell { #admin-shell }
+### Environment Variables { #admin-envvars }
+### Using Modules to Manage your Environment { #admin-modules }
+## Building Software { #building }
+### Basics of Building Software { #building-basics }
+### Intel Compilers { #building-intelcompiler }
+### GNU Compilers { #building-gnucompilers }
+### Compiling and Linking as Separate Steps { #building-compiling }
+### Include and Library Paths { #building-include }
+### Compiling and Linking MPI Programs { #building-mpi }
+### Building Third-Party Software { #building-thirdparty }
+## Launching Applications { #launching }
+### One Serial Application { #launching-serial }
+### Parametric Sweep / HTC jobs { #launching-parametric }
+### One Multi-Threaded Application { #launching-multithreaded }
+### One MPI Application { #launching-mpi }
+### One Hybrid (MPI+Threads) Application { #launching-hybrid }
+### More Than One Serial Application in the Same Job { #launching-serialmorethanone }
+### MPI Applications One at a Time { #launching-mpioneatatime }
+### More Than One MPI Application Running Concurrently { #launching-mpiconcurrent }
+### More than One OpenMP Application Running Concurrently { #launching-openmpconcurrent }
+## Running Jobs { #running }
+### Production Queues { #running-queues }
+#### Table 5. Production Queues { #table5 }
+## Job Management { #jobs }
+### Monitoring Queue Status { #jobs-monitoring }
+#### TACC's `qlimits` command { #jobs-monitoring-qlimits }
+#### Slurm's `sinfo` command { #jobs-monitoring-sinfo }
+### Monitoring Job Status { #jobs-monitoring-jobstatus }
+#### Slurm's `squeue` command { #sjobs-monitoring-queuestatus }
+#### TACC's `showq` utility { #jobs-monitoring-showq }
+### Dependent Jobs using `sbatch` { #jobs-dependencies }
+### Other Job Management Commands { #jobs-other }
+## Visualization and VNC Sessions { #vis }
+### Remote Desktop Access { #vis-remote }
+### Applications on the Remote Desktop { #vis-apps }
+### Parallel Applications from the Desktop { #vis-parallelapps }
+### OpenGL/X Applications On The Desktop { #vis-opengl }
+### Parallel VisIt on Lonestar6 { #vis-visit }
+#### Preparing Data for Parallel Visit { #vis-visit-preparingdata }
+### Parallel ParaView on Lonestar6 { #vis-paraview }
+## Help Desk { #help }

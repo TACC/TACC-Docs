@@ -12,11 +12,11 @@ CDTools has two utilities:
 
 You can employ CD Tools within a job script, or interactively within an `idev` session.
 
-## [Using CD Tools](#setup) { #setup }
+## Using CD Tools { #setup }
 
 CDTools is currently installed on TACC's Stampede3, Frontera, and Lonestar6 resources.  
 
-### [1. Initialize CD Tools Environment Variable](#setup-1) { #setup-1 }
+### 1. Initialize CD Tools Environment Variable { #setup-1 }
 
 Load the CDtools module in your job script or within an [`idev`](../idev) session: 
 
@@ -24,7 +24,7 @@ Load the CDtools module in your job script or within an [`idev`](../idev) sessio
 $ module load cdtools
 ```
 
-### [2. Distribute Files to Each Node's `/tmp` Space](#setup-2) { #setup-2 }
+### 2. Distribute Files to Each Node's `/tmp` Space { #setup-2 }
 
 Distribute your files/directories to the local `/tmp` space of each compute node allotted for your job:
 
@@ -39,7 +39,7 @@ $ distribute.bash ${SCRATCH}/inputdir #put the full path of the directory of you
 
 If you `ssh` to those compute nodes after running the above command, you would find an identical copy of your input file or directory in the `/tmp` directory on each node.
 
-### [3. Collect your Output Files](#setup-3) { #setup-3 }
+### 3. Collect your Output Files { #setup-3 }
 
 
 !!! Important
@@ -58,7 +58,7 @@ $ collect.bash /tmp/outputfile ${SCRATCH}/output_collected
 
 You will obtain a list of output files or directories copied back to your target directories in `$SCRATCH`. These output files or directories have been appended with an underscore and a number that indicates the rank of compute nodes. For example, given a job run on four nodes: files `outputfile_0`, `outputfile_1`, "`outputfile_2` and "`outputfile_3` will all be placed in the "`/output_collected` directory.
 
-## [Sample Job Script](#job-script) { #job-script }
+## Sample Job Script { #job-script }
 
 ```job-script
 #!/bin/bash
@@ -97,13 +97,13 @@ wait
 collect.bash /tmp/outputdir ${SCRATCH}/datafiles/new_output_collected
 ```
 
-## [Notes](#notes) { #notes }
+## Notes { #notes }
 
 * This tool should work for both batch mode and interactive mode. 
 * Always test your workflow with CDTools before any substantial productions runs to ensure required files are successfully distributed and collected.
 * Users should still understand and respect the `/tmp` limit and other I/O rules. 
 
-## [References](#refs) { #refs }
+## References { #refs }
 
 * [Managing I/O on TACC Resources](../../tutorials/managingio)
 * [`idev` at TACC](../idev)
