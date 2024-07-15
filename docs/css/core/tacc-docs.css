@@ -633,8 +633,7 @@ pre.job-script code {
 
 
 /* HEADING PERMALINKS */
-/* TODO: Use a link icon, not ¶ */
-/* TODO: Support via Core-Styles class */
+/* RFE: Support via Core-Styles class */
 
 .headerlink {
   text-underline-position: under;
