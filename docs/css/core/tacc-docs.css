@@ -658,18 +658,18 @@ pre.job-script code {
     translate: calc( -1 * var(--offset) );
   }
 
-  /* To reduce link visibility except on hover over it or heading */
+  /* To use link color only on hover over it or heading */
   .headerlink:not(:hover, :hover > *) {
     color: inherit;
   }
-  /* To use link color only on hover */
+  /* To reduce link visibility except on hover */
   .headerlink:not(:hover) {
     opacity: 0.5;
   }
-
-  /* To underline only when active */
-  .headerlink:hover:not(:active) {
-    text-decoration: none;
+  /* To increase link visibility when it has accent color */
+  /* FAQ: Because accent color is lighter than heading color */
+  .headerlink:not(:hover):is(:hover > *) {
+    opacity: 0.75;
   }
 
 }
