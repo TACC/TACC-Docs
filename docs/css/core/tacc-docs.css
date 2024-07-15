@@ -633,43 +633,49 @@ pre.job-script code {
 
 
 /* HEADING PERMALINKS */
-/* TODO: Create a link icon that:
-         - appears on hover over heading
-         - turns link color on hover over icon
-         - has TODO comment that says to migrate it to Core-Styles */
+/* TODO: Use a link icon, not ¶ */
+/* TODO: Support via Core-Styles class */
+
+.headerlink {
+  text-underline-position: under;
+}
 
 @supports selector(:has(*)) {
 
   /* To move permalink left of the heading */
   /* NOTE: Unnecessary if MkDocs config sets `permalink_leading: true` */
   /* https://github.com/mkdocs/mkdocs/blob/1.5.0/pyproject.toml#L39 */
-  :where(h1, h2, h3, h4, h5, h6):has(.headerlink) {
-    display: flex;
-    flex-wrap: wrap;
+  :where(:has(> .headerlink)) {
+    position: relative;
   }
   .headerlink {
-    order: -1;
+    position: absolute;
+    width: 100%
   }
 
   /* To move permalink into the document margin */
   /* NOTE: Only use if headerlink is at the beginning of the heading */
   .headerlink {
-    --space: 0.5em;
-    --width: 1ch;
+    --offset: calc( 1ch + 0.5em );
 
-    width: var(--width);
-    padding-right: var(--space);
+    left: 0;
+    padding-right: var(--offset);
+    translate: calc( -1 * var(--offset) );
+  }
 
-    order: -1;
-    margin-left: calc( -1 * (var(--width) + var(--space)) );
+  /* To refine permalink states */
+  :where(:has(> .headerlink)):not(:hover) .headerlink {
+    color: inherit;
+  }
+  .headerlink:hover:not(:active) {
+    text-decoration: none;
   }
 
 }
+@supports not selector(:has(*)) {
 
-/* To refine permalink states */
-:where(h1, h2, h3, h4, h5, h6):not(:hover) .headerlink {
-  color: inherit;
-}
-.headerlink:hover {
-  text-underline-position: under;
+  .headerlink {
+    margin-left: 0.5ch;
+  }
+
 }
