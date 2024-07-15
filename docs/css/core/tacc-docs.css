@@ -12,17 +12,6 @@
 
 
 
-/* To not use link style for a header link */
-/* TODO: Create a link icon that:
-         - appears on hover over heading
-         - turns link color on hover over icon
-         - has TODO comment that says to migrate it to Core-Styles */
-:is(h1, h2, h3, h4, h5, h6) a {
-  color: inherit;
-}
-
-
-
 /* To support .c-card on mobile (which Core-Styles does not do) */
 
 /* To add field of color in neg. space beside short image */
@@ -639,4 +628,48 @@ pre.job-script code {
     border: var(--global-border-width--normal) solid var(--global-color-primary--light);
     color: var(--global-color-primary--xx-dark);
   }
+}
+
+
+
+/* HEADING PERMALINKS */
+/* TODO: Create a link icon that:
+         - appears on hover over heading
+         - turns link color on hover over icon
+         - has TODO comment that says to migrate it to Core-Styles */
+
+@supports selector(:has(*)) {
+
+  /* To move permalink left of the heading */
+  /* NOTE: Unnecessary if MkDocs config sets `permalink_leading: true` */
+  /* https://github.com/mkdocs/mkdocs/blob/1.5.0/pyproject.toml#L39 */
+  :where(h1, h2, h3, h4, h5, h6):has(.headerlink) {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .headerlink {
+    order: -1;
+  }
+
+  /* To move permalink into the document margin */
+  /* NOTE: Only use if headerlink is at the beginning of the heading */
+  .headerlink {
+    --space: 0.5em;
+    --width: 1ch;
+
+    width: var(--width);
+    padding-right: var(--space);
+
+    order: -1;
+    margin-left: calc( -1 * (var(--width) + var(--space)) );
+  }
+
+}
+
+/* To refine permalink states */
+:where(h1, h2, h3, h4, h5, h6):not(:hover) .headerlink {
+  color: inherit;
+}
+.headerlink:hover {
+  text-underline-position: under;
 }
