@@ -3,16 +3,16 @@
 
 TACC requires Multi-Factor Authentication (MFA) as an additional security measure when accessing all compute and storage resources.  <!-- To set up MFA pairing at TACC on your approved account, proceed directly to the [TACC pairing page](https://tacc.utexas.edu/portal/mfa). -->
 
-## [What is MFA?](#whatismfa) { #whatismfa }
+## What is MFA? { #whatismfa }
 
 Authentication is the process of determining if you are you. Traditional methods of associating a user account with a single password have not been 100% successful. Multi-Factor Authentication (MFA) requires another step, or "factor", in the authenticaton process. In addition to the usual password users must complete authentication using another device unique to them, usually the user's mobile phone/device. 
 
-## [Setting up MFA at TACC](#setupmfa) { #setupmfa }
+## Setting up MFA at TACC { #setupmfa }
 
 !!! important
 	New users and account holders will not be able to pair a new device, or generate a QR Code, until after your account request is accepted by TACC Staff. Account requests are usually approved within 24 hours.
 
-### [1. Manage Account](#setupmfa-step1) { #setupmfa-step1 }
+### 1. Manage Account { #setupmfa-step1 }
 
 Sign into the TACC Portal (Figure 1a), then click on "[Manage Account](https://www.tacc.utexas.edu/portal/account)" under your name in the top right-hand corner (Figure 1b):
 
@@ -28,7 +28,7 @@ From the "Manage Account" page, click "Pair a Device" to continue to the TACC de
 
 <figure id="figure2"><img border="1" alt="Pair Device" src="../imgs/mfa-pairdevice.png" style="size:50%"> <figcaption>Figure 2.</figcaption></figure>
 	
-### [2. Select Pairing Method](#setupmfa-step2) { #setupmfa-step2 }
+### 2. Select Pairing Method { #setupmfa-step2 }
 
 TACC offers two mutually-exclusive authentication (pairing) methods.  You may choose to authenticate with one and only one method.: 
 
@@ -39,13 +39,13 @@ or
 !!! note
 	Users located outside the U.S. **must** pair using a [Multi-Factor Authentication app](#mfaapps) method. Because the cost associated with sending multiple international text messages is prohibitive, international users may NOT set up multi-factor authentication with SMS.
 
-####  [Authentication Apps](#mfaapps) { #mfaapps }
+####  Authentication Apps { #mfaapps }
 
 Users with Apple iOS and Android devices may set up device pairing using a one of a variety of authentication applications available for both <a href="https://itunes.apple.com/us/app/tacc-token/id1081516137?mt=8">Android</a> and <a href="https://itunes.apple.com/us/app/tacc-token/id1081516137?mt=8">iPhone</a> devices.
 
 Download and install your preferred MFA App on your Apple IOS or Android device, then follow the app instructions to pair your mobile device.  Table 1. features a few of the more popular applications along with links to the respective Apple App and Google Play stores.
 
-#### [Table 1. MFA Apps](#table1) { #table1 }
+#### Table 1. MFA Apps { #table1 }
 
 Operating System | MFA Authentication Apps
 --- | ---
@@ -53,7 +53,7 @@ IOS / Apple devices<br>Apple App Store | <a href="https://apps.apple.com/us/app/
 Android<br>Google Play | <a href="https://play.google.com/store/apps/details?id=com.duosecurity.duomobile&hl=en_US&gl=US" target="_blank">Duo</a><sup>&#8663;</sup>   <a href="https://play.google.com/store/apps/details?id=com.onepassword.android&hl=en_US&gl=US" target="_blank">1Password</a><sup>&#8663;</sup>   <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en_US&gl=US" target="_blank">Google Authenticator</a><sup>&#8663;</sup>
 
 
-#### [SMS (text) Messaging](#sms) { #sms }
+#### SMS (text) Messaging { #sms }
 
 Instead of using an app, users may instead enable multi-factor authentication with SMS, standard text messaging.
 
@@ -61,7 +61,7 @@ When logging into a TACC resource you'll be prompted for your standard password,
 
 **This token code is valid for this login session only and cannot be re-used.  It may take up to 60 seconds for the text to reach you.  We advise clearing out your text messages in order to avoid confusion during future logins.**
 
-### [Example: Pairing with an Authentication App](#authapp) { #authapp }
+### Example: Pairing with an Authentication App { #authapp }
 
 This tutorial demonstrates pairing with the Duo App, though you may use any any MFA app you like. 
 
@@ -88,7 +88,7 @@ This tutorial demonstrates pairing with the Duo App, though you may use any any 
 
 	<figure id="figure6"><img border="1" src="../imgs/mfa-pairingsuccessful.png" style="width:50%; height:50%"> <figcaption>Figure 6.</figcaption></figure>
 
-## [Logging into TACC Resources](#login) { #login }
+## Logging into TACC Resources { #login }
 
 Once you've established MFA on your TACC account, you'll be able to login to all TACC resources where you have an allocation.  A typical login session will look something like this:
 
@@ -117,12 +117,12 @@ After typing in your password, you'll be prompted for "**`TACC Token Code:`**". 
 * If you've paired with SMS, you'll receive a text message containing a six digit verification code (figure 9a).  Enter this code at the **`TACC Token Code:`** prompt.  Please note that it may take up to 60 seconds for the text containing the token code to reach you.  Each token code is valid for one login only and cannot be re-used.  
 
 
-## [International Users and Travelers](#international) { #international }
+## International Users and Travelers { #international }
 
 !!! important 
 	Users located outside the U.S. **must** pair using a [Multi-Factor Authentication app](#mfaapps) of your choice. Because the cost associated with sending multiple international text messages is prohibitive, international users may NOT set up multi-factor authentication with SMS.  
 
-## [Unpairing your Device](#unpair) { #unpair }
+## Unpairing your Device { #unpair }
 
 Unpair your device via the same method you paired:You'll unpair via the same method you paired: by app token or by SMS.  If you've lost access to the device you originally paired with, you may unpair using email notification. 
 

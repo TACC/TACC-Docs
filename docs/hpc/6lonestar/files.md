@@ -1,7 +1,7 @@
-## [Managing Files](#files) { #files }
+## Managing Files { #files }
 
 
-### [Table 3. File Systems](#files-table3) { #table3 }
+### Table 3. File Systems { #table3 }
 
 File System | Quota | Key Features
 --- | --- | ---
@@ -12,7 +12,7 @@ File System | Quota | Key Features
 
 {% include 'include/scratchpolicy.md' %}
 
-### [Navigating the Shared File Systems](#files-navigating) { #files-navigating }
+### Navigating the Shared File Systems { #files-navigating }
 
 Lonestar6 mounts three Lustre file systems that are shared across all nodes: the home, work, and scratch file systems. Lonestar6's startup mechanisms define corresponding account-level environment variables `$HOME`, `$SCRATCH` and `$WORK` that store the paths to directories that you own on each of these file systems. Consult the [Lonestar6 File Systems](#table3) table above for the basic characteristics of these file systems, <!--"File Operations: I/O Performance" for advice on performance issues,--> and the [Good Conduct](../../basics/conduct) document for guidance on file system etiquette.
 
@@ -28,7 +28,7 @@ Your account-specific `$WORK` environment variable varies from system to system 
 
 Note that resource-specific subdirectories of `$STOCKYARD` are simply convenient ways to manage your resource-specific files. You have access to any such subdirectory from any TACC resources. If you are logged into Lonestar6, for example, executing the alias `cdw` (equivalent to `cd $WORK`) will take you to the resource-specific subdirectory `$STOCKYARD/ls6`. But you can access this directory from other TACC systems as well by executing `cd $STOCKYARD/ls6`. These commands allow you to share files across TACC systems. In fact, several convenient account-level aliases make it even easier to navigate across the directories you own in the shared file systems:
 
-#### [Table 4. Built-in Account Level Aliases](#table4) { #table4 }
+#### Table 4. Built-in Account Level Aliases { #table4 }
 
 Alias | Command
 --- | ---
@@ -37,7 +37,7 @@ Alias | Command
 <code>cdy</code> or <code>cdg</code> | <code>cd $STOCKYARD</code>
 <code>cdw</code> | <code>cd $WORK</code>
 
-### [Striping Large Files](#files-striping) { #files-striping }
+### Striping Large Files { #files-striping }
 
 Lonestar6's BeeGFS and Lustre file systems look and act like a single logical hard disk, but are actually sophisticated integrated systems involving many physical drives. Lustre and BeeGFS can **stripe** (distribute 'chunk's) large files over several physical disks, making it possible to deliver the high performance needed to service input/output (I/O) requests from hundreds of users across thousands of nodes.  Object Storage Targets (OSTs) manage the file system's spinning disks: a file with 16 stripes, for example, is distributed across 16 OSTs. One designated Meta-Data Server (MDS) tracks the OSTs  assigned to a file, as well as the file's descriptive data.
 
@@ -68,9 +68,9 @@ Run the following for more information on these commands:
 	$ beegfs-ctl --setpattern --help 
 	$ lfs help setstripe  
 
-### [Transferring your Files](#files-transferring) { #files-transferring }
+### Transferring your Files { #files-transferring }
 
-#### [Transferring with `scp`](#files-transferring-scp) { #files-transferring-scp }
+#### Transferring with `scp` { #files-transferring-scp }
 
 You can transfer files between Lonestar6 and Linux-based systems using either [`scp`](http://linux.com/learn/intro-to-linux/2017/2/how-securely-transfer-files-between-servers-scp) or [`rsync`](http://linux.com/learn/get-know-rsync). Both `scp` and `rsync` are available in the Mac Terminal app. Windows SSH clients typically include `scp`-based file transfer capabilities.
 
@@ -123,7 +123,7 @@ localhost$ tar cvf ./mydata.tar mydata                                  # create
 localhost$ scp     ./mydata.tar bjones@ls6.tacc.utexas.edu:\$WORK  # transfer archive
 ```
 
-#### [Transferring with `rsync`](#files-transferring-rsync) { #files-transferring-rsync }
+#### Transferring with `rsync` { #files-transferring-rsync }
 
 The `rsync` (remote synchronization) utility is a great way to synchronize files that you maintain on more than one system: when you transfer files using `rsync`, the utility copies only the changed portions of individual files. As a result, `rsync` is especially efficient when you only need to update a small fraction of a large dataset. The basic syntax is similar to `scp`:
 
@@ -135,7 +135,7 @@ localhost$ rsync -avtr mybigdir  bjones@ls6.tacc.utexas.edu:\$SCRATCH/data
 The options on the second transfer are typical and appropriate when synching a directory: this is a <u>recursive update (`-r`)</u> with verbose (`-v`) feedback; the synchronization preserves <u>time stamps (`-t`)</u> as well as symbolic links and other meta-data (`-a`). Because `rsync` only transfers changes, recursive updates with `rsync` may be less demanding than an equivalent recursive transfer with `scp`.
 
 
-### [Sharing Files with Collaborators](#files-sharing) { #files-sharing }
+### Sharing Files with Collaborators { #files-sharing }
 
 If you wish to share files and data with collaborators in your project, see [Sharing Project Files on TACC Systems](../../tutorials/sharingprojectfiles) for step-by-step instructions. Project managers or delegates can use Unix group permissions and commands to create read-only or read-write shared workspaces that function as data repositories and provide a common work area to all project members.
 

@@ -1,4 +1,4 @@
-## [References](#refs) { #refs }
+## References { #refs }
 
 
 * [Multi-Factor Authentication at TACC][TACCMFA]

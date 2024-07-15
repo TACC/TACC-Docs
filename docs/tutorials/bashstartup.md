@@ -45,7 +45,7 @@ Then edit your new `~/.bashrc` to suit yourself.
 To test always have one terminal to edit and another terminal to test with.
 
 
-## [Troubleshooting](#troubleshooting) { #troubleshooting }
+## Troubleshooting { #troubleshooting }
 
 * Your `~/.profile` is not read during a login shell.
 
@@ -56,7 +56,7 @@ To test always have one terminal to edit and another terminal to test with.
 
 	Check to see if you are changing the `$PATH` variable outside of a guarded if-block similar to the one above.
 
-## [Reference](#refs) { #refs }
+## Reference { #refs }
 
 This quickstart guide covers the basics.  For more information please look at the web.  Here are two resources:
 

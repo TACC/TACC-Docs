@@ -4,11 +4,11 @@
 <img alt="NAMD logo" src="../imgs/namd-logo.png" style="width:40%;">   
 <a href="http://www.ks.uiuc.edu/Research/namd/">NAMD</a> **Na**noscale **M**olecular **D**ynamics program, is a parallel molecular dynamics code designed for high-performance simulation of large biomolecular systems. Based on Charm++ parallel objects, NAMD scales to hundreds of cores for typical simulations and beyond 500,000 cores for the largest simulations. NAMD uses the popular molecular graphics program VMD for simulation setup and trajectory analysis, but is also file-compatible with AMBER, CHARMM, and X-PLOR. NAMD can perform geometry optimization, molecular dynamics simulations, chemical and conformational free energy calculations, enhanced sampling via replica exchange. It also supports Tcl based scripting and steering forces.  
 
-## [Installations](#installations) { #installations }
+## Installations { #installations }
 
 NAMD is currently installed on TACC's [Frontera](../../hpc/frontera), [Stampede3](../../hpc/stampede3), and [Lonestar6](../../hpc/lonestar6) compute resources.  NAMD is managed under the module system on TACC resources. Read the following instructions carefully. NAMD performance is particularly sensitive to its configuration.  Try running benchmarks with different configurations to find your optimal NAMD set up. You can initiate interactive [`idev`](../../software/idev) debugging sessions on all systems.
 
-## [NAMD on Frontera](#running-frontera) { #running-frontera }
+## NAMD on Frontera { #running-frontera }
 
 The recommended and latest installed NAMD version is 2.14 on Frontera. Users are welcome to install different NAMD versions in their own directories.
 
@@ -16,7 +16,7 @@ The recommended and latest installed NAMD version is 2.14 on Frontera. Users are
 login1$ module load namd/2.14
 ```
 
-### [Job Script](#running-frontera-jobscript) { #running-frontera-jobscript }
+### Job Script { #running-frontera-jobscript }
 
 !!! tip
 	TACC staff recommends that users attempt runs with 4 tasks per node and 8 tasks per node (scales better at large number of nodes) and then pick the configuration that provides the best performance.
@@ -64,7 +64,7 @@ compressed input files
 ```
 
 
-## [NAMD on Stampede3](#running-stampede3) { #running-stampede3 }
+## NAMD on Stampede3 { #running-stampede3 }
 
 
 Note: The way to run NAMD on Sapphire Rapids nodes is shown as following:
@@ -173,7 +173,7 @@ ibrun namd3 +ppn 5 \
 ```
 
 
-## [NAMD on Lonestar6](#running-lonestar6) { #running-lonestar6 }
+## NAMD on Lonestar6 { #running-lonestar6 }
 
 NAMD ver2.14 is installed on Lonestar6 as this version provides best performance. Feel free to install your own newer version locally. 
 
@@ -181,7 +181,7 @@ NAMD ver2.14 is installed on Lonestar6 as this version provides best performance
 login1$ module load namd/2.14
 ```
 
-### [Job Script](#running-lonestar6-jobscript) { #running-lonestar6-jobscript }
+### Job Script { #running-lonestar6-jobscript }
 
 !!! tip
 	TACC staff recommends assigning 4 tasks per node for NAMD jobs running on Lonestar6's compute nodes.
@@ -203,7 +203,7 @@ ibrun namd2 +ppn 31 \
 			+commap 0,32,64,96 input &> output
 ```
 
-## [References](#refs) { #refs }
+## References { #refs }
 
 * [NAMD](http://www.ks.uiuc.edu/Research/namd/) website
 * [NAMD 2.14 User Guide](http://www.ks.uiuc.edu/Research/namd/2.14/ug/)

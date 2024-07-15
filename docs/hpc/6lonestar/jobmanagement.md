@@ -1,16 +1,16 @@
-## [Job Management](#jobs) { #jobs }
+## Job Management { #jobs }
 
 In this section, we present several Slurm commands and other utilities that are available to help you plan and track your job submissions as well as check the status of the Slurm queues.
 
 When interpreting queue and job status, remember that **Lonestar6 doesn't operate on a first-come-first-served basis**. Instead, the sophisticated, tunable algorithms built into Slurm attempt to keep the system busy, while scheduling jobs in a way that is as fair as possible to everyone. At times this means leaving nodes idle ("draining the queue") to make room for a large job that would otherwise never run. It also means considering each user's "fair share", scheduling jobs so that those who haven't run jobs recently may have a slightly higher priority than those who have.
 
-### [Monitoring Queue Status](#jobs-monitoring) { #jobs-monitoring }
+### Monitoring Queue Status { #jobs-monitoring }
 
-#### [TACC's `qlimits` command](#jobs-monitoring-qlimits) { #jobs-monitoring-qlimits }
+#### TACC's `qlimits` command { #jobs-monitoring-qlimits }
 
 To display resource limits for the Lonestar queues, execute: `qlimits`. The result is real-time data; the corresponding information in this document's [table of Lonestar6 queues](#queues) may lag behind the actual configuration that the `qlimits` utility displays.
 
-#### [Slurm's `sinfo` command](#jobs-monitoring-sinfo) { #jobs-monitoring-sinfo }
+#### Slurm's `sinfo` command { #jobs-monitoring-sinfo }
 
 Slurm's `sinfo` command allows you to monitor the status of the queues. If you execute `sinfo` without arguments, you'll see a list of every node in the system together with its status. To skip the node list and produce a tight, alphabetized summary of the available queues and their status, execute:
 
@@ -30,9 +30,9 @@ v100-lm            up       0/8/0/8
 	
 The `AVAIL` column displays the overall status of each queue (up or down), while the column labeled `NODES(A/I/O/T)` shows the number of nodes in each of several states ("**A**llocated", "**I**dle", "**O**ffline", and "**T**otal"). Execute `man sinfo` for more information. Use caution when reading the generic documentation, however: some available fields are not meaningful or are misleading on Lonestar6 (e.g. `TIMELIMIT`, displayed using the `%l` option).
 
-### [Monitoring Job Status](#jobs-monitoring-jobstatus) { #jobs-monitoring-jobstatus }
+### Monitoring Job Status { #jobs-monitoring-jobstatus }
 
-#### [Slurm's `squeue` command](#sjobs-monitoring-queuestatus) { #sjobs-monitoring-queuestatus }
+#### Slurm's `squeue` command { #sjobs-monitoring-queuestatus }
 
 Slurm's `squeue` command allows you to monitor jobs in the queues, whether pending (waiting) or currently running:
 
@@ -79,7 +79,7 @@ The `--start` option displays job start times, including very rough estimates fo
 login1$ squeue --start -j 167635     # display estimated start time for job 167635
 ```
 
-#### [TACC's `showq` utility](#jobs-monitoring-showq) { #jobs-monitoring-showq }
+#### TACC's `showq` utility { #jobs-monitoring-showq }
 
 TACC's `showq` utility mimics a tool that originated in the PBS project, and serves as a popular alternative to the Slurm `squeue` command:
 
@@ -96,7 +96,7 @@ If your waiting job cannot complete before a maintenance/reservation begins, `sh
 
 The default format for `showq` now reports total nodes associated with a job rather than cores, tasks, or hardware threads. One reason for this change is clarity: the operating system sees each compute node's 112 hardware threads as "processors", and output based on that information can be ambiguous or otherwise difficult to interpret.
 
-### [Dependent Jobs using `sbatch`](#jobs-dependencies) { #jobs-dependencies }
+### Dependent Jobs using `sbatch` { #jobs-dependencies }
 
 You can use `sbatch` to help manage workflows that involve multiple steps: the `--dependency` option allows you to launch jobs that depend on the completion (or successful completion) of another job. For example you could use this technique to split into three jobs a workflow that requires you to (1) compile on a single node; then (2) compute on 40 nodes; then finally (3) post-process your results using 4 nodes. 
 
@@ -107,7 +107,7 @@ login1$ sbatch --dependency=afterok:173210 myjobscript
 For more information see the [Slurm online documentation](http://www.schedmd.com). Note that you can use `$SLURM_JOBID` from one job to find the jobid you'll need to construct the `sbatch` launch line for a subsequent one. But also remember that you can't use `sbatch` to submit a job from a compute node.
 
 
-### [Other Job Management Commands](#jobs-other) { #jobs-other }
+### Other Job Management Commands { #jobs-other }
 
  `scancel`, `scontrol`, and `sacct`
 

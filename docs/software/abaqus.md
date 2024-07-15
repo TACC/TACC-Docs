@@ -7,7 +7,7 @@
 <td valign="middle">The ABAQUS software suite from Dassault Systems is used for finite element analysis and computer-aided engineering.  The ABAQUS software is used on TACC resources for projects from a variety of domains, such as petroleum engineering, biomedical engineering, and aerospace engineering. </td>
 </tr></table>
 
-## [Request Access](#access) { #access }
+## Request Access { #access }
 
 TACC's ABAQUS license agreement allows access to the software installation and license tokens only to UT Austin students and staff. 
 
@@ -17,7 +17,7 @@ TACC's ABAQUS license agreement allows access to the software installation and l
 
 For all ABAQUS technical questions, contact the customer care for Dassault Systems through a support ticket.
 
-### [License Tokens](#access-license) { #access-license }
+### License Tokens { #access-license }
 
 **TACC has a limited number of ABAQUS license tokens available.** Please submit a support ticket requesting the license server name.  In this document we'll refer to the license server as `port-number@license-server`. In order to use this license server, the ABAQUS users should add the following line to their job script: 
 
@@ -38,7 +38,7 @@ abaquslm_license_file="port-number@license-server"
 
 Since the number of ABAQUS licenses are linited, we encourage you to bring your own license tokens (from your local license server) if you have the option to do so.  If using your own license, you may need to work with the license server's administrator to open the appropriate firewalls for accepting connections from TACC resources. The license server administrator will need the [IP addresses range](#ips) of the TACC systems (Stampede2 or Frontera).  Users will then use the port number and hostname of their license server to set the values of `ABAQUSLM_LICENSE_FILE` in either their job script or the value of `abaquslm_license_file` in the `abaqus_v6.env`.
 
-## [Installations](#installations) { #installations }
+## Installations { #installations }
 
 The ABAQUS 2019 and 2020 executables are available using the TACC's module system. After users are granted access to ABAQUS, they will be able to load the abaqus module.
 
@@ -46,7 +46,7 @@ The ABAQUS 2019 and 2020 executables are available using the TACC's module syste
 login1$ module load abaqus
 ```
 
-## [Running ABAQUS](#running) { #running }
+## Running ABAQUS { #running }
 
 1. Familiarize yourself with the Stampede2 and/or Frontera user guide sections on "Running Applications".
 
@@ -56,7 +56,7 @@ login1$ module load abaqus
 	As with all other software packages, do not run ABAQUS on the login nodes. All ABAQUS invocations must occur within an `idev` session or submitted to the compute nodes as a batch job using the [job script](#jobscript) below.
 
 
-### [Interactively](#running-interactive) { #running-interactive }
+### Interactively { #running-interactive }
 
 On a compute node obtained through an `idev` session, the users can run the following command to test their access to ABAQUS and also check the available number of license tokens:
 
@@ -65,7 +65,7 @@ c123-456$ ml abaqus
 c123-456$ $TACC_ABAQUS_BIN/abaqus licensing lmstat -a &gt; abaqus_license.txt
 ```
 
-### [Batch Mode](#running-batch) { #running-batch }
+### Batch Mode { #running-batch }
 
 1. ABAQUS jobs will continue polling for licensing tokens till the required number of tokens become available or the jobs time-out of the queue. In order to save SUs in the event the necessary tokens are not available, include the following line in the ABAQUS environment file. This will limit the ABAQUS waiting time to five minutes. 
 
@@ -100,7 +100,7 @@ c123-456$ $TACC_ABAQUS_BIN/abaqus licensing lmstat -a &gt; abaqus_license.txt
 		interactive scratch="." verbose=3
 	```
 
-## [Job Script](#jobscript) { #jobscript }
+## Job Script { #jobscript }
 
 The following job script demonstrates an example of running ABAQUS in parallel, on one node, and can be run on the Stampede2 and Frontera systems after adjusting the number of nodes and cores, the values of `-N` and, `-n` respectively.  This script is also located in `$TACC_ABAQUS_DIR/tacc_test/abaqus.slm`.
 
@@ -164,7 +164,7 @@ $TACC_ABAQUS_BIN/abaqus job=test_abaqus_job cpus=$core_count \
 sed -i "/mp_host_list/d" $abaqus_environment_file
 ```
 
-## [TACC Resources IP Address Ranges](#ips) { #ips }
+## TACC Resources IP Address Ranges { #ips }
 
 <table border='1' cellpadding="5">
 <tr>
@@ -184,7 +184,7 @@ sed -i "/mp_host_list/d" $abaqus_environment_file
 <tr>
 </table>
 
-## [References](#refs) { #refs }
+## References { #refs }
 
 * <a href="https://www.3ds.com/products-services/simulia/products/abaqus/abaquscae/">Dassault Systemes: Abaqus</a>
 

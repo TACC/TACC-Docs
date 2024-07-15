@@ -1,4 +1,4 @@
-## [References](#refs) { #refs }
+## References { #refs }
 
 * [Bash Users' Startup Files: Quick Start Guide][TACCBASHQUICKSTART]
 * [`idev` documentation](../../software/idev)

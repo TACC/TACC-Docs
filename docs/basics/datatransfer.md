@@ -10,7 +10,7 @@ This guide will outline and instruct methods of transferring data between TACC r
 	**Globus Users: See [Globus v5.4 Transition](#globusv54) update**   
 
 
-## [Command-Line Tools ](#datatransfer-cli) { #datatransfer-cli }
+## Command-Line Tools  { #datatransfer-cli }
 
 A common method of transferring files between TACC resources and/or your local machine is through the command line.  Whether on a Windows or a Mac, open the terminal applicaton on your local laptop to use one of the following Unix command-line (CLI) tools.
 
@@ -21,7 +21,7 @@ These three command line tools are secure and can be used to accomplish data tra
           ).
 To simplify the data transfer process, it is recommended that Windows users follow the <a href="#cyberduck_transfer">How to Transfer Data with Cyberduck</a> guide as detailed below.
 
-### [Determining Paths](#datatransfer-cli-paths) { #datatransfer-cli-paths }
+### Determining Paths { #datatransfer-cli-paths }
 
 Before beginning data transfer with command-line tools, you will need to know:
 
@@ -47,7 +47,7 @@ For example, a file located in a folder named <kbd>portal-data</kbd> under `Docu
 <tr><td><code>\Users\<kbd>username</kbd>\My Documents\<kbd>portal-data</kbd>\my_file.txt</code></td></tr>
 </table>
 
-### [Transfer with `scp`](#datatransfer-cli-scp) { #datatransfer-cli-scp }
+### Transfer with `scp` { #datatransfer-cli-scp }
 
 The `scp` command copies files between hosts on a network. To transfer a file (ex. `my_file.txt`) to the remote secure system via `scp`, open a terminal on your local computer and navigate to the path where your data file is located.
       
@@ -78,7 +78,7 @@ If you wish to learn more about `scp` and how to synchronize your file transfer,
 * <a target="_blank" href="https://docs.tacc.utexas.edu/hpc/frontera/#transferring-scp">Frontera User Guide</a>
 * <a target="_blank" href="https://https://docs.tacc.utexas.edu/hpc/lonestar6/#files-transferring-scp">Lonestar6 User Guide</a>
 
-### [Transfer with `sftp`](#datatransfer-cli-sftp) { #datatransfer-cli-sftp }
+### Transfer with `sftp` { #datatransfer-cli-sftp }
 
 `sftp` is a file transfer program that allows you to interactively navigate between your local file system and the remote secure system. To transfer a file (ex. `my_file.txt`) to the remote secure system via `sftp`, open a terminal on your local computer and navigate to the path where your data file is located.&nbsp;
       
@@ -140,7 +140,7 @@ To exit out of <code>sftp</code> on the terminal:
 If you wish to learn more about <code>sftp</code>, you can do so at <a target="_blank" href="https://man7.org/linux/man-pages/man1/sftp.1.html">the online <code>man</code> page for <code>scp</code></a>.
       
 
-### [Transfer with `rsync`](#datatransfer-cli-rsync) { #datatransfer-cli-rsync }
+### Transfer with `rsync` { #datatransfer-cli-rsync }
       
 `rsync`is a file copying tool that can reduce the amount of data transferred by sending only the differences between the source files on your local system and the existing files in your transfer directory. To transfer a file (ex. `my_file.txt`) to the remote secure system via `rsync`, open a terminal on your local computer and navigate to the path where your data file is located.
       
@@ -168,9 +168,9 @@ Consult your resource's respective user guide's "Transferring Files" section for
 
 * [Frontera running](hpc/frontera/#transferring-rsync)
 
-## [GUI Tools](#datatransfer-cli-gui) { #datatransfer-cli-gui }
+## GUI Tools { #datatransfer-cli-gui }
 
-### [Cyberduck](#datatransfer-gui-cyberduck) { #datatransfer-gui-cyberduck }
+### Cyberduck { #datatransfer-gui-cyberduck }
 
 <a target="_blank" href="https://cyberduck.io/">Cyberduck</a> is a free graphical user interface for data transfer and is an alternative to using the command line. With a drag-and-drop interface, it is easy to transfer a file from your local system to the remote secure system. You can use <a target="_blank" href="https://cyberduck.io/">Cyberduck</a> for Windows or macOS.
 

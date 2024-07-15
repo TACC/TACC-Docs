@@ -1,11 +1,11 @@
-## [Running Jobs](#running) { #running }
+## Running Jobs { #running }
 
 {% include 'include/stampede3-jobaccounting.md' %}
 
-<!-- ### [Slurm Job Scheduler](#running-slurm) { #running-slurm } -->
+<!-- ### Slurm Job Scheduler { #running-slurm } -->
 
 
-### [Slurm Partitions (Queues)](#queues) { #queues }
+### Slurm Partitions (Queues) { #queues }
 
 Stampede3's job scheduler is the Slurm Workload Manager. Slurm commands enable you to submit, manage, monitor, and control your jobs.  See the [Job Management](#jobmanagement) section below for further information. 
 
@@ -15,7 +15,7 @@ Stampede3's job scheduler is the Slurm Workload Manager. Slurm commands enable y
     Use TACC's `qlimits` utility to see the latest queue configurations.
 
 
-#### [Table 7. Production Queues](#table7) { #table7 }
+#### Table 7. Production Queues { #table7 }
 
 Queue Name   | Node Type | Max Nodes per Job<br>(assoc'd cores) | Max Duration | Max Jobs in Queue | Charge Rate<br>(per node-hour)
 --           | --        | --                                   | --           | --                |  
@@ -50,7 +50,7 @@ By default, Slurm writes all console output to a file named "`slurm-%j.out`", wh
 !!! tip
 	The maximum runtime for any individual job is 48 hours.  However, if you have good checkpointing implemented, you can easily chain jobs such that the outputs of one job are the inputs of the next, effectively running indefinitely for as long as needed.  See Slurm's `-d` option.
 
-#### [Table 8. Common `sbatch` Options](#table8) { #table8 }
+#### Table 8. Common `sbatch` Options { #table8 }
 
 Option | Argument | Comments
 --- | --- | ---

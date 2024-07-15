@@ -1,16 +1,16 @@
-## [Job Management](#monitoring) { #monitoring }
+## Job Management { #monitoring }
 
 <p class="introtext">In this section, we present several Slurm commands and other utilities that are available to help you plan and track your job submissions as well as check the status of the Slurm queues.</p>
 
 When interpreting queue and job status, remember that **Frontera doesn't operate on a first-come-first-served basis**. Instead, the sophisticated, tunable algorithms built into Slurm attempt to keep the system busy, while scheduling jobs in a way that is as fair as possible to everyone. At times this means leaving nodes idle ("draining the queue") to make room for a large job that would otherwise never run. It also means considering each user's "fair share", scheduling jobs so that those who haven't run jobs recently may have a slightly higher priority than those who have.
 
-### [Monitoring Queue Status with `sinfo` and `qlimits`](#monitoring-queues) { #monitoring-queues }
+### Monitoring Queue Status with `sinfo` and `qlimits` { #monitoring-queues }
 
-#### [TACC's `qlimits` command](#monitoring-queues-qlimits) { #monitoring-queues-qlimits }
+#### TACC's `qlimits` command { #monitoring-queues-qlimits }
 
 To display resource limits for the Frontera queues, execute: `qlimits`. The result is real-time data; the corresponding information in this document's [table of Frontera queues](../#queues) may lag behind the actual configuration that the `qlimits` utility displays.
 
-#### [Slurm's `sinfo` command](#monitoring-queues-sinfo) { #monitoring-queues-sinfo }
+#### Slurm's `sinfo` command { #monitoring-queues-sinfo }
 
 Slurm's `sinfo` command allows you to monitor the status of the queues. If you execute `sinfo` without arguments, you'll see a list of every node in the system together with its status. To skip the node list and produce a tight, alphabetized summary of the available queues and their status, execute:
 
@@ -31,9 +31,9 @@ normal             up       1691/112/485/2288
 			
 The `AVAIL` column displays the overall status of each queue (up or down), while the column labeled `NODES(A/I/O/T)` shows the number of nodes in each of several states ("**A**llocated", "**I**dle", "**O**ffline", and "**T**otal"). Execute `man sinfo` for more information. Use caution when reading the generic documentation, however: some available fields are not meaningful or are misleading on Frontera (e.g. `TIMELIMIT`, displayed using the `%l` option).
 
-### [Monitoring Job Status](#monitoring-jobs) { #monitoring-jobs }
+### Monitoring Job Status { #monitoring-jobs }
 
-#### [Slurm's `squeue` command](#monitoring-jobs-squeue) { #monitoring-jobs-squeue }
+#### Slurm's `squeue` command { #monitoring-jobs-squeue }
 
 Slurm's `squeue` command allows you to monitor jobs in the queues, whether pending (waiting) or currently running:
 
@@ -83,7 +83,7 @@ The `--start` option displays job start times, including very rough estimates fo
 login1$ squeue --start -j 167635     # display estimated start time for job 167635
 ```
 
-#### [TACC's `showq` utility](#monitoring-jobs-showq) { #monitoring-jobs-showq }
+#### TACC's `showq` utility { #monitoring-jobs-showq }
 
 TACC's `showq` utility mimics a tool that originated in the PBS project, and serves as a popular alternative to the Slurm `squeue` command:
 
@@ -123,7 +123,7 @@ To view some **accounting data** associated with your own jobs, use `sacct`:
 login1$ sacct --starttime 2019-06-01  # show jobs that started on or after this date
 ```
 
-### [Dependent Jobs using `sbatch`](#monitoring-dependent) { #monitoring-dependent }
+### Dependent Jobs using `sbatch` { #monitoring-dependent }
 
 You can use `sbatch` to help manage workflows that involve multiple steps: the `--dependency` option allows you to launch jobs that depend on the completion (or successful completion) of another job. For example you could use this technique to split into three jobs a workflow that requires you to (1) compile on a single node; then (2) compute on 40 nodes; then finally (3) post-process your results using 4 nodes. 
 

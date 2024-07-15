@@ -1,13 +1,13 @@
-## [Managing Files](#files) { #files }
+## Managing Files { #files }
 
 Frontera mounts three Lustre file systems that are shared across all nodes: the home, work, and scratch file systems. Frontera also contains a fourth file system, <code>FLASH</code>, supporting applications with very high bandwidth or IOPS requirements.
 
 
-### [File Systems](#files-filesystems) { #files-filesystems } 
+### File Systems { #files-filesystems } 
 
 Frontera's startup mechanisms define corresponding account-level environment variables <code>$HOME</code>, <code>$SCRATCH</code> and <code>$WORK</code><!--,and <code>$FASTIO</code>--> that store the paths to directories that you own on each of these file systems. Consult <a href="#table4">Table 4. Frontera File Systems</a> below for the basic characteristics of these file systems, <!--"File Operations: I/O Performance" for advice on performance issues,--> and the <a href="../../basics/conduct">Good Conduct</a> sections for guidance on file system etiquette.</p>
 
-#### [Table 4a. File Systems](#table4a) { #table4a } 
+#### Table 4a. File Systems { #table4a } 
 
 File System | Quota | Key Features
 -------     | ------- | -------
@@ -17,7 +17,7 @@ File System | Quota | Key Features
 
 All new projects are assigned to `/scratch1` as their default `$SCRATCH` file system.  After running on Frontera, TACC staff may reassign users and projects to `/scratch2` or `/scratch3` depending on the resources required by their workflow.  The `/scratch3` file system employs twice as many OST's offering twice the available I/O bandwidth of `/scratch1` and `/scratch2`.  Frontera's three `$SCRATCH` file systems are further described below:
 
-#### [Table 4b. Scratch File Systems](#table4b) { #table4b } 
+#### Table 4b. Scratch File Systems { #table4b } 
 
 File System | Characteristics	| Purpose |
 ---         | ---               | ---     |
@@ -29,7 +29,7 @@ File System | Characteristics	| Purpose |
 {%include './include/scratchpolicy.md' %}
 
 
-### [Navigating the Shared File Systems](#files-navigating) { #files-navigating } 
+### Navigating the Shared File Systems { #files-navigating } 
 
 Frontera's `/home` and `/scratch` file systems are mounted only on Frontera, but the work file system mounted on Frontera is the Global Shared File System hosted on [Stockyard](https://www.tacc.utexas.edu/systems/stockyard). Stockyard is the same work file system that is currently available on Stampede3, Lonestar6, and several other TACC resources. 
 
@@ -42,7 +42,7 @@ Your account-specific `$WORK` environment variable varies from system to system 
 
 See the example for fictitious user `bjones` in the figure below. All directories are accessible from all systems, however a given sub-directory (e.g. `lonestar6`, `stampede3`) will exist **only** if you have an allocation on that system.
 
-#### [Figure 3. Stockyard File System](#figure3) { #figure3 } 
+#### Figure 3. Stockyard File System { #figure3 } 
 <figure id="figure3"><img alt="Stockyard File System" src="../imgs/stockyard-2022.jpg"> 
 <figcaption></figcaption></figure>
 
@@ -50,7 +50,7 @@ See the example for fictitious user `bjones` in the figure below. All directorie
 
 Note that resource-specific subdirectories of `$STOCKYARD` are simply convenient ways to manage your resource-specific files. You have access to any such subdirectory from any TACC resources. If you are logged into Frontera, for example, executing the alias `cdw` (equivalent to `cd $WORK`) will take you to the resource-specific subdirectory `$STOCKYARD/frontera`. But you can access this directory from other TACC systems as well by executing `cd $STOCKYARD/frontera`. These commands allow you to share files across TACC systems. In fact, several convenient account-level aliases make it even easier to navigate across the directories you own in the shared file systems:
 
-#### [Table 5. Built-in Account Level Aliases](#table5) { #table5 } 
+#### Table 5. Built-in Account Level Aliases { #table5 } 
 
 Alias | Command
 ---- | ----
@@ -59,7 +59,7 @@ Alias | Command
 <code>cds</code> | <code>cd $SCRATCH</code>
 <code>cdy</code> or <code>cdg</code> | <code>cd $STOCKYARD</code>
 
-### [Striping Large Files](#files-striping) { #files-striping } 
+### Striping Large Files { #files-striping } 
 
 Frontera's Lustre file systems look and act like a single logical hard disk, but are actually sophisticated integrated systems involving many physical drives. Lustre can **stripe** (distribute) large files over several physical disks, making it possible to deliver the high performance needed to service input/output (I/O) requests from hundreds of users across thousands of nodes. Object Storage Targets (OSTs) manage the file system's spinning disks: a file with 16 stripes, for example, is distributed across 16 OSTs. One designated Meta-Data Server (MDS) tracks the OSTs assigned to a file, as well as the file's descriptive data.
 

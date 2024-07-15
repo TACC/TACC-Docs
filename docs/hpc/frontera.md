@@ -3,12 +3,12 @@ Last update: June 28, 2024
 <!-- SDL <a href="https://frontera-xortal.tacc.utexas.edu/user-guide/docs/user-guide.pdf">Download PDF <i class="fa fa-file-pdf-o"></i></a></span>-->
 
 <!-- 
-## [Notices](#notices) { #notices }
+## Notices { #notices }
 
 * Navigate to the [Frontera Web Portal](https://frontera-portal.tacc.utexas.edu/) to manage your Frontera allocations and access your [Frontera Workbench](https://frontera-portal.tacc.utexas.edu/workbench/dashboard). (04/19/2023)
 
 -->
-## [Introduction](#intro) { #intro } 
+## Introduction { #intro } 
 
 Frontera is funded by the National Science Foundation (NSF) through award #1818253, [Computing for the Endless Frontier](https://www.nsf.gov/awardsearch/showAward?AWD_ID=1818253). It is the largest cluster dedicated to open science in the United States and is the Texas Advanced Computing Center's latest flagship system. Frontera enters production in early summer 2019, building on the successes of the Stampede1 and Stampede2 systems.  
 
@@ -22,7 +22,7 @@ Following the initial CPU-only rollout, the system will also provide users with 
 
 Frontera's design also includes a totally new integration with web services, and provides users with new options for data storage and access to emerging computer technologies. The award includes an innovative partnership with the three major commercial cloud providers, Google, Amazon and Microsoft, to provide users with additional high-integrity storage, sustainable archive options, and to keep the project regularly refreshed with novel computing technologies. 
 
-## [Quickstart](#quickstart) { #quickstart }
+## Quickstart { #quickstart }
 
 Experienced HPC/TACC users will be very familiar with many of the topics presented in this guide. Here we'll highlight some sections for a quick start on Frontera.
 
@@ -34,27 +34,27 @@ Experienced HPC/TACC users will be very familiar with many of the topics present
 * Review the [default modules with `module list`](#admin-configuring-modules). Make any changes needed for your code. 
 * Start small. Run any jobs from other systems on a smaller scale in order to test the performance of your code on Frontera. You may find your code needs to be altered or recompiled in order to perform well and at scale on the new system. 
 
-## [Account Administration](#admin) { #admin }
+## Account Administration { #admin }
 
-### [Setting up Your Account](#admin-account) { #admin-account }
+### Setting up Your Account { #admin-account }
 
-#### [Check your Allocation Status](#admin-account-allocation) { #admin-account-allocation }
+#### Check your Allocation Status { #admin-account-allocation }
 
 **You must be added to a Frontera allocation in order to have access/login to Frontera.** The ability to log on to the TACC User Portal does NOT signify access to Frontera or any TACC resource. Submit Frontera allocations requests via [TACC's Resource Allocation System](https://tacc-submit.xras.org/). Continue to [manage your allocation's users][TACCALLOCATIONS] via the TACC User Portal. 
 
-#### [Multi-Factor Authentication](#admin-account-mfa) { #admin-account-mfa }
+#### Multi-Factor Authentication { #admin-account-mfa }
 
 Access to all TACC systems now requires Multi-Factor Authentication (MFA). You can create an MFA pairing on the TACC User Portal. After login on the portal, go to your account profile (Home->Account Profile), then click the "Manage" button under "Multi-Factor Authentication" on the right side of the page. See [Multi-Factor Authentication at TACC][TACCMFA] for further information. 
 
 <!-- SDL
-#### [Password Management](#admin-account-password) { #admin-account-password }
+#### Password Management { #admin-account-password }
 
 Use your TACC User Portal password for direct logins to TACC resources. You can change your TACC password through the [TACC User Portal][TACCUSERPORTAL]. Log into the portal, then select "Change Password" under the "HOME" tab. If you've forgotten your password, go to the [TACC User Portal](http://xortal.tacc.utexas.edu/) home page and select "Password Reset" under the Home tab.
 -->
 
-### [Access the System](#admin-access) { #admin-access }
+### Access the System { #admin-access }
 
-#### [Secure Shell (SSH)](#admin-access-ssh) { #admin-access-ssh }
+#### Secure Shell (SSH) { #admin-access-ssh }
 
 The `ssh` command (SSH protocol) is the standard way to connect to Frontera. SSH also includes support for the file transfer utilities `scp` and `sftp`. [Wikipedia](https://en.wikipedia.org/wiki/Secure_Shell) is a good source of information on SSH. SSH is available within Linux and from the terminal app in the Mac OS. If you are using Windows, you will need an SSH client that supports the SSH-2 protocol: e.g. [Bitvise](http://www.bitvise.com), [OpenSSH](http://www.openssh.com), [PuTTY](http://www.putty.org), or [SecureCRT](https://www.vandyke.com/products/securecrt/). Initiate a session using the `ssh` command or the equivalent; from the Linux command line the launch command looks like this:
 
@@ -86,9 +86,9 @@ After logging in again the system will generate a properly configured key pair.
 
 Regardless of your research workflow, <b>you’ll need to master Linux basics</b> and a Linux-based text editor (e.g. `emacs`, `nano`, `gedit`, or `vi/vim`) to use the system properly. However, this user guide does not address these topics. There are numerous resources in a variety of formats that are available to help you learn Linux<!-- SDL , including some listed on the <a href="https://xortal.tacc.utexas.edu/training/course-materials">TACC</a> and training sites-->. If you encounter a term or concept in this user guide that is new to you, a quick internet search should help you resolve the matter quickly.
 
-### [Configuring Your Account](#admin-configuring) { #admin-configuring }
+### Configuring Your Account { #admin-configuring }
 
-#### [Linux Shell](#admin-configuring-shell) { #admin-configuring-shell }
+#### Linux Shell { #admin-configuring-shell }
 
 The default login shell for your user account is Bash. To determine your current login shell, execute: 
 
@@ -104,7 +104,7 @@ Before editing your startup files, however, it's worth taking the time to unders
 
 For more information see the [Bash Users' Startup Files: Quick Start Guide][TACCBASHQUICKSTART] and other online resources that explain shell startup. To recover the originals that appear in a newly created account, execute `/usr/local/startup_scripts/install_default_scripts`.
 
-#### [Environment Variables](#admin-configuring-envvars) { #admin-configuring-envvars }
+#### Environment Variables { #admin-configuring-envvars }
 
 Your environment includes the environment variables and functions defined in your current shell: those initialized by the system, those you define or modify in your account-level startup scripts, and those defined or modified by the [modules](#admin-configuring-modules) that you load to configure your software environment. Be sure to distinguish between an environment variable's name (e.g. `HISTSIZE`) and its value (`$HISTSIZE`). Understand as well that a sub-shell (e.g. a script) inherits environment variables from its parent, but does not inherit ordinary shell variables or aliases. Use `export` (in Bash) or `setenv` (in `csh`) to define an environment variable.
 
@@ -118,7 +118,7 @@ $ env | grep GIT
 
 The environment variables `PATH` and `LD_LIBRARY_PATH` are especially important. `PATH` is a colon-separated list of directory paths that determines where the system looks for your executables. `LD_LIBRARY_PATH` is a similar list that determines where the system looks for shared libraries.
 
-#### [Account-Level Diagnostics](#admin-configuring-diagnostics) { #admin-configuring-diagnostics }
+#### Account-Level Diagnostics { #admin-configuring-diagnostics }
 
 TACC's `sanitytool` module loads an account-level diagnostic package that detects common account-level issues and often walks you through the fixes. You should certainly run the package's `sanitycheck` utility when you encounter unexpected behavior. You may also want to run `sanitycheck` periodically as preventive maintenance. To run `sanitytool`'s account-level diagnostics, execute the following commands:
 
@@ -129,7 +129,7 @@ login1$ sanitycheck
 
 Execute `module help sanitytool` for more information.
 
-#### [Using Modules to Manage your Environment](#admin-configuring-modules) { #admin-configuring-modules }
+#### Using Modules to Manage your Environment { #admin-configuring-modules }
 
 [Lmod](https://www.tacc.utexas.edu/research-development/tacc-projects/lmod), a module system developed and maintained at TACC, makes it easy to manage your environment so you have access to the software packages and versions that you need to conduct your research. This is especially important on a system like Frontera that serves thousands of users with an enormous range of needs. Loading a module amounts to choosing a specific package from among available alternatives:
 
@@ -226,7 +226,7 @@ See [Lmod's online documentation](http://lmod.readthedocs.org) for more extensiv
 
 It's safe to execute module commands in job scripts. In fact, this is a good way to write self-documenting, portable job scripts that produce reproducible results. If you use `module save` to define a personal default module collection, it's rarely necessary to execute module commands in shell startup scripts, and it can be tricky to do so safely. If you do wish to put module commands in your startup scripts, see Frontera's default startup scripts for a safe way to do so.
 
-## [Frontera User Portal](#portal) { #portal }
+## Frontera User Portal { #portal }
 
 <!-- p class="introtext">The Frontera project team is pleased to announce the release of new <a href="https://frontera-xortal.tacc.utexas.edu/workbench/dashboard">Dashboard</a> functionality within the Frontera User Portal. Upon login, click on your name in the upper right corner to access your Frontera dashboard and account settings. </p -->
 
@@ -246,7 +246,7 @@ The navigation menu currently enables you access to additional information.
 * Applications: Jupyter and the TACC Visualization Portal
 * Allocations: allocation management and your active and expired projects and allocations
  
-## [System Architecture](#system) { #system }
+## System Architecture { #system }
 
 Frontera has two computing subsystems, a primary computing system focused on double precision performance, and a second subsystem focused on single precision streaming-memory computing. Frontera also has multiple storage systems, as well as interfaces to cloud and archive systems, and a set of application nodes for hosting virtual servers.
 
@@ -254,11 +254,11 @@ Frontera has two computing subsystems, a primary computing system focused on dou
 <img src="../imgs/frontera/Ecosystem-Graphic.png" style="width:800px">
 <figcaption>Frontera Ecosystem</figcaption></figure>
 
-### [Cascade Lake (CLX) Compute Nodes](#system-clx) { #system-clx }
+### Cascade Lake (CLX) Compute Nodes { #system-clx }
 
 Frontera hosts 8,368 Cascade Lake (CLX) compute nodes contained in 101 racks. 
 
-#### [Table 1. CLX Specifications](#table1) { #table1 }
+#### Table 1. CLX Specifications { #table1 }
 
 Model       | Intel Xeon Platinum 8280 ("Cascade Lake")
 ----------- | ------------
@@ -269,11 +269,11 @@ RAM:        | 192GB (2933 MT/s) DDR4
 Cache: | 32KB L1 data cache per core;<br>1MB L2 per core;<br>38.5 MB L3 per socket.<br>Each socket can cache up to 66.5 MB (sum of L2 and L3 capacity).
 Local storage: | 144GB /tmp partition on a 240GB SSD.
 
-### [Large Memory Nodes](#system-largememory) { #system-largememory }
+### Large Memory Nodes { #system-largememory }
 
 Frontera hosts 16 large memory nodes featuring 2.1TB of Optane memory. Access these nodes via the [`nvdimm` queue](#queues).
 
-#### [Table 2. Large Memory Nodes ](#table2) { #table2 }
+#### Table 2. Large Memory Nodes  { #table2 }
 
 Model | Intel Xeon Platinum 8280M ("Cascade Lake")
 ----------- | ------------
@@ -284,11 +284,11 @@ Memory:	| **2.1 TB NVDIMM**
 Cache:	| 32KB L1 data cache per core;<br> 1MB L2 per core;<br> 38.5 MB L3 per socket.<br>384 GB DDR4 RAM configured as an L4 cache<br>Each socket can cache up to 66.5 MB (sum of L2 and L3 capacity).
 Local storage: | 144GB /tmp partition on a 240GB SSD<br> 4x 833 GB /mnt/fsdax[0,1,2,3] partitions on NVDIMM<br> 3.2 TB usable local storage
 
-### [GPU Nodes](#system-gpu) { #system-gpu }
+### GPU Nodes { #system-gpu }
 
 Frontera hosts 90 GPU nodes contained in 4 Green Revolution Cooling ICEraQ racks. Access these nodes via the [`rtx` and `rtx-dev` queues](#queues).
 
-#### [Table 3. Frontera GPU node specifications](#table3) { #table3 }
+#### Table 3. Frontera GPU node specifications { #table3 }
 
 Feature                          | Specifications
 ------------------------         | ------------------------------------
@@ -300,25 +300,25 @@ CPUs:                            | 2 Intel Xeon E5-2620 v4 (“Broadwell”)
 RAM:                             | 128GB (2133 MT/s) DDR4
 Local storage:                   | 144GB /tmp partition on a 240GB SSD.
 
-### [Login Nodes](#system-login) { #system-login }
+### Login Nodes { #system-login }
 
 Frontera's four login nodes are Intel Xeon Platinum 8280 ("Cascade Lake") nodes with 56 cores and 192 GB of RAM. The login nodes are configured similarly to the compute nodes. However, since these nodes are shared, limits are enforced on memory usage and number of processes. Please use the login node for file management, compilation, and data movement. Any computing should be done within a batch job or an interactive session on compute nodes.
 
-### [Network](#system-network) { #system-network }
+### Network { #system-network }
 
 The interconnect is based on Mellanox HDR technology with full HDR (200 Gb/s) connectivity between the switches and HDR100 (100 Gb/s) connectivity to the compute nodes. A fat tree topology employing six core switches connects the compute nodes and the `$HOME` and `$SCRATCH` file systems. There are two 40-port leaf switches in each rack. Half of the nodes in a rack (44) connect to 22 downlinks of a leaf switch as pairs of HDR100 (100 Gb/s) links into HDR200 (200 Gb/s) ports of the leaf switch. The other 18 ports are uplinks to the six cores switches. The disparity in the number of uplinks and downlinks creates an oversubscription of 22/18.
 
 
-## [Managing Files](#files) { #files }
+## Managing Files { #files }
 
 Frontera mounts three Lustre file systems that are shared across all nodes: the home, work, and scratch file systems. Frontera also contains a fourth file system, <code>FLASH</code>, supporting applications with very high bandwidth or IOPS requirements.
 
 
-### [File Systems](#files-filesystems) { #files-filesystems } 
+### File Systems { #files-filesystems } 
 
 Frontera's startup mechanisms define corresponding account-level environment variables <code>$HOME</code>, <code>$SCRATCH</code> and <code>$WORK</code><!--,and <code>$FASTIO</code>--> that store the paths to directories that you own on each of these file systems. Consult <a href="#table4">Table 4. Frontera File Systems</a> below for the basic characteristics of these file systems, <!--"File Operations: I/O Performance" for advice on performance issues,--> and the <a href="../../basics/conduct">Good Conduct</a> sections for guidance on file system etiquette.</p>
 
-#### [Table 4a. File Systems](#table4a) { #table4a } 
+#### Table 4a. File Systems { #table4a } 
 
 File System | Quota | Key Features
 -------     | ------- | -------
@@ -328,7 +328,7 @@ File System | Quota | Key Features
 
 All new projects are assigned to `/scratch1` as their default `$SCRATCH` file system.  After running on Frontera, TACC staff may reassign users and projects to `/scratch2` or `/scratch3` depending on the resources required by their workflow.  The `/scratch3` file system employs twice as many OST's offering twice the available I/O bandwidth of `/scratch1` and `/scratch2`.  Frontera's three `$SCRATCH` file systems are further described below:
 
-#### [Table 4b. Scratch File Systems](#table4b) { #table4b } 
+#### Table 4b. Scratch File Systems { #table4b } 
 
 File System | Characteristics	| Purpose |
 ---         | ---               | ---     |
@@ -340,7 +340,7 @@ File System | Characteristics	| Purpose |
 {%include './include/scratchpolicy.md' %}
 
 
-### [Navigating the Shared File Systems](#files-navigating) { #files-navigating } 
+### Navigating the Shared File Systems { #files-navigating } 
 
 Frontera's `/home` and `/scratch` file systems are mounted only on Frontera, but the work file system mounted on Frontera is the Global Shared File System hosted on [Stockyard](https://www.tacc.utexas.edu/systems/stockyard). Stockyard is the same work file system that is currently available on Stampede3, Lonestar6, and several other TACC resources. 
 
@@ -353,7 +353,7 @@ Your account-specific `$WORK` environment variable varies from system to system 
 
 See the example for fictitious user `bjones` in the figure below. All directories are accessible from all systems, however a given sub-directory (e.g. `lonestar6`, `stampede3`) will exist **only** if you have an allocation on that system.
 
-#### [Figure 3. Stockyard File System](#figure3) { #figure3 } 
+#### Figure 3. Stockyard File System { #figure3 } 
 <figure id="figure3"><img alt="Stockyard File System" src="../imgs/stockyard-2022.jpg"> 
 <figcaption></figcaption></figure>
 
@@ -361,7 +361,7 @@ See the example for fictitious user `bjones` in the figure below. All directorie
 
 Note that resource-specific subdirectories of `$STOCKYARD` are simply convenient ways to manage your resource-specific files. You have access to any such subdirectory from any TACC resources. If you are logged into Frontera, for example, executing the alias `cdw` (equivalent to `cd $WORK`) will take you to the resource-specific subdirectory `$STOCKYARD/frontera`. But you can access this directory from other TACC systems as well by executing `cd $STOCKYARD/frontera`. These commands allow you to share files across TACC systems. In fact, several convenient account-level aliases make it even easier to navigate across the directories you own in the shared file systems:
 
-#### [Table 5. Built-in Account Level Aliases](#table5) { #table5 } 
+#### Table 5. Built-in Account Level Aliases { #table5 } 
 
 Alias | Command
 ---- | ----
@@ -370,7 +370,7 @@ Alias | Command
 <code>cds</code> | <code>cd $SCRATCH</code>
 <code>cdy</code> or <code>cdg</code> | <code>cd $STOCKYARD</code>
 
-### [Striping Large Files](#files-striping) { #files-striping } 
+### Striping Large Files { #files-striping } 
 
 Frontera's Lustre file systems look and act like a single logical hard disk, but are actually sophisticated integrated systems involving many physical drives. Lustre can **stripe** (distribute) large files over several physical disks, making it possible to deliver the high performance needed to service input/output (I/O) requests from hundreds of users across thousands of nodes. Object Storage Targets (OSTs) manage the file system's spinning disks: a file with 16 stripes, for example, is distributed across 16 OSTs. One designated Meta-Data Server (MDS) tracks the OSTs assigned to a file, as well as the file's descriptive data.
 
@@ -401,13 +401,13 @@ You can check the stripe count of a file using the `lfs getstripe` command:
 $ lfs getstripe myfile
 ```
 
-## [Transferring your Files](#transferring) { #transferring } 
+## Transferring your Files { #transferring } 
 
 There are several transfer mechanism for data to Frontera, some of which depend on where and how the data are to be stored.  Please review the following transfer mechanisms.
 
 See the [Data Transfer Guide](../../basics/datatransfer) for more detailed information.
 
-### [Windows Users](#transferring-windows) { #transferring-windows } 
+### Windows Users { #transferring-windows } 
 
 TACC staff recommends the open-source [Cyberduck](https://cyberduck.io/) utility for both Windows and Mac users that do not already have a preferred tool.
 
@@ -419,13 +419,13 @@ Once connected, you can navigate through your remote file hierarchy using famili
 
 <!-- IMAGE3 -->
 
-### [SSH Utilities: `scp` & `rsync`](#transferring-ssh) { #transferring-ssh } 
+### SSH Utilities: `scp` & `rsync` { #transferring-ssh } 
 
 The `scp` and `rsync` commands are standard UNIX data transfer mechanisms used to transfer moderate size files and data collections between systems. These applications use a single thread to transfer each file one at a time. The `scp` and `rsync` utilities are typically the best methods when transferring Gigabytes of data.  For larger data transfers, parallel data transfer mechanisms, e.g., Grid Community Toolkit, can often improve total throughput and reliability.
 
 You can transfer files between Frontera and Linux-based systems using either [`scp`](http://linux.com/learn/intro-to-linux/2017/2/how-securely-transfer-files-between-servers-scp) or [`rsync`](http://linux.com/learn/get-know-rsync). Both `scp` and `rsync` are available in the Mac Terminal app. Windows SSH clients, such as Cyberduck and [Filezilla](https://filezilla-project.org/), typically include `scp`-based file transfer capabilities.
 
-#### [Transferring Files with **`scp`**](#transferring-scp) { #transferring-scp } 
+#### Transferring Files with **`scp`** { #transferring-scp } 
 
 Data transfer from any Linux system can be accomplished using the `scp` utility to copy data to and from the login node. A file can be copied from your local system to the remote server by using the command:
 
@@ -490,7 +490,7 @@ localhost$ tar cvf ./mydata.tar mydata                                  # create
 localhost$ scp     ./mydata.tar bjones@frontera.tacc.utexas.edu:\$WORK  # transfer archive
 ```
 
-#### [Transferring Files with `rsync`](#transferring-rsync) { #transferring-rsync } 
+#### Transferring Files with `rsync` { #transferring-rsync } 
 
 The `rsync` (remote synchronization) utility is a great way to synchronize files that you maintain on more than one system: when you transfer files using `rsync`, the utility copies only the changed portions of individual files. As a result, `rsync` is especially efficient when you only need to update a small fraction of a large dataset. The basic syntax is similar to `scp`:
 
@@ -525,15 +525,15 @@ login1$ man rsync
 
 When executing multiple instantiations of `scp` or `rsync`, please limit your transfers to no more than 2-3 processes at a time.
 
-### [Sharing Files with Collaborators](#transferring-sharing) { #transferring-sharing } 
+### Sharing Files with Collaborators { #transferring-sharing } 
 
 If you wish to share files and data with collaborators in your project, see [Sharing Project Files on TACC Systems][TACCSHARINGPROJECTFILES] for step-by-step instructions. Project managers or delegates can use Unix group permissions and commands to create read-only or read-write shared workspaces that function as data repositories and provide a common work area to all project members.
 
-## [Launching Applications](#launching) { #launching }
+## Launching Applications { #launching }
 
 The primary purpose of your job script is to launch your research application. How you do so depends on several factors, especially (1) the type of application (e.g. MPI, OpenMP, serial), and (2) what you're trying to accomplish (e.g. launch a single instance, complete several steps in a workflow, run several applications simultaneously within the same job). While there are many possibilities, your own job script will probably include a launch line that is a variation of one of the examples described in this section.
 
-### [One Serial Application](#launching-serial) { #launching-serial }
+### One Serial Application { #launching-serial }
 
 To launch a serial application, simply call the executable. Specify the path to the executable in either the PATH environment variable or in the call to the executable itself:
 	
@@ -544,7 +544,7 @@ $SCRATCH/apps/myprov/myprogram 			# explicit full path to executable
 ./myprogram -m -k 6 input1  			# executable with notional input options
 ```
 
-### [One Multi-Threaded Application](#launching-multithreaded) { #launching-multithreaded }
+### One Multi-Threaded Application { #launching-multithreaded }
 
 Launch a threaded application the same way. Be sure to specify the number of threads. Note that the default OpenMP thread count is 1.
 
@@ -553,7 +553,7 @@ export OMP_NUM_THREADS=56   	# 56 total OpenMP threads (1 per CLX core)
 ./myprogram
 ```
 
-### [One MPI Application](#launching-mpi) { #launching-mpi }
+### One MPI Application { #launching-mpi }
 
 To launch an MPI application, use the TACC-specific MPI launcher `ibrun`, which is a Frontera-aware replacement for generic MPI launchers like `mpirun` and `mpiexec`. In most cases the only arguments you need are the name of your executable followed by any arguments your executable needs. When you call `ibrun` without other arguments, your Slurm `#SBATCH` directives will determine the number of ranks (MPI tasks) and number of nodes on which your program runs.
 
@@ -570,7 +570,7 @@ login1$ idev -N 2 -n 100
 c123-456$ ibrun ./myprogram	   # ibrun uses idev's arguments to properly allocate nodes and tasks
 ```
 
-### [One Hybrid (MPI+Threads) Application](#launching-hybrid) { #launching-hybrid }
+### One Hybrid (MPI+Threads) Application { #launching-hybrid }
 
 
 When launching a single application you generally don't need to worry about affinity: both Intel MPI and MVAPICH2 will distribute and pin tasks and threads in a sensible way.
@@ -583,11 +583,11 @@ ibrun ./myprogram           # use ibrun instead of mpirun or mpiexec
 As a practical guideline, the product of `$OMP_NUM_THREADS` and the maximum number of MPI processes per node should not be greater than total number of cores available per node (56 cores in the development/small/normal/large/flex [queues](#queues).
 
 
-### [More Than One Serial Application in the Same Job](#launching-multiserial) { #launching-multiserial }
+### More Than One Serial Application in the Same Job { #launching-multiserial }
 
 TACC's `launcher` utility provides an easy way to launch more than one serial application in a single job. This is a great way to engage in a popular form of High Throughput Computing: running parameter sweeps (one serial application against many different input datasets) on several nodes simultaneously. The launcher utility will execute your specified list of independent serial commands, distributing the tasks evenly, pinning them to specific cores, and scheduling them to keep cores busy. Execute `module load launcher` followed by `module help launcher` for more information.
 
-### [MPI Applications One at a Time](#launching-mpisequential) { #launching-mpisequential }
+### MPI Applications One at a Time { #launching-mpisequential }
 
 To run one MPI application after another (or any sequence of commands one at a time), simply list them in your job script in the order in which you'd like them to execute. When one application/command completes, the next one will begin.
 
@@ -599,7 +599,7 @@ ibrun ./myprogram input1    # runs after preprocess.sh completes
 ibrun ./myprogram input2    # runs after previous MPI app completes
 ```
 
-### [More than One MPI Application Running Concurrently](#launching-mpiconcurrent) { #launching-mpiconcurrent }
+### More than One MPI Application Running Concurrently { #launching-mpiconcurrent }
 
 To run more than one MPI application simultaneously in the same job, you need to do several things:
 
@@ -618,7 +618,7 @@ wait                                                    # Required; else script 
 
 The `task_affinity` script manages task placement and memory pinning when you call ibrun with the `-n`, `-o` switches (it's not necessary under any other circumstances). 
 
-### [More than One OpenMP Application Running Concurrently](#launching-multimpiconcurrent) { #launching-multimpiconcurrent }
+### More than One OpenMP Application Running Concurrently { #launching-multimpiconcurrent }
 
  
 You can also run more than one OpenMP application simultaneously on a single node, but you will need to distribute and pin OpenMP threads appropriately.  The most portable way to do this is with OpenMP Affinity.
@@ -671,13 +671,13 @@ env OMP_PLACES="{1,57},28,2" ./omp.exe &   #execution on socket 1 cores
 wait
 ```
 
-## [Running Jobs](#running) { #running }
+## Running Jobs { #running }
 
 Frontera's job scheduler is the <a href="http://schedmd.com">Slurm Workload Manager</a>. Slurm commands enable you to submit, manage, monitor, and control your jobs. Jobs submitted to the scheduler are queued, then run on the compute nodes. Each job consumes Service Units (SUs) which are then charged to your allocation.
 
 {%include 'include/frontera-jobaccounting.md' %}
 
-### [Requesting Resources ](#running-requesting) { #running-requesting } 
+### Requesting Resources  { #running-requesting } 
 
 Be sure to request computing resources e.g., number of nodes, number of tasks per node, max time per job, that are consistent with the type of application(s) you are running:
 
@@ -704,7 +704,7 @@ The `nvdimm` queue features 16 [large-memory (2.1TB) nodes](#system-largememory)
 Frontera's `flex` queue offers users a low cost queue for lower priority/node count jobs and jobs running software with checkpointing capabilities. Jobs in the `flex` queue are scheduled with lower priority and are also eligible for preemption after running for one hour.  That is, if other jobs in the other queues are currently waiting for nodes and there are jobs running in the `flex` queue, the Slurm scheduler will cancel any jobs in the `flex` queue that have run more than one hour in order to give resources back to the higher priority jobs. Any job started in the `flex` queue is guaranteed to run for at least an hour (assuming the requested wallclock time was >= 1 hour). If there remain no outstanding requests from other queues, then these jobs will continue to run until they hit their wallclock requested time. This flexibility in runtime is rewarded by a reduced charge rate of .8 SUs/hour. Also, the max total node count for one user with many jobs in the flex queue is 6400 nodes.
 
 
-#### [Table 6. Frontera Production Queues](#table6) { #table6 } 
+#### Table 6. Frontera Production Queues { #table6 } 
 
 !!! important
     **Queue limits are subject to change without notice.**   
@@ -730,11 +730,11 @@ Users are limited to a maximum of 50 running and 200 pending jobs in all queues 
 
 
 
-### [Accessing the Compute Nodes](#running-computenodes) { #running-computenodes } 
+### Accessing the Compute Nodes { #running-computenodes } 
 
  The login nodes are shared resources: at any given time, there are many users logged into each of these login nodes, each preparing to access the "back-end" compute nodes (Figure 2. Login and Compute Nodes). What you do on the login nodes affects other users directly because you are competing for the same resources: memory and processing power. This is the reason you should not run your applications on the login nodes or otherwise abuse them. Think of the login nodes as a prep area where you can manage files and compile code before accessing the compute nodes to perform research computations. See [Good Conduct](../../basics/conduct) for more information.
 
-#### [Figure 2. Login and Compute Nodes](#figure2) { #figure2 } 
+#### Figure 2. Login and Compute Nodes { #figure2 } 
 <figure id="figure2"><img alt="[Figure 2. Login and Compute Nodes" src="../imgs/login-compute-nodes.jpg">
 <figcaption></figcaption></figure>
 
@@ -749,7 +749,7 @@ While some workflows, tools, and applications hide the details, there are three 
 1.	Begin an [**interactive session** using `idev` or `srun`](#running-interactive). This will log you into a compute node and give you a command prompt there, where you can issue commands and run code as if you were doing so on your personal machine. An interactive session is a great way to develop, test, and debug code. Both the `srun` and `idev` commands submit a new batch job on your behalf, providing interactive access once the job starts. You will need to remain logged in until the interactive session begins.
 
 
-### [Submitting Batch Jobs with `sbatch`](#running-sbatch) { #running-sbatch } 
+### Submitting Batch Jobs with `sbatch` { #running-sbatch } 
 
 Use Slurm's `sbatch` command to submit a batch job to one of the Frontera queues:
 
@@ -775,7 +775,7 @@ Your job will run in the environment it inherits at submission time; this enviro
 The [Common `sbatch` Options table](#table7) below describes some of the most common `sbatch` command options. Slurm directives begin with `#SBATCH`; most have a short form (e.g. `-N`) and a long form (e.g. `--nodes`). You can pass options to `sbatch` using either the command line or job script; most users find that the job script is the easier approach. The first line of your job script must specify the interpreter that will parse non-Slurm commands; in most cases `#!/bin/bash` or `#!/bin/csh` is the right choice. Avoid `#!/bin/sh` (its startup behavior can lead to subtle problems on Frontera), and do not include comments or any other characters on this first line. All `#SBATCH` directives must precede all shell commands. Note also that certain `#SBATCH` options or combinations of options are mandatory, while others are not available on Frontera.
 
 
-#### [Table 7. Common <code>sbatch</code> Options](#table7) { #table7 } 
+#### Table 7. Common <code>sbatch</code> Options { #table7 } 
 
 | Option | Argument | Comments |
 | --- | --- | -- |
@@ -798,7 +798,7 @@ The [Common `sbatch` Options table](#table7) below describes some of the most co
 By default, Slurm writes all console output to a file named `slurm-%j.out`, where `%j` is the numerical job ID. To specify a different filename use the `-o` option. To save `stdout` (standard out) and `stderr` (standard error) to separate files, specify both `-o` and `-e`.
 
 
-### [Interactive Sessions with `idev` and `srun`](#running-interactive) { #running-interactive } 
+### Interactive Sessions with `idev` and `srun` { #running-interactive } 
 
 TACC's own `idev` utility is the best way to begin an interactive session on one or more compute nodes. `idev` submits a batch script requesting access to a compute node. Once the scheduler allocates a compute node, you are then automatically ssh'd to that node where you can begin any compute-intensive jobs.  
 
@@ -843,7 +843,7 @@ login1$ srun --pty -N 2 -n 8 -t 2:30:00 -p normal /bin/bash -l # same conditions
 
 Consult the [`idev`](../../software/idev) documentation for further details.
 
-### [Interactive Sessions using SSH](#running-ssh) { #running-ssh } 
+### Interactive Sessions using SSH { #running-ssh } 
 
 If you have a batch job or interactive session running on a compute node, you "own the node": you can connect via `ssh` to open a new interactive session on that node. This is an especially convenient way to monitor your applications' progress. One particularly helpful example: login to a compute node that you own, execute `top`, then press the "1" key to see a display that allows you to monitor thread ("CPU") and memory use.
 
@@ -860,7 +860,7 @@ C448-004$
 ```
 
 
-### [Slurm Environment Variables](#running-slurmenvvars) { #running-slurmenvvars } 
+### Slurm Environment Variables { #running-slurmenvvars } 
 
 Be sure to distinguish between internal Slurm replacement symbols (e.g. `%j` described above) and Linux environment variables defined by Slurm (e.g. `SLURM_JOBID`). Execute `env | grep SLURM` from within your job script to see the full list of Slurm environment variables and their values. You can use Slurm replacement symbols like `%j` only to construct a Slurm filename pattern; they are not meaningful to your Linux shell. Conversely, you can use Slurm environment variables in the shell portion of your job script but not in an `#SBATCH` directive. For example, the following directive will not work the way you might think:
 
@@ -879,7 +879,7 @@ Similarly, you cannot use paths like `$WORK` or `$SCRATCH` in an `#SBATCH` direc
 For more information on this and other matters related to Slurm job submission, see the [Slurm online documentation](https://slurm.schedmd.com/sbatch.html); the man pages for both Slurm itself (`man slurm`) and its individual commands (e.g. `man sbatch`); as well as numerous other online resources.
 
 
-## [Sample Job Scripts](#scripts) { #scripts }
+## Sample Job Scripts { #scripts }
 
 Copy and customize the following jobs scripts by specifying and refining your job's requirements.
 
@@ -1130,19 +1130,19 @@ Parametric / HTC Jobs
 Consult the [Launcher at TACC](../../software/launcher) documentation for instructions on running parameter sweep and other High Throughput Computing workflows.
 ///
 
-## [Job Management](#monitoring) { #monitoring }
+## Job Management { #monitoring }
 
 <p class="introtext">In this section, we present several Slurm commands and other utilities that are available to help you plan and track your job submissions as well as check the status of the Slurm queues.</p>
 
 When interpreting queue and job status, remember that **Frontera doesn't operate on a first-come-first-served basis**. Instead, the sophisticated, tunable algorithms built into Slurm attempt to keep the system busy, while scheduling jobs in a way that is as fair as possible to everyone. At times this means leaving nodes idle ("draining the queue") to make room for a large job that would otherwise never run. It also means considering each user's "fair share", scheduling jobs so that those who haven't run jobs recently may have a slightly higher priority than those who have.
 
-### [Monitoring Queue Status with `sinfo` and `qlimits`](#monitoring-queues) { #monitoring-queues }
+### Monitoring Queue Status with `sinfo` and `qlimits` { #monitoring-queues }
 
-#### [TACC's `qlimits` command](#monitoring-queues-qlimits) { #monitoring-queues-qlimits }
+#### TACC's `qlimits` command { #monitoring-queues-qlimits }
 
 To display resource limits for the Frontera queues, execute: `qlimits`. The result is real-time data; the corresponding information in this document's [table of Frontera queues](../#queues) may lag behind the actual configuration that the `qlimits` utility displays.
 
-#### [Slurm's `sinfo` command](#monitoring-queues-sinfo) { #monitoring-queues-sinfo }
+#### Slurm's `sinfo` command { #monitoring-queues-sinfo }
 
 Slurm's `sinfo` command allows you to monitor the status of the queues. If you execute `sinfo` without arguments, you'll see a list of every node in the system together with its status. To skip the node list and produce a tight, alphabetized summary of the available queues and their status, execute:
 
@@ -1163,9 +1163,9 @@ normal             up       1691/112/485/2288
 			
 The `AVAIL` column displays the overall status of each queue (up or down), while the column labeled `NODES(A/I/O/T)` shows the number of nodes in each of several states ("**A**llocated", "**I**dle", "**O**ffline", and "**T**otal"). Execute `man sinfo` for more information. Use caution when reading the generic documentation, however: some available fields are not meaningful or are misleading on Frontera (e.g. `TIMELIMIT`, displayed using the `%l` option).
 
-### [Monitoring Job Status](#monitoring-jobs) { #monitoring-jobs }
+### Monitoring Job Status { #monitoring-jobs }
 
-#### [Slurm's `squeue` command](#monitoring-jobs-squeue) { #monitoring-jobs-squeue }
+#### Slurm's `squeue` command { #monitoring-jobs-squeue }
 
 Slurm's `squeue` command allows you to monitor jobs in the queues, whether pending (waiting) or currently running:
 
@@ -1215,7 +1215,7 @@ The `--start` option displays job start times, including very rough estimates fo
 login1$ squeue --start -j 167635     # display estimated start time for job 167635
 ```
 
-#### [TACC's `showq` utility](#monitoring-jobs-showq) { #monitoring-jobs-showq }
+#### TACC's `showq` utility { #monitoring-jobs-showq }
 
 TACC's `showq` utility mimics a tool that originated in the PBS project, and serves as a popular alternative to the Slurm `squeue` command:
 
@@ -1255,7 +1255,7 @@ To view some **accounting data** associated with your own jobs, use `sacct`:
 login1$ sacct --starttime 2019-06-01  # show jobs that started on or after this date
 ```
 
-### [Dependent Jobs using `sbatch`](#monitoring-dependent) { #monitoring-dependent }
+### Dependent Jobs using `sbatch` { #monitoring-dependent }
 
 You can use `sbatch` to help manage workflows that involve multiple steps: the `--dependency` option allows you to launch jobs that depend on the completion (or successful completion) of another job. For example you could use this technique to split into three jobs a workflow that requires you to (1) compile on a single node; then (2) compute on 40 nodes; then finally (3) post-process your results using 4 nodes. 
 
@@ -1265,15 +1265,15 @@ login1$ sbatch --dependency=afterok:173210 myjobscript
 
 For more information see the [Slurm online documentation](http://www.schedmd.com). Note that you can use `$SLURM_JOBID` from one job to find the jobid you'll need to construct the `sbatch` launch line for a subsequent one. But also remember that you can't use `sbatch` to submit a job from a compute node.
 
-## [Building Software](#building) { #building }
+## Building Software { #building }
 
 <p class="introtext">The phrase "building software" is a common way to describe the process of producing a machine-readable executable file from source files written in C, Fortran, or some other programming language. In its simplest form, building software involves a simple, one-line call or short shell script that invokes a compiler. More typically, the process leverages the power of <a href="http://www.gnu.org/software/make/manual/make.html">makefiles</a>, so you can change a line or two in the source code, then rebuild in a systematic way only the components affected by the change. Increasingly, however, the build process is a sophisticated multi-step automated workflow managed by a special framework like <a href="http://www.gnu.org/software/automake/manual/html_node/Autotools-Introduction.html">autotools</a> or <a href="http://cmake.org"><code>cmake</code></a>, intended to achieve a repeatable, maintainable, portable mechanism for installing software across a wide range of target platforms.</p>
 
-### [Basics of Building Software](#building-basics) { #building-basics }
+### Basics of Building Software { #building-basics }
 
 This section of the user guide does nothing more than introduce the big ideas with simple one-line examples. You will undoubtedly want to explore these concepts more deeply using online resources. You will quickly outgrow the examples here. We recommend that you master the basics of makefiles as quickly as possible: even the simplest computational research project will benefit enormously from the power and flexibility of a makefile-based build process.
 
-#### [Intel Compilers](#building-basics-intel) { #building-basics-intel }
+#### Intel Compilers { #building-basics-intel }
 
 Intel is the recommended and default compiler suite on Frontera. Each Intel module also gives you direct access to `mkl` without loading an `mkl` module; see [Intel MKL](#mkl) for more information. Here are simple examples that use the Intel compiler to build an executable from source code:
 
@@ -1286,7 +1286,7 @@ Compiling a code that uses OpenMP would look like this:
 
 See the published Intel documentation, available both [online](http://software.intel.com/en-us/intel-software-technical-documentation) and in `${TACC_INTEL_DIR}/documentation`, for information on optimization flags and other Intel compiler options.
 
-#### [GNU Compilers](#building-basics-gnu) { #building-basics-gnu }
+#### GNU Compilers { #building-basics-gnu }
 
 The GNU foundation maintains a number of high quality compilers, including a compiler for C (`gcc`), C++ (`g++`), and Fortran (`gfortran`). The `gcc` compiler is the foundation underneath all three, and the term `gcc` often means the suite of these three GNU compilers.
 
@@ -1304,7 +1304,7 @@ $ gcc -fopenmp mycode.c -o myexe  # OpenMP; GNU flag is different than Intel
 
 Note that some compiler options are the same for both Intel and GNU <u>(e.g. `-o`)</u>, while others are different (e.g. `-qopenmp` vs `-fopenmp`). Many options are available in one compiler suite but not the other. See the [online GNU documentation](https://gcc.gnu.org/onlinedocs/) for information on optimization flags and other GNU compiler options.
 
-#### [Compiling and Linking as Separate Steps](#building-basics-steps) { #building-basics-steps }
+#### Compiling and Linking as Separate Steps { #building-basics-steps }
 
 Building an executable requires two separate steps: (1) compiling (generating a binary object file associated with each source file); and (2) linking (combining those object files into a single executable file that also specifies the libraries that executable needs). The examples in the previous section accomplish these two steps in a single call to the compiler. When building more sophisticated applications or libraries, however, it is often necessary or helpful to accomplish these two steps separately.
 
@@ -1324,7 +1324,7 @@ $ icc main.o calc.o results.o -o myexe
 
 The compiler calls a linker utility (usually `/bin/ld`) to accomplish this task. Again, syntax for other compilers is similar.
 
-#### [Include and Library Paths](#building-basics-paths) { #building-basics-paths }
+#### Include and Library Paths { #building-basics-paths }
 
 Software often depends on pre-compiled binaries called libraries. When this is true, compiling usually requires using the `-I` option to specify paths to so-called header or include files that define interfaces to the procedures and data in those libraries. Similarly, linking often requires using the `-L` option to specify paths to the libraries themselves. Typical compile and link lines might look like this:
 
@@ -1339,7 +1339,7 @@ The details of the linking process vary, and order sometimes matters. Much depen
 
 A separate section below addresses the [Intel Math Kernel Library](#building-mkl) (MKL).
 
-#### [Compiling and Linking MPI Programs](#building-basics-mpi) { #building-basics-mpi }
+#### Compiling and Linking MPI Programs { #building-basics-mpi }
 
 Intel MPI (module `impi`) and MVAPICH2 (module `mvapich2`) are the two MPI libraries available on Frontera. After loading an `impi` or `mvapich2` module, compile and/or link using an mpi wrapper (`mpicc`, `mpicxx`, `mpif90`) in place of the compiler:
 
@@ -1357,7 +1357,7 @@ $ mpicc -show  # Show compile line generated by call to mpicc; similarly for oth
 ```
 
 
-#### [Building Third-Party Software](#building-basics-thirdparty) { #building-basics-thirdparty }
+#### Building Third-Party Software { #building-basics-thirdparty }
 
 You can discover already installed software using TACC's [Software Search](https://www.tacc.utexas.edu/use-tacc/software-list/) tool or execute `module spider` or `module avail` on the command-line.
 
@@ -1394,13 +1394,13 @@ If you wish to share a software package with collaborators, you may need to modi
 
 {% include "include/frontera-mkl.md" %} 
 
-### [Building for Performance on Frontera](#building-performance) { #building-performance }
+### Building for Performance on Frontera { #building-performance }
 
-#### [Recommended Compiler](#building-performance-compiler) { #building-performance-compiler }
+#### Recommended Compiler { #building-performance-compiler }
 
 When building software on Frontera, we recommend using the Intel compiler and Intel MPI stack. This will be the default in the early user period, but may change if we determine one of the other MPI stacks provides superior performance. 
 
-#### [Architecture-Specific Flags](#building-performance-flags) { #building-performance-flags }
+#### Architecture-Specific Flags { #building-performance-flags }
 
 To compile for CLX only, include `-xCORE-AVX512` as a build option. The `-x` switch allows you to specify a target architecture. The CLX chips, as well as the Skylake chips (SKX) on Stampede2, support Intel's latest instruction set, CORE-AVX512. You should also consider specifying an optimization level using the `-O` flag:
 
@@ -1423,14 +1423,14 @@ For information on the performance implications of your choice of build flags, s
 
 If you use GNU compilers, see GNU x86 Options for information regarding support for CLX. 
 
-## [Programming and Performance](#programming) { #programming } 
+## Programming and Performance { #programming } 
 
-### [Programming and Performance: General](#programming-general) { #programming-general } 
+### Programming and Performance: General { #programming-general } 
 
 Programming for performance is a broad and rich topic. While there are no shortcuts, there are certainly some basic principles that are worth considering any time you write or modify code.
 
 
-#### [Timing and Profiling](#programming-general-profiling) { #programming-general-profiling } 
+#### Timing and Profiling { #programming-general-profiling } 
 
 **Measure performance and experiment with both compiler and runtime options.** This will help you gain insight into issues and opportunities, as well as recognize the performance impact of code changes and temporary system conditions.
 
@@ -1447,7 +1447,7 @@ As your needs evolve you can add timing intrinsics to your source code to time s
 
 It can be helpful to compare results with different compiler and runtime options: e.g. with and without [vectorization](http://software.intel.com/en-us/fortran-compiler-18.0-developer-guide-and-reference-vec-qvec), [threading](#launching-multithreaded), or [Lustre striping](#files-striping). You may also want to learn to use profiling tools like [Intel VTune Amplifier](http://software.intel.com/en-us/intel-vtune-amplifier-xe) <u>(`module load vtune`)</u> or GNU [`gprof`](http://sourceware.org/binutils/docs/gprof/).
 
-#### [Data Locality](#programming-general-datalocality) { #programming-general-datalocality } 
+#### Data Locality { #programming-general-datalocality } 
 
 **Appreciate the high cost (performance penalty) of moving data from one node to another**, from disk to RAM, and even from RAM to cache. Write your code to keep data as close to the computation as possible: e.g. in RAM when needed, and on the node that needs it. This means keeping in mind the capacity and characteristics of each level of the memory hierarchy when designing your code and planning your simulations. 
 
@@ -1484,17 +1484,17 @@ for (i=0;i&lt;m;i++){
 </table>
 
 
-#### [Vectorization](#programming-vectorization) { #programming-vectorization } 
+#### Vectorization { #programming-vectorization } 
 
 **Give the compiler a chance to produce efficient, [vectorized](http://software.intel.com/en-us/articles/vectorization-essential) code**. The compiler can do this best when your inner loops are simple (e.g. no complex logic and a straightforward matrix update like the ones in the examples above), long (many iterations), and avoid complex data structures (e.g. objects). See Intel's note on [Programming Guidelines for Vectorization](http://software.intel.com/en-us/node/522571) for a nice summary of the factors that affect the compiler's ability to vectorize loops.
 
 It's often worthwhile to generate [optimization and vectorization reports](http://software.intel.com/en-us/articles/getting-the-most-out-of-your-intel-compiler-with-the-new-optimization-reports) when using the Intel compiler. This will allow you to see exactly what the compiler did and did not do with each loop, together with reasons why.
 
-#### [Learning More](#programming-more) { #programming-more } 
+#### Learning More { #programming-more } 
 
 The literature on optimization is vast. Some places to begin a systematic study of optimization on Intel processors include: Intel's [Modern Code](http://software.intel.com/en-us/modern-code) resources; the [Intel Optimization Reference Manual](http://intel.com/content/www/us/en/architecture-and-technology/64-ia-32-architectures-optimization-manual); and [TACC training materials](https://learn.tacc.utexas.edu/course/).
 
-### [Programming and Performance: CLX](#programming-clx) { #programming-clx } 
+### Programming and Performance: CLX { #programming-clx } 
 
 <!-- span style="color:red">**Hyperthreading.** Hyperthreading is not enabled on Frontera.</span> It is rarely a good idea to use 96 hardware threads simultaneously**, and it's certainly not the first thing you should try. In most cases it's best to specify no more than 48 MPI tasks or independent processes per node, and 1-2 threads/core. One exception is worth noting: when calling threaded MKL from a serial code, it's safe to set `OMP_NUM_THREADS` or `MKL_NUM_THREADS` to 96. This is because MKL will choose an appropriate thread count less than or equal to the value you specify. See [Controlling Threading in MKL](#mkl-threading) for more information.  In any case remember that the default value of `OMP_NUM_THREADS` is 1.-->
 
@@ -1515,7 +1515,7 @@ The `qopt-zmm-usage` flag affects the algorithms the compiler uses to decide whe
 **Core Numbering.** Execute `lscpu` or `lstopo` on a CLX node to see the numbering scheme for socket cores. Note that core numbers alternate between the sockets: even numbered cores are on socket 0 (NUMA node 0), while odd numbered cores are on socket 1 (NUMA node 1).<!-- 06/10/2019 hyperthreading not enabled Furthermore, the two hardware threads on a given core have thread numbers that differ by exactly 48 (e.g. threads 3 and 51 are on the same core). -->
 
 
-### [File Operations: I/O Performance](#programming-fileio) { #programming-fileio } 
+### File Operations: I/O Performance { #programming-fileio } 
 
 This section includes general advice intended to help you achieve good performance during file operations. See [Navigating the Shared File Systems](#files-navigating) for a brief overview of Frontera's Lustre file systems and the concept of striping. See [TACC Training material](https://learn.tacc.utexas.edu/) for additional information on I/O performance.
 
@@ -1531,11 +1531,11 @@ This section includes general advice intended to help you achieve good performan
 
 When using the Intel Fortran compiler, **compile with [`-assume buffered_io`](https://software.intel.com/en-us/fortran-compiler-18.0-developer-guide-and-reference-assume)**. Equivalently, set the environment variable [`FORT_BUFFERED=TRUE`](https://software.intel.com/en-us/node/680054). Doing otherwise can dramatically slow down access to variable length unformatted files. More generally, direct access in Fortran is typically faster than sequential access, and accessing a binary file is faster than ASCII.
 
-## [Machine Learning](#ml) { #ml }
+## Machine Learning { #ml }
 
 Frontera is well equipped to provide researchers with the latest in Machine Learning frameworks, PyTorch and Tensorflow. We recommend using the Python virtual environment to manage machine learning packages.
 
-### [Running PyTorch ](#ml-pytorch) { #ml-pytorch }
+### Running PyTorch  { #ml-pytorch }
 
 Install Pytorch and TensorBoard.
 
@@ -1565,7 +1565,7 @@ Install Pytorch and TensorBoard.
 	c123-456$ pip3 install tensorboard
 	```
 
-#### [Single-Node](#ml-pytorch-singlnode) { #ml-pytorch-singlnode }
+#### Single-Node { #ml-pytorch-singlnode }
 
 1. Download the benchmark:
 
@@ -1585,7 +1585,7 @@ Install Pytorch and TensorBoard.
 	c123-456$ python3 -m torch.distributed.launch --nproc_per_node=4 examples/torch_cifar10_resnet.py --kfac-update-freq 0
 	```
 
-#### [Multi-Node](#ml-pytorch-multinode) { #ml-pytorch-multinode }
+#### Multi-Node { #ml-pytorch-multinode }
 
 1. Request two nodes in the `rtx-dev` queue using the [`idev`](https://docs.tacc.utexas.edu/software/idev) utility:
 
@@ -1617,7 +1617,7 @@ Install Pytorch and TensorBoard.
 	```
 
 
-### [Running Tensorflow ](#ml-tensorflow) { #ml-tensorflow }
+### Running Tensorflow  { #ml-tensorflow }
 
 Follow these instructions to install and run TensorFlow benchmarks on Frontera RTX. Frontera RTX runs TensorFlow 2.8.0 with Python 3.8.2. Frontera supports CUDA/10.1, CUDA/11.0, and CUDA/11.1. By default, we use CUDA/11.3. Select the appropriate CUDA version for your TensorFlow version.
 
@@ -1653,7 +1653,7 @@ Follow these instructions to install and run TensorFlow benchmarks on Frontera R
     	HOROVOD_GPU_ALLREDUCE=NCCL HOROVOD_GPU_BROADCAST=NCCL HOROVOD_WITH_TENSORFLOW=1 pip3 install horovod==0.25.0
 	```
 
-#### [Single-Node](#ml-tensorflow-singlenode) { #ml-tensorflow-singlenode }
+#### Single-Node { #ml-tensorflow-singlenode }
 
 1. Download the tensorflow benchmark to your $SCRATCH directory, then check out the branch that matches your tensorflow version.
 
@@ -1835,11 +1835,11 @@ After connecting to a VNC server on Frontera, as described above, do the followi
 1. Click the "Connect" button, or select File -&gt; Connect
 
 1. Select the "auto" configuration, then press "Connect". In the Paraview Output Messages window, you'll see what appears to be an 'lmod' error, but can be ignored. Then you'll see the parallel servers being spawned and the connection established.
-## [Jupyter](#jupyter) { #jupyter }
+## Jupyter { #jupyter }
 
 See the [Transferring Files](#transferring) section to learn how to transfer your datasets to Frontera, prior to starting a Jupyter session.
 
-### [Launch a Session](#jupyter-launch) { #jupyter-launch }
+### Launch a Session { #jupyter-launch }
 
 You can launch a Jupyter session via the Frontera User Portal.
 
@@ -1878,12 +1878,12 @@ You can launch a Jupyter session via the Frontera User Portal.
 1. Navigate to the URL specified in the email, enter your password specified in the email,  and begin your session.
 
 
-### [References](#jupyter-refs) { #jupyter-refs }
+### References { #jupyter-refs }
 
 * [Jupyter Documentation](https://jupyter-notebook.readthedocs.io/en/stable/notebook.html)
 
 
-## [Cloud Services Integration](#cloudservices) { #cloudservices }
+## Cloud Services Integration { #cloudservices }
 
 Frontera's design includes a totally new integration with cloud services, providing users with new options for data storage and access to emerging computing technologies. 
 
@@ -1891,11 +1891,11 @@ For projects utilizing data of exceptional importance - such as may result from 
 
 Users may access emerging computational capabilities (such as Tensor processors) that run on specially-designated processors at Google, Microsoft, and Amazon. This allows us to regularly refresh the project with novel computing technologies, while providing a real-world platform for users to explore the future of their science applications.
 
-### [Google Cloud Platform](#cloudservices-google) { #cloudservices-google }
+### Google Cloud Platform { #cloudservices-google }
 
 TACC now offers Frontera users access to Google Cloud Platform.
 
-#### [Request Access](#cloudservices-google-requestaccess) { #cloudservices-google-requestaccess }
+#### Request Access { #cloudservices-google-requestaccess }
 
 Please [create a support ticket][HELPDESK] requesting access to TACC Frontera's Google Cloud Platform. Do not proceed with the following steps until an admin has responded and configured your account appropriately.
 
@@ -1925,7 +1925,7 @@ Please [create a support ticket][HELPDESK] requesting access to TACC Frontera's 
 	login1$ ./google-cloud-sdk/bin/gcloud config set project ut-tacc-np-sandbox-1
 	```
 
-#### [Storage basics](#cloudservices-google-storage) { #cloudservices-google-storage }
+#### Storage basics { #cloudservices-google-storage }
 
 Learn the basic `gsutil` commands: [Quickstart: Using the `gsutil` tool](https://cloud.google.com/storage/docs/quickstart-gsutil)
 
@@ -1935,15 +1935,15 @@ Learn the basic `gsutil` commands: [Quickstart: Using the `gsutil` tool](https:/
 login1$ ./google-cloud-sdk/bin/gsutil ls
 ```
 
-### [Amazon Web Services (AWS)](#cloudservices-amazon) { #cloudservices-amazon }
+### Amazon Web Services (AWS) { #cloudservices-amazon }
 
 TACC now offers Frontera users access to Amazon Web Services. 
 
-#### [Request Access](#cloudservices-amazon-requestaccess) { #cloudservices-amazon-requestaccess }
+#### Request Access { #cloudservices-amazon-requestaccess }
 
 Please [create a support ticket][HELPDESK] requesting access to TACC Frontera's Amazon Web Services. Do not proceed with the following steps until an admin has responded and configured your account appropriately.
 
-#### [Log In to the Console](#cloudservices-amazon-login) { #cloudservices-amazon-login }
+#### Log In to the Console { #cloudservices-amazon-login }
 
 If you are a new user then you should have received an email "Welcome to Amazon Web Services" containing a temporary password. Follow the instructions below to set up your AWS account.
 
@@ -1955,7 +1955,7 @@ Log in to the [Amazon Web Services Console](https://console.aws.amazon.com) with
 	<figure id="login"><img alt="AWS-login" src="../imgs/frontera/AWS-login.png"> 
 	<figcaption></figcaption></figure>
 
-#### [Add MFA](#cloudservices-amazon-mfa) { #cloudservices-amazon-mfa }
+#### Add MFA { #cloudservices-amazon-mfa }
 
 Follow these instructions to enable MFA on your account. **Do not navigate away from the MFA window during the pairing process, or else your account may be left in an unstable state.** 
 
@@ -1973,7 +1973,7 @@ Follow these instructions to enable MFA on your account. **Do not navigate away 
 
 1. Once the pairing process is completed, sign out and then log back in. **You will not be able to successfully proceed to the next step without doing so.**
 
-#### [Add CLI and API access key](#cloudservices-amazon-keys) { #cloudservices-amazon-keys }
+#### Add CLI and API access key { #cloudservices-amazon-keys }
 
 !!! important
 	You must set up MFA and use it to log in to the AWS console prior to viewing or editing your access keys.
@@ -1985,20 +1985,20 @@ Follow these instructions to enable MFA on your account. **Do not navigate away 
 1. Install CLI: Follow the instructions at <https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html>.
 1. For more info see [Managing Access Keys for IAM Users](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html)
 
-#### [All Set](#cloudservices-amazon-allset) { #cloudservices-amazon-allset }
+#### All Set { #cloudservices-amazon-allset }
 
 Now that your account is set up, you have access to the AWS S3 functionality. See the full documentation at <https://docs.aws.amazon.com/s3/index.html>.
 
 
-### [Microsoft's Azure](#cloudservices-azure) { #cloudservices-azure }
+### Microsoft's Azure { #cloudservices-azure }
 
 Frontera's cloud service integration begins with Microsoft's Azure Service. 
 
-#### [Request Access](#cloudservices-azure-requestaccess) { #cloudservices-azure-requestaccess }
+#### Request Access { #cloudservices-azure-requestaccess }
 
 Please [submit a support ticket][HELPDESK] and a TACC admin will grant you access to the [Microsoft Azure Portal](http://portal.azure.com). Do not proceed with the following steps until an admin has responded and configured your account appropriately.
 
-#### [Create a Storage Group and Account](#cloudservices-azure-storage) { #cloudservices-azure-storage }
+#### Create a Storage Group and Account { #cloudservices-azure-storage }
 
 Once you've been given access, and before uploading files to Azure, you must first create a storage group and storage account. These are one time steps.
 
@@ -2042,7 +2042,7 @@ Once you've been given access, and before uploading files to Azure, you must fir
 	<figcaption></figcaption></figure>
 
 
-#### [Retrieve Account Access Keys](#cloudservices-azure-keys) { #cloudservices-azure-keys }
+#### Retrieve Account Access Keys { #cloudservices-azure-keys }
 
 1. Go to Home -&gt; Storage accounts; You should see a list of your storage account similar to the following:
 	<figure id="figure7"><img border="1" alt="" src="../imgs/frontera/image08.png"> 
@@ -2056,7 +2056,7 @@ Once you've been given access, and before uploading files to Azure, you must fir
 1. Click "Access keys" under settings. This will bring up a page with details about the access keys. <!-- ![image10](/img/image10.png)   1. --> Copy the key to your clipboard.
 
 
-#### [Install the Azure Client for CLI Access](#cloudservices-azure-cli) { #cloudservices-azure-cli }
+#### Install the Azure Client for CLI Access { #cloudservices-azure-cli }
 
 To install on Frontera in your home directory using Python, this should be sufficient:
 
@@ -2077,7 +2077,7 @@ We recommend creating a `~/azure` subdirectory to put everything in. It will ask
 More client options here: <https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest>
 
 
-#### [Upload a File](#cloudservices-azure-upload) { #cloudservices-azure-upload }
+#### Upload a File { #cloudservices-azure-upload }
 
 1. Login with the Azure CLI and follow the steps to open a web browser and enter the access code from above.
 
@@ -2252,14 +2252,14 @@ More client options here: <https://docs.microsoft.com/en-us/cli/azure/install-az
 	Hi Azure!
 	```
 
-## [Containers](#containers) { #containers }
+## Containers { #containers }
 
 Frontera provides seamless, integrated support for the use of Singularity containers (both custom containers made by users and containers from standard repositories). The use of containers greatly enhances the number of people who contribute to the Frontera software base, promotes portability with other resources, and greatly expands the supported software catalog beyond that found on TACC's other HPC systems.
 
 Frontera supports application containers from any specification-compliant science community (e.g. Biocontainers, with over 3,000 containers and counting, and the Nvidia GPU Cloud Library), opening this important resource for a wide range of new applications and new science communities. To make the experience seamless, our implementation injects mount points and environment variables into the container to match the HPC system environment – the `$SCRATCH`, `$WORK`, and `$HOME` file systems all are identical to what users see natively on any Frontera node. 
 
 See the [Containers @ TACC Workshop](https://containers-at-tacc.readthedocs.io/en/latest/index.html) documentation for more information.
-## [Help Desk](#help) { #help }
+## Help Desk { #help }
 
 TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for holidays. You can [submit a help desk ticket][HELPDESK] at any time via the TACC User Portal with &quot;Frontera&quot; in the Resource field. Help the consulting staff help you by following these best practices when submitting tickets. 
 
@@ -2273,7 +2273,7 @@ TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for 
 
 * **Be patient.** It may take a business day for a consultant to get back to you, especially if your issue is complex. It might take an exchange or two before you and the consultant are on the same page. If the admins disable your account, it's not punitive. When the file system is in danger of crashing, or a login node hangs, they don't have time to notify you before taking action.
 
-## [References](#refs) { #refs }
+## References { #refs }
 
 
 * [Multi-Factor Authentication at TACC][TACCMFA]

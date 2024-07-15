@@ -8,7 +8,7 @@
 
 [Mathwork's](https://www.mathworks.com/) MATLAB is installed and supported at TACC and is available on the following TACC resources: [Frontera](../../hpc/frontera), [Stampede3](../../hpc/stampede3) and [Lonestar6](../../hpc/lonestar6).  
 
-## [Licenses](#license) { #license }
+## Licenses { #license }
 
 MathWork's agreement with the University of Texas now allows TACC users to access MATLAB for **non-commercial**, **academic** use. If you have your own network licenses for toolboxes that are not available through the University of Texas, we can help you configure these licenses on TACC systems.  If you would like access to MATLAB [submit a help desk ticket][HELPDESK].  Include in your ticket: 
 
@@ -16,7 +16,7 @@ MathWork's agreement with the University of Texas now allows TACC users to acces
 * and a brief statement confirming that you will use MATLAB only for **non-commercial**, **academic** purposes. 
 
 
-## [Interactive Mode](#interactive) { #interactive }
+## Interactive Mode { #interactive }
 
 MATLAB is normally launched with the MATLAB Desktop UI and used in interactive mode. Create a DCV or VNC session following the directions in the [Remote Desktop Access][TACCREMOTEDESKTOPACCESS] tutorial.  You can also launch a non-GUI enabled MATLAB from within an [`idev`](./idev) session.
 
@@ -47,7 +47,7 @@ The following figures demonstrate how to launch MATLAB inside a DCV session in t
 !!! important
 	Do NOT launch MATLAB on the login nodes. This may fail and, more importantly, it will prevent other users from doing their work, as your execution will take up too many cycles on the shared login node. Using MATLAB on the login nodes is considered system abuse, and will be treated as such.  See TACC [Usage Policies][TACCUSAGEPOLICY].
 
-## [Batch Mode](#batch) { #batch }
+## Batch Mode { #batch }
 
 You can also start a MATLAB session with a batch script.  submit your MATLAB job to each resources' compute nodes on the TACC resources, e.g. Frontera, Stampede3, or Lonestar6. To do so, first make sure that the MATLAB module has been loaded, and then launch matlab with the `-nodesktop`, `-nodisplay`, `-nosplash` options as shown in the sample Frontera job script below.
 
@@ -74,7 +74,7 @@ Then submit the job to the Slurm scheduler in the standard way.
 login1$ sbatch myjobscript
 ```
 
-## [Parallel MATLAB](#parallelmatlab) { #parallelmatlab }
+## Parallel MATLAB { #parallelmatlab }
 
 The parallel computing toolbox is available on the TACC resources as well.  The following two examples demonstrate parallel operations **across one node** using the `parfor` and `matlabpool` functions.  Consult the [MATLAB Parallel Toolbox](https://www.mathworks.com/products/parallel-computing.html) documentation for detailed descriptions and advanced features.
 
@@ -101,7 +101,7 @@ end
 	We do not recommend using TACC's [`launcher`](./launcher) utility for multi-node jobs due to licensing issues.   
 
 
-## [MATLAB Toolboxes](#toolbox) { #toolbox } 
+## MATLAB Toolboxes { #toolbox } 
 
 MATLAB, Simulink, and many other MATLAB toolboxes are available on the TACC resources. To see a complete list of installations and version information, type the `ver` command at the MATLAB prompt:
 
@@ -123,7 +123,7 @@ MATLAB, Simulink, and many other MATLAB toolboxes are available on the TACC reso
 	>> exit
 	
 
-## [Mathworks References](#refs) { #refs }
+## Mathworks References { #refs }
 
 Explore Mathworks' excellent collection of documentation, videos and webinars.
 
@@ -131,7 +131,7 @@ Explore Mathworks' excellent collection of documentation, videos and webinars.
 * [Parallel Computing Coding Examples](https://www.mathworks.com/help/parallel-computing/examples.html)
 * [MATLAB and Simulink Videos](https://www.mathworks.com/videos/series/parallel-and-gpu-computing-tutorials-97719.html)
 
-## [Help](#help) { #help } 
+## Help { #help } 
 
 MATLAB is a commercial product of MathWorks. Please solicit help from [Mathworks](https://www.mathworks.com/) regarding MATLAB code. If you need further assistance related to access or running issues, request help via your [TACC Dashboard][TACCUSERPORTAL].
 

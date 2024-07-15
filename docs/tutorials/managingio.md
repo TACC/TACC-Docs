@@ -3,7 +3,7 @@
 
 The TACC Global Shared File System, <a href="https://www.tacc.utexas.edu/systems/stockyard">Stockyard</a>, is mounted on nearly all TACC HPC resources as the `/work` (`$WORK`) directory. This file system is accessible to all TACC users, and therefore experiences a huge amount of I/O activity (reading and writing to disk) as users run their jobs. This document presents best practices for reducing and mitigating such activity to keep all systems running at maximum efficiency for all TACC users.
 
-## [What is I/O?](#io) { #io }
+## What is I/O? { #io }
 
 I/O stands for **I**nput/**O**utput and refers to the idea that for every input to a computer (keyboard input, mouse click, external disk access), there is an output (to the screen, in game play, write to disk). In the HPC environment, I/O refers almost exclusively to disk access: opening and closing files, reading from, writing to, and searching within files. Each of these I/O operations (iops), `open`, `write`, and `close`, access each file system's MetaData Server (MDS). The MDS coordinates access to the `/work` file system for all users. If a file system's MDS is overwhelmed by a user's I/O workflow activities, then that file system could go down for an indeterminate period and all current jobs on that resource may fail.
 
@@ -18,7 +18,7 @@ As TACC's user base continues to expand, the stress on the resources' shared fil
 !!! note
 	If you know your jobs will generate significant I/O, please [submit a support ticket][HELPDESK] and an HPC consultant will work with you.
 
-## [Recommended File Systems Usage](#files) { #files }
+## Recommended File Systems Usage { #files }
 
 Consider that your `/home` (`$HOME`) and `/work` (`$WORK`) directories are for storage and keeping track of important items. The `$WORK` file system is intended to be an area where you can build your code, store your input and output data, and any intermediate results. The `$WORK` fileystem is not designed to handle jobs with large amounts of I/O load or iops. 
 
@@ -26,7 +26,7 @@ Consider that your `/home` (`$HOME`) and `/work` (`$WORK`) directories are for s
 
 [Table 1](#table1) outlines TACC's new recommended guidelines for file system usage. <!-- Note that two TACC systems, Longhorn and Maverick2, differ in their file system configurations. Longhorn does not mount the Stockyard file system and therefore has no `$WORK` access. Maverick2 has no `/scratch` file system. -->
 
-## [Table 1. TACC File System Usage Recommendations](#table1) { #table1 }
+## Table 1. TACC File System Usage Recommendations { #table1 }
 
 File System | Recommended Use | Notes
 --- | --- | ---
@@ -39,18 +39,18 @@ File System | Recommended Use | Notes
 
 <a id="#sup2">2</a> The operating system updates a file's access time when that file is modified on a login or compute node. Reading or executing a file/script on a login node does not update the access time, but reading or executing on a compute node does update the access time. This approach helps us distinguish between routine management tasks (e.g. `tar`, `scp`) and production use. Use the command `ls -ul` to view access times.
 
-## [Best Practices for Minimizing I/O](#bestpractices) { #bestpractices }
+## Best Practices for Minimizing I/O { #bestpractices }
 
 Here we present guidelines aimed at minimizing I/O impact on all TACC resources. Primarily, this means redirecting I/O activity away from Stockyard (the `$WORK` file system) onto each resource's own local storage: usually the respective `/tmp` or `$SCRATCH` file systems.
 
 
-### [Use Each Compute Node's `/tmp` Storage Space](#bestpractices-tmp) { #bestpractices-tmp }
+### Use Each Compute Node's `/tmp` Storage Space { #bestpractices-tmp }
 
 Your jobs are run on the compute nodes of each resource and each compute node has a local `/tmp` directory on it. You can use the `/tmp` partition to read/write temporary files that do not need to be accessed by other tasks. If this output data is needed at the end of the job, the files may be copied from `/tmp` to your `$SCRATCH` directory at the end of your batch script. This will greatly reduce the load on the file system and may provide performance improvement.
 
 Data stored in the `/tmp` directory is as temporary as its name indicates, lasting only for the duration of your job. Each MPI task will write output to the `/tmp` directory on the node on which it is running. MPI tasks cannot access data from `/tmp` on different nodes. Each TACC resource's compute nodes host a different amount of `/tmp` space as shown in [Table 2](#table2) below.  Submit a support ticket for more help using this directory/storage.
 
-##		[Table 2. TACC Resources Compute Node (<code>/tmp</code>) Storage](#table2) { #table2 }
+##		Table 2. TACC Resources Compute Node (<code>/tmp</code>) Storage { #table2 }
 
 Compute Resource | Storage per Compute Node
 --- | ---
@@ -58,7 +58,7 @@ Frontera | 144 GB
 Stampede2 SKX | 144 GB
 Stampede2 KNL | 107 GB normal/large<br>32 GB development
 
-### [Run Jobs Out of Each Resource's Scratch File System](#bestpractices-redirect-scratch) { #bestpractices-redirect-scratch }
+### Run Jobs Out of Each Resource's Scratch File System { #bestpractices-redirect-scratch }
 
 Each TACC resource has its own Scratch file system, `/scratch`, accessible by the `$SCRATCH` environment variable and the `cds` alias.
 
@@ -86,21 +86,21 @@ cp testrunA/output $WORK/savetestrunA
 
 
 
-### [Avoid Writing One File Per Process](#bestpractices-perprocess) { #bestpractices-perprocess }
+### Avoid Writing One File Per Process { #bestpractices-perprocess }
 
 If your program regularly writes data to disk from each process, for instance for checkpointing, avoid writing output to a separate file for each process, as this will quickly overwhelm the Metadata Server. Instead, employ a library such as `hdf5` or `netcdf` to write a single parallel file for the checkpoint. A one-time generation of one file per process (for instance at the end of your run) is less serious, but even then you should consider writing parallel files.
 
 Alternatively, you could write these per-process files to each compute node's `/tmp` directory, see <a href="#bestpractices-redirect-scratch">below</a>.
 
 
-### [Avoid Repeated Reading/Writing to the Same File](#bestpractices-contention) { #bestpractices-contention }
+### Avoid Repeated Reading/Writing to the Same File { #bestpractices-contention }
 
 Jobs that have multiple tasks that read and/or write to the same file will often suspend the file in question in an open state in order to accommodate the changes happening to it. Please make sure that your I/O activity is not being directed to a single file repeatedly. You can use `/tmp` on the node to store this file if the condition cannot be avoided. If you require shared file operations, then please ensure your I/O is optimized.
 
 If you anticipate the need for multiple nodes or processes to write to a single file in parallel (aka single file with multiple writers/collective writers), please [submit a support ticket][HELPDESK] for assistance.
 
 
-### [Monitor Your File System Quotas](#bestpractices-quotas) { #bestpractices-quotas }
+### Monitor Your File System Quotas { #bestpractices-quotas }
 
 If you are close to file quota on either the `$WORK` or `$HOME` file system, your job may fail due to being unable to write output, and this will cause stress to the file systems when attempting to write beyond quota. It's important to monitor your disk and file usage on all TACC resources where you have an allocation.
 
@@ -123,19 +123,19 @@ Monitor your file system's quotas and usage using the `taccinfo` command. This o
 
 
 
-### [Manipulate Data in Memory, not on Disk](#bestpractices-memory) { #bestpractices-memory }
+### Manipulate Data in Memory, not on Disk { #bestpractices-memory }
 
 Manipulate data in memory instead of files on disk when necessary. This means:
 
 * For unimportant data that do not need a backup, process that data directly in memory.
 * For any commands in the intermediate steps, process those commands directly in memory instead of creating extra script files for them.
 
-### [Stripe Large Files on `$SCRATCH` and `$WORK`](#striping) { #striping }
+### Stripe Large Files on `$SCRATCH` and `$WORK` { #striping }
 
 When transferring or creating large files, it's important that you stripe the receiving directory. See the respective "Striping Large Files" sections in the [Stampede2](../../hpc/stampede2#files-striping]) and [Frontera](../../hpc/frontera#striping-large-files) user guides. 
 
 
-## [Govern I/O with OOOPS](#ooops) { #ooops }
+## Govern I/O with OOOPS { #ooops }
 
 TACC staff has developed OOOPS, **O**ptimal **O**verloaded I/O **P**rotection **S**ystem, an easy-to-use tool to help HPC users optimize heavy I/O requests and reduce the impact of high I/O jobs.  If your jobs have a particularly high I/O footprint, then you must employ the OOOPS tool to govern that I/O activity.
 
@@ -145,7 +145,7 @@ TACC staff has developed OOOPS, **O**ptimal **O**verloaded I/O **P**rotection **
 The OOOPS module is currently installed on TACC's [Frontera](../../hpc/frontera) and [Stampede2](../../hpc/stampede2) resources.
 
 
-### [Functions](#ooops-functions) { #ooops-functions }
+### Functions { #ooops-functions }
 
 The OOOPS module provides two functions `set_io_param` and `set_io_param_batch` for single-node jobs and multiple-node jobs, respectively. These commands adjust the maximum allowed frequency of `open` and `stat` function calls on all compute nodes involved in a running job. Execute these two commands within a Slurm job script or within an `idev` session. 
 
@@ -160,11 +160,11 @@ c123-456$ set_io_param -h
 
 Indicate the frequency of `open` and `stat` function calls, from the least to the most, with `low`, `medium`, or `high`.
 
-### [How to Use OOOPS](#ooops-howto) { #ooops-howto }
+### How to Use OOOPS { #ooops-howto }
 
 First, load the `ooops` module in your job script or `idev` session to deploy OOOPS. Next, set the frequency of I/O activities using either the `set_io_param` or `set_io_param_batch` command. 
 
-#### [Example: Single-Node Job on `$SCRATCH`](#ooops-howto-singlenode) { #ooops-howto-singlenode }
+#### Example: Single-Node Job on `$SCRATCH` { #ooops-howto-singlenode }
 
 <table border="1">
 <tr><th>Job Script Example</th><th>Interactive Session Example</th></tr>
@@ -196,7 +196,7 @@ login1$ set_io_param 0 unlimited
 ```
 
 
-#### [Example: Multi-Node Job on `$SCRATCH`](#ooops-howto-multinode) { #ooops-howto-multinode }
+#### Example: Multi-Node Job on `$SCRATCH` { #ooops-howto-multinode }
 
 <table border="1"><tr>
 <th>Job Script Example</th>
@@ -229,15 +229,15 @@ To turn off throttling on the `$SCRATCH` file system for a submitted job, you ca
 login1$ set_io_param_batch [jobid] 0 unlimited
 ```
 
-### [I/O Warning](#ooops-warnings) { #ooops-warnings }
+### I/O Warning { #ooops-warnings }
 
 If OOOPS finds intensive I/O work in your job, it will print out warning messages and create an `open`/`stat` call report after the job finishes. To enable reporting, load the OOOPS module on a login node, and then submit your batch job.  The reporting function will not be enabled if the module is loaded within a batch script.
 
-<!-- ### [Developers](#ooops-dev) { #ooops-dev }
+<!-- ### Developers { #ooops-dev }
 Contact the OOOPS developers, <a href="mailto:huang@tacc.utexas.edu">Lei Huang</a> and <a href="mailto:siliu@tacc.utexas.edu">Si Liu</a>, with any OOOPS related questions. -->
 
 
-## [Python I/O Management](#python) { #python }
+## Python I/O Management { #python }
 
 For jobs that make use of large numbers of Python modules or use local installations of Python/Anaconda/MiniConda, TACC staff provides additional tools to help manage the I/O activity caused by library and module calls.
 
@@ -252,7 +252,7 @@ module load python_cacher
 In case `python_cacher` does not work, you can copy your Python/Anaconda/MiniConda directory to the local `/tmp` directory of each involved compute node for a specific job. 
 
 
-## [Tracking Job I/O](#tracking) { #tracking }
+## Tracking Job I/O { #tracking }
 
 **Stampede2 and Frontera**: To track the full extent of your I/O activity over the course of your job, you can employ another TACC tool, `iomonitor` that will report on `open()` and `stat()` calls during your job's run. Place the following lines in your job submission script after your Slurm commands, to wrap your executable:
 
@@ -269,7 +269,7 @@ Log files will be generated during the job run in the working directory with pre
 
 Please feel free to [submit a support ticket][HELPDESK] if you need any further assistance.
 
-## [I/O Do's and Don'ts](#table3) { #table3 }
+## I/O Do's and Don'ts { #table3 }
  
 DON'TS<br>Try to avoid | DO'S<br>Recommended Workflow
 --- | ---

@@ -1,5 +1,5 @@
 
-## [References](#refs) { #refs }
+## References { #refs }
 
 * [`idev` documentation](../../software/idev)
 * [Tensorflow at TACC](../../software/tensorflow)

@@ -1,4 +1,4 @@
-# [Help Desk](#help) { #help }
+# Help Desk { #help }
 
 
 TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for holidays. You can [submit a help desk ticket][HELPDESK] at any time via the TACC User Portal with the computing resource name, e.g. Lonestar6, Frontera, in the "Resource" field. 

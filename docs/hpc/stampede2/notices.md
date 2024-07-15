@@ -6,7 +6,7 @@ See <a href="#history">revision history</a>
 
 ---
 
-## [Notices](#notices) { #notices }
+## Notices { #notices }
  
 **Stampede2 queues are now closed**</span>. (01/31/2024)
 

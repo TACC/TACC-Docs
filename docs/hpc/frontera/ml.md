@@ -1,8 +1,8 @@
-## [Machine Learning](#ml) { #ml }
+## Machine Learning { #ml }
 
 Frontera is well equipped to provide researchers with the latest in Machine Learning frameworks, PyTorch and Tensorflow. We recommend using the Python virtual environment to manage machine learning packages.
 
-### [Running PyTorch ](#ml-pytorch) { #ml-pytorch }
+### Running PyTorch  { #ml-pytorch }
 
 Install Pytorch and TensorBoard.
 
@@ -32,7 +32,7 @@ Install Pytorch and TensorBoard.
 	c123-456$ pip3 install tensorboard
 	```
 
-#### [Single-Node](#ml-pytorch-singlnode) { #ml-pytorch-singlnode }
+#### Single-Node { #ml-pytorch-singlnode }
 
 1. Download the benchmark:
 
@@ -52,7 +52,7 @@ Install Pytorch and TensorBoard.
 	c123-456$ python3 -m torch.distributed.launch --nproc_per_node=4 examples/torch_cifar10_resnet.py --kfac-update-freq 0
 	```
 
-#### [Multi-Node](#ml-pytorch-multinode) { #ml-pytorch-multinode }
+#### Multi-Node { #ml-pytorch-multinode }
 
 1. Request two nodes in the `rtx-dev` queue using the [`idev`](https://docs.tacc.utexas.edu/software/idev) utility:
 
@@ -84,7 +84,7 @@ Install Pytorch and TensorBoard.
 	```
 
 
-### [Running Tensorflow ](#ml-tensorflow) { #ml-tensorflow }
+### Running Tensorflow  { #ml-tensorflow }
 
 Follow these instructions to install and run TensorFlow benchmarks on Frontera RTX. Frontera RTX runs TensorFlow 2.8.0 with Python 3.8.2. Frontera supports CUDA/10.1, CUDA/11.0, and CUDA/11.1. By default, we use CUDA/11.3. Select the appropriate CUDA version for your TensorFlow version.
 
@@ -120,7 +120,7 @@ Follow these instructions to install and run TensorFlow benchmarks on Frontera R
     	HOROVOD_GPU_ALLREDUCE=NCCL HOROVOD_GPU_BROADCAST=NCCL HOROVOD_WITH_TENSORFLOW=1 pip3 install horovod==0.25.0
 	```
 
-#### [Single-Node](#ml-tensorflow-singlenode) { #ml-tensorflow-singlenode }
+#### Single-Node { #ml-tensorflow-singlenode }
 
 1. Download the tensorflow benchmark to your $SCRATCH directory, then check out the branch that matches your tensorflow version.
 

@@ -1,7 +1,7 @@
 # Pylauncher at TACC
 *Last update: June 12, 2024*
 
-## [What is Pylauncher](#intro) { #intro }
+## What is Pylauncher { #intro }
 
 Pylauncher (**Py**thon + **launcher**) is a python-based parametric job launcher, a utility for distributing and executing many small jobs in parallel, using fewer  resources than would be necessary to execute all jobs simultaneously. On many batch-based cluster computers this is a better strategy than submitting many small individual small jobs.
 
@@ -95,7 +95,7 @@ If you want more detailed trace output during the run, add an option:
 launcher.ClassicLauncher("commandlines",debug="host+job")
 ```
 
-### [Output files](#setup-outputfiles) { #setup-outputfiles }
+### Output files { #setup-outputfiles }
 
 Pylauncher will create a directory "`pylauncher_tmp123456`" where "`123456`" is the job number. The output of your commandlines needs to be explicitly stored. For instance, the commands in your `commandlines` file could say:
 
@@ -108,9 +108,9 @@ mkdir -p myoutput && cd myoutput && ${HOME}/myprogram input3
 
 A file "`queuestate`" is generated with a listing of the commands that were successfully executed, and, in case the job times out, which commands were pending or not scheduled. This information can be used to restart your job.
 
-## [Parallel runs](#parallel) { #parallel }
+## Parallel runs { #parallel }
 
-### [Multi-Threaded](#parallel-multithreaded) { #parallel-multithreaded }
+### Multi-Threaded { #parallel-multithreaded }
 
 If your program is multi-threaded, you can specify more than one core with:
 
@@ -119,7 +119,7 @@ If your program is multi-threaded, you can specify more than one core with:
 1. This can also be used if your program takes more memory than would normally be assigned to a single core.  
 2. Alternatively, you can leave out the cores clause, and decrease the SLURM `tasks-per-node` value.
 
-### [MPI](#parallel-mpi) { #parallel-mpi }
+### MPI { #parallel-mpi }
 
 If your program is MPI parallel, replace the ClassicLauncher call with the following:
 
@@ -184,7 +184,7 @@ import pylauncher3 as launcher
 launcher.ClassicLauncher("commandlines",debug="host+job")
 ```
 
-### [Command Lines File](#setup-commandlines) { #setup-commandlines } 
+### Command Lines File { #setup-commandlines } 
 
 where "`commandlines`" contains your parameter sweep:
 

@@ -7,7 +7,7 @@ What most users need for development is interactive access to a set of compute n
 
 The `idev` utility creates an interactive development environment from the user's login window. In the `idev` window the user is connected directly to a compute node from which the user can launch MPI-compiled executables directly (with the `ibrun` command). 
 
-## [How it works](#works) { #works }
+## How it works { #works }
 
 The `idev` command submits a batch job that creates a copy of the batch environment and then goes to sleep. After the job begins, `idev` acquires a copy of the batch environment, SSH's to the master node, and then re-creates the batch environment. The SSH command allows X11 tunneling for setting up a display back to the user's laptop for debugging.
 
@@ -28,11 +28,11 @@ If this is your first time launching `idev` and you have multiple projects/alloc
 
 By default only a single node is requested for 30 minutes in the development queue.  The limits can be changed with command line options, using syntax similar to the batch request specifications used in a job script.  Also, the common defaults can be changed in the ~/.idevrc file (See idev help.)
 
-##  [Accessing Nodes Interactively](#interactive) { #interactive }
+##  Accessing Nodes Interactively { #interactive }
 
 It is important to realize that idev acquires compute nodes through the Slurm batch system (this is the normal/only mode for acquiring resources on a supercomputer).  This often means there is a wait to acquire nodes in the normal (production) partitions.  Fortunately, at TACC there is a `development` queue on each TACC system (`idev`'s default partition), and it is often a short wait for `idev` to acquire (one or a few) nodes and allow interactive input.  The `idev` output will report every 4 seconds the progress of accessing the nodes through the batch system.
 
-### [Examples](#examples) { #examples }
+### Examples { #examples }
 
 Below is an example of `idev`'s progress in creating a session on a Stampede2 Skylake development node (in the `skx-dev` partition, the development default partition is for knl nodes):
 

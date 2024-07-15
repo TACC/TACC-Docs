@@ -4,7 +4,7 @@
 <img style="float:left; padding-bottom:10px; padding-right:20px; width:200px;" alt="GROMACS logo" src="../imgs/gromacs-logo.png">**GRO**ningen **MA**chine for **C**hemical **S**imulations (GROMACS) is a free, open-source, molecular dynamics package. GROMACS can simulate the Newtonian equations of motion for systems with hundreds to millions of particles. GROMACS is primarily designed for biochemical molecules like proteins, lipids and nucleic acids that have a lot of complicated bonded interactions, but since GROMACS is extremely fast at calculating the nonbonded interactions (that usually dominate simulations), many groups are also using it for research on non-biological systems, e.g. polymers.   
 
 
-## [Installations](#installations) { #installations }
+## Installations { #installations }
 
 GROMACS is currently installed on TACC's [Stampede3](../../hpc/stampede3), [Frontera](../../hpc/frontera), and [Lonestar6](../../hpc/lonestar6) systems.  GROMACS is managed under the [Lmod](https://lmod.readthedocs.io/en/latest/) modules system on TACC resources.  To run simulations, simply load the module with the following command:
 
@@ -38,7 +38,7 @@ login1$ module help gromacs
 
 You are welcome to install different versions of GROMACS in your own directories. See [Building Third Party Software](../../hpc/stampede3/#building) in the Stampede3 User Guide. 
 
-## [Batch Jobs](#batch) { #batch }
+## Batch Jobs { #batch }
 
 To launch simulation jobs, please use the TACC-specific MPI launcher `ibrun`, a TACC-system-aware replacement for generic MPI launchers like `mpirun` and `mpiexec`. The executable, `gmx_mpi`, is the parallel component of GROMACS. It can be invoked in a job script like this:
 
@@ -53,7 +53,7 @@ On Frontera and Lonestar6, you may use `gmx_mpi_gpu` instead of `gmx_mpi` to run
 !!! tip
 	Not all GROMACS modules on the TACC systems support GPU acceleration.   See `module help` and `module spider` to find details about supported functionality.
 
-## [Job Scripts](#scripts) { #scripts }
+## Job Scripts { #scripts }
 
 Use Slurm's `sbatch` command to submit a batch job to one of the queues.  Here "myjobscript" is the name of a text file containing `#SBATCH` directives and shell commands that describe the particulars of the job you are submitting.
 

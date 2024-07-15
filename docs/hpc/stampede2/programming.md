@@ -1,8 +1,8 @@
-## [Programming and Performance](#programming) { #programming }
+## Programming and Performance { #programming }
 
 Programming for performance is a broad and rich topic. While there are no shortcuts, there are certainly some basic principles that are worth considering any time you write or modify code.
 
-### [Timing and Profiling](#programming-general-timingprofiling) { #programming-general-timingprofiling }
+### Timing and Profiling { #programming-general-timingprofiling }
 
 **Measure performance and experiment with both compiler and runtime options.** This will help you gain insight into issues and opportunities, as well as recognize the performance impact of code changes and temporary system conditions.
 
@@ -19,7 +19,7 @@ As your needs evolve you can add timing intrinsics to your source code to time s
 
 It can be helpful to compare results with different compiler and runtime options: e.g. with and without [vectorization](http://software.intel.com/en-us/fortran-compiler-18.0-developer-guide-and-reference-vec-qvec), [threading](#running-launching-multi), or [Lustre striping](#files-striping). You may also want to learn to use profiling tools like [Intel VTune Amplifier](http://software.intel.com/en-us/intel-vtune-amplifier-xe) <u>(`module load vtune`)</u> or GNU [`gprof`](http://sourceware.org/binutils/docs/gprof/).
 
-### [Data Locality](#programming-general-datalocality) { #programming-general-datalocality }
+### Data Locality { #programming-general-datalocality }
 
 **Appreciate the high cost (performance penalty) of moving data from one node to another**, from disk to RAM, and even from RAM to cache. Write your code to keep data as close to the computation as possible: e.g. in RAM when needed, and on the node that needs it. This means keeping in mind the capacity and characteristics of each level of the memory hierarchy when designing your code and planning your simulations. A simple KNL-specific example illustrates the point: all things being equal, there's a good chance you'll see better performance when you keep your data in the KNL's [fast MCDRAM](#programming-knl-memorymodes) instead of the slower DDR4.
 
@@ -56,19 +56,19 @@ for (i=0;i<m;i++){
 </table>
 
 
-### [Vectorization](#programming-general-vectorization) { #programming-general-vectorization }
+### Vectorization { #programming-general-vectorization }
 
 **Give the compiler a chance to produce efficient, [vectorized](http://software.intel.com/en-us/articles/vectorization-essential) code**. The compiler can do this best when your inner loops are simple (e.g. no complex logic and a straightforward matrix update like the ones in the examples above), long (many iterations), and avoid complex data structures (e.g. objects). See Intel's note on [Programming Guidelines for Vectorization](http://software.intel.com/en-us/node/522571) for a nice summary of the factors that affect the compiler's ability to vectorize loops.
 
 It's often worthwhile to generate [optimization and vectorization reports](http://software.intel.com/en-us/articles/getting-the-most-out-of-your-intel-compiler-with-the-new-optimization-reports) when using the Intel compiler. This will allow you to see exactly what the compiler did and did not do with each loop, together with reasons why.
 
-### [Learning More](#programming-general-more) { #programming-general-more }
+### Learning More { #programming-general-more }
 
 The literature on optimization is vast. Some places to begin a systematic study of optimization on Intel processors include: Intel's [Modern Code](http://software.intel.com/en-us/modern-code) resources; and the [Intel Optimization Reference Manual](http://intel.com/content/www/us/en/architecture-and-technology/64-ia-32-architectures-optimization-manual). <!-- SDL and [TACC training materials](http://xortal.tacc.utexas.edu/training#/session/64). -->
 
-### [Programming and Performance: KNL](#programming-knl) { #programming-knl }
+### Programming and Performance: KNL { #programming-knl }
 
-#### [Architecture](#programming-knl-architecture) { #programming-knl-architecture }
+#### Architecture { #programming-knl-architecture }
 
 KNL cores are grouped in pairs; each pair of cores occupies a tile. Since there are 68 cores on each Stampede2 KNL node, each node has 34 active tiles. These 34 active tiles are connected by a two-dimensional mesh interconnect. Each KNL has 2 DDR memory controllers on opposite sides of the chip, each with 3 channels. There are 8 controllers for the fast, on-package MCDRAM, two in each quadrant.
 
@@ -76,7 +76,7 @@ Each core has its own local L1 cache (32KB, data, 32KB instruction) and two 512-
 
 Each core can run up to 4 hardware threads. The two cores on a tile share a 1MB L2 cache. Different [cluster modes](#programming-knl-clustermodes) specify the L2 cache coherence mechanism at the node level.
 
-#### [Memory Modes](#programming-knl-memorymodes) { #programming-knl-memorymodes }
+#### Memory Modes { #programming-knl-memorymodes }
 
 The processor's memory mode determines whether the fast MCDRAM operates as RAM, as direct-mapped L3 cache, or as a mixture of the two. The output of commands like `top`, `free`, and `ps -v` reflect the consequences of memory mode. Such commands will show the amount of RAM available to the operating system, not the hardware (DDR + MCDRAM) installed.
 
@@ -89,7 +89,7 @@ The processor's memory mode determines whether the fast MCDRAM operates as RAM, 
 
 * **Hybrid Mode (not available on Stampede2)**. In this mode, the MCDRAM is configured so that a portion acts as L3 cache and the rest as RAM (a second NUMA node supplementing DDR4).
 
-#### [Cluster Modes](#programming-knl-clustermodes) { #programming-knl-clustermodes }
+#### Cluster Modes { #programming-knl-clustermodes }
 
 The KNL's core-level L1 and tile-level L2 caches can reduce the time it takes for a core to access the data it needs. To share memory safely, however, there must be mechanisms in place to ensure cache coherency. Cache coherency means that all cores have a consistent view of the data: if data value x changes on a given core, there must be no risk of other cores using outdated values of x. This, of course, is essential on any multi-core chip, but it is especially difficult to achieve on manycore processors.
 
@@ -108,7 +108,7 @@ The KNL can do this in several ways, each of which is called a cluster mode. Eac
 TACC's early experience with the KNL suggests that there is little reason to deviate from Intel's recommended default memory and cluster modes. Cache-quadrant tends to be a good choice for almost all workflows; it offers a nice compromise between performance and ease of use for the applications we have tested. Flat-quadrant is the most promising alternative and sometimes offers moderately better performance, especially when memory requirements per node are less than 16GB. We have not yet observed significant performance differences across cluster modes, and our current recommendation is that configurations other than cache-quadrant and flat-quadrant are worth considering only for very specialized needs. For more information see [Managing Memory](#programming-knl-managingmemory) and [Best Known Practices...](#programming-knl-bestpractices).
 
 
-#### [Managing Memory](#programming-knl-managingmemory) { #programming-knl-managingmemory }
+#### Managing Memory { #programming-knl-managingmemory }
 
 By design, any application can run in any memory and cluster mode, and applications always have access to all available RAM. Moreover, regardless of memory and cluster modes, there are no code changes or other manual interventions required to run your application safely. However, there are times when explicit manual memory management is worth considering to improve performance. The Linux `numactl` (pronounced "NUMA Control") utility allows you to specify at runtime where your code should allocate memory.
 
@@ -124,7 +124,7 @@ numactl       --hardware                # show numactl settings
 numactl       --help                    # list available numactl options
 ```
 
-##### [Example: Controlling memory in flat-quadrant mode: `numactl` options  ](#example) { #example }
+##### Example: Controlling memory in flat-quadrant mode: `numactl` options   { #example }
 
 Intel's new `memkind` library adds the ability to manage memory in source code with a special memory allocator for C code and a corresponding attribute for Fortran. This makes possible a level of control over memory allocation down to the level of the individual data element. As this library matures it will likely become an important tool for those who need fine-grained control of memory.
 
@@ -136,7 +136,7 @@ It's safe to use `mem_affinity` even when it will have no effect (e.g. cache-qua
 
 On Stampede2 the keyword `tacc_affinity` was originally an older name for what is now the `mem_affinity` script. To ensure backward compatibility, `tacc_affinity` is now a symbolic link to `mem_affinity`. Note that `mem_affinity` and the symbolic link `tacc_affinity` do not pin MPI tasks.
 
-#### [Best Known Practices and Preliminary Observations (KNL)](#programming-knl-bestpractices) { #programming-knl-bestpractices }
+#### Best Known Practices and Preliminary Observations (KNL) { #programming-knl-bestpractices }
 
 **Hyperthreading. It is rarely a good idea to use all 272 hardware threads simultaneously**, and it's certainly not the first thing you should try. In most cases it's best to specify no more than <u>64-68</u> MPI tasks or independent processes per node, and 1-2 threads/core. One exception is worth noting: when calling threaded MKL from a serial code, it's safe to set `OMP_NUM_THREADS` or `MKL_NUM_THREADS` to 272. This is because MKL will choose an appropriate thread count less than or equal to the value you specify. See [Controlling Threading in MKL](#mkl-threading) for more information. In any case remember that the default value of `OMP_NUM_THREADS` is 1.
 
@@ -153,7 +153,7 @@ On Stampede2 the keyword `tacc_affinity` was originally an older name for what i
 **Tuning the Performance Scaled Messaging (PSM2) Library**. When running on KNL with MVAPICH2, set the environment variable `PSM2_KASSIST_MODE` to the value `none` per the [MVAPICH2 User Guide](http://mvapich.cse.ohio-state.edu/static/media/mvapich/mvapich2-2.3b-userguide.html#x1-890006.19). Do not use this environment variable with IMPI; doing so may degrade performance. <!-- The `ibrun` launcher will eventually control this environment variable automatically. -->
 
 
-### [Programming and Performance: SKX and ICX](#programming-skx) { #programming-skx }
+### Programming and Performance: SKX and ICX { #programming-skx }
 
 **Hyperthreading. It is rarely a good idea to use all the hardware threads simultaneously**, and it's certainly not the first thing you should try. In most cases it's best to specify no more than 48 MPI tasks or independent processes per SKX node (80 per ICX node), and 1-2 threads/core. One exception is worth noting: when calling threaded MKL from a serial code, it's safe to set `OMP_NUM_THREADS` or `MKL_NUM_THREADS` to 96 for SKX or 160 for ICX. This is because MKL will choose an appropriate thread count less than or equal to the value you specify. See [Controlling Threading in MKL](#mkl-threading) for more information.  In any case remember that the default value of `OMP_NUM_THREADS` is 1.
 
@@ -176,7 +176,7 @@ The `qopt-zmm-usage` flag affects the algorithms the compiler uses to decide whe
 **Tuning the Performance Scaled Messaging (PSM2) Library**. When running on SKX with MVAPICH2, setting the environment variable `PSM2_KASSIST_MODE` to the value `none` may or may not improve performance. For more information see the [MVAPICH2 User Guide](http://mvapich.cse.ohio-state.edu/static/media/mvapich/mvapich2-2.3b-userguide.html#x1-890006.19). Do not use this environment variable with IMPI; doing so may degrade performance. The `ibrun` launcher will eventually control this environment variable automatically.
 
 
-### [File Operations: I/O Performance](#programming-fileio) { #programming-fileio }
+### File Operations: I/O Performance { #programming-fileio }
 
 This section includes general advice intended to help you achieve good performance during file operations. See [Navigating the Shared File Systems](#files-filesystems) for a brief overview of Stampede2's Lustre file systems and the concept of striping. See [TACC Training material](https://learn.tacc.utexas.edu/) for additional information on I/O performance.
 

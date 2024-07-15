@@ -2,15 +2,15 @@
 *Last update: June 12, 2024*
 
 
-## [Implementations](#blas) { #blas }
+## Implementations { #blas }
 
 BLAS (Basic Linear Algebra Subprograms) is a set of definitions of common operations on vectors and (dense) matrices. LAPACK is the Linear Algebra Package that builds on BLAS and that offers numerical algorithms such as linear system solving and eigenvalue calculations. The so-called "reference" implementations of BLAS/LAPACK are written in Fortran and can be found on <http://netlib.org>, but in practice you don't want to use them since they have low performance. Instead, TACC offers libraries that conform to the specification, but that achieve high performance. They are typically written in a combination of C and Assembly.
 
-## [Updating your `makefile`](#makefile) { #makefile }
+## Updating your `makefile` { #makefile }
 
 Your makefile may contain `libblas.a` or `-lblas`. Most Linux distributions indeed have a library by that name, but it will not be tuned for the TACC processor types. Instead, use one of the following libraries.
 
-### [MKL](#mkl) { #mkl }
+### MKL { #mkl }
 
 Intel's Math Kernel Library (MKL) is a high performance implementation of BLAS/LAPACK and several other packages. MKL is installed on TACC's Frontera, Stampede2 and Lonestar6 resources. See each resource's user guide for detailed information on linking the MKL into your code.
 
@@ -42,11 +42,11 @@ In general:
 		-D LAPACK_LIBRARY_NAMES:STRING="mkl_intel_lp64;mkl_sequential;mkl_core;pthread"
 
 
-### [BLIS](#blis) { #blis }
+### BLIS { #blis }
 
 BLIS (BLAS-like Library Instantiation Software Framework) is an open source high performance implementation of BLAS/LAPACK. It can be accessed through a module: `module load blis`. You will then find the library file in `$TACC_BLIS_LIB`. BLIS extends the BLAS specification; for documentation see <https://github.com/flame/blis>.
 
-### [Reference BLAS/LAPACK](#refs) { #refs }
+### Reference BLAS/LAPACK { #refs }
 
 The reference implementation for BLAS/LAPACK is written in Fortran and is very low performance. However, for debugging purposes it can be useful. You can load it with:
 
@@ -55,7 +55,7 @@ The reference implementation for BLAS/LAPACK is written in Fortran and is very l
 This gives access to the compiled Fortran sources from netlib.org/lapack. When building your program with this library, you either need to use the Fortran compiler as linker, or add `-lgfortran` to the link line.
 
 
-### [Goto Blas and OpenBlas](#goto) { #goto }
+### Goto Blas and OpenBlas { #goto }
 
 Older implementations such as Goto Blas (after former TACC employee Kazushige Goto), and its offshoot, OpenBlas, are no longer maintained and should not be used. Instead, use MKL or BLIS as described above.
 

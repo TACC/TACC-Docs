@@ -1,4 +1,4 @@
-## [Revision History](#history) { #history }
+## Revision History { #history }
 
 "Last Update" at the top of this document is the date of the most recent change to this document. This revision history is a list of non-trivial updates; it excludes routine items such as corrected typos and minor format changes.
  

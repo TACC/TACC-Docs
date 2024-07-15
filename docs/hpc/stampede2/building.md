@@ -1,12 +1,12 @@
-## [Building Software](#building) { #building }
+## Building Software { #building }
 
 The phrase "building software" is a common way to describe the process of producing a machine-readable executable file from source files written in C, Fortran, or some other programming language. In its simplest form, building software involves a simple, one-line call or short shell script that invokes a compiler. More typically, the process leverages the power of [`makefiles`](http://www.gnu.org/software/make/manual/make.html), so you can change a line or two in the source code, then rebuild in a systematic way only the components affected by the change. Increasingly, however, the build process is a sophisticated multi-step automated workflow managed by a special framework like [autotools](http://www.gnu.org/software/automake/manual/html_node/Autotools-Introduction.html) or [`cmake`](http://cmake.org), intended to achieve a repeatable, maintainable, portable mechanism for installing software across a wide range of target platforms.
 
-### [Basics of Building Software](#building-basics) { #building-basics }
+### Basics of Building Software { #building-basics }
 
 This section of the user guide does nothing more than introduce the big ideas with simple one-line examples. You will undoubtedly want to explore these concepts more deeply using online resources. You will quickly outgrow the examples here. We recommend that you master the basics of makefiles as quickly as possible: even the simplest computational research project will benefit enormously from the power and flexibility of a makefile-based build process.
 
-#### [Intel Compilers](#building-basics-intel) { #building-basics-intel }
+#### Intel Compilers { #building-basics-intel }
 
 Intel is the recommended and default compiler suite on Stampede2. Each Intel module also gives you direct access to `mkl` without loading an `mkl` module; see [Intel MKL](#mkl) for more information. Here are simple examples that use the Intel compiler to build an executable from source code:
 
@@ -26,7 +26,7 @@ $ icc -qopenmp mycode.c -o myexe  # OpenMP
 
 See the published Intel documentation, available both [online](http://software.intel.com/en-us/intel-software-technical-documentation) and in `${TACC_INTEL_DIR}/documentation`, for information on optimization flags and other Intel compiler options.
 
-#### [GNU Compilers](#building-basics-gnu) { #building-basics-gnu }
+#### GNU Compilers { #building-basics-gnu }
 
 The GNU foundation maintains a number of high quality compilers, including a compiler for C (`gcc`), C++ (`g++`), and Fortran (`gfortran`). The `gcc` compiler is the foundation underneath all three, and the term "gcc" often means the suite of these three GNU compilers.
 
@@ -44,7 +44,7 @@ $ gcc -fopenmp mycode.c -o myexe  # OpenMP; GNU flag is different than Intel
 
 Note that some compiler options are the same for both Intel and GNU (e.g. `-o`), while others are different (e.g. `-qopenmp` vs `-fopenmp`). Many options are available in one compiler suite but not the other. See the [online GNU documentation](http://gcc.gnu.org/onlinedocs/) for information on optimization flags and other GNU compiler options.
 
-#### [Compiling and Linking as Separate Steps](#building-basics-complink) { #building-basics-complink }
+#### Compiling and Linking as Separate Steps { #building-basics-complink }
 
 Building an executable requires two separate steps: (1) compiling (generating a binary object file associated with each source file); and (2) linking (combining those object files into a single executable file that also specifies the libraries that executable needs). The examples in the previous section accomplish these two steps in a single call to the compiler. When building more sophisticated applications or libraries, however, it is often necessary or helpful to accomplish these two steps separately.
 
@@ -64,7 +64,7 @@ $ icc main.o calc.o results.o -o myexe
 
 The compiler calls a linker utility (usually `/bin/ld`) to accomplish this task. Again, syntax for other compilers is similar.
 
-#### [Include and Library Paths](#building-basics-inclib) { #building-basics-inclib }
+#### Include and Library Paths { #building-basics-inclib }
 
 Software often depends on pre-compiled binaries called libraries. When this is true, compiling usually requires using the `-I` option to specify paths to so-called header or include files that define interfaces to the procedures and data in those libraries. Similarly, linking often requires using the `-L` option to specify paths to the libraries themselves. Typical compile and link lines might look like this:
 
@@ -79,7 +79,7 @@ The details of the linking process vary, and order sometimes matters. Much depen
 
 A separate section below addresses the [Intel Math Kernel Library](#mkl) (MKL).
 
-#### [Compiling and Linking MPI Programs](#building-basics-mpi) { #building-basics-mpi }
+#### Compiling and Linking MPI Programs { #building-basics-mpi }
 
 Intel MPI (module `impi`) and MVAPICH2 (module `mvapich2`) are the two MPI libraries available on Stampede2. After loading an `impi` or `mvapich2` module, compile and/or link using an mpi wrapper (`mpicc`, `mpicxx`, `mpif90`) in place of the compiler:
 
@@ -97,7 +97,7 @@ $ mpicc -show  # Show compile line generated by call to mpicc; similarly for oth
 ```
 
 
-#### [Building Third-Party Software in Your Own Account](#building-basics-thirdparty) { #building-basics-thirdparty }
+#### Building Third-Party Software in Your Own Account { #building-basics-thirdparty }
 
 You're welcome to download third-party research software and install it in your own account. In most cases you'll want to download the source code and build the software so it's compatible with the Stampede2 software environment. You can't use yum or any other installation process that requires elevated privileges, but this is almost never necessary. The key is to specify an installation directory for which you have write permissions. Details vary; you should consult the package's documentation and be prepared to experiment. When using the famous [three-step autotools](http://www.gnu.org/software/automake/manual/html_node/Autotools-Introduction.html) build process, the standard approach is to use the `PREFIX` environment variable to specify a non-default, user-owned installation directory at the time you execute `configure` or `make`:
 
@@ -135,14 +135,14 @@ If you wish to share a software package with collaborators, you may need to modi
 <!-- Intel MKL -->
 {% include 'include/stampede2-mkl.md' %}
 		
-### [Building for Performance on Stampede2](#building-performance) { #building-performance }
+### Building for Performance on Stampede2 { #building-performance }
 
-#### [Compiler](#building-performance-compiler) { #building-performance-compiler }
+#### Compiler { #building-performance-compiler }
 
 When building software on Stampede2, we recommend using the most recent Intel compiler and Intel MPI library available on Stampede2. The most recent versions may be newer than the defaults. Execute `module spider intel` and `module spider impi` to see what's installed. When loading these modules you may need to specify version numbers explicitly (e.g. `module load intel/18.0.0` and `module load impi/18.0.0`).
 
 
-#### [Architecture-Specific Flags](#building-performance-architecture) { #building-performance-architecture }
+#### Architecture-Specific Flags { #building-performance-architecture }
 
 To compile for KNL only, include `-xMIC-AVX512` as a build option. The `-x` switch allows you to specify a [target architecture](https://software.intel.com/en-us/fortran-compiler-18.0-developer-guide-and-reference-x-qx), while `MIC-AVX512` is the KNL-specific subset of Intel's Advanced Vector Extensions 512-bit [instruction set](https://software.intel.com/en-us/articles/performance-tools-for-software-developers-intel-compiler-options-for-sse-generation-and-processor-specific-optimizations).  Besides all other appropriate compiler options, you should also consider specifying an [optimization level](https://software.intel.com/en-us/fortran-compiler-18.0-developer-guide-and-reference-o) using the `-O` flag:
 

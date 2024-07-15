@@ -6,11 +6,11 @@ REMORA stands for **RE**source **MO**nitoring for **R**emote **A**pplications. R
 REMORA uses shell scripts as a framework, includes external tools, and accesses `/sys` and `/proc` files for kernel data. It reports a brief summary at the end of the run.  Timeline reports from  records taken during an application run, are included in text files, labeled by the content and node name, in a `remora_*jobid*` subdirectory.  The text files contain timeline information on memory, CPU loads, network traffic, IO load, NUMA memory, power, and temperature. More comprehensive Google timeline plots and graphs are created in html files, and can be downloaded and opened on the user’s laptop.
 
 
-## [Running Remora](#running) { #running }
+## Running Remora { #running }
 
 Remora is installed on all TACC compute resources. You can use remora interatively on a compute node via an idev session or in a batch job as shown below. 
 
-### [Interactively](#running-interactively) { #running-interactively }
+### Interactively { #running-interactively }
 
 <!-- get an copute node -->
 ``` cmd-line
@@ -19,7 +19,7 @@ c123-456$ module load remora
 c123-456$ remora myserialcode args
 ```
 
-### [Remora in Job Scripts](#running-batch) { #running-batch }
+### Remora in Job Scripts { #running-batch }
 
 Modify your batch script and include 'remora' before your script, executable, or MPI launcher within your script as shown below:
 
@@ -38,7 +38,7 @@ remora ibrun ./my_parallel_job	# or "remora ./serial_job" if running a serial jo
 ```
 
 
-## [Remora Options](#options) { #options }
+## Remora Options { #options }
 
 Users can configure REMORA to achieve the amount of detail that they want and perform the analysis of the results at any point in time. For short runs (less than several minutes) the environment variable `$REMORA_PERIOD` can be set to 1 to take snapshots ever second, instead of using the default 10 seconds. For longer executions set `$REMORA_PERIOD` to a larger value.
 
@@ -52,7 +52,7 @@ Users can configure REMORA to achieve the amount of detail that they want and pe
 	* MONITOR:  real-time reporting
 
 
-## [Remora Output](#output) { #output }
+## Remora Output { #output }
 
 Remora will generate a summary report as shown below at the end of each job.
 
@@ -65,7 +65,7 @@ Remora will generate a series of files in the running directory like this.
 <img alt="" src="../imgs/remora-2.png"><figcaption></figcaption></figure>
 
 
-## [References](#refs) { #refs }
+## References { #refs }
 
 Remora is an open-source project. You can find more detailed information about it from the published paper or remora's github repository.
 

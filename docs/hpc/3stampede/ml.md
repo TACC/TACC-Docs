@@ -1,4 +1,4 @@
-## [Machine Learning](#ml) { #ml }
+## Machine Learning { #ml }
 
 Follow these instructions to begin using Intel's Conda environment with PyTorch and Tensorflow on Stampede3.
 

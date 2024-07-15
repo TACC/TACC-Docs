@@ -11,7 +11,7 @@ In order to transfer files using Grid Community Toolkit you will need to:
 3. [Activate the Grid Community Toolkit Endpoints](#step3)
 4. [Transfer Files](#step4)
 
-## [Step 1: Find a DN from a MyProxy or MyProxy OAuth provider](#step1) { #step1 }
+## Step 1: Find a DN from a MyProxy or MyProxy OAuth provider { #step1 }
 
 To create a DN, you need to log in from some authoritative source that can verify your identity, typically your university or employer. If you already have a DN from another source, you can use that. If you do not, you can associate one with your account from many of the major universities in the world via the "CI Logon" service.
 
@@ -35,7 +35,7 @@ This is the data you need to associate with your TACC account.
 <figcaption></figcaption></figure>
 
 
-## [Step 2: Associate the DN with our TACC Account](#step2) { #step2 } 
+## Step 2: Associate the DN with our TACC Account { #step2 } 
 
 Login to the [TACC User Portal][TACCUSERPORTAL] and click "Manage your Profile" from the Dashboard actions or select "Account Profile" from the main menu under the "Home" dropdown. You can also navigate directly to [https://portal.tacc.utexas.edu/account-profile](https://portal.tacc.utexas.edu/account-profile). On the left of the page is a list of account actions, select "Manage DNs". You will be presented with a list of the DNs currently associated with your TACC account.
 
@@ -54,7 +54,7 @@ On the Manage DNs page, near the bottom, is a form to associate a DN to your acc
 <figure id="figure5"><img alt="" src="../imgs/GCT-5.png">
 <figcaption></figcaption></figure>
 
-## [Step 3: Activate Grid Community Toolkit Endpoints](#step3) { #step3 } 
+## Step 3: Activate Grid Community Toolkit Endpoints { #step3 } 
 
 Now that you have associated the DN with your TACC account **and** given the DN time to propagate to the systems (up to thirty minutes), you can activate the Grid Community Toolkit transfer endpoints and begin transferring files.
 
@@ -72,7 +72,7 @@ After selecting the endpoint you'll be prompted to authenticate in order to acti
 <figcaption></figcaption></figure>
 
 
-## [Step 4: Transfer Files](#step4) { #step4 } 
+## Step 4: Transfer Files { #step4 } 
 
 After successfully authenticating, you will be redirected back to Grid Community Toolkit and you will now be able to access your data on Stampede2.
 

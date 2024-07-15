@@ -62,7 +62,7 @@ $ /home1/apps/ANSYS/2023R2/v232/ansys/bin/launcher232
 	<figcaption>Figure 1. Commands to run Ansys Mechanical Ansys Parametric Design Language (APDL) jobs </figcaption></figure>
 
 
-### [Batch Mode](#running-batch) { #running-batch }
+### Batch Mode { #running-batch }
 
 You can also submit your ANSYS job to the batch nodes (compute nodes) on TACC resources. To do so, first make sure that the ANSYS module has been loaded, and then launch your ANSYS programs as shown in the sample Frontera job script below.
 
@@ -95,7 +95,7 @@ To obtain the correct `Your-ANSYS-COMMAND-HERE`, launch the ANSYS GUI used in in
 
 Other ANSYS binaries, e.g. Aqwa, CFX, Fluent, can be found at `/home1/apps/ANSYS/2023R2/v232`.
 	
-#### [Table 2. Binaries Location](#table2) { #table2 }
+#### Table 2. Binaries Location { #table2 }
 
 <table border="1" cellpadding="5" cellspacing="3">
 	<tr>

@@ -4,7 +4,7 @@
 
 Collaborators on the same project/allocation often wish to share code, data or other project files with each other, but not necessarily with the world. Users with Educational allocations may wish to have a repository accessible to their students. This page will instruct allocation managers and their delegates how to set up a project workspace that is accessible only to users in the same allocation. 
 
-## [TACC, UNIX groups and Project Numbers](#taccgroups) { #taccgroups }
+## TACC, UNIX groups and Project Numbers { #taccgroups }
 
 All TACC system users are organized into UNIX "groups", collections of users who typically share the same permissions: read, write, execute or some combination thereof, including none, on a set of files or directories. Groups and group membership are created and assigned by a TACC system administrator upon user account creation. A user may belong to many groups but a file or directory is owned by only one owner and one group. For files and directories to be shared among a collection of users: 
 
@@ -13,7 +13,7 @@ All TACC system users are organized into UNIX "groups", collections of users who
 
 At TACC, users assigned to the same allocated project typically belong to the same UNIX group. This group number will (usually) correspond directly to the project/allocation number. 
 
-## [Determine Project's GID](#projectgid) { #projectgid }
+## Determine Project's GID { #projectgid }
 
 To determine your project's UNIX group number (GID), log on to your TACC Dashboard and go to [Projects and Allocations][TACCALLOCATIONS].  Click on the "Project Detail" button to view the group number:
 
@@ -24,7 +24,7 @@ In [Figure 1.](#figure1) below, example project "UserServStaff" has Unix group I
 <figcaption>Figure 1. Project's Unix Group Number</figcaption></figure>
 
 
-## [Determine your Default GID](#defaultgid) { #defaultgid }
+## Determine your Default GID { #defaultgid }
 
 Now that you know your project's GID, you can begin changing permissions to create a common shared file space.  
 The UNIX command `groups` displays all groups a user belongs to:
@@ -65,7 +65,7 @@ Now all files created by you will belong to the project's group and you can proc
 	In the above output the file `myfile` is owned by user `slindsey` and belongs to the `G-40300` group. This file's permissions are set to read and write, `rw`, for the owner, `slindsey`, only.
 
 
-## [Create a Shared Project Workspace](#workspace) { #workspace }
+## Create a Shared Project Workspace { #workspace }
 
 It is not possible to make a shared, writable directory under a user's `$HOME` directory and the `$SCRATCH` file system is subject to periodic purging. Therefore, TACC staff strongly recommends placing all files to be shared in the top level of the user's area of the `/work` filesystem, defined in the `$STOCKYARD` environment variable. This new shared directory will be accessible only to members of the unix group and by extension the project members.
 
@@ -125,7 +125,7 @@ Project members will now have read and write, or read-only access to this direct
 		login1$ set umask 027
 
 <!--
-## [Adding users to TACC Projects](#addusers) { #addusers }
+## Adding users to TACC Projects { #addusers }
 
 Allocation Managers can manage project membership via the [TACC User Portal][TACCUSERPORTAL] under Allocations. 
 
@@ -135,7 +135,7 @@ Allocation Managers can manage project membership via the [TACC User Portal][TAC
 
 -->
 
-## [References](#refs) { #refs }
+## References { #refs }
 
 * [Manage Permissions with Access Control Lists](../../tutorials/acls)
 * Consult the UNIX `man` pages for more information on the `chmod`, `chgrp`, `umask`, `groups` and `chgrp` commands.

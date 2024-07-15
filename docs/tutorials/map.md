@@ -3,7 +3,7 @@
 
 [Arm MAP](https://developer.arm.com/tools-and-software/server-and-hpc/debug-and-profile/arm-forge/arm-map) is a profiler for parallel, multithreaded or single threaded C, C++, Fortran and F90 codes. MAP provides in-depth runtime analysis and bottleneck pinpointing to the source code line. MAP is available on all TACC compute resources. Use the MAP Profiler with the [DDT Debugger](../../tutorials/ddt) to develop and analyze your HPC applications. 
 
-## [Set up Profiling Environment](#env) { #env }
+## Set up Profiling Environment { #env }
 
 Before running MAP, the application code must be compiled with the `-g` option as shown below:
 
@@ -98,7 +98,7 @@ Follow these steps to set up your profiling environment on Frontera, Stampede2, 
 	<img alt="figure6" src="../imgs/MAP-6.png">
 	<figcaption></figcaption></figure>
 
-## [Running MAP](#running) { #running }
+## Running MAP { #running }
 
 Once your job is launched by the SLURM scheduler and starts to run, the MAP window will switch to show stdout/stderr.  At this point, you can also stop execution of the program to analyze the collected profiling data.
 
@@ -112,7 +112,7 @@ After your code completes, MAP will run an analysis of the profiling data collec
 <img alt="figure8" src="../imgs/MAP-8.png">
 <figcaption></figcaption></figure>
 
-## [MAP with Reverse Connect](#reverse) { #reverse }
+## MAP with Reverse Connect { #reverse }
 
 By starting MAP from a login node you let it use X11 graphics, which can be slow. Using a VNC connection or the visualization portal is faster, but has its own annoyances. Another way to use MAP is through a MAP's Remote Client using "reverse connect". The remote client is a program running entirely on your local machine, and the reverse connection means that the client is contacted by the MAP program on the cluster, rather than the other way around.
 
@@ -146,7 +146,7 @@ By starting MAP from a login node you let it use X11 graphics, which can be slow
 
 	**Your MAP session will now use the remote client.**
 
-## [References](#refs) { #refs }
+## References { #refs }
 
 * [DDT Debugger](../../tutorials/ddt)
 * [MAP user guide](https://developer.arm.com/docs/101136/2003)

@@ -1,4 +1,4 @@
-## [Software](#software) { #software }
+## Software { #software }
 
 As of January 17, 2023, the following software modules are currently installed on Maverick2. You can discover already installed software using TACC's [Software Search](https://www.tacc.utexas.edu/use-tacc/software-list/) tool or via `module` commands e.g., `module spider`, `module avail` to retrieve the most up-to-date listing.
 
@@ -44,14 +44,14 @@ Users must provide their own license for commercial packages. TACC will work on 
 
 You are welcome to install packages in your own `$HOME` or `$WORK` directories. No super-user privileges are needed, simply use the `--prefix` option when configuring then making the package.
 
-### [Deep Learning Packages](#software-ml) { #software-ml }
+### Deep Learning Packages { #software-ml }
 
 See: [Tensorflow at TACC](../../software/tensorflow)
 
 
 See the [Remote Desktop Access at TACC][TACCREMOTEDESKTOPACCESS] tutorial to set up a VNC or DCV connection.
 
-### [Building Software](#software-building) { #software-building }
+### Building Software { #software-building }
 
 Like Stampede2, Maverick2's default programming environment is based on the Intel compiler and Intel MPI library.  For compiling MPI codes, the familiar commands `mpicc`, `mpicxx`, `mpif90` and `mpif77` are available. Also, the compilers `icc`, `icpc`, and `ifort` are directly accessible. To access the most recent versions of GCC, load the `gcc` module.
 

@@ -11,18 +11,18 @@ Any user with an allocation on one of TACC's HPC Systems, e.g. Frontera, Stamped
 * RStudio
 
 
-## [Accessing the Portal](#access) { #access }
+## Accessing the Portal { #access }
 
 The [TACC Analysis Portal][TACCANALYSISPORTAL] is available to users with an allocation on any TACC HPC resource. Log in to TAP using the same username and password that you use to access the TACC User Portal. Once you've logged in you'll be directed to the Home Screen where you can begin scheduling jobs.
 
 <figure id="figure1"><img alt="" src="../imgs/1TAP.png"><br />
 <figcaption>Figure 1. TAP Home Screen</figcaption></figure>
 
-## [Job Management](#jobmanagement) { #jobmanagement }
+## Job Management { #jobmanagement }
 
 Submit, end and resubmit jobs on the TACC Analysis Portal.
 
-### [Submitting a Job using TAP](#jobmanagement-submit) { #jobmanagement-submit }
+### Submitting a Job using TAP { #jobmanagement-submit }
 
 A TACC Analysis Portal job requires the following inputs:  <span style="background-color:#FF7F00; color:#FFFFFF;">(&nbsp;1&nbsp;)</span>
 
@@ -47,18 +47,18 @@ After specifying the job inputs, select the **Submit** <span style="background-c
 Click the "Check Status" button to update the page with the latest job status. The diagnostic information will include an estimated start time for the job if Slurm is able to provide one. Jobs submitted to development queues typically start running more quickly than jobs submitted to other queues. 
 
 
-### [Ending a Submitted Job](#jobmanagement-end) { #jobmanagement-end }
+### Ending a Submitted Job { #jobmanagement-end }
 
 When you are finished with your job, you can end your job using the **End** <span style="background-color:#FF7F00; color:#FFFFFF;">(&nbsp;4&nbsp;)</span>&nbsp; button on the TAP Home Screen page or on the Job Status page. Note that closing the browser window will not end the job. Also note that if you end the job from within the application (for example, pressing "Enter" in the red xterm in a DCV or VNC job), TAP will still show the job as running until you check status for the job, click "End Job" within TAP, or the requested end time of the job is reached.
 
-### [Resubmitting a Past Job](#jobmanagement-resubmit) { #jobmanagement-resubmit }
+### Resubmitting a Past Job { #jobmanagement-resubmit }
 
 You can resubmit a past job using the **Resubmit** <span style="background-color:#FF7F00; color:#FFFFFF;">(&nbsp;7&nbsp;)</span>&nbsp;  button from the Home Screen page. The job will be submitted with the same inputs used for the past job, including any optional inputs. Select **Details**  <span style="background-color:#FF7F00; color:#FFFFFF;">(&nbsp;6&nbsp;)</span>&nbsp;  to see the inputs that were specified for the past job.
 
 <figure id="figure3"><img alt="" src="../imgs/3TAP.png" style="width:50%;">
 <figcaption>Figure 3. TAP Job Details</figcaption></figure>
 
-## [Utilities](#utilities) { #utilities }
+## Utilities { #utilities }
 
 TAP provides certain useful diagnostic and logistic utilities on the Utilities page. Access the Utilities page by selecting the **Utilities**  <span style="background-color:#FF7F00; color:#FFFFFF;">(&nbsp;9&nbsp;)</span>&nbsp;  button on the Home Screen page.
 
@@ -66,7 +66,7 @@ TAP provides certain useful diagnostic and logistic utilities on the Utilities p
 <figcaption>Figure 4. TAP Utilities</figcaption></figure>
 
 
-### [Obtaining TACC Account Status](#utilities-status) { #utilities-status }
+### Obtaining TACC Account Status { #utilities-status }
 
 The Status section provides system information and diagnostics. "Check TACC Info" will show account balances and filesystem usage for the selected system. "Run Sanity Tool" performs a series of sanity checks to catch common account issues that can impact TAP jobs (for example, being over filesystem quota on your `$HOME` directory).
 Configuring Jupyter Notebook
@@ -75,7 +75,7 @@ The Utilities section provides access to several common actions related to Jupyt
 
 "Link `$WORK` from `$HOME`" and "Link `$SCRATCH` from `$HOME`" create symbolic links in your `$HOME` directory so that you can access `$WORK` and `$SCRATCH` from within a Jupyter Notebook. TAP launches Jupyter Notebooks from within your `$HOME` directory, so these other file systems are not reachable without such a linking mechanism. The links will show up as "WORK" and "SCRATCH" in the Jupyter file browser. You only need to create these links once and they will remain available for all future jobs.
 
-### [Setting a Remote Desktop to Full Screen Mode](#utilities-fullscreen) { #utilities-fullscreen }
+### Setting a Remote Desktop to Full Screen Mode { #utilities-fullscreen }
 
 Both DCV and VNC support full-screen mode. DCV will automatically adjust the desktop resolution to use the full screen, whereas VNC will keep the original desktop resolution within the full-screen view.
 
@@ -90,9 +90,9 @@ In VNC, open the control bar on the left side of the screen, then click the Full
 <figure id="figure6"><img alt="" src="../imgs/6TAP.png"><br />
 <figcaption>Figure 6. VNC Full Screen</figcaption></figure>
 
-## [Troubleshooting](#troubleshooting) { #troubleshooting }
+## Troubleshooting { #troubleshooting }
 
-### [No Allocation Available](#troubleshooting-noallocation) { #troubleshooting-noallocation }
+### No Allocation Available { #troubleshooting-noallocation }
 
 If TAP cannot find an allocation for your account on a supported system, you will see the message below. If the issue persists, [create a ticket][HELPDESK] in the TACC Consulting System.
 
@@ -100,7 +100,7 @@ If TAP cannot find an allocation for your account on a supported system, you wil
 <figcaption>Figure 7. TAP Error: No Allocation</figcaption></figure>
 
 
-### [Job Submission returns PENDING](#troubleshooting-pending) { #troubleshooting-pending }
+### Job Submission returns PENDING { #troubleshooting-pending }
 
 If the job does not start immediately, TAP will load a status page with some diagnostic information. If the job status is "PENDING", the job was successfully submitted and has not yet started running. If Slurm can predict when the job will start, that information will be in the `squeue --start` output in the message window. Clicking the "Check Status" button will update the job status. When the job has started, TAP will show a "Connect" button.
 
@@ -108,7 +108,7 @@ If the job does not start immediately, TAP will load a status page with some dia
 <figcaption>Figure 8. TAP Error: PENDING</figcaption></figure>
 
 
-### [Job Submission returns ERROR](#troubleshooting-error) { #troubleshooting-error }
+### Job Submission returns ERROR { #troubleshooting-error }
 
 If the TAP status page shows that the job status is "ERROR", then there was an issue with the Slurm submission, and the message box will contain details. If you have difficulty interpreting the error message or resolving the issue, please create a ticket in the TACC Consulting System and include the TAP message.
 

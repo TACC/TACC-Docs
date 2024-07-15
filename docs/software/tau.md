@@ -13,13 +13,13 @@ login1$ env | grep TAU	#display package-specific environment variables
 login1$ module help tau	#basic operations & features
 ```
 
-## [Using TAU](#tacc) { #tacc }
+## Using TAU { #tacc }
 
 1. [Instrument your code by recompiling with TAU scripts](#instrument)
 2. [Launch your new executable](#launch) either interactively through an `idev` session or through a batch job.
 3. [Process the TAU output](#process)
 
-### [1. Instrumenting your Code](#using-instrument) { #using-instrument }
+### 1. Instrumenting your Code { #using-instrument }
 
 To use TAU, you need to recompile your code using some TAU compiler wrappers (scripts). Behind the scenes these scripts do a source-to-source instrumentation phase, followed by a regular compilation. The TAU compilation scripts are:
 
@@ -59,7 +59,7 @@ Behind the scenes, compiler wrappers create and execute a simple makefile that i
 
 
 
-### [2. Running](#launch) { #launch }
+### 2. Running { #launch }
 
 After instrumentation/compilation you have a regular binary that you can run, with MPI or OpenMP settings as needed. Then, launch an interactive or batch job, using this new binary. Control and configure TAU output with the following environment variables:
 
@@ -104,7 +104,7 @@ ibrun myprogram
 Then run your program as normal.  Once execution finishes, you can process and examine the TAU profile and/or tracing output.
 
 
-### [3. Process program output](#process) { #process }
+### 3. Process program output { #process }
 
 After your program runs you can process TAU's output to do two things: view statistics and analyze trace data.  The TAU package includes two visualization tools, ParaProf, and Jumpshot.  See [Remote Desktop Access at TACC][TACCREMOTEDESKTOPACCESS] for instructions on setting up visual connections to TACC resources.
 
@@ -140,7 +140,7 @@ After your program runs you can process TAU's output to do two things: view stat
 		<figcaption>Figure 2. Sample tracing output courtesy of <a href="http://www.mcs.anl.gov/research/projects/perfvis/pic/js4_timeline_preview_zoomed.png">Argonne National Laboratory</a></figcaption></figure>
 
 
-## [References](#refs) { #refs }
+## References { #refs }
 
 * [TAU homepage](https://www.cs.uoregon.edu/research/tau/home.php)
 * [TAU Documentation](https://www.cs.uoregon.edu/research/tau/docs.php)
