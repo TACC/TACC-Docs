@@ -12,17 +12,6 @@
 
 
 
-/* To not use link style for a header link */
-/* TODO: Create a link icon that:
-         - appears on hover over heading
-         - turns link color on hover over icon
-         - has TODO comment that says to migrate it to Core-Styles */
-:is(h1, h2, h3, h4, h5, h6) a {
-  color: inherit;
-}
-
-
-
 /* To support .c-card on mobile (which Core-Styles does not do) */
 
 /* To add field of color in neg. space beside short image */
@@ -639,4 +628,55 @@ pre.job-script code {
     border: var(--global-border-width--normal) solid var(--global-color-primary--light);
     color: var(--global-color-primary--xx-dark);
   }
+}
+
+
+
+/* HEADING PERMALINKS */
+/* RFE: Support via Core-Styles class */
+
+.headerlink {
+  text-underline-position: under;
+}
+
+@supports selector(:has(*)) {
+
+  /* To move permalink left of the heading */
+  /* NOTE: Unnecessary if MkDocs config sets `permalink_leading: true` */
+  /* https://github.com/mkdocs/mkdocs/blob/1.5.0/pyproject.toml#L39 */
+  :has(> .headerlink) {
+    position: relative;
+  }
+  .headerlink {
+    position: absolute;
+
+    --space: 0.5em;
+    --offset: calc( 1ch + var(--space) );
+
+    left: 0;
+    padding-right: var(--space);
+    translate: calc( -1 * var(--offset) );
+  }
+
+  /* To use link color only on hover over it or heading */
+  .headerlink:not(:hover, :hover > *) {
+    color: inherit;
+  }
+  /* To reduce link visibility except on hover */
+  .headerlink:not(:hover) {
+    opacity: 0.5;
+  }
+  /* To increase link visibility when it has accent color */
+  /* FAQ: Because accent color is lighter than heading color */
+  .headerlink:not(:hover):is(:hover > *) {
+    opacity: 0.75;
+  }
+
+}
+@supports not selector(:has(*)) {
+
+  .headerlink {
+    margin-left: 0.5ch;
+  }
+
 }
