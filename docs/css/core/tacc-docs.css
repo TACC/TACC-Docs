@@ -649,22 +649,22 @@ pre.job-script code {
   }
   .headerlink {
     position: absolute;
-    width: 100%;
-  }
 
-  /* To move permalink into the document margin */
-  /* NOTE: Only use if headerlink is at the beginning of the heading */
-  .headerlink {
-    --offset: calc( 1ch + 0.5em );
+    --space: 0.5em;
+    --offset: calc( 1ch + var(--space) );
 
     left: 0;
-    padding-right: var(--offset);
+    padding-right: var(--space);
     translate: calc( -1 * var(--offset) );
   }
 
-  /* To use link color only on hover over it or heading */
+  /* To reduce link visibility except on hover over it or heading */
   .headerlink:not(:hover, :hover > *) {
     color: inherit;
+  }
+  /* To use link color only on hover */
+  .headerlink:not(:hover) {
+    opacity: 0.5;
   }
 
   /* To underline only when active */
