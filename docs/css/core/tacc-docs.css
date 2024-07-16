@@ -653,6 +653,7 @@ pre.job-script code {
     --space: 0.5em;
     --offset: calc( 1ch + var(--space) );
 
+    top: 0;
     left: 0;
     padding-right: var(--space);
     translate: calc( -1 * var(--offset) );
