@@ -636,12 +636,13 @@ pre.job-script code {
 /* RFE: Support via Core-Styles class */
 
 .headerlink {
-  text-underline-position: under;
+  font-size: var(--global-font-size--x-large);
+  text-decoration: none;
 }
 
 @supports selector(:has(*)) {
 
-  /* To move permalink left of the heading */
+  /* To reposition permalink */
   /* NOTE: Unnecessary if MkDocs config sets `permalink_leading: true` */
   /* https://github.com/mkdocs/mkdocs/blob/1.5.0/pyproject.toml#L39 */
   :has(> .headerlink) {
@@ -650,27 +651,32 @@ pre.job-script code {
   .headerlink {
     position: absolute;
 
-    --space: 0.5em;
-    --offset: calc( 1ch + var(--space) );
+    /* To add space between it and heading */
+    --x-space: 0.5em;
+    padding-right: var(--x-space);
 
-    top: 0;
+    /* To move to the left of the heading */
     left: 0;
-    padding-right: var(--space);
-    translate: calc( -1 * var(--offset) );
+    --x-offset: calc( 1ch + var(--x-space) );
+
+    /* To vertically center */
+    top: 50%;
+    --y-offset: 50%;
+
+    transform: translate(
+      calc( -1 * var(--x-offset)),
+      calc( -1 * var(--y-offset))
+    );
   }
 
-  /* To use link color only on hover over it or heading */
-  .headerlink:not(:hover, :hover > *) {
-    color: inherit;
-  }
-  /* To reduce link visibility except on hover */
+  /* To use link color only on hover, otherwise use pale text color */
   .headerlink:not(:hover) {
+    color: inherit;
     opacity: 0.5;
   }
-  /* To increase link visibility when it has accent color */
-  /* FAQ: Because accent color is lighter than heading color */
-  .headerlink:not(:hover):is(:hover > *) {
-    opacity: 0.75;
+  /* To hide except on hover over it or heading */
+  .headerlink:not(:hover, :hover > *) {
+    opacity: 0;
   }
 
 }
