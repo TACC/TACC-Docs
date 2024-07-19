@@ -639,9 +639,6 @@ pre.job-script code {
   font-size: var(--global-font-size--x-large);
   text-decoration: none;
 }
-:is(h4, h5, h6) .headerlink {
-  display: none;
-}
 
 @supports selector(:has(*)) {
 
