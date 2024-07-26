@@ -170,7 +170,9 @@
     top: 0;
     left: 0;
     bottom: 0;
-    margin-inline: var(--button-margin);
+
+    box-sizing: content-box;
+    padding-inline: var(--button-margin);
     padding-block: var(--link-pad-vert);
     width: var(--button-width);
     text-align: center;
