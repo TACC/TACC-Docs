@@ -1,0 +1,56 @@
+/* mkdocs.base.yml: theme: highlightjs, hljs_aliases */
+/* https://www.mkdocs.org/user-guide/choosing-your-theme/#readthedocs */
+
+/* To change style for each type of code block (HighlightJS or TACC) */
+pre.cmd-line code,
+code.language-cmd-line {
+  background: var(--global-color-primary--x-light);
+}
+pre.job-script code,
+code.language-job-script {
+  background: var(--global-color-accent--xxx-light);
+}
+pre.syntax code,
+code.language-syntax {
+  background: var(--global-color-tertiary--xx-light);
+}
+@supports selector(:has(*)) {
+  /* To support code blocks that are not using <code> (yet) */
+  pre.cmd-line:not(:has(code)) {
+    background: var(--global-color-primary--x-light);
+  }
+  pre.job-script:not(:has(code)) {
+    background: var(--global-color-accent--xxx-light);
+  }
+  pre.syntax:not(:has(code)) {
+    background: var(--global-color-tertiary--xx-light);
+  }
+}
+
+/* To disuade users from blind copy/paste-use of syntax */
+pre.syntax code,
+code.language-syntax {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* To replicate missing styles on TACC code blocks */
+pre.cmd-line code,
+pre.job-script code {
+  /* To replicate HighlightJS code blocks */
+  overflow-x: auto;
+}
+@supports selector(:has(*)) {
+  /* To support code blocks that are not using <code> (yet) */
+  pre.cmd-line:not(:has(code)),
+  pre.job-script:not(:has(code)) {
+    /* To replicate HighlightJS code blocks */
+    overflow-x: auto;
+
+    /* To replicate Core Styles code blocks */
+    display: inline-block;
+    padding: var(--global-space--x-small) var(--global-space--small);
+    border: var(--global-border-width--normal) solid var(--global-color-primary--light);
+    color: var(--global-color-primary--xx-dark);
+  }
+}

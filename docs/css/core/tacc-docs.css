@@ -1,689 +1,515 @@
-/* Styles specific to TACC-Docs */
+/* TACC-specific customization of MkDocs' ReadTheDocs theme */
+/* https://github.com/TACC/TACC-Docs */
 /* NOTE: Some of this could be migrated to core-styles.docs.css */
 
-@layer project {
+@layer cosmetic {
+
+  /* SIDE NAV */
+  /* https://github.com/mkdocs/mkdocs/blob/1.4.2/mkdocs/themes/readthedocs/css/theme.css */
 
 
 
-
-
-/* CORE STYLES */
-/* https://github.com/TACC/Core-Styles/blob/main/src/lib/_imports/core-styles.base.css */
-
-
-
-/* To support .c-card on mobile (which Core-Styles does not do) */
-
-/* To add field of color in neg. space beside short image */
-/* FAQ: This field is only possibly shown:
-        - at certain screen widths
-        - for certain image dimensions */
-@media (576px <= width < 768px), (992px < width) {
-  [class*="card--image-"] {
-    overflow: hidden; /* hide box-shadow that would bleed outside of card */
+  /* To prevent decresing font size in nav */
+  .wy-menu-vertical a,
+  .wy-menu-vertical p.caption {
+    font-size: var(--global-font-size--small);
   }
-  .c-card--image-top > img,
-  .c-card--image-bottom > img {
-    box-shadow: 25vw 0 white; /* for short image on narrow screen */
+
+  /* To undo capitalization on nav headers */
+  .wy-menu-vertical p.caption {
+    text-transform: unset;
   }
-  .c-card--image-left > img,
-  .c-card--image-right > img {
-    box-shadow: 0 10vw black; /* for narrow image on wide screen */
+
+
+
+  /* To set automatic size for an SVG logo */
+
+  /* FAQ: The `img` in selectors is removed so `svg` is also supported */
+  /* NOTE: Selectors from theme.css */
+  .wy-side-nav-search .wy-dropdown > a /*img*/.logo,
+  .wy-side-nav-search > a /*img*/.logo {
+    width: 100%;
+    padding: unset;
   }
-}
 
-/* To remove side-by-side layout when image becomes too small */
-@media (768px <= width < 992px), (width < 576px) {
-  .c-card--image-left,
-  .c-card--image-right {
-    padding: unset; /* overwrite .c-card--image-… */
-    display: block; /* overwrite .c-card--image-… */
+
+
+  /* To recolor SVG logo */
+
+  /* CAVEAT: Assumes a monochrome design */
+  svg.logo [fill]:not([fill="none"]) {
+    fill: var(--global-color-primary--xx-dark);
   }
-  .c-card--image-left > img,
-  .c-card--image-right > img {
-    margin-block: unset; /* undo .c-card--image-… */
+
+
+
+  /* To define re-usable spacing */
+
+  .wy-nav-side {
+    --pad-horz: 25px; /* NOTE: design is 24.5px (left) and 11.5px (right) */
+    --link-pad-vert: 0.375em; /* NOTE: design is 25px */
+    --link-pad-horz: 25px; /* NOTE: dev tweaked until everyone said ok */
   }
-  .c-card--image-left > p,
-  .c-card--image-right > p {
-    padding: calc( var(--global-space--pattern-pad) / 2);
-    margin: 0; /* overwrite core-styles, bootstrap, ReadTheDocs */
-  }
-}
 
 
 
+  /* To re-color navigation */
 
-
-/* SIDE NAV */
-/* https://github.com/mkdocs/mkdocs/blob/1.4.2/mkdocs/themes/readthedocs/css/theme.css */
-
-
-
-/* To prevent decresing font size in nav */
-.wy-menu-vertical a,
-.wy-menu-vertical p.caption {
-  font-size: var(--global-font-size--small);
-}
-
-/* To undo capitalization on nav headers */
-.wy-menu-vertical p.caption {
-  text-transform: unset;
-}
-
-
-
-/* To set automatic size for an SVG logo */
-
-/* FAQ: The `img` in selectors is removed so `svg` is also supported */
-/* NOTE: Selectors from theme.css */
-.wy-side-nav-search .wy-dropdown > a /*img*/.logo,
-.wy-side-nav-search > a /*img*/.logo {
-  width: 100%;
-  padding: unset;
-}
-
-
-
-/* To recolor SVG logo */
-
-/* CAVEAT: Assumes a monochrome design */
-svg.logo [fill]:not([fill="none"]) {
-  fill: var(--global-color-primary--xx-dark);
-}
-
-
-
-/* To define re-usable spacing */
-
-.wy-nav-side {
-  --pad-horz: 25px; /* NOTE: design is 24.5px (left) and 11.5px (right) */
-  --link-pad-vert: 0.375em; /* NOTE: design is 25px */
-  --link-pad-horz: 25px; /* NOTE: dev tweaked until everyone said ok */
-}
-
-
-
-/* To re-color navigation */
-
-.wy-nav-side {
-  color: unset;
-  background: var(--global-color-primary--x-light);
-  border-right: var(--global-border-width--normal) solid var(--global-color-primary--dark);
-}
-.wy-menu-vertical * {
-  color: unset;
-}
-.wy-menu-vertical a:hover {
-  background: #e3e3e3; /* copied from .wy-menu-vertical li.current */;
-}
-.wy-menu-vertical li.current {
-  background: unset;
-}
-.wy-menu-vertical li.current a {
-  border-right: unset;
-}
-.wy-menu-vertical li.toctree-l1.current > a {
-  border-bottom: unset;
-  border-top: unset;
-}
-.wy-menu-vertical li.toctree-l2.current > a,
-.wy-menu-vertical li.toctree-l2.current li.toctree-l3 > a {
-  background: unset;
-}
-.wy-menu-vertical li.toctree-l3.current > a,
-.wy-menu-vertical li.toctree-l3.current li.toctree-l4 > a {
-  background: unset;
-}
-/* FAQ: The `:not(.current)` (added by TACC) adds clarity and specificity */
-.wy-menu-vertical a:not(.current)
-/* Do not use (but show for reference) redundant selectors */
-/* FAQ: The selectors are redundant because of @layer project specificity *//*
-.wy-menu-vertical li.current a
-.wy-menu-vertical li ul li a
-*/ {
-  color: var(--global-color-primary--x-dark);
-  font-weight: var(--medium);
-}
-.wy-menu-vertical a.current {
-  color: var(--global-color-primary--xxx-dark);
-  font-weight: var(--bold);
-}
-.wy-menu-vertical li.current > a,
-.wy-menu-vertical li.on a {
-    background: unset; /* undo theme.css */
-}
-
-
-
-/* To separate sections of navigation */
-
-.wy-menu-vertical p.caption {
-  color: var(--global-color-primary--xxx-dark);
-}
-.wy-menu-vertical p.caption:not(:first-child) {
-  border-top: var(--global-border-width--normal) solid var(--global-color-primary--dark);
-  margin-top: 20px; /* NOTE: dsign is 18.75px */
-  padding-top: 20px; /* NOTE: dsign is 19.5px */
-}
-
-
-
-/* To adapt nav layout to design */
-
-.wy-menu-vertical {
-  padding-inline: var(--pad-horz);
-  padding-bottom: 25px; /* NOTE: developer addition */
-}
-.wy-menu-vertical a,
-/* (separate ruleset in `theme.css`) */
-.wy-menu-vertical li.current > a,
-.wy-menu-vertical li.on a,
-/* (separate ruleset in `theme.css`) */
-.wy-menu-vertical li.current a {
-  padding: var(--link-pad-vert) var(--link-pad-horz); /* overwrite theme.css */
-}
-.wy-menu-vertical li.on ul,
-.wy-menu-vertical li.current.has-list ul {
-  padding-left: var(--link-pad-horz);
-  padding-bottom: 10px;
-}
-/* .wy-menu-vertical header, *//* NOTE: not seen in markup yet */
-.wy-menu-vertical p.caption {
-  height: unset; /* undo theme.css */
-  line-height: unset; /* undo theme.css */
-  margin: 0 0 15px; /* NOTE: design is 13px */
-  padding-left: var(--link-pad-horz);
-}
-
-
-
-/* To position open/close buttons */
-/* To make whole link clickable, not just button */
-
-.wy-menu-vertical {
-  --button-width: 1ch; /* estimate, based on icon (e.g. ▾, ▸) */
-  --button-margin: 0.5em;
-  --button-buffer: calc( var(--button-margin) * 2 );
-  --button-space: calc( var(--button-width) + var(--button-buffer) );
-}
-.wy-menu-vertical li a {
-  position: relative; /* support `position: absolute` child */
-}
-.wy-menu-vertical li:not(.has-list) a button.toctree-expand {
-  display: none;
-}
-.wy-menu-vertical li a .fa,
-.wy-menu-vertical li.has-list a button.toctree-expand {
-  margin-left: unset; /* undo theme.css */
-
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  margin-inline: var(--button-margin);
-  padding-block: var(--link-pad-vert);
-  width: var(--button-width);
-  text-align: center;
-}
-.wy-menu-vertical li.has-list a,
-.wy-menu-vertical li a:not(.internal) {
-  padding-left: var(--button-space);
-}
-.wy-menu-vertical li a .fa::before,
-.wy-menu-vertical li button.toctree-expand::before {
-  /* To move icon upward, inline with first line of mult-line text */
-  height: 100%;
-}
-.wy-menu-vertical li a .fa::before {
-  /* To move icon downward, vertically-aligned center with first line of text */
-  transform: translateY(0.125em);
-}
-
-
-
-/* To hide sidebar bottom "« Previous" and "Next »" */
-
-/* NOTE: This also hides repo link, but that already exists on every page */
-.rst-versions {
-  display: none;
-}
-/* Remove extra spce for `.rst-versions` */
-.wy-nav-side {
-  padding-bottom: unset; /* undo theme_extra.css and theme.css */
-}
-
-
-
-/* To adapt search to design */
-
-.wy-side-nav-search {
-  padding-block: calc( var(--pad-horz) + var(--link-pad-horz) );
-  padding-inline: unset; /* undo theme.css */
-
-  margin-bottom: unset; /* undo theme.css */
-  background-color: unset; /* undo theme.css */
-}
-.wy-side-nav-search > * {
-  padding-inline: calc( var(--pad-horz) + var(--link-pad-horz) );
-}
-.wy-side-nav-search .nav-name {
-  font-family: var(--global-font-family--sans);
-  font-size: var(--global-font-size--large);
-  color: var(--global-color-primary--x-dark);
-}
-
-/* To remove space (margin, padding, whitespace) around logo */
-.wy-side-nav-search a,
-.wy-side-nav-search svg.logo {
-  display: block;
-}
-.wy-side-nav-search > a:has(.logo) {
-  padding-block: unset; /* undo theme.css */
-}
-
-/* To demarcate link to CMS */
-.wy-side-nav-search .cms-link {
-  font-size: var(--global-font-size--small);
-
-  padding-top: unset; /* undo theme.css */
-
-  /* To add border and space bewteen logo and search */
-  padding-bottom: 15px; /* NOTE: design is 15.5px */
-  border-bottom: var(--global-border-width--normal) solid var(--global-color-primary--x-dark);
-  margin-bottom: 25px; /* NOTE: design is 22.5px */
-}
-
-.wy-side-nav-search .icon-home {
-  display: none;
-}
-
-.wy-side-nav-search input[type=search] /* TACC */,
-.wy-side-nav-search input[type=text] /* orignal */ {
-  width: unset; /* undo theme.css *//* .wy-form does this via display: grid */
-  border: var(--global-border-width--normal) solid var(--global-color-primary--light);
-  border-radius: 5px;
-  font-size: unset; /* undo theme.css */
-  box-shadow: unset; /* undo theme.css */
-  transition: unset; /* undo theme.css */
-}
-
-.wy-form {
-  display: grid;
-}
-
-
-
-/* To change icons */
-
-.wy-menu-vertical li:not(.on, .current) button.toctree-expand::before {
-  content: "\f0da";
-}
-.wy-menu-vertical li.current > a button.toctree-expand::before,
-.wy-menu-vertical li.on a button.toctree-expand::before {
-  content: "\f0d7";
-}
-
-
-
-
-
-/* BREADCRUMBS */
-
-/* To hide dangling separator */
-/* The `.wy-breadcrumbs-aside` is where repository links would show */
-/* https://github.com/mkdocs/mkdocs/blob/1.4.2/mkdocs/themes/readthedocs/breadcrumbs.html#L14-L30 */
-.rst-content [role="navigation"] li.wy-breadcrumbs-aside {
-  float: right;
-}
-.rst-content [role="navigation"] li.wy-breadcrumbs-aside::before {
-  content: unset;
-}
-
-/* To hide the <hr> from ReadTheDocs theme markup */
-.rst-content [role="navigation"] hr {
-  display: none;
-}
-
-/* To hide the ≫ from ReadTheDocs theme markup */
-.rst-content [role="navigation"] li::before {
-  margin-left: -1.25ch;
-  background-color: var(--global-color-primary--xx-light);
-}
-
-/* To hide link to home */
-/* FAQ: The link is not in design (cuz it is redundant cuz side nav has link) */
-.rst-content [role="navigation"] li:first-child {
-  display: none;
-}
-.rst-content [role="navigation"] li:nth-child(2)::before {
-  content: unset;
-}
-
-/* To bold last child */
-/* FAQ: The core-styles.docs.css bolds :last-child, but that does not work here,
-        because last list item is .wy-breadcrumbs-aside (used for repo links) */
-.rst-content [role="navigation"] li:nth-last-child(2) {
-  font-weight: var(--bold);
-}
-
-
-
-
-
-/* CONTENT */
-/* https://github.com/mkdocs/mkdocs/blob/1.4.2/mkdocs/themes/readthedocs/css/theme.css */
-
-
-
-/* To style text like an <h2> */
-/* FAQ: Design wants <h2> on index page, but it should NOT show in nav */
-/* TODO: Either, find a solution that does not involve "fake header" class */
-/* TODO: Or, support fake headers in Core (must then define margins) */
-.h2 {
-  /* Mimic browser */
-  display: block;
-  margin-block-start: 0.83em;
-  margin-block-end: 0.83em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
-
-  /* Mimic core-styles.docs */
-  font-size: var(--global-font-size--xx-large);
-  font-weight: var(--bold);
-}
-.h3 {
-  /* Mimic browser */
-  display: block;
-  margin-block-start: 1em;
-  margin-block-end: 1em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
-
-  /* Mimic core-styles.docs */
-  font-size: var(--global-font-size--x-large);
-  font-weight: var(--bold);
-}
-
-
-/* To ensure paragraph font size matches core-styles.docs.css */
-/* FAQ: If ineffectual, theme.css font size may match core-styles.docs.css */
-p {
-  font-size: inherit; /* overwrite theme.css */
-}
-
-
-
-/* To increase content width */
-.wy-nav-content {
-  max-width: 1200px;
-}
-
-
-
-/* To remove two-tone background */
-@media screen and (min-width: 1100px) {
-  .wy-nav-content-wrap {
-    background: #fcfcfc; /* mimic theme.css non-media query background */
-  }
-}
-
-
-
-/* To add space between messages & messages and messages & content */
-.admonition {
-  margin-block: 1em;
-}
-/* To remove empty paragraphs */
-/* SEE: /docs/code-examples.md */
-/* HELP: What markdown would avoid these? */
-.admonition p:empty {
-  display: none;
-}
-
-
-
-/* To add admonition icons */
-.admonition::before {
-  /* copied from .fa (only the active rules not overwritten by TACC) */
-  font-family: FontAwesome;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1;
-  text-decoration: inherit;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-}
-.admonition:is(.caution)::before { content: "\f071"; }
-.admonition:is(.important, .attention)::before { content: "\f12a"; }
-.admonition:is(.warning)::before { content: "\f00d"; }
-.admonition:is(.tip)::before { content: "\f0eb"; }
-.admonition:is(.note)::before { content: "\f040"; }
-.admonition:is(.hint)::before { content: "\f00c"; }
-.admonition:is(.error, .danger)::before { content: "\f00d"; }
-.admonition:is(.warning)::before {
-  color: transparent;
-  -webkit-text-stroke: var(--global-color-primary--xx-light) 2px;
-}
-
-
-
-/* To remove admonition title icon */
-.admonition-title::before { display: none; }
-
-
-
-/* To prevent figure image overflow */
-.rst-content figure {
-  max-width: 100%; /* mimics theme.css `.rst-content img` */
-}
-
-
-
-/* For edge-case headings */
-:is(h1, h2, h3, h4, h5, h6) > small,
-.understate:is(h1, h2, h3, h4, h5, h6) {
-    font-weight: normal;
-    margin-block: 0;
-}
-details > summary > :is(h1, h2, h3, h4, h5, h6) {
-    display: inline-block;
-}
-
-
-
-/* To add border around figures */
-figure {
-  border: var(--global-border--normal);
-}
-
-
-
-/* To prevent wrap of certain tags */
-u, /* "unarticulated" demarkation of phrases that should not wrap */
-code:not([class]):not(pre > *) /* free-form code lines should never wrap */ {
-  white-space: nowrap;
-}
-u {
-  text-decoration: none; /* undo browser default */
-}
-
-
-
-
-
-/* TABBED */
-/* https://github.com/TACC/Core-Styles/blob/main/src/lib/_imports/components/pymdownx--tabbed.css */
-
-/* To add Docs-specific styles */
-.tabbed-set {
-  border: var(--global-border-width--thick) solid var(--global-color-primary--dark);
-}
-
-/* To stretch tabs that just have a script */
-.tabbed-content > pre:only-child {
-  margin-inline: calc( -1 * var(--buffer) );
-  margin-block: unset; /* overwrite core-style.docs */
-}
-.tabbed-content > pre:only-child > code {
-  border: unset; /* overwrite core-style.docs */
-  padding: var(--buffer); /* overwrite core-style.docs */
-
-  width: 100%; /* overwrite core-style.docs */
-  box-sizing: border-box; /* so `width: 100%` does not overflow */
-}
-
-
-
-
-
-/* SEARCH */
-
-#mkdocs-search-results {
-  /* To mimic browser <h3> margin-block-start: 1em */
-  /* FAQ: 1em equals core-styles.docs h3 font size */
-  margin-top: var(--global-font-size--x-large);
-}
-
-
-
-
-
-/* FOOTER */
-
-.rst-content footer {
-  margin-top: 2em;
-}
-
-/* To hide unused space at bottom of index page */
-[data-page-name="index.md"] footer {
-  display: none; /* undo theme.css */
-}
-[data-page-name="index.md"] .wy-nav-content {
-  padding-bottom: 0; /* undo theme.css */
-}
-
-
-
-}
-
-
-
-
-
-/* OVERRIDE ANONYMOUS STYLES */
-/* To override anonymous (non-layered) styles e.g. highlightjs */
-
-
-
-/* CODE BLOCKS */
-
-/* To change style for each type of code block (HighlightJS or TACC) */
-pre.cmd-line code,
-code.language-cmd-line {
-  background: var(--global-color-primary--x-light);
-}
-pre.job-script code,
-code.language-job-script {
-  background: var(--global-color-accent--xxx-light);
-}
-pre.syntax code,
-code.language-syntax {
-  background: var(--global-color-tertiary--xx-light);
-}
-@supports selector(:has(*)) {
-  /* To support code blocks that are not using <code> (yet) */
-  pre.cmd-line:not(:has(code)) {
+  .wy-nav-side {
+    color: unset;
     background: var(--global-color-primary--x-light);
+    border-right: var(--global-border-width--normal) solid var(--global-color-primary--dark);
   }
-  pre.job-script:not(:has(code)) {
-    background: var(--global-color-accent--xxx-light);
+  .wy-menu-vertical * {
+    color: unset;
   }
-  pre.syntax:not(:has(code)) {
-    background: var(--global-color-tertiary--xx-light);
+  .wy-menu-vertical a:hover {
+    background: #e3e3e3; /* copied from .wy-menu-vertical li.current */;
   }
-}
-
-pre.syntax code,
-code.language-syntax {
-  -webkit-user-select: none;
-  user-select: none;
-}
-
-/* To replicate missing styles on TACC code blocks */
-pre.cmd-line code,
-pre.job-script code {
-  /* To replicate HighlightJS code blocks */
-  overflow-x: auto;
-}
-@supports selector(:has(*)) {
-  /* To support code blocks that are not using <code> (yet) */
-  pre.cmd-line:not(:has(code)),
-  pre.job-script:not(:has(code)) {
-    /* To replicate HighlightJS code blocks */
-    overflow-x: auto;
-
-    /* To replicate Core Styles code blocks */
-    display: inline-block;
-    padding: var(--global-space--x-small) var(--global-space--small);
-    border: var(--global-border-width--normal) solid var(--global-color-primary--light);
-    color: var(--global-color-primary--xx-dark);
+  .wy-menu-vertical li.current {
+    background: unset;
   }
-}
-
-
-
-/* HEADING PERMALINKS */
-/* RFE: Support via Core-Styles class */
-
-.headerlink {
-  font-size: var(--global-font-size--x-large);
-  text-decoration: none;
-}
-
-@supports selector(:has(*)) {
-
-  /* To reposition permalink */
-  /* NOTE: Unnecessary if MkDocs config sets `permalink_leading: true` */
-  /* https://github.com/mkdocs/mkdocs/blob/1.5.0/pyproject.toml#L39 */
-  :has(> .headerlink) {
-    position: relative;
+  .wy-menu-vertical li.current a {
+    border-right: unset;
   }
-  .headerlink {
+  .wy-menu-vertical li.toctree-l1.current > a {
+    border-bottom: unset;
+    border-top: unset;
+  }
+  .wy-menu-vertical li.toctree-l2.current > a,
+  .wy-menu-vertical li.toctree-l2.current li.toctree-l3 > a {
+    background: unset;
+  }
+  .wy-menu-vertical li.toctree-l3.current > a,
+  .wy-menu-vertical li.toctree-l3.current li.toctree-l4 > a {
+    background: unset;
+  }
+  /* FAQ: The `:not(.current)` (added by TACC) adds clarity and specificity */
+  .wy-menu-vertical a:not(.current)
+  /* Do not use (but show for reference) redundant selectors */
+  /* FAQ: The selectors are redundant because of @layer project specificity *//*
+  .wy-menu-vertical li.current a
+  .wy-menu-vertical li ul li a
+  */ {
+    color: var(--global-color-primary--x-dark);
+    font-weight: var(--medium);
+  }
+  .wy-menu-vertical a.current {
+    color: var(--global-color-primary--xxx-dark);
+    font-weight: var(--bold);
+  }
+  .wy-menu-vertical li.current > a,
+  .wy-menu-vertical li.on a {
+      background: unset; /* undo theme.css */
+  }
+
+
+
+  /* To separate sections of navigation */
+
+  .wy-menu-vertical p.caption {
+    color: var(--global-color-primary--xxx-dark);
+  }
+  .wy-menu-vertical p.caption:not(:first-child) {
+    border-top: var(--global-border-width--normal) solid var(--global-color-primary--dark);
+    margin-top: 20px; /* NOTE: dsign is 18.75px */
+    padding-top: 20px; /* NOTE: dsign is 19.5px */
+  }
+
+
+
+  /* To adapt nav layout to design */
+
+  .wy-menu-vertical {
+    padding-inline: var(--pad-horz);
+    padding-bottom: 25px; /* NOTE: developer addition */
+  }
+  .wy-menu-vertical a,
+  /* (separate ruleset in `theme.css`) */
+  .wy-menu-vertical li.current > a,
+  .wy-menu-vertical li.on a,
+  /* (separate ruleset in `theme.css`) */
+  .wy-menu-vertical li.current a {
+    padding: var(--link-pad-vert) var(--link-pad-horz); /* overwrite theme.css */
+  }
+  .wy-menu-vertical li.on ul,
+  .wy-menu-vertical li.current.has-list ul {
+    padding-left: var(--link-pad-horz);
+    padding-bottom: 10px;
+  }
+  /* .wy-menu-vertical header, *//* NOTE: not seen in markup yet */
+  .wy-menu-vertical p.caption {
+    height: unset; /* undo theme.css */
+    line-height: unset; /* undo theme.css */
+    margin: 0 0 15px; /* NOTE: design is 13px */
+    padding-left: var(--link-pad-horz);
+  }
+
+
+
+  /* To position open/close buttons */
+  /* To make whole link clickable, not just button */
+
+  .wy-menu-vertical {
+    --button-width: 1ch; /* estimate, based on icon (e.g. ▾, ▸) */
+    --button-margin: 0.5em;
+    --button-buffer: calc( var(--button-margin) * 2 );
+    --button-space: calc( var(--button-width) + var(--button-buffer) );
+  }
+  .wy-menu-vertical li a {
+    position: relative; /* support `position: absolute` child */
+  }
+  .wy-menu-vertical li:not(.has-list) a button.toctree-expand {
+    display: none;
+  }
+  .wy-menu-vertical li a .fa,
+  .wy-menu-vertical li.has-list a button.toctree-expand {
+    margin-left: unset; /* undo theme.css */
+
     position: absolute;
-
-    /* To add space between it and heading */
-    --x-space: 0.5em;
-    padding-right: var(--x-space);
-
-    /* To move to the left of the heading */
+    top: 0;
     left: 0;
-    --x-offset: calc( 1ch + var(--x-space) );
-
-    /* To vertically center */
-    top: 50%;
-    --y-offset: 50%;
-
-    transform: translate(
-      calc( -1 * var(--x-offset)),
-      calc( -1 * var(--y-offset))
-    );
+    bottom: 0;
+    margin-inline: var(--button-margin);
+    padding-block: var(--link-pad-vert);
+    width: var(--button-width);
+    text-align: center;
+  }
+  .wy-menu-vertical li.has-list a,
+  .wy-menu-vertical li a:not(.internal) {
+    padding-left: var(--button-space);
+  }
+  .wy-menu-vertical li a .fa::before,
+  .wy-menu-vertical li button.toctree-expand::before {
+    /* To move icon upward, inline with first line of mult-line text */
+    height: 100%;
+  }
+  .wy-menu-vertical li a .fa::before {
+    /* To move icon downward, vertically-aligned center with first line of text */
+    transform: translateY(0.125em);
   }
 
-  /* To use link color only on hover, otherwise use pale text color */
-  .headerlink:not(:hover) {
-    color: inherit;
-    opacity: 0.5;
+
+
+  /* To hide sidebar bottom "« Previous" and "Next »" */
+
+  /* NOTE: This also hides repo link, but that already exists on every page */
+  .rst-versions {
+    display: none;
   }
-  /* To hide except on hover over it or heading */
-  .headerlink:not(:hover, :hover > *) {
-    opacity: 0;
+  /* Remove extra spce for `.rst-versions` */
+  .wy-nav-side {
+    padding-bottom: unset; /* undo theme_extra.css and theme.css */
   }
 
-}
-@supports not selector(:has(*)) {
 
-  .headerlink {
-    margin-left: 0.5ch;
+
+  /* To adapt search to design */
+
+  .wy-side-nav-search {
+    padding-block: calc( var(--pad-horz) + var(--link-pad-horz) );
+    padding-inline: unset; /* undo theme.css */
+
+    margin-bottom: unset; /* undo theme.css */
+    background-color: unset; /* undo theme.css */
+  }
+  .wy-side-nav-search > * {
+    padding-inline: calc( var(--pad-horz) + var(--link-pad-horz) );
+  }
+  .wy-side-nav-search .nav-name {
+    font-family: var(--global-font-family--sans);
+    font-size: var(--global-font-size--large);
+    color: var(--global-color-primary--x-dark);
+  }
+
+  /* To remove space (margin, padding, whitespace) around logo */
+  .wy-side-nav-search a,
+  .wy-side-nav-search svg.logo {
+    display: block;
+  }
+  .wy-side-nav-search > a:has(.logo) {
+    padding-block: unset; /* undo theme.css */
+  }
+
+  /* To demarcate link to CMS */
+  .wy-side-nav-search .cms-link {
+    font-size: var(--global-font-size--small);
+
+    padding-top: unset; /* undo theme.css */
+
+    /* To add border and space bewteen logo and search */
+    padding-bottom: 15px; /* NOTE: design is 15.5px */
+    border-bottom: var(--global-border-width--normal) solid var(--global-color-primary--x-dark);
+    margin-bottom: 25px; /* NOTE: design is 22.5px */
+  }
+
+  .wy-side-nav-search .icon-home {
+    display: none;
+  }
+
+  .wy-side-nav-search input[type=search] /* TACC */,
+  .wy-side-nav-search input[type=text] /* orignal */ {
+    width: unset; /* undo theme.css *//* .wy-form does this via display: grid */
+    border: var(--global-border-width--normal) solid var(--global-color-primary--light);
+    border-radius: 5px;
+    font-size: unset; /* undo theme.css */
+    box-shadow: unset; /* undo theme.css */
+    transition: unset; /* undo theme.css */
+  }
+
+  .wy-form {
+    display: grid;
+  }
+
+
+
+  /* To change icons */
+
+  .wy-menu-vertical li:not(.on, .current) button.toctree-expand::before {
+    content: "\f0da";
+  }
+  .wy-menu-vertical li.current > a button.toctree-expand::before,
+  .wy-menu-vertical li.on a button.toctree-expand::before {
+    content: "\f0d7";
+  }
+
+
+
+
+
+  /* BREADCRUMBS */
+
+  /* To hide dangling separator */
+  /* The `.wy-breadcrumbs-aside` is where repository links would show */
+  /* https://github.com/mkdocs/mkdocs/blob/1.4.2/mkdocs/themes/readthedocs/breadcrumbs.html#L14-L30 */
+  .rst-content [role="navigation"] li.wy-breadcrumbs-aside {
+    float: right;
+  }
+  .rst-content [role="navigation"] li.wy-breadcrumbs-aside::before {
+    content: unset;
+  }
+
+  /* To hide the <hr> from ReadTheDocs theme markup */
+  .rst-content [role="navigation"] hr {
+    display: none;
+  }
+
+  /* To hide the ≫ from ReadTheDocs theme markup */
+  .rst-content [role="navigation"] li::before {
+    margin-left: -1.25ch;
+    background-color: var(--global-color-primary--xx-light);
+  }
+
+  /* To hide link to home */
+  /* FAQ: The link is not in design (cuz it is redundant cuz side nav has link) */
+  .rst-content [role="navigation"] li:first-child {
+    display: none;
+  }
+  .rst-content [role="navigation"] li:nth-child(2)::before {
+    content: unset;
+  }
+
+  /* To bold last child */
+  /* FAQ: The core-styles.docs.css bolds :last-child, but that does not work here,
+          because last list item is .wy-breadcrumbs-aside (used for repo links) */
+  .rst-content [role="navigation"] li:nth-last-child(2) {
+    font-weight: var(--bold);
+  }
+
+
+
+
+
+  /* CONTENT */
+  /* https://github.com/mkdocs/mkdocs/blob/1.4.2/mkdocs/themes/readthedocs/css/theme.css */
+
+
+
+  /* To style text like an <h2> */
+  /* FAQ: Design wants <h2> on index page, but it should NOT show in nav */
+  /* TODO: Either, find a solution that does not involve "fake header" class */
+  /* TODO: Or, support fake headers in Core (must then define margins) */
+  .h2 {
+    /* Mimic browser */
+    display: block;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+
+    /* Mimic core-styles.docs */
+    font-size: var(--global-font-size--xx-large);
+    font-weight: var(--bold);
+  }
+  .h3 {
+    /* Mimic browser */
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+
+    /* Mimic core-styles.docs */
+    font-size: var(--global-font-size--x-large);
+    font-weight: var(--bold);
+  }
+
+
+  /* To ensure paragraph font size matches core-styles.docs.css */
+  /* FAQ: If ineffectual, theme.css font size may match core-styles.docs.css */
+  p {
+    font-size: inherit; /* overwrite theme.css */
+  }
+
+
+
+  /* To increase content width */
+  .wy-nav-content {
+    max-width: 1200px;
+  }
+
+
+
+  /* To remove two-tone background */
+  @media screen and (min-width: 1100px) {
+    .wy-nav-content-wrap {
+      background: #fcfcfc; /* mimic theme.css non-media query background */
+    }
+  }
+
+
+
+  /* To add space between messages & messages and messages & content */
+  .admonition {
+    margin-block: 1em;
+  }
+  /* To remove empty paragraphs */
+  /* SEE: /docs/code-examples.md */
+  /* HELP: What markdown would avoid these? */
+  .admonition p:empty {
+    display: none;
+  }
+
+
+
+  /* To add admonition icons */
+  .admonition::before {
+    /* copied from .fa (only the active rules not overwritten by TACC) */
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    text-decoration: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+  }
+  .admonition:is(.caution)::before { content: "\f071"; }
+  .admonition:is(.important, .attention)::before { content: "\f12a"; }
+  .admonition:is(.warning)::before { content: "\f00d"; }
+  .admonition:is(.tip)::before { content: "\f0eb"; }
+  .admonition:is(.note)::before { content: "\f040"; }
+  .admonition:is(.hint)::before { content: "\f00c"; }
+  .admonition:is(.error, .danger)::before { content: "\f00d"; }
+  .admonition:is(.warning)::before {
+    color: transparent;
+    -webkit-text-stroke: var(--global-color-primary--xx-light) 2px;
+  }
+
+
+
+  /* To remove admonition title icon */
+  .admonition-title::before { display: none; }
+
+
+
+  /* To prevent figure image overflow */
+  .rst-content figure {
+    max-width: 100%; /* mimics theme.css `.rst-content img` */
+  }
+
+
+
+  /* For edge-case headings */
+  :is(h1, h2, h3, h4, h5, h6) > small,
+  .understate:is(h1, h2, h3, h4, h5, h6) {
+      font-weight: normal;
+      margin-block: 0;
+  }
+  details > summary > :is(h1, h2, h3, h4, h5, h6) {
+      display: inline-block;
+  }
+
+
+
+  /* To add border around figures */
+  figure {
+    border: var(--global-border--normal);
+  }
+
+
+
+  /* To prevent wrap of certain tags */
+  u, /* "unarticulated" demarkation of phrases that should not wrap */
+  code:not([class]):not(pre > *) /* free-form code lines should never wrap */ {
+    white-space: nowrap;
+  }
+  u {
+    text-decoration: none; /* undo browser default */
+  }
+
+
+
+
+
+  /* TABBED */
+  /* https://github.com/TACC/Core-Styles/blob/main/src/lib/_imports/components/pymdownx--tabbed.css */
+
+  /* To add Docs-specific styles */
+  .tabbed-set {
+    border: var(--global-border-width--thick) solid var(--global-color-primary--dark);
+  }
+
+  /* To stretch tabs that just have a script */
+  .tabbed-content > pre:only-child {
+    margin-inline: calc( -1 * var(--buffer) );
+    margin-block: unset; /* overwrite core-style.docs */
+  }
+  .tabbed-content > pre:only-child > code {
+    border: unset; /* overwrite core-style.docs */
+    padding: var(--buffer); /* overwrite core-style.docs */
+
+    width: 100%; /* overwrite core-style.docs */
+    box-sizing: border-box; /* so `width: 100%` does not overflow */
+  }
+
+
+
+
+
+  /* SEARCH */
+
+  #mkdocs-search-results {
+    /* To mimic browser <h3> margin-block-start: 1em */
+    /* FAQ: 1em equals core-styles.docs h3 font size */
+    margin-top: var(--global-font-size--x-large);
+  }
+
+
+
+
+
+  /* FOOTER */
+
+  .rst-content footer {
+    margin-top: 2em;
+  }
+
+  /* To hide unused space at bottom of index page */
+  [data-page-name="index.md"] footer {
+    display: none; /* undo theme.css */
+  }
+  [data-page-name="index.md"] .wy-nav-content {
+    padding-bottom: 0; /* undo theme.css */
   }
 
 }
