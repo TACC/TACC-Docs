@@ -6,7 +6,7 @@
     {# TACC: #}{# To load ReadTheDocs such that Core-Styles takes precedence #}
     <style>
       /* Layers not used in this block are used in later stylesheets */
-      @layer foundation.mkdocs, foundation.tacc, base, project;
+      @layer foundation.mkdocs, foundation.tacc, base, project, cosmetic;
 
       /* Import ReadTheDocs styles but in a bottom layer */
       @import url("{{ 'css/theme.css'|url }}") layer(foundation.mkdocs);
