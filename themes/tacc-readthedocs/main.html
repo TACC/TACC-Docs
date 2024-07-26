@@ -136,7 +136,6 @@
         const emptyNavLinksThatDoNotRespond = document.querySelectorAll(
           '.wy-menu-vertical ul li.toctree-l1 > a:not([href])'
         );
-        console.log({ emptyNavLinks });
         [ ...emptyNavLinksThatDoNotRespond ].forEach(link => {
           link.addEventListener('click', () => {
             SphinxRtdTheme.Navigation.toggleCurrent( $(link) );
