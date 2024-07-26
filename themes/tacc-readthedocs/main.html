@@ -132,11 +132,12 @@
             SphinxRtdTheme.Navigation.enable({{ 'true' if config.theme.sticky_navigation else 'false' }});
         };
 
-        // TACC: Fix bugs with deep explicit navigation
-        const emptyNavLinks = document.querySelectorAll(
-          '.wy-menu-vertical ul li a:not([href])'
+        // TACC: Top-level nav links do not open menu when text is clicked
+        const emptyNavLinksThatDoNotRespond = document.querySelectorAll(
+          '.wy-menu-vertical ul li.toctree-l1 > a:not([href])'
         );
-        [ ...emptyNavLinks ].forEach(link => {
+        console.log({ emptyNavLinks });
+        [ ...emptyNavLinksThatDoNotRespond ].forEach(link => {
           link.addEventListener('click', () => {
             SphinxRtdTheme.Navigation.toggleCurrent( $(link) );
           });
