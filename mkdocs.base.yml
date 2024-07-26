@@ -31,6 +31,8 @@ extra_css:
     - css/core/bootstrap.css
     - css/core/core-styles.css
     - css/core/tacc-docs.css
+    - css/core/highlight-js.css
+    - css/core/permalink.css
 
 # To load custom global JavaScript (not recommended)
 # FAQ: Use JS modules when possible (see theme.tacc_javascript)
