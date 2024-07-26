@@ -2,11 +2,10 @@
 /* https://github.com/TACC/Core-Styles */
 /* https://tacc-main.atlassian.net/wiki/x/qA9v */
 
-
+@import url('https://cdn.jsdelivr.net/npm/@tacc/core-styles@2.22.6/dist/core-styles.base.css') layer(base);
+@import url('https://cdn.jsdelivr.net/npm/@tacc/core-styles@2.22.6/dist/core-styles.docs.css') layer(project);
 
 /* CORE STYLES: Base */
-@import url('https://cdn.jsdelivr.net/npm/@tacc/core-styles@2.22.6/dist/core-styles.base.css') layer(base);
-
 @layer base {
 
   /* To enable seemingly-disabled links in nav */
@@ -17,11 +16,7 @@
 
 }
 
-
-
 /* CORE STYLES: Docs */
-@import url('https://cdn.jsdelivr.net/npm/@tacc/core-styles@2.22.6/dist/core-styles.docs.css') layer(project);
-
 @layer project {
 
   /* To support .c-card on mobile (which Core-Styles does not do) */
