@@ -1534,6 +1534,7 @@ login1$ man squeue         # more info
 Pending jobs appear in order of decreasing priority. Tack on the `-u` option to display only your jobs:
 
 <figure id="squeuefigure">
+
 ```cmd-line
 login1$ squeue -u slindsey | more
 JOBID   PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
@@ -1555,7 +1556,8 @@ JOBID   PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
 10563         skx lcdm_bas kellygue PD       0:00      1 (Dependency)
 10961         skx    d2_12 tg111111 PD       0:00      1 (QOSMaxJobsPerUserLimit)
 ```
-</figure><figcaption>Figure 2. Sample <code>squeue</code> output</figcaption></figure>
+
+<figcaption>Figure 2. Sample <code>squeue</code> output</figcaption></figure>
 
 <!-- The default format for `squeue` now reports total nodes associated with a job rather than cores, tasks, or hardware threads. One reason for this change is clarity: the operating system sees each compute node's SDL56 hardware threads as "processors", and output based on that information can be ambiguous or otherwise difficult to interpret. -->
 

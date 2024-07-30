@@ -54,3 +54,8 @@ pre.job-script code {
     color: var(--global-color-primary--xx-dark);
   }
 }
+
+/* To remove space above and below code block in a figure */
+figure pre.highlight {
+  margin-block: unset; /* undo browser */
+}
