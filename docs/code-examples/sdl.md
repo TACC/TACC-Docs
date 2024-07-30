@@ -13,7 +13,7 @@ While TACC's deprecated Launcher utility worked on serial codes, PyLauncher work
 
 The PyLauncher source code is written in Python, but this need not concern you: in the simplest scenario you use a two line Python script. However, for more sophisticated scenarios the code can be extended or integrated into a Python application.
 
-## Installations { #installations }
+## Installations
 
 PyLauncher is available on all TACC systems via the [Lmod modules system][TACCLMOD].  
 
@@ -142,7 +142,7 @@ If you have a multi-threaded program and you want to set the number of cores ind
 ...
 ```
 
-### MPI { #mpi }
+### MPI
 
 If your program is MPI parallel, replace the ClassicLauncher call with:
 
