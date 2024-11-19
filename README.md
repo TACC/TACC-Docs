@@ -32,20 +32,21 @@ TACC [MkDocs](https://mkdocs.readthedocs.io/) documentation with **customized** 
 0. Have Python installed.\
     <sup>Known supported versions are [from 3.10 to 3.12](https://github.com/TACC/TACC-Docs/blob/v0.10.1/pyproject.toml#L9).</sup>
 1. Navigate into your clone of this repo.
-2. Install dependencies:\
-    <sup>You should only need to do this once, or after a new release.</sup>
+2. Install software to manage dependencies:\
+    <sup>You should only need to do this once.</sup>
     ```shell
     pip install poetry
 
     ```
-3. Isolate dependencies:
-    ```shell
-    poetry shell
-
-    ```
-4. Update & Serve the docs:
+3. Install/Update dependencies:\
+    <sup>You should only need to do this after new releases.</sup>
     ```shell
     poetry install
+
+    ```
+4. Serve the docs:
+    ```shell
+    poetry shell
     mkdocs serve
 
     ```
@@ -73,7 +74,7 @@ TACC [MkDocs](https://mkdocs.readthedocs.io/) documentation with **customized** 
 
     ```
 3. Open the website at the URL provided e.g.
-    [http://127.0.0.1:8000/](http://127.0.0.1:8000/).
+    [http://localhost:8000/](http://localhost:8000/).
 
 ## Automatic Builds
 
