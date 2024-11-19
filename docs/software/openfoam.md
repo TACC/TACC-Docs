@@ -1,59 +1,70 @@
 # OpenFOAM at TACC
-*Last update: April 14, 2020*
+*Last update: October 7, 2024*
 
 <img alt="OpenFOAM logo" src="../imgs/openfoam-logo.png" style="width: 75px;" />
 The <a href="https://www.openfoam.org">OpenFOAM</a> (**O**pen **F**ield **O**peration and **M**anipulation) Toolbox is a free, open source Computational Fluid Dynamics (CFD) software package providing an extensive range of features, from solving complex fluid flows involving chemical reactions, turbulence and heat transfer, to solid dynamics and electromagnetics.
 
+OpenFOAM has two distributions and respective naming conventions: 
 
-## Running on Frontera and Stampede2 { #running }
+* **OPENFOAM**&reg; (<a href="http://www.openfoam.com">www.openfoam.com</a>) is a registered trade mark of OpenCFD Limited, producer and distributor of the OpenFOAM software via www.openfoam.com.
 
-TACC staff has built and installed OpenFOAM 7.0 on both [Stampede2](../../hpc/stampede2) and [Frontera](../../hpc/frontera) compute resources. The Stampede2 executable is built with intel/18.0.2 and impi/18.0.2, while the Frontera executable is built with intel/19.0.5 and impi/19.0.5. Follow the steps below to set up the environment and run an OpenFOAM tutorial example.
+	* OpenCFD is part of the ESI group, which is why it is usually referred to ESI-OpenCFD.
+	* ESI-OpenCFD uses the numbering convention "vYYMM", for example: "v1706", which stands for having been released in June (6th month) of 2017.
 
-### Set Up Computing Environment { #running-compenv }
+* **The OpenFOAM Foundation** (<a href="http://www.openfoam.org">www.openfoam.org</a>) was originally founded by OpenCFD and SGI in 2011, when SGI acquired OpenCFD back then.
 
-Set up the proper computing environment by loading the latest OpenFoam module:
+	* This Foundation has permission to use the OPENFOAM&reg; trade mark.
+	* The OpenFOAM Foundation uses the numbering convention "I.J", for example: 4.0, 4.1 and 5.0.
 
-``` cmd-line
-login1$ module load openfoam/7.0
-```
+Both distributions are actively developed, and each provide advantages depending on specific features or solvers required. For additional information on the difference between the two versions, refer <a href="https://www.cfd-online.com/Forums/openfoam/197150-openfoam-com-versus-openfoam-org-version-use.html">here</a>.
 
-OpenFOAM places its [cases](https://cfd.direct/openfoam/user-guide/cases/) in the directory defined by the `$FOAM_RUN` environment variable.  TACC staff suggests using your `$SCRATCH` file space to run OpenFOAM cases.  The following commands set this environment variable and create the `$FOAM_RUN` directory in the user's `$SCRATCH` directory.
 
-``` cmd-line
-login1$ export FOAM_RUN=$SCRATCH/My_OpenFOAM/7.0/run
+# Environment Setup
+
+Both distributions of OpenFOAM are available on TACC systems. Refer to the table below to load your desired version.
+
+System | Version | Load with:
+-- | -- | --
+Frontera | TBD | 
+Stampede3 | OpenFOAM 12 | `module load openfoam/12`
+| OpenFOAM v2312 | `module load openfoam/v2312`
+Lonestar6 | OpenFOAM 12 | `module load intel/24.1  impi/21.12 openfoam/12`
+| OpenFOAM v2406 | `module load intel/24.1  impi/21.12 openfoam/v2406`
+Vista | TBD |
+
+
+OpenFOAM places its <a href="https://cfd.direct/openfoam/user-guide/cases/">cases</a> in the directory defined by the `$FOAM_RUN` environment variable. TACC staff suggests using your `$SCRATCH` file space to run OpenFOAM cases. The following commands set this environment variable and create the `$FOAM_RUN` directory in the user's `$SCRATCH` directory.
+
+```cmd-line
+login1$ export FOAM_RUN=$SCRATCH/My_OpenFOAM/12/run
 login1$ mkdir -p $FOAM_RUN
 ```
 
-## Run Tutorials { #tutorials }
+# Run Tutorials
 
-**Do NOT run the following commands on the login nodes.**
-You may either [submit a batch job](../../hpc/stampede2#running), or start an interactive session using TACC's [`idev`](../../software/idev) utility.
+!!!important
+	Do NOT run the following commands on any resource's login nodes. You may either submit a batch job, or start an interactive session using TACC's <a href="../idev">`idev`</a>  utility.
 
-The following demonstrates running the OpenFOAM's [Lid-driven Cavity Flow](https://cfd.direct/openfoam/user-guide/v7-cavity/#x5-40002.1) test case involving isothermal, incompressible flow in a two-dimensional square domain.
+The following demonstrates running the OpenFOAM's <a href="https://cfd.direct/openfoam/user-guide/v7-cavity/%23x5-40002.1">Lid-driven Cavity Flow</a> test case involving isothermal, incompressible flow in a two-dimensional square domain.
 
-* Copy OpenFOAM's tutorials into the OpenFOAM work directory created above, then change to the cavity case directory:
+After creating an `idev` session, copy OpenFOAM's tutorials into the OpenFOAM work directory created above:
 
-	``` cmd-line
-	login1$ idev
-	...
-	c557-804$ cp -r $FOAM_TUTORIALS $FOAM_RUN 
-	c557-804$ cd $FOAM_RUN/tutorials/incompressible/icoFoam/cavity/cavity
-	```
+Version | Command
+-- | --
+OpenFOAM 12 | `c557-804$ cp -r $FOAM_TUTORIALS/incompressibleFluid/cavity .`
+OpenFOAM v2312 | `c557-804$ cp -r $FOAM_TUTORIALS/incompressible/icoFoam/cavity/cavity .`
 
-* Use the pre-processing tool, **`blockMesh`**, to generate the mesh.  Then run the **`icoFoam`** solver.  
+Change to the cavity case directory, then invoke the pre-processing tool, `blockMesh`, to generate the mesh. Then run the `icoFoam` solver.
 
-	``` cmd-line
-	c557-804$ blockMesh
-	c557-804$ icoFoam
-	c557-804$ exit
-	login1$
-	```
+```cmd-line
+c557-804$ cd cavity
+c557-804$ blockMesh
+c557-804$ icoFoam
+c557-804$ exit
+login1$
+```
 
-## References { #refs }
+# References
 
-* [OpenFOAM user guide](https://www.openfoam.org/resources/)
-* [Working with Modules][TACCLMOD]
-* [OpenFOAM and ParaView](https://cfd.direct/openfoam/features/)
-
-
-{% include 'aliases.md' %}
+* <a href="https://www.openfoam.org/resources/">OpenFOAM user guide</a>
+* <a href="https://cfd.direct/openfoam/features/">OpenFOAM and ParaView</a>

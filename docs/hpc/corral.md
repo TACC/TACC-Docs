@@ -1,5 +1,5 @@
 # Corral User Guide
-*Last update: July 26, 2023*
+*Last update: October 14, 2024*
 
 
 ## System Overview { #overview }
@@ -7,15 +7,6 @@
 Corral is a collection of storage and data management resources located at TACC, with 40PB of on-line storage located in the primary TACC datacenter, and a tape-based replica located in a secondary TACC datacenter for additional data protection.  Corral services provide high-reliability, high-performance storage for research requiring persistent access to large quantities of structured or unstructured data. Such data could include data used in analysis or other computational and visualization tasks on other TACC resources, as well as data used in collaborations involving many researchers who need to share large amounts of data.
 
 PIs may request any quantity of storage across multiple allocations.  The first 5TB of storage for each PI, on one project, is available to researchers at all UT System institutions at no cost. For storage needs larger than 5TB, and for multiple project allocations, access to Corral is available at a cost of $60/TB/year.  There is also a limit of 200,000 files per allocated terabyte imposed on all Corral allocations - for example, if you are allocated 5TB of storage, you may store 1 million files within that 5TB, and if you need to store additional files you must request a larger allocation.  This policy is subject to change, and users with long-term storage needs are encouraged to plan for the costs of storing their data in future years.
-
-
-<!--
-### Available Services { #overview-services }
-
-There are two primary mechanisms for storing and managing data stored on Corral: simple file storage ("file system access" and the iRODS data management service. File system access is appropriate for users who will make use of their data on Lonestar6 or other TACC systems and are comfortable with UNIX command-line utilization, while the iRODS service is appropriate for users who have complex metadata associated with their data, users who wish to manage their data using web and/or GUI interfaces, and users who wish to develop a data collection for open web sharing. 
-
-In addition, there are a variety of more specialized data management and sharing applications that may be supported on Corral, including open-source databases such as Postgres and MySQL, discipline- or data-specific web applications, and tools for generating metadata or other derivative file formats. Users are encouraged to contact the Data Management and Collections group at TACC <data@tacc.utexas.edu> to discuss specialized needs or to ask about specific applications.
--->
 
 
 ### Consulting and Data Management Plans { #overview-plans }
@@ -36,13 +27,13 @@ Consult the [S3 API](http://docs.aws.amazon.com/AmazonS3/latest/API/Welcome.html
 
 The S3 interface is most suitable for programmatic interaction from within custom applications. We recommend the minio client for command-line access and testing purposes. Documentation and download links for the minio client are available at: <https://docs.minio.io/docs/minio-client-complete-guide>. 
 
-Please direct any further questions you may have regarding the cloud storage interface to Corral through the [TACC ticket system][HELPDESK].
+Please direct any further questions you may have regarding the cloud storage interface to Corral through the [TACC ticket system][CREATETICKET].
 
 
 ## System Access { #access }
-Corral is available to researchers at all UT System campuses, including both academic and health institutions. Corral is intended to support research activities involving large quantities of data and/or complex data management requirements. There is no requirement that users have allocations on other TACC systems, and Corral can be utilized independently of TACC computational and visualization resources. <!-- SDL All Corral users must have TACC accounts; if you do not yet have a TACC account you can create one on the [TACC user portal](https://xortal.tacc.utexas.edu/). -->
+Corral is available to researchers at all UT System campuses, including both academic and health institutions. Corral is intended to support research activities involving large quantities of data and/or complex data management requirements. There is no requirement that users have allocations on other TACC systems, and Corral can be utilized independently of TACC computational and visualization resources. 
 
-You may request an allocation on Corral through the TACC User Portal. When requesting an allocation, indicate the quantity of storage you expect to utilize in terabytes, the nature of the research project that will be supported through the use of Corral, and the service or services you expect to utilize. It is also helpful if you provide a suggested name for the directory or a collection name under which your data will be stored on Corral.  Once your allocation has been granted, you will receive an e-mail indicating the location of your data <!-- within iRODS and/or directly --> in the file system accessible from the Corral login/data movement nodes.
+You may request an allocation on Corral through the TACC User Portal. When requesting an allocation, indicate the quantity of storage you expect to utilize in terabytes, the nature of the research project that will be supported through the use of Corral, and the service or services you expect to utilize. It is also helpful if you provide a suggested name for the directory or a collection name under which your data will be stored on Corral.  Once your allocation has been granted, you will receive an e-mail indicating the location of your data in the file system accessible from the Corral login/data movement nodes.
 
 
 ### Basic File System Access from Lonestar6 and Other TACC systems { #access-external }
@@ -79,7 +70,6 @@ Files on Corral are never "purged" using automated processes, however each alloc
 
 ## Transferring your Files to Corral { #transferring }
 
-Data transfer mechanisms differ depending on whether you are using iRODS or basic file system access. For iRODS users, please see the [iRODS user guide](../../software/irods). Data transfer to and from the file system is described below.
 
 **For Secure data:** All the instructions for SCP and Cyberduck as shown below can be used for transferring data to a secure location on Corral, however please substitute the hostname `secure.corral.tacc.utexas.edu` for `data.tacc.utexas.edu`. You will be given access to this system when you are granted access to a secure Corral folder, and this system can be used exclusively for accessing your secure data area on Corral. Secure locations on Corral are not generally accessible from TACC data transfer and login nodes.
 
@@ -87,19 +77,19 @@ Data transfer mechanisms differ depending on whether you are using iRODS or basi
 
 Data transfer from any Unix/Linux system can be accomplished using the `scp` utility to copy data to and from the login node. A file can be copied from your local system to the remote server using the command:
 
-``` cmd-line
+```cmd-line
 login1$ scp filename username@data.tacc.utexas.edu:/path/to/project/directory
 ```
 
 Where *filename* is the path to the file on your local system, and the path is what was provided to you when your allocation was granted. While a whole directory can be copied recursively using the `-r` switch:
 
-``` cmd-line
+```cmd-line
 login1$ scp -r directory username@data.tacc.utexas.edu:/path/to/project/directory
 ```
 
 Copying data from the Corral system to your local machine is similar, but reverse the order of the arguments:
 
-``` cmd-line
+```cmd-line
 login1$ scp username@data.tacc.utexas.edu:/path/to/project/directory/filename \
 	 /path/to/local/directory
 ```
@@ -181,7 +171,7 @@ In this example, the `d` at the front indicates that this is a directory, and it
 
 ### Managing Files and Permissions using ACLs { #managing-acls }
 
-For a more fine-grained approach to files and permissions, use **A**ccess **C**ontrol **L**ists or ACLs. With ACLS you can create customized groups of users with customized permissions.  Please consult TACC's document "<a href="../../tutorials/acls">Manage Permissions with Access Control Lists</a>" for detailed information.
+For a more fine-grained approach to files and permissions, use **A**ccess **C**ontrol **L**ists or ACLs. With ACLS you can create customized groups of users with customized permissions.  Please consult TACC's document [Manage Permissions with Access Control Lists][TACCACLS] for detailed information.
 
 
 ### Managing Permissions with `chmod` { #managing-chmod }
@@ -216,7 +206,7 @@ This policy applies to both the main and "protected" areas of Corral4.
 * [Lonestar6 User Guide](../lonestar6)  
 * [Cyberduck home page](http://cyberduck.io/)  
 * [UNIX manual pages](https://www.freebsd.org/cgi/man.cgi)
-<!-- * [iRODS](http://irods.org/)  -->
+* [Unix Group Permissions and Environment][TACCMANAGINGPERMISSIONS]
 
 
 {%include 'aliases.md' %}

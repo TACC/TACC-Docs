@@ -17,7 +17,7 @@ or
 login1$ mpiCC -g -O0 mycode.c
 ```
 
-Follow these steps to set up your debugging environment on Frontera, Stampede2, Lonestar6 and other TACC compute resources.
+Follow these steps to set up your debugging environment on Frontera, Stampede3, Lonestar6 and other TACC compute resources.
 
 1. **Enable X11 forwarding**. To use the DDT GUI, ensure that X11 forwarding is enabled when you `ssh` to the TACC system. Use the `-X` option on the `ssh` command line if X11 forwarding is not enabled in your SSH client by default.
 
@@ -31,6 +31,7 @@ Follow these steps to set up your debugging environment on Frontera, Stampede2, 
 	$ module load ddt mymodule1 mymodule2
 	```
 
+<!--
 	!!! note
 		On Stampede2, there are 2 DDT modules, `ddt_skx` and `ddt_knl`, because the KNL's require a different license.
 
@@ -42,6 +43,7 @@ Follow these steps to set up your debugging environment on Frontera, Stampede2, 
 	```cmd-line
 	$ module load ddt_skx mymodule1 mymodule2 # for SKX nodes
 	```
+-->
 
 1. **Start the debugger**:
 
@@ -77,7 +79,7 @@ Follow these steps to set up your debugging environment on Frontera, Stampede2, 
 	* In the "Queue Submission Parameters" window, fill in the following fields:
 
 		<table border="1" cellpadding="3">
-		<tr><th>Queue</th><td>default queue is <code>skx-dev</code> for Stampede2, and <code>development</code> for other systems</td></tr>
+		<tr><th>Queue</th><td>default queue is <code>skx</code> for Stampede3, and <code>development</code> for other systems</td></tr>
 		<tr><th>Time</th><td>(hh:mm:ss)</td></tr>
 		<tr><th>Project</th><td>Allocation/Project to charge the batch job to</td></tr></table>
 

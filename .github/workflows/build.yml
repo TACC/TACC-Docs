@@ -54,6 +54,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
+          platforms: linux/amd64,linux/arm64
           tags: taccwma/tacc-docs:latest,taccwma/tacc-docs:${{ steps.vars.outputs.sha_short }},taccwma/tacc-docs:${{ steps.vars.outputs.ref_short }}
       -
         name: Post build status in slack

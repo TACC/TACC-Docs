@@ -15,7 +15,7 @@ $SCRATCH/apps/mydir/myprogram			# explicit full path to executable
 
 ### Parametric Sweep / HTC jobs { #launching-parametric }
 
-Consult the [Launcher at TACC](/software/launcher) documentation for instructions on running parameter sweep and other High Throughput Computing workflows.
+Consult the [PyLauncher at TACC][TACCPYLAUNCHER] documentation for instructions on running parameter sweep and other High Throughput Computing workflows.
 
 
 ### One Multi-Threaded Application { #launching-multithreaded }
@@ -60,7 +60,7 @@ As a practical guideline, the product of `$OMP_NUM_THREADS` and the maximum numb
 
 ### More Than One Serial Application in the Same Job { #launching-serialmorethanone }
 
-TACC's `launcher` utility provides an easy way to launch more than one serial application in a single job. This is a great way to engage in a popular form of High Throughput Computing: running parameter sweeps (one serial application against many different input datasets) on several nodes simultaneously. The launcher utility will execute your specified list of independent serial commands, distributing the tasks evenly, pinning them to specific cores, and scheduling them to keep cores busy. Execute `module load launcher` followed by `module help launcher` for more information.
+TACC's `pylauncher` utility provides an easy way to launch more than one serial application in a single job. This is a great way to engage in a popular form of High Throughput Computing: running parameter sweeps (one serial application against many different input datasets) on several nodes simultaneously. The PyLauncher utility will execute your specified list of independent serial commands, distributing the tasks evenly, pinning them to specific cores, and scheduling them to keep cores busy.  Consult [PyLauncher at TACC][TACCPYLAUNCHER] for more information.
 
 ### MPI Applications One at a Time { #launching-mpioneatatime }
 

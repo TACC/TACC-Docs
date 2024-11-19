@@ -1,12 +1,10 @@
 # Stampede3 User Guide 
-*Last update: June 28, 2024*
+*Last update: October 30, 2024*
 
 ## Notices { #notices }
 
+* **Important**: Please note [TACC's new SU charge policy](#sunotice). (09/20/2024)
 * **Attention Jupyter users: learn how to [configure your environment](#python-jupyter) to enable notebooks.** (05/16/2024)
-
-* **Stampede3 is now full production.**  All jobs in all [queues](#queues) will be charged to your allocation balances. (05/15/2024)
-
 * **Attention VASP users: DO NOT run VASP using Stampede3's SPR nodes!**  TACC staff has noticed many VASP jobs causing issues on the SPR nodes and impacting overall system stability and performance.  Please run your VASP jobs using either the [SKX](../../hpc/stampede3#table3) or [ICX](../../hpc/stampede3#table4) nodes.  See [Running VASP Jobs](../../software/vasp/#running) for more information.  (05/06/2024)
 
 
@@ -331,17 +329,27 @@ Stampede3's job scheduler is the Slurm Workload Manager. Slurm commands enable y
     TACC Staff will occasionally adjust the QOS settings in order to ensure fair scheduling for the entire user community.  
     Use TACC's `qlimits` utility to see the latest queue configurations.
 
+<!-- 
+10/07/2024
+Name             MinNode  MaxNode     MaxWall  MaxNodePU  MaxJobsPU   MaxSubmit
+icx                    1       32  2-00:00:00         48         12          20
+pvc                    1        4  2-00:00:00          4          2           4
+skx                    1      256  2-00:00:00        384         40          60
+skx-dev                1       16    02:00:00         16          1           3
+spr                    1       32  2-00:00:00        180         24          36
+-->
 
 #### Table 7. Production Queues { #table7 }
 
+*Updated: 10/07/2024*
+
 Queue Name   | Node Type | Max Nodes per Job<br>(assoc'd cores) | Max Duration | Max Jobs in Queue | Charge Rate<br>(per node-hour)
 --           | --        | --                                   | --           | --                |  
-icx          | ICX       | 16 nodes<br>(1280 cores)             | 24 hrs       | 4                 | 1.67 SUs
-pvc          | PVC       | 1 node<br>(96 cores)                 | 48 hrs       | 2                 | 4 SUs
-skx          | SKX       | 64 nodes<br>(3072 cores)             | 24 hrs       | 4                 | 1 SU
+icx          | ICX       | 32 nodes<br>(2560 cores)             | 48 hrs       | 12                | 1.5 SUs
+pvc          | PVC       | 4 nodes<br>(384 cores)               | 48 hrs       | 2                 | 3 SUs
+skx          | SKX       | 256 nodes<br>(12288 cores)           | 48 hrs       | 40                | 1 SU
 skx-dev      | SKX       | 16 nodes<br>(768 cores)              | 2 hrs        | 1                 | 1 SU
-spr          | SPR       | 16 nodes<br>(896 cores)              | 24 hrs       | 6                 | 3 SUs
-
+spr          | SPR       | 32 nodes<br>(1792 cores)             | 48 hrs       | 24                | 2 SUs
 
 <!-- SDL 05/07 no skx-large yet
 **&#42; To request more nodes than are available in the skx-normal queue, submit a consulting (help desk) ticket. Include in your request reasonable evidence of your readiness to run under the conditions you're requesting. In most cases this should include your own strong or weak scaling results from Stampede3.** -->
@@ -372,9 +380,11 @@ By default, Slurm writes all console output to a file named "`slurm-%j.out`", wh
 Option | Argument | Comments
 --- | --- | ---
 `-A`  | *projectid* | Charge job to the specified project/allocation number. This option is only necessary for logins associated with multiple projects.
-`-a`<br>or<br>`-array` | N/A | Not available. See tip below.
+`-a`<br>or<br>`--array` | =*tasklist* | Stampede3 supports Slurm job arrays.  See the [Slurm documentation on job arrays](https://slurm.schedmd.com/job_array.html) for more information.
 `-d=` | afterok:*jobid* | Specifies a dependency: this run will start only after the specified job (jobid) successfully finishes
 `-export=` | N/A | Avoid this option on Stampede3. Using it is rarely necessary and can interfere with the way the system propagates your environment.
+`--gres` | | TACC does not support this option.
+`--gpus-per-task` | | TACC does not support this option.
 `-p`  | *queue_name* | Submits to queue (partition) designated by queue_name
 `-J`  | *job_name*   | Job Name
 `-N`  | *total_nodes* | Required. Define the resources you need by specifying either:<br>(1) `-N` and `-n`; or<br>(2) `-N` and `-ntasks-per-node`.
@@ -387,8 +397,6 @@ Option | Argument | Comments
 `-e`  | *error_file* | Direct job error output to error_file
 `-mem`  | N/A | Not available. If you attempt to use this option, the scheduler will not accept your job.
 
-!!!tip
-	TACC does not support Slurm's `-array` option.  Instead, use TACC's [PyLauncher](../../software/pylauncher) utility for parameter sweeps and other collections of related serial jobs.
 
 ## Launching Applications { #launching }
 
@@ -446,7 +454,7 @@ As a practical guideline, the product of `$OMP_NUM_THREADS` and the maximum numb
 
 ### More Than One Serial Application in the Same Job { #launching-morethanoneserial }
 
-TACC's `launcher` utility provides an easy way to launch more than one serial application in a single job. This is a great way to engage in a popular form of High Throughput Computing: running parameter sweeps (one serial application against many different input datasets) on several nodes simultaneously. The `launcher` utility will execute your specified list of independent serial commands, distributing the tasks evenly, pinning them to specific cores, and scheduling them to keep cores busy. Execute `module load launcher` followed by `module help launcher` for more information.
+TACC's `pylauncher` utility provides an easy way to launch more than one serial application in a single job. This is a great way to engage in a popular form of High Throughput Computing: running parameter sweeps (one serial application against many different input datasets) on several nodes simultaneously. The PyLauncher utility will execute your specified list of independent serial commands, distributing the tasks evenly, pinning them to specific cores, and scheduling them to keep cores busy.  Consult [PyLauncher at TACC][TACCPYLAUNCHER] for more information.
 
 ### MPI Applications - Consecutive { #launching-mpiconsecutive }
 
@@ -573,6 +581,10 @@ For more information on this and other matters related to Slurm job submission, 
 ## Building Software { #building }
 
 The phrase "building software" is a common way to describe the process of producing a machine-readable executable file from source files written in C, Fortran, or some other programming language. In its simplest form, building software involves a simple, one-line call or short shell script that invokes a compiler. More typically, the process leverages the power of makefiles, so you can change a line or two in the source code, then rebuild in a systematic way only the components affected by the change. Increasingly, however, the build process is a sophisticated multi-step automated workflow managed by a special framework like autotools or cmake, intended to achieve a repeatable, maintainable, portable mechanism for installing software across a wide range of target platforms.
+
+!!!important
+    TACC maintains a database of currently installed software packages and libraries across all HPC resources.
+    Navigate to TACC's [Software List][TACCSOFTWARELIST] to see where, or if, a particular package is already installed on a particular resource.
 
 This section of the user guide does nothing more than introduce the big ideas with simple one-line examples. You will undoubtedly want to explore these concepts more deeply using online resources. You will quickly outgrow the examples here. We recommend that you master the basics of makefiles as quickly as possible: even the simplest computational research project will benefit enormously from the power and flexibility of a makefile-based build process.
 
@@ -1289,8 +1301,8 @@ Click on a tab for a customizable job-script.
 #        but slurm needs a plausible value to schedule the job.
 #
 #   -- For a good way to run multiple serial executables at the
-#        same time, execute "module load launcher" followed
-#        by "module help launcher".
+#        same time, execute "module load pylauncher" followed
+#        by "module help pylauncher".
 #
 #----------------------------------------------------
 
@@ -1534,7 +1546,6 @@ login1$ man squeue         # more info
 Pending jobs appear in order of decreasing priority. Tack on the `-u` option to display only your jobs:
 
 <figure id="squeuefigure">
-
 ```cmd-line
 login1$ squeue -u slindsey | more
 JOBID   PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
@@ -1556,8 +1567,7 @@ JOBID   PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
 10563         skx lcdm_bas kellygue PD       0:00      1 (Dependency)
 10961         skx    d2_12 tg111111 PD       0:00      1 (QOSMaxJobsPerUserLimit)
 ```
-
-<figcaption>Figure 2. Sample <code>squeue</code> output</figcaption></figure>
+</figure><figcaption>Figure 2. Sample <code>squeue</code> output</figcaption></figure>
 
 <!-- The default format for `squeue` now reports total nodes associated with a job rather than cores, tasks, or hardware threads. One reason for this change is clarity: the operating system sees each compute node's SDL56 hardware threads as "processors", and output based on that information can be ambiguous or otherwise difficult to interpret. -->
 
@@ -1734,11 +1744,11 @@ The literature on optimization is vast. Some places to begin a systematic study 
 
 The `qopt-zmm-usage` flag affects the algorithms the compiler uses to decide whether to vectorize a given loop with AVX51 intrinsics (wide 512-bit registers) or AVX2 code (256-bit registers). When the flag is set to `-qopt-zmm-usage=low` (the default when compiling for SPR, ICX, and SKX using CORE-AVX512), the compiler will choose AVX2 code more often; this may or may not be the optimal approach for your application.  See the recent Intel white paper, the compiler documentation, the compiler man pages, and the notes above for more information.
 
-**Task Affinity**: If you run one MPI application at a time, the ibrun MPI launcher will spread each node's tasks evenly across an SPR, ICX, or SKX node's two sockets, with consecutive tasks occupying the same socket when possible.
+**Task Affinity**: If you run one MPI application at a time, the `ibrun` MPI launcher will spread each node's tasks evenly across an SPR, ICX, or SKX node's two sockets, with consecutive tasks occupying the same socket when possible.
 
 **Hardware Thread Numbering**. Execute `lscpu` or `lstopo` on SPR, ICX, or SKX nodes to see the numbering scheme for cores. Note that core numbers alternate between the sockets on SKX and ICX nodes: even numbered cores are on NUMA node 0, while odd numbered cores are on NUMA node 1. 
 
-**Tuning the Performance Scaled Messaging (PSM2) Library**. When running on SKX with MVAPICH, setting the environment variable `PSM2_KASSIST_MODE` to the value `none` may or may not improve performance. For more information see the MVAPICH User Guide. Do not use this environment variable with IMPI; doing so may degrade performance. The ibrun launcher will eventually control this environment variable automatically.
+**Tuning the Performance Scaled Messaging (PSM2) Library**. When running on SKX with MVAPICH, setting the environment variable `PSM2_KASSIST_MODE` to the value `none` may or may not improve performance. For more information see the MVAPICH User Guide. Do not use this environment variable with IMPI; doing so may degrade performance. The `ibrun` launcher will eventually control this environment variable automatically.
 
 ### File Operations: I/O Performance { #programming-io }
 
@@ -1812,11 +1822,22 @@ This setup enables the [TACC Analysis Portal](http://tap.tacc.utexas.edu) to fin
 If you prefer the old Jupyter notebook style then move the Jupyter lab executable to something else. Note that the TAP portal software is expecting a particular version of Jupyter. This version is consistent across TACC systems. 
 ## Help Desk { #help }
 
-TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for holidays. You can [submit a help desk ticket][HELPDESK] at any time via the TACC User Portal with &quot;Stampede3&quot; in the Resource field. Help the consulting staff help you by following these best practices when submitting tickets. 
+!!!important
+	[Submit a help desk ticket][HELPDESK] at any time via the TACC User Portal.  Be sure to include "Stampede3" in the Resource field.  
+
+TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for holidays.  Help the consulting staff help you by following these best practices when submitting tickets. 
 
 * **Do your homework** before submitting a help desk ticket. What does the user guide and other documentation say? Search the internet for key phrases in your error logs; that's probably what the consultants answering your ticket are going to do. What have you changed since the last time your job succeeded?
 
-* **Describe your issue as precisely and completely as you can:** what you did, what happened, verbatim error messages, other meaningful output. When appropriate, include the information a consultant would need to find your artifacts and understand your workflow: e.g. the directory containing your build and/or job script; the modules you were using; relevant job numbers; and recent changes in your workflow that could affect or explain the behavior you're observing.
+* **Describe your issue as precisely and completely as you can:** what you did, what happened, verbatim error messages, other meaningful output. 
+
+!!! tip
+	When appropriate, include as much meta-information about your job and workflow as possible including: 
+
+	* directory containing your build and/or job script
+	* all modules loaded 
+	* relevant job IDs 
+	* any recent changes in your workflow that could affect or explain the behavior you're observing.
 
 * **[Subscribe to Stampede3 User News][TACCSUBSCRIBE].** This is the best way to keep abreast of maintenance schedules, system outages, and other general interest items.
 
@@ -1824,6 +1845,7 @@ TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for 
 
 * **Be patient.** It may take a business day for a consultant to get back to you, especially if your issue is complex. It might take an exchange or two before you and the consultant are on the same page. If the admins disable your account, it's not punitive. When the file system is in danger of crashing, or a login node hangs, they don't have time to notify you before taking action.
 
+{% include 'aliases.md' %}
 [HELPDESK]: https://tacc.utexas.edu/about/help/ "Help Desk"
 [CREATETICKET]: https://tacc.utexas.edu/about/help/ "Create Support Ticket"
 [SUBMITTICKET]: https://tacc.utexas.edu/about/help/ "Submit Support Ticket"
@@ -1831,22 +1853,26 @@ TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for 
 [TACCPORTALLOGIN]: https://tacc.utexas.edu/portal/login "TACC Portal login"
 [TACCUSAGEPOLICY]: https://tacc.utexas.edu/use-tacc/user-policies/ "TACC Usage Policy"
 [TACCALLOCATIONS]: https://tacc.utexas.edu/use-tacc/allocations/ "TACC Allocations"
-[TACCSUBSCRIBE]: https://accounts.tacc.utexas.edu/subscriptions "Subscribe to News"
+[TACCSUBSCRIBE]: https://accounts.tacc.utexas.edu/user_updates "Subscribe to News"
 [TACCDASHBOARD]: https://tacc.utexas.edu/portal/dashboard "TACC Dashboard"
 [TACCPROJECTS]: https://tacc.utexas.edu/portal/projects "Projects & Allocations"
 
 
 [TACCANALYSISPORTAL]: http://tap.tacc.utexas.edu "TACC Analysis Portal"
 
-[TACCLMOD]: https://lmod.readthedocs.io/en/latest/ "Lmod"
 [DOWNLOADCYBERDUCK]: https://cyberduck.io/download/ "Download Cyberduck"
 
 
+[TACCACLS]: https://docs.tacc.utexas.edu/tutorials/acls "Manage Permissions with Access Control Lists"
+[TACCMANAGINGPERMISSIONS]: https://docs.tacc.utexas.edu/tutorials/permissions "Unix Group Permissions and Environment"
+[TACCLMOD]: https://lmod.readthedocs.io/en/latest/ "Lmod"
 [TACCREMOTEDESKTOPACCESS]: https://docs.tacc.utexas.edu/tutorials/remotedesktopaccess "TACC Remote Desktop Access"
 [TACCSHARINGPROJECTFILES]: https://docs.tacc.utexas.edu/tutorials/sharingprojectfiles "Sharing Project Files"
 [TACCBASHQUICKSTART]: https://docs.tacc.utexas.edu/tutorials/bashstartup "Bash Quick Start Guide"
 [TACCACCESSCONTROLLISTS]: https://docs.tacc.utexas.edu/tutorials/acls "Access Control Lists"
-[TACCMFA]: https://docs.tacc.utexas.edu/basics/mfa "Multi-Factor Authentication at TACC""
-[TACCIDEV]: https://docs.tacc.utexas.edu/software/idev "idev at TACC""
+[TACCMFA]: https://docs.tacc.utexas.edu/basics/mfa "Multi-Factor Authentication at TACC"
+[TACCIDEV]: https://docs.tacc.utexas.edu/software/idev "idev at TACC"
+[TACCPYLAUNCHER]: https://docs.tacc.utexas.edu/software/pylauncher "PyLauncher at TACC"
 
-
+[TACCSOFTWARELIST]: https://tacc.utexas.edu/use-tacc/software-list/ "Software List""
+[TACCSOFTWARE]: https://docs.tacc.utexas.edu/basics/software/ "Software at TACC"

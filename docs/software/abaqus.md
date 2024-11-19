@@ -1,6 +1,5 @@
 # ABAQUS at TACC
-*Last update: November 2, 2021*
-
+*Last update: August 13, 2024*
 
 <table cellpadding="5" cellspacing="5">
 <tr><td><img alt="ABAQUS logo" src="../imgs/abaqus-logo.png"></td>
@@ -36,7 +35,7 @@ abaquslm_license_file="port-number@license-server"
 !!! tip
 	You can estimate your token needs here: <https://www.simuleon.com/abaqus-token-calculator/>
 
-Since the number of ABAQUS licenses are linited, we encourage you to bring your own license tokens (from your local license server) if you have the option to do so.  If using your own license, you may need to work with the license server's administrator to open the appropriate firewalls for accepting connections from TACC resources. The license server administrator will need the [IP addresses range](#ips) of the TACC systems (Stampede2 or Frontera).  Users will then use the port number and hostname of their license server to set the values of `ABAQUSLM_LICENSE_FILE` in either their job script or the value of `abaquslm_license_file` in the `abaqus_v6.env`.
+Since the number of ABAQUS licenses are linited, we encourage you to bring your own license tokens (from your local license server) if you have the option to do so.  If using your own license, you may need to work with the license server's administrator to open the appropriate firewalls for accepting connections from TACC resources. The license server administrator will need the [IP addresses range](#ips) of the TACC systems (Frontera).  Users will then use the port number and hostname of their license server to set the values of `ABAQUSLM_LICENSE_FILE` in either their job script or the value of `abaquslm_license_file` in the `abaqus_v6.env`.
 
 ## Installations { #installations }
 
@@ -48,9 +47,11 @@ login1$ module load abaqus
 
 ## Running ABAQUS { #running }
 
-1. Familiarize yourself with the Stampede2 and/or Frontera user guide sections on "Running Applications".
+*Updates for Stampede3 and Vista coming soon.*  
 
-	* [Stampede2 - Running Jobs](../../hpc/stampede2#running)
+1. Familiarize yourself with the Frontera user guide section on "Running Applications".
+
+	* [Stampede3 - Running Jobs](../../hpc/stampede3#running)
 	* [Frontera - Running Jobs](../../hpc/frontera#running)
 
 	As with all other software packages, do not run ABAQUS on the login nodes. All ABAQUS invocations must occur within an `idev` session or submitted to the compute nodes as a batch job using the [job script](#jobscript) below.
@@ -62,7 +63,7 @@ On a compute node obtained through an `idev` session, the users can run the foll
 
 ``` cmd-line
 c123-456$ ml abaqus 
-c123-456$ $TACC_ABAQUS_BIN/abaqus licensing lmstat -a &gt; abaqus_license.txt
+c123-456$ $TACC_ABAQUS_BIN/abaqus licensing lmstat -a > abaqus_license.txt
 ```
 
 ### Batch Mode { #running-batch }
@@ -102,7 +103,7 @@ c123-456$ $TACC_ABAQUS_BIN/abaqus licensing lmstat -a &gt; abaqus_license.txt
 
 ## Job Script { #jobscript }
 
-The following job script demonstrates an example of running ABAQUS in parallel, on one node, and can be run on the Stampede2 and Frontera systems after adjusting the number of nodes and cores, the values of `-N` and, `-n` respectively.  This script is also located in `$TACC_ABAQUS_DIR/tacc_test/abaqus.slm`.
+The following job script demonstrates an example of running ABAQUS in parallel, on one node, and can be run on the Frontera systems after adjusting the number of nodes and cores, the values of `-N` and, `-n` respectively.  This script is also located in `$TACC_ABAQUS_DIR/tacc_test/abaqus.slm`.
 
 ``` job-script
 #!/bin/bash
@@ -177,9 +178,9 @@ sed -i "/mp_host_list/d" $abaqus_environment_file
 <td valign="top"><code>129.114.63.96/27</code></td>
 </tr>
 <tr>
-<td>Stampede2</td>
-<td valign="top"><code>206.76.192.0/19</code></td>
-<td valign="top"><code>129.114.63.32/27</code></td>
+<td>Stampede3</td>
+<td valign="top"><i>Coming Soon</i></td>
+<td valign="top"><i>Coming Soon</i></td>
 </tr>
 <tr>
 </table>

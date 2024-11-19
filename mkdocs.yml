@@ -10,6 +10,8 @@ site_url: https://docs.tacc.utexas.edu
 # edit_uri: edit/main/docs/
 
 theme:
+    analytics:
+        gtag: G-TRRRQZ0EHX
     cms_url: https://tacc.utexas.edu # TACC Feature
     cms_name: tacc.utexas.edu # TACC Feature
     # nav_name: Documentation # TACC Feature
@@ -22,6 +24,7 @@ nav:
     - Multi-Factor Authentication: basics/mfa.md
     - TACC Good Conduct Guide: basics/conduct.md
     - Data Transfer Guide: basics/datatransfer.md
+    - Software at TACC: basics/software.md
     - Help: basics/help.md
   - HPC User Guides:
     - Chameleon: https://chameleoncloud.readthedocs.io/en/latest
@@ -30,9 +33,9 @@ nav:
     - Lonestar6: hpc/lonestar6.md
     - Jetstream2: https://docs.jetstream-cloud.org
     - Ranch: hpc/ranch.md
-#    - Stampede2: hpc/stampede2.md
     - Stampede3: hpc/stampede3.md
     - Stallion: hpc/stallion.md
+    - Vista: hpc/vista.md
   - Software Packages:
     - ABAQUS: software/abaqus.md
     - AlphaFold : software/alphafold.md
@@ -42,24 +45,26 @@ nav:
     - GROMACS: software/gromacs.md
     - idev: software/idev.md
     - LAMMPS: software/lammps.md
-    - Launcher: software/launcher.md
+#    - Launcher: software/launcher.md
     - Lmod: https://lmod.readthedocs.io/en/latest
     - MATLAB: software/matlab.md
     - NAMD: software/namd.md
     - OpenFOAM: software/openfoam.md
-#    - Paraview VisIt: software/paraview-visit.md
-    - Pylauncher: software/pylauncher.md
+    - ParaView: software/paraview.md
+    - PyLauncher: software/pylauncher.md
     - Quantum Espresso: software/quantumespresso.md 
     - REMORA: software/remora.md
     - TAU: software/tau.md
-    - Tensorflow: software/tensorflow.md
+#    - Tensorflow: software/tensorflow.md
     - VASP: software/vasp.md
+    - VisIt: software/visit.md
   - TACC Tutorials:
     - Access Control Lists: tutorials/acls.md
     - Bash Quick Start Guide: tutorials/bashstartup.md
     - BLAS/LAPACK: tutorials/blas-lapack.md
     - Containers at TACC: https://containers-at-tacc.readthedocs.io/en/latest/index.html
     - DDT Debugger: tutorials/ddt.md
+    - Managing Group Permissions: tutorials/permissions.md
     - Managing I/O: tutorials/managingio.md
     - MAP: tutorials/map.md
     - Remote Desktop Access: tutorials/remotedesktopaccess.md

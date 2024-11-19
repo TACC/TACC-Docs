@@ -1,10 +1,21 @@
 ## Help Desk { #help }
 
-TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for holidays. You can [submit a help desk ticket][HELPDESK] at any time via the TACC User Portal with &quot;Ranch&quot; in the Resource field. Help the consulting staff help you by following these best practices when submitting tickets. 
+!!!important
+	[Submit a help desk ticket][HELPDESK] at any time via the TACC User Portal.  Be sure to include "Ranch" in the Resource field.  
+
+TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for holidays.  Help the consulting staff help you by following these best practices when submitting tickets. 
 
 * **Do your homework** before submitting a help desk ticket. What does the user guide and other documentation say? Search the internet for key phrases in your error logs; that's probably what the consultants answering your ticket are going to do. What have you changed since the last time your job succeeded?
 
-* **Describe your issue as precisely and completely as you can:** what you did, what happened, verbatim error messages, other meaningful output. When appropriate, include the information a consultant would need to find your artifacts and understand your workflow: e.g. the directory containing your build and/or job script; the modules you were using; relevant job numbers; and recent changes in your workflow that could affect or explain the behavior you're observing.
+* **Describe your issue as precisely and completely as you can:** what you did, what happened, verbatim error messages, other meaningful output. 
+
+!!! tip
+	When appropriate, include as much meta-information about your job and workflow as possible including: 
+
+	* directory containing your build and/or job script
+	* all modules loaded 
+	* relevant job IDs 
+	* any recent changes in your workflow that could affect or explain the behavior you're observing.
 
 * **[Subscribe to Ranch User News][TACCSUBSCRIBE].** This is the best way to keep abreast of maintenance schedules, system outages, and other general interest items.
 
@@ -12,3 +23,4 @@ TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for 
 
 * **Be patient.** It may take a business day for a consultant to get back to you, especially if your issue is complex. It might take an exchange or two before you and the consultant are on the same page. If the admins disable your account, it's not punitive. When the file system is in danger of crashing, or a login node hangs, they don't have time to notify you before taking action.
 
+{% include 'aliases.md' %}

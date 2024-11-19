@@ -3,7 +3,7 @@
 
 The [TACC Analysis Portal][TACCANALYSISPORTAL] (TAP) provides simplified access to interactive sessions on TACC large-scale computing resources. TAP targets users who want the convenience of web-based portal access while maintaining control over low-level job behavior.  
 
-Any user with an allocation on one of TACC's HPC Systems, e.g. Frontera, Stampede2, Lonestar6, has access to the TACC Analysis Portal.  TAP-Supported applications include:
+Any user with an allocation on one of TACC's HPC Systems, e.g. Frontera, Stampede3, Lonestar6, has access to the TACC Analysis Portal.  TAP-Supported applications include:
 
 * DCV remote desktop
 * VNC remote desktop

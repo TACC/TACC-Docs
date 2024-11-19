@@ -34,7 +34,7 @@ It is important to realize that idev acquires compute nodes through the Slurm ba
 
 ### Examples { #examples }
 
-Below is an example of `idev`'s progress in creating a session on a Stampede2 Skylake development node (in the `skx-dev` partition, the development default partition is for knl nodes):
+Below is an example of `idev`'s progress in creating a session on a Stampede3 Skylake development node (in the `skx-dev` partition, the development default partition is for knl nodes):
 
 ``` cmd-line
 login1$ idev -p skx-dev
@@ -42,7 +42,7 @@ login1$ idev -p skx-dev
  -> Checking on the status of development queue. OK
 
  -> Defaults file    : ~/.idevrc    
- -> System           : stampede2    
+ -> System           : stampede3    
  -> Queue            : skx-dev        (cmd line: -p        )
  -> Nodes            : 1              (idev  default       )
  -> Tasks per Node   : 68             (idev  default       )
@@ -50,7 +50,7 @@ login1$ idev -p skx-dev
  -> Project          : use_default    (SLURM default       )
 
 -----------------------------------------------------------------
-          Welcome to the Stampede2 Supercomputer                 
+          Welcome to the Stampede3 Supercomputer                 
 -----------------------------------------------------------------
     ...
  -> We will report the job status every 4 seconds: (PD=pending, R=running).

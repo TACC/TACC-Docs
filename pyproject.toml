@@ -4,6 +4,10 @@ version = "0.10.1"
 description = ""
 package-mode = false
 authors = ["rstijerina <r.sal.tijerina@gmail.com>"]
+maintainers = [
+  "TACC COA CMD <coa-cmd@tacc.utexas.edu>",
+  "TACC ACI WMA <wma-portals@tacc.utexas.edu>"
+]
 
 [tool.poetry.dependencies]
 python = ">=3.10,<3.13"

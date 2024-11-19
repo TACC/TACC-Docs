@@ -1,5 +1,5 @@
 # Good Conduct on TACC's HPC Systems { #conduct }
-*Last Update: December 15, 2023*
+*Last Update: August 13, 2024*
 
 **You share TACC's HPC resources with many, sometimes hundreds, of other users, and what you do on the resource affects others**. All TACC account holders  must follow a set of good practices which entail limiting activities that may impact the system for other users. Exercise good conduct to ensure that your activity does not adversely impact the resource and the research community with whom you share it.
 
@@ -13,7 +13,7 @@ Each HPC resource's login nodes are shared amongst all users. Depending on the r
 Think of the login nodes as a prep area, where users may edit and manage files, compile code, perform file management, issue transfers, submit new and track existing batch jobs etc. The login nodes provide an interface to the "back-end" compute nodes. 
 
 
-The compute nodes are where actual computations occur and where research is done. Hundreds of jobs may be running on all compute nodes, with hundreds more queued up to run. All batch jobs and executables, as well as development and debugging sessions, must be run on the compute nodes. To access compute nodes on TACC resources, one must either [submit a job to a batch queue](../../hpc/stampede2#running-sbatch) or initiate an interactive session using the [`idev`](../../software/idev) utility. 
+The compute nodes are where actual computations occur and where research is done. Hundreds of jobs may be running on all compute nodes, with hundreds more queued up to run. All batch jobs and executables, as well as development and debugging sessions, must be run on the compute nodes. To access compute nodes on TACC resources, one must either [submit a job to a batch queue](../../hpc/stampede3#running-sbatch) or initiate an interactive session using the [`idev`](../../software/idev) utility. 
 
 !!! important
 	Do not run jobs or perform intensive computational activity on the login nodes or the shared file systems.  Your account may be suspended if your jobs are impacting other users.
@@ -29,15 +29,15 @@ The compute nodes are where actual computations occur and where research is done
 * **Do not run research applications on the login nodes;** this includes frameworks like MATLAB and R, as well as computationally or I/O intensive Python scripts. If you need interactive access, use the `idev` utility or Slurm's `srun` to schedule one or more compute nodes.
 
 
-!!! hint
-	DO THIS: Start an interactive session on a compute node, then run Matlab.
+!!! hint "Do This"
+	Start an interactive session on a compute node, then run Matlab.
 	```cmd-line
 	login1$ idev
 	c123-456$ matlab
 	```
 
-!!! danger
-	DO NOT DO THIS: Run Matlab or other software packages on a login node
+!!! danger "Do Not Do This"
+	Run Matlab or other software packages on a login node
 
 	```cmd-line
 	login1$ matlab
@@ -45,16 +45,16 @@ The compute nodes are where actual computations occur and where research is done
 
 * **Do not launch too many simultaneous processes;** while it's fine to compile on a login node, a command like "`make -j 16`" (which compiles on 16 cores) may impact other users.
 
-!!! hint
-	DO THIS: build and submit a batch job. All batch jobs run on the compute nodes.
+!!! hint "Do This"
+	Build and submit a batch job. All batch jobs run on the compute nodes.
 
 	```cmd-line
 	login1$ make mytarget
 	login1$ sbatch myjobscript
 	```
 
-!!! danger
-	DO NOT DO THIS: invoke multiple build sessions, or run an executable on a login node.
+!!! danger "Do Not Do This"
+	Invoke multiple build sessions, or run an executable on a login node.
 
 	```cmd-line
 	login1$ make -j 12		# do not run intense builds/compilations on a login node

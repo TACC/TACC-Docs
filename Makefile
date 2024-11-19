@@ -1,11 +1,14 @@
+# WARNING: Using `docker-compose` is deprecated
+DOCKER_COMPOSE_CMD := $(shell if command -v docker-compose > /dev/null; then echo "docker-compose"; else echo "docker compose"; fi)
+
 .PHONY: build
 build:
-	docker-compose -f ./docker-compose.yml build
+	$(DOCKER_COMPOSE_CMD) -f ./docker-compose.yml build
 
 .PHONY: start
 start:
-	docker-compose -f docker-compose.yml up
+	$(DOCKER_COMPOSE_CMD) -f docker-compose.yml up
 
 .PHONY: stop
 stop:
-	docker-compose -f docker-compose.yml down
+	$(DOCKER_COMPOSE_CMD) -f docker-compose.yml down

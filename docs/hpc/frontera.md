@@ -1,5 +1,9 @@
 # Frontera User Guide
-Last update: June 28, 2024
+*Last update: October 30, 2024*
+
+**Important**: (10-15-2024) Please note [TACC's new SU charge policy](#sunotice).
+
+
 <!-- SDL <a href="https://frontera-xortal.tacc.utexas.edu/user-guide/docs/user-guide.pdf">Download PDF <i class="fa fa-file-pdf-o"></i></a></span>-->
 
 <!-- 
@@ -10,11 +14,11 @@ Last update: June 28, 2024
 -->
 ## Introduction { #intro } 
 
-Frontera is funded by the National Science Foundation (NSF) through award #1818253, [Computing for the Endless Frontier](https://www.nsf.gov/awardsearch/showAward?AWD_ID=1818253). It is the largest cluster dedicated to open science in the United States and is the Texas Advanced Computing Center's latest flagship system. Frontera enters production in early summer 2019, building on the successes of the Stampede1 and Stampede2 systems.  
+Frontera is funded by the National Science Foundation (NSF) through award #1818253, [Computing for the Endless Frontier](https://www.nsf.gov/awardsearch/showAward?AWD_ID=1818253). Frontera is the largest cluster dedicated to open science in the United States and is the Texas Advanced Computing Center's latest flagship system. Frontera enters production in early summer 2019, building on the successes of the Stampede1 and Stampede2 systems.  
 
 Frontera provides a balanced set of capabilities that supports both capability and capacity simulation, data-intensive science, visualization, and data analysis, as well as emerging applications in AI and deep learning. Blue Waters and other cyberinfrastructure users in the open science community will find a familiar programming model and tools in a system that is productive today while serving as a bridge to the exascale future.  
 
-The design is anchored by Intel's top-of-the-line (at deployment) Xeon processor, Cascade Lake © (CLX). With a higher clock rate than other recent HPC processors, Intel's CLX processor delivers effective performance in the most commonly used and accessible programming model used in science applications today. Frontera's multi-tier storage system is designed to enable science at unprecedented scales with nearly 60 PB of Lustre-based storage, including 3 PB of flash storage for data-driven science applications that depend upon fast access to large amounts of data.  
+The design is anchored by Intel's top-of-the-line (at deployment) Xeon processor, Cascade Lake © (CLX). With a higher clock rate than other recent HPC processors, Intel's CLX processor delivers effective performance in the most commonly used and accessible programming model used in science applications today. Frontera's multi-tier storage system is designed to enable science at unprecedented scales with nearly 60 PB of Lustre-based storage<!--, including 3 PB of flash storage for data-driven science applications that depend upon fast access to large amounts of data-->.  
 
 Frontera is also breaking new ground in its support for science applications. During the first six months of operation the system will provide support for users to run jobs using [containers](#containers), immediately making tens of thousands of container-ready applications accessible on Frontera without the need for users to find and build their own versions.  
 
@@ -311,7 +315,7 @@ The interconnect is based on Mellanox HDR technology with full HDR (200 Gb/s) co
 
 ## Managing Files { #files }
 
-Frontera mounts three Lustre file systems that are shared across all nodes: the home, work, and scratch file systems. Frontera also contains a fourth file system, <code>FLASH</code>, supporting applications with very high bandwidth or IOPS requirements.
+Frontera mounts three Lustre file systems that are shared across all nodes: the `/home`, `/work`, and `/scratch` file systems. <!-- Frontera also contains a fourth file system, <code>FLASH</code>, supporting applications with very high bandwidth or IOPS requirements.-->
 
 
 ### File Systems { #files-filesystems } 
@@ -585,7 +589,7 @@ As a practical guideline, the product of `$OMP_NUM_THREADS` and the maximum numb
 
 ### More Than One Serial Application in the Same Job { #launching-multiserial }
 
-TACC's `launcher` utility provides an easy way to launch more than one serial application in a single job. This is a great way to engage in a popular form of High Throughput Computing: running parameter sweeps (one serial application against many different input datasets) on several nodes simultaneously. The launcher utility will execute your specified list of independent serial commands, distributing the tasks evenly, pinning them to specific cores, and scheduling them to keep cores busy. Execute `module load launcher` followed by `module help launcher` for more information.
+TACC's `pylauncher` utility provides an easy way to launch more than one serial application in a single job. This is a great way to engage in a popular form of High Throughput Computing: running parameter sweeps (one serial application against many different input datasets) on several nodes simultaneously. The PyLauncher utility will execute your specified list of independent serial commands, distributing the tasks evenly, pinning them to specific cores, and scheduling them to keep cores busy.  Consult [PyLauncher at TACC][TACCPYLAUNCHER] for more information.
 
 ### MPI Applications One at a Time { #launching-mpisequential }
 
@@ -684,12 +688,7 @@ Be sure to request computing resources e.g., number of nodes, number of tasks pe
 * A **serial** (non-parallel) application can only make use of a single core on a single node, and will only see that node's memory.
 * A threaded program (e.g. one that uses **OpenMP**) employs a shared memory programming model and is also restricted to a single node, but the program's individual threads can run on multiple cores on that node. 
 * An **MPI** (Message Passing Interface) program can exploit the distributed computing power of multiple nodes: it launches multiple copies of its executable (MPI **tasks**, each assigned unique IDs called **ranks**) that can communicate with each other across the network. The tasks on a given node, however, can only directly access the memory on that node. Depending on the program's memory requirements, it may not be possible to run a task on every core of every node assigned to your job. If it appears that your MPI job is running out of memory, try launching it with fewer tasks per node to increase the amount of memory available to individual tasks.
-* A popular type of **parameter sweep** (sometimes called **high throughput computing**) involves submitting a job that simultaneously runs many copies of one serial or threaded application, each with its own input parameters ("Single Program Multiple Data", or SPMD). The `launcher` tool is designed to make it easy to submit this type of job. For more information:
-
-	```cmd-line
-	$ module load launcher
-	$ module help launcher
-	```
+* A popular type of **parameter sweep** (sometimes called **high throughput computing**) involves submitting a job that simultaneously runs many copies of one serial or threaded application, each with its own input parameters ("Single Program Multiple Data", or SPMD). TACC's `pylauncher` tool is designed to make it easy to submit this type of job.  See [PyLauncher at TACC][TACCPYLAUNCHER] for more information.
 
 <a id="queues">
 ### Frontera Production Queues { #running-queues } 
@@ -712,6 +711,22 @@ Frontera's `flex` queue offers users a low cost queue for lower priority/node co
     Use TACC's `qlimits` utility to see the latest queue configurations.  
 
 Users are limited to a maximum of 50 running and 200 pending jobs in all queues at one time. 
+
+<!-- 10/04/2024
+           Name       MinNode       MaxNode   PreemptExemptTime     MaxWall     MaxNodePU MaxJobsPU MaxSubmit
+           flex             1           128            01:00:00  2-00:00:00          6400        15       200
+    development                          40                        02:00:00            40         1         2
+         normal             3           512                      2-00:00:00          1024        75       200
+          large           513          2048                      2-00:00:00          3072         2        20
+          debug                        8368                      2-00:00:00          8368        30        60
+            rtx                          16                      2-00:00:00            32        12        36
+        rtx-dev                           2                        02:00:00             2         1         2
+         nvdimm                           4                      2-00:00:00             6         3         8
+          small             1             2                      2-00:00:00            25        15       200
+          grace                          30                      5-00:00:00            30        30       200
+         corral                         512                      2-00:00:00          2048       100       200
+             gh                           1                        02:00:00             1         1         2
+-->
 
 | Queue Name  | Min-Max Nodes per Job<br>(assoc'd cores) | Pre-empt<br>Exempt Time | Max Job Duration | Max Nodes per User | Max Jobs per User  | Charge Rate<br>per node-hour 
 | ------                        | -----                         | ----  | ----     | ----       | ----     | ----
@@ -791,7 +806,7 @@ The [Common `sbatch` Options table](#table7) below describes some of the most co
 <code>-e</code> | <i>error_file</i> | Direct job error output to <i>error_file</i>
 <code>--dependency=</code> | <i>jobid</i> | Specifies a dependency: this run will start only after the specified job (<i>jobid</i>) successfully finishes
 <code>-A</code> | <i>projectnumber</i> | Charge job to the specified project/allocation number. This option is only necessary for logins associated with multiple projects.   
-<code>-a</code><br>or<br><code>--array</code> | N/A | Not available. Use the <code>launcher</code> module for parameter sweeps and other collections of related serial jobs.
+<code>-a</code><br>or<br><code>--array</code> | N/A | Not available. Use the <code>pylauncher</code> module for parameter sweeps and other collections of related serial jobs.
 <code>--mem</code> | N/A | Not available. If you attempt to use this option, the scheduler will not accept your job.
 <code>--export=</code> | N/A | Avoid this option on Frontera. Using it is rarely necessary and can interfere with the way the system propagates your environment.
 
@@ -827,7 +842,7 @@ You'll then see output that includes the following excerpts:
 c123-456$
 ```
 
-The `job status` messages indicate that your interactive session is waiting in the queue. When your session begins, you'll see a command prompt on a compute node (in this case, the node with hostname `c449-001`). If this is the first time you launch `idev`, you may be prompted to choose a default project and a default number of tasks per node for future `idev` sessions.
+The `job status` messages indicate that your interactive session is waiting in the queue. When your session begins, you'll see a command prompt on a compute node (in this case, the node with hostname `c449-001`). If this is the first time you invoke `idev`, you may be prompted to choose a default project and a default number of tasks per node for future `idev` sessions.
 
 For command-line options and other information, execute `idev --help`. It's easy to tailor your submission request (e.g. shorter or longer duration) using Slurm-like syntax:
 
@@ -835,7 +850,7 @@ For command-line options and other information, execute `idev --help`. It's easy
 login1$ idev -p normal -N 2 -n 8 -m 150 # normal queue, 2 nodes, 8 total tasks, 150 minutes
 ```
 
-You can also launch an interactive session with Slurm's srun command, though there's no clear reason to prefer srun to idev. A typical launch line would look like this:
+You can also launch an interactive session with Slurm's `srun` command, though there's no clear reason to prefer `srun` to `idev`. A typical launch line would look like this:
 
 ```cmd-line
 login1$ srun --pty -N 2 -n 8 -t 2:30:00 -p normal /bin/bash -l # same conditions as above
@@ -900,7 +915,7 @@ Serial codes should request 1 node (`#SBATCH -N 1`) with 1 task (`#SBATCH -n 1`)
 !!! important
 	Run all serial jobs in the `small` queue.  
 
-Consult the [Launcher at TACC](../../software/launcher) documentation to run multiple serial executables at one time.
+Consult the [PyLauncher at TACC][TACCPYLAUNCHER] documentation to run multiple serial executables at one time.
 
 ``` job-script
 #!/bin/bash
@@ -921,9 +936,9 @@ Consult the [Launcher at TACC](../../software/launcher) documentation to run mul
 #       A serial code ignores the value of lower case n,
 #       but slurm needs a plausible value to schedule the job.
 #
-#  -- Use TACC's launcher utility to run multiple serial 
-#       executables at the same time, execute "module load launcher" 
-#       followed by "module help launcher".
+#  -- Use TACC's PyLauncher utility to run multiple serial 
+#       executables at the same time, execute "module load pylauncher" 
+#       followed by "module help pylauncher".
 #----------------------------------------------------
 
 #SBATCH -J myjob           # Job name
@@ -1127,7 +1142,7 @@ ibrun ./myprogram         # Use ibrun instead of mpirun or mpiexec
 /// tab | Parametric Sweep / HTC Jobs
 Parametric / HTC Jobs
 
-Consult the [Launcher at TACC](../../software/launcher) documentation for instructions on running parameter sweep and other High Throughput Computing workflows.
+Consult the [PyLauncher at TACC][TACCPYLAUNCHER] documentation for instructions on running parameter sweep and other High Throughput Computing workflows.
 ///
 
 ## Job Management { #monitoring }
@@ -1268,6 +1283,11 @@ For more information see the [Slurm online documentation](http://www.schedmd.com
 ## Building Software { #building }
 
 <p class="introtext">The phrase "building software" is a common way to describe the process of producing a machine-readable executable file from source files written in C, Fortran, or some other programming language. In its simplest form, building software involves a simple, one-line call or short shell script that invokes a compiler. More typically, the process leverages the power of <a href="http://www.gnu.org/software/make/manual/make.html">makefiles</a>, so you can change a line or two in the source code, then rebuild in a systematic way only the components affected by the change. Increasingly, however, the build process is a sophisticated multi-step automated workflow managed by a special framework like <a href="http://www.gnu.org/software/automake/manual/html_node/Autotools-Introduction.html">autotools</a> or <a href="http://cmake.org"><code>cmake</code></a>, intended to achieve a repeatable, maintainable, portable mechanism for installing software across a wide range of target platforms.</p>
+
+!!!important  
+	TACC maintains a database of currently installed software packages and libraries across all HPC resources.  
+	Navigate to TACC's [Software List][TACCSOFTWARELIST] to see where, or if, a particular package is already installed on a particular resource.
+
 
 ### Basics of Building Software { #building-basics }
 
@@ -1533,164 +1553,91 @@ When using the Intel Fortran compiler, **compile with [`-assume buffered_io`](ht
 
 ## Machine Learning { #ml }
 
-Frontera is well equipped to provide researchers with the latest in Machine Learning frameworks, PyTorch and Tensorflow. We recommend using the Python virtual environment to manage machine learning packages.
+Frontera is well equipped to provide researchers with the latest in machine learning frameworks, for example PyTorch. We recommend using the Python virtual environment to manage machine learning packages. Below we detail how to install Pytorch on our systems with a virtual environment: 
 
-### Running PyTorch  { #ml-pytorch }
+### Install Pytorch 
 
-Install Pytorch and TensorBoard.
-
-1. Request a single compute node in Frontera's `rtx-dev` queue using the [`idev`](https://docs.tacc.utexas.edu/software/idev) utility:
-
+1. Request a single compute node in Frontera's [`rtx-dev`](#queues) queue using the [`idev`][TACCIDEV] utility:
 	```cmd-line
 	login2.frontera$ idev -N 1 -n 1 -p rtx-dev -t 02:00:00
 	```
-
 1. Create a Python virtual environment: 
-
 	```cmd-line
 	c123-456$ module load python3/3.9.2
-	c123-456$ python3 -m venv /path/to/virtual-env  # (e.g., $SCRATCH/python-envs/test)
 	```
-
+c123-456$ python3 -m venv /path/to/virtual-env  # (e.g., $SCRATCH/python-envs/test)
 1. Activate the Python virtual environment:
-
 	```cmd-line
 	c123-456$ source /path/to/virtual-env/bin/activate
 	```
-
-1. Now install PyTorch and TensorBoard: 
-
+1. Now install PyTorch: 
 	```cmd-line
-	c123-456$ pip3 install torch==1.12.1 torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu113
-	c123-456$ pip3 install tensorboard
+	c123-456$ pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
 	```
 
-#### Single-Node { #ml-pytorch-singlnode }
+### Testing Pytorch Installation 
+
+To test your installation of PyTorch we point you to a few benchmark calculations that are part of PyTorch's tutorials on multi-GPU and multi-node training.  See PyTorch's documentation: [Distributed Data Parallel in PyTorch](https://pytorch.org/tutorials/beginner/ddp_series_intro.html). These tutorials include several scripts set up to run single-node training and multi-node training.
+
+
+#### Single-Node
 
 1. Download the benchmark:
-
 	```cmd-line
-	c123-456$ cd $SCRATCH
-	c123-456$ git clone https://github.com/gpauloski/kfac-pytorch.git
-	c123-456$ cd kfac-pytorch
-	c123-456$ git checkout tags/v0.3.2
-	c123-456$ pip3 install -e .
-	c123-456$ pip3 install torchinfo tqdm Pillow
-	c123-456$ export LD_LIBRARY_PATH=/usr/lib64:$LD_LIBRARY_PATH
+	c123-456$ cd $SCRATCH 
 	```
-
+c123-456$  git clone https://github.com/pytorch/examples.git
 1. Run the benchmark on one node (4 GPUs):
-
 	```cmd-line
-	c123-456$ python3 -m torch.distributed.launch --nproc_per_node=4 examples/torch_cifar10_resnet.py --kfac-update-freq 0
+	c123-456$ torchrun --nproc_per_node=4 examples/distributed/ddp-tutorial-series/multigpu_torchrun.py 50 10
 	```
-
-#### Multi-Node { #ml-pytorch-multinode }
-
-1. Request two nodes in the `rtx-dev` queue using the [`idev`](https://docs.tacc.utexas.edu/software/idev) utility:
-
+	
+Multi-Node
+1. Request two nodes in the [`rtx-dev`](#queues) queue using the [`idev`][TACCIDEV] utility:
 	```cmd-line
-	login2.frontera$ idev -N 2 -n 2 -p rtx-dev -t 02:00:00
+	login2.frontera$idev -N 2 -n 2 -p rtx-dev -t 02:00:00
 	```
-
 1. Move to the benchmark directory:
-
 	```cmd-line
-	c123-456$ cd $SCRATCH/kfac-pytorch
+	c123-456$ cd $SCRATCH 
 	```
+1. Create a script called "run.sh". This script needs two parameters, the hostname of the master node and the number of nodes. Add execution permission for the file "run.sh".
 
-1. Create a script called "`run.sh`". This script needs two parameters, the hostname of the master node and the number of nodes. Add execution permission for the file "run.sh".
-
-	```job-script
+	```file
 	#!/bin/bash
 	HOST=$1
 	NODES=$2
 	LOCAL_RANK=${PMI_RANK}
-	python3 -m torchdistributed.launch --nproc_per_node=4  --nnodes=$NODES --node_rank=${LOCAL_RANK} --master_addr=$HOST \
-		examples/torch_cifar10_resnet.py --kfac-update-freq 0
+	torchrun --nproc_per_node=4  --nnodes=$NODES --node_rank=${LOCAL_RANK} --master_addr=$HOST \
+		examples/distributed/ddp-tutorial-series/multinode.py 50 10
 	```
 
 1. Run multi-gpu training:
-	
 	```cmd-line
 	c123-456$ ibrun -np 2 ./run.sh c123-456 2
 	```
 
 
-### Running Tensorflow  { #ml-tensorflow }
 
-Follow these instructions to install and run TensorFlow benchmarks on Frontera RTX. Frontera RTX runs TensorFlow 2.8.0 with Python 3.8.2. Frontera supports CUDA/10.1, CUDA/11.0, and CUDA/11.1. By default, we use CUDA/11.3. Select the appropriate CUDA version for your TensorFlow version.
 
-1. Request a single compute node in Frontera's `rtx-dev` queue using the [`idev`](https://docs.tacc.utexas.edu/software/idev) utility:
 
-	```cmd-line
-	login2.frontera$ idev -N 1 -n 1 -p rtx-dev -t 02:00:00
-	```
 
-1. Create a Python virtual environment:
 
-	```cmd-line
-	c123-456$ python3 -m venv /path/to/virtual-env # e.g., $SCRATCH/python-envs/test
-	```
 
-1. Activate the Python virtual environment:
 
-	```cmd-line
-	c123-456$ source /path/to/virtual-env/bin/activate
-	```
 
-1. Install TensorFlow and Horovod:
 
-	```cmd-line
-	c123-456$ module load cuda/11.3 cudnn nccl
-	c123-456$ pip3 install tensorflow-gpu==2.8.2
-	```
 
-	We suggest installing Horovod version 0.25.0. If you wish to install other versions of Horovod, please submit a support ticket with the subject "Request for Horovod" and TACC staff will provide special instructions.
 
-	```cmd-line
-	c123-456$ HOROVOD_CUDA_HOME=$TACC_CUDA_DIR HOROVOD_NCCL_HOME=$TACC_NCCL_DIR CC=gcc \
-    	HOROVOD_GPU_ALLREDUCE=NCCL HOROVOD_GPU_BROADCAST=NCCL HOROVOD_WITH_TENSORFLOW=1 pip3 install horovod==0.25.0
-	```
 
-#### Single-Node { #ml-tensorflow-singlenode }
 
-1. Download the tensorflow benchmark to your $SCRATCH directory, then check out the branch that matches your tensorflow version.
-
-	```cmd-line
-	c123-456$ cds; git clone https://github.com/tensorflow/benchmarks.git
-	c123-456$ cd benchmarks 
-	c123-456$ git checkout 51d647f     # master head as of 08/18/2022
-	```
-
-1. Activate the Python virtual environment:
-
-	```cmd-line
-	c123-456$ source /path/to/virtual-env/bin/activate
-	```
-
-1. Benchmark the performance with synthetic dataset on 1 GPU:
-
-	```cmd-line
-	c123-456$ cd scripts/tf_cnn_benchmarks
-	c123-456$ python3 tf_cnn_benchmarks.py --num_gpus=1 --model resnet50 --batch_size 32 --num_batches 200
-	```
-
-1. Benchmark the performance with synthetic dataset on 4 GPUs:
-
-	```cmd-line
-	c123-456$ cd scripts/tf_cnn_benchmarks
-	c123-456$ ibrun -np 4 python3 tf_cnn_benchmarks.py --variable_update=horovod --num_gpus=1 \
-    	--model resnet50 --batch_size 32 --num_batches 200 --allow_growth=True
-	```
-
-## Visualization and VNC Sessions
+## Visualization and VNC Sessions { #vis }
 
 <p class="introtext">Frontera uses Intel's Cascade Lake (CLX) processors for all visualization and rendering operations. We use the Intel OpenSWR library to render raster graphics with OpenGL, and the Intel OSPRay framework for ray traced images inside visualization software. OpenSWR can be loaded by executing <code>module load swr</code>.</p>
 
 Frontera currently has no separate visualization queue. All visualization apps are available on all nodes. VNC and DCV sessions are available on any queue, either through the command line or via the [TACC Analysis Portal](https://tap.tacc.utexas.edu/). We recommend submitting to Frontera's `development` queue for interactive sessions. If you are interested in an application that is not yet available, please submit a help desk ticket through the Frontera Portal.
 
-### Remote Desktop Access
+### Remote Desktop Access { #vis }
 
 Remote desktop access to Frontera is formed through a DCV or VNC connection to one or more compute nodes. Users must first connect to a Frontera login node (see [Accessing the System](#admin-access) and submit a special interactive batch job that:
 
@@ -1774,11 +1721,11 @@ All VNC connections are tunneled through SSH for extra security.  Follow the ste
 
 	The other xterm window is black-on-white, and can be used to start both serial programs running on the node hosting the vncserver process, or parallel jobs running across the set of cores associated with the original batch job. Additional xterm windows can be created using the window-manager left-button menu.
 
-### Running Applications on the Remote Desktop
+### Running Applications on the Remote Desktop { #vis }
 
 From an interactive desktop, applications can be run from icons or from xterm command prompts. Two special cases arise: running parallel applications, and running applications that use OpenGL.
 
-### Running Parallel Applications from the Desktop
+### Running Parallel Applications from the Desktop { #vis }
 
 Parallel applications are run on the desktop using the same ibrun wrapper described above (see Running). The command:
 
@@ -1788,7 +1735,7 @@ c101-001$ ibrun ibrunoptions application applicationoptions
 
 will run application on the associated nodes, as modified by the ibrun options.
 
-### Running OpenGL/X Applications On The Desktop
+### Running OpenGL/X Applications On The Desktop { #vis }
 
 Frontera uses the OpenSWR OpenGL library to perform efficient rendering. At present, the compute nodes on Frontera do not support native X instances. All windowing environments should use a DCV desktop launched via the job script in `/share/doc/slurm/job.dcv`, a VNC desktop launched via the job script in `/share/doc/slurm/job.vnc` or using the [TACC Analysis Portal][TACCANALYSISPORTAL].
 
@@ -1799,7 +1746,7 @@ c101-001$ module load swr
 c101-001$ swr options application application-args
 ```
 
-### Parallel VisIt on Frontera
+### Parallel VisIt on Frontera { #vis }
 
 [VisIt](https://wci.llnl.gov/simulation/computer-codes/visit) was compiled under the Intel compiler and the mvapich2 and MPI stacks.
 
@@ -1812,11 +1759,11 @@ c101-001$ swr visit
 
 VisIt first loads a dataset and presents a dialog allowing for selecting either a serial or parallel engine. Select the parallel engine. Note that this dialog will also present options for the number of processes to start and the number of nodes to use; these options are actually ignored in favor of the options specified when the VNC server job was started.
 
-#### Preparing Data for Parallel Visit
+#### Preparing Data for Parallel Visit { #vis }
 
 VisIt reads [nearly 150 data formats](https://github.com/visit-dav/visit/tree/develop/src/databases). Except in some limited circumstances (particle or rectilinear meshes in ADIOS, basic netCDF, Pixie, OpenPMD and a few other formats), VisIt piggy-backs its parallel processing off of whatever static parallel decomposition is used by the data producer. This means that VisIt expects the data to be explicitly partitioned into independent subsets (typically distributed over multiple files) at the time of input. Additionally, VisIt supports a metadata file (with a `.visit` extension) that lists multiple data files of any supported format that hold subsets of a larger logical dataset. VisIt also supports a "brick of values (`bov)` format which supports a simple specification for the static decomposition to use to load data defined on rectilinear meshes. For more information on importing data into VisIt, see [Getting Data Into VisIt](https://visit-dav.github.io/visit-website/pdfs/GettingDataIntoVisIt2.0.0.pdf?#page=97).
 
-### Parallel ParaView on Frontera
+### Parallel ParaView on Frontera { #vis }
 
 After connecting to a VNC server on Frontera, as described above, do the following:
 
@@ -2261,11 +2208,22 @@ Frontera supports application containers from any specification-compliant scienc
 See the [Containers @ TACC Workshop](https://containers-at-tacc.readthedocs.io/en/latest/index.html) documentation for more information.
 ## Help Desk { #help }
 
-TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for holidays. You can [submit a help desk ticket][HELPDESK] at any time via the TACC User Portal with &quot;Frontera&quot; in the Resource field. Help the consulting staff help you by following these best practices when submitting tickets. 
+!!!important
+	[Submit a help desk ticket][HELPDESK] at any time via the TACC User Portal.  Be sure to include "Frontera" in the Resource field.  
+
+TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for holidays.  Help the consulting staff help you by following these best practices when submitting tickets. 
 
 * **Do your homework** before submitting a help desk ticket. What does the user guide and other documentation say? Search the internet for key phrases in your error logs; that's probably what the consultants answering your ticket are going to do. What have you changed since the last time your job succeeded?
 
-* **Describe your issue as precisely and completely as you can:** what you did, what happened, verbatim error messages, other meaningful output. When appropriate, include the information a consultant would need to find your artifacts and understand your workflow: e.g. the directory containing your build and/or job script; the modules you were using; relevant job numbers; and recent changes in your workflow that could affect or explain the behavior you're observing.
+* **Describe your issue as precisely and completely as you can:** what you did, what happened, verbatim error messages, other meaningful output. 
+
+!!! tip
+	When appropriate, include as much meta-information about your job and workflow as possible including: 
+
+	* directory containing your build and/or job script
+	* all modules loaded 
+	* relevant job IDs 
+	* any recent changes in your workflow that could affect or explain the behavior you're observing.
 
 * **[Subscribe to Frontera User News][TACCSUBSCRIBE].** This is the best way to keep abreast of maintenance schedules, system outages, and other general interest items.
 
@@ -2273,6 +2231,7 @@ TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for 
 
 * **Be patient.** It may take a business day for a consultant to get back to you, especially if your issue is complex. It might take an exchange or two before you and the consultant are on the same page. If the admins disable your account, it's not punitive. When the file system is in danger of crashing, or a login node hangs, they don't have time to notify you before taking action.
 
+{% include 'aliases.md' %}
 ## References { #refs }
 
 

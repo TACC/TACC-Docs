@@ -21,7 +21,7 @@ Serial codes should request 1 node (`#SBATCH -N 1`) with 1 task (`#SBATCH -n 1`)
 !!! important 
 	Run all serial jobs in the `normal` queue.
 
-Consult the <a href="../../tutorials/launcher">Launcher at TACC</a> documentation to run multiple serial executables at one time.
+Consult the [PyLauncher at TACC][TACCPYLAUNCHER] documentation to run multiple serial executables at one time.
 
 ``` job-script
 #!/bin/bash
@@ -42,9 +42,9 @@ Consult the <a href="../../tutorials/launcher">Launcher at TACC</a> documentatio
 #       A serial code ignores the value of lower case n,
 #       but slurm needs a plausible value to schedule the job.
 #
-#  -- Use TACC's launcher utility to run multiple serial 
-#       executables at the same time, execute "module load launcher" 
-#       followed by "module help launcher".
+#  -- Use TACC's pylauncher utility to run multiple serial 
+#       executables at the same time, execute "module load pylauncher" 
+#       followed by "module help pylauncher".
 #----------------------------------------------------
 
 #SBATCH -J myjob           # Job name

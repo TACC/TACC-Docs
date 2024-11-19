@@ -61,6 +61,5 @@ To test always have one terminal to edit and another terminal to test with.
 This quickstart guide covers the basics.  For more information please look at the web.  Here are two resources:
 
 * [Bash Reference Manual](http://www.gnu.org/software/bash/manual/bashref.html#Bash-Startup-Files)
-* [Shell Startup Scripts](http://blog.flowblok.id.au/2013-02/shell-startup-scripts.html)
 
 

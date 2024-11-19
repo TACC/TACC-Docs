@@ -473,8 +473,8 @@ Click on a tab for a customizable job-script.
 #        but slurm needs a plausible value to schedule the job.
 #
 #   -- For a good way to run multiple serial executables at the
-#        same time, execute "module load launcher" followed
-#        by "module help launcher".
+#        same time, execute "module load pylauncher" followed
+#        by "module help pylauncher".
 #
 #----------------------------------------------------
 

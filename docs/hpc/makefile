@@ -1,14 +1,10 @@
 
-all:	include frontera lonestar6 stampede3
+all:	include frontera lonestar6 stampede3 vista
 
 
 include:
 	echo "====== Building includes ======"
 	cd ../include; make;
-
-#corral: FORCE
-#	echo "====== Building Corral ======"
-#	cd corral; make;
 
 frontera: FORCE
 	echo "====== Building Frontera ======"
@@ -18,20 +14,12 @@ lonestar6: FORCE
 	echo "====== Building Lonestar6  ======"
 	cd 6lonestar; make; 
 
-#maverick2: FORCE
-#	echo "====== Building Maverick2 ======"
-#	cd 2mav; make;
-
-#ranch: FORCE
-#	echo "====== Building Ranch  ======"
-#	cd ranch; make; 
-
-#stampede2: FORCE
-#	echo "====== Building Stampede2 ======"
-#	cd stampede2; make;
-
 stampede3: FORCE
 	echo "====== Building Stampede3 ======"
 	cd 3stampede; make;
+
+vista: FORCE
+	echo "====== Building Vista ======"
+	cd vista; make;
 
 FORCE:	

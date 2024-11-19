@@ -19,7 +19,7 @@ Serial codes should request 1 node (`#SBATCH -N 1`) with 1 task (`#SBATCH -n 1`)
 !!! important
 	Run all serial jobs in the `small` queue.  
 
-Consult the [Launcher at TACC](../../software/launcher) documentation to run multiple serial executables at one time.
+Consult the [PyLauncher at TACC][TACCPYLAUNCHER] documentation to run multiple serial executables at one time.
 
 ``` job-script
 #!/bin/bash
@@ -40,9 +40,9 @@ Consult the [Launcher at TACC](../../software/launcher) documentation to run mul
 #       A serial code ignores the value of lower case n,
 #       but slurm needs a plausible value to schedule the job.
 #
-#  -- Use TACC's launcher utility to run multiple serial 
-#       executables at the same time, execute "module load launcher" 
-#       followed by "module help launcher".
+#  -- Use TACC's PyLauncher utility to run multiple serial 
+#       executables at the same time, execute "module load pylauncher" 
+#       followed by "module help pylauncher".
 #----------------------------------------------------
 
 #SBATCH -J myjob           # Job name
@@ -246,6 +246,6 @@ ibrun ./myprogram         # Use ibrun instead of mpirun or mpiexec
 /// tab | Parametric Sweep / HTC Jobs
 Parametric / HTC Jobs
 
-Consult the [Launcher at TACC](../../software/launcher) documentation for instructions on running parameter sweep and other High Throughput Computing workflows.
+Consult the [PyLauncher at TACC][TACCPYLAUNCHER] documentation for instructions on running parameter sweep and other High Throughput Computing workflows.
 ///
 

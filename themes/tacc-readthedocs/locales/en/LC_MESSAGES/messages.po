@@ -1,0 +1,2 @@
+msgid "Edit on %(repo_name)s"
+msgstr "Suggest an update via %(repo_name)s"

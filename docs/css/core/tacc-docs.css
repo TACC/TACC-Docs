@@ -285,7 +285,7 @@
   /* The `.wy-breadcrumbs-aside` is where repository links would show */
   /* https://github.com/mkdocs/mkdocs/blob/1.4.2/mkdocs/themes/readthedocs/breadcrumbs.html#L14-L30 */
   .rst-content [role="navigation"] li.wy-breadcrumbs-aside {
-    float: right;
+    margin-left: auto;;
   }
   .rst-content [role="navigation"] li.wy-breadcrumbs-aside::before {
     content: unset;

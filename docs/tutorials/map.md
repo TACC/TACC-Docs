@@ -19,7 +19,7 @@ login1$ mpiCC -g mycode.c
 
 Leave in any optimization flags to ensure that optimization is still enabled.  If there were no other optimization flags, add the `-O2` flag.  Otherwise, the `-g` flag by itself will drop the default optimization from `-O2` to `-O0`.
 
-Follow these steps to set up your profiling environment on Frontera, Stampede2, Lonestar6 and other TACC compute resources.
+Follow these steps to set up your profiling environment on Frontera, Stampede3, Lonestar6 and other TACC compute resources.
 
 1. **Enable X11 forwarding**. To use the MAP GUI, ensure that X11 forwarding is enabled when you ssh to the TACC system. Use the `-X` option on the ssh command line if X11 forwarding is not enabled in your ssh client by default.
 
@@ -30,7 +30,7 @@ Follow these steps to set up your profiling environment on Frontera, Stampede2, 
 1. **Load the appropriate MAP module on the remote system** along with any other modules needed to run the application:
 
 	```cmd-line
-	$ module load map_skx mymodule1 mymodule2	# on Stampede2 load "map_skx"
+	$ module load map_skx mymodule1 mymodule2	# on Stampede3 load "map_skx"
 	$ module load map mymodule1 mymodule2       # on all other resources load "map"
 	```
 
@@ -72,7 +72,7 @@ Follow these steps to set up your profiling environment on Frontera, Stampede2, 
 
 		<table border="1" cellpadding="3"> <tr>
 		<th> Queue
-		<td> default queue is <code>skx-dev</code> for Stampede2, and `development` for other systems
+		<td> default queue is <code>skx</code> for Stampede3, and `development` for other systems
 		</tr><tr>
 		<th> Time
 		<td> (hh:mm:ss)

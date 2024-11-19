@@ -1,12 +1,9 @@
 # Lonestar6 User Guide
-*Last update: June 28, 2024*
-
+*Last update: October 30, 2024*
 
 ## Notices { #notices }
 
-* **Lonestar6 has a new [queue](#running-queues), `gpu-a100-small`, for jobs needing only a single GPU.** (11/13/2023)  
-* **[Subscribe][TACCSUBSCRIBE] to Lonestar6 User News**. Stay up-to-date on Lonestar6's status, scheduled maintenances and other notifications.
-
+* **Important**: Please note [TACC's new SU charge policy](#sunotice). (09/20/2024)
 
 ## Introduction { #intro }
 
@@ -18,7 +15,7 @@ The system employs Dell Servers with AMD's highly performant Epyc Milan processo
 
 Lonestar6 is available to researchers from all University of Texas System institutions and to our partners, Texas A&amp;M University, Texas Tech University and University of North Texas.
 
-UT System Researchers may submit allocation requests for compute time on Lonestar6 via TACC's new [Texas Resource Allocation System](https://tacc-submit.xras.xsede.org) (TxRAS).  Consult the [Allocations](https://tacc.utexas.edu/use-tacc/allocations/) page for details.  
+UT System Researchers may submit allocation requests for compute time on Lonestar6 via TACC's new [Texas Resource Allocation System](https://submit-tacc.xras.org) (TxRAS).  Consult the [Allocations](https://tacc.utexas.edu/use-tacc/allocations/) page for details.  
 
 Researchers at our partner institutions may submit allocation requests through the links below.
 
@@ -450,6 +447,10 @@ It's safe to execute module commands in job scripts. In fact, this is a good way
 
 The phrase "building software" is a common way to describe the process of producing a machine-readable executable file from source files written in C, Fortran, or some other programming language. In its simplest form, building software involves a simple, one-line call or short shell script that invokes a compiler. More typically, the process leverages the power of <a href="http://www.gnu.org/software/make/manual/make.html">makefiles</a>, so you can change a line or two in the source code, then rebuild in a systematic way only the components affected by the change. Increasingly, however, the build process is a sophisticated multi-step automated workflow managed by a special framework like <a href="http://www.gnu.org/software/automake/manual/html_node/Autotools-Introduction.html">autotools</a> or <a href="http://cmake.org"><code>cmake</code></a>, intended to achieve a repeatable, maintainable, portable mechanism for installing software across a wide range of target platforms.</p>
 
+!!!important
+    TACC maintains a database of currently installed software packages and libraries across all HPC resources.
+    Navigate to TACC's [Software List][TACCSOFTWARELIST] to see where, or if, a particular package is already installed on a particular resource.
+
 ### Basics of Building Software { #building-basics }
 
 This section of the user guide does nothing more than introduce the big ideas with simple one-line examples. You will undoubtedly want to explore these concepts more deeply using online resources. You will quickly outgrow the examples here. We recommend that you master the basics of makefiles as quickly as possible: even the simplest computational research project will benefit enormously from the power and flexibility of a makefile-based build process.
@@ -591,7 +592,7 @@ $SCRATCH/apps/mydir/myprogram			# explicit full path to executable
 
 ### Parametric Sweep / HTC jobs { #launching-parametric }
 
-Consult the [Launcher at TACC](/software/launcher) documentation for instructions on running parameter sweep and other High Throughput Computing workflows.
+Consult the [PyLauncher at TACC][TACCPYLAUNCHER] documentation for instructions on running parameter sweep and other High Throughput Computing workflows.
 
 
 ### One Multi-Threaded Application { #launching-multithreaded }
@@ -636,7 +637,7 @@ As a practical guideline, the product of `$OMP_NUM_THREADS` and the maximum numb
 
 ### More Than One Serial Application in the Same Job { #launching-serialmorethanone }
 
-TACC's `launcher` utility provides an easy way to launch more than one serial application in a single job. This is a great way to engage in a popular form of High Throughput Computing: running parameter sweeps (one serial application against many different input datasets) on several nodes simultaneously. The launcher utility will execute your specified list of independent serial commands, distributing the tasks evenly, pinning them to specific cores, and scheduling them to keep cores busy. Execute `module load launcher` followed by `module help launcher` for more information.
+TACC's `pylauncher` utility provides an easy way to launch more than one serial application in a single job. This is a great way to engage in a popular form of High Throughput Computing: running parameter sweeps (one serial application against many different input datasets) on several nodes simultaneously. The PyLauncher utility will execute your specified list of independent serial commands, distributing the tasks evenly, pinning them to specific cores, and scheduling them to keep cores busy.  Consult [PyLauncher at TACC][TACCPYLAUNCHER] for more information.
 
 ### MPI Applications One at a Time { #launching-mpioneatatime }
 
@@ -793,7 +794,7 @@ Serial codes should request 1 node (`#SBATCH -N 1`) with 1 task (`#SBATCH -n 1`)
 !!! important 
 	Run all serial jobs in the `normal` queue.
 
-Consult the <a href="../../tutorials/launcher">Launcher at TACC</a> documentation to run multiple serial executables at one time.
+Consult the [PyLauncher at TACC][TACCPYLAUNCHER] documentation to run multiple serial executables at one time.
 
 ``` job-script
 #!/bin/bash
@@ -814,9 +815,9 @@ Consult the <a href="../../tutorials/launcher">Launcher at TACC</a> documentatio
 #       A serial code ignores the value of lower case n,
 #       but slurm needs a plausible value to schedule the job.
 #
-#  -- Use TACC's launcher utility to run multiple serial 
-#       executables at the same time, execute "module load launcher" 
-#       followed by "module help launcher".
+#  -- Use TACC's pylauncher utility to run multiple serial 
+#       executables at the same time, execute "module load pylauncher" 
+#       followed by "module help pylauncher".
 #----------------------------------------------------
 
 #SBATCH -J myjob           # Job name
@@ -1153,161 +1154,74 @@ login1$ sacct --starttime 2019-06-01  # show jobs that started on or after this 
 
 ## Machine Learning on LS6 { #ml }
 
-Lonestar6 is well equipped to provide researchers with the latest in Machine Learning frameworks, PyTorch and Tensorflow. We recommend using the Python virtual environment to manage machine learning packages.
+Lonestar6 is well equipped to provide researchers with the latest in Machine Learning frameworks, PyTorch and Tensorflow. We recommend using the Python virtual environment to manage machine learning packages. Below we detail how to install PyTorch on our systems with a virtual environment: 
 
-### Running PyTorch  { #ml-pytorch }
+### Install PyTorch 
 
-Install Pytorch and TensorBoard.
-
-1. Request a single compute node in Lonestar6's `gpu-a100-dev` queue using the [idev](../../software/idev) utility:
-
+1. Request a single compute node in Lonestar6's `gpu-a100-dev` queue using TACC's [`idev`][TACCIDEV] utility:
 	```cmd-line
 	login$ idev -p gpu-a100-dev -N 1 -n 1 -t 1:00:00
 	```
 
-1. Create a Python virtual environment:
-
+1. Create a Python virtual environment: 
 	```cmd-line
-	c123-456.ls6$ module load python3/3.9.7
-	c123-456.ls6$ python3 -m venv /path/to/virtual-env  # (e.g., $SCRATCH/python-envs/test)
+	c123-456$ module load python3/3.9.7
+	c123-456$ python3 -m venv /path/to/virtual-env  # (e.g., $SCRATCH/python-envs/test)
 	```
 
 1. Activate the Python virtual environment:
-
 	```cmd-line
-	c123-456.ls6$ source /path/to/virtual-env/bin/activate
+	c123-456$ source /path/to/virtual-env/bin/activate
 	```
 
-1. Now install PyTorch and TensorBoard:
-
+1. Now install PyTorch: 
 	```cmd-line
-	c123-456.ls6$ pip3 install torch==1.12.1 torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu113
-	c123-456.ls6$ pip3 install tensorboard
+	c123-456$ pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
 	```
 
-#### Single-Node { #ml-pytorch-singlnode }
+### Testing PyTorch Installation 
+
+To test your installation of PyTorch we point you to a few benchmark calculations that are part of PyTorch's tutorials on multi-GPU and multi-node training.  See PyTorch's documentation: [Distributed Data Parallel in PyTorch](https://pytorch.org/tutorials/beginner/ddp_series_intro.html). These tutorials include several scripts set up to run single-node training and multi-node training.
+
+#### Single-Node
 
 1. Download the benchmark:
-
 	```cmd-line
-	c123-456.ls6$ cd $SCRATCH
-	c123-456.ls6$ git clone https://github.com/gpauloski/kfac-pytorch.git
-	c123-456.ls6$ cd kfac-pytorch
-	c123-456.ls6$ git checkout tags/v0.3.2
-	c123-456.ls6$ pip3 install -e .
-	c123-456.ls6$ pip3 install torchinfo tqdm Pillow
-	c123-456.ls6$ export LD_LIBRARY_PATH=/usr/lib64:$LD_LIBRARY_PATH
+	c123-456$ cd $SCRATCH 
+	c123-456$  git clone https://github.com/pytorch/examples.git
 	```
 
 1. Run the benchmark on one node (3 GPUs):
-
 	```cmd-line
-	c123-456.ls6$ python3 -m torch.distributed.launch --nproc_per_node=3 examples/torch_cifar10_resnet.py --kfac-update-freq 0
+	c123-456$ torchrun --nproc_per_node=3 examples/distributed/ddp-tutorial-series/multigpu_torchrun.py 50 10
 	```
+	
+#### Multi-Node
 
-#### Multi-Node { #ml-pytorch-multinode }
-
-1. Request two nodes in the `gpu-a100-dev` queue using the [`idev`](../../software/idev) utility:
-
+1. Request two nodes in the [`gpu-a100-dev`](#queues) queue using TACC's [`idev`][TACCIDEV] utility:
 	```cmd-line
 	login2.ls6$ idev -N 2 -n 2 -p gpu-a100-dev -t 01:00:00
 	```
 
-1. Activate the Python virtual environment:
-
-	```cmd-line
-	c123-456.ls6$ source /path/to/virtual-env/bin/activate
-	```
-
 1. Move to the benchmark directory:
-
 	```cmd-line
-	c123-456.ls6$ cd $SCRATCH/kfac-pytorch
+	c123-456$ cd $SCRATCH 
 	```
 
-1. Create a script called "`run.sh`". This script needs two parameters, the hostname of the master node and the number of nodes. Add execution permission for the file "run.sh".
+1. Create a script called "run.sh". This script needs two parameters, the hostname of the master node and the number of nodes. Add execution permission for the file "run.sh".
 
-	```job-script
+	```file
 	#!/bin/bash
 	HOST=$1
 	NODES=$2
 	LOCAL_RANK=${PMI_RANK}
-	python3 -m torch.distributed.launch --nproc_per_node=3  --nnodes=$NODES --node_rank=${LOCAL_RANK} --master_addr=$HOST \
-    	examples/torch_cifar10_resnet.py --kfac-update-freq 0
+	torchrun --nproc_per_node=3  --nnodes=$NODES --node_rank=${LOCAL_RANK} --master_addr=$HOST \
+		examples/distributed/ddp-tutorial-series/multinode.py 50 10
 	```
 
 1. Run multi-gpu training:
-
 	```cmd-line
-	c123-456.ls6$ ibrun -np 2 ./run.sh c123-456 2
-	```
-
-### Running Tensorflow  { #ml-tensorflow }
-
-Follow these instructions to install and run TensorFlow benchmarks on Lonestar6's A100. Lonestar6's A100 runs TensorFlow 2.8.2 with Python 3.7.13. Lonestar6's supports CUDA/11.3, CUDA/11.4, and CUDA/12.0. By default, we use CUDA/11.3. Select the appropriate CUDA version for your TensorFlow version.
-
-1. Request a single compute node in Lonestar6's `gpu-a100-dev` queue using the [idev](../../software/idev) utility:
-
-	```cmd-line
-	login2.ls6$ idev -N 1 -n 1 -p gpu-a100-dev -t 01:00:00
-	```
-
-1. Create a Python virtual environment:
-
-	```cmd-line
-	c123-456.ls6$ module load python3/3.7.13 cuda/11.3 cudnn nccl
-	c123-456.ls6$ python3 -m venv /path/to/virtual-env # e.g., $SCRATCH/python-envs/test
-	```
-
-1. Activate the Python virtual environment:
-
-	```cmd-line
-	c123-456.ls6$ source /path/to/virtual-env/bin/activate
-	```
-
-1. Install TensorFlow and Horovod:
-
-	```cmd-line
-	c123-456.ls6$ pip3 install tensorflow-gpu==2.8.2
-	```
-
-	We suggest installing Horovod version 0.25.0. If you wish to install other versions of Horovod, please submit a support ticket with the subject "Request for Horovod" and TACC staff will provide special instructions.
-
-	```cmd-line
-	c123-456.ls6$ HOROVOD_CUDA_HOME=$TACC_CUDA_DIR HOROVOD_NCCL_HOME=$TACC_NCCL_DIR CC=gcc \
-   	HOROVOD_GPU_ALLREDUCE=NCCL HOROVOD_GPU_BROADCAST=NCCL HOROVOD_WITH_TENSORFLOW=1 pip3 install horovod==0.25.0
-	```
-
-#### Single-Node { #ml-tensorflow-singlenode }
-
-1. Download the tensorflow benchmark to your `$SCRATCH` directory, then check out the branch that matches your tensorflow version.
-
-	```cmd-line
-	c123-456.ls6$ cds; git clone https://github.com/tensorflow/benchmarks.git
-	c123-456.ls6$ cd benchmarks 
-	c123-456.ls6$ git checkout 51d647f     # master head as of 08/18/2022
-	```
-
-1. Load modules and activate the Python virtual environment:
-
-	```cmd-line
-	c123-456.ls6$ module load python3/3.7.13 cuda/11.3 cudnn nccl
-	c123-456.ls6$ source /path/to/virtual-env/bin/activate
-	```
-
-1. Benchmark the performance with synthetic dataset on 1 GPU:
-
-	```cmd-line
-	c123-456.ls6$ cd scripts/tf_cnn_benchmarks
-	c123-456.ls6$ python3 tf_cnn_benchmarks.py --num_gpus=1 --model resnet50 --batch_size 32 --num_batches 200
-	```
-
-1. Benchmark the performance with synthetic dataset on 3 GPUs:
-
-	```cmd-line
-	c123-456.ls6$ cd scripts/tf_cnn_benchmarks
-	c123-456.ls6$ ibrun -np 3 python3 tf_cnn_benchmarks.py --variable_update=horovod --num_gpus=1 \
-   		--model resnet50 --batch_size 32 --num_batches 200 --allow_growth=True
+	c123-456$ ibrun -np 2 ./run.sh c123-456 2
 	```
 
 
@@ -1466,11 +1380,22 @@ After connecting to a VNC server on Lonestar6, as described above, do the follow
 1. Select the "auto" configuration, then press "Connect". In the Paraview Output Messages window, you'll see what appears to be an 'lmod' error, but can be ignored. Then you'll see the parallel servers being spawned and the connection established.
 ## Help Desk { #help }
 
-TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for holidays. You can [submit a help desk ticket][HELPDESK] at any time via the TACC User Portal with &quot;Lonestar6&quot; in the Resource field. Help the consulting staff help you by following these best practices when submitting tickets. 
+!!!important
+	[Submit a help desk ticket][HELPDESK] at any time via the TACC User Portal.  Be sure to include "Lonestar6" in the Resource field.  
+
+TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for holidays.  Help the consulting staff help you by following these best practices when submitting tickets. 
 
 * **Do your homework** before submitting a help desk ticket. What does the user guide and other documentation say? Search the internet for key phrases in your error logs; that's probably what the consultants answering your ticket are going to do. What have you changed since the last time your job succeeded?
 
-* **Describe your issue as precisely and completely as you can:** what you did, what happened, verbatim error messages, other meaningful output. When appropriate, include the information a consultant would need to find your artifacts and understand your workflow: e.g. the directory containing your build and/or job script; the modules you were using; relevant job numbers; and recent changes in your workflow that could affect or explain the behavior you're observing.
+* **Describe your issue as precisely and completely as you can:** what you did, what happened, verbatim error messages, other meaningful output. 
+
+!!! tip
+	When appropriate, include as much meta-information about your job and workflow as possible including: 
+
+	* directory containing your build and/or job script
+	* all modules loaded 
+	* relevant job IDs 
+	* any recent changes in your workflow that could affect or explain the behavior you're observing.
 
 * **[Subscribe to Lonestar6 User News][TACCSUBSCRIBE].** This is the best way to keep abreast of maintenance schedules, system outages, and other general interest items.
 
@@ -1478,6 +1403,7 @@ TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for 
 
 * **Be patient.** It may take a business day for a consultant to get back to you, especially if your issue is complex. It might take an exchange or two before you and the consultant are on the same page. If the admins disable your account, it's not punitive. When the file system is in danger of crashing, or a login node hangs, they don't have time to notify you before taking action.
 
+{% include 'aliases.md' %}
 [HELPDESK]: https://tacc.utexas.edu/about/help/ "Help Desk"
 [CREATETICKET]: https://tacc.utexas.edu/about/help/ "Create Support Ticket"
 [SUBMITTICKET]: https://tacc.utexas.edu/about/help/ "Submit Support Ticket"
@@ -1485,22 +1411,26 @@ TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for 
 [TACCPORTALLOGIN]: https://tacc.utexas.edu/portal/login "TACC Portal login"
 [TACCUSAGEPOLICY]: https://tacc.utexas.edu/use-tacc/user-policies/ "TACC Usage Policy"
 [TACCALLOCATIONS]: https://tacc.utexas.edu/use-tacc/allocations/ "TACC Allocations"
-[TACCSUBSCRIBE]: https://accounts.tacc.utexas.edu/subscriptions "Subscribe to News"
+[TACCSUBSCRIBE]: https://accounts.tacc.utexas.edu/user_updates "Subscribe to News"
 [TACCDASHBOARD]: https://tacc.utexas.edu/portal/dashboard "TACC Dashboard"
 [TACCPROJECTS]: https://tacc.utexas.edu/portal/projects "Projects & Allocations"
 
 
 [TACCANALYSISPORTAL]: http://tap.tacc.utexas.edu "TACC Analysis Portal"
 
-[TACCLMOD]: https://lmod.readthedocs.io/en/latest/ "Lmod"
 [DOWNLOADCYBERDUCK]: https://cyberduck.io/download/ "Download Cyberduck"
 
 
+[TACCACLS]: https://docs.tacc.utexas.edu/tutorials/acls "Manage Permissions with Access Control Lists"
+[TACCMANAGINGPERMISSIONS]: https://docs.tacc.utexas.edu/tutorials/permissions "Unix Group Permissions and Environment"
+[TACCLMOD]: https://lmod.readthedocs.io/en/latest/ "Lmod"
 [TACCREMOTEDESKTOPACCESS]: https://docs.tacc.utexas.edu/tutorials/remotedesktopaccess "TACC Remote Desktop Access"
 [TACCSHARINGPROJECTFILES]: https://docs.tacc.utexas.edu/tutorials/sharingprojectfiles "Sharing Project Files"
 [TACCBASHQUICKSTART]: https://docs.tacc.utexas.edu/tutorials/bashstartup "Bash Quick Start Guide"
 [TACCACCESSCONTROLLISTS]: https://docs.tacc.utexas.edu/tutorials/acls "Access Control Lists"
-[TACCMFA]: https://docs.tacc.utexas.edu/basics/mfa "Multi-Factor Authentication at TACC""
-[TACCIDEV]: https://docs.tacc.utexas.edu/software/idev "idev at TACC""
+[TACCMFA]: https://docs.tacc.utexas.edu/basics/mfa "Multi-Factor Authentication at TACC"
+[TACCIDEV]: https://docs.tacc.utexas.edu/software/idev "idev at TACC"
+[TACCPYLAUNCHER]: https://docs.tacc.utexas.edu/software/pylauncher "PyLauncher at TACC"
 
-
+[TACCSOFTWARELIST]: https://tacc.utexas.edu/use-tacc/software-list/ "Software List""
+[TACCSOFTWARE]: https://docs.tacc.utexas.edu/basics/software/ "Software at TACC"

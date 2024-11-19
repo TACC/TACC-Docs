@@ -1,12 +1,10 @@
 # Stampede3 User Guide 
-*Last update: June 28, 2024*
+*Last update: October 30, 2024*
 
 ## Notices { #notices }
 
+* **Important**: Please note [TACC's new SU charge policy](#sunotice). (09/20/2024)
 * **Attention Jupyter users: learn how to [configure your environment](#python-jupyter) to enable notebooks.** (05/16/2024)
-
-* **Stampede3 is now full production.**  All jobs in all [queues](#queues) will be charged to your allocation balances. (05/15/2024)
-
 * **Attention VASP users: DO NOT run VASP using Stampede3's SPR nodes!**  TACC staff has noticed many VASP jobs causing issues on the SPR nodes and impacting overall system stability and performance.  Please run your VASP jobs using either the [SKX](../../hpc/stampede3#table3) or [ICX](../../hpc/stampede3#table4) nodes.  See [Running VASP Jobs](../../software/vasp/#running) for more information.  (05/06/2024)
 
 

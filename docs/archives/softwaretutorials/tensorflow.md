@@ -223,6 +223,7 @@ c123-456$ ibrun -np 8 python3 tf_cnn_benchmarks.py --variable_update=horovod --n
 	--model resnet50 --batch_size 32 --num_batches 200 --allow_growth=True
 ```
 
+<!--
 ## TensorFlow on Stampede2 { #stampede2 }
 
 These instructions detail installing and running TensorFlow benchmarks on Stampede2. Stampede2 runs TensorFlow 2.1.0 with Python 3.7 and Intel 18.
@@ -320,6 +321,8 @@ The parameters for this last command are defined as follows:
 * `-num_inter_threads` specifies the number of threads used for independent operations
 * `-num_batches` specifies the total number of iterations to run
 
+-->
+
 		
 ## FAQ { #faq }
 
@@ -333,8 +336,7 @@ $ pip install --user package-name
 
 ## References { #refs }
 
-<!-- * [Maverick2 User Guide](../../hpc/maverick2) -->
 * [Github: TensorFlow](https://github.com/tensorflow/tensorflow)
-* [Stampede2 User Guide](../../hpc/stampede2)
+<!-- * [Stampede2 User Guide](../../hpc/stampede2) -->
 
 {% include 'aliases.md' %}

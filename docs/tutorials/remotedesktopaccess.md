@@ -1,7 +1,7 @@
 # Remote Desktop Access via DCV and VNC Connections
 *Last update: June 08, 2023*
   
-Establishing a remote desktop connection from one system to another allows the desktop on the remote computer (TACC resources) to be displayed on the local system (your desktop). For HPC purposes remote desktops are used for [visualization applications](../../hpc/stampede2/stampede2#vis) and other [graphics-library enabled applications](/tutorials/ddt).  
+Establishing a remote desktop connection from one system to another allows the desktop on the remote computer (TACC resources) to be displayed on the local system (your desktop). For HPC purposes remote desktops are used for [visualization applications](../../hpc/stampede3#vis) and other [graphics-library enabled applications](/tutorials/ddt).  
 
 ## Remote Desktop Methods { #methods }
 	
@@ -15,21 +15,21 @@ TACC provides three methods of setting up a remote desktop:
 
 Once the `vncserver` process is running on the compute node and a tunnel through the login node is created, the job script writes the connection port to the job output file, `vncserver.out`. Then, connect the VNC viewer application to that port. The remote system's desktop is then presented.  
 
-1. **TACC Vis Portal**: Available to all Frontera and Stampede2 users, the [TACC Analysis Portal](http://tap.tacc.utexas.edu) provides an easy-to-use web interface to submit a VNC job script.
+1. **TACC Vis Portal**: Available to all Frontera and Stampede3 users, the [TACC Analysis Portal](http://tap.tacc.utexas.edu) provides an easy-to-use web interface to submit a VNC job script.
 
-1. **DCV connection**: **D**esktop **C**loud **V**isualization (DCV) traffic is encrypted using Transport Layer Security (TLS) through your web browser, obviating the need to create a separate SSH tunnel. A DCV connection is easier to set up than a VNC connection, however TACC is limited to the number of concurrent DCV licenses. Stampede2 and Frontera are currently the only TACC resources allowing DCV connections. The DCV job script writes connection information to a file, `dcvserver.out`. You can connect to a DCV session with any modern web browswer.
+1. **DCV connection**: **D**esktop **C**loud **V**isualization (DCV) traffic is encrypted using Transport Layer Security (TLS) through your web browser, obviating the need to create a separate SSH tunnel. A DCV connection is easier to set up than a VNC connection, however TACC is limited to the number of concurrent DCV licenses. Stampede3 and Frontera are currently the only TACC resources allowing DCV connections. The DCV job script writes connection information to a file, `dcvserver.out`. You can connect to a DCV session with any modern web browswer.
 
 
 ## TACC Analysis Portal { #tap }
 
-Connect to the TACC Analysis Portal at <https://tap.tacc.utexas.edu>. Everyone with a project allocation on Frontera or Stampede2 may use the TACC Analysis Portal.  
+Connect to the TACC Analysis Portal at <https://tap.tacc.utexas.edu>. Everyone with a project allocation on Frontera or Stampede3 may use the TACC Analysis Portal.  
 
 <figure id="figure1"><img alt="TACC Vis Portal" src="../imgs/RDA-1.png">  
 <figcaption>Figure 1. TACC Visualization Portal</figcaption></figure>
 
 ## DCV & VNC at TACC { #scripts }
 
-TACC resources [Frontera](../../hpc/frontera), [Stampede2](../../hpc/stampede2) and [Lonestar6](../../hpc/lonestar6) all offer remote desktop capabilities via a VNC (Virtual Network Computing) connection. Frontera and Stampede2 also provide remote desktop access through a DCV (Desktop Cloud Visualization) connection to one or more nodes.  
+TACC resources [Frontera](../../hpc/frontera), [Stampede3](../../hpc/stampede3) and [Lonestar6](../../hpc/lonestar6) all offer remote desktop capabilities via a VNC (Virtual Network Computing) connection. Frontera and Stampede3 also provide remote desktop access through a DCV (Desktop Cloud Visualization) connection to one or more nodes.  
 
 TACC has a limited number of DCV licenses available, so concurrent DCV sessions may be limited. TACC has provided two DCV job scripts for two different scenarios:
 
@@ -43,7 +43,7 @@ You can modify or overwrite script defaults with `sbatch` command-line options:
 * <code>-N nodes</code> specify number of nodes needed  
 * <code>-p partition</code> specify an alternate queue 
 
-See more `sbatch` options in the [Stampede2 User Guide: Common `sbatch` Options](../../hpc/stampede2#table6)
+See more `sbatch` options in the [Stampede3 User Guide: Common `sbatch` Options](../../hpc/stampede3#table6)
 
 ### Table 1. Job Scripts { #table1 }
 
@@ -66,17 +66,17 @@ See more `sbatch` options in the [Stampede2 User Guide: Common `sbatch` Options]
 <td><code>/share/doc/slurm/job.vnc</code></td>
 <td>Requests 1 node for 2 hours in Frontera's <code>development</code> queue</td></tr>
 
-<th rowspan="3"> Stampede2
+<th rowspan="3"> Stampede3
 <td align="center"> DCV
 <td><code>/share/doc/slurm/job.dcv</code>
-<td>Requests a DCV session, if no license is available then the job exits.<br>Requests 1 node for 2 hours in Stampede2's <a href="../../hpc/stampede2#queues"><code>skx-dev</code></a> queue</td></tr>
+<td>Requests a DCV session, if no license is available then the job exits.<br>Requests 1 node for 2 hours in Stampede3's <a href="../../hpc/stampede3#queues"><code>skx-dev</code></a> queue</td></tr>
 
 <td align="center"> DCV
 <td nowrap> <code>/share/doc/slurm/job.dcv2vnc</code>
-<td>Request a DCV session, tried to launch a DCV session but if none is available then a VNC session is submitted.<br>Requests 1 node for 2 hours Stampede2's the <a href="../../hpc/stampede2#running-queues"><code>skx-dev</code></a> queue</td></tr>
+<td>Request a DCV session, tried to launch a DCV session but if none is available then a VNC session is submitted.<br>Requests 1 node for 2 hours Stampede3's the <a href="../../hpc/stampede3#running-queues"><code>skx-dev</code></a> queue</td></tr>
 <td align="center"> VNC
 <td><code>/share/doc/slurm/job.vnc</code>
-<td>Requests 1 node for 2 hours in Stampede2's <a href="../../hpc/stampede2#running-queues"><code>skx-dev</code></a> queue</td></tr>
+<td>Requests 1 node for 2 hours in Stampede3's <a href="../../hpc/stampede3#queues"><code>skx-dev</code></a> queue</td></tr>
 <th nowrap> Lonestar6
 <td align="center"> VNC
 <td><code>/share/doc/slurm/job.vnc</code>
@@ -85,12 +85,12 @@ See more `sbatch` options in the [Stampede2 User Guide: Common `sbatch` Options]
 
 ## Start a DCV Session { #dcv }
 
-Both Frontera and Stampede2 allow DCV connections. Follow the steps below to start an interactive DCV session on either resource. The command-line examples below demonstrate creating a session on Stampede2. You can follow the same steps to establish a session on Frontera.
+Both Frontera and Stampede3 allow DCV connections. Follow the steps below to start an interactive DCV session on either resource. The command-line examples below demonstrate creating a session on Stampede3. You can follow the same steps to establish a session on Frontera.
 
-1. Connect to Stampede2 or Frontera in your usual manner, e.g.:
+1. Connect to Stampede3 or Frontera in your usual manner, e.g.:
 
 	```cmd-line
-	login1$ ssh -l username stampede2.tacc.utexas.edu
+	login1$ ssh -l username stampede3.tacc.utexas.edu
 	```
 
 1. **Submit one of two standard job scripts.** If you submit the `job.dcv2vnc` script, then either a DCV or VNC session is created. The following instructions demonstrate submitting the `job.dcv` script.  
@@ -141,17 +141,17 @@ Both Frontera and Stampede2 allow DCV connections. Follow the steps below to sta
 	TACC: running on node c506-082
 	TACC: local (compute node) DCV port is 8443
 	TACC: got login node DCV port 18606
-	TACC: Created reverse ports on Stampede2 logins
+	TACC: Created reverse ports on Stampede3 logins
 	TACC: Your DCV session is now running!
 	TACC: To connect to your DCV session, please point a modern web browser to:
-	TACC:          https://stampede2.tacc.utexas.edu:18606
+	TACC:          https://stampede3.tacc.utexas.edu:18606
 	```
 
 
-1. **Load this generated URL in your favorite browser and then authenticate using your Stampede2 or Frontera password**. 
+1. **Load this generated URL in your favorite browser and then authenticate using your Stampede3 or Frontera password**. 
 
 	<figure id="figure2"><img alt="" src="../imgs/RDA-2.png"> 
-	<figcaption>Figure 2. Authenticate with your Stampede2 password.</figcaption></figure>
+	<figcaption>Figure 2. Authenticate with your Stampede3 password.</figcaption></figure>
 
 1. **Start your graphics-enabled application.** Once the desktop is generated ([Figure 3.](#figure3)), you can launch your applications. Here we run a simple visualization program, `glxgears`. ([Figure 4.](#figure4))
 
@@ -213,30 +213,30 @@ Follow the steps below to start an interactive session.
 
 	The lightweight window manager, `xfce`, is the default VNC desktop and is recommended for remote performance. Gnome is available; to use gnome, open the `~/.vnc/xstartup` file (created after your first VNC session) and replace `startxfce4` with `gnome-session`. Note that gnome may lag over slow internet connections.
 
-1. **Create an SSH Tunnel to Stampede2**
+1. **Create an SSH Tunnel to Stampede3**
 
-	TACC requires users to create an SSH tunnel from the local system to the Stampede2 login node to assure that the connection is secure. On a Unix or Linux system, execute the following command once the port has been opened on the Stampede2 login node:
+	TACC requires users to create an SSH tunnel from the local system to the Stampede3 login node to assure that the connection is secure. On a Unix or Linux system, execute the following command once the port has been opened on the Stampede3 login node:
 
 	In a new local terminal window, create the SSH tunnel:
 
 	```cmd-line
-	localhost$ ssh -f -N -L xxxx:stampede2.tacc.utexas.edu:yyyy \
-	      username@stampede2.tacc.utexas.edu
+	localhost$ ssh -f -N -L xxxx:stampede3.tacc.utexas.edu:yyyy \
+	      username@stampede3.tacc.utexas.edu
 	```
 
 	where
 
 	*  <code>yyyy</code> is the port number given by the vncserver batch job 
-	*  <code>xxxx</code> is a port on the remote system. Generally, the port number specified on the Stampede2 login node, <code>yyyy</code>, is a good choice to use on your local system as well 
+	*  <code>xxxx</code> is a port on the remote system. Generally, the port number specified on the Stampede3 login node, <code>yyyy</code>, is a good choice to use on your local system as well 
 	*  `-f` instructs SSH to only forward ports, not to execute a remote command 
 	*  `-N` puts the `ssh` command into the background after connecting 
 	*  `-L` forwards the port 
 
-	On Windows systems find the menu in the Windows SSH client where tunnels can be specified, and enter the local and remote ports as required, then `ssh` to Stampede2.
+	On Windows systems find the menu in the Windows SSH client where tunnels can be specified, and enter the local and remote ports as required, then `ssh` to Stampede3.
 
 1. **Connect the VNC viewer**
 
-	Once the SSH tunnel has been established, use a [VNC client](https://en.wikipedia.org/wiki/Virtual_Network_Computing) to connect to the local port you created, which will then be tunneled to your VNC server on Stampede2. Connect to <code>localhost:xxxx</code>, where <code>xxxx</code> is the local port you used for your tunnel. In the examples above, we would connect the VNC client to <code>localhost::xxxx</code>. (Some VNC clients accept <code>localhost:xxxx</code>).
+	Once the SSH tunnel has been established, use a [VNC client](https://en.wikipedia.org/wiki/Virtual_Network_Computing) to connect to the local port you created, which will then be tunneled to your VNC server on Stampede3. Connect to <code>localhost:xxxx</code>, where <code>xxxx</code> is the local port you used for your tunnel. In the examples above, we would connect the VNC client to <code>localhost::xxxx</code>. (Some VNC clients accept <code>localhost:xxxx</code>).
 
 	!!! tip
 		TACC staff recommends the [TigerVNC](http://sourceforge.net/projects/tigervnc/) VNC Client, a platform independent client/server application.
@@ -270,7 +270,7 @@ Follow the steps below to start an interactive session.
 Submit a VNC job for user `slindsey`.
 
 ```cmd-line
-localhost$ ssh slindsey@stampede2.tacc.utexas.edu
+localhost$ ssh slindsey@stampede3.tacc.utexas.edu
  ...
 login4(804)$ sbatch -A TG-123456 -t 01:00:00 /share/doc/slur m/job.vnc
  ...
@@ -290,25 +290,25 @@ set wayness to
 got VNC display :1
 local (compute node) VNC port is 5901
 got login node VNC port 18455
-Created reverse ports on Stampede2 logins
+Created reverse ports on Stampede3 logins
 Your VNC server is now running!
-To connect via VNC client:  STYLEBLUESSH tunnel port 18455 to stampede2.tacc.utexas.edu:18455
+To connect via VNC client:  STYLEBLUESSH tunnel port 18455 to stampede3.tacc.utexas.edu:18455
 Then connect to localhost::18455
 login4(807)$ scancel 1974882
 login4(808)$ squeue -u slindsey
 JOBID   PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
 login4(809)$ exit
 logout
-Connection to stampede2.tacc.utexas.edu closed.
+Connection to stampede3.tacc.utexas.edu closed.
 bash-3.2$ exit
 ```
 
 #### Window 2 { #vncwindow2 }
 
-Create the SSH tunnel from your local machine to Stampede2
+Create the SSH tunnel from your local machine to Stampede3
 
 ```cmd-line
-localhost$ ssh -f -N -L 18455:stampede2.tacc.utexas.edu:18455 slindsey@stampede2.tacc.utexas.edu
+localhost$ ssh -f -N -L 18455:stampede3.tacc.utexas.edu:18455 slindsey@stampede3.tacc.utexas.edu
 ...
 Password:
 TACC Token Code:
@@ -319,7 +319,7 @@ localhost$
 
 From an interactive desktop, applications can be run from icons or from `xterm` command prompts. 
 
-See the [Stampede2 User Guide Visualization](../../hpc/stampede2#vis) and [Frontera User Guide Visualization](../../hpc/frontera#vis) sections for details on running parallel applications on the desktop.
+See the [Stampede3 User Guide Visualization](../../hpc/stampede3#vis) and [Frontera User Guide Visualization](../../hpc/frontera#vis) sections for details on running parallel applications on the desktop.
 
 
 		
