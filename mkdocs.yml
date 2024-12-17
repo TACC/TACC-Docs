@@ -80,10 +80,9 @@ plugins:
       exclude:
         - aliases.md
         - include/*
-        - index-sample/*
         - code-examples/*
         - testingextensions.md
-        - archives/*
+      exclude_unreferenced: true
   - macros # allows {% include ... %} (and macros)
 # TODO: Restore this
 #  - with-pdf:
