@@ -41,6 +41,8 @@ extra_javascript:
     - js/core/autoScrollNav.js
     - js/core/addPageId.js
     - js/core/redirectNavLinks.js
+    - https://polyfill.io/v3/polyfill.min.js?features=es6
+    - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js
 
 # Python-Markdown extensions
 # https://python-markdown.github.io/extensions/
@@ -79,7 +81,10 @@ markdown_extensions:
   # WARNING: Installing Pygments causes MkDocs build error
   # - pymdownx.highlight
   #     use_pygments: true
+  - pymdownx.arithmatex:
+      generic: true
 
 plugins:
   - search
+  - awesome-pages
   - macros # allows {% include ... %} (and macros)
