@@ -1,11 +1,3 @@
-<style>
-.grid {
-  display: grid;
-  gap: var(--global-space--grid-gap);
-  grid-template-columns: 1fr 1fr;
-}
-</style>
-
 # Documentation Overview
 
 <!-- To not use <h3> so this heading does not show in nav -->

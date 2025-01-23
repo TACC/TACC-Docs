@@ -514,4 +514,17 @@
     padding-bottom: 0; /* undo theme.css */
   }
 
+
+
+
+
+  /* LAYOUTS */
+
+  .grid {
+    display: grid;
+    gap: var(--global-space--grid-gap);
+    grid-template-columns: 1fr 1fr;
+  }
+
+
 }
