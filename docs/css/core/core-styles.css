@@ -2,8 +2,8 @@
 /* https://github.com/TACC/Core-Styles */
 /* https://tacc-main.atlassian.net/wiki/x/qA9v */
 
-@import url('https://cdn.jsdelivr.net/npm/@tacc/core-styles@2.29.0/dist/core-styles.base.css') layer(base);
-@import url('https://cdn.jsdelivr.net/npm/@tacc/core-styles@2.29.0/dist/core-styles.docs.css') layer(project);
+@import url('https://cdn.jsdelivr.net/npm/@tacc/core-styles@2.37.3/dist/core-styles.base.css') layer(base);
+@import url('https://cdn.jsdelivr.net/npm/@tacc/core-styles@2.37.3/dist/core-styles.docs.css') layer(project);
 
 /* CORE STYLES: Base */
 @layer base {
