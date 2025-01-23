@@ -1,3 +1,9 @@
+<style>
+.grid {
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+}
+</style>
+
 # Managing your TACC Account
 *Last update: January 23, 2025*
 
