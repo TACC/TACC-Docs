@@ -1,9 +1,3 @@
-<style>
-.grid {
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-}
-</style>
-
 # Managing your TACC Account
 *Last update: January 23, 2025*
 
@@ -16,20 +10,18 @@ Document the account creation process and troubleshooting tips.
 ## TACC Portals and HPC Resources
 
 //// html | div.grid
-///// html | div[style="grid-column: 1 / -1"]
+///// html | div[style="grid-column: span 2"]
 
 TACC provides access to several portals with varying login requirements along with selected access to computing resources.  
 
 /////
 
-///// html | article.card--plain
+///// html | a.card--plain[href="https://accounts.tacc.utexas.edu"]
      markdown: block
 
-### TACC Accounts Portal
+<h3>TACC Accounts Portal</h3>
 
 Login Requirements: None
-
-The [TACC Accounts Portal][TACCACCOUNTS] provides the following services:
 
 * New account creation
 * User profile management
@@ -44,11 +36,11 @@ The [TACC Accounts Portal][TACCACCOUNTS] provides the following services:
 ///// html | article.card--plain
      markdown: block
 
-### TACC User Portal
+<h3>TACC User Portal</h3>
 
-Login requirements: an "[Active](#active)" TACC account
+Login requirements: an "<a href="#active">Active</a>" TACC account
 
-The [TACC User Portal][TACCUSERPORTAL] provides the following services:
+The <a href="https://tacc.utexas.edu/portal/login">TACC User Portal</a> provides the following services:
 
 * Monitor your HPC jobs 
 * Monitor HPC Resource status
@@ -58,14 +50,12 @@ The [TACC User Portal][TACCUSERPORTAL] provides the following services:
 /////
 
 
-///// html | article.card--plain
+///// html | a.card--plain[href="https://docs.tacc.utexas.edu"]
      markdown: block
 
-### TACC Documentation
+<h3>TACC Documentation</h3>
 
 Login requirements: None
-
-The [TACC Documentation Portal][TACCDOCS] provides TACC-specific technical documentation:
 
 * HPC resource user guides 
 * Software package user guides
@@ -77,19 +67,19 @@ The [TACC Documentation Portal][TACCDOCS] provides TACC-specific technical docum
 ///// html | article.card--plain
      markdown: block
 
-### HPC Resources
+<h3>HPC Resources</h3>
 
 Login requirements: 
 
 * An "<a href="#active">Active</a>" TACC Portal account
-* Must belong to a project with an active allocation.  (Review your allocation status on the [TACC User Portal][TACCUSERPORTAL].
+* Must belong to a project with an active allocation.  (Review your allocation status on the <a href="https://tacc.utexas.edu/portal/login">TACC User Portal</a>.
 
 Currently our HPC resources consist of:
 
-*  <a href="doc.tacc.utexas.edu/hpc/frontera">Frontera</a>
-*  <a href="doc.tacc.utexas.edu/hpc/vista">Vista</a>
-*  <a href="doc.tacc.utexas.edu/hpc/lonestar6">Lonestar6</a>
-*  <a href="doc.tacc.utexas.edu/hpc/stampede3">Stampede3</a>
+*  <a href="/hpc/frontera">Frontera</a>
+*  <a href="/hpc/vista">Vista</a>
+*  <a href="/hpc/lonestar6">Lonestar6</a>
+*  <a href="/hpc/stampede3">Stampede3</a>
 
 /////
 ////
