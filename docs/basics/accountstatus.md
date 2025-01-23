@@ -1,3 +1,9 @@
+<style>
+.grid {
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+}
+</style>
+
 # Managing your TACC Account
 *Last update: January 23, 2025*
 
@@ -5,9 +11,19 @@ This document introduces the TACC ecosystem that consists not only of HPC resour
 
 Document the account creation process and troubleshooting tips.
 
+/// html | section.section--muted.section--has-border
+
 ## TACC Portals and HPC Resources
 
+//// html | div.grid
+///// html | div[style="grid-column: 1 / -1"]
+
 TACC provides access to several portals with varying login requirements along with selected access to computing resources.  
+
+/////
+
+///// html | article.card--plain
+     markdown: block
 
 ### TACC Accounts Portal
 
@@ -22,7 +38,13 @@ The [TACC Accounts Portal][TACCACCOUNTS] provides the following services:
 * TACC Login support tool
 * Subscribe to User News
 
-### TACC User Portal]
+/////
+
+
+///// html | article.card--plain
+     markdown: block
+
+### TACC User Portal
 
 Login requirements: an "[Active](#active)" TACC account
 
@@ -33,6 +55,12 @@ The [TACC User Portal][TACCUSERPORTAL] provides the following services:
 * Monitor your allocation usage and SU consumption
 * PI's may add users to their allocations
 
+/////
+
+
+///// html | article.card--plain
+     markdown: block
+
 ### TACC Documentation
 
 Login requirements: None
@@ -42,6 +70,12 @@ The [TACC Documentation Portal][TACCDOCS] provides TACC-specific technical docum
 * HPC resource user guides 
 * Software package user guides
 * TACC tutorials
+
+/////
+
+
+///// html | article.card--plain
+     markdown: block
 
 ### HPC Resources
 
@@ -57,6 +91,9 @@ Currently our HPC resources consist of:
 *  <a href="doc.tacc.utexas.edu/hpc/lonestar6">Lonestar6</a>
 *  <a href="doc.tacc.utexas.edu/hpc/stampede3">Stampede3</a>
 
+/////
+////
+///
 
 ## New Accounts
 
