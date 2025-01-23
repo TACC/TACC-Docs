@@ -7,7 +7,7 @@
 # Managing your TACC Account
 *Last update: January 23, 2025*
 
-This document introduces the TACC ecosystem that consists not only of HPC resources, but also portals to manage your account, manage your allocations and running jobs and technical documentation. and stuff.  
+This document introduces the TACC ecosystem that consists not only of HPC resources, but also portals to manage your account, manage your allocations and running jobs and technical documentation. 
 
 Document the account creation process and troubleshooting tips.
 
@@ -97,17 +97,20 @@ Currently our HPC resources consist of:
 
 ## New Accounts
 
-Any user of TACC resources, HPC resources, Design-Safe, etc. must have a TACC Portal account.  A TACC account email is of the form *username*@tacc.utexas.edu.
+Any user of TACC resources, HPC resources, Design-Safe, etc. must have a TACC Portal account.  A TACC account email is of the form *username*@tacc.utexas.edu.  
 
 !!! important 
 	An individual may not have more than one TACC account.  Shared accounts and/or multi-user accounts are strictly prohibited.  
 
-To create a new account, go to the TACC Accounts Portal and click "[Create a New Account](https://accounts.tacc.utexas.edu/begin)" to begin registration.
-Once you"ve agreed to TACC"s Acceptable Use Policy, you"ll be redirected immediately to set up Multi-Factor Authentication on your new account.   
+To create a new account: 
+
+1. Go to the [TACC Accounts Portal][TACCACCOUNTS] and click "Create a New Account" to begin registration.
+1. Something on identity management
+1. Once you submit your account request, you will receive an email with a link to confirm and activate your account.  
 
 ### Identity Management
 
-Any user registering for a new account, reactivating a deactivated account, or updating their profile will be required to authenticate using one of the UT approved Identity Provider services.  All existing accounts will be required to authenticate with one of these identity providers at the yearly profile update. 
+Any user registering for a new account, reactivating a [deactivated](#deactivated) account, or updating their profile will be required to authenticate using one of the UT approved Identity Provider services listed below.  All existing accounts will be required to authenticate with one of these identity providers at the annual account profile update. 
 
 * UT EID
 * InCommon Federation
@@ -117,9 +120,7 @@ Any user registering for a new account, reactivating a deactivated account, or u
 
 ## Diagnosing Login Problems
 
-If you are having issues with your account, TACC's login support tool is the fastest way to diagnose and resolve any problems. You may also use it to simply check the status of your account. Your user profile will also list the current status of your account. 
-
-Provided below is additional information about different account statuses, what they mean, and potential next steps.
+If you are having issues with your account, TACC's [Login Support Tool][TACCLOGINSUPPORT] is the fastest way to diagnose and resolve any problems. You may also use it to simply check the status of your account. Your user profile will also list the current status of your account. 
 
 ### Account Statuses
 
@@ -127,7 +128,7 @@ You may view your account status at any time on the [TACC Accounts Portal][TACCA
 
 #### [Active](#active)
 
-All is well.  Active account holders may log on to the TACC User Portal as well as any other allocated TACC resources. 
+All is well.  Active account holders may log on to the TACC User Portal as well as other allocated TACC resources. 
 
 
 #### [Pending Email Confirmation](#pendingemailconfirmation)
@@ -136,28 +137,23 @@ Once you submit your new account request, your account status immediately update
 
 If you haven't received the  email, check your spam or junk folder and any filters. Add "`no-reply@tacc.utexas.edu`" to your safe senders list, then request the activation link again.
 
-
 If your account status turns to Active, you will now need to set up an MFA pairing for your account. You may refer to our MFA instructions page for information on how to set up your MFA. If your account turns into a Pending status after activation, please refer below for the next steps.
 
 #### [Pending](#pending)
 
-If your account status is Pending then your account request will need to undergo further review by our team. You will receive an email from us with the results of the review.
-
-No action is required from you if your account status is Pending, but please do reach out to our help desk if you have any questions or concerns.
+If your account status is Pending then your account request will need to undergo further review by our team. You will receive an email from us with the results of the review.  No action is required from you if your account status is Pending, but please do reach out to our help desk if you have any questions or concerns.
 
 
 #### [Deactivated](#deactivated)
 
-If you have not logged into This status occurs as a result of TACC's 120-day inactivity policy. If you have not used your account in 120 consecutive days, your account will automatically get deactivated per our security protocols. You can reactivate your account by logging into the TACC Accounts site (https://accounts.tacc.utexas.edu/activate) and requesting an activation link.
-
-Important: You will have to reconfigure MFA once your account is reactivated.
+If you have not logged into your account in the past 120 consecutive days, your account will automatically get deactivated per our security protocols.  You can reactivate your account by logging into the [TACC Accounts Portal][TACCACCOUNTS]  and requesting an activation link.  **You will have to repair MFA once your account is reactivated**.
 
 #### [Suspended](#suspended)
 
-If your account is suspended you will be prohibited from logging into the TACC User Portal and any TACC HPC resources.  Account suspension can result if:
+If your account is suspended you will be prohibited from logging into the TACC User Portal and logging into any TACC HPC resources.  Account suspension can result if:
 
 * Your HPC jobs are violating [Good Conduct Policies][TACCGOODCONDUCT] or causing harm to our systems
-* Your account usage is in violation of TACC's Acceptable Use Policy
+* Your account usage is in violation of TACC's [Acceptable Use Policy][TACCAUP].
 
 Please [submit a help desk ticket](SUBMITTICKET) and a member of our User Services team will respond.   
 
