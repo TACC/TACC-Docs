@@ -9,7 +9,7 @@
 
 This document introduces the TACC ecosystem that consists not only of HPC resources, but also portals to manage your account, manage your allocations and running jobs and technical documentation. 
 
-Document the account creation process and troubleshooting tips.
+<!-- Document the account creation process and troubleshooting tips. -->
 
 /// html | section.section--muted.section--has-border
 
@@ -122,12 +122,12 @@ If you are having issues with your account, TACC's [Login Support Tool][TACCLOGI
 
 You may view your account status at any time on the [TACC Accounts Portal][TACCACCOUNTS].
 
-#### [Active](#active)
+#### Active
 
 All is well.  Active account holders may log on to the TACC User Portal as well as other allocated TACC resources. 
 
 
-#### [Pending Email Confirmation](#pendingemailconfirmation)
+#### Pending Email Confirmation
 
 Once you submit your new account request, your account status immediately updates to this status.   Once you submit your account request, you will receive an email with a link to confirm and activate your account.  Until you click this link, your account status will be listed as `PendingEmailConfirmation`.
 
@@ -135,21 +135,21 @@ If you haven't received the  email, check your spam or junk folder and any filte
 
 If your account status turns to Active, you will now need to set up an MFA pairing for your account. You may refer to our MFA instructions page for information on how to set up your MFA. If your account turns into a Pending status after activation, please refer below for the next steps.
 
-#### [Pending](#pending)
+#### Pending
 
 If your account status is Pending then your account request will need to undergo further review by our team. You will receive an email from us with the results of the review.  No action is required from you if your account status is Pending, but please do reach out to our help desk if you have any questions or concerns.
 
 
-#### [Deactivated](#deactivated)
+#### Deactivated
 
 If you have not logged into your account in the past 120 consecutive days, your account will automatically get deactivated per our security protocols.  You can reactivate your account by logging into the [TACC Accounts Portal][TACCACCOUNTS]  and requesting an activation link.  **You will have to repair MFA once your account is reactivated**.
 
-#### [Suspended](#suspended)
+#### Suspended
 
 If your account is suspended you will be prohibited from logging into the TACC User Portal and logging into any TACC HPC resources.  Account suspension can result if:
 
 * Your HPC jobs are violating [Good Conduct Policies][TACCGOODCONDUCT] or causing harm to our systems
-* Your account usage is in violation of TACC's [Acceptable Use Policy][TACCAUP].
+* Your account usage is in violation of TACC's [Acceptable Use Policy][TACCUSAGEPOLICY].
 
 Please [submit a help desk ticket](SUBMITTICKET) and a member of our User Services team will respond.   
 
@@ -169,11 +169,9 @@ Once that happens you can try making the change for a password-less login. Pleas
 
 ## References
 
-* [Submit a support ticket ][CREATETICKET]
 * [TACC Login Support Tool][TACCLOGINSUPPORT]
-* [TACC Accounts Portal][TACCACCOUNTS]
-* [TACC Acceptable Use Policy][TACCAUP]
-* [MFA at TACC][TACCMFA]
+* [TACC Acceptable Use Policy][TACCUSAGEPOLICY]
+* [Multi-Factor Authentication at TACC][TACCMFA]
 
 {% include 'aliases.md' %}
 
