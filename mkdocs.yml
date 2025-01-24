@@ -4,10 +4,8 @@ site_name: TACC HPC Documentation
 site_description: TACC Technical Documentation
 site_author: Susan Lindsey
 site_url: https://docs.tacc.utexas.edu
-# To suppport "Edit on Github" link
-# SEE: https://www.mkdocs.org/user-guide/configuration/#repo_name
-# repo_url: https://github.com/TACC/TACC-Docs
-# edit_uri: edit/main/docs/
+repo_url: https://github.com/TACC/TACC-Docs
+edit_uri: edit/main/docs/
 
 theme:
     analytics:

@@ -1,6 +1,6 @@
 theme:
     name: readthedocs
-    language: en
+    locale: en
     logo: /img/tacc-logo-with-words.svg
     nav_redirects: [] # TACC Feature
     collapse_navigation: false
