@@ -16,4 +16,4 @@ We automatically publish `main` branch commits. We manually release versions of 
 
 ## Theming
 
-To theme your documentation like TACC, please contact @wesleyboar or mimic [DS-User-Guide](https://github.com/DesignSafe-CI/DS-User-Guide/).
+To theme your documentation like TACC, please contact [@wesleyboar](https://www.github.com/wesleyboar) or mimic [DS-User-Guide](https://github.com/DesignSafe-CI/DS-User-Guide/).
