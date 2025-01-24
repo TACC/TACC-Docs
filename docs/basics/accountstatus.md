@@ -16,7 +16,7 @@ Document the account creation process and troubleshooting tips.
 ## TACC Portals and HPC Resources
 
 //// html | div.grid
-///// html | div[style="grid-column: span 2"]
+///// html | div[style="grid-column: span 1 / -1"]
 
 TACC provides access to several portals with varying login requirements along with selected access to computing resources.  
 
