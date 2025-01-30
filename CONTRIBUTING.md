@@ -37,12 +37,12 @@ Start reading our newer docs and you'll get the hang of it. We optimize for read
 * We indent using tab character
 * We create lists with asterisks
 * We should use [Markdown](https://www.markdownguide.org/extended-syntax/) where available[^1]
-* We use some[^3] [Python-Markdown extensions](https://python-markdown.github.io/extensions/) and [PyMdown exensions](https://facelessuser.github.io/pymdown-extensions/#extensions)
-* Use `cwd`-relative paths to images[^2] e.g. instead of `/hpc/imgs/blah.gif`, use `../imgs/blah.gif`.
+* We use some [Python-Markdown extensions](https://python-markdown.github.io/extensions/) and [PyMdown exensions](https://facelessuser.github.io/pymdown-extensions/#extensions)[^2]
+* Use `cwd`-relative paths to images e.g. instead of `/hpc/imgs/blah.gif`, use `../imgs/blah.gif`.[^3]
 
 [^1]: If some of our documents use HTML, please forgive us and use Markdown yourself.
-[^2]: So that images load on the website **and** in GitHub preview.
-[^3]: See enabled extensions at [`mkdocs.base.yml`](https://github.com/TACC/TACC-Docs/blob/main/mkdocs.base.yml) under `markdown_extensions:`.
+[^2]: See enabled extensions at [`mkdocs.base.yml`](https://github.com/TACC/TACC-Docs/blob/main/mkdocs.base.yml) under `markdown_extensions:`.
+[^3]: So that images load on the website **and** in GitHub preview.
 
 Thanks,
 Texas Advanced Computing Center
