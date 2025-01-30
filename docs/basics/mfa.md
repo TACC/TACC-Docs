@@ -1,10 +1,11 @@
 # Multifactor Authentication at TACC 
-*Last update: January 23, 2025*
+*Last update: January 29, 2025*
 
 TACC requires Multi-Factor Authentication (MFA) as an additional security measure when accessing all compute and storage resources.  <!-- To set up MFA pairing at TACC on your approved account, proceed directly to the [TACC pairing page](https://tacc.utexas.edu/portal/mfa). -->
 
 !!! tip
-	TACC's [Login Support Tool][TACCLOGINSUPPORT] tool can assist you if you are having difficulty logging into TACC resources.
+	TACC's [Login Support Tool][TACCLOGINSUPPORT] tool can assist you if you are having difficulty logging into TACC resources.  
+	See also [Managing Your TACC Account][TACCMANAGINGACCOUNT].
 
 ## What is MFA? { #whatismfa }
 
@@ -132,7 +133,7 @@ After typing in your password, you'll be prompted for "**`TACC Token Code:`**". 
 
 ## Unpairing your Device { #unpair }
 
-Unpair your device via the same method you paired:You'll unpair via the same method you paired: by app token or by SMS.  If you've lost access to the device you originally paired with, you may unpair using email notification. 
+Unpair your device via the same method you originally paired: by app token or by SMS.  If you've lost access to the device you originally paired with, you may unpair using email notification. 
 
 1. Go to your "[Manage Account](https://www.tacc.utexas.edu/portal/account)" page (Figure 7a), and click the "Unpair" link to proceed (Figure 7b).    
 

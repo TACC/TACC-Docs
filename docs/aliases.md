@@ -14,6 +14,7 @@
 [TACCIDEV]: https://docs.tacc.utexas.edu/software/idev "idev at TACC"
 [TACCLMOD]: https://lmod.readthedocs.io/en/latest/ "Lmod"
 [TACCLOGINSUPPORT]: https://accounts.tacc.utexas.edu/login_support "TACC Accounts Login Support Tool"
+[TACCMANAGINGACCOUNT]: https://docs.tacc.utexas.edu/basics/accounts "Managing your TACC Account"
 [TACCMANAGINGPERMISSIONS]: https://docs.tacc.utexas.edu/tutorials/permissions "Unix Group Permissions and Environment"
 [TACCMFA]: https://docs.tacc.utexas.edu/basics/mfa "Multi-Factor Authentication at TACC"
 [TACCPORTALLOGIN]: https://tacc.utexas.edu/portal/login "TACC Portal login"
