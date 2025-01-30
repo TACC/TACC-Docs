@@ -18,7 +18,7 @@ nav:
   - TACC Essentials:
     - Documentation Overview: index.md
     - Getting Started: https://www.tacc.utexas.edu/use-tacc/getting-started/
-#    - Managing Your Account: basics/accountstatus.md
+    - Managing Your TACC Account: basics/accounts.md
 #    - Portal Access: portal.md
     - Multi-Factor Authentication: basics/mfa.md
     - TACC Good Conduct Guide: basics/conduct.md
