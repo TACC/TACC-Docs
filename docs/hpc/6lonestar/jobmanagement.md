@@ -111,7 +111,8 @@ For more information see the [Slurm online documentation](http://www.schedmd.com
 
  `scancel`, `scontrol`, and `sacct`
 
-**It's not possible to add resources to a job (e.g. allow more time)** once you've submitted the job to the queue.
+!!! warning
+	**It's not possible to add resources to a job (e.g. allow more time)** once you've submitted the job to the queue.
 
 To **cancel** a pending or running job, first determine its jobid, then use `scancel`:
 

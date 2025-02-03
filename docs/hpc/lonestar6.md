@@ -1148,7 +1148,8 @@ For more information see the [Slurm online documentation](http://www.schedmd.com
 
  `scancel`, `scontrol`, and `sacct`
 
-**It's not possible to add resources to a job (e.g. allow more time)** once you've submitted the job to the queue.
+!!! warning
+	**It's not possible to add resources to a job (e.g. allow more time)** once you've submitted the job to the queue.
 
 To **cancel** a pending or running job, first determine its jobid, then use `scancel`:
 
@@ -1423,38 +1424,33 @@ TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for 
 * **Be patient.** It may take a business day for a consultant to get back to you, especially if your issue is complex. It might take an exchange or two before you and the consultant are on the same page. If the admins disable your account, it's not punitive. When the file system is in danger of crashing, or a login node hangs, they don't have time to notify you before taking action.
 
 {% include 'aliases.md' %}
-[HELPDESK]: https://tacc.utexas.edu/about/help/ "Help Desk"
 [CREATETICKET]: https://tacc.utexas.edu/about/help/ "Create Support Ticket"
-[SUBMITTICKET]: https://tacc.utexas.edu/about/help/ "Submit Support Ticket"
-[TACCUSERPORTAL]: https://tacc.utexas.edu/portal/login "TACC Portal login"
-[TACCPORTALLOGIN]: https://tacc.utexas.edu/portal/login "TACC Portal login"
-[TACCUSAGEPOLICY]: https://tacc.utexas.edu/use-tacc/user-policies/ "TACC Usage Policy"
-[TACCALLOCATIONS]: https://tacc.utexas.edu/use-tacc/allocations/ "TACC Allocations"
-[TACCSUBSCRIBE]: https://accounts.tacc.utexas.edu/user_updates "Subscribe to News"
-[TACCDASHBOARD]: https://tacc.utexas.edu/portal/dashboard "TACC Dashboard"
-[TACCPROJECTS]: https://tacc.utexas.edu/portal/projects "Projects & Allocations"
-
-
-[TACCANALYSISPORTAL]: http://tap.tacc.utexas.edu "TACC Analysis Portal"
-
 [DOWNLOADCYBERDUCK]: https://cyberduck.io/download/ "Download Cyberduck"
-
-
+[HELPDESK]: https://tacc.utexas.edu/about/help/ "Help Desk"
+[SUBMITTICKET]: https://tacc.utexas.edu/about/help/ "Submit Support Ticket"
+[TACCACCESSCONTROLLISTS]: https://docs.tacc.utexas.edu/tutorials/acls "Access Control Lists"
+[TACCACCOUNTS]: https://accounts.tacc.utexas.edu "TACC Accounts Portal"
 [TACCACLS]: https://docs.tacc.utexas.edu/tutorials/acls "Manage Permissions with Access Control Lists"
-[TACCMANAGINGPERMISSIONS]: https://docs.tacc.utexas.edu/tutorials/permissions "Unix Group Permissions and Environment"
+[TACCALLOCATIONS]: https://tacc.utexas.edu/use-tacc/allocations/ "TACC Allocations"
+[TACCANALYSISPORTAL]: http://tap.tacc.utexas.edu "TACC Analysis Portal"
+[TACCBASHQUICKSTART]: https://docs.tacc.utexas.edu/tutorials/bashstartup "Bash Quick Start Guide"
+[TACCDASHBOARD]: https://tacc.utexas.edu/portal/dashboard "TACC Dashboard"
+[TACCDOCS]: https://docs.tacc.utexas.edu "TACC Documentation Portal"
+[TACCGOODCONDUCT]: https://docs.tacc.utexas.edu/basics/conduct/ "TACC Good Conduct Guide"
+[TACCIDEV]: https://docs.tacc.utexas.edu/software/idev "idev at TACC"
 [TACCLMOD]: https://lmod.readthedocs.io/en/latest/ "Lmod"
+[TACCLOGINSUPPORT]: https://accounts.tacc.utexas.edu/login_support "TACC Accounts Login Support Tool"
+[TACCMANAGINGACCOUNT]: https://docs.tacc.utexas.edu/basics/accounts "Managing your TACC Account"
+[TACCMANAGINGPERMISSIONS]: https://docs.tacc.utexas.edu/tutorials/permissions "Unix Group Permissions and Environment"
+[TACCMFA]: https://docs.tacc.utexas.edu/basics/mfa "Multi-Factor Authentication at TACC"
+[TACCPORTALLOGIN]: https://tacc.utexas.edu/portal/login "TACC Portal login"
+[TACCPROJECTS]: https://tacc.utexas.edu/portal/projects "Projects & Allocations"
+[TACCPYLAUNCHER]: https://docs.tacc.utexas.edu/software/pylauncher "PyLauncher at TACC"
 [TACCREMOTEDESKTOPACCESS]: https://docs.tacc.utexas.edu/tutorials/remotedesktopaccess "TACC Remote Desktop Access"
 [TACCSHARINGPROJECTFILES]: https://docs.tacc.utexas.edu/tutorials/sharingprojectfiles "Sharing Project Files"
-[TACCBASHQUICKSTART]: https://docs.tacc.utexas.edu/tutorials/bashstartup "Bash Quick Start Guide"
-[TACCACCESSCONTROLLISTS]: https://docs.tacc.utexas.edu/tutorials/acls "Access Control Lists"
-[TACCMFA]: https://docs.tacc.utexas.edu/basics/mfa "Multi-Factor Authentication at TACC"
-[TACCIDEV]: https://docs.tacc.utexas.edu/software/idev "idev at TACC"
-[TACCPYLAUNCHER]: https://docs.tacc.utexas.edu/software/pylauncher "PyLauncher at TACC"
-
 [TACCSOFTWARELIST]: https://tacc.utexas.edu/use-tacc/software-list/ "Software List""
 [TACCSOFTWARE]: https://docs.tacc.utexas.edu/basics/software/ "Software at TACC"
-
-[TACCLOGINSUPPORT]: https://accounts.tacc.utexas.edu/login_support "TACC Login Support Tool"
-[TACCUSERPROFILE]: https://accounts.tacc.utexas.edu/profile "TACC User Profile"
-[TACCACCOUNTS]: https://accounts.tacc.utexas.edu
-[TACCGOODCONDUCT]: https://docs.tacc.utexas.edu/basics/conduct/ "TACC Good Conduct Guide"
+[TACCSUBSCRIBE]: https://accounts.tacc.utexas.edu/user_updates "Subscribe to News"
+[TACCUSAGEPOLICY]: https://tacc.utexas.edu/use-tacc/user-policies/ "TACC Usage Policy"
+[TACCUSERPORTAL]: https://tacc.utexas.edu/portal/login "TACC Portal login"
+[TACCUSERPROFILE]: https://accounts.tacc.utexas.edu/profile "TACC Accounts User Profile"
