@@ -5,7 +5,7 @@ Frontera mounts three Lustre file systems that are shared across all nodes: the 
 
 ### File Systems { #files-filesystems } 
 
-Frontera's startup mechanisms define corresponding account-level environment variables <code>$HOME</code>, <code>$SCRATCH</code> and <code>$WORK</code><!--,and <code>$FASTIO</code>--> that store the paths to directories that you own on each of these file systems. Consult <a href="#table4">Table 4. Frontera File Systems</a> below for the basic characteristics of these file systems, <!--"File Operations: I/O Performance" for advice on performance issues,--> and the <a href="../../basics/conduct">Good Conduct</a> sections for guidance on file system etiquette.</p>
+Frontera's startup mechanisms define corresponding account-level environment variables `$HOME`, `$SCRATCH` and `$WORK` that store the paths to directories that you own on each of these file systems. Consult <a href="#table4">Table 4. Frontera File Systems</a> below for the basic characteristics of these file systems,  and the <a href="../../basics/conduct">Good Conduct</a> sections for guidance on file system etiquette.</p>
 
 #### Table 4a. File Systems { #table4a } 
 
@@ -54,10 +54,10 @@ Note that resource-specific subdirectories of `$STOCKYARD` are simply convenient
 
 Alias | Command
 ---- | ----
-<code>cd</code> or <code>cdh</code> | <code>cd $HOME</code>
-<code>cdw</code> | <code>cd $WORK</code>
-<code>cds</code> | <code>cd $SCRATCH</code>
-<code>cdy</code> or <code>cdg</code> | <code>cd $STOCKYARD</code>
+`cd` or `cdh` | `cd $HOME`
+`cdw` | `cd $WORK`
+`cds` | `cd $SCRATCH`
+`cdy` or `cdg` | `cd $STOCKYARD`
 
 ### Striping Large Files { #files-striping } 
 

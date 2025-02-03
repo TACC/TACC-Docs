@@ -1,10 +1,13 @@
 # Data Transfer { #datatransfer }
-*Last update: August 15, 2024*
+*Last update: February 4, 2025*
 
 This guide will outline and instruct methods of transferring data between TACC resources and and your local machine.  Transfer methods generally fall into two categories:
 
 1. Command-line (CLI) tools e.g. `scp`, `sftp`, `rsync`
-1. Graphical User Interface (GUI) tools, e.g. [Globus](#globus), Cyberduck
+1. Graphical User Interface (GUI) tools, e.g. [Globus](#globus), [Cyberduck](#data-transfer-cyberduck).
+
+!!! tip
+	Third-party storage services, e.g. UTBox, DropBox are [not supported](#datatransfer-thirdparty).
 
 ## Command-Line Tools  { #cli }
 
@@ -35,12 +38,11 @@ Figure 1. Use Get Info to determine "Where" the path of your data file(s) is
 <figure id="figure1"><img src="../imgs/dtg-1-determine-path.png" /></a>
 <figcaption> Figure 1. Use Get Info to determine "Where" the path of your data file(s) is</figcaption></figure>
 
-For example, a file located in a folder named portal-data under `Documents` would have the following path:
+For example, a file located in a folder named `portal-data` under `Documents` would have the following path:
 
 <table>
-<tr><td>On Mac</td><td>/Users/username/Documents/portal-data/my_file.txt</td></tr>
-<dt>On Windows</dt>
-<tr><td>\Users\username\My Documents\portal-data\my_file.txt</td></tr>
+<tr><td>On Mac</td><td><code>/Users/username/Documents/portal-data/my_file.txt</code></td></tr>
+<tr><td>On Windows</td><td><code>\Users\username\My Documents\portal-data\my_file.txt</code></td></tr>
 </table>
 
 ### Transfer with `scp` { #cli-scp }
@@ -48,8 +50,8 @@ For example, a file located in a folder named portal-data under `Documents` woul
 The `scp` command copies files between hosts on a network. To transfer a file (ex. `my_file.txt`) to the remote secure system via `scp`, open a terminal on your local computer and navigate to the path where your data file is located.
       
 <table>
-<tr><td>On Mac</td> <td>localhost$ cd ~/Documents/portal-data/</td></tr>
-<tr><td>On Windows</td> <td>localhost$ cd %HOMEPATH%\Documents\portal-data\</td></tr>
+<tr><td>On Mac</td> <td><code>localhost$ cd ~/Documents/portal-data/</code></td></tr>
+<tr><td>On Windows</td> <td><code>localhost$ cd %HOMEPATH%\Documents\portal-data\</code></td></tr>
 </table>
 
 Assuming your TACC username is `bjones` and you are affiliated with UT Austin, a `scp` transfer that pushes `my_file.txt` from the current directory of your local computer to the remote secure system would look like this:
@@ -223,6 +225,61 @@ Consult Figure 4. above to ensure the information you have provided is correct. 
       
 Once connected, you can navigate through your remote file hierarchy using the graphical user interface. You may also drag-and-drop files from your local computer into the Cyberduck window to transfer files to the storage system.
 
+---
+
+## Globus Data Transfer Guide { #globus }
+
+Globus supplies high speed, reliable, asynchronous transfers to the portal. Globus is fast, for large volumes of data, as it uses multiple network sockets simultaneously to transfer data. It is reliable for large numbers of directories and files, as it can automatically fail and restart itself, and will only notify you when the transfers are completed successfully.
+
+This document leads you through the steps required to set up Globus to use for the first time. Several steps will need to be repeated each time you set up a new computer to use Globus for the portal. Once you are set up, you can use Globus not only for transfers to and from the portal, but also to access other cyberinfrastructure resources at TACC and around the world.
+
+To start using Globus, you need to do two things: Generate a unique identifier, <a href="#1">an ePPN<sup>&#42;</a></sup>, for all Globus services, and enroll the machine you are transferring data to/from with Globus.  This can be your personal laptop or desktop, or a server to which you have access. Follow this one-time process to set up the Globus file transfer capability.
+
+!!! Note 
+	**Globus Transition**. Globus has transitioned to version 5.4. This transition impacts all TACC researchers who use Globus and requires you to update your profile with an ePPN to continue using the Globus service. The use of "Distinguished Names", or DNs, is no longer supported.
+
+!!! important 
+	You must use your institution's credentials and **not your personal email account (e.g. Google, Yahoo!, AOL)** when setting up Globus.  You will encounter problems with the transfer endpoints (e.g. Frontera, Stampede3, Corral, Ranch) if you use your personal account information.
+
+
+### Step 1. **Retrieve your Unique ePPN**.  { #step1 }
+
+Login to [CILogon](https://cilogon.org) and click on "User Attributes".  Make note of your ePPN.
+
+<figure id="figure1">
+<img src="../imgs/globus-CIlogin.png" style="width:65%"> 
+<figcaption>Figure 1. Make note of your ePPN</figcaption>
+</figure>
+
+### Step 2. **Associate your EPPN with your TACC Account.**  { #step2 }
+
+Login to the [TACC Accounts Portal][TACCACCOUNTS], click "Account Information" in the left-hand menu, then add or edit your ePPN from Step 1.
+
+
+!!! important
+	The institution (ePPN) listed in your TACC account profile, must map to the ePPN you are using to log into GlobusOnline.  
+
+
+<figure>
+<img src="../imgs/globus-setup-step2.png" style="width:65%">
+<figcaption>Figure 2. Update your TACC user profile.</figcaption>
+</figure>
+
+!!! tip
+	Once you update your ePPN, please allow up to 2 hours for the changes to propagate across TACC systems.
+
+
+### Step 3. **Globus File Manager** { #step3 }
+
+Once you've completed these steps, you will be able to use the [Globus File Manager](https://app.globus.org) as usual.  If you encounter any issues, please [submit a support ticket](https://tacc.utexas.edu/portal/tickets).
+
+### References
+
+* [Globus Collections and Endpoints](https://docs.globus.org/guides/overviews/collections-and-endpoints/)
+
+<a name="1"><sup>&#42;</sup></a> ePPN is an unfortunate acronym for "**e**du**P**erson**P**rincipal**N**ame", an identifier indicating a unique person within an LDAP schema.
+
+---
 ## UTBox and other Third-Party Storage Services { #datatransfer-thirdparty }
 
 Unfortunately TACC does not allow direct access from UT Box or other third-party storage services such as Dropbox, Google or Amazon storage services. To transfer files from one of these services:
@@ -230,8 +287,7 @@ Unfortunately TACC does not allow direct access from UT Box or other third-party
 1. Manually download the files from one of these services to your laptop
 2. Using one of the tools outlined in this document (e.g. `scp` or Cyberduck), upload the files from your laptop to the desired TACC resource (e.g. Stampede3, Frontera).
 
-If you have files stored at another university, see the [Globus instructions](#globus) below.
+If you have files stored at another university, see the [Globus instructions](#globus) above.
 
----
 
-{% include 'basics/globusdatatransfer.md' %}
+{% include 'aliases.md' %}

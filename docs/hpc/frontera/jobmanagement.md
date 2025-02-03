@@ -100,7 +100,8 @@ If your waiting job cannot complete before a maintenance/reservation begins, `sh
 
 The default format for `showq` now reports total nodes associated with a job rather than cores, tasks, or hardware threads. One reason for this change is clarity: the operating system sees each compute node's 56 hardware threads as "processors", and output based on that information can be ambiguous or otherwise difficult to interpret.
 
-**It is not possible to add resources to a job (e.g. allow more time)** once you've submitted the job to the queue.
+!!! warning
+	**It is not possible to add resources to a job (e.g. allow more time)** once you've submitted the job to the queue.
 
 To **cancel** a pending or running job, first determine its jobid, then use `scancel`:
 
