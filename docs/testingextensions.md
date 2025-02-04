@@ -8,9 +8,16 @@
 
 ## alert boxes
 
-<p class="portlet-msg-alert">This is an alert and it should be a call out box</p>
+!!! info
+    This is an info box
 
-See example: <https://portal.tacc.utexas.edu/user-guides/stampede2#files-filesystems>
+!!! tip
+    This is a tip box
+
+!!! warning
+    This is a warning box
+
+
 
 ## info box
 
