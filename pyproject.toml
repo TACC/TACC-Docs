@@ -11,7 +11,7 @@ maintainers = [
 
 [tool.poetry.dependencies]
 python = ">=3.10,<3.13"
-mkdocs = "~1.4.2"
+mkdocs = {version = "1.4.3", extras = ["i18n"]}
 pymdown-extensions = "^10.4.0"
 mkdocs-exclude-search = "^0.6.5"
 # for {% include-markdown '…' %} (rel. paths in included files without warnings)
