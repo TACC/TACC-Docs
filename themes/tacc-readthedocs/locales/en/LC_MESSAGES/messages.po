@@ -1,2 +1,13 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: MkDocs 1.3.1\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Language: en\n"
+
+#: mkdocs/themes/readthedocs/breadcrumbs.html:18
+#: mkdocs/themes/readthedocs/breadcrumbs.html:20
+#: mkdocs/themes/readthedocs/breadcrumbs.html:22
+#: mkdocs/themes/readthedocs/breadcrumbs.html:24
+#, python-format
 msgid "Edit on %(repo_name)s"
 msgstr "Suggest an update via %(repo_name)s"
