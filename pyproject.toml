@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "tacc-docs"
-version = "0.12.0"
+version = "0.15.1"
 description = ""
 package-mode = false
 authors = ["rstijerina <r.sal.tijerina@gmail.com>"]
