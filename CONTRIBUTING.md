@@ -44,5 +44,5 @@ Start reading our newer docs and you'll get the hang of it. We optimize for read
 [^2]: See enabled extensions at [`mkdocs.base.yml`](https://github.com/TACC/TACC-Docs/blob/main/mkdocs.base.yml) under `markdown_extensions:`.
 [^3]: So that images load on the website **and** in GitHub preview.
 
-Thanks,
+Thanks,\
 Texas Advanced Computing Center
