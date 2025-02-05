@@ -1,28 +1,5 @@
-## Overview
+<!-- What did you change? -->
 
-…
+<!-- Do you want support (syntax, design, etc)? -->
 
-## Related
-
-<!--
-- [FP-123](https://tacc-main.atlassian.net/browse/FP-123)
-- requires https://github.com/TACC/Core-CMS/pull/117
--->…
-
-## Changes
-
-…
-
-## Testing
-
-1.
-
-## UI
-
-…
-
-<!--
-## Notes
-
-…
--->
+<!-- Any reference material worth sharing? -->
