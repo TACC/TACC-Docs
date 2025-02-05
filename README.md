@@ -1,6 +1,6 @@
 # TACC Docs
 
-Built with [MkDocs](https://mkdocs.readthedocs.io/) and a **customized** [ReadTheDocs](https://www.mkdocs.org/user-guide/choosing-your-theme/#readthedocs) theme.
+TACC's system documentation at [docs.tacc.utexas.edu](https://docs.tacc.utexas.edu).
 
 ## Contributing
 
@@ -12,4 +12,4 @@ We automatically publish `main` branch commits. We manually release versions of 
 
 ## Developing
 
-We use [Poetry](https://python-poetry.org/) and [Docker](https://www.docker.com/). [Read more](./DEVELOPING.md).
+We use [Poetry](https://python-poetry.org/), [Docker](https://www.docker.com/), [MkDocs](https://mkdocs.readthedocs.io/) and [MkDocs' "ReadTheDocs" theme](https://www.mkdocs.org/user-guide/choosing-your-theme/#readthedocs) (customized). [Read more](./DEVELOPING.md).
