@@ -3,7 +3,7 @@
 <!-- To not use <h3> so this heading does not show in nav -->
 /// html | p.h3
 Welcome to TACC's Technical Documentation Site.
-///
+/// 
 
 
 TACC's technical documentation is broadly divided into three categories: High Performance Computing (HPC) Resource Guides, Software Packages at TACC, and Tutorials which can be accessed via the left-hand navigation.
