@@ -1,5 +1,5 @@
 # ParaView at TACC
-*Last update: August 12, 2024*
+*Last update: February 12, 2025*
 
 <img alt="ParaView logo" src="../imgs/paraview-logo.svg" width="25%">   
 [ParaView](https://www.paraview.org/) is an open-source, multi-platform data analysis and visualization application. ParaView users can quickly build visualizations to analyze their data using qualitative and quantitative techniques. The data exploration can be done interactively in 3D or programmatically using ParaView's batch processing capabilities.
@@ -15,7 +15,7 @@ ParaView is currently installed on TACC's Stampede3, Lonestar6 and Frontera reso
 
 <table>
 <tr><th>Resource</th><th>Versions Installed</th><th>Module requirements</th></tr>
-<tr><td valign="middle" rowspan="2">Frontera</td><td>5.10.0<td><code>gcc/9</code> <code>impi</code> <code>qt5</code> <code>swr</code> <code>oneapi_rk</code> <code>paraview</code><td></tr><tr><td>5.8.1</td><td><code>qt5</code> <code>swr</code> <code>ospray</code> <code>intel/19</code> <code>impi</code> <code>paraview</code><td></tr>
+<tr><td valign="middle" rowspan="2">Frontera</td><td>5.11.1<td><code>gcc/9.1.0</code> <code>impi/19.0.9</code> <code>qt5/5.14.2</code> <code>swr/21.2.5</code> <code>oneapi_rk/2021.4.0</code> <code>paraview/5.11.1</code><td></tr><tr><td>5.10.0</td><td><code>gcc/9.1.0</code><code>impi/19.0.9</code><code>qt5/5.14.2</code> <code>swr/21.2.5</code><code>oneapi_rk/2021.4.0</code> <code>paraview/5.10.0</code><td></tr>
 <tr><td>Stampede3</td><td>5.12.0</td><td><code>paraview</code><td></tr>
 <tr><td>Lonestar6</td><td>5.10.0</td><td><code>intel/19.1.1</code> <code>impi/19.0.9</code> <code>swr/21.2.5</code>  <code>qt5/5.14.2</code> <code>oneapi_rk/2021.4.0</code> <code>paraview</code><td></tr>
 </table>
