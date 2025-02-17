@@ -4,8 +4,9 @@
 }
 </style>
 
+
 # Managing your TACC Account
-*Last update: February 10, 2025*
+*Last update: February 17, 2025*
 
 In order to access any TACC compute or storage resource you must maintain an "Active" TACC user account.  You may view your account status at any time on the [TACC Accounts Portal][TACCACCOUNTS] in the User Profile section. [Table 1.](#table1) below lists all possible conditions for your account.
 
@@ -29,6 +30,7 @@ Suspended                  | If your account is suspended you will be prohibited
 
 ## New Accounts
 
+
 Any user of TACC resources must first obtain a TACC account.  A TACC account email is of the form *username*@tacc.utexas.edu.  All new users are required to authenticate with a [UT approved Identity Provider](#identity-management).  
 
 To create a new account: 
@@ -43,18 +45,22 @@ To create a new account:
 !!! warning 
 	An individual may not have more than one TACC account.  Shared accounts and/or multi-user accounts are strictly prohibited.  
 
-!!! important
+!!! tip
 	In order to log on to TACC's HPC resources, your TACC account must be Active **AND** you must have an active allocation on that particular resource.
 
 ### Identity Management
 
-Any user registering for a new account, reactivating a [deactivated](#deactivated) account, or updating their profile will be required to authenticate using one of the UT approved Identity Provider services listed below.  All existing accounts will be required to authenticate with one of these identity providers at the annual account profile update. 
+As part of ongoing cybersecurity enhancements, TACC now requires using a 3rd party Identity Provider.  Any user registering for a new account, reactivating a [deactivated](#deactivated) account, or updating their profile will be required to authenticate using one of the UT approved Identity Provider services listed below.  All existing accounts will be required to authenticate with one of these identity providers at the annual account profile update. 
 
 * UT EID
 * Apple
 * Google
 * Microsoft
 <!-- * InCommon Federation - commenting out 01/30/2025 due to problems on their end -->
+
+!!! important
+	Use your institution's email, not your Apple, Google or Microsoft email, when registering/activating your TACC account.
+
 
 ## Login Problems: `Improper ssh Configuration!`
 
@@ -128,6 +134,7 @@ The [TACC User Portal][TACCUSERPORTAL] provides the following services:
 * Monitor HPC Resource status
 * Monitor your allocation usage and SU consumption
 * PI's may add users to their allocations
+* Check your MFA pairing status
 
 /////
 ////

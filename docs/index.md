@@ -22,6 +22,21 @@ If you're brand new to TACC and want to jump right in, check out the [Getting St
 
 /////
 
+
+<!-- Managing your TACC Account -->
+///// html | a.card--plain.card--image-top[href="./basics/accounts/"]
+     markdown: block
+
+////// html | img[alt="accounts"][src="/img/home/accounts.png"]
+//////
+
+<h3>Managing your TACC Account</h3>
+
+Solve login problems, check your account status, and other TACC account management tools.
+
+/////
+
+<!-- Good Conduct on HPC Resources -->
 ///// html | a.card--plain.card--image-top.card--image-top[href="./basics/conduct/"]
      markdown: block
 
@@ -33,20 +48,6 @@ If you're brand new to TACC and want to jump right in, check out the [Getting St
 Good conduct on the system ensures stability and helps TACC provide a reliable service to all users.
 
 /////
-
-
-///// html | a.card--plain.card--image-top[href="./basics/mfa/"]
-     markdown: block
-
-////// html | img[alt="a lock with a gear and nodes"][src="/img/home/multi-factor.png"]
-//////
-
-<h3>Multi-Factor Authentication</h3>
-
-Learn how to pair/unpair your smart device for access to TACC resources.
-
-/////
-
 ////
 ///
 
