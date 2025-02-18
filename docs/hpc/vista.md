@@ -375,7 +375,7 @@ Follow these steps to configure MPS on Vista for optimized multi-process workflo
 
 2. **Launch MPS Control Daemon**
 
-	Use `ibrun` to start the MPS daemon across all allocated nodes. This ensures one MPS control process per node, targeting GPU 0:
+	Use `ibrun` to start the MPS daemon across all allocated nodes. This ensures one MPS control process per node:
 
 	```job-script
 	# Launch MPS daemon on all nodes
@@ -433,7 +433,8 @@ MPS is particularly effective for workloads characterized by:
 You may verify performance gains for your use case using the following command to monitor the node that your job is running on (e.g., `c608-052`):
 
 ```cmd-line
-login1$ nvidia-smi dmon --gpm-metrics=3,12 -s u
+login1$ ssh c608-052
+c608-052$ nvidia-smi dmon --gpm-metrics=3,12 -s u
 ```
 
 The side-by-side plots in Figure 1 illustrate the performance enhancement obtained by running two GPU processes simultaneous on a single Hopper node with MPS. The GPU performance improvement is ~12%, compared to no improvement without MPS. Also, the setup cost on the CPU (about 12 seconds) is completely overlapped, resulting in in a 1.2x total improvement for 2 simultaneous Amber executions. Even better performance is expected for applications which don't load the GPU as much as Amber.
