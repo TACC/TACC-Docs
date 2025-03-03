@@ -175,11 +175,14 @@ If you wish to learn more about `rsync` and how to synchronize your file transfe
 * [`rsync` manual page](https://man7.org/linux/man-pages/man1/rsync.1.html)
 * <a target="_blank" href="https://cyberduck.io/">Cyberduck</a> </td> </tr>
 
+<!--
 Consult your respective resource user guide's "Transferring Files" section for specific examples using the `scp` and `rsync` utilities:
 
-* <a href="../hpc/stampede3/#transferring-rsync">Stampede3 User Guide</a>
-* <a href="../hpc/lonestar6/#files-transferring-rsync">Lonestar6 User Guide</a>
-* <a href="../hpc/frontera/#transferring-rsync">Frontera User Guide</a>
+* [Stampede3 User Guide](/hpc/stampede3/#transferring-rsync)
+* [Lonestar6 User Guide](../hpc/lonestar6/#transferring-rsync)
+* [Frontera User Guide](../hpc/frontera/#transferring-rsync)
+
+-->
 
 
 <!-- ## GUI Tools { #datatransfer-cli-gui } -->
