@@ -81,7 +81,7 @@ In the batch script, make sure to specify the partition (queue) (`#SBATCH -p`), 
 The `flagfile` is a configuration file passed to AlphaFold2 containing parameters including the level of precision, the location of the databases for multiple sequence alignment, and more. Flag files for all presets can be found in the 'Examples' directory, and typically they should not be edited. The other three parameters passed to AlphaFold2 should be customized to your input path / filename, desired output path, and the selection of models. The parameters are summarized in the following table:
 
 
-#### Table 2. AlphaFold2 Parameter Settings { #table1 }
+#### Table 2. AlphaFold2 Parameter Settings { #table2 }
 
 Parameter | Setting
 -- | --
@@ -128,7 +128,7 @@ Next, you will need three files to run AlphaFold2 with PyLauncher:
 2. `pylauncher.py` – A Python script that uses the PyLauncher library to read the `commandlines` file and launch the jobs in parallel with the appropriate resources.
 3. `af2_pylauncher_job.slurm` – A SLURM job script that loads the necessary modules and executes the `pylauncher.py` script.
 
-#### 1. Prepare the commandlines file { #running-independentsequences-commandlines-file }
+#### 1. Prepare the `commandlines` file { #running-independentsequences-commandlines-file }
 
 First, create a file named `commandlines` that contains each command that needs to be run. There should be one line in `commandlines` for each input fasta sequence. Each line should refer to a unique input sequence and a unique output path. 
 
@@ -139,12 +139,14 @@ apptainer exec --nv $AF2_HOME/images/alphafold_2.3.2.sif /app/run_alphafold.sh -
 apptainer exec --nv $AF2_HOME/images/alphafold_2.3.2.sif /app/run_alphafold.sh --flagfile=$AF2_HOME/examples/flags/full_dbs.ff --fasta_paths=$SCRATCH/input/seq3.fasta --output_dir=$SCRATCH/output3 --model_preset=monomer --max_template_date=2050-01-01 --use_gpu_relax=True
 ...
 ```
-NOTE: Due to the way `PyLauncher.GPULauncher` distributes tasks to individual GPUs, the full apptainer command must be used in the` commandlines` file as shown above. 
+
+!!! important 
+	Due to the way `PyLauncher.GPULauncher` distributes tasks to individual GPUs, the full `apptainer` command must be used in the` commandlines` file as shown above. 
 
 
-#### 2. Create the pylauncher.py script { #running-independentsequences-pylauncher-file }
+#### 2. Create the `pylauncher.py` script { #running-independentsequences-pylauncher-file }
 
-Next, create a file called `pylauncher.py` that will launch the commands in `commandlines`. Be sure to check the TACC system documentation to ensure you are using the correct number of GPUs per node. For example, to utilize the three GPUs per node on Lonestar6 (gpu-a100 queue), the `pylauncher.py` script would look like:
+Next, create a file called `pylauncher.py` that will launch the commands in `commandlines`. Be sure to check the TACC system documentation to ensure you are using the correct number of GPUs per node. For example, to utilize the three GPUs per node on Lonestar6 (`gpu-a100` queue), the `pylauncher.py` script would look like:
 
 ```python3
 import pylauncher
