@@ -125,8 +125,8 @@ seq3.fasta
 Next, you will need three files to run AlphaFold2 with PyLauncher:
 
 1. `commandlines` – Contains each AlphaFold2 command to be executed in parallel, each command on a different line. 
-2. `pylauncher.py` – A Python script that uses the PyLauncher library to read the `commandlines` file and launch the jobs in parallel with the appropriate resources.
-3. `af2_pylauncher_job.slurm` – A SLURM job script that loads the necessary modules and executes the `pylauncher.py` script.
+2. `af2_launcher.py` – A Python script that uses the PyLauncher library to read the `commandlines` file and launch the jobs in parallel with the appropriate resources.
+3. `af2_pylauncher_job.slurm` – A SLURM job script that loads the necessary modules and executes the `af2_launcher.py` script.
 
 #### 1. Prepare the `commandlines` file { #running-independentsequences-commandlines-file }
 
@@ -144,9 +144,9 @@ apptainer exec --nv $AF2_HOME/images/alphafold_2.3.2.sif /app/run_alphafold.sh -
 	Due to the way `PyLauncher.GPULauncher` distributes tasks to individual GPUs, the full `apptainer` command must be used in the` commandlines` file as shown above. 
 
 
-#### 2. Create the `pylauncher.py` script { #running-independentsequences-pylauncher-file }
+#### 2. Create the `af2_launcher.py` script { #running-independentsequences-pylauncher-file }
 
-Next, create a file called `pylauncher.py` that will launch the commands in `commandlines`. Be sure to check the TACC system documentation to ensure you are using the correct number of GPUs per node. For example, to utilize the three GPUs per node on Lonestar6 (`gpu-a100` queue), the `pylauncher.py` script would look like:
+Next, create a file called `af2_launcher.py` that will launch the commands in `commandlines`. Be sure to check the TACC system documentation to ensure you are using the correct number of GPUs per node. For example, to utilize the three GPUs per node on Lonestar6 (`gpu-a100` queue), the `af2_launcher.py` script would look like:
 
 ```python3
 import pylauncher
@@ -178,10 +178,10 @@ module use /scratch/tacc/apps/bio/alphafold/modulefiles
 module load alphafold/2.3.2-ctr
 
 # Run AlphaFold2 with PyLauncher
-python3 pylauncher.py
+python3 af2_launcher.py
 ```
 
-Once the input sequences, the `commandlines` file, the `pylauncher.py` file, and the batch job submission script are all prepared, submit the job to the queue with:
+Once the input sequences, the `commandlines` file, the `af2_launcher.py` file, and the batch job submission script are all prepared, submit the job to the queue with:
 
 ```cmd-line
 login1$ sbatch <name_of_job_script>
