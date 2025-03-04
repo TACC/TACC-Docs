@@ -296,12 +296,6 @@
     display: none;
   }
 
-  /* To hide the ≫ from ReadTheDocs theme markup */
-  .rst-content [role="navigation"] li::before {
-    margin-left: -1.25ch;
-    background-color: var(--global-color-primary--xx-light);
-  }
-
   /* To hide link to home */
   /* FAQ: The link is not in design (cuz it is redundant cuz side nav has link) */
   .rst-content [role="navigation"] li:first-child {
