@@ -1,5 +1,3 @@
-INHERIT: ./mkdocs.base.yml
-
 site_name: TACC HPC Documentation
 site_description: TACC Technical Documentation
 site_author: Susan Lindsey
@@ -8,11 +6,49 @@ repo_url: https://github.com/TACC/TACC-Docs
 edit_uri: edit/main/docs/
 
 theme:
-    analytics:
-        gtag: G-TRRRQZ0EHX
-    cms_url: https://tacc.utexas.edu # TACC Feature
-    cms_name: tacc.utexas.edu # TACC Feature
-    # nav_name: Documentation # TACC Feature
+  name: readthedocs
+  # "ReadTheDocs" Theme Features
+  logo: /imgs/tacc-logo-with-words.svg
+  analytics:
+    gtag: G-TRRRQZ0EHX
+  # "TACC" Theme Features
+  cms_url: https://tacc.utexas.edu
+  cms_name: tacc.utexas.edu
+  hljs_aliases:
+    - name: cmd-line
+      lang: bash
+    - name: job-script
+      lang: bash
+    - name: syntax
+      lang: plaintext
+
+# extra_css:
+#  - css/tacc-theme.css # to retain TACC theme UI
+#  - css/specific-to-tacc-docs.css
+
+extra_javascript:
+  - css/tacc-theme.js # to retain TACC theme UX
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js
+
+markdown_extensions:
+  - footnotes
+  - def_list
+  - admonition
+  - attr_list
+  - abbr
+  - toc:
+    permalink: ""
+    permalink_class: headerlink fa fa-link
+    permalink_title: Link to Heading
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - pymdownx.saneheaders
+  - pymdownx.blocks.details
+  - pymdownx.blocks.tab
+  - pymdownx.blocks.html
+  - pymdownx.arithmatex:
+    generic: true
 
 nav:
   - TACC Essentials:
@@ -84,9 +120,3 @@ plugins:
         - testingextensions.md
       exclude_unreferenced: true
   - macros # allows {% include ... %} (and macros)
-# TODO: Restore this
-#  - with-pdf:
-#      copyright: TACC
-#      cover_subtitle: TACC User Guide
-#      toc_title: TACC User Guide
-#      output_path: docs/user-guide.pdf

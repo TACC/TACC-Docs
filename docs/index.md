@@ -27,7 +27,7 @@ If you're brand new to TACC and want to jump right in, check out the [Getting St
 ///// html | a.card--plain.card--image-top[href="./basics/accounts/"]
      markdown: block
 
-////// html | img[alt="accounts"][src="img/home/accounts.png"]
+////// html | img[alt="accounts"][src="imgs/home/accounts.png"]
 //////
 
 <h3>Managing your TACC Account</h3>
@@ -40,7 +40,7 @@ Solve login problems, check your account status, and other TACC account manageme
 ///// html | a.card--plain.card--image-top.card--image-top[href="./basics/conduct/"]
      markdown: block
 
-////// html | img[alt="a paper with a gavel, a shielf with a checkmark"][src="img/home/conduct.png"]
+////// html | img[alt="a paper with a gavel, a shielf with a checkmark"][src="imgs/home/conduct.png"]
 //////
 
 <h3>Good Conduct</h3>
@@ -68,7 +68,7 @@ Each of our HPC resources has a user guide, with extensive instructions and info
 ///// html | a.card--plain.card--image-top[href="./hpc/stampede3/"]
      markdown: block
 
-////// html | img[alt="TACC's Vista AI supercomputer"][src="img/home/vista.png" height="400"]
+////// html | img[alt="TACC's Vista AI supercomputer"][src="imgs/home/vista.png" height="400"]
 //////
 
 <h3>Vista</h3>
@@ -80,7 +80,7 @@ Vista is TACC's first AI-focused supercomputer with Arm-based NVIDIA technology.
 ///// html | a.card--plain.card--image-top[href="./hpc/lonestar6/"]
      markdown: block
 
-////// html | img[alt="TACC's Lonestar6"][src="img/home/lonestar6.png" height="400"]
+////// html | img[alt="TACC's Lonestar6"][src="imgs/home/lonestar6.png" height="400"]
 //////
 
 <h3>Lonestar6</h3>
@@ -159,7 +159,7 @@ Tutorials cover a wide range of topics from configuring your account to debuggin
 ///// html | a.card--plain.card--image-top[href="https://containers-at-tacc.readthedocs.io/en/latest/index.html"]
      markdown: block
 
-////// html | img[alt="Containers at TACC"][src="img/home/containers.png"]
+////// html | img[alt="Containers at TACC"][src="imgs/home/containers.png"]
 //////
 
 <h3>Containers at TACC Workshop</h3>
@@ -170,7 +170,7 @@ Learn best practices on building, using, and sharing Docker and Singularity/Appt
 ///// html | a.card--plain.card--image-top[href="./tutorials/sharingprojectfiles/"]
      markdown: block
 
-////// html | img[alt="a folder with a file and nodes"][src="img/home/file-share.png"]
+////// html | img[alt="a folder with a file and nodes"][src="imgs/home/file-share.png"]
 //////
 
 <h3>Sharing Project Files</h3>
@@ -195,7 +195,7 @@ TACC offers a variety of training and education programs. You may search and reg
 ///// html | a.card--plain.card--image-top[href="https://www.tacc.utexas.edu/use-tacc/training/#institutes"]
      markdown: block
 
-////// html | img[alt="a photograph of rows of tables with trainees using laptops"][src="img/home/institutes.png"]
+////// html | img[alt="a photograph of rows of tables with trainees using laptops"][src="imgs/home/institutes.png"]
 //////
 
 <h3>TACC Institutes</h3>
@@ -207,7 +207,7 @@ In-person, multi-day, immersive, training opportunities meant to enhance users k
 ///// html | a.card--plain.card--image-top[href="https://www.youtube.com/watch?v=DWmAWT5e3iQ"]
      markdown: block
 
-////// html | img[alt="an interface window with a graduation cap and a play button being pressed by a finger"][src="img/home/video.png"]
+////// html | img[alt="an interface window with a graduation cap and a play button being pressed by a finger"][src="imgs/home/video.png"]
 //////
 
 <h3>Training Videos</h3>
