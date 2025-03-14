@@ -123,7 +123,10 @@ mkdir -p myoutput && cd myoutput && ${HOME}/myprogram input3
 
 A file "`queuestate`" is generated with a listing of which of your commands were successfully executed, and, in case your job times out, which ones were pending or not scheduled. This can be used to restart your job. See below.
 
-## Parallel runs
+## Launcher types
+
+The ClassicLauncher uses by default a single core per commandline. The following options / launcher types are available
+if you want to run multi-threaded, MPI, or GPU-accelerated tasks.
 
 ### Multi-Threaded
 
@@ -182,6 +185,17 @@ running	39 jobs: 45-46 49 54-55 57 59 62-63 65 67 69 71-74 76-98
 Which states that in the 104'th stage some jobs were completed/queued for running/actually running. 
 
 The  "tick" message is output every half second. This can be changed, for instance to 1/10th of a second, by specifying "delay=.1" in the launcher command. In some cases, for instance if each command is a python invocation that does many "imports", you could increase the delay parameter.
+
+### GPU launcher
+
+For GPU jobs, use the `GPULauncher`. This needs an extra parameter `gpuspernode` that is dependent on the cluster where you run this.
+If you omit this parameter or set it too high, the launcher may start your tasks when no GPUs are available.
+```job-script
+pylauncher.GPULauncher\
+    ("gpucommandlines",
+     gpuspernode=3 # adjust for the desired cluster
+     )
+```
 
 ## Sample Job Setup
 
