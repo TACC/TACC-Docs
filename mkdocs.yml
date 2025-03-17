@@ -38,9 +38,9 @@ markdown_extensions:
   - attr_list
   - abbr
   - toc:
-    permalink: ""
-    permalink_class: headerlink fa fa-link
-    permalink_title: Link to Heading
+      permalink: ""
+      permalink_class: headerlink fa fa-link
+      permalink_title: Link to Heading
   - pymdownx.superfences
   - pymdownx.inlinehilite
   - pymdownx.saneheaders
@@ -48,7 +48,7 @@ markdown_extensions:
   - pymdownx.blocks.tab
   - pymdownx.blocks.html
   - pymdownx.arithmatex:
-    generic: true
+      generic: true
 
 nav:
   - TACC Essentials:
