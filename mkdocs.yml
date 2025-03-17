@@ -6,7 +6,7 @@ repo_url: https://github.com/TACC/TACC-Docs
 edit_uri: edit/main/docs/
 
 theme:
-  name: readthedocs
+  name: tacc_readthedocs
   # "ReadTheDocs" Theme Features
   logo: /imgs/tacc-logo-with-words.svg
   analytics:
@@ -23,13 +23,11 @@ theme:
       lang: plaintext
 
 # extra_css:
-#  - css/tacc-theme.css # to retain TACC theme UI
-#  - css/specific-to-tacc-docs.css
+  # - css/tacc-theme.css # to retain TACC theme UI
+  # - css/specific-to-tacc-docs.css
 
 extra_javascript:
-  - css/tacc-theme.js # to retain TACC theme UX
-  - https://polyfill.io/v3/polyfill.min.js?features=es6
-  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js
+  - js/tacc-theme.mjs # to retain TACC theme UX
 
 markdown_extensions:
   - footnotes
