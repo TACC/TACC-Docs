@@ -66,12 +66,12 @@ mkdir output1 && cd output1 && ../yourprogram value1
 ```
 
 !!! tip
-	If the commands use a consecutive input parameter, you can use the string `PYL_ID` which expands to the number of the command. 
+	If the commands use a consecutive input parameter, you can use the string `PYLTID` which expands to the number of the command. 
 
-		./yourprogram -n PYL_ID #1
-		./yourprogram -n PYL_ID #2
-		./yourprogram -n PYL_ID #3
-		./yourprogram -n PYL_ID #4
+		./yourprogram -n PYLTID #1
+		./yourprogram -n PYLTID #2
+		./yourprogram -n PYLTID #3
+		./yourprogram -n PYLTID #4
 
 At the end of the run, PyLauncher will produce final statistics:
 
