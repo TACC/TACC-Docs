@@ -247,13 +247,14 @@ termcolor = "*"
 test = ["mkdocs-d2-plugin", "mkdocs-include-markdown-plugin", "mkdocs-macros-test", "mkdocs-material (>=6.2)", "mkdocs-test"]
 
 [[package]]
-name = "mkdocs-tacc-readthedocs"
-version = "0.1.0"
+name = "mkdocs-tacc"
+version = "0.2.0"
 description = "TACC ReadTheDocs theme for MkDocs"
 optional = false
 python-versions = ">=3.10,<3.13"
-files = []
-develop = false
+files = [
+    {file = "mkdocs_tacc-0.2.0-py3-none-any.whl", hash = "sha256:465645c8f8bd214ebc4c490a10753f9b0a65b8fe1c7280b3f38e56c2f2f56188"},
+]
 
 [package.dependencies]
 mkdocs = "1.4.3"
@@ -264,10 +265,8 @@ pymdown-extensions = ">=10.4.0"
 i18n = ["mkdocs[i18n] (==1.4.3)"]
 
 [package.source]
-type = "git"
-url = "https://github.com/wesleyboar/Core-Docs.git"
-reference = "v0.2.0"
-resolved_reference = "7a55df70cd40e587ae67f20dad0c4d9e37acc007"
+type = "file"
+url = "../Core-Docs/dist/mkdocs_tacc-0.2.0-py3-none-any.whl"
 
 [[package]]
 name = "packaging"
@@ -486,4 +485,4 @@ watchmedo = ["PyYAML (>=3.10)"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10,<3.13"
-content-hash = "75952236dda8a4647db1750701e3295937c4971e842a6a4281594fdb738f2b20"
+content-hash = "8b76afb019415f9a4691761cab819a0dfece4911cf4f865b4a55e1830b1800d4"

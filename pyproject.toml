@@ -1,21 +1,21 @@
 [tool.poetry]
+package-mode = false
+
+[project]
 name = "tacc-docs"
 version = "0.15.1"
-description = ""
-package-mode = false
-authors = ["rstijerina <r.sal.tijerina@gmail.com>"]
-maintainers = [
-  "TACC COA CMD <coa-cmd@tacc.utexas.edu>",
-  "TACC ACI WMA <wma-portals@tacc.utexas.edu>"
+description = "TACC Systems Documentation"
+authors = [
+  { name = "TACC COA CMD", email = "coa-cmd@tacc.utexas.edu" }
 ]
-
-[tool.poetry.dependencies]
-python = ">=3.10,<3.13"
-mkdocs = {version = "1.4.3", extras = ["i18n"]}
-# NOTE: warnings logged if file included by {% include '…' %} has relative paths
-mkdocs-macros-plugin = "^1.0.4"
-mkdocs-tacc-readthedocs = {git = "https://github.com/wesleyboar/Core-Docs.git", rev = "v0.2.0"}
-
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+maintainers = [
+  { name = "TACC COA CMD", email = "coa-cmd@tacc.utexas.edu" },
+  { name = "TACC ACI WMA", email = "wma-portals@tacc.utexas.edu" }
+]
+readme = "README.md"
+requires-python = ">=3.10,<3.13"
+dependencies = [
+  "mkdocs==1.4.3",
+  "mkdocs-macros-plugin>=1.0.4",
+  "mkdocs-tacc>=0.2.0",
+]
