@@ -171,6 +171,22 @@ The "parallellines" file consists of command-lines without the MPI job starter, 
 ./parallelprogram 2 10
 ```
 
+By default, the `ibrun` job starter is prefixed to the whole line. 
+However, if your commandlines need to have actions before the invocation of the parallel program, say
+
+```
+cd testdir0 && ibrun ../parallelprogram
+cd testdir1 && ibrun ../parallelprogram
+```
+
+you can use the `PYL_MPIEXEC` macro:
+
+```
+cd testdirPYLTID && PYL_MPIEXEC ../parallelprogram
+cd testdirPYLTID && PYL_MPIEXEC ../parallelprogram
+```
+
+
 In the launcher invocation, the "debug" parameter causes trace output to be printed during the run. Example:
 
 ```
