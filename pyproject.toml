@@ -1,21 +1,20 @@
 [tool.poetry]
 package-mode = false
-
-[project]
 name = "tacc-docs"
 version = "0.15.1"
 description = "TACC Systems Documentation"
 authors = [
-  { name = "TACC COA CMD", email = "coa-cmd@tacc.utexas.edu" }
+  "TACC COA CMD <coa-cmd@tacc.utexas.edu>"
 ]
 maintainers = [
-  { name = "TACC COA CMD", email = "coa-cmd@tacc.utexas.edu" },
-  { name = "TACC ACI WMA", email = "wma-portals@tacc.utexas.edu" }
+  "TACC COA CMD <coa-cmd@tacc.utexas.edu>",
+  "TACC ACI WMA <wma-portals@tacc.utexas.edu>"
 ]
 readme = "README.md"
-requires-python = ">=3.10,<3.13"
-dependencies = [
-  "mkdocs==1.4.3",
-  "mkdocs-macros-plugin>=1.0.4",
-  "mkdocs-tacc>=0.2.0",
-]
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.13"
+mkdocs = "1.4.3"
+# NOTE: warnings logged if file included by {% include '…' %} has relative paths
+mkdocs-macros-plugin = ">=1.0.4"
+mkdocs-tacc = ">=0.2.0"
