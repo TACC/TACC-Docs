@@ -94,7 +94,7 @@ max: 11
 avg: 4
 ```
 
-This reports that 160 commands were executed, using 40 cores. Ideally we would expect a 40 times speedup, but because of variations in run time the aggregate running time of all commands was reduced by only 25.
+This reports that 160 commands were executed, using 40 cores. Ideally we would expect a 40 times speedup, but because of variations in run time the aggregate running time of all commands was reduced by only 26.
 
 If you want more detailed trace output during the run, add an option:
 
@@ -171,20 +171,6 @@ The "parallellines" file consists of command-lines without the MPI job starter, 
 ./parallelprogram 2 10
 ```
 
-In the launcher invocation, the "debug" parameter causes trace output to be printed during the run. Example:
-
-```
-tick 104
-Queue:
-completed  60 jobs: 0-44 47-48 50-53 56 58 60-61 64 66 68 70 75
-aborted 	0 jobs:
-queued  	5 jobs: 99-103
-running	39 jobs: 45-46 49 54-55 57 59 62-63 65 67 69 71-74 76-98
-```
-
-Which states that in the 104'th stage some jobs were completed/queued for running/actually running. 
-
-The  "tick" message is output every half second. This can be changed, for instance to 1/10th of a second, by specifying "delay=.1" in the launcher command. In some cases, for instance if each command is a python invocation that does many "imports", you could increase the delay parameter.
 
 ### GPU launcher
 
@@ -239,9 +225,9 @@ and "commandlines" contains your parameter sweep.
 
 If you want more detailed trace output during the run, add an option:
 
-`launcher.ClassicLauncher("commandlines",debug="host+job")`
+`launcher.ClassicLauncher("commandlines",debug="job")`
 
-In the launcher invocation, the `debug` parameter causes trace output to be printed during the run. Example:
+In the launcher invocation, the `debug` parameter causes trace output to be printed during the run. For example, the `debug="job"` setting produces output:
 
 ```
 tick 104
@@ -252,9 +238,11 @@ queued  	5 jobs: 99-103
 running	39 jobs: 45-46 49 54-55 57 59 62-63 65 67 69 71-74 76-98
 ```
 
-Which states that in the 104’th stage some jobs were completed/queued for running/actually running. 
+This states that in the 104’th stage some jobs were completed/queued for running/actually running. 
 
 The  `tick` message is output every half second. This can be changed, for instance to 1/10th of a second, by specifying `delay=.1` in the launcher command. In some cases, for instance if each command is a python invocation that does many `imports`, you could increase the delay parameter.
+
+For even more trace output, use `debug="host+exec+task+job+ssh"`.
 
 
 ## Advanced PyLauncher usage
