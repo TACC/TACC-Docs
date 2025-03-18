@@ -22,31 +22,27 @@ theme:
     - name: syntax
       lang: plaintext
 
-# extra_css:
-  # - css/tacc-theme.css # to retain TACC theme UI
-  # - css/specific-to-tacc-docs.css
+extra_css:
+  - css/extra.css
 
 extra_javascript:
   - js/tacc-theme.mjs # to retain TACC theme UX
+  # - js/specific-to-tacc-docs.js
 
 markdown_extensions:
-  - footnotes
-  - def_list
+  - extra
   - admonition
-  - attr_list
-  - abbr
   - toc:
-      permalink: ""
+      permalink: "" # i.e. `true` but without "¶"
       permalink_class: headerlink fa fa-link
       permalink_title: Link to Heading
+  - pymdownx.blocks.admonition
+  - pymdownx.blocks.details
+  - pymdownx.blocks.html
+  - pymdownx.blocks.tab
   - pymdownx.superfences
   - pymdownx.inlinehilite
   - pymdownx.saneheaders
-  - pymdownx.blocks.details
-  - pymdownx.blocks.tab
-  - pymdownx.blocks.html
-  - pymdownx.arithmatex:
-      generic: true
 
 nav:
   - TACC Essentials:

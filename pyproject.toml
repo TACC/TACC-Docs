@@ -12,9 +12,9 @@ maintainers = [
 [tool.poetry.dependencies]
 python = ">=3.10,<3.13"
 mkdocs = {version = "1.4.3", extras = ["i18n"]}
-mkdocs-tacc-readthedocs = {git = "https://github.com/wesleyboar/Core-Docs.git", rev = "main"}
 # NOTE: warnings logged if file included by {% include '…' %} has relative paths
 mkdocs-macros-plugin = "^1.0.4"
+mkdocs-tacc-readthedocs = {git = "https://github.com/wesleyboar/Core-Docs.git", rev = "refactor/css-integrate-into-theme-and-reorg"}
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

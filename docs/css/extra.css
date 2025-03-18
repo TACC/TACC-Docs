@@ -1,0 +1,11 @@
+/* FOOTER */
+
+/* to hide unused footer */
+footer {
+  display: none; /* to undo ReadTheDocs theme.css */
+}
+
+/* to hide unused space at bottom of index page */
+[data-page-name="index.md"] .wy-nav-content {
+  padding-bottom: 0; /* to undo ReadTheDocs theme.css */
+}

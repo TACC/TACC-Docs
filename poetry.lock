@@ -258,7 +258,6 @@ develop = false
 [package.dependencies]
 mkdocs = "1.4.3"
 mkdocs-exclude-search = ">=0.6.5"
-mkdocs-macros-plugin = ">=1.0.4"
 pymdown-extensions = ">=10.4.0"
 
 [package.extras]
@@ -267,8 +266,8 @@ i18n = ["mkdocs[i18n] (==1.4.3)"]
 [package.source]
 type = "git"
 url = "https://github.com/wesleyboar/Core-Docs.git"
-reference = "main"
-resolved_reference = "3b85bbbe3a7628ff100bbb13a84d3c82f80f172c"
+reference = "refactor/css-integrate-into-theme-and-reorg"
+resolved_reference = "f3e9a059f79092df6855a6aa1c891011d6e9a302"
 
 [[package]]
 name = "packaging"
@@ -487,4 +486,4 @@ watchmedo = ["PyYAML (>=3.10)"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10,<3.13"
-content-hash = "f7dbcb95f40b1cc1d8be6462a7144d151bb84e7074ece9973ecae6b38e1ae0f4"
+content-hash = "8c9670237795156b4be3e1a0804720d14b70cc30f0c8fae4ec01e3c3fd5c969b"
