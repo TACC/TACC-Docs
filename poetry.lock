@@ -266,8 +266,8 @@ i18n = ["mkdocs[i18n] (==1.4.3)"]
 [package.source]
 type = "git"
 url = "https://github.com/wesleyboar/Core-Docs.git"
-reference = "refactor/css-integrate-into-theme-and-reorg"
-resolved_reference = "f3e9a059f79092df6855a6aa1c891011d6e9a302"
+reference = "v0.2.0"
+resolved_reference = "7a55df70cd40e587ae67f20dad0c4d9e37acc007"
 
 [[package]]
 name = "packaging"
@@ -486,4 +486,4 @@ watchmedo = ["PyYAML (>=3.10)"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10,<3.13"
-content-hash = "8c9670237795156b4be3e1a0804720d14b70cc30f0c8fae4ec01e3c3fd5c969b"
+content-hash = "75952236dda8a4647db1750701e3295937c4971e842a6a4281594fdb738f2b20"

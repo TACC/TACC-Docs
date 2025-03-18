@@ -25,10 +25,6 @@ theme:
 extra_css:
   - css/extra.css
 
-extra_javascript:
-  - js/tacc-theme.mjs # to retain TACC theme UX
-  # - js/specific-to-tacc-docs.js
-
 markdown_extensions:
   - extra
   - admonition
