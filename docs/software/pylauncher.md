@@ -66,12 +66,12 @@ mkdir output1 && cd output1 && ../yourprogram value1
 ```
 
 !!! tip
-	If the commands use a consecutive input parameter, you can use the string `PYL_ID` which expands to the number of the command. 
+	If the commands use a consecutive input parameter, you can use the string `PYLTID` which expands to the number of the command. 
 
-		./yourprogram -n PYL_ID #1
-		./yourprogram -n PYL_ID #2
-		./yourprogram -n PYL_ID #3
-		./yourprogram -n PYL_ID #4
+		./yourprogram -n PYLTID #1
+		./yourprogram -n PYLTID #2
+		./yourprogram -n PYLTID #3
+		./yourprogram -n PYLTID #4
 
 At the end of the run, PyLauncher will produce final statistics:
 
@@ -94,7 +94,7 @@ max: 11
 avg: 4
 ```
 
-This reports that 160 commands were executed, using 40 cores. Ideally we would expect a 40 times speedup, but because of variations in run time the aggregate running time of all commands was reduced by only 25.
+This reports that 160 commands were executed, using 40 cores. Ideally we would expect a 40 times speedup, but because of variations in run time the aggregate running time of all commands was reduced by only 26.
 
 If you want more detailed trace output during the run, add an option:
 
@@ -171,37 +171,6 @@ The "parallellines" file consists of command-lines without the MPI job starter, 
 ./parallelprogram 2 10
 ```
 
-By default, the `ibrun` job starter is prefixed to the whole line. 
-However, if your commandlines need to have actions before the invocation of the parallel program, say
-
-```
-cd testdir0 && ibrun ../parallelprogram
-cd testdir1 && ibrun ../parallelprogram
-```
-
-you can use the `PYL_MPIEXEC` macro:
-
-```
-cd testdirPYLTID && PYL_MPIEXEC ../parallelprogram
-cd testdirPYLTID && PYL_MPIEXEC ../parallelprogram
-```
-
-
-In the launcher invocation, the "debug" parameter causes trace output to be printed during the run. Example:
-
-```
-tick 104
-Queue:
-completed  60 jobs: 0-44 47-48 50-53 56 58 60-61 64 66 68 70 75
-aborted 	0 jobs:
-queued  	5 jobs: 99-103
-running	39 jobs: 45-46 49 54-55 57 59 62-63 65 67 69 71-74 76-98
-```
-
-Which states that in the 104'th stage some jobs were completed/queued for running/actually running. 
-
-The  "tick" message is output every half second. This can be changed, for instance to 1/10th of a second, by specifying "delay=.1" in the launcher command. In some cases, for instance if each command is a python invocation that does many "imports", you could increase the delay parameter.
-
 ### GPU launcher
 
 For GPU jobs, use the `GPULauncher`. This needs an extra parameter `gpuspernode` that is dependent on the cluster where you run this.
@@ -255,9 +224,9 @@ and "commandlines" contains your parameter sweep.
 
 If you want more detailed trace output during the run, add an option:
 
-`launcher.ClassicLauncher("commandlines",debug="host+job")`
+`launcher.ClassicLauncher("commandlines",debug="job")`
 
-In the launcher invocation, the `debug` parameter causes trace output to be printed during the run. Example:
+In the launcher invocation, the `debug` parameter causes trace output to be printed during the run. For example, the `debug="job"` setting produces output:
 
 ```
 tick 104
@@ -268,9 +237,11 @@ queued  	5 jobs: 99-103
 running	39 jobs: 45-46 49 54-55 57 59 62-63 65 67 69 71-74 76-98
 ```
 
-Which states that in the 104’th stage some jobs were completed/queued for running/actually running. 
+This states that in the 104’th stage some jobs were completed/queued for running/actually running. 
 
 The  `tick` message is output every half second. This can be changed, for instance to 1/10th of a second, by specifying `delay=.1` in the launcher command. In some cases, for instance if each command is a python invocation that does many `imports`, you could increase the delay parameter.
+
+For even more trace output, use `debug="host+exec+task+job+ssh"`.
 
 
 ## Advanced PyLauncher usage
