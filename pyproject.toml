@@ -14,7 +14,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = ">=3.10,<3.13"
-mkdocs = "1.4.3"
+# mkdocs (implicitely installed via "mkdocs-tacc")
 # NOTE: warnings logged if file included by {% include '…' %} has relative paths
 mkdocs-macros-plugin = ">=1.0.4"
 mkdocs-exclude-search = "^0.6.6"
