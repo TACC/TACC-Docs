@@ -7,7 +7,7 @@ All contributions should be made via a GitHub pull request.  The pull requests w
 1. [Fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) this repository.
 1. [Edit](https://docs.github.com/en/repositories/working-with-files/managing-files/editing-files) relevant files that need update.  [Upload images](https://docs.github.com/en/repositories/working-with-files/managing-files/adding-a-file-to-a-repository) as necessary.
 1. [Commit](https://docs.github.com/en/pull-requests/committing-changes-to-your-project/creating-and-editing-commits/about-commits) your changes, writing [clear commit messages](#writing-commit-messages).
-1. [Test](#testing) your changes if comfortable using a command prompt.
+1. [Test](./TESTING.md) your changes if comfortable using a command prompt.
 1. [Request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) a review. This creates a "Pull Request".
 
 
