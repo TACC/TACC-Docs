@@ -17,4 +17,4 @@ python = ">=3.10,<3.13"
 mkdocs = "1.4.3"
 # NOTE: warnings logged if file included by {% include '…' %} has relative paths
 mkdocs-macros-plugin = ">=1.0.4"
-mkdocs-tacc = ">=0.2.0"
+mkdocs-tacc = "^0.3.3"
