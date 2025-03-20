@@ -1,16 +1,18 @@
 # How to Develop
 
-Manage dependencies via [Poetry](https://python-poetry.org/). Serve docs via [MkDocs](https://www.mkdocs.org/). Test via [Docker](https://www.docker.com/). Deploys are [automated](./PUBLISHING.md).
+Manage dependencies via [Poetry v2](https://python-poetry.org/). Serve docs via [MkDocs](https://www.mkdocs.org/). [Test manually.](#testing) Deploys are [automated](./PUBLISHING.md).
 
-## Testing
+## How to Edit the Theme
 
-Testing is manual and requires using a command prompt. You can test [via Python](./TESTING.md#a-via-python) or [via Docker](./TESTING.md#b-via-docker).
+To change the TACC documentation theme, [contribute to `mkdocs-tacc`](https://github.com/TACC/mkdocs-tacc/blob/main/CONTRIBUTING.md).
 
-## Theming
+To change just this project, learn how to [configure](https://tacc.github.io/mkdocs-tacc/configure) & [customize](https://tacc.github.io/mkdocs-tacc/customize).
 
-Customize MkDocs with [CSS, JS, ES, plugins, extensions](https://github.com/TACC/TACC-Docs/blob/v0.15.0/mkdocs.base.yml) and [theme overrides](https://github.com/TACC/TACC-Docs/tree/v0.15.0/themes/tacc-readthedocs).
+To make functional changes, [use extensions](https://tacc.github.io/mkdocs-tacc/extensions/).
 
-To theme another MkDocs project to look [like this](https://docs.tacc.utexas.edu/), please contact [@wesleyboar](https://www.github.com/wesleyboar).
+## How to Test Your Changes
 
 > [!NOTE]
-> We will eventually [use MkDocs Material](https://github.com/TACC/TACC-Docs/issues/53) and [offer our customization properly](https://github.com/TACC/TACC-Docs/issues/76).
+>Testing is manual and requires using a command prompt.
+
+You can [test with **PIP** or **Poetry** or **Docker** or **Make**](https://tacc.github.io/mkdocs-tacc/test/).

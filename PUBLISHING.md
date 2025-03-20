@@ -16,7 +16,7 @@ A Watchtower service will monitor new pushes to this dockerhub repo and pull dow
 
 ## Releases
 
-[Releases](https://github.com/TACC/TACC-Docs/releases) are made when a significant set of **functional** Pull Requests have been merged.
+[Releases](https://github.com/TACC/TACC-Docs/releases) are for a significant set of merged **functional** Pull Requests. Changes to content of documents do **not** merit a release.
 
 > [!NOTE]
-> Releases are only used by clients of the TACC MkDocs [configuration](https://github.com/TACC/TACC-Docs/blob/v0.14.0/mkdocs.base.yml) and [theme](https://github.com/TACC/TACC-Docs/tree/v0.14.0/themes/tacc-readthedocs), so changes to the content of documents do **not** merit a release.
+> Releases should be uncommon since the theme was migrated to [TACC/mkdocs-tacc](https://github.com/TACC/mkdocs-tacc) (in [TACC/TACC-Docs#95](https://github.com/TACC/TACC-Docs/pull/95)).

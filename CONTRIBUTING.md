@@ -4,12 +4,11 @@ All contributions should be made via a GitHub pull request.  The pull requests w
 
 ## Step by Step
 
-1. [Fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) this repository.
-1. [Edit](https://docs.github.com/en/repositories/working-with-files/managing-files/editing-files) relevant files that need update.  [Upload images](https://docs.github.com/en/repositories/working-with-files/managing-files/adding-a-file-to-a-repository) as necessary.
-1. [Commit](https://docs.github.com/en/pull-requests/committing-changes-to-your-project/creating-and-editing-commits/about-commits) your changes, writing [clear commit messages](#writing-commit-messages).
-1. [Test](./TESTING.md) your changes if comfortable using a command prompt.
-1. [Request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) a review. This creates a "Pull Request".
-
+1. [Fork][fork] this repository.
+2. [Edit][edit] relevant files that need update.  [Upload images](https://docs.github.com/en/repositories/working-with-files/managing-files/adding-a-file-to-a-repository) as necessary.
+3. [Commit][commit] your changes, writing [clear commit messages](#writing-commit-messages).
+4. [Test][test] your changes if comfortable using a command prompt.
+5. [Request][request] a review. This creates a "Pull Request".
 
 ## Style Guide
 
@@ -26,8 +25,15 @@ Always write a clear log message for your commits. One-line messages are fine fo
 
 ## Important Resources
 
-  * [Known Issues](https://github.com/TACC/TACC-Docs/issues)
-  * [Active Proposals](https://github.com/TACC/TACC-Docs/pulls)
-  * [How to Test](./TESTING.md)
+* [Known Issues][issues]
+* [Active Proposals][proposals]
+* [How to Test][test]
 
+[issues]: https://github.com/TACC/TACC-Docs/issues
+[proposals]: https://github.com/TACC/TACC-Docs/pulls
+[test]: https://tacc.github.io/mkdocs-tacc/test/
 
+[fork]: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo
+[edit]: https://docs.github.com/en/repositories/working-with-files/managing-files/editing-files
+[commit]: https://docs.github.com/en/pull-requests/committing-changes-to-your-project/creating-and-editing-commits/about-commits
+[request]: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request
