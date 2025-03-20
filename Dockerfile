@@ -5,7 +5,7 @@ LABEL maintainer="TACC-ACI-WMA <wma_prtl@tacc.utexas.edu>"
 ARG DEBIAN_FRONTEND=noninteractive
 
 # https://python-poetry.org/docs/configuration/#using-environment-variables
-ENV POETRY_VERSION=1.8.2 \
+ENV POETRY_VERSION=2.1.1 \
     POETRY_HOME="/opt/poetry" \
     POETRY_VIRTUALENVS_IN_PROJECT=true \
     POETRY_NO_INTERACTION=1 \
@@ -37,7 +37,7 @@ WORKDIR $PYSETUP_PATH
 COPY pyproject.toml poetry.lock ./
 
 # install runtime deps - uses $POETRY_VIRTUALENVS_IN_PROJECT internally
-RUN poetry install --only main
+RUN poetry install --only main --no-root
 
 # `production` image is used for deployed runtime environments
 FROM python-base as production
