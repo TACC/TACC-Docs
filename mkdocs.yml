@@ -12,8 +12,8 @@ theme:
   analytics:
     gtag: G-TRRRQZ0EHX
   # "TACC" Theme Features
-  cms_url: https://tacc.utexas.edu
-  cms_name: tacc.utexas.edu
+  portal_url: https://tacc.utexas.edu
+  portal_name: tacc.utexas.edu
   hljs_aliases:
     - name: cmd-line
       lang: bash
