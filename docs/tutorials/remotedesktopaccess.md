@@ -29,7 +29,7 @@ Connect to the TACC Analysis Portal at <https://tap.tacc.utexas.edu>. Everyone w
 
 ## DCV & VNC at TACC { #scripts }
 
-TACC resources [Frontera](../../hpc/frontera), [Stampede3](../../hpc/stampede3) and [Lonestar6](../../hpc/lonestar6) all offer remote desktop capabilities via a VNC (Virtual Network Computing) connection. Frontera and Stampede3 also provide remote desktop access through a DCV (Desktop Cloud Visualization) connection to one or more nodes.  
+TACC resources [Frontera]TACCFRONTERAUG], [Stampede3][TACCSTAMPEDE3UG] and [Lonestar6][TACCLONESTAR6UG] all offer remote desktop capabilities via a VNC (Virtual Network Computing) connection. Frontera and Stampede3 also provide remote desktop access through a DCV (Desktop Cloud Visualization) connection to one or more nodes.  
 
 TACC has a limited number of DCV licenses available, so concurrent DCV sessions may be limited. TACC has provided two DCV job scripts for two different scenarios:
 

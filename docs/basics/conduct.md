@@ -16,7 +16,7 @@ Each HPC system's login nodes are a *shared resource* amongst all users currentl
 
 Think of the login nodes as a prep area, where you may edit and manage files, compile code, perform file management, issue transfers, submit new and track existing batch jobs etc. The login nodes provide an interface to the "back-end" compute nodes, where actual computations occur and where research is done. Hundreds of jobs may be running on all compute nodes, with hundreds more queued up to run. 
 
-All batch jobs and executables, as well as development and debugging sessions, must be run on the compute nodes. To access compute nodes on TACC resources, one must either [submit a job to a batch queue](../../hpc/stampede3#running-sbatch) or initiate an interactive session using the [`idev`](../../software/idev) utility. 
+All batch jobs and executables, as well as development and debugging sessions, must be run on the compute nodes. To access compute nodes on TACC resources, one must either [submit a job to a batch queue](../../hpc/stampede3#running-sbatch) or initiate an interactive session using the [`idev`][TACCIDEV] utility. 
 
 
 <figure id="figure-logincomputenodes">
@@ -138,7 +138,7 @@ In order to not stress both internal and external networks, be mindful of the fo
 
 * **Avoid too many simultaneous file transfers**. You share the network bandwidth with other users; don't use more than your fair share. Two or three concurrent `scp` sessions is probably fine. Twenty is probably not.
 
-* **Avoid recursive file transfers**, especially those involving many small files. Create a `.tar` archive before transfers. This is especially true when transferring files to or from [Ranch](../../hpc/ranch).
+* **Avoid recursive file transfers**, especially those involving many small files. Create a `.tar` archive before transfers. This is especially true when transferring files to or from [Ranch][TACCRANCHUG].
 
 
 ## 5. Job Submission Tips { #conduct-jobs }

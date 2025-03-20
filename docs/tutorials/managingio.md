@@ -31,7 +31,7 @@ Consider that your `/home` (`$HOME`) and `/work` (`$WORK`) directories are for s
 File System | Recommended Use | Notes
 --- | --- | ---
 <code>$HOME</code> | cron jobs, scripts and templates, environment settings, compilations | each user's <code>$HOME</code> directory is backed up
-<code>$WORK</code>  | software installations, original datasets that can't be reproduced.  | The Stockyard file system is NOT backed up.<br>Ensure that your important data is backed up to <a href="../../hpc/ranch">Ranch</a> long-term storage.
+<code>$WORK</code>  | software installations, original datasets that can't be reproduced.  | The Stockyard file system is NOT backed up.<br>Ensure that your important data is backed up to [Ranch][TACCRANCHUG] long-term storage.
 <span style="white-space: nowrap;"><code>$SCRATCH</code> <sup><a href="#sup1">1</a></sup></span> | Reproducible datasets, I/O files: temporary files, checkpoint/restart files, job output files | Not backed up.<br>All <code>$SCRATCH</code> file systems are <b>subject to purge</b> if access time <sup><a href="#sup2">2</a></sup> is more than 10 days old.
 
 
@@ -146,7 +146,7 @@ TACC staff has developed OOOPS, **O**ptimal **O**verloaded I/O **P**rotection **
 !!! note
 	Employing OOOPS may slow down your job significantly if your job has a lot of I/O.
 
-The OOOPS module is currently installed on TACC's [Frontera](../../hpc/frontera) resource.
+The OOOPS module is currently installed on TACC's [Frontera][TACCFRONTERAUG] resource.
 
 
 ### Functions { #ooops-functions }

@@ -1,19 +1,15 @@
 # TACC Docs
 
-Built with [MkDocs](https://mkdocs.readthedocs.io/) and a **customized** [ReadTheDocs](https://www.mkdocs.org/user-guide/choosing-your-theme/#readthedocs) theme.
+TACC's system documentation at [docs.tacc.utexas.edu](https://docs.tacc.utexas.edu).
 
 ## Contributing
 
 We welcome contributions, offer a guide for those new to GitHub, and a style guide to simplify reviews. [Read more](./CONTRIBUTING.md).
 
-## Testing
-
-Testing is manual and requires using a command prompt. You can test [via Python](./TESTING.md#a-via-python) or [via Docker](./TESTING.md#b-via-docker).
-
 ## Publishing
 
-We automatically publish `main` branch commits. We manually release versions of TACC-Docs. [Read more](./PUBLISHING.md).
+We automatically publish `main` branch commits. We manually release versions of TACC-Docs. [Read more.](./PUBLISHING.md)
 
-## Theming
+## Developing
 
-To theme your documentation like this project, please contact [@wesleyboar](https://www.github.com/wesleyboar) or mimic [DS-User-Guide](https://github.com/DesignSafe-CI/DS-User-Guide/).
+We use [Poetry](https://python-poetry.org/), [Docker](https://www.docker.com/), [MkDocs](https://mkdocs.readthedocs.io/) and a customized theme. [Read more](./DEVELOPING.md).

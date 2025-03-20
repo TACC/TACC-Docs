@@ -1,8 +1,9 @@
 # Vista User Guide 
-*Last update: January 13, 2025*
+*Last update: February 18, 2025*
 
 ## Notices { #notices }
 
+* **New**: See TACC Staff's [notes on incorporating NVIDIA's Multi-Process Service](#mps). (MPS) 
 * **Important**: Please note [TACC's new SU charge policy](#sunotice). (09/20/2024)
 * **[Subscribe][TACCSUBSCRIBE] to Vista User News**. Stay up-to-date on Vista's status, scheduled maintenances and other notifications.  (09/01/2024)
 

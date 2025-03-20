@@ -1,6 +1,6 @@
 ## Accessing the System { #access }
 
-Access to all TACC systems requires Multi-Factor Authentication (MFA). You can create an MFA pairing under "Manage Account" in the TACC Portal.  See [Multi-Factor Authentication at TACC](../../basics/mfa) for further information.
+Access to all TACC systems requires Multi-Factor Authentication (MFA). You can create an MFA pairing under "Manage Account" in the TACC Portal.  See [Multi-Factor Authentication at TACC][TACCMFA] for further information.
 
 !!! important
 	You will be able to log on to Stampede3 **only if** you have an allocation on Stampede3, otherwise your password will be rejected.  
@@ -16,8 +16,8 @@ Initiate an SSH session using the `ssh` command or the equivalent:
 
 The above command will rotate connections across all available login nodes and route your connection to the next available node. 
 
-!!! tip
-	Stampede3's login nodes are a *shared resource*. See TACC's <a href="../../basics/conduct">Good Conduct Policy</a> for more information.
+!!! important
+	Stampede3's login nodes are a *shared resource*. See TACC's [Good Conduct Policy][TACCGOODCONDUCT] for more information.
 
 
 To connect to a specific login node, use its full domain name:

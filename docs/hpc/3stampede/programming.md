@@ -79,7 +79,7 @@ The `qopt-zmm-usage` flag affects the algorithms the compiler uses to decide whe
 
 This section includes general advice intended to help you achieve good performance during file operations. See [Managing I/O at TACC][TACCMANAGINGIO] and [TACC Training](https://tacc.utexas.edu/use-tacc/training/) page for additional information on I/O performance. 
 
-**Follow the advice in [TACC Good Conduct Guide](basics/conduct) to avoid stressing the file system**.
+**Follow the advice in [TACC Good Conduct Guide][TACCGOODCONDUCT] to avoid stressing the file system**.
 
 **Aggregate file operations**: Open and close files once. Read and write large, contiguous blocks of data at a time; this requires understanding how a given programming language uses memory to store arrays.
 

@@ -1,5 +1,5 @@
 # Frontera User Guide
-*Last update: January 13, 2025*
+*Last update: March 20, 2025*
 
 **Important**: (10-15-2024) Please note [TACC's new SU charge policy](#sunotice).
 
@@ -32,7 +32,7 @@ Experienced HPC/TACC users will be very familiar with many of the topics present
 
 * Log into your [TACC Dashboard][TACCDASHBOARD] to confirm that [you've been added to a Frontera allocation][TACCALLOCATIONS]. Then, connect via SSH to `frontera.tacc.utexas.edu`.
 * Review the TACC info box displayed at login for your allocation availability and SU balances.
-* Read the [Good Conduct](../../basics/conduct) section. Frontera is a **shared** resource and this section covers practices and etiquette to keep your account in good standing and keep Frontera's systems running smoothly for all users.
+* Read the [Good Conduct][TACCGOODCONDUCT] section. Frontera is a **shared** resource and this section covers practices and etiquette to keep your account in good standing and keep Frontera's systems running smoothly for all users.
 * Consult the [Frontera File Systems](#files) and [Frontera Production Queues](#queues) tables. These should be near identical to the structure used on other TACC systems but there are a few minor changes you will want to take note of. 
 * Copy and modify any of the [Sample Job Scripts](#scripts) for your own use. These scripts will also be helpful to show you how to modify any Jobs Scripts you are bringing over from other TACC systems so that they run efficiently on Frontera. 
 * Review the [default modules with `module list`](#admin-configuring-modules). Make any changes needed for your code. 
@@ -230,6 +230,11 @@ See [Lmod's online documentation](http://lmod.readthedocs.org) for more extensiv
 
 It's safe to execute module commands in job scripts. In fact, this is a good way to write self-documenting, portable job scripts that produce reproducible results. If you use `module save` to define a personal default module collection, it's rarely necessary to execute module commands in shell startup scripts, and it can be tricky to do so safely. If you do wish to put module commands in your startup scripts, see Frontera's default startup scripts for a safe way to do so.
 
+{% include 'include/frontera-crontab.md' %}
+
+{% include 'include/tacctips.md' %}
+
+
 ## Frontera User Portal { #portal }
 
 <!-- p class="introtext">The Frontera project team is pleased to announce the release of new <a href="https://frontera-xortal.tacc.utexas.edu/workbench/dashboard">Dashboard</a> functionality within the Frontera User Portal. Upon login, click on your name in the upper right corner to access your Frontera dashboard and account settings. </p -->
@@ -317,22 +322,25 @@ The interconnect is based on Mellanox HDR technology with full HDR (200 Gb/s) co
 
 Frontera mounts three Lustre file systems that are shared across all nodes: the `/home`, `/work`, and `/scratch` file systems. <!-- Frontera also contains a fourth file system, <code>FLASH</code>, supporting applications with very high bandwidth or IOPS requirements.-->
 
+{% include 'include/spacetip.md' %}
 
 ### File Systems { #files-filesystems } 
 
-Frontera's startup mechanisms define corresponding account-level environment variables `$HOME`, `$SCRATCH` and `$WORK` that store the paths to directories that you own on each of these file systems. Consult <a href="#table4">Table 4. Frontera File Systems</a> below for the basic characteristics of these file systems,  and the <a href="../../basics/conduct">Good Conduct</a> sections for guidance on file system etiquette.</p>
+Frontera's startup mechanisms define corresponding account-level environment variables `$HOME`, `$SCRATCH` and `$WORK` that store the paths to directories that you own on each of these file systems. Consult <a href="#table4a">Table 4. Frontera File Systems</a> below for the basic characteristics of these file systems, and the [Good Conduct][TACCGOODCONDUCT] sections for guidance on file system etiquette.
 
 #### Table 4a. File Systems { #table4a } 
 
 File System | Quota | Key Features
 -------     | ------- | -------
 `$HOME`	    | 25GB, 200,000 files          | **Not intended for parallel or high-intensity file operations**.<br>Backed up regularly.<br>Defaults: 1 stripe, 1MB stripe size.<br> Not purged. |
-`$WORK`	    | 1TB, 3,000,000 files across all TACC systems,<br>regardless of where on the file system the files reside. | **Not intended for high-intensity file operations or jobs involving very large files.**<br>On the Global Shared File System that is mounted on most TACC systems.<br>Defaults: 1 stripe, 1MB stripe size.<br>Not backed up.<br> Not purged.
+`$WORK`	    | 1TB, 3,000,000 files across all TACC systems, **regardless of where on the file system the files reside**. | **Not intended for high-intensity file operations or jobs involving very large files.**<br>On the Global Shared File System that is mounted on most TACC systems.<br>Defaults: 1 stripe, 1MB stripe size.<br>Not backed up.<br> Not purged.
 `$SCRATCH`  | no quota	 |  Overall capacity 44 PB.<br>Defaults: 1 stripe, 1MB stripe size.<br>Not backed up.<br>Decomposed into three separate file systems, `scratch1`, `scratch2`, and `scratch3` described below.<br>**Files are [subject to purge](#scratchpolicy) if access time&#42; is more than 10 days old**.  
 
-All new projects are assigned to `/scratch1` as their default `$SCRATCH` file system.  After running on Frontera, TACC staff may reassign users and projects to `/scratch2` or `/scratch3` depending on the resources required by their workflow.  The `/scratch3` file system employs twice as many OST's offering twice the available I/O bandwidth of `/scratch1` and `/scratch2`.  Frontera's three `$SCRATCH` file systems are further described below:
+{% include 'include/corraltip.md' %}
 
 #### Table 4b. Scratch File Systems { #table4b } 
+
+All new projects are assigned to `/scratch1` as their default `$SCRATCH` file system.  After running on Frontera, TACC staff may reassign users and projects to `/scratch2` or `/scratch3` depending on the resources required by their workflow.  The `/scratch3` file system employs twice as many OST's offering twice the available I/O bandwidth of `/scratch1` and `/scratch2`.  Frontera's three `$SCRATCH` file systems are further described below:
 
 File System | Characteristics	| Purpose |
 ---         | ---               | ---     |
@@ -358,7 +366,7 @@ Your account-specific `$WORK` environment variable varies from system to system 
 See the example for fictitious user `bjones` in the figure below. All directories are accessible from all systems, however a given sub-directory (e.g. `lonestar6`, `stampede3`) will exist **only** if you have an allocation on that system.
 
 #### Figure 3. Stockyard File System { #figure3 } 
-<figure id="figure3"><img alt="Stockyard File System" src="../imgs/stockyard-2022.jpg"> 
+<figure id="figure3"><img alt="Stockyard File System" src="../imgs/stockyard-2024.png"> 
 <figcaption></figcaption></figure>
 
 **Figure 3.** Account-level directories on the work file system (Global Shared File System hosted on Stockyard). Example for fictitious user `bjones`. All directories usable from all systems. Sub-directories (e.g. `lonestar6`, `stampede3`) exist only if you have allocations on the associated system.
@@ -505,7 +513,7 @@ localhost$ rsync -avtr mybigdir  bjones@frontera.tacc.utexas.edu:\$WORK/data
 
 The options on the second transfer are typical and appropriate when synching a directory: this is a <u>recursive update (`-r`)</u> with verbose (`-v`) feedback; the synchronization preserves <u>time stamps (`-t`)</u> as well as symbolic links and other meta-data (`-a`). Because `rsync` only transfers changes, recursive updates with `rsync` may be less demanding than an equivalent recursive transfer with `scp`.
 
-See [Good Conduct](../../basics/conduct) for additional important advice about striping the receiving directory when transferring large files; watching your quota on `$HOME` and `$WORK`; and limiting the number of simultaneous transfers. Remember also that `$STOCKYARD` (and your `$WORK` directory on each TACC resource) is available from several other TACC systems: there's no need for `scp` when both the source and destination involve subdirectories of `$STOCKYARD`. 
+See [Good Conduct][TACCGOODCONDUCT] for additional important advice about striping the receiving directory when transferring large files; watching your quota on `$HOME` and `$WORK`; and limiting the number of simultaneous transfers. Remember also that `$STOCKYARD` (and your `$WORK` directory on each TACC resource) is available from several other TACC systems: there's no need for `scp` when both the source and destination involve subdirectories of `$STOCKYARD`. 
 
 The `rsync` command is another way to keep your data up to date. In contrast to `scp`, `rsync` transfers only the actual changed parts of a file (instead of transferring an entire file). Hence, this selective method of data transfer can be much more efficient than scp. The following example demonstrates usage of the `rsync` command for transferring a file named `myfile.c` from its current location on Stampede to Frontera's `$DATA` directory.
 
@@ -694,7 +702,7 @@ Be sure to request computing resources e.g., number of nodes, number of tasks pe
 ### Frontera Production Queues { #running-queues } 
 
 
-Frontera's Slurm partitions (queues), maximum node limits and charge rates are summarized in the table below. **Queues and limits are subject to change without notice.** Execute `qlimits` on Frontera for real-time information regarding limits on available queues. See [Job Accounting](#job-accounting) to learn how jobs are charged to your allocation.
+Frontera's Slurm partitions (queues), maximum node limits and charge rates are summarized in the table below. **Queues and limits are subject to change without notice.** Execute `qlimits` on Frontera for real-time information regarding limits on available queues. See [Job Accounting](#jobaccounting) to learn how jobs are charged to your allocation.
 
 Frontera's newest queue, `small`, has been created specifically for one and two node jobs. Jobs of one or two nodes that will run for up to 48 hours should be submitted to this new `small` queue. The `normal` queue now has a lower limit of three nodes for all jobs. 
 
@@ -737,7 +745,7 @@ Current queue/partition limits on TACC's Frontera system:
 | <code>flex&#42;</code>        | 1-128 nodes<br>(7,168 cores)      | 1 hour | 48 hrs  | 6400 nodes         | 15       | .8 Service Units (SUs) 
 | <code>development</code>      | 1-40 nodes<br>(2,240 cores)       | N/A    | 2 hrs   |   40 nodes         |  1       | 1 SU 
 | <code>normal</code>           | 3-512 nodes<br>(28,672 cores)     | N/A    | 48 hrs  | 1024 nodes         | 75       | 1 SU   
-| <code>large&#42;&#42;</code>  | 513-2048 nodes<br>(114,688 cores) | N/A    | 48 hrs  | 3072 nodes         |  2       | 1 SU
+| <code>large&#42;&#42;</code>  | 513-2048 nodes<br>(114,688 cores) | N/A    | 48 hrs  | 3072 nodes         |  1       | 1 SU
 | <code>rtx</code>              | 16 nodes                          | N/A    | 48 hrs  |   32 nodes         | 12       | 3 SUs
 | <code>rtx-dev</code>          | 2 nodes                           | N/A    | 2 hrs   |    2 nodes         |  1       | 3 SUs
 | <code>nvdimm</code>           | 4 nodes                           | N/A    | 48 hrs  |    6 nodes         |  3       | 2 SUs 
@@ -751,7 +759,7 @@ Current queue/partition limits on TACC's Frontera system:
 
 ### Accessing the Compute Nodes { #running-computenodes } 
 
- The login nodes are shared resources: at any given time, there are many users logged into each of these login nodes, each preparing to access the "back-end" compute nodes (Figure 2. Login and Compute Nodes). What you do on the login nodes affects other users directly because you are competing for the same resources: memory and processing power. This is the reason you should not run your applications on the login nodes or otherwise abuse them. Think of the login nodes as a prep area where you can manage files and compile code before accessing the compute nodes to perform research computations. See [Good Conduct](../../basics/conduct) for more information.
+ The login nodes are shared resources: at any given time, there are many users logged into each of these login nodes, each preparing to access the "back-end" compute nodes (Figure 2. Login and Compute Nodes). What you do on the login nodes affects other users directly because you are competing for the same resources: memory and processing power. This is the reason you should not run your applications on the login nodes or otherwise abuse them. Think of the login nodes as a prep area where you can manage files and compile code before accessing the compute nodes to perform research computations. See [Good Conduct][TACCGOODCONDUCT] for more information.
 
 #### Figure 2. Login and Compute Nodes { #figure2 } 
 <figure id="figure2"><img alt="[Figure 2. Login and Compute Nodes" src="../imgs/login-compute-nodes.jpg">
@@ -860,7 +868,7 @@ You can also launch an interactive session with Slurm's `srun` command, though t
 login1$ srun --pty -N 2 -n 8 -t 2:30:00 -p normal /bin/bash -l # same conditions as above
 ```
 
-Consult the [`idev`](../../software/idev) documentation for further details.
+Consult the [`idev`][TACCIDEV] documentation for further details.
 
 ### Interactive Sessions using SSH { #running-ssh } 
 
@@ -1362,7 +1370,7 @@ On Frontera, both the `hdf5` and `phdf5` modules define the environment variable
 
 The details of the linking process vary, and order sometimes matters. Much depends on the type of library: static (`.a` suffix; library's binary code becomes part of executable image at link time) versus dynamically-linked shared (.so suffix; library's binary code is not part of executable; it's located and loaded into memory at run time). The link line can use rpath to store in the executable an explicit path to a shared library. In general, however, the `LD_LIBRARY_PATH` environment variable specifies the search path for dynamic libraries. For software installed at the system-level, TACC's modules generally modify `LD_LIBRARY_PATH` automatically. To see whether and how an executable named `myexe` resolves dependencies on dynamically linked libraries, execute `ldd myexe`.
 
-A separate section below addresses the [Intel Math Kernel Library](#building-mkl) (MKL).
+A separate section below addresses the [Intel Math Kernel Library](#mkl) (MKL).
 
 #### Compiling and Linking MPI Programs { #building-basics-mpi }
 
@@ -1544,7 +1552,7 @@ The `qopt-zmm-usage` flag affects the algorithms the compiler uses to decide whe
 
 This section includes general advice intended to help you achieve good performance during file operations. See [Navigating the Shared File Systems](#files-navigating) for a brief overview of Frontera's Lustre file systems and the concept of striping. See [TACC Training material](https://learn.tacc.utexas.edu/) for additional information on I/O performance.
 
-**Follow the advice in [Good Conduct](../../basics/conduct)** to avoid stressing the file system.
+**Follow the advice in [Good Conduct][TACCGOODCONDUCT]** to avoid stressing the file system.
 
 **Stripe for performance**. If your application writes large files using MPI-based parallel I/O (including [MPI-IO](http://mpi-forum.org/docs/mpi-3.1/mpi31-report.pdf), [parallel HDF5](https://support.hdfgroup.org/HDF5/PHDF5/), and [parallel netCDF](https://www.unidata.ucar.edu/software/netcdf/docs/parallel_io.html), you should experiment with stripe counts larger than the default values (2 stripes on `$SCRATCH`, 1 stripe on `$WORK`). See [Striping Large Files](#files-striping) for the simplest way to set the stripe count on the directory in which you will create new output files. You may also want to try larger stripe sizes up to 16MB or even 32MB; execute `man lfs` for more information. If you write many small files you should probably leave the stripe count at its default value, especially if you write each file from a single process. Note that it's not possible to change the stripe parameters on files that already exist. This means that you should make decisions about striping when you *create* input files, not when you read them.
 
@@ -2241,9 +2249,9 @@ TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for 
 
 
 * [Multi-Factor Authentication at TACC][TACCMFA]
-* [Bash Users' Startup Files: Quick Start Guide](../../tutorials/bashstartup)
-* [Sharing Project Files on TACC Systems](../../tutorials/sharingprojectfiles)
-* [`idev` documentation](../../software/idev)
+* [Bash Users' Startup Files: Quick Start Guide][TACCBASHQUICKSTART]
+* [Sharing Project Files on TACC Systems][TACCSHARINGPROJECTFILES]
+* [`idev` documentation][TACCIDEV]
 * [Lmod's online documentation][TACCLMOD]
 * [TACC Acceptable Use Policy][TACCUSAGEPOLICY]
 

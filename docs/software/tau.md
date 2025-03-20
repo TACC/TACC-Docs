@@ -19,7 +19,7 @@ login1$ module help tau	#basic operations & features
 2. [Launch your new executable](#launch) either interactively through an `idev` session or through a batch job.
 3. [Process the TAU output](#process)
 
-### 1. Instrumenting your Code { #using-instrument }
+### 1. Instrumenting your Code { #instrument }
 
 To use TAU, you need to recompile your code using some TAU compiler wrappers (scripts). Behind the scenes these scripts do a source-to-source instrumentation phase, followed by a regular compilation. The TAU compilation scripts are:
 

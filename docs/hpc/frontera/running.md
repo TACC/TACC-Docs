@@ -17,7 +17,7 @@ Be sure to request computing resources e.g., number of nodes, number of tasks pe
 ### Frontera Production Queues { #running-queues } 
 
 
-Frontera's Slurm partitions (queues), maximum node limits and charge rates are summarized in the table below. **Queues and limits are subject to change without notice.** Execute `qlimits` on Frontera for real-time information regarding limits on available queues. See [Job Accounting](#job-accounting) to learn how jobs are charged to your allocation.
+Frontera's Slurm partitions (queues), maximum node limits and charge rates are summarized in the table below. **Queues and limits are subject to change without notice.** Execute `qlimits` on Frontera for real-time information regarding limits on available queues. See [Job Accounting](#jobaccounting) to learn how jobs are charged to your allocation.
 
 Frontera's newest queue, `small`, has been created specifically for one and two node jobs. Jobs of one or two nodes that will run for up to 48 hours should be submitted to this new `small` queue. The `normal` queue now has a lower limit of three nodes for all jobs. 
 
@@ -60,7 +60,7 @@ Current queue/partition limits on TACC's Frontera system:
 | <code>flex&#42;</code>        | 1-128 nodes<br>(7,168 cores)      | 1 hour | 48 hrs  | 6400 nodes         | 15       | .8 Service Units (SUs) 
 | <code>development</code>      | 1-40 nodes<br>(2,240 cores)       | N/A    | 2 hrs   |   40 nodes         |  1       | 1 SU 
 | <code>normal</code>           | 3-512 nodes<br>(28,672 cores)     | N/A    | 48 hrs  | 1024 nodes         | 75       | 1 SU   
-| <code>large&#42;&#42;</code>  | 513-2048 nodes<br>(114,688 cores) | N/A    | 48 hrs  | 3072 nodes         |  2       | 1 SU
+| <code>large&#42;&#42;</code>  | 513-2048 nodes<br>(114,688 cores) | N/A    | 48 hrs  | 3072 nodes         |  1       | 1 SU
 | <code>rtx</code>              | 16 nodes                          | N/A    | 48 hrs  |   32 nodes         | 12       | 3 SUs
 | <code>rtx-dev</code>          | 2 nodes                           | N/A    | 2 hrs   |    2 nodes         |  1       | 3 SUs
 | <code>nvdimm</code>           | 4 nodes                           | N/A    | 48 hrs  |    6 nodes         |  3       | 2 SUs 
@@ -74,7 +74,7 @@ Current queue/partition limits on TACC's Frontera system:
 
 ### Accessing the Compute Nodes { #running-computenodes } 
 
- The login nodes are shared resources: at any given time, there are many users logged into each of these login nodes, each preparing to access the "back-end" compute nodes (Figure 2. Login and Compute Nodes). What you do on the login nodes affects other users directly because you are competing for the same resources: memory and processing power. This is the reason you should not run your applications on the login nodes or otherwise abuse them. Think of the login nodes as a prep area where you can manage files and compile code before accessing the compute nodes to perform research computations. See [Good Conduct](../../basics/conduct) for more information.
+ The login nodes are shared resources: at any given time, there are many users logged into each of these login nodes, each preparing to access the "back-end" compute nodes (Figure 2. Login and Compute Nodes). What you do on the login nodes affects other users directly because you are competing for the same resources: memory and processing power. This is the reason you should not run your applications on the login nodes or otherwise abuse them. Think of the login nodes as a prep area where you can manage files and compile code before accessing the compute nodes to perform research computations. See [Good Conduct][TACCGOODCONDUCT] for more information.
 
 #### Figure 2. Login and Compute Nodes { #figure2 } 
 <figure id="figure2"><img alt="[Figure 2. Login and Compute Nodes" src="../imgs/login-compute-nodes.jpg">
@@ -183,7 +183,7 @@ You can also launch an interactive session with Slurm's `srun` command, though t
 login1$ srun --pty -N 2 -n 8 -t 2:30:00 -p normal /bin/bash -l # same conditions as above
 ```
 
-Consult the [`idev`](../../software/idev) documentation for further details.
+Consult the [`idev`][TACCIDEV] documentation for further details.
 
 ### Interactive Sessions using SSH { #running-ssh } 
 

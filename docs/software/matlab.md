@@ -6,7 +6,7 @@
 <td></td>
 </tr></table>
 
-[Mathwork's](https://www.mathworks.com/) MATLAB is installed and supported at TACC and is available on the following TACC resources: [Frontera](../../hpc/frontera), [Stampede3](../../hpc/stampede3) and [Lonestar6](../../hpc/lonestar6).  
+[Mathwork's](https://www.mathworks.com/) MATLAB is installed and supported at TACC and is available on the following TACC resources: [Frontera][TACCFRONTERAUG], [Stampede3][TACCSTAMPEDE3UG] and [Lonestar6][TACCLONESTAR6UG].  
 
 ## Licenses { #license }
 
@@ -18,7 +18,7 @@ MathWork's agreement with the University of Texas now allows TACC users to acces
 
 ## Interactive Mode { #interactive }
 
-MATLAB is normally launched with the MATLAB Desktop UI and used in interactive mode. Create a DCV or VNC session following the directions in the [Remote Desktop Access][TACCREMOTEDESKTOPACCESS] tutorial.  You can also launch a non-GUI enabled MATLAB from within an [`idev`](./idev) session.
+MATLAB is normally launched with the MATLAB Desktop UI and used in interactive mode. Create a DCV or VNC session following the directions in the [Remote Desktop Access][TACCREMOTEDESKTOPACCESS] tutorial.  You can also launch a non-GUI enabled MATLAB from within an [`idev`][TACCIDEV] session.
 
 MATLAB is managed under the [Lmod](https://lmod.readthedocs.io/en/latest/) modules system on TACC resources. Whether within an `idev`, VNC, or DCV session, launch MATLAB by loading the MATLAB module with the following command:
 
@@ -30,7 +30,7 @@ You can always get the MATLAB help information by typing the following standard 
 
 ### DCV session { #interactive-dcv } 
 
-The following figures demonstrate how to launch MATLAB inside a DCV session in the [TACC Analysis Portal](TACCANALYSISPORTAL).
+The following figures demonstrate how to launch MATLAB inside a DCV session in the [TACC Analysis Portal][TACCANALYSISPORTAL].
 
 1. Submit a New Job request, this may take a few minutes:
 
@@ -97,9 +97,6 @@ else
 end
 ```
 
-!!! note
-	We do not recommend using TACC's [`launcher`](./launcher) utility for multi-node jobs due to licensing issues.   
-
 
 ## MATLAB Toolboxes { #toolbox } 
 
@@ -135,5 +132,10 @@ Explore Mathworks' excellent collection of documentation, videos and webinars.
 
 MATLAB is a commercial product of MathWorks. Please solicit help from [Mathworks](https://www.mathworks.com/) regarding MATLAB code. If you need further assistance related to access or running issues, request help via your [TACC Dashboard][TACCUSERPORTAL].
 
+
+## References 
+
+* [`idev` at TACC][TACCIDEV]
+* [Remote Desktop Access at TACC][TACCREMOTEDESKTOPACCESS]
 {% include 'aliases.md' %}
 

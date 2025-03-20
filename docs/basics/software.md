@@ -18,10 +18,10 @@ If the software search results are inconclusive you have two choices:
 
 See each resource user guide's Building Software and Performance sections for architecture-specific build instructions:
 
-* [Frontera](/hpc/frontera#building)
-* [Lonestar6](/hpc/lonestar6#building)
-* [Stampede3](/hpc/stampede3#building)
-* [Vista](/hpc/vista#building)
+* [Frontera](../hpc/frontera#building)
+* [Lonestar6](../hpc/lonestar6#building)
+* [Stampede3](../hpc/stampede3#building)
+* [Vista](../hpc/vista#building)
 
 
 ## Building Third-Party Software

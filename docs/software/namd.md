@@ -6,10 +6,10 @@
 
 ## Installations { #installations }
 
-NAMD is currently installed on TACC's [Frontera](../../hpc/frontera), [Stampede3](../../hpc/stampede3), [Lonestar6](../../hpc/lonestar6) and [Vista](../../hpc/vista) compute resources.  NAMD is managed under the [Lmod][TACCLMOD] module system on TACC resources. 
+NAMD is currently installed on TACC's [Frontera][TACCFRONTERAUG], [Stampede3][TACCSTAMPEDE3UG], [Lonestar6][TACCLONESTAR6UG] and [Vista][TACCVISTAUG] compute resources.  NAMD is managed under the [Lmod][TACCLMOD] module system on TACC resources. 
 
 !!! important
-	Read the following instructions carefully. NAMD performance is particularly sensitive to its configuration.  Try running benchmarks with different configurations to find your optimal NAMD set up. You can initiate interactive [`idev`](../../software/idev) debugging sessions on all systems.
+	Read the following instructions carefully. NAMD performance is particularly sensitive to its configuration.  Try running benchmarks with different configurations to find your optimal NAMD set up. You can initiate interactive [`idev`][TACCIDEV] debugging sessions on all systems.
 
 You are welcome to install different NAMD versions in your own directories. See [Building Third-Party Software](../../basics/software/#building-third-party-software) in the [Software at TACC](../../basics/software) documentation.
 

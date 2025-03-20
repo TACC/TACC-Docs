@@ -6,7 +6,7 @@
 
 ## Installations { #installations }
 
-LAMMPS is installed on TACC's [Stampede3](../hpc/stampede3.md), [Lonestar6](../hpc/lonestar6.md) and [Frontera](../hpc/frontera.md) systems. As of this date, the latest version installed on the system is 21Nov23.
+LAMMPS is installed on TACC's [Stampede3][TACCSTAMPEDE3UG], [Lonestar6][TACCLONESTAR6UG] and [Frontera][TACCFRONTERAUG] systems. As of this date, the latest version installed on the system is 21Nov23.
 
 Users are welcome to install different versions of LAMMPS in their own directories (see [Building Third Party Software](../../hpc/stampede3/#building) in the Stampede3 User Guide).
 

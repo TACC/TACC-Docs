@@ -2,7 +2,7 @@
 
 ## Math
 
-> In this file format, damage state exceedance probabilities $\mathbb{P}(DS \geq ds_i)$ are named as "$LS_i$", for $i=1,…,4$; similarly, probabilities of being in a damage state $\mathbb{P}(DS = ds_i)$ are named as "$DS_i$", for $i=1,…,4$.
+> In this file format, damage state exceedance probabilities $\mathbb{P}(DS \geq ds_i)$ are named as "$LS_i$", for $i=1,…,5$; similarly, probabilities of being in a damage state $\mathbb{P}(DS = ds_i)$ are named as "$DS_i$", for $i=1,…,5$.
 >
 > — [DesignSafe: User Guide: Use Cases: …](https://designsafe-ci.org/user-guide/usecases/padgett/usecase_JN_viz/#Title2)
 

@@ -1,10 +1,46 @@
 ## System Architecture { #system }
 
+### Ice Lake Large Memory Nodes { #system-icxlargemem }
+
+Stampede3 hosts 3 large memory "Ice Lake" (ICX) nodes.  Access these nodes via the [`nvdimm` queue](#queues).
+
+#### Table 1. ICX NVDIMM Specifications { #table1 }
+
+Specification | Value
+--- | ---
+CPU: | Intel Xeon Platinum 8380 ("Ice Lake")
+Total cores: | 80 cores on two sockets (40 cores/socket)
+Hardware threads per core: | 1
+Hardware threads per node: | 80
+Clock rate: | 2.3 GHz nominal<br>(3.4GHz max frequency depending on instruction set and number of active cores)
+RAM: | 4TB NVDIMM
+Cache:  | 48KB L1 data cache per core; 1.25 MB L2 per core; 60 MB L3 per socket.<br>Each socket can cache up to 110 MB (sum of L2 and L3 capacity)
+Local storage: | 280GB `/tmp` partition
+
+
+### Ice Lake Compute Nodes { #system-icx }
+
+Stampede3 hosts 224 "Ice Lake" (ICX) compute nodes.
+
+#### Table 2. ICX Specifications { #table2 }
+
+Specification | Value
+--- | ---
+CPU: | Intel Xeon Platinum 8380 ("Ice Lake")
+Total cores per ICX node: | 80 cores on two sockets (40 cores/socket)
+Hardware threads per core: | 1
+Hardware threads per node: | 80
+Clock rate: | 2.3 GHz nominal<br>(3.4GHz max frequency depending on instruction set and number of active cores)
+RAM: | 256GB (3.2 GHz) DDR4
+Cache: | 48KB L1 data cache per core; 1.25 MB L2 per core; 60 MB L3 per socket.<br>Each socket can cache up to 110 MB (sum of L2 and L3 capacity)
+Local storage: | 200 GB `/tmp` partition
+
+
 ### Sapphire Rapids Compute Nodes { #system-spr }
 
 Stampede3 hosts 560 "Sapphire Rapids" HBM (SPR) nodes with 112 cores each.  Each SPR node provides a performance increase of 2 - 3x over the SKX nodes due to increased core count and greatly increased memory bandwidth.  The available memory bandwidth per core increases by a factor of 3.5x.  Applications that were starved for memory bandwidth should exhibit improved performance close to 3x. 
 
-#### Table 1. SPR Specifications { #table1 }
+#### Table 3. SPR Specifications { #table3 }
 
 Specification | Value 
 --- | ---
@@ -21,7 +57,7 @@ Local storage: | 150 GB /tmp partition
 
 Stampede3 hosts 20 nodes with four Intel Data Center GPU Max 1550s "Ponte Vecchio" (PVC) each.<br>Each PVC GPU has 128 GB of HBM2e and 128 Xe cores providing a peak performance of 4x 52 FP64 TFLOPS per node for scientific workflows and 4x 832 BF16 TFLOPS for ML workflows. 
 
-#### Table 2. PVC Specifications { #table2 }
+#### Table 4. PVC Specifications { #table4 }
 
 Specification | Value
 --- | --
@@ -40,7 +76,7 @@ Local storage: | 150 GB /tmp partition
 
 Stampede3 hosts 1,060 "Skylake" (SKX) compute nodes.
 
-#### Table 3. SKX Specifications { #table3 }
+#### Table 5. SKX Specifications { #table5 }
 
 Specification | Value
 --- | ---
@@ -53,22 +89,6 @@ RAM: | 192GB (2.67GHz) DDR4
 Cache: | 32 KB L1 data cache per core; 1 MB L2 per core; 33 MB L3 per socket.<br>Each socket can cache up to 57 MB (sum of L2 and L3 capacity).
 Local storage: | 90 GB /tmp 
 
-### Icelake Compute Nodes { #system-icx }
-
-Stampede3 hosts 224 "Ice Lake" (ICX) compute nodes.
-
-#### Table 4. ICX Specifications { #table4 }
-
-Specification | Value
---- | ---
-Model: | Intel Xeon Platinum 8380 ("Ice Lake")
-Total cores per ICX node: | 80 cores on two sockets (40 cores/socket)
-Hardware threads per core: | 1
-Hardware threads per node: | 80
-Clock rate: | 2.3 GHz nominal (3.4GHz max frequency depending on instruction set and number of active cores)
-RAM: | 256GB (3.2 GHz) DDR4
-Cache: | 48KB L1 data cache per core; 1.25 MB L2 per core; 60 MB L3 per socket.<br>Each socket can cache up to 110 MB (sum of L2 and L3 capacity)
-Local storage: | 200 GB /tmp partition
 
 ### Login Nodes { #system-login }
 
@@ -85,13 +105,15 @@ The SPR and PVC networks will be upgraded to use Cornelis' CN5000 Omni-Path tech
 Stampede3 will use a shared VAST file system for the `$HOME` and `$SCRATCH` directories.  **These two file systems are NOT lustre file systems and do not support setting a stripe count or stripe size**.  There are no options for the user to set.  As with Stampede2, the `$WORK` file system will also be mounted.  Unlike `$HOME` and `$SCRATCH`, the `$WORK` file system is a Lustre file system and supports the lustre `lfs` commands.  All three file systems, `$HOME`, `$SCRATCH`, and `$WORK` are available from all Stampede3 nodes.  The `/tmp` partition is also available to users but is local to each node. The `$WORK` file system is available on most other TACC HPC systems as well. 
 
 
-#### Table 5. File Systems { #table5 }
+#### Table 6. File Systems { #table6 }
 
 File System | Quota | Key Features
 --- | --- | ---
 `$HOME` | 15 GB, 300,000 files | Not intended for parallel or high−intensity file operations. <br> Backed up regularly. | Not purged.  
-`$WORK` | 1 TB, 3,000,000 files across all TACC systems<br>Not intended for parallel or high−intensity file operations.<br>See [Stockyard system description](#xxx) for more information. | Not backed up. | Not purged.
+`$WORK` | 1 TB, 3,000,000 files across all TACC systems<br>Not intended for parallel or high−intensity file operations.<br>See [Stockyard system description][TACCSTOCKYARD] for more information. | Not backed up. | Not purged.
 `$SCRATCH` | no quota<br>Overall capacity ~10 PB. | Not backed up.<br>Files are subject to purge if access time* is more than 10 days old. See TACC's [Scratch File System Purge Policy](#scratchpolicy) below.
 
+
+{% include 'include/corraltip.md' %}
 {% include 'include/scratchpolicy.md' %}
 

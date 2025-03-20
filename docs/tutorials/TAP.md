@@ -1,5 +1,5 @@
 # TACC Analysis Portal User Guide
-*Last update: January 4, 2021*
+*Last update: March 13, 2025*
 
 The [TACC Analysis Portal][TACCANALYSISPORTAL] (TAP) provides simplified access to interactive sessions on TACC large-scale computing resources. TAP targets users who want the convenience of web-based portal access while maintaining control over low-level job behavior.  
 

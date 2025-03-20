@@ -1,7 +1,6 @@
-### New TACC SU Charging Policy { #sunotice }
+#### New Charging Policy { #sunotice }
 
 !!! important
-
 	Beginning October 1st, 2024, TACC will be implementing a new, minimum SU-charge policy for all jobs run on our systems: 
 
 	**All running jobs will be charged a minimum of 15 minutes of queue time regardless of actual runtime.  All other queue factors will remain the same.**

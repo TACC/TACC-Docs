@@ -6,7 +6,7 @@
 
 ## Installations { #installations }
 
-GROMACS is currently installed on TACC's [Stampede3](../../hpc/stampede3), [Frontera](../../hpc/frontera), and [Lonestar6](../../hpc/lonestar6) systems.  GROMACS is managed under the [Lmod](https://lmod.readthedocs.io/en/latest/) modules system on TACC resources.  To run simulations, simply load the module with the following command:
+GROMACS is currently installed on TACC's [Stampede3][TACCSTAMPEDE3UG], [Frontera][TACCFRONTERAUG], and [Lonestar6][TACCLONESTAR6UG] systems.  GROMACS is managed under the [Lmod](https://lmod.readthedocs.io/en/latest/) modules system on TACC resources.  To run simulations, simply load the module with the following command:
 
 ```cmd-line
 login1$ module load gromacs    # load default version

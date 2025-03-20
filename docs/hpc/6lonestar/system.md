@@ -24,7 +24,7 @@ Local storage:  | 288GB /tmp partition on a 288GB SSD.
 
 ### Login Nodes { #system-login }
 
-Lonestar6's three login nodes, `login1`, `login2`, and `login3`, contain the same hardware and are configured similarly to the compute nodes. However, since these nodes are shared, limits are enforced on memory usage and number of processes. Please use the login nodes only for file management, compilation, and data movement. Any and all computing should be done within a batch job or an [interactive session](../../software/idev) on the compute nodes.  See TACC's [Good Conduct Policy][TACCGOODCONDUCT] for more information.
+Lonestar6's three login nodes, `login1`, `login2`, and `login3`, contain the same hardware and are configured similarly to the compute nodes. However, since these nodes are shared, limits are enforced on memory usage and number of processes. Please use the login nodes only for file management, compilation, and data movement. Any and all computing should be done within a batch job or an [interactive session][TACCIDEV] on the compute nodes.  See TACC's [Good Conduct Policy][TACCGOODCONDUCT] for more information.
 
 ### `vm-small` Queue Nodes { #system-vmsmall }
 

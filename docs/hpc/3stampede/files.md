@@ -1,6 +1,8 @@
 ## Managing Your Files { #files }
 
-Stampede3 mounts three file systems that are shared across all nodes: the home, work, and scratch file systems. Stampede3's startup mechanisms define corresponding account-level environment variables `$HOME`, `$SCRATCH`, and `$WORK` that store the paths to directories that you own on each of these file systems. Consult the Stampede3 File Systems table for the basic characteristics of these file systems, File Operations: I/O Performance for advice on performance issues, and Good Conduct for tips on file system etiquette.
+Stampede3 mounts three file systems that are shared across all nodes: the home, work, and scratch file systems. Stampede3's startup mechanisms define corresponding account-level environment variables `$HOME`, `$SCRATCH`, and `$WORK` that store the paths to directories that you own on each of these file systems. Consult the Stampede3 [File Systems](#table6) table for the basic characteristics of these file systems, [File Operations: I/O Performance](#programming-io) for advice on performance issues, and [Good Conduct][TACCGOODCONDUCT] for tips on file system etiquette.
+
+{% include 'include/spacetip.md' %}
 
 ### Navigating the Shared File Systems { #files-filesystems }
 
@@ -15,12 +17,12 @@ Your account-specific `$WORK` environment variable varies from system to system 
 
 See the example for fictitious user bjones in the figure below.  All directories are accessible from all systems, however a given sub-directory (e.g. lonestar6, frontera) will exist only if you have an allocation on that system.  [Figure 1](#figure1) below illustrates account-level directories on the `$WORK` file system (Global Shared File System hosted on Stockyard).   
 
-<figure id="#figure1"><img src="../imgs/Stockyard2024.png">
+<figure id="figure1"><img src="../imgs/stockyard-2024.png">
 <figcaption>Stockyard 2024</figcaption></figure>
 
 Note that the resource-specific sub-directories of `$STOCKYARD` are nothing more than convenient ways to manage your resource-specific files. You have access to any such sub-directory from any TACC resources. If you are logged into Stampede3, for example, executing the alias cdw (equivalent to cd `$WORK`) will take you to the resource-specific sub-directory `$STOCKYARD/stampede3`. But you can access this directory from other TACC systems as well by executing cd `$STOCKYARD/stampede3`. These commands allow you to share files across TACC systems. In fact, several convenient account-level aliases make it even easier to navigate across the directories you own in the shared file systems:
 
-### Table 6. Built-in Account Level Aliases { #table6 }
+### Table 7. Built-in Account Level Aliases { #table7 }
 
 Alias | Command
 --- | ---
@@ -32,5 +34,5 @@ Alias | Command
 
 ### Sharing Files with Collaborators { #files-sharing }
 
-If you wish to share files and data with collaborators in your project, see [Sharing Project Files on TACC Systems](../../tutorials/sharingprojectfiles) for step-by-step instructions. Project managers or delegates can use Unix group permissions and commands to create read-only or read-write shared workspaces that function as data repositories and provide a common work area to all project members.
+If you wish to share files and data with collaborators in your project, see [Sharing Project Files on TACC Systems][TACCSHARINGPROJECTFILES] for step-by-step instructions. Project managers or delegates can use Unix group permissions and commands to create read-only or read-write shared workspaces that function as data repositories and provide a common work area to all project members.
 

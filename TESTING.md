@@ -29,7 +29,7 @@
 
 ### B. Via Docker
 
-0. Have Docker installed.\
+0. Have [Docker](https://www.docker.com/) installed.\
     <sup>We recommend doing so via [Docker-Desktop](https://www.docker.com/products/docker-desktop).</sup>
 1. Navigate into your clone of this repository.
 2. Start the Docker container to serve the docs.

@@ -37,7 +37,8 @@ nav:
     - Vista: hpc/vista.md
   - Software Packages:
 #    - ABAQUS: software/abaqus.md
-    - AlphaFold : software/alphafold.md
+    - AlphaFold2 : software/alphafold.md
+    - AlphaFold3 : software/alphafold3.md
     - ANSYS: software/ansys.md
     - CD Tools: software/cdtools.md
     - Gaussian: software/gaussian.md

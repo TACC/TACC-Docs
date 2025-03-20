@@ -6,7 +6,7 @@ Welcome to TACC's Technical Documentation Site.
 ///
 
 
-TACC's technical documentation is broadly divided into three categories: High Performance Computing (HPC) Resource Guides, Software Packages at TACC, and Tutorials which can be accessed via the left-hand navigation.
+TACC's technical documentation is broadly divided into four categories: TACC Essentials, High Performance Computing (HPC) Resource Guides, Software Packages at TACC, and Tutorials which can be accessed via the left-hand navigation.
 
 Additional training opportunities such as the TACC Institute Series, can be found on the [Training Page](https://www.tacc.utexas.edu/use-tacc/training/#institutes) on our main site.
 
@@ -22,10 +22,25 @@ If you're brand new to TACC and want to jump right in, check out the [Getting St
 
 /////
 
+
+<!-- Managing your TACC Account -->
+///// html | a.card--plain.card--image-top[href="./basics/accounts/"]
+     markdown: block
+
+////// html | img[alt="accounts"][src="img/home/accounts.png"]
+//////
+
+<h3>Managing your TACC Account</h3>
+
+Solve login problems, check your account status, and other TACC account management tools.
+
+/////
+
+<!-- Good Conduct on HPC Resources -->
 ///// html | a.card--plain.card--image-top.card--image-top[href="./basics/conduct/"]
      markdown: block
 
-////// html | img[alt="a paper with a gavel, a shielf with a checkmark"][src="/img/home/conduct.png"]
+////// html | img[alt="a paper with a gavel, a shielf with a checkmark"][src="img/home/conduct.png"]
 //////
 
 <h3>Good Conduct</h3>
@@ -33,20 +48,6 @@ If you're brand new to TACC and want to jump right in, check out the [Getting St
 Good conduct on the system ensures stability and helps TACC provide a reliable service to all users.
 
 /////
-
-
-///// html | a.card--plain.card--image-top[href="./basics/mfa/"]
-     markdown: block
-
-////// html | img[alt="a lock with a gear and nodes"][src="/img/home/multi-factor.png"]
-//////
-
-<h3>Multi-Factor Authentication</h3>
-
-Learn how to pair/unpair your smart device for access to TACC resources.
-
-/////
-
 ////
 ///
 
@@ -62,28 +63,29 @@ Each of our HPC resources has a user guide, with extensive instructions and info
 /////
 
 
-///// html | a.card--plain.card--image-top[href="./hpc/lonestar6/"]
-     markdown: block
-
-////// html | img[alt="TACC's Lonestar6"][src="/img/home/lonestar6.png"]
-//////
-
-<h3>Lonestar6</h3>
-
-Lonestar6 is the latest of the Lonestar series and supports and serves Texas researchers.
-
-/////
 
 
 ///// html | a.card--plain.card--image-top[href="./hpc/stampede3/"]
      markdown: block
 
-////// html | img[alt="the Stampede3 supercomputer"][src="/img/home/stampede3.jpg"]
+////// html | img[alt="TACC's Vista AI supercomputer"][src="img/home/vista.png" height="400"]
 //////
 
-<h3>Stampede3</h3>
+<h3>Vista</h3>
 
-TACC debut's the latest supercomputer in the Stampede systems in early 2024. 
+Vista is TACC's first AI-focused supercomputer with Arm-based NVIDIA technology.
+
+/////
+
+///// html | a.card--plain.card--image-top[href="./hpc/lonestar6/"]
+     markdown: block
+
+////// html | img[alt="TACC's Lonestar6"][src="img/home/lonestar6.png" height="400"]
+//////
+
+<h3>Lonestar6</h3>
+
+Lonestar6 is the latest of the Lonestar series and supports and serves Texas researchers.
 
 /////
 ////
@@ -102,6 +104,15 @@ Each guide contains sample job scripts per resource where applicable and any spe
 
 /////
 
+///// html | a.card--plain[href="./software/pylauncher/"]
+     markdown: block
+
+<h3>PyLauncher</h3>
+
+PyLauncher is a parametric (high-throughput) job launcher, ideal for bundling, then running, many smaller jobs.
+
+
+/////
 ///// html | a.card--plain[href="./software/idev/"]
      markdown: block
 
@@ -111,23 +122,16 @@ A powerful utility allowing interactive access to compute nodes.
 
 /////
 
-///// html | a.card--plain[href="./software/vasp/"]
-     markdown: block
-
-<h3>VASP</h3>
-
-How to run the Vienna Ab initio Simulation Package (VASP) for atomic-scale materials modeling.
-
-/////
 
 ///// html | a.card--plain[href="./software/alphafold/"]
      markdown: block
 
-<h3>AlphaFold</h3>
+<h3>AlphaFold2</h3>
 
-Run Google's powerful deep learning protein folding tool at TACC.
+Run Google's powerful deep learning protein folding tool, AlphaFold2, at TACC.  Includes instructions for single and independent sequence predictions.
 
 /////
+
 ///// html | a.card--plain[href="./software/matlab/"]
      markdown: block
 
@@ -136,6 +140,8 @@ Run Google's powerful deep learning protein folding tool at TACC.
 Learn how to request access and run MATLAB, the popular numerical computing platform, at TACC
 
 /////
+
+
 ////
 ///
 
@@ -153,7 +159,7 @@ Tutorials cover a wide range of topics from configuring your account to debuggin
 ///// html | a.card--plain.card--image-top[href="https://containers-at-tacc.readthedocs.io/en/latest/index.html"]
      markdown: block
 
-////// html | img[alt="Containers at TACC"][src="/img/home/containers.png"]
+////// html | img[alt="Containers at TACC"][src="img/home/containers.png"]
 //////
 
 <h3>Containers at TACC Workshop</h3>
@@ -164,7 +170,7 @@ Learn best practices on building, using, and sharing Docker and Singularity/Appt
 ///// html | a.card--plain.card--image-top[href="./tutorials/sharingprojectfiles/"]
      markdown: block
 
-////// html | img[alt="a folder with a file and nodes"][src="/img/home/file-share.png"]
+////// html | img[alt="a folder with a file and nodes"][src="img/home/file-share.png"]
 //////
 
 <h3>Sharing Project Files</h3>
@@ -189,7 +195,7 @@ TACC offers a variety of training and education programs. You may search and reg
 ///// html | a.card--plain.card--image-top[href="https://www.tacc.utexas.edu/use-tacc/training/#institutes"]
      markdown: block
 
-////// html | img[alt="a photograph of rows of tables with trainees using laptops"][src="/img/home/institutes.png"]
+////// html | img[alt="a photograph of rows of tables with trainees using laptops"][src="img/home/institutes.png"]
 //////
 
 <h3>TACC Institutes</h3>
@@ -201,7 +207,7 @@ In-person, multi-day, immersive, training opportunities meant to enhance users k
 ///// html | a.card--plain.card--image-top[href="https://www.youtube.com/watch?v=DWmAWT5e3iQ"]
      markdown: block
 
-////// html | img[alt="an interface window with a graduation cap and a play button being pressed by a finger"][src="/img/home/video.png"]
+////// html | img[alt="an interface window with a graduation cap and a play button being pressed by a finger"][src="img/home/video.png"]
 //////
 
 <h3>Training Videos</h3>

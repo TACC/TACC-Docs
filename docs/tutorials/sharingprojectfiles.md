@@ -36,7 +36,7 @@ login1$ <b>groups</b>
 G-40300 G-25072 G-80748 G-80906 G-801508 <mark>G-803077</mark> G-803450 
 </pre>
 
-The first group listed, in this case `G-40300`, is this user's primary or default group, meaning that any files or directories this user creates will automatically belong to this group. However, we need our files to belong to project "UserServStaff" GID G-803077 as determined [above](#projectid).  
+The first group listed, in this case `G-40300`, is this user's primary or default group, meaning that any files or directories this user creates will automatically belong to this group. However, we need our files to belong to project "UserServStaff" GID G-803077 as determined [above](#projectgid).  
 
 If your project GID and your default GID are the same, then skip to [Create A Shared Workspace](#workspace).  Otherwise, you must switch UNIX groups from your default group, in this example `G-40300`, to the project's group, `G-803077`, via the UNIX `newgrp` command.  Note that the `newgrp` command does not change the group or permissions of any files that have **already been created**.  
 

@@ -1,5 +1,5 @@
 # PyLauncher at TACC
-*Last update: January 31, 2025* 
+*Last update: February 17, 2025* 
 
 ## What is PyLauncher		{ #intro }
 
@@ -8,6 +8,7 @@ PyLauncher (**Py**thon + **Launcher**) is a Python-based parametric job launcher
 While TACC's deprecated Launcher utility worked on serial codes, PyLauncher works with multi-threaded and MPI executables.  
 
 **Example**: You need to run a program with 1000 different input values, and you want to use 100 cores for that; PyLauncher will cycle through your list of commands using cores as they become available. 
+
 
 The PyLauncher source code is written in Python, but this need not concern you: in the simplest scenario you use a two line Python script. However, for more sophisticated scenarios the code can be extended or integrated into a Python application.
 
@@ -19,10 +20,14 @@ PyLauncher is available on all TACC systems via the [Lmod modules system][TACCLM
 $ module load pylauncher
 ```
 !!! important 
-	On some systems the Python installation is missing a required module. 
+	1. PyLauncher requires at least Python version 3.9:
+
+		`$ module load python3/3.9 # or newer`
+	
+	1. On some systems the Python installation is missing a required module. 
 	Do a one-time setup:   
 
-	`$ pip install paramiko`
+		`$ pip install paramiko`
 
 
 ## Basic setup { #setup }
@@ -61,12 +66,12 @@ mkdir output1 && cd output1 && ../yourprogram value1
 ```
 
 !!! tip
-	If the commands use a consecutive input parameter, you can use the string `PYL_ID` which expands to the number of the command. 
+	If the commands use a consecutive input parameter, you can use the string `PYLTID` which expands to the number of the command. 
 
-		./yourprogram -n PYL_ID #1
-		./yourprogram -n PYL_ID #2
-		./yourprogram -n PYL_ID #3
-		./yourprogram -n PYL_ID #4
+		./yourprogram -n PYLTID #1
+		./yourprogram -n PYLTID #2
+		./yourprogram -n PYLTID #3
+		./yourprogram -n PYLTID #4
 
 At the end of the run, PyLauncher will produce final statistics:
 
@@ -89,7 +94,7 @@ max: 11
 avg: 4
 ```
 
-This reports that 160 commands were executed, using 40 cores. Ideally we would expect a 40 times speedup, but because of variations in run time the aggregate running time of all commands was reduced by only 25.
+This reports that 160 commands were executed, using 40 cores. Ideally we would expect a 40 times speedup, but because of variations in run time the aggregate running time of all commands was reduced by only 26.
 
 If you want more detailed trace output during the run, add an option:
 
@@ -118,7 +123,10 @@ mkdir -p myoutput && cd myoutput && ${HOME}/myprogram input3
 
 A file "`queuestate`" is generated with a listing of which of your commands were successfully executed, and, in case your job times out, which ones were pending or not scheduled. This can be used to restart your job. See below.
 
-## Parallel runs
+## Launcher types
+
+The ClassicLauncher uses by default a single core per commandline. The following options / launcher types are available
+if you want to run multi-threaded, MPI, or GPU-accelerated tasks.
 
 ### Multi-Threaded
 
@@ -163,20 +171,16 @@ The "parallellines" file consists of command-lines without the MPI job starter, 
 ./parallelprogram 2 10
 ```
 
-In the launcher invocation, the "debug" parameter causes trace output to be printed during the run. Example:
+### GPU launcher
 
+For GPU jobs, use the `GPULauncher`. This needs an extra parameter `gpuspernode` that is dependent on the cluster where you run this.
+If you omit this parameter or set it too high, the launcher may start your tasks when no GPUs are available.
+```job-script
+pylauncher.GPULauncher\
+    ("gpucommandlines",
+     gpuspernode=3 # adjust for the desired cluster
+     )
 ```
-tick 104
-Queue:
-completed  60 jobs: 0-44 47-48 50-53 56 58 60-61 64 66 68 70 75
-aborted 	0 jobs:
-queued  	5 jobs: 99-103
-running	39 jobs: 45-46 49 54-55 57 59 62-63 65 67 69 71-74 76-98
-```
-
-Which states that in the 104'th stage some jobs were completed/queued for running/actually running. 
-
-The  "tick" message is output every half second. This can be changed, for instance to 1/10th of a second, by specifying "delay=.1" in the launcher command. In some cases, for instance if each command is a python invocation that does many "imports", you could increase the delay parameter.
 
 ## Sample Job Setup
 
@@ -220,9 +224,9 @@ and "commandlines" contains your parameter sweep.
 
 If you want more detailed trace output during the run, add an option:
 
-`launcher.ClassicLauncher("commandlines",debug="host+job")`
+`launcher.ClassicLauncher("commandlines",debug="job")`
 
-In the launcher invocation, the `debug` parameter causes trace output to be printed during the run. Example:
+In the launcher invocation, the `debug` parameter causes trace output to be printed during the run. For example, the `debug="job"` setting produces output:
 
 ```
 tick 104
@@ -233,9 +237,11 @@ queued  	5 jobs: 99-103
 running	39 jobs: 45-46 49 54-55 57 59 62-63 65 67 69 71-74 76-98
 ```
 
-Which states that in the 104’th stage some jobs were completed/queued for running/actually running. 
+This states that in the 104’th stage some jobs were completed/queued for running/actually running. 
 
 The  `tick` message is output every half second. This can be changed, for instance to 1/10th of a second, by specifying `delay=.1` in the launcher command. In some cases, for instance if each command is a python invocation that does many `imports`, you could increase the delay parameter.
+
+For even more trace output, use `debug="host+exec+task+job+ssh"`.
 
 
 ## Advanced PyLauncher usage
@@ -302,7 +308,7 @@ Here are some parameters that may sometimes come in handy.
 
 | parameter <option> | description |
       ---            | --- | 
-| <code>delay=<i>fraction</i></code><br>default: `default=.5` | The fraction of a second that PyLauncher waits to start up new jobs, or test for finished ones. If you fire up complicated python jobs, you may want to increase this from the default.
+| <code>delay=<i>fraction</i></code><br>default: `delay=.5` | The fraction of a second that PyLauncher waits to start up new jobs, or test for finished ones. If you fire up complicated python jobs, you may want to increase this from the default.
 | <code>workdir=<i>directory</i></code><br>default: generated from the SLURM jobid | This is the location of the internal execute/out/test files that PyLauncher generates.
 | <code>queuestate=<i>filename</i></code><br>default filename: `queuestate` | This is a file that PyLauncher can use to restart if your jobs aborts, or is killed for exceeding the time limit. If you run multiple simultaneous jobs, you may want to specify this explicitly.
 

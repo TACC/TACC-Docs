@@ -7,7 +7,7 @@ Quantum Espresso (QE) is an integrated suite of open-source codes for electronic
 
 ## Installations { #installations }
 
-The latest QE stable release is installed on TACC's [Stampede3](../../hpc/stampede3), [Lonestar6](../../hpc/lonestar6) and [Frontera](../../hpc/frontera) systems. Use `module` commands to load the latest installed version by default, and to list all installed versions.  
+The latest QE stable release is installed on TACC's [Stampede3][TACCSTAMPEDE3UG], [Lonestar6][TACCLONESTAR6UG] and [Frontera][TACCFRONTERAUG] systems. Use `module` commands to load the latest installed version by default, and to list all installed versions.  
 
 ``` cmd-line
 $ module load qe

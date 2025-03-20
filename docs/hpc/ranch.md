@@ -1,5 +1,5 @@
 # Ranch User Guide
-*Last update: June 17, 2024*
+*Last update: March 19, 2025*
 
 <!-- ## Notices { #notices } -->
 
@@ -12,7 +12,7 @@ TACC's High Performance Computing (HPC) systems are used primarily for scientifi
 
 Ranch (**`ranch.tacc.utexas.edu`**), is a Quantum StorNext-based system, with a DDN- provided front-end disk system (30PB raw), and a 5000 slot Quantum Scalar i6000 library for its back-end tape archive.
 
-Ranch is an allocated resource, meaning that Ranch is available only to users with an allocation on one of TACC's computational resources such as [Frontera](../frontera), [Stampede3](../stampede3), or [Lonestar6](../lonestar6). ACCESS PIs will be prompted automatically for the companion storage allocation as part of the proposal submission process and should include a justification of the storage needs in their proposal.  UT and UT system PIs should also make a request and justify the storage requested when applying for a Ranch shared "Project" (non-user) allocation. The default allocation on Ranch for users is 2TB. To request a [shared Ranch project space](#projects) for your team's use, please submit a [TACC Helpdesk ticket][HELPDESK].
+Ranch is an allocated resource, meaning that Ranch is available only to users with an allocation on one of TACC's computational resources such as [Frontera][TACCFRONTERAUG], [Stampede3][TACCSTAMPEDE3UG], or [Lonestar6][TACCLONESTAR6UG]. ACCESS PIs will be prompted automatically for the companion storage allocation as part of the proposal submission process and should include a justification of the storage needs in their proposal.  UT and UT system PIs should also make a request and justify the storage requested when applying for a Ranch shared "Project" (non-user) allocation. The default allocation on Ranch for users is 2TB. To request a [shared Ranch project space](#projects) for your team's use, please submit a [TACC Helpdesk ticket][HELPDESK].
 
 
 ### Intended Use { #intro-use }
@@ -122,7 +122,8 @@ Note that simply doing an `ls -l` to look at a file's attributes or an `mv` to r
 
 TACC supports two transfer mechanisms: `scp` (recommended) and `rsync` (avoid if at all possible).   
 
-Ranch also has two endpoints, one running Globus gridftp v5.4 software available for [ACCESS](http://access-ci.org) (formerly XSEDE) users, and the endpoint running Grid Community Toolkit with CILogon authentication available to all.  See [Grid Community Toolkit at TACC](../../tutorials/gridcommunitytoolkit) for more information.
+!!! tip
+	Ranch also has a Globus gridftp v5.4 endpoint required to support [ACCESS](http://access-ci.org) (formerly XSEDE) users.
 
 #### Secure Copy with `scp` Command { #transferring-methods-scp }
 

@@ -1,11 +1,12 @@
 # Stampede3 User Guide 
-*Last update: January 13, 2025*
+*Last update: March 20, 2025*
 
 ## Notices { #notices }
 
+* **NEW**: Stampede3 now hosts 3 [large memory "Ice Lake" (ICX) nodes](#system-icxlargemem). (02/19/2025)
 * **Important**: Please note [TACC's new SU charge policy](#sunotice). (09/20/2024)
 * **Attention Jupyter users: learn how to [configure your environment](#python-jupyter) to enable notebooks.** (05/16/2024)
-* **Attention VASP users: DO NOT run VASP using Stampede3's SPR nodes!**  TACC staff has noticed many VASP jobs causing issues on the SPR nodes and impacting overall system stability and performance.  Please run your VASP jobs using either the [SKX](../../hpc/stampede3#table3) or [ICX](../../hpc/stampede3#table4) nodes.  See [Running VASP Jobs](../../software/vasp/#running) for more information.  (05/06/2024)
+* **Attention VASP users: DO NOT run VASP using Stampede3's SPR nodes!**  TACC staff has noticed many VASP jobs causing issues on the SPR nodes and impacting overall system stability and performance.  Please run your VASP jobs using either the [SKX](../../hpc/stampede3#table5) or [ICX](../../hpc/stampede3#table2) nodes.  See [Running VASP Jobs](../../software/vasp/#running) for more information.  (05/06/2024)
 
 
 ## Introduction { #intro }
@@ -20,11 +21,47 @@ Requesting and managing allocations will require creating a username and passwor
 
 ## System Architecture { #system }
 
+### Ice Lake Large Memory Nodes { #system-icxlargemem }
+
+Stampede3 hosts 3 large memory "Ice Lake" (ICX) nodes.  Access these nodes via the [`nvdimm` queue](#queues).
+
+#### Table 1. ICX NVDIMM Specifications { #table1 }
+
+Specification | Value
+--- | ---
+CPU: | Intel Xeon Platinum 8380 ("Ice Lake")
+Total cores: | 80 cores on two sockets (40 cores/socket)
+Hardware threads per core: | 1
+Hardware threads per node: | 80
+Clock rate: | 2.3 GHz nominal<br>(3.4GHz max frequency depending on instruction set and number of active cores)
+RAM: | 4TB NVDIMM
+Cache:  | 48KB L1 data cache per core; 1.25 MB L2 per core; 60 MB L3 per socket.<br>Each socket can cache up to 110 MB (sum of L2 and L3 capacity)
+Local storage: | 280GB `/tmp` partition
+
+
+### Ice Lake Compute Nodes { #system-icx }
+
+Stampede3 hosts 224 "Ice Lake" (ICX) compute nodes.
+
+#### Table 2. ICX Specifications { #table2 }
+
+Specification | Value
+--- | ---
+CPU: | Intel Xeon Platinum 8380 ("Ice Lake")
+Total cores per ICX node: | 80 cores on two sockets (40 cores/socket)
+Hardware threads per core: | 1
+Hardware threads per node: | 80
+Clock rate: | 2.3 GHz nominal<br>(3.4GHz max frequency depending on instruction set and number of active cores)
+RAM: | 256GB (3.2 GHz) DDR4
+Cache: | 48KB L1 data cache per core; 1.25 MB L2 per core; 60 MB L3 per socket.<br>Each socket can cache up to 110 MB (sum of L2 and L3 capacity)
+Local storage: | 200 GB `/tmp` partition
+
+
 ### Sapphire Rapids Compute Nodes { #system-spr }
 
 Stampede3 hosts 560 "Sapphire Rapids" HBM (SPR) nodes with 112 cores each.  Each SPR node provides a performance increase of 2 - 3x over the SKX nodes due to increased core count and greatly increased memory bandwidth.  The available memory bandwidth per core increases by a factor of 3.5x.  Applications that were starved for memory bandwidth should exhibit improved performance close to 3x. 
 
-#### Table 1. SPR Specifications { #table1 }
+#### Table 3. SPR Specifications { #table3 }
 
 Specification | Value 
 --- | ---
@@ -41,7 +78,7 @@ Local storage: | 150 GB /tmp partition
 
 Stampede3 hosts 20 nodes with four Intel Data Center GPU Max 1550s "Ponte Vecchio" (PVC) each.<br>Each PVC GPU has 128 GB of HBM2e and 128 Xe cores providing a peak performance of 4x 52 FP64 TFLOPS per node for scientific workflows and 4x 832 BF16 TFLOPS for ML workflows. 
 
-#### Table 2. PVC Specifications { #table2 }
+#### Table 4. PVC Specifications { #table4 }
 
 Specification | Value
 --- | --
@@ -60,7 +97,7 @@ Local storage: | 150 GB /tmp partition
 
 Stampede3 hosts 1,060 "Skylake" (SKX) compute nodes.
 
-#### Table 3. SKX Specifications { #table3 }
+#### Table 5. SKX Specifications { #table5 }
 
 Specification | Value
 --- | ---
@@ -73,22 +110,6 @@ RAM: | 192GB (2.67GHz) DDR4
 Cache: | 32 KB L1 data cache per core; 1 MB L2 per core; 33 MB L3 per socket.<br>Each socket can cache up to 57 MB (sum of L2 and L3 capacity).
 Local storage: | 90 GB /tmp 
 
-### Icelake Compute Nodes { #system-icx }
-
-Stampede3 hosts 224 "Ice Lake" (ICX) compute nodes.
-
-#### Table 4. ICX Specifications { #table4 }
-
-Specification | Value
---- | ---
-Model: | Intel Xeon Platinum 8380 ("Ice Lake")
-Total cores per ICX node: | 80 cores on two sockets (40 cores/socket)
-Hardware threads per core: | 1
-Hardware threads per node: | 80
-Clock rate: | 2.3 GHz nominal (3.4GHz max frequency depending on instruction set and number of active cores)
-RAM: | 256GB (3.2 GHz) DDR4
-Cache: | 48KB L1 data cache per core; 1.25 MB L2 per core; 60 MB L3 per socket.<br>Each socket can cache up to 110 MB (sum of L2 and L3 capacity)
-Local storage: | 200 GB /tmp partition
 
 ### Login Nodes { #system-login }
 
@@ -105,19 +126,21 @@ The SPR and PVC networks will be upgraded to use Cornelis' CN5000 Omni-Path tech
 Stampede3 will use a shared VAST file system for the `$HOME` and `$SCRATCH` directories.  **These two file systems are NOT lustre file systems and do not support setting a stripe count or stripe size**.  There are no options for the user to set.  As with Stampede2, the `$WORK` file system will also be mounted.  Unlike `$HOME` and `$SCRATCH`, the `$WORK` file system is a Lustre file system and supports the lustre `lfs` commands.  All three file systems, `$HOME`, `$SCRATCH`, and `$WORK` are available from all Stampede3 nodes.  The `/tmp` partition is also available to users but is local to each node. The `$WORK` file system is available on most other TACC HPC systems as well. 
 
 
-#### Table 5. File Systems { #table5 }
+#### Table 6. File Systems { #table6 }
 
 File System | Quota | Key Features
 --- | --- | ---
 `$HOME` | 15 GB, 300,000 files | Not intended for parallel or high−intensity file operations. <br> Backed up regularly. | Not purged.  
-`$WORK` | 1 TB, 3,000,000 files across all TACC systems<br>Not intended for parallel or high−intensity file operations.<br>See [Stockyard system description](#xxx) for more information. | Not backed up. | Not purged.
+`$WORK` | 1 TB, 3,000,000 files across all TACC systems<br>Not intended for parallel or high−intensity file operations.<br>See [Stockyard system description][TACCSTOCKYARD] for more information. | Not backed up. | Not purged.
 `$SCRATCH` | no quota<br>Overall capacity ~10 PB. | Not backed up.<br>Files are subject to purge if access time* is more than 10 days old. See TACC's [Scratch File System Purge Policy](#scratchpolicy) below.
 
+
+{% include 'include/corraltip.md' %}
 {% include 'include/scratchpolicy.md' %}
 
 ## Accessing the System { #access }
 
-Access to all TACC systems requires Multi-Factor Authentication (MFA). You can create an MFA pairing under "Manage Account" in the TACC Portal.  See [Multi-Factor Authentication at TACC](../../basics/mfa) for further information.
+Access to all TACC systems requires Multi-Factor Authentication (MFA). You can create an MFA pairing under "Manage Account" in the TACC Portal.  See [Multi-Factor Authentication at TACC][TACCMFA] for further information.
 
 !!! important
 	You will be able to log on to Stampede3 **only if** you have an allocation on Stampede3, otherwise your password will be rejected.  
@@ -133,8 +156,8 @@ Initiate an SSH session using the `ssh` command or the equivalent:
 
 The above command will rotate connections across all available login nodes and route your connection to the next available node. 
 
-!!! tip
-	Stampede3's login nodes are a *shared resource*. See TACC's <a href="../../basics/conduct">Good Conduct Policy</a> for more information.
+!!! important
+	Stampede3's login nodes are a *shared resource*. See TACC's [Good Conduct Policy][TACCGOODCONDUCT] for more information.
 
 
 To connect to a specific login node, use its full domain name:
@@ -167,7 +190,9 @@ If your password is rejected while attempting to log in, it's possible your acco
 
 The default login shell for your user account is Bash. To determine your current login shell, examine the contents of the `$SHELL` environment variable: 
 
-	$ echo $SHELL
+```cmd-line
+$ echo $SHELL
+```
 
 !!! tip
 	If you'd like to change your login shell to `csh`, `tcsh`, or `zsh`, [submit a help ticket][HELPDESK]. 
@@ -183,8 +208,10 @@ For more information see the [Bash Users' Startup Files: Quick Start Guide][TACC
 
 TACC's `sanitytool` module loads an account-level diagnostic package that detects common account-level issues and often walks you through the fixes. You should certainly run the package's `sanitycheck` utility when you encounter unexpected behavior. You may also want to run `sanitycheck` periodically as preventive maintenance. To run `sanitytool`'s account-level diagnostics, execute the following commands:
 
-	login1$ module load sanitytool
-	login1$ sanitycheck
+```cmd-line
+login1$ module load sanitytool
+login1$ sanitycheck
+```
 
 Execute `module help sanitytool` for more information.
 
@@ -194,8 +221,10 @@ Your environment includes the environment variables and functions defined in you
 
 Execute the `env` command to see the environment variables that define the way your shell and child shells behave.
 Pipe the results of `env` into `grep` to focus on specific environment variables. For example, to see all environment variables that contain the string GIT (in all caps), execute:
-
-	$ env | grep GIT
+	
+```cmd-line
+$ env | grep GIT
+```
 
 The environment variables `PATH` and `LD_LIBRARY_PATH` are especially important. The `PATH` is a colon-separated list of directory paths that determines where the system looks for your executables.  The `LD_LIBRARY_PATH` environment variable is a similar list that determines where the system looks for shared libraries.
 
@@ -204,88 +233,105 @@ The environment variables `PATH` and `LD_LIBRARY_PATH` are especially important.
 
 Lmod, a module system developed and maintained at TACC, makes it easy to manage your environment so you have access to the software packages and versions that you need to using your research. This is especially important on a system like Stampede3 that serves thousands of users with an enormous range of needs and software. Loading a module amounts to choosing a specific package from among available alternatives:
 
-	$ module load intel          # load the default Intel compiler
-	$ module load intel/24.0.0   # load a specific version of Intel compiler
+```cmd-line
+$ module load intel          # load the default Intel compiler
+$ module load intel/24.0.0   # load a specific version of Intel compiler
+```
 
 A module does its job by defining or modifying environment variables (and sometimes aliases and functions). For example, a module may prepend appropriate paths to `$PATH` and `$LD_LIBRARY_PATH` so that the system can find the executables and libraries associated with a given software package. The module creates the illusion that the system is installing software for your personal use. Unloading a module reverses these changes and creates the illusion that the system just uninstalled the software:
 
-	$ module load   ddt  # defines DDT-related env vars; modifies others
-	$ module unload ddt  # undoes changes made by load
+```cmd-line
+$ module load   ddt  # defines DDT-related env vars; modifies others
+$ module unload ddt  # undoes changes made by load
+```
 
 The module system does more, however. When you load a given module, the module system can automatically replace or deactivate modules to ensure the packages you have loaded are compatible with each other. In the example below, the module system automatically unloads one compiler when you load another, and replaces Intel-compatible versions of IMPI and PETSc with versions compatible with `gcc`:
 
-	$ module load intel  # load default version of Intel compiler
-	$ module load petsc  # load default version of PETSc
-	$ module load gcc    # change compiler
-	
-	Lmod is automatically replacing "intel/24.0.0" with "gcc/13.2.0".
-	
-	Due to MODULEPATH changes, the following have been reloaded:
-	1) impi/21.11     2) petsc/3.8
+```cmd-line
+$ module load intel  # load default version of Intel compiler
+$ module load petsc  # load default version of PETSc
+$ module load gcc    # change compiler
+
+Lmod is automatically replacing "intel/24.0.0" with "gcc/13.2.0".
+
+Due to MODULEPATH changes, the following have been reloaded:
+1) impi/21.11     2) petsc/3.8
+```
 
 !!! tip
 	See [Lmod's documentation](https://lmod.readthedocs.io/en/latest/) for extensive information. The online documentation addresses the basics in more detail, but also covers several topics beyond the scope of the help text (e.g. writing and using your own module files).
 
 On Stampede3, modules generally adhere to a TACC naming convention when defining environment variables that are helpful for building and running software. For example, the papi module defines `TACC_PAPI_BIN` (the path to PAPI executables), `TACC_PAPI_LIB` (the path to PAPI libraries), `TACC_PAPI_INC` (the path to PAPI include files), and `TACC_PAPI_DIR` (top-level PAPI directory). After loading a module, here are some easy ways to observe its effects:
 
-	$ module show papi   # see what this module does to your environment
-	$ env | grep PAPI    # see env vars that contain the string PAPI
-	$ env | grep -i papi # case-insensitive search for 'papi' in environment
+```cmd-line
+$ module show papi   # see what this module does to your environment
+$ env | grep PAPI    # see env vars that contain the string PAPI
+$ env | grep -i papi # case-insensitive search for 'papi' in environment
+```
 
 To see the modules you currently have loaded:
 
-	$ module list
+```cmd-line
+$ module list
+```
 
 To see all modules that you can load right now because they are compatible with the currently loaded modules:
 
-	$ module avail
+```cmd-line
+$ module avail
+```
 
 To see all installed modules, even if they are not currently available because they are incompatible with your currently loaded modules:
 
-	$ module spider                  # list all modules, even those not available to load
+```cmd-line
+$ module spider                  # list all modules, even those not available to load
+```
 
 To filter your search:
 
-	$ module spider slep             # all modules with names containing 'slep'
-	$ module spider sundials/2.5.0   # additional details on a specific module
+```cmd-line
+$ module spider slep             # all modules with names containing 'slep'
+$ module spider sundials/2.5.0   # additional details on a specific module
+```
 
 Among other things, the latter command will tell you which modules you need to load before the module is available to load. You might also search for modules that are tagged with a keyword related to your needs (though your success here depends on the diligence of the module writers). For example:
 
-	$ module keyword performance
+```cmd-line
+$ module keyword performance
+```
 
 You can save a collection of modules as a personal default collection that will load every time you log into Stampede3. To do so, load the modules you want in your collection, then execute:
 
-	$ module save            # save the currently loaded collection of modules
+```cmd-line
+$ module save            # save the currently loaded collection of modules
+```
 
 Two commands make it easy to return to a known, reproducible state:
 
-	$ module reset           # load the system default collection of modules
-	$ module restore         # load your personal default collection of modules
+```cmd-line
+$ module reset           # load the system default collection of modules
+$ module restore         # load your personal default collection of modules
+```
 
 On TACC systems, the command `module reset` is equivalent to `module purge; module load` TACC. It's a safer, easier way to get to a known baseline state than issuing the two commands separately.
 
 Help text is available for both individual modules and the module system itself:
 
-	$ module help swr        # show help text for software package swr
-	$ module help            # show help text for the module system itself
-
+```cmd-line
+$ module help swr        # show help text for software package swr
+$ module help            # show help text for the module system itself
+```
 
 It's safe to execute module commands in job scripts. In fact, this is a good way to write self-documenting, portable job scripts that produce reproducible results.  If you use `module save` to define a personal default module collection, it's rarely necessary to execute module commands in shell startup scripts, and it can be tricky to do so safely. If you do wish to put module commands in your startup scripts, see Stampede3's default startup scripts in `/usr/local/startup_scripts` for a safe way to do so.
 
-### TACC Tips { #admin-tips }
+{% include 'include/stampede3-crontab.md' %}
 
-TACC Staff has amassed a database of helpful tips for our users.  Access these tips via the `tacc_tips` module and `showTip` command as demonstrated below:
-
-	$ module load tacc_tips
-	$ showTip
-
-	Tip 131   (See "module help tacc_tips" for features or how to disable)
-
-   		Use Ctrl+E to go the end of the command line.
-
+{% include 'include/tacctips.md' %}
 ## Managing Your Files { #files }
 
-Stampede3 mounts three file systems that are shared across all nodes: the home, work, and scratch file systems. Stampede3's startup mechanisms define corresponding account-level environment variables `$HOME`, `$SCRATCH`, and `$WORK` that store the paths to directories that you own on each of these file systems. Consult the Stampede3 File Systems table for the basic characteristics of these file systems, File Operations: I/O Performance for advice on performance issues, and Good Conduct for tips on file system etiquette.
+Stampede3 mounts three file systems that are shared across all nodes: the home, work, and scratch file systems. Stampede3's startup mechanisms define corresponding account-level environment variables `$HOME`, `$SCRATCH`, and `$WORK` that store the paths to directories that you own on each of these file systems. Consult the Stampede3 [File Systems](#table6) table for the basic characteristics of these file systems, [File Operations: I/O Performance](#programming-io) for advice on performance issues, and [Good Conduct][TACCGOODCONDUCT] for tips on file system etiquette.
+
+{% include 'include/spacetip.md' %}
 
 ### Navigating the Shared File Systems { #files-filesystems }
 
@@ -300,12 +346,12 @@ Your account-specific `$WORK` environment variable varies from system to system 
 
 See the example for fictitious user bjones in the figure below.  All directories are accessible from all systems, however a given sub-directory (e.g. lonestar6, frontera) will exist only if you have an allocation on that system.  [Figure 1](#figure1) below illustrates account-level directories on the `$WORK` file system (Global Shared File System hosted on Stockyard).   
 
-<figure id="#figure1"><img src="../imgs/Stockyard2024.png">
+<figure id="figure1"><img src="../imgs/stockyard-2024.png">
 <figcaption>Stockyard 2024</figcaption></figure>
 
 Note that the resource-specific sub-directories of `$STOCKYARD` are nothing more than convenient ways to manage your resource-specific files. You have access to any such sub-directory from any TACC resources. If you are logged into Stampede3, for example, executing the alias cdw (equivalent to cd `$WORK`) will take you to the resource-specific sub-directory `$STOCKYARD/stampede3`. But you can access this directory from other TACC systems as well by executing cd `$STOCKYARD/stampede3`. These commands allow you to share files across TACC systems. In fact, several convenient account-level aliases make it even easier to navigate across the directories you own in the shared file systems:
 
-### Table 6. Built-in Account Level Aliases { #table6 }
+### Table 7. Built-in Account Level Aliases { #table7 }
 
 Alias | Command
 --- | ---
@@ -317,18 +363,15 @@ Alias | Command
 
 ### Sharing Files with Collaborators { #files-sharing }
 
-If you wish to share files and data with collaborators in your project, see [Sharing Project Files on TACC Systems](../../tutorials/sharingprojectfiles) for step-by-step instructions. Project managers or delegates can use Unix group permissions and commands to create read-only or read-write shared workspaces that function as data repositories and provide a common work area to all project members.
+If you wish to share files and data with collaborators in your project, see [Sharing Project Files on TACC Systems][TACCSHARINGPROJECTFILES] for step-by-step instructions. Project managers or delegates can use Unix group permissions and commands to create read-only or read-write shared workspaces that function as data repositories and provide a common work area to all project members.
 
 ## Running Jobs { #running }
 
 {% include 'include/stampede3-jobaccounting.md' %}
 
-<!-- ### Slurm Job Scheduler { #running-slurm } -->
-
-
 ### Slurm Partitions (Queues) { #queues }
 
-Stampede3's job scheduler is the Slurm Workload Manager. Slurm commands enable you to submit, manage, monitor, and control your jobs.  See the [Job Management](#jobmanagement) section below for further information. 
+Stampede3's job scheduler is the Slurm Workload Manager. Slurm commands enable you to submit, manage, monitor, and control your jobs.  See the [Job Management](#jobs) section below for further information. 
 
 !!! important
     **Queue limits are subject to change without notice.**  
@@ -336,30 +379,28 @@ Stampede3's job scheduler is the Slurm Workload Manager. Slurm commands enable y
     Use TACC's `qlimits` utility to see the latest queue configurations.
 
 <!-- 
-01/09/2025
-Current queue/partition limits on TACC's stampede3 system:
-
+02/19/2025
 Name             MinNode  MaxNode     MaxWall  MaxNodePU  MaxJobsPU   MaxSubmit
 icx                    1       32  2-00:00:00         48         12          20
+nvdimm                 1        1  2-00:00:00          1          1           3
 pvc                    1        4  2-00:00:00          4          2           4
 skx                    1      256  2-00:00:00        384         40          60
 skx-dev                1       16    02:00:00         16          1           3
 spr                    1       32  2-00:00:00        180         24          36
 -->
 
-#### Table 7. Production Queues { #table7 }
+#### Table 8. Production Queues { #table8 }
 
 
 Queue Name   | Node Type | Max Nodes per Job<br>(assoc'd cores) | Max Duration | Max Jobs in Queue | Charge Rate<br>(per node-hour)
 --           | --        | --                                   | --           | --                |  
 icx          | ICX       | 32 nodes<br>(2560 cores)             | 48 hrs       | 12                | 1.5 SUs
+nvdimm       | ICX       | 1 node<br>(80 cores)                 | 48 hrs       | 3                 | 4 SUs 
 pvc          | PVC       | 4 nodes<br>(384 cores)               | 48 hrs       | 2                 | 3 SUs
 skx          | SKX       | 256 nodes<br>(12288 cores)           | 48 hrs       | 40                | 1 SU
 skx-dev      | SKX       | 16 nodes<br>(768 cores)              | 2 hrs        | 1                 | 1 SU
-spr          | SPR       | 32 nodes<br>(1792 cores)             | 48 hrs       | 24                | 2 SUs
+spr          | SPR       | 32 nodes<br>(3584 cores)             | 48 hrs       | 24                | 2 SUs
 
-<!-- SDL 05/07 no skx-large yet
-**&#42; To request more nodes than are available in the skx-normal queue, submit a consulting (help desk) ticket. Include in your request reasonable evidence of your readiness to run under the conditions you're requesting. In most cases this should include your own strong or weak scaling results from Stampede3.** -->
 
 ### Submitting Batch Jobs with `sbatch` { #running-sbatch }
 
@@ -375,14 +416,14 @@ In your job script you (1) use `#SBATCH` directives to request computing resourc
 
 Your job will run in the environment it inherits at submission time; this environment includes the modules you have loaded and the current working directory. In most cases you should run your applications(s) after loading the same modules that you used to build them. You can of course use your job submission script to modify this environment by defining new environment variables; changing the values of existing environment variables; loading or unloading modules; changing directory; or specifying relative or absolute paths to files. **Do not** use the Slurm `--export` option to manage your job's environment: doing so can interfere with the way the system propagates the inherited environment.
 
-[Table 8.](#table8) below describes some of the most common `sbatch` command options. Slurm directives begin with `#SBATCH`; most have a short form (e.g. `-N`) and a long form (e.g. `--nodes`). You can pass options to `sbatch` using either the command line or job script; most users find that the job script is the easier approach. The first line of your job script must specify the interpreter that will parse non-Slurm commands; in most cases `#!/bin/bash` or `#!/bin/csh` is the right choice. Avoid `#!/bin/sh` (its startup behavior can lead to subtle problems on Stampede3), and do not include comments or any other characters on this first line. All `#SBATCH` directives must precede all shell commands. Note also that certain `#SBATCH` options or combinations of options are mandatory, while others are not available on Stampede3.
+[Table 9.](#table9) below describes some of the most common `sbatch` command options. Slurm directives begin with `#SBATCH`; most have a short form (e.g. `-N`) and a long form (e.g. `--nodes`). You can pass options to `sbatch` using either the command line or job script; most users find that the job script is the easier approach. The first line of your job script must specify the interpreter that will parse non-Slurm commands; in most cases `#!/bin/bash` or `#!/bin/csh` is the right choice. Avoid `#!/bin/sh` (its startup behavior can lead to subtle problems on Stampede3), and do not include comments or any other characters on this first line. All `#SBATCH` directives must precede all shell commands. Note also that certain `#SBATCH` options or combinations of options are mandatory, while others are not available on Stampede3.
 
-By default, Slurm writes all console output to a file named "`slurm-%j.out`", where `%j` is the numerical job ID. To specify a different filename use the `-o` option. To save `stdout` (standard out) and `stderr` (standard error) to separate files, specify both `-o` and `-e` options.
+y default, Slurm writes all console output to a file named "`slurm-%j.out`", where `%j` is the numerical job ID. To specify a different filename use the `-o` option. To save `stdout` (standard out) and `stderr` (standard error) to separate files, specify both `-o` and `-e` options.
 
 !!! tip
 	The maximum runtime for any individual job is 48 hours.  However, if you have good checkpointing implemented, you can easily chain jobs such that the outputs of one job are the inputs of the next, effectively running indefinitely for as long as needed.  See Slurm's `-d` option.
 
-#### Table 8. Common `sbatch` Options { #table8 }
+#### Table 9. Common `sbatch` Options { #table9 }
 
 Option | Argument | Comments
 --- | --- | ---
@@ -731,7 +772,7 @@ Similarly in R:
 
 You may, of course, need to customize the build process in other ways. It's likely, for example, that you'll need to edit a makefile or other build artifacts to specify Stampede3-specific include and library paths or other compiler settings. A good way to proceed is to write a shell script that implements the entire process: definitions of environment variables, module commands, and calls to the build utilities. Include echo statements with appropriate diagnostics. Run the script until you encounter an error. Research and fix the current problem. Document your experience in the script itself; including dead-ends, alternatives, and lessons learned. Re-run the script to get to the next error, then repeat until done. When you're finished, you'll have a repeatable process that you can archive until it's time to update the software or move to a new machine.
 
-If you wish to share a software package with collaborators, you may need to modify file permissions. See [Sharing Files with Collaborators](../../tutorials/sharingprojectfiles) for more information.
+If you wish to share a software package with collaborators, you may need to modify file permissions. See [Sharing Files with Collaborators][TACCSHARINGPROJECTFILES] for more information.
 
 ### Performance { #building-performance }
 
@@ -837,10 +878,10 @@ Intel provides [substantial and detailed documentation](https://www.intel.com/co
 
 This section provides sample Slurm job scripts for each Stampede3 node type: 
 
-* Ponte Vecchio (PVC)
-* Sapphire Rapids (SPR)
-* Ice Lake (ICX)
-* Sky Lake (SKX)
+<!-- * Ponte Vecchio (PVC) -->
+* [Sapphire Rapids](#scripts-spr) (SPR)
+* [Ice Lake (ICX)](#scripts-icx) (ICX)
+* [Sky Lake (SKX)](#scripts-skx) (SKX)
 
 Each section also contains sample scripts for serial, MPI, OpenMP and hybrid (MPI + OpenMP) programming models.  Copy and customize each script for your own applications.
 
@@ -851,9 +892,9 @@ Copy and customize the following jobs scripts by specifying and refining your jo
 * specify total number of MPI tasks with the `-n` option
 * specify the project to be charged with the `-A` option.
 
-### PVC Nodes { #scripts-pvc }
+<!-- ### PVC Nodes { #scripts-pvc }
 
-*Coming Soon*
+*Coming Soon* -->
 
 ### SPR Nodes { #scripts-spr }
 
@@ -1602,7 +1643,7 @@ The column labeled `ST` displays each job's status:
 * `R`  means "Running";
 * `CG` means "Completing" (cleaning up after exiting the job script).
 
-#### Table 9. Pending Jobs Reason { #table9 }
+#### Table 10. Pending Jobs Reason { #table10 }
 
 The last column, labeled `NODELIST/REASON`, includes a nodelist for running/completing jobs, or a reason for pending jobs.  
 
@@ -1761,7 +1802,7 @@ The `qopt-zmm-usage` flag affects the algorithms the compiler uses to decide whe
 
 This section includes general advice intended to help you achieve good performance during file operations. See [Managing I/O at TACC][TACCMANAGINGIO] and [TACC Training](https://tacc.utexas.edu/use-tacc/training/) page for additional information on I/O performance. 
 
-**Follow the advice in [TACC Good Conduct Guide](basics/conduct) to avoid stressing the file system**.
+**Follow the advice in [TACC Good Conduct Guide][TACCGOODCONDUCT] to avoid stressing the file system**.
 
 **Aggregate file operations**: Open and close files once. Read and write large, contiguous blocks of data at a time; this requires understanding how a given programming language uses memory to store arrays.
 
@@ -1851,6 +1892,21 @@ TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for 
 * **Be patient.** It may take a business day for a consultant to get back to you, especially if your issue is complex. It might take an exchange or two before you and the consultant are on the same page. If the admins disable your account, it's not punitive. When the file system is in danger of crashing, or a login node hangs, they don't have time to notify you before taking action.
 
 {% include 'aliases.md' %}
+## References { #refs }
+
+* [Bash Users’ Startup Files: Quick Start Guide][TACCBASHQUICKSTART]
+* [`idev` at TACC][TACCIDEV]
+* [GNU documentation](https://www.gnu.org/doc/doc.en.html)
+* [Intel software documentation](http://software.intel.com/en-us/intel-software-technical-documentation)
+* [Lmod's online documentation][TACCLMOD]
+* [Multi-Factor Authentication at TACC][TACCMFA]
+* [Princeton Research Computing's Slurm Knowledge Base](https://researchcomputing.princeton.edu/support/knowledge-base/slurm)
+* [Sharing Project Files on TACC Systems][TACCSHARINGPROJECTFILES]
+* [Slurm online documentation](http://www.schedmd.com)
+* [TACC Analysis Portal][TACCANALYSISPORTAL]
+
+
+
 [CREATETICKET]: https://tacc.utexas.edu/about/help/ "Create Support Ticket"
 [DOWNLOADCYBERDUCK]: https://cyberduck.io/download/ "Download Cyberduck"
 [HELPDESK]: https://tacc.utexas.edu/about/help/ "Help Desk"
@@ -1879,5 +1935,16 @@ TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for 
 [TACCSOFTWARE]: https://docs.tacc.utexas.edu/basics/software/ "Software at TACC"
 [TACCSUBSCRIBE]: https://accounts.tacc.utexas.edu/user_updates "Subscribe to News"
 [TACCUSAGEPOLICY]: https://tacc.utexas.edu/use-tacc/user-policies/ "TACC Usage Policy"
-[TACCUSERPORTAL]: https://tacc.utexas.edu/portal/login "TACC Portal login"
+[TACCUSERPORTAL]: https://tacc.utexas.edu/portal/login "TACC User Portal login"
 [TACCUSERPROFILE]: https://accounts.tacc.utexas.edu/profile "TACC Accounts User Profile"
+[TACCPARAVIEW]: https://docs.tacc.utexas.edu/software/paraview "Paraview at TACC"
+[TACCMANAGINGIO]: https://docs.tacc.utexas.edu/tutorials/managingio "Managing I/O at TACC""
+[TACCSTOCKYARD]: https://tacc.utexas.edu/systems/stockyard  "Stockyard File System"
+
+[TACCSTAMPEDE3UG]: https://docs.tacc.utexas.edu/hpc/stampede3/ "TACC Stampede3 User Guide"
+[TACCLONESTAR6UG]: https://docs.tacc.utexas.edu/hpc/lonestar6/ "TACC Lonestar6 User Guide"
+[TACCFRONTERAUG]: https://docs.tacc.utexas.edu/hpc/frontera/ "TACC Frontera User Guide"
+[TACCVISTAUG]: https://docs.tacc.utexas.edu/hpc/vista/ "TACC Vista User Guide"
+[TACCRANCHUG]: https://docs.tacc.utexas.edu/hpc/ranch/ "TACC Ranch User Guide"
+[TACCCORRALUG]: https://docs.tacc.utexas.edu/hpc/corral/ "TACC Corral User Guide"
+

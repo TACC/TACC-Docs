@@ -19,6 +19,11 @@
 /* CORE STYLES: Docs */
 @layer project {
 
+/* To reduce padding in sections */
+ .section--light,
+ .section--muted,
+ .section--dark { --padding-top: 20px; --padding-bottom: 20px; }
+
   /* To support .c-card on mobile (which Core-Styles does not do) */
 
   /* To add field of color in neg. space beside short image */

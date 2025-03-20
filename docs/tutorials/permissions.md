@@ -87,7 +87,7 @@ After making changes through the TACC portal, you will need to log out any activ
 
 * [Manage Permissions with Access Control Lists][TACCACLS]
 * [Sharing Project Files at TACC][TACCSHARINGPROJECTFILES]
-* [TACC Corral User Guide](../../hpc/corral)
+* [TACC Corral User Guide][TACCCORRALUG]
 
 
 {% include 'aliases.md' %}

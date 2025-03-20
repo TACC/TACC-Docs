@@ -81,14 +81,6 @@ The environment variables `PATH` and `LD_LIBRARY_PATH` are especially important.
 
 {% include './include/sanitytool.md' %}
 
-TACC's `sanitytool` module loads an account-level diagnostic package that detects common account-level issues and often walks you through the fixes. You should certainly run the package's `sanitycheck` utility when you encounter unexpected behavior. You may also want to run `sanitycheck` periodically as preventive maintenance. To run `sanitytool`'s account-level diagnostics, execute the following commands:
-
-```cmd-line
-login1$ module load sanitytool
-login1$ sanitycheck
-```
-
-Execute `module help sanitytool` for more information. 
 
 ### Using Modules to Manage your Environment { #admin-modules }
 
@@ -187,4 +179,7 @@ See [Lmod's online documentation](http://lmod.readthedocs.org) for more extensiv
 
 It's safe to execute module commands in job scripts. In fact, this is a good way to write self-documenting, portable job scripts that produce reproducible results. If you use `module save` to define a personal default module collection, it's rarely necessary to execute module commands in shell startup scripts, and it can be tricky to do so safely. If you do wish to put module commands in your startup scripts, see Lonestar6's default startup scripts for a safe way to do so.
 
+{% include 'include/lonestar6-crontab.md' %}
 
+
+{% include 'include/tacctips.md' %}

@@ -1,5 +1,6 @@
 ## Managing Files { #files }
 
+{% include 'include/spacetip.md' %}
 
 ### Table 3. File Systems { #table3 }
 
@@ -10,18 +11,21 @@ File System | Quota | Key Features
 <code>$SCRATCH</code> | none | Overall capacity 8 PB<br>Defaults: 4 targets, 512 KB chunk size<br>Not backed up<br><b>Files are [subject to purge](#scratchpolicy) if access time* is more than 10 days old.</b><sup><a href="#sup1">&#42;</a></sup>
 <code>/tmp</code> on nodes | 288 GB | Data purged at the end of each job.<br>Access is local to the node.<br>Data in /tmp is not shared across nodes.
 
+
+{% include 'include/corraltip.md' %}
+
 {% include 'include/scratchpolicy.md' %}
 
 ### Navigating the Shared File Systems { #files-navigating }
 
-Lonestar6 mounts three Lustre file systems that are shared across all nodes: the home, work, and scratch file systems. Lonestar6's startup mechanisms define corresponding account-level environment variables `$HOME`, `$SCRATCH` and `$WORK` that store the paths to directories that you own on each of these file systems. Consult the [Lonestar6 File Systems](#table3) table above for the basic characteristics of these file systems, <!--"File Operations: I/O Performance" for advice on performance issues,--> and the [Good Conduct](../../basics/conduct) document for guidance on file system etiquette.
+Lonestar6 mounts three Lustre file systems that are shared across all nodes: the home, work, and scratch file systems. Lonestar6's startup mechanisms define corresponding account-level environment variables `$HOME`, `$SCRATCH` and `$WORK` that store the paths to directories that you own on each of these file systems. Consult the [Lonestar6 File Systems](#table3) table above for the basic characteristics of these file systems, <!--"File Operations: I/O Performance" for advice on performance issues,--> and the [Good Conduct][TACCGOODCONDUCT] document for guidance on file system etiquette.
 
 Lonestar6's `/home` and `/scratch` file systems are mounted only on Lonestar6, but the `/work` file system mounted on Lonestar6 is the Global Shared File System hosted on Stockyard. This is the same work file system that is currently available on Frontera, Stampede3 and most other TACC resources.
 
 The `$STOCKYARD` environment variable points to the highest-level directory that you own on the Global Shared File System. The definition of the `$STOCKYARD` environment variable is of course account-specific, but you will see the same value on all TACC systems that provide access to the Global Shared File System (see [Table 3](#table3)). This directory is an excellent place to store files you want to access regularly from multiple TACC resources. 
 
 <figure id="figure1">
-<img src="../imgs/stockyard-2022.jpg">
+<img src="../imgs/stockyard-2024.png">
 <figcaption>Figure 1. Account-level directories on the <code>/work</code> file system (Global Shared File System hosted on Stockyard). Example for fictitious user <code>bjones</code>. All directories usable from all systems. Sub-directories (e.g. <code>stampede3</code>, <code>frontera</code>) exist only when you have allocations on the associated system.</figcaption></figure>
 
 Your account-specific `$WORK` environment variable varies from system to system and is a subdirectory of `$STOCKYARD` ([Figure 1](#figure1)). The subdirectory name corresponds to the associated TACC resource. The `$WORK` environment variable on Lonestar6 points to the `$STOCKYARD/ls6` subdirectory, a convenient location for files you use and jobs you run on Lonestar6. Remember, however, that all subdirectories contained in your `$STOCKYARD` directory are available to you from any system that mounts the file system. If you have accounts on both Lonestar6 and Stampede3, for example, the `$STOCKYARD/ls6` directory is available from your Stampede3 account, and `$STOCKYARD/stampede3` directory is available from your Lonestar6 account. Your quota and reported usage on the Global Shared File System reflects **all files** that you own on Stockyard, regardless of their actual location on the file system.
@@ -137,6 +141,6 @@ The options on the second transfer are typical and appropriate when synching a d
 
 ### Sharing Files with Collaborators { #files-sharing }
 
-If you wish to share files and data with collaborators in your project, see [Sharing Project Files on TACC Systems](../../tutorials/sharingprojectfiles) for step-by-step instructions. Project managers or delegates can use Unix group permissions and commands to create read-only or read-write shared workspaces that function as data repositories and provide a common work area to all project members.
+If you wish to share files and data with collaborators in your project, see [Sharing Project Files on TACC Systems][TACCSHARINGPROJECTFILES] for step-by-step instructions. Project managers or delegates can use Unix group permissions and commands to create read-only or read-write shared workspaces that function as data repositories and provide a common work area to all project members.
 
 

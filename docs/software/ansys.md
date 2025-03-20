@@ -6,7 +6,7 @@
 <td>ANSYS offers a comprehensive software suite that spans the entire range of physics, providing access to virtually any field of engineering simulation that a design process requires. ANSYS software is used to simulate computer models of structures, electronics, or machine components for analyzing strength, toughness, elasticity, temperature distribution, electromagnetism, fluid flow, and other attributes.</td>
 </tr></table>
 
-ANSYS is currently installed on TACC's [Frontera](../../hpc/frontera), [Lonestar6](../../hpc/lonestar6) and [Stampede3](../../hpc/stampede3) resources. 
+ANSYS is currently installed on TACC's [Frontera][TACCFRONTERAUG], [Lonestar6][TACCLONESTAR6UG] and [Stampede3][TACCSTAMPEDE3UG] resources. 
 
 ## Licenses
 

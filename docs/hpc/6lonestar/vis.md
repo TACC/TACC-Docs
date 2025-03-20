@@ -39,7 +39,7 @@ Follow the steps below to start an interactive session.
 	* <code>-p <i>partition</i></code> specify an alternate queue   
 
 
-	Consult [Table 6](../stampede3#table6) in the [Stampede3 User Guide](../stampede3) for a listing of common Slurm `#SBATCH` options.
+	Consult [Table 6](../stampede3#table6) in the [Stampede3 User Guide][TACCSTAMPEDE3UG] for a listing of common Slurm `#SBATCH` options.
 
 	All arguments after the job script name are sent to the vncserver command. For example, to set the desktop resolution to 1440x900, use:
 
@@ -70,8 +70,8 @@ Follow the steps below to start an interactive session.
 
 	where:
 
-	* `<i>yyyy</i>` is the port number given by the vncserver batch job
-	* `<i>xxxx</i>` is a port on the remote system. Generally, the port number specified on the Lonestar6 login node, <code><i>yyyy</i></code>, is a good choice to use on your local system as well
+	* <code><i>yyyy</i></code> is the port number given by the vncserver batch job
+	* <code><i>xxxx</i></code> is a port on the remote system. Generally, the port number specified on the Lonestar6 login node, <code><i>yyyy</i></code>, is a good choice to use on your local system as well
 	* `-f` instructs SSH to only forward ports, not to execute a remote command
 	* `-N` puts the ssh command into the background after connecting
 	* `-L` forwards the port   

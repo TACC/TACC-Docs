@@ -13,9 +13,9 @@ S3_OBJS	=	\
 	programming.md \
 	ml.md \
 	python.md \
-	../../include/stampede3-help.md 
+	../../include/stampede3-help.md \
+	refs.md
 #	vis.md \
-#	refs.md
 
 all:	stampede3
 

@@ -203,7 +203,7 @@ This policy applies to both the main and "protected" areas of Corral4.
 ## References { #refs }
 
 * [Manage Permissions with Access Control Lists](../../tutorials/acls)
-* [Lonestar6 User Guide](../lonestar6)  
+* [Lonestar6 User Guide][TACCLONESTAR6UG]  
 * [Cyberduck home page](http://cyberduck.io/)  
 * [UNIX manual pages](https://www.freebsd.org/cgi/man.cgi)
 * [Unix Group Permissions and Environment][TACCMANAGINGPERMISSIONS]

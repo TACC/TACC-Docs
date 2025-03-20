@@ -94,7 +94,7 @@ The `qopt-zmm-usage` flag affects the algorithms the compiler uses to decide whe
 
 This section includes general advice intended to help you achieve good performance during file operations. See [Navigating the Shared File Systems](#files-navigating) for a brief overview of Frontera's Lustre file systems and the concept of striping. See [TACC Training material](https://learn.tacc.utexas.edu/) for additional information on I/O performance.
 
-**Follow the advice in [Good Conduct](../../basics/conduct)** to avoid stressing the file system.
+**Follow the advice in [Good Conduct][TACCGOODCONDUCT]** to avoid stressing the file system.
 
 **Stripe for performance**. If your application writes large files using MPI-based parallel I/O (including [MPI-IO](http://mpi-forum.org/docs/mpi-3.1/mpi31-report.pdf), [parallel HDF5](https://support.hdfgroup.org/HDF5/PHDF5/), and [parallel netCDF](https://www.unidata.ucar.edu/software/netcdf/docs/parallel_io.html), you should experiment with stripe counts larger than the default values (2 stripes on `$SCRATCH`, 1 stripe on `$WORK`). See [Striping Large Files](#files-striping) for the simplest way to set the stripe count on the directory in which you will create new output files. You may also want to try larger stripe sizes up to 16MB or even 32MB; execute `man lfs` for more information. If you write many small files you should probably leave the stripe count at its default value, especially if you write each file from a single process. Note that it's not possible to change the stripe parameters on files that already exist. This means that you should make decisions about striping when you *create* input files, not when you read them.
 

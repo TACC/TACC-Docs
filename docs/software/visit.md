@@ -5,9 +5,9 @@ Parallel VisIt is an Open Source, interactive, scalable, visualization, animatio
 
 ## Installations { #installations }
 
-VisIt is installed on TACC's Frontera, Stampede3, and Lonestar6 resources. The environment required to run VisIt on each of these resources is slightly different. The user will use the module command to load the required environment for VisIt. 
+VisIt is installed on TACC's Frontera, Stampede3, and Lonestar6 resources. The environment required to run VisIt on each of these resources is slightly different. Use the `module` command to load the required environment for VisIt. 
 
-### Table 1. VisIt Modules per TACC Resource { table1 }
+### Table 1. VisIt Modules per TACC Resource { #table1 }
 Resource  | Versions Installed       | Module requirements
 --        | --                       | --
 Frontera  | 2.13.2, 3.0.1, 3.1.2**   | `intel/19`, `impi`, `swr`&#42;, `qt5`&#42;&#42;, `VisIt`
@@ -19,7 +19,7 @@ Lonestar6 | 3.3.0**                  | `gcc`, `impi`, `VisIt`
 
 [Table 1.](#table1) above summarizes the version of VisIt installed and the modules required to run it on each TACC resource. All the modules listed for a particular resource must be loaded for VisIt to run correctly. The VisIt module itself manages loading and unloading of certain dependencies on certain resources. 
 
-Starting the VisIt user interface on TACC resources is very similar to starting [Paraview](../paraview). Follow the procedure for starting a remote desktop described in the Paraview documentation.
+Starting the VisIt user interface on TACC resources is very similar to starting [Paraview][TACCPARAVIEW]. Follow the procedure for starting a remote desktop described in the Paraview documentation.
 
 Once a remote desktop is running, start the VisIt user-interface by typing commands into a shell window on that desktop. The commands required are summarized in [Table 2.](#table2)  below. The column labeled "Load Modules" contains commands required to load the environment on the particular resource. The column labeled "Run VisIt" contains the command required to launch VisIt's user-interface. In both columns the text `c442-001$` is simply an example of the command prompt in the shell window. 
 
@@ -59,3 +59,4 @@ VisIt reads nearly [150 data formats](https://github.com/visit-dav/visit/tree/de
 * [Getting Data Into VisIt](https://visit-dav.github.io/visit-website/pdfs/GettingDataIntoVisIt2.0.0.pdf?#page=1)
 
 
+{% include 'aliases.md' %}
