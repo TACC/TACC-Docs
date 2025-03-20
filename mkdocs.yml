@@ -110,3 +110,4 @@ plugins:
         - testingextensions.md
       exclude_unreferenced: true
   - macros # allows {% include ... %} (and macros)
+    # NOTE: warnings if file included by {% include '…' %} has relative paths

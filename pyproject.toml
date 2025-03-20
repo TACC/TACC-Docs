@@ -1,21 +1,32 @@
+[build-system]
+requires = ["poetry-core>=1.5.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
 [tool.poetry]
 package-mode = false
+
+[project]
 name = "tacc-docs"
 version = "0.15.1"
 description = "TACC Systems Documentation"
 authors = [
-  "TACC COA CMD <coa-cmd@tacc.utexas.edu>"
+  { name = "TACC COA CMD", email = "coa-cmd@tacc.utexas.edu" }
 ]
 maintainers = [
-  "TACC COA CMD <coa-cmd@tacc.utexas.edu>",
-  "TACC ACI WMA <wma-portals@tacc.utexas.edu>"
+  { name = "TACC COA CMD", email = "coa-cmd@tacc.utexas.edu" },
+  { name = "TACC ACI WMA", email = "wma-portals@tacc.utexas.edu" }
 ]
 readme = "README.md"
+requires-python = ">=3.10,<3.13"
+dependencies = [
+  "mkdocs-macros-plugin>=1.0.4",
+  "mkdocs-exclude-search^0.6.6",
+  "mkdocs-tacc[all]^0.5.0"
+]
 
+# FAQ: for Poetry 1.x compatibility (Poetry 2+ should use above format)
 [tool.poetry.dependencies]
-python = ">=3.10,<3.13"
 # mkdocs (implicitely installed via "mkdocs-tacc")
-# NOTE: warnings logged if file included by {% include '…' %} has relative paths
 mkdocs-macros-plugin = ">=1.0.4"
 mkdocs-exclude-search = "^0.6.6"
 mkdocs-tacc = {extras = ["all"], version = "^0.5.0"}
