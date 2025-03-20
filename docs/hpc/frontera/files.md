@@ -2,22 +2,25 @@
 
 Frontera mounts three Lustre file systems that are shared across all nodes: the `/home`, `/work`, and `/scratch` file systems. <!-- Frontera also contains a fourth file system, <code>FLASH</code>, supporting applications with very high bandwidth or IOPS requirements.-->
 
+{% include 'include/spacetip.md' %}
 
 ### File Systems { #files-filesystems } 
 
-Frontera's startup mechanisms define corresponding account-level environment variables `$HOME`, `$SCRATCH` and `$WORK` that store the paths to directories that you own on each of these file systems. Consult <a href="#table4">Table 4. Frontera File Systems</a> below for the basic characteristics of these file systems, and the [Good Conduct][TACCGOODCONDUCT] sections for guidance on file system etiquette.
+Frontera's startup mechanisms define corresponding account-level environment variables `$HOME`, `$SCRATCH` and `$WORK` that store the paths to directories that you own on each of these file systems. Consult <a href="#table4a">Table 4. Frontera File Systems</a> below for the basic characteristics of these file systems, and the [Good Conduct][TACCGOODCONDUCT] sections for guidance on file system etiquette.
 
 #### Table 4a. File Systems { #table4a } 
 
 File System | Quota | Key Features
 -------     | ------- | -------
 `$HOME`	    | 25GB, 200,000 files          | **Not intended for parallel or high-intensity file operations**.<br>Backed up regularly.<br>Defaults: 1 stripe, 1MB stripe size.<br> Not purged. |
-`$WORK`	    | 1TB, 3,000,000 files across all TACC systems,<br>regardless of where on the file system the files reside. | **Not intended for high-intensity file operations or jobs involving very large files.**<br>On the Global Shared File System that is mounted on most TACC systems.<br>Defaults: 1 stripe, 1MB stripe size.<br>Not backed up.<br> Not purged.
+`$WORK`	    | 1TB, 3,000,000 files across all TACC systems, **regardless of where on the file system the files reside**. | **Not intended for high-intensity file operations or jobs involving very large files.**<br>On the Global Shared File System that is mounted on most TACC systems.<br>Defaults: 1 stripe, 1MB stripe size.<br>Not backed up.<br> Not purged.
 `$SCRATCH`  | no quota	 |  Overall capacity 44 PB.<br>Defaults: 1 stripe, 1MB stripe size.<br>Not backed up.<br>Decomposed into three separate file systems, `scratch1`, `scratch2`, and `scratch3` described below.<br>**Files are [subject to purge](#scratchpolicy) if access time&#42; is more than 10 days old**.  
 
-All new projects are assigned to `/scratch1` as their default `$SCRATCH` file system.  After running on Frontera, TACC staff may reassign users and projects to `/scratch2` or `/scratch3` depending on the resources required by their workflow.  The `/scratch3` file system employs twice as many OST's offering twice the available I/O bandwidth of `/scratch1` and `/scratch2`.  Frontera's three `$SCRATCH` file systems are further described below:
+{% include 'include/corraltip.md' %}
 
 #### Table 4b. Scratch File Systems { #table4b } 
+
+All new projects are assigned to `/scratch1` as their default `$SCRATCH` file system.  After running on Frontera, TACC staff may reassign users and projects to `/scratch2` or `/scratch3` depending on the resources required by their workflow.  The `/scratch3` file system employs twice as many OST's offering twice the available I/O bandwidth of `/scratch1` and `/scratch2`.  Frontera's three `$SCRATCH` file systems are further described below:
 
 File System | Characteristics	| Purpose |
 ---         | ---               | ---     |

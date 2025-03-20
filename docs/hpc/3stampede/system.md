@@ -114,5 +114,6 @@ File System | Quota | Key Features
 `$SCRATCH` | no quota<br>Overall capacity ~10 PB. | Not backed up.<br>Files are subject to purge if access time* is more than 10 days old. See TACC's [Scratch File System Purge Policy](#scratchpolicy) below.
 
 
+{% include 'include/corraltip.md' %}
 {% include 'include/scratchpolicy.md' %}
 

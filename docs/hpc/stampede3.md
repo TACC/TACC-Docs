@@ -1,5 +1,5 @@
 # Stampede3 User Guide 
-*Last update: March 12, 2025*
+*Last update: March 20, 2025*
 
 ## Notices { #notices }
 
@@ -135,11 +135,12 @@ File System | Quota | Key Features
 `$SCRATCH` | no quota<br>Overall capacity ~10 PB. | Not backed up.<br>Files are subject to purge if access time* is more than 10 days old. See TACC's [Scratch File System Purge Policy](#scratchpolicy) below.
 
 
+{% include 'include/corraltip.md' %}
 {% include 'include/scratchpolicy.md' %}
 
 ## Accessing the System { #access }
 
-Access to all TACC systems requires Multi-Factor Authentication (MFA). You can create an MFA pairing under "Manage Account" in the TACC Portal.  See [Multi-Factor Authentication at TACC](../../basics/mfa) for further information.
+Access to all TACC systems requires Multi-Factor Authentication (MFA). You can create an MFA pairing under "Manage Account" in the TACC Portal.  See [Multi-Factor Authentication at TACC][TACCMFA] for further information.
 
 !!! important
 	You will be able to log on to Stampede3 **only if** you have an allocation on Stampede3, otherwise your password will be rejected.  
@@ -155,8 +156,8 @@ Initiate an SSH session using the `ssh` command or the equivalent:
 
 The above command will rotate connections across all available login nodes and route your connection to the next available node. 
 
-!!! tip
-	Stampede3's login nodes are a *shared resource*. See TACC's [Good Conduct Policy[TACCGOODCONDUCT] for more information.
+!!! important
+	Stampede3's login nodes are a *shared resource*. See TACC's [Good Conduct Policy][TACCGOODCONDUCT] for more information.
 
 
 To connect to a specific login node, use its full domain name:
@@ -328,7 +329,9 @@ It's safe to execute module commands in job scripts. In fact, this is a good way
 {% include 'include/tacctips.md' %}
 ## Managing Your Files { #files }
 
-Stampede3 mounts three file systems that are shared across all nodes: the home, work, and scratch file systems. Stampede3's startup mechanisms define corresponding account-level environment variables `$HOME`, `$SCRATCH`, and `$WORK` that store the paths to directories that you own on each of these file systems. Consult the Stampede3 File Systems table for the basic characteristics of these file systems, File Operations: I/O Performance for advice on performance issues, and [Good Conduct][TACCGOODCONDUCT] for tips on file system etiquette.
+Stampede3 mounts three file systems that are shared across all nodes: the home, work, and scratch file systems. Stampede3's startup mechanisms define corresponding account-level environment variables `$HOME`, `$SCRATCH`, and `$WORK` that store the paths to directories that you own on each of these file systems. Consult the Stampede3 [File Systems](#table6) table for the basic characteristics of these file systems, [File Operations: I/O Performance](#programming-io) for advice on performance issues, and [Good Conduct][TACCGOODCONDUCT] for tips on file system etiquette.
+
+{% include 'include/spacetip.md' %}
 
 ### Navigating the Shared File Systems { #files-filesystems }
 
@@ -1943,4 +1946,5 @@ TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for 
 [TACCFRONTERAUG]: https://docs.tacc.utexas.edu/hpc/frontera/ "TACC Frontera User Guide"
 [TACCVISTAUG]: https://docs.tacc.utexas.edu/hpc/vista/ "TACC Vista User Guide"
 [TACCRANCHUG]: https://docs.tacc.utexas.edu/hpc/ranch/ "TACC Ranch User Guide"
+[TACCCORRALUG]: https://docs.tacc.utexas.edu/hpc/corral/ "TACC Corral User Guide"
 
