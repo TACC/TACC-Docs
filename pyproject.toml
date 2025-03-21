@@ -18,7 +18,7 @@ requires-python = ">=3.10,<3.13"
 dependencies = [
   "mkdocs-macros-plugin>=1.0.4",
   "mkdocs-exclude-search>=0.6.6",
-  "mkdocs-tacc @ git+https://github.com/TACC/mkdocs-tacc.git@fix/mjs-not-supported-by-default-in-nginx"
+  "mkdocs-tacc[all] (>=0.5.3,<0.6.0)",
 ]
 
 # FAQ: for Poetry 1.x compatibility (Poetry 2+ should use above format)
@@ -26,7 +26,6 @@ dependencies = [
 # mkdocs (implicitely installed via "mkdocs-tacc")
 mkdocs-macros-plugin = ">=1.0.4"
 mkdocs-exclude-search = "^0.6.6"
-mkdocs-tacc = {extras = ["all"], version = "^0.5.0"}
 
 [project.urls]
 homepage = "https://docs.tacc.utexas.edu"
