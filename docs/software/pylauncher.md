@@ -305,30 +305,6 @@ The default name "queuestate" can be overridden by giving an explicit name
 pylauncher.ClassicLauncher( "commandlines",queuestate="queustate5")
 ```
 
-### GPU Launcher
-
-PyLauncher can handle programs that need a GPU. Use:
-
-``` job-script
-pylauncher.GPULauncher("gpucommandlines")
-```
-
-
-!!! important
-	Set the Slurm parameter `--ntasks-per-node` to the number of GPUs per node.
-
-### Submit Launcher
-
-If your command lines take wildly different amounts of time a launcher job may be wasteful since it will leave cores (and nodes) unused while the longest running commandlines finish. One solution is the `SubmitLauncher` which runs outside of Slurm, and which submits Slurm jobs: For instance, the following command submits jobs to Frontera's [`small` queue](../../hpc/frontera/#table6), and makes sure that the maximum queue limit of 2 nodes is not exceeded:
-
-``` job-script
-launcher.SubmitLauncher\
-	("commandlines",
- 	"-A YourProject -N 1 -n 1 -p small -t 0:15:0", # slurm arguments
- 	nactive=2, # queue limit
-    )
-```
-
 ### Debugging PyLauncher Output
 
 Each PyLauncher run stores output to a unique automatically generated subdirectory based on the job ID.
