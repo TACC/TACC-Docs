@@ -171,6 +171,15 @@ The "parallellines" file consists of command-lines without the MPI job starter, 
 ./parallelprogram 2 10
 ```
 
+By default, these lines are prefixed with the `ibrun` specification. 
+If your lines need the `ibrun` in a different location, you can use the placeholder `PYL_MPIEXEC`  to indicate this:
+
+```file
+mkdir out1 && cd out1 && PYL_MPIEXEC ./parallelprogram 0 10
+mkdir out2 && cd out2 && PYL_MPIEXEC ./parallelprogram 2 10
+mkdir out3 && cd out3 && PYL_MPIEXEC ./parallelprogram 3 10
+```
+
 ### GPU launcher
 
 For GPU jobs, use the `GPULauncher`. This needs an extra parameter `gpuspernode` that is dependent on the cluster where you run this.
