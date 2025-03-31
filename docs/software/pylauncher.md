@@ -191,6 +191,34 @@ pylauncher.GPULauncher\
      )
 ```
 
+### Submit launcher
+
+The `SubmitLauncher` is the only launcher that should be invoked outside a SLURM job, since it generates SLURM jobs and submits them.
+This makes sense in rare cases where you have tasks of widely varying runtime, and you don't want 
+a regular launcher run where
+multiple nodes fall idle towards the end of the job, and thereby rack up SU's.
+
+This launcher has a second compulsory argument after the commandlines file: 
+a specification of the SLURM parameter, the way you would specify them to `idev` or `srun`.
+These indicate how each of your commandlines is run as a separate SLURM job.
+
+Here is a sample call:
+
+```
+TACCproject = # your allocation identifier
+queue = small # adjust for cluster
+maxjobs = 3   # queue limit
+workdir = "sublauncher_out"
+pylauncher.SubmitLauncher\
+    ("submitlines",
+     f"-A {TACCproject} -N 1 -n 1 -p {queue} -t 0:5:0", # slurm arguments
+     nactive=maxjobs,      # two jobs simultaneously
+     maxruntime=900,       # this test should not take too long
+     workdir=workdir,
+     debug="host+queue+exec+job+task", # lots of debug output
+     )
+```
+
 ## Sample Job Setup
 
 ### Slurm Job Script File on Frontera
