@@ -13,6 +13,6 @@ To make functional changes, [use extensions](https://tacc.github.io/mkdocs-tacc/
 ## How to Test Your Changes
 
 > [!NOTE]
->Testing is manual and requires using a command prompt.
+> Testing is manual and requires using a command prompt.
 
-You can [test with **PIP** or **Poetry** or **Docker** or **Make**](https://tacc.github.io/mkdocs-tacc/test/).
+You can [test with **PIP** or **Poetry** or **Docker** or **Make**](https://tacc.github.io/mkdocs-tacc/test/#test-locally).
