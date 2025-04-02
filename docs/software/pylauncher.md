@@ -171,6 +171,15 @@ The "parallellines" file consists of command-lines without the MPI job starter, 
 ./parallelprogram 2 10
 ```
 
+By default, these lines are prefixed with the `ibrun` specification. 
+If your lines need the `ibrun` in a different location, you can use the placeholder `PYL_MPIEXEC`  to indicate this:
+
+```file
+mkdir out1 && cd out1 && PYL_MPIEXEC ./parallelprogram 0 10
+mkdir out2 && cd out2 && PYL_MPIEXEC ./parallelprogram 2 10
+mkdir out3 && cd out3 && PYL_MPIEXEC ./parallelprogram 3 10
+```
+
 ### GPU launcher
 
 For GPU jobs, use the `GPULauncher`. This needs an extra parameter `gpuspernode` that is dependent on the cluster where you run this.
@@ -179,6 +188,34 @@ If you omit this parameter or set it too high, the launcher may start your tasks
 pylauncher.GPULauncher\
     ("gpucommandlines",
      gpuspernode=3 # adjust for the desired cluster
+     )
+```
+
+### Submit launcher
+
+The `SubmitLauncher` is the only launcher that should be invoked outside a SLURM job, since it generates SLURM jobs and submits them.
+This makes sense in rare cases where you have tasks of widely varying runtime, and you don't want 
+a regular launcher run where
+multiple nodes fall idle towards the end of the job, and thereby rack up SU's.
+
+This launcher has a second compulsory argument after the commandlines file: 
+a specification of the SLURM parameter, the way you would specify them to `idev` or `srun`.
+These indicate how each of your commandlines is run as a separate SLURM job.
+
+Here is a sample call:
+
+```
+TACCproject = # your allocation identifier
+queue = small # adjust for cluster
+maxjobs = 3   # queue limit
+workdir = "sublauncher_out"
+pylauncher.SubmitLauncher\
+    ("submitlines",
+     f"-A {TACCproject} -N 1 -n 1 -p {queue} -t 0:5:0", # slurm arguments
+     nactive=maxjobs,      # two jobs simultaneously
+     maxruntime=900,       # this test should not take too long
+     workdir=workdir,
+     debug="host+queue+exec+job+task", # lots of debug output
      )
 ```
 
