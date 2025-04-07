@@ -6,7 +6,10 @@
 
 
 # Managing your TACC Account
-*Last update: February 24, 2025*
+*Last update: April 07, 2025*
+
+!!! warning
+	Beginning immediately, all TACC account holders are required to have an active MFA pairing.  If you do not have an active MFA pairing your account will be deactivated.
 
 In order to access any TACC compute or storage resource you must maintain an "Active" TACC user account.  You may view your account status at any time on the [TACC Accounts Portal][TACCACCOUNTS] in the User Profile section. [Table 1.](#table1) below lists all possible conditions for your account.
 
