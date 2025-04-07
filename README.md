@@ -12,4 +12,4 @@ We automatically publish `main` branch commits. We manually release versions of 
 
 ## Developing
 
-We support [Poetry](https://python-poetry.org/), [Docker](https://www.docker.com/), [MkDocs](https://mkdocs.readthedocs.io/) and a customized theme. [Read more.](./DEVELOPING.md)
+We use [Poetry](https://python-poetry.org/), [Docker](https://www.docker.com/), [MkDocs](https://mkdocs.readthedocs.io/) and a customized theme. [Read more.](./DEVELOPING.md)

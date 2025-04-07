@@ -31,7 +31,7 @@ Always write a clear log message for your commits. One-line messages are fine fo
 
 [issues]: https://github.com/TACC/TACC-Docs/issues
 [proposals]: https://github.com/TACC/TACC-Docs/pulls
-[test]: https://tacc.github.io/mkdocs-tacc/test/
+[test]: https://tacc.github.io/mkdocs-tacc/test/#test-locally
 
 [fork]: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo
 [edit]: https://docs.github.com/en/repositories/working-with-files/managing-files/editing-files
