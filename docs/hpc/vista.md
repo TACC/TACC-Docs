@@ -41,7 +41,7 @@ Vista's compute system is divided into Grace-Grace and Grace-Hopper subsystems n
 
 The Grace-Grace (GG) subsystem, a purely CPU-based system, is housed in four racks, each containing 64 Grace-Grace (GG) nodes. Each GG node contains 144 processing cores. A GG node provides over 7 TFlops of double precision performance and up to 1 TiB/s of memory bandwidth. GG nodes connect via an InfiniBand 200 Gb/s fabric to a top rack shelf NVIDIA Quantum-2 MQM9790 NDR switch. In total, the subsystem contains sixty-four 200 Gb/s uplinks to the NDR rack shelf switch.
 
-The Grace-Hopper (GH) subsystem consists of nodes using the GH200 Grace-Hopper Superchip. Each GH node contains an NVIDIA H200 GPU  with 96 GiB of HBM3 memory and a Grace CPU with 120 GiB of LPDDR5X memory and 72 cores. A GH node provides 34 TFlops of FP64 performance and 1979 TFlops of FP16 performance for ML workflows on the H200 chip. The GH subsystem is housed in 19 racks, each containing 32 Grace-Hopper (GH) nodes. These nodes connect via an NVIDIA InfiniBand 400 Gb/s fabric to the NVIDIA Quantum-2 MQM9790 NDR switch having 64 ports of 400Gb/s InfiniBand per port. There are thirty-two 400 Gb/s uplinks to the NDR rack shelf switch. The GH nodes have twice the network bandwidth of the GG nodes.
+The Grace-Hopper (GH) subsystem, on the other  hand,  consists of nodes using the GH200 Grace-Hopper Superchip. Each GH node contains an NVIDIA H200 GPU  with 96 GiB of HBM3 memory and a Grace CPU with 120 GiB of LPDDR5X memory and 72 cores. A GH node provides 34 TFlops of FP64 performance and 1979 TFlops of FP16 performance for ML workflows on the H200 chip. The GH subsystem is housed in 19 racks, each containing 32 Grace-Hopper (GH) nodes. These nodes connect via an NVIDIA InfiniBand 400 Gb/s fabric to the NVIDIA Quantum-2 MQM9790 NDR switch having 64 ports of 400Gb/s InfiniBand per port. There are thirty-two 400 Gb/s uplinks to the NDR rack shelf switch. The GH nodes have twice the network bandwidth of the GG nodes.
 
 Each top rack shelf switch in all racks connects to sixteen core switches via dual-400G cables. In total, Vista contains 256 GG nodes and 600 GH nodes.   Both sets of nodes are connected with NDR fabric to two local file systems, `$HOME` and `$SCRATCH`. These are NFS-based flash file systems from VAST Data. The `$HOME` file system is designed for a small permanent storage area and is quota'd and backed up daily, while the `$SCRATCH` file system is designed for short term use from many nodes and is not quota'd but may be purged as needed. These file systems are connected to the management switch, which in turn is fully connected to the core network switches. The `$WORK` file system is a global Lustre file system connected to all of the TACC HPC resources. It is connected to Vista via LNeT routers. 
 
@@ -839,44 +839,59 @@ TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for 
 * [NVIDIA Performance Libraries Documentation](https://docs.nvidia.com/nvpl/)
 
 
+# Help Desk, Creating or Submitting a ticket - same URL
 [CREATETICKET]: https://tacc.utexas.edu/about/help/ "Create Support Ticket"
-[DOWNLOADCYBERDUCK]: https://cyberduck.io/download/ "Download Cyberduck"
-[HELPDESK]: https://tacc.utexas.edu/about/help/ "Help Desk"
 [SUBMITTICKET]: https://tacc.utexas.edu/about/help/ "Submit Support Ticket"
-[TACCACCESSCONTROLLISTS]: https://docs.tacc.utexas.edu/tutorials/acls "Access Control Lists"
-[TACCACCOUNTS]: https://accounts.tacc.utexas.edu "TACC Accounts Portal"
-[TACCACLS]: https://docs.tacc.utexas.edu/tutorials/acls "Manage Permissions with Access Control Lists"
-[TACCALLOCATIONS]: https://tacc.utexas.edu/use-tacc/allocations/ "TACC Allocations"
-[TACCANALYSISPORTAL]: http://tap.tacc.utexas.edu "TACC Analysis Portal"
-[TACCBASHQUICKSTART]: https://docs.tacc.utexas.edu/tutorials/bashstartup "Bash Quick Start Guide"
-[TACCDASHBOARD]: https://tacc.utexas.edu/portal/dashboard "TACC Dashboard"
-[TACCDOCS]: https://docs.tacc.utexas.edu "TACC Documentation Portal"
+[HELPDESK]: https://tacc.utexas.edu/about/help/ "Help Desk"
+
+
+# Docs - Basics
 [TACCGOODCONDUCT]: https://docs.tacc.utexas.edu/basics/conduct/ "TACC Good Conduct Guide"
+[TACCSOFTWARE]: https://docs.tacc.utexas.edu/basics/software/ "Software at TACC"
+
+# Docs - Software & Tutorials
+[TACCDOCS]: https://docs.tacc.utexas.edu "TACC Documentation Portal"
+[TACCACCESSCONTROLLISTS]: https://docs.tacc.utexas.edu/tutorials/acls "Access Control Lists"
+[TACCACLS]: https://docs.tacc.utexas.edu/tutorials/acls "Manage Permissions with Access Control Lists"
+[TACCBASHQUICKSTART]: https://docs.tacc.utexas.edu/tutorials/bashstartup "Bash Quick Start Guide"
 [TACCIDEV]: https://docs.tacc.utexas.edu/software/idev "idev at TACC"
 [TACCLMOD]: https://lmod.readthedocs.io/en/latest/ "Lmod"
-[TACCLOGINSUPPORT]: https://accounts.tacc.utexas.edu/login_support "TACC Accounts Login Support Tool"
 [TACCMANAGINGACCOUNT]: https://docs.tacc.utexas.edu/basics/accounts "Managing your TACC Account"
+[TACCMANAGINGIO]: https://docs.tacc.utexas.edu/tutorials/managingio "Managing I/O at TACC""
 [TACCMANAGINGPERMISSIONS]: https://docs.tacc.utexas.edu/tutorials/permissions "Unix Group Permissions and Environment"
 [TACCMFA]: https://docs.tacc.utexas.edu/basics/mfa "Multi-Factor Authentication at TACC"
-[TACCPORTALLOGIN]: https://tacc.utexas.edu/portal/login "TACC Portal login"
-[TACCPROJECTS]: https://tacc.utexas.edu/portal/projects "Projects & Allocations"
 [TACCPYLAUNCHER]: https://docs.tacc.utexas.edu/software/pylauncher "PyLauncher at TACC"
+[TACCPARAVIEW]: https://docs.tacc.utexas.edu/software/paraview "Paraview at TACC"
 [TACCREMOTEDESKTOPACCESS]: https://docs.tacc.utexas.edu/tutorials/remotedesktopaccess "TACC Remote Desktop Access"
 [TACCSHARINGPROJECTFILES]: https://docs.tacc.utexas.edu/tutorials/sharingprojectfiles "Sharing Project Files"
-[TACCSOFTWARELIST]: https://tacc.utexas.edu/use-tacc/software-list/ "Software List""
-[TACCSOFTWARE]: https://docs.tacc.utexas.edu/basics/software/ "Software at TACC"
-[TACCSUBSCRIBE]: https://accounts.tacc.utexas.edu/user_updates "Subscribe to News"
-[TACCUSAGEPOLICY]: https://tacc.utexas.edu/use-tacc/user-policies/ "TACC Usage Policy"
-[TACCUSERPORTAL]: https://tacc.utexas.edu/portal/login "TACC User Portal login"
-[TACCUSERPROFILE]: https://accounts.tacc.utexas.edu/profile "TACC Accounts User Profile"
-[TACCPARAVIEW]: https://docs.tacc.utexas.edu/software/paraview "Paraview at TACC"
-[TACCMANAGINGIO]: https://docs.tacc.utexas.edu/tutorials/managingio "Managing I/O at TACC""
-[TACCSTOCKYARD]: https://tacc.utexas.edu/systems/stockyard  "Stockyard File System"
 
+# TACC User Portal
+[TACCUSERPORTAL]: https://tacc.utexas.edu/portal/login "TACC User Portal login"
+[TACCDASHBOARD]: https://tacc.utexas.edu/portal/dashboard "TACC Dashboard"
+[TACCPROJECTS]: https://tacc.utexas.edu/portal/projects "Projects & Allocations"
+
+# TACC Accounts Portal
+[TACCACCOUNTS]: https://accounts.tacc.utexas.edu "TACC Accounts Portal"
+[TACCUSERPROFILE]: https://accounts.tacc.utexas.edu/profile "TACC Accounts User Profile"
+[TACCSUBSCRIBE]: https://accounts.tacc.utexas.edu/user_updates "Subscribe to News"
+[TACCLOGINSUPPORT]: https://accounts.tacc.utexas.edu/login_support "TACC Accounts Login Support Tool"
+
+# Usage Policies
+[TACCALLOCATIONS]: https://tacc.utexas.edu/use-tacc/allocations/ "TACC Allocations"
+[TACCAUP]: https://accounts.tacc.utexas.edu/aup "TACC Acceptable Use Policy"
+[TACCCITE]: https://tacc.utexas.edu/about/citing-tacc/ "Citing TACC"
+
+# TACC HPC Resource Guide URLS
 [TACCSTAMPEDE3UG]: https://docs.tacc.utexas.edu/hpc/stampede3/ "TACC Stampede3 User Guide"
 [TACCLONESTAR6UG]: https://docs.tacc.utexas.edu/hpc/lonestar6/ "TACC Lonestar6 User Guide"
 [TACCFRONTERAUG]: https://docs.tacc.utexas.edu/hpc/frontera/ "TACC Frontera User Guide"
 [TACCVISTAUG]: https://docs.tacc.utexas.edu/hpc/vista/ "TACC Vista User Guide"
 [TACCRANCHUG]: https://docs.tacc.utexas.edu/hpc/ranch/ "TACC Ranch User Guide"
 [TACCCORRALUG]: https://docs.tacc.utexas.edu/hpc/corral/ "TACC Corral User Guide"
+[TACCSTOCKYARD]: https://tacc.utexas.edu/systems/stockyard  "Stockyard File System"
+[TACCANALYSISPORTAL]: http://tap.tacc.utexas.edu "TACC Analysis Portal"
+
+# External
+[DOWNLOADCYBERDUCK]: https://cyberduck.io/download/ "Download Cyberduck"
+
 

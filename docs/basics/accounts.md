@@ -97,7 +97,7 @@ Active                     | All is well.  Active account holders may log on to 
 Pending Email Confirmation | You haven't confirmed your email account.  If you haven't received the confirmation email, check your spam or junk folder and any filters. Add "`no-reply@tacc.utexas.edu`" to your safe senders list, then request the activation link again.  
 Pending                    | Your account is under administrative review. 
 Deactivated                | Reactivate your account by logging into the [TACC Accounts Portal][TACCACCOUNTS] and requesting an activation link.  **You will have to re-pair MFA once your account is reactivated**.
-Suspended                  | If your account is suspended you will be prohibited from logging into the TACC User Portal and as well as any TACC HPC resources.  Please [submit a help desk ticket](SUBMITTICKET) and a member of our User Services team will respond. Account suspension may result if: <li>your HPC jobs are violating [Good Conduct Policies][TACCGOODCONDUCT] or causing harm to our systems <li>your account usage is in violation of TACC's [Acceptable Use Policy][TACCUSAGEPOLICY].     
+Suspended                  | If your account is suspended you will be prohibited from logging into the TACC User Portal and as well as any TACC HPC resources.  Please [submit a help desk ticket](SUBMITTICKET) and a member of our User Services team will respond. Account suspension may result if: <li>your HPC jobs are violating [Good Conduct Policies][TACCGOODCONDUCT] or causing harm to our systems <li>your account usage is in violation of TACC's [Acceptable Use Policy][TACCAUP].     
 
 
 ## TACC Portals 
@@ -153,7 +153,7 @@ The [TACC User Portal][TACCUSERPORTAL] provides the following services:
 ## References
 
 * [TACC Login Support Tool][TACCLOGINSUPPORT]
-* [TACC Acceptable Use Policy][TACCUSAGEPOLICY]
+* [TACC Acceptable Use Policy][TACCAUP]
 * [Good Conduct on HPC Resources][TACCGOODCONDUCT]
 * [Multi-Factor Authentication at TACC][TACCMFA]
 

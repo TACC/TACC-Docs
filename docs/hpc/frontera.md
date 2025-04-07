@@ -2253,7 +2253,7 @@ TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for 
 * [Sharing Project Files on TACC Systems][TACCSHARINGPROJECTFILES]
 * [`idev` documentation][TACCIDEV]
 * [Lmod's online documentation][TACCLMOD]
-* [TACC Acceptable Use Policy][TACCUSAGEPOLICY]
+* [TACC Acceptable Use Policy][TACCAUP]
 
 
 {% include 'aliases.md' %}

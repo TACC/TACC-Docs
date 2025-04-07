@@ -45,7 +45,7 @@ The following figures demonstrate how to launch MATLAB inside a DCV session in t
 	<figure id="figure2"> <img alt="" src="../imgs/matlab-dcv-2.png" width="600"><figcaption></figcaption></figure>
 
 !!! important
-	Do NOT launch MATLAB on the login nodes. This may fail and, more importantly, it will prevent other users from doing their work, as your execution will take up too many cycles on the shared login node. Using MATLAB on the login nodes is considered system abuse, and will be treated as such.  See TACC [Usage Policies][TACCUSAGEPOLICY].
+	Do NOT launch MATLAB on the login nodes. This may fail and, more importantly, it will prevent other users from doing their work, as your execution will take up too many cycles on the shared login node. Using MATLAB on the login nodes is considered system abuse, and will be treated as such.  See TACC's [Acceptable Use Policy][TACCAUP].
 
 ## Batch Mode { #batch }
 
