@@ -9,15 +9,15 @@ AlphaFold3 is Google Deepmind's latest deep learning model for predicting the st
 ## Installations at TACC { #installations } 
 
 !!! important
-    To run AlphaFold3 on TACC Systems, you *must* obtain the model parameters directly from Google by completing <a href="https://docs.google.com/forms/d/e/1FAIpQLSfWZAgo1aYk0O4MuAXZj8xRQ8DafeFJnldNOnh_13qAx2ceZw/viewform">this form</a>.     
+    To run AlphaFold3 on TACC Systems, you *must* obtain the model parameters directly from Google by completing [this form](https://docs.google.com/forms/d/e/1FAIpQLSfWZAgo1aYk0O4MuAXZj8xRQ8DafeFJnldNOnh_13qAx2ceZw/viewform).     
 
 	See Google's [AlphaFold 3 Model Parameters Terms of Use](https://github.com/google-deepmind/alphafold3/blob/main/WEIGHTS_TERMS_OF_USE.md)
     
 ### Table 1. Installations at TACC { #table1 }
 
-System | What's Available
+HPC Resource | Versions
 -- | --
-Lonestar6 | AlphaFold3: v3.0.1<br> Data: `/scratch/tacc/apps/bio/alphafold3/3.0.1/data`<br>Examples: `/scratch/tacc/apps/bio/alphafold3/3.0.1/examples`<br> Module: `/scratch/tacc/apps/bio/alphafold3/modulefiles`
+Lonestar6 | AlphaFold3: v3.0.1<br>**Data**: `/scratch/tacc/apps/bio/alphafold3/3.0.1/data`<br>**Examples**: `/scratch/tacc/apps/bio/alphafold3/3.0.1/examples`<br> Module: `/scratch/tacc/apps/bio/alphafold3/modulefiles`
 Frontera | AlphaFold3: v3.0.1<br> *Coming soon*
 Stampede3 | AlphaFold3: v3.0.1<br> *Coming soon*
 Vista | AlphaFold3: v3.0.1<br> *Coming soon*
@@ -41,7 +41,7 @@ After downloading, you must **manually place the model parameters** in the appro
 
 ### Directory Structure
 
-We highly recommend running AlphaFold3 from your ``$SCRATCH`` directory A typical working directory may look like this:
+We highly recommend running AlphaFold3 from your `$SCRATCH` directory A typical working directory may look like this:
 ```syntax
 alphafold3_project/
 ├── input/
@@ -52,7 +52,7 @@ alphafold3_project/
 
 ### Input Preparation
 
-AlphaFold3 expects a single ``.json`` input file describing the molecular system to be predicted. The input format is detailed in the [official DeepMind documentation](https://github.com/google-deepmind/alphafold3/blob/main/docs/input.md). This input file should be uploaded to your ``$WORK`` or ``$SCRATCH`` (recommended) space. Sample ``.json`` input files are provided in the machine-specific "Examples" path listed in [Table 1.](#table1) above.
+AlphaFold3 expects a single `.json` input file describing the molecular system to be predicted. The input format is detailed in the [official DeepMind documentation](https://github.com/google-deepmind/alphafold3/blob/main/docs/input.md). This input file should be uploaded to your `$WORK` or `$SCRATCH` (recommended) space. Sample `.json` input files are provided in the machine-specific "Examples" path listed in [Table 1.](#table1) above.
 
 A valid protein chain may look like:
 ```json
@@ -76,7 +76,7 @@ A valid protein chain may look like:
 
 Next, prepare a batch job submission script for running AlphaFold3. *Model inference must be run on a GPU*. See the [AlphaFold3 performance documentation](https://github.com/google-deepmind/alphafold3/blob/main/docs/performance.md) for more information on executing AlphaFold3 jobs in stages to optimize resource utilization. 
 
-Templates for batch job submission scripts are provided within the "Examples" paths listed in [Table 1.](#table1) above. The example templates need to be customized before they can be used. Copy the desired tample to your ``$WORK`` or ``$SCRATCH`` space along with the input ``.json`` file. After necessary customizations, a batch script for running AlphaFold3 on Lonestar6 may look like this:
+Templates for batch job submission scripts are provided within the "Examples" paths listed in [Table 1.](#table1) above. The example templates need to be customized before they can be used. Copy the desired tample to your `$WORK` or `$SCRATCH` space along with the input `.json` file. After necessary customizations, a batch script for running AlphaFold3 on Lonestar6 may look like this:
 
 ```job-script
 #!/bin/bash
@@ -114,7 +114,8 @@ apptainer exec \
      --db_dir=/root/public_databases \                                  
      --output_dir=/root/af_output                                       
 ```
-In the batch script, make sure to specify the partition (queue) (``#SBATCH -p``), node / wallclock limits, and allocation name (``#SBATCH -A``) appropriate to the machine you are running on. Also, make sure the path shown in the ``module use`` line matches the machine-specific "Module" path listed in [Table 1.](#table1) above.
+
+In the batch script, make sure to specify the partition (queue) (`#SBATCH -p`), node / wallclock limits, and allocation name (`#SBATCH -A`) appropriate to the machine you are running on. Also, make sure the path shown in the `module use` line matches the machine-specific "Module" path listed in [Table 1.](#table1) above.
 
 When preparing a batch job script to run AlphaFold3, users must set several environment variables to point to their input, output, and model directories. The table below describes each variable and what users need to change. 
 
@@ -122,20 +123,20 @@ When preparing a batch job script to run AlphaFold3, users must set several envi
 
 Variable | What it does | User Action Required?
 -- | -- | --
-``AF3_INPUT_DIR`` | Directory containing the ``input.json`` file | Set this to the location of your input files (e.g., ``$SCRATCH/input``)
-``AF3_OUTPUT_DIR`` | Directory where output will be written | Set this to your desired output path (e.g., ``$SCRATCH/output``)
-``AF3_MODEL_PARAMETERS_DIR`` | Directory where you manually downloaded and extracted the AlphaFold3 model weights | Set this to where you stored the models (e.g., ``$WORK/af3_weights``)
-``TACC_ALPHAFOLD3_DATABASES_DIR`` | Location of shared AlphaFold3 database files on TACC systems | **Do not modify** – this is pre-set in the module
-``TACC_ALPHAFOLD3_IMAGE`` | Path to the AlphaFold3 container image | **Do not modify** – this is pre-set in the module
-``TACC_ALPHAFOLD3_CODE_DIR`` | Location of AlphaFold3 source code inside the container | **Do not modify** – this is pre-set in the module
+`AF3_INPUT_DIR` | Directory containing the `input.json` file | Location of your input files (e.g., `$SCRATCH/input`)
+`AF3_OUTPUT_DIR` | Directory where output will be written | Desired output path (e.g., `$SCRATCH/output`)
+`AF3_MODEL_PARAMETERS_DIR` | Directory where you manually downloaded and extracted the AlphaFold3 model weights | Set this to where you stored the models (e.g., `$WORK/af3_weights`)
+`TACC_ALPHAFOLD3_DATABASES_DIR` | Location of shared AlphaFold3 database files on TACC systems | **Do not modify** 
+`TACC_ALPHAFOLD3_IMAGE` | Path to the AlphaFold3 container image | **Do not modify** 
+`TACC_ALPHAFOLD3_CODE_DIR` | Location of AlphaFold3 source code inside the container | **Do not modify** 
 
-Once the input ``.json`` and customized batch script are prepared, submit to the job queue with:
+Once the input `.json` and customized batch script are prepared, submit to the job queue with:
 
-``login1$ sbatch <job_script>``
+`login1$ sbatch <job_script>`
 
 e.g.:
 
-``login1$ sbatch AF3_protein.slurm``
+`login1$ sbatch AF3_protein.slurm`
 
 We are currently benchmarking AlphaFold3 on TACC systems. Refer to the [AlphaFold3 performance documentation](https://github.com/google-deepmind/alphafold3/blob/main/docs/performance.md#running-the-pipeline-in-stages) for runtime estimates based on token size and available hardware. Refer to the [AlphaFold3 output Documentation](https://github.com/google-deepmind/alphafold3/blob/main/docs/output.md) for a description of the expected output files. 
 
