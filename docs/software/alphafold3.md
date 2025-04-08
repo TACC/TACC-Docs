@@ -1,5 +1,5 @@
 # AlphaFold3 at TACC
-*Last update: March 26, 2025*
+*Last update: April 8, 2025*
 
 
 <table cellpadding="5" cellspacing="5"><tr>
@@ -9,7 +9,8 @@ AlphaFold3 is Google Deepmind's latest deep learning model for predicting the st
 ## Installations at TACC { #installations } 
 
 !!! important
-    To run AlphaFold3 on TACC Systems, you *must* obtain the model parameters directly from Google by completing <a href="https://docs.google.com/forms/d/e/1FAIpQLSfWZAgo1aYk0O4MuAXZj8xRQ8DafeFJnldNOnh_13qAx2ceZw/viewform"> this form.     
+    To run AlphaFold3 on TACC Systems, you *must* obtain the model parameters directly from Google by completing <a href="https://docs.google.com/forms/d/e/1FAIpQLSfWZAgo1aYk0O4MuAXZj8xRQ8DafeFJnldNOnh_13qAx2ceZw/viewform">this form</a>.     
+
 	See Google's [AlphaFold 3 Model Parameters Terms of Use](https://github.com/google-deepmind/alphafold3/blob/main/WEIGHTS_TERMS_OF_USE.md)
     
 ### Table 1. Installations at TACC { #table1 }
@@ -23,7 +24,7 @@ Vista | AlphaFold3: v3.0.1<br> *Coming soon*
 
 ## Access
 
-To run AlphaFold3, users must first obtain the model parameters **directly from Google DeepMind**. This is a required of all AlphaFold3 users due to licensing restrictions. To obtain the model parameters:
+Due to AlphaFold's licensing restrictions, users must obtain the model parameters **directly from Google DeepMind**. To obtain the model parameters:
 
 1. Visit the following form: [AlphaFold3 Model Request Form](https://docs.google.com/forms/d/e/1FAIpQLSfWZAgo1aYk0O4MuAXZj8xRQ8DafeFJnldNOnh_13qAx2ceZw/viewform)
 2. Submit the request using an institutional email address.
@@ -31,7 +32,7 @@ To run AlphaFold3, users must first obtain the model parameters **directly from 
 
 After downloading, you must **manually place the model parameters** in the appropriate directory in your work environment.
 
-> **Note:** TACC cannot distribute the AlphaFold3 model weights.
+**Note:** TACC cannot distribute the AlphaFold3 model weights.
 
 ## Running AlphaFold3  { #running }
 
