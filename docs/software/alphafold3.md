@@ -106,9 +106,9 @@ apptainer exec \
      --bind $AF3_INPUT_DIR:/root/af_input \                             
      --bind $AF3_OUTPUT_DIR:/root/af_output \                           
      --bind $AF3_MODEL_PARAMETERS_DIR:/root/models \                   
-     --bind $TACC_ALPHAFOLD3_DATABASES_DIR:/root/public_databases \     
-     $TACC_ALPHAFOLD3_IMAGE \                                           
-     python ${TACC_ALPHAFOLD3_CODE_DIR}/run_alphafold.py \              
+     --bind $AF3_DATABASES_DIR:/root/public_databases \     
+     $AF3_IMAGE \                                           
+     python ${AF3_CODE_DIR}/run_alphafold.py \              
      --json_path=/root/af_input/input.json \                   # MODIFY name of input.json
      --model_dir=/root/models \                                         
      --db_dir=/root/public_databases \                                  
@@ -126,9 +126,9 @@ Variable | What it does | User Action Required?
 `AF3_INPUT_DIR` | Directory containing the `input.json` file | Location of your input files (e.g., `$SCRATCH/input`)
 `AF3_OUTPUT_DIR` | Directory where output will be written | Desired output path (e.g., `$SCRATCH/output`)
 `AF3_MODEL_PARAMETERS_DIR` | Directory where you manually downloaded and extracted the AlphaFold3 model weights | Set this to where you stored the models (e.g., `$WORK/af3_weights`)
-`TACC_ALPHAFOLD3_DATABASES_DIR` | Location of shared AlphaFold3 database files on TACC systems | **Do not modify** 
-`TACC_ALPHAFOLD3_IMAGE` | Path to the AlphaFold3 container image | **Do not modify** 
-`TACC_ALPHAFOLD3_CODE_DIR` | Location of AlphaFold3 source code inside the container | **Do not modify** 
+`AF3_DATABASES_DIR` | Location of shared AlphaFold3 database files on TACC systems | **Do not modify** 
+`AF3_IMAGE` | Path to the AlphaFold3 container image | **Do not modify** 
+`AF3_CODE_DIR` | Location of AlphaFold3 source code inside the container | **Do not modify** 
 
 Once the input `.json` and customized batch script are prepared, submit to the job queue with:
 
