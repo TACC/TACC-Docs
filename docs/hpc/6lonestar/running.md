@@ -19,8 +19,8 @@ The jobs in this queue consume 1/7 the resources of a full node.  Jobs are charg
     Use TACC's `qlimits` utility to see the latest queue configurations.
 
 <!--
-01/09/2025
-login1.ls6(456)$ qlimits
+04/09/2025
+login1.ls6(474)$ qlimits
 Current queue/partition limits on TACC's ls6 system:
 
 Name             MinNode  MaxNode     MaxWall  MaxNodePU  MaxJobsPU   MaxSubmit
@@ -34,6 +34,7 @@ grace-serial           1       64  3-00:00:00         75         20         200
 large                 65      256  2-00:00:00        256          1          20
 normal                 1       64  2-00:00:00         75         20         200
 vm-small               1        1  2-00:00:00          4          4          50
+login1.ls6(475)$
 -->
 
 

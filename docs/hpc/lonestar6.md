@@ -753,8 +753,8 @@ The jobs in this queue consume 1/7 the resources of a full node.  Jobs are charg
     Use TACC's `qlimits` utility to see the latest queue configurations.
 
 <!--
-01/09/2025
-login1.ls6(456)$ qlimits
+04/09/2025
+login1.ls6(474)$ qlimits
 Current queue/partition limits on TACC's ls6 system:
 
 Name             MinNode  MaxNode     MaxWall  MaxNodePU  MaxJobsPU   MaxSubmit
@@ -768,6 +768,7 @@ grace-serial           1       64  3-00:00:00         75         20         200
 large                 65      256  2-00:00:00        256          1          20
 normal                 1       64  2-00:00:00         75         20         200
 vm-small               1        1  2-00:00:00          4          4          50
+login1.ls6(475)$
 -->
 
 
@@ -1423,17 +1424,14 @@ TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for 
 * **Be patient.** It may take a business day for a consultant to get back to you, especially if your issue is complex. It might take an exchange or two before you and the consultant are on the same page. If the admins disable your account, it's not punitive. When the file system is in danger of crashing, or a login node hangs, they don't have time to notify you before taking action.
 
 {% include 'aliases.md' %}
-# Help Desk, Creating or Submitting a ticket - same URL
 [CREATETICKET]: https://tacc.utexas.edu/about/help/ "Create Support Ticket"
 [SUBMITTICKET]: https://tacc.utexas.edu/about/help/ "Submit Support Ticket"
 [HELPDESK]: https://tacc.utexas.edu/about/help/ "Help Desk"
 
 
-# Docs - Basics
 [TACCGOODCONDUCT]: https://docs.tacc.utexas.edu/basics/conduct/ "TACC Good Conduct Guide"
 [TACCSOFTWARE]: https://docs.tacc.utexas.edu/basics/software/ "Software at TACC"
 
-# Docs - Software & Tutorials
 [TACCDOCS]: https://docs.tacc.utexas.edu "TACC Documentation Portal"
 [TACCACCESSCONTROLLISTS]: https://docs.tacc.utexas.edu/tutorials/acls "Access Control Lists"
 [TACCACLS]: https://docs.tacc.utexas.edu/tutorials/acls "Manage Permissions with Access Control Lists"
@@ -1449,23 +1447,19 @@ TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for 
 [TACCREMOTEDESKTOPACCESS]: https://docs.tacc.utexas.edu/tutorials/remotedesktopaccess "TACC Remote Desktop Access"
 [TACCSHARINGPROJECTFILES]: https://docs.tacc.utexas.edu/tutorials/sharingprojectfiles "Sharing Project Files"
 
-# TACC User Portal
 [TACCUSERPORTAL]: https://tacc.utexas.edu/portal/login "TACC User Portal login"
 [TACCDASHBOARD]: https://tacc.utexas.edu/portal/dashboard "TACC Dashboard"
 [TACCPROJECTS]: https://tacc.utexas.edu/portal/projects "Projects & Allocations"
 
-# TACC Accounts Portal
 [TACCACCOUNTS]: https://accounts.tacc.utexas.edu "TACC Accounts Portal"
 [TACCUSERPROFILE]: https://accounts.tacc.utexas.edu/profile "TACC Accounts User Profile"
 [TACCSUBSCRIBE]: https://accounts.tacc.utexas.edu/user_updates "Subscribe to News"
 [TACCLOGINSUPPORT]: https://accounts.tacc.utexas.edu/login_support "TACC Accounts Login Support Tool"
 
-# Usage Policies
 [TACCALLOCATIONS]: https://tacc.utexas.edu/use-tacc/allocations/ "TACC Allocations"
 [TACCAUP]: https://accounts.tacc.utexas.edu/aup "TACC Acceptable Use Policy"
 [TACCCITE]: https://tacc.utexas.edu/about/citing-tacc/ "Citing TACC"
 
-# TACC HPC Resource Guide URLS
 [TACCSTAMPEDE3UG]: https://docs.tacc.utexas.edu/hpc/stampede3/ "TACC Stampede3 User Guide"
 [TACCLONESTAR6UG]: https://docs.tacc.utexas.edu/hpc/lonestar6/ "TACC Lonestar6 User Guide"
 [TACCFRONTERAUG]: https://docs.tacc.utexas.edu/hpc/frontera/ "TACC Frontera User Guide"
@@ -1475,7 +1469,6 @@ TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for 
 [TACCSTOCKYARD]: https://tacc.utexas.edu/systems/stockyard  "Stockyard File System"
 [TACCANALYSISPORTAL]: http://tap.tacc.utexas.edu "TACC Analysis Portal"
 
-# External
 [DOWNLOADCYBERDUCK]: https://cyberduck.io/download/ "Download Cyberduck"
 
 

@@ -12,7 +12,10 @@ Stampede3's job scheduler is the Slurm Workload Manager. Slurm commands enable y
     Use TACC's `qlimits` utility to see the latest queue configurations.
 
 <!-- 
-02/19/2025
+04/09/2025
+[slindsey@login2 ~]$ <1001> qlimits
+Current queue/partition limits on TACC's stampede3 system:
+
 Name             MinNode  MaxNode     MaxWall  MaxNodePU  MaxJobsPU   MaxSubmit
 icx                    1       32  2-00:00:00         48         12          20
 nvdimm                 1        1  2-00:00:00          1          1           3
@@ -20,6 +23,7 @@ pvc                    1        4  2-00:00:00          4          2           4
 skx                    1      256  2-00:00:00        384         40          60
 skx-dev                1       16    02:00:00         16          1           3
 spr                    1       32  2-00:00:00        180         24          36
+[slindsey@login2 ~]$ <1002>
 -->
 
 #### Table 8. Production Queues { #table8 }

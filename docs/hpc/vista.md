@@ -132,8 +132,8 @@ Vista's job scheduler is the Slurm Workload Manager. Slurm commands enable you t
     Use TACC's `qlimits` utility to see the latest queue configurations.
 
 <!--
-01/09/2025
-login1.vista(24)$ qlimits
+04/09/2025
+login1.vista(35)$ qlimits
 Current queue/partition limits on TACC's vista system:
 
 Name             MinNode  MaxNode     MaxWall  MaxNodePU  MaxJobsPU   MaxSubmit
@@ -839,17 +839,14 @@ TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for 
 * [NVIDIA Performance Libraries Documentation](https://docs.nvidia.com/nvpl/)
 
 
-# Help Desk, Creating or Submitting a ticket - same URL
 [CREATETICKET]: https://tacc.utexas.edu/about/help/ "Create Support Ticket"
 [SUBMITTICKET]: https://tacc.utexas.edu/about/help/ "Submit Support Ticket"
 [HELPDESK]: https://tacc.utexas.edu/about/help/ "Help Desk"
 
 
-# Docs - Basics
 [TACCGOODCONDUCT]: https://docs.tacc.utexas.edu/basics/conduct/ "TACC Good Conduct Guide"
 [TACCSOFTWARE]: https://docs.tacc.utexas.edu/basics/software/ "Software at TACC"
 
-# Docs - Software & Tutorials
 [TACCDOCS]: https://docs.tacc.utexas.edu "TACC Documentation Portal"
 [TACCACCESSCONTROLLISTS]: https://docs.tacc.utexas.edu/tutorials/acls "Access Control Lists"
 [TACCACLS]: https://docs.tacc.utexas.edu/tutorials/acls "Manage Permissions with Access Control Lists"
@@ -865,23 +862,19 @@ TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for 
 [TACCREMOTEDESKTOPACCESS]: https://docs.tacc.utexas.edu/tutorials/remotedesktopaccess "TACC Remote Desktop Access"
 [TACCSHARINGPROJECTFILES]: https://docs.tacc.utexas.edu/tutorials/sharingprojectfiles "Sharing Project Files"
 
-# TACC User Portal
 [TACCUSERPORTAL]: https://tacc.utexas.edu/portal/login "TACC User Portal login"
 [TACCDASHBOARD]: https://tacc.utexas.edu/portal/dashboard "TACC Dashboard"
 [TACCPROJECTS]: https://tacc.utexas.edu/portal/projects "Projects & Allocations"
 
-# TACC Accounts Portal
 [TACCACCOUNTS]: https://accounts.tacc.utexas.edu "TACC Accounts Portal"
 [TACCUSERPROFILE]: https://accounts.tacc.utexas.edu/profile "TACC Accounts User Profile"
 [TACCSUBSCRIBE]: https://accounts.tacc.utexas.edu/user_updates "Subscribe to News"
 [TACCLOGINSUPPORT]: https://accounts.tacc.utexas.edu/login_support "TACC Accounts Login Support Tool"
 
-# Usage Policies
 [TACCALLOCATIONS]: https://tacc.utexas.edu/use-tacc/allocations/ "TACC Allocations"
 [TACCAUP]: https://accounts.tacc.utexas.edu/aup "TACC Acceptable Use Policy"
 [TACCCITE]: https://tacc.utexas.edu/about/citing-tacc/ "Citing TACC"
 
-# TACC HPC Resource Guide URLS
 [TACCSTAMPEDE3UG]: https://docs.tacc.utexas.edu/hpc/stampede3/ "TACC Stampede3 User Guide"
 [TACCLONESTAR6UG]: https://docs.tacc.utexas.edu/hpc/lonestar6/ "TACC Lonestar6 User Guide"
 [TACCFRONTERAUG]: https://docs.tacc.utexas.edu/hpc/frontera/ "TACC Frontera User Guide"
@@ -891,7 +884,6 @@ TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for 
 [TACCSTOCKYARD]: https://tacc.utexas.edu/systems/stockyard  "Stockyard File System"
 [TACCANALYSISPORTAL]: http://tap.tacc.utexas.edu "TACC Analysis Portal"
 
-# External
 [DOWNLOADCYBERDUCK]: https://cyberduck.io/download/ "Download Cyberduck"
 
 
