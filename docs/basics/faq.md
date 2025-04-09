@@ -1,19 +1,24 @@
 # Frequently Asked Questions
 
+
 ## Login Problems
 
 Q:  I can log into the [TACC User Portal][TACCUSERPORTAL], but this same password doesn't work on Frontera/Lonestar6/Stampede3/Vista.
-
 A: You don't have an allocation on this machine.  Check your allocations here.
 
+---
+Q. I get this error - keys ssh configuration keys blah     
+A. I have this somewhere
 
-## SSH Problems
+## Files and Ownership
 
-Q. ssh configuration keys blah
+Q. A member of my group has left - how do i get access/ownership to those files?    
+A. submit a ticket?
 
-## Ownership 
+---
 
-Q. A member of my group has left - how do i get access/ownership to those files?
+Q. I want to share my files with my project members
+A. Sharing Project files doc
 
 
 ## Running Jobs 
@@ -28,8 +33,9 @@ Q. I need more than 48 hours to run my job, can you allow an extension or give m
 
 A. No.  The 48-hour time limit is set to balance resource availability across TACC's user base. 
 
-Many software packages contain checkpointing ability. Checkpointing saves the state of your job at intervals, allowing it to resume from the last checkpoint in a new job submission.
+Many software packages contain checkpointing, the ability to save the state of job at periodic intervals.  Should your job end due to time limits or node failure, you can re-submit the job allowing it to  with the checkpoints Checkpointing saves the state of your job at intervals, allowing it to resume from the last checkpoint in a new job submission.
 We recommend implementing checkpointing in your workflow.  You can also split up your jobs and use job dependencies to manage workflows that require multiple steps, the see Slurm job dependencies blah. and pylauncher.
+
 
 ---
 
@@ -41,7 +47,7 @@ The Stockyard file system is mounted across all TACC HPC resources: Stampede3, L
 
 However, each HPC resource contains a scratch file system, with no quotas on file space or limits.  A common practice is to store important data in your `/work` directory while allowing your jobs to output data to `/scratch` without dealing with a quota. 
 
-``` important
+```warning
 	Scratch has a 10-day purge policy - see each 
 
 
