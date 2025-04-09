@@ -44,5 +44,4 @@
 [TACCANALYSISPORTAL]: http://tap.tacc.utexas.edu "TACC Analysis Portal"
 
 [DOWNLOADCYBERDUCK]: https://cyberduck.io/download/ "Download Cyberduck"
-
-
+[TACCSOFTWARELIST]: https://tacc.utexas.edu/use-tacc/software-list/ "TACC Software List"
