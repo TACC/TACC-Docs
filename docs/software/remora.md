@@ -72,4 +72,4 @@ Remora is an open-source project. You can find more detailed information about i
 * [Remora GitHub Repository](https://github.com/TACC/remora)
 * [REMORA: A Resource Monitoring Tool for Everyone](https://dl.acm.org/citation.cfm?id=2834999)
 
-
+{% include 'aliases.md' %}

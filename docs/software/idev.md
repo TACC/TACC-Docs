@@ -100,3 +100,4 @@ To exit `idev` and return to your terminal session, type `exit` or `ctrl-D`.
  * The `-r` option may be used on any system to request a specific resource (e.g. requesting a specific set of nodes). -->
 
 
+{% include 'aliases.md' %}

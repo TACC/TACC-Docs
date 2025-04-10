@@ -205,4 +205,4 @@ Nevertheless, we provide example flag files, job scripts, and sequences in the "
 * [Github: AlphaFold](https://github.com/deepmind/alphafold)
 * [AlphaFold Nature Paper](https://www.nature.com/articles/s41586-021-03819-2)
 
-
+{% include 'aliases.md' %}

@@ -24,5 +24,6 @@ SRC =   \
 
 frontera:	$(SRC) 
 	cat $(SRC) > frontera.md
+	cat ../../aliases.md >> frontera.md
 	/bin/mv frontera.md ..
 

@@ -1895,7 +1895,6 @@ TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for 
 
 * **Be patient.** It may take a business day for a consultant to get back to you, especially if your issue is complex. It might take an exchange or two before you and the consultant are on the same page. If the admins disable your account, it's not punitive. When the file system is in danger of crashing, or a login node hangs, they don't have time to notify you before taking action.
 
-{% include 'aliases.md' %}
 ## References { #refs }
 
 * [Bash Users’ Startup Files: Quick Start Guide][TACCBASHQUICKSTART]
@@ -1957,5 +1956,4 @@ TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for 
 [TACCANALYSISPORTAL]: http://tap.tacc.utexas.edu "TACC Analysis Portal"
 
 [DOWNLOADCYBERDUCK]: https://cyberduck.io/download/ "Download Cyberduck"
-
-
+[TACCSOFTWARELIST]: https://tacc.utexas.edu/use-tacc/software-list/ "TACC Software List"

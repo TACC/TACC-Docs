@@ -144,3 +144,6 @@ We are currently benchmarking AlphaFold3 on TACC systems. Refer to the [AlphaFol
 
 * [GitHub: AlphaFold3](https://github.com/google-deepmind/alphafold3)
 * [AlphaFold3 Nature Paper](https://www.nature.com/articles/s41586-024-07487-w)
+
+
+{% include 'aliases.md' %}

@@ -62,4 +62,4 @@ This quickstart guide covers the basics.  For more information please look at th
 
 * [Bash Reference Manual](http://www.gnu.org/software/bash/manual/bashref.html#Bash-Startup-Files)
 
-
+{% include 'aliases.md' %}

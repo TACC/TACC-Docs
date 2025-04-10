@@ -198,3 +198,4 @@ ibrun gmx_mpi_gpu mdrun -s topol.tpr -o traj.trr -c confout.gro -e ener.edr -g m
 * [GROMACS Documentation](https://manual.gromacs.org/)
 * [GROMACS acceleration and parallelization](https://manual.gromacs.org/documentation/current/user-guide/mdrun-performance.html)
 
+{% include 'aliases.md' %}

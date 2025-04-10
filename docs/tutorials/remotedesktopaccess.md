@@ -323,4 +323,5 @@ See the [Stampede3 User Guide Visualization](../../hpc/stampede3#vis) and [Front
 
 
 		
+{% include 'aliases.md' %}
 
