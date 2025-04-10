@@ -1,7 +1,7 @@
 # GROMACS at TACC
 *Last update: March 12, 2024*
 
-<img style="float:left; padding-bottom:10px; padding-right:20px; width:200px;" alt="GROMACS logo" src="../imgs/gromacs-logo.png">**GRO**ningen **MA**chine for **C**hemical **S**imulations (GROMACS) is a free, open-source, molecular dynamics package. GROMACS can simulate the Newtonian equations of motion for systems with hundreds to millions of particles. GROMACS is primarily designed for biochemical molecules like proteins, lipids and nucleic acids that have a lot of complicated bonded interactions, but since GROMACS is extremely fast at calculating the nonbonded interactions (that usually dominate simulations), many groups are also using it for research on non-biological systems, e.g. polymers.   
+<img style="float:left; padding-bottom:10px; padding-right:20px; width:200px;" alt="GROMACS logo" src="../imgs/gromacs-logo.png">**GRO**ningen **MA**chine for **C**hemical **S**imulations (GROMACS) is a free, open-source, molecular dynamics package. GROMACS can simulate the Newtonian equations of motion for systems with hundreds to millions of particles. GROMACS is primarily designed for biochemical molecules like proteins, lipids and nucleic acids that have a lot of complicated bonded interactions, but since GROMACS is extremely fast at calculating the nonbonded interactions (that usually dominate simulations), many groups are also using it for research on non-biological systems, e.g., polymers.   
 
 
 ## Installations { #installations }
@@ -12,7 +12,7 @@ GROMACS is currently installed on TACC's [Stampede3][TACCSTAMPEDE3UG], [Frontera
 login1$ module load gromacs    # load default version
 ```
 
-As of this date, the latest versions of GROMACS are 2023.3 (Stampede3), 2023.4 (Lonestar6), and 2024 (Frontera). Execute the `module spider` command to show all the installed GROMACS versions on the system:
+As of this date, the latest versions of GROMACS are 2024 (Stampede3, Lonestar6, Frontera, and Vista). Execute the `module spider` command to show all the installed GROMACS versions on the system:
 
 ```cmd-line
 login1$ module spider gromacs  # list installed GROMACS versions
@@ -79,7 +79,7 @@ The following job script requests 2 nodes (48 cores/node) for 24 hours using Sta
 #SBATCH -A myproject          # charge job to myproject 
 module load intel/24.0
 module load impi/21.11
-module load gromacs/2023.3
+module load gromacs/2024
 
 ibrun gmx_mpi mdrun -s topol.tpr -o traj.trr -c confout.gro -e ener.edr -g md.log
 ```
@@ -119,12 +119,12 @@ The following job script requests 4 RTX GPU nodes on Frontera. The directive `-g
 #!/bin/bash
 #SBATCH -J myjob      	      # job name
 #SBATCH -e myjob.%j.err       # error file name
-#SBATCH -o myjob.%j.out   	  # output file name
-#SBATCH -N 4              	  # request 4 nodes
-#SBATCH -n 16              	  # request 4x4=16 MPI tasks
-#SBATCH -p rtx  	          # designate queue
-#SBATCH -t 24:00:00       	  # designate max run time
-#SBATCH -A myproject      	  # charge job to myproject
+#SBATCH -o myjob.%j.out       # output file name
+#SBATCH -N 4                  # request 4 nodes
+#SBATCH -n 16                 # request 4x4=16 MPI tasks
+#SBATCH -p rtx  	      # designate queue
+#SBATCH -t 24:00:00           # designate max run time
+#SBATCH -A myproject          # charge job to myproject
 module load gcc/9.1
 module load impi/19.0.9
 module load cuda/11.3
@@ -156,7 +156,7 @@ The following job script requests 4 nodes (128 cores/node) for 24 hours using Lo
 #SBATCH -A myproject          # charge job to myproject 
 module load gcc/11.2.0
 module load impi/19.0.9
-module load gromacs/2023.4
+module load gromacs/2024
 export OMP_NUM_THREADS=1      # 1 OMP thread per MPI task
 
 ibrun gmx_mpi mdrun -s topol.tpr -o traj.trr -c confout.gro -e ener.edr -g md.log
@@ -164,23 +164,23 @@ ibrun gmx_mpi mdrun -s topol.tpr -o traj.trr -c confout.gro -e ener.edr -g md.lo
 
 #### GPU { #scripts-lonestar6-gpu }
 
-The following job script requests two A100 GPU nodes on Lonestar6. The directive `-gpu_id 000` indicates all three MPI ranks on the same node share the same GPU with `id 0`. You may use, for example `-gpu_id 012`, to use all three available GPUs on each A100 GPU node.
+The following job script requests two A100 GPU nodes on Lonestar6. The directive `-gpu_id 000` indicates all three MPI ranks on the same node share the same GPU with `id 0`. You may use, for example, `-gpu_id 012`, to use all three available GPUs on each A100 GPU node.
 
 ```job-script
 #!/bin/bash
 #SBATCH -J myjob      	      # job name
 #SBATCH -e myjob.%j.err       # error file name
 #SBATCH -o myjob.%j.out       # output file name
-#SBATCH -N 2              	  # request 2 nodes
-#SBATCH -n 6              	  # request 2x3=6 MPI tasks
+#SBATCH -N 2                  # request 2 nodes
+#SBATCH -n 6                  # request 2x3=6 MPI tasks
 #SBATCH -p gpu-a100  	      # designate queue
-#SBATCH -t 24:00:00       	  # designate max run time
-#SBATCH -A myproject      	  # charge job to myproject
+#SBATCH -t 24:00:00           # designate max run time
+#SBATCH -A myproject          # charge job to myproject
 
 module load gcc/11.2.0
 module load impi/19.0.9
 module load cuda/11.4
-module load gromacs/2023.4
+module load gromacs/2024
 
 
 export OMP_NUM_THREADS=4      # 4 OMP threads per MPI task 
@@ -192,10 +192,70 @@ ibrun gmx_mpi_gpu mdrun -s topol.tpr -o traj.trr -c confout.gro -e ener.edr -g m
 ibrun gmx_mpi_gpu mdrun -s topol.tpr -o traj.trr -c confout.gro -e ener.edr -g md.log -gpu_id 012
 ```
 
+### Vista  { #scripts-vista }
+
+#### CPU { #scripts-vista-cpu }
+
+The following job script requests 4 nodes (144 cores/node) for 24 hours using Vista Grace/Grace CPU nodes ([`gg queue`](../../hpc/vista/#queues)).
+
+```job-script
+#!/bin/bash
+#SBATCH -J myjob              # job name
+#SBATCH -e myjob.%j.err       # error file name 
+#SBATCH -o myjob.%j.out       # output file name 
+#SBATCH -N 4                  # request 4 nodes
+#SBATCH -n 576                # request 4x144=576 MPI tasks 
+#SBATCH -p gg                 # designate queue 
+#SBATCH -t 24:00:00           # designate max run time 
+#SBATCH -A myproject          # charge job to myproject 
+module load nvidia/24.7
+module load openmpi/5.0.5
+module load gromacs/2024
+export OMP_NUM_THREADS=1      # 1 OMP thread per MPI task
+
+ibrun gmx_mpi mdrun -s topol.tpr -o traj.trr -c confout.gro -e ener.edr -g md.log
+```
+
+#### GPU { #scripts-vista-gpu }
+
+The following job script requests four Grace/Hopper GPU nodes on Vista. To improve multi-node performance, direct GPU communication and PME decomposition on GPUs are enabled in this example.
+
+```job-script
+#!/bin/bash
+#SBATCH -J myjob      	      # job name
+#SBATCH -e myjob.%j.err       # error file name
+#SBATCH -o myjob.%j.out       # output file name
+#SBATCH -N 4                  # request 4 nodes
+#SBATCH -n 8                  # request 4x2=8 MPI tasks
+#SBATCH -p gh  	      	      # designate queue
+#SBATCH -t 24:00:00           # designate max run time
+#SBATCH -A myproject          # charge job to myproject
+
+module load gcc/11.2.0
+module load nvidia/24.7
+module load cuda/12.5
+module load openmpi/5.0.5
+module load cu-gromacs/2024
+
+
+export OMP_NUM_THREADS=16              # 16 OMP threads per MPI task
+export GMX_ENABLE_DIRECT_GPU_COMM=1    # Enable direct GPU communication in a multi-rank parallel run
+export GMX_GPU_PME_DECOMPOSITION=1     # Enable the support for PME decomposition on GPU
+export PMETASKS=4                      # Set the number of PME tasks to 4 (1 task per node)
+
+ibrun gmx_mpi_gpu mdrun \
+      -noconfout -pin on \
+      -bonded gpu -nb gpu \
+      -pme gpu -ntomp $OMP_NUM_THREADS \
+      -s benchPEP.tpr  \
+      -npme $PMETASKS \
+      -nsteps 1000  \
+      -g md.log -nstlist 300
+```
+
 ## References { #refs }
 
 * [GROMACS Home](https://www.gromacs.org/)
 * [GROMACS Documentation](https://manual.gromacs.org/)
 * [GROMACS acceleration and parallelization](https://manual.gromacs.org/documentation/current/user-guide/mdrun-performance.html)
 
-{% include 'aliases.md' %}
