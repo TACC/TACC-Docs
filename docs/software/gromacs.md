@@ -1,12 +1,12 @@
 # GROMACS at TACC
-*Last update: March 12, 2024*
+*Last update: April 14, 2025*
 
 <img style="float:left; padding-bottom:10px; padding-right:20px; width:200px;" alt="GROMACS logo" src="../imgs/gromacs-logo.png">**GRO**ningen **MA**chine for **C**hemical **S**imulations (GROMACS) is a free, open-source, molecular dynamics package. GROMACS can simulate the Newtonian equations of motion for systems with hundreds to millions of particles. GROMACS is primarily designed for biochemical molecules like proteins, lipids and nucleic acids that have a lot of complicated bonded interactions, but since GROMACS is extremely fast at calculating the nonbonded interactions (that usually dominate simulations), many groups are also using it for research on non-biological systems, e.g., polymers.   
 
 
 ## Installations { #installations }
 
-GROMACS is currently installed on TACC's [Stampede3][TACCSTAMPEDE3UG], [Frontera][TACCFRONTERAUG], and [Lonestar6][TACCLONESTAR6UG] systems.  GROMACS is managed under the [Lmod](https://lmod.readthedocs.io/en/latest/) modules system on TACC resources.  To run simulations, simply load the module with the following command:
+GROMACS is currently installed on TACC's [Stampede3][TACCSTAMPEDE3UG], [Frontera][TACCFRONTERAUG], [Lonestar6][TACCLONESTAR6UG] and [Vista][TACCVISTAUG] systems.  GROMACS is managed under the [Lmod](https://lmod.readthedocs.io/en/latest/) modules system on TACC resources.  To run simulations, simply load the module with the following command:
 
 ```cmd-line
 login1$ module load gromacs    # load default version
@@ -258,4 +258,6 @@ ibrun gmx_mpi_gpu mdrun \
 * [GROMACS Home](https://www.gromacs.org/)
 * [GROMACS Documentation](https://manual.gromacs.org/)
 * [GROMACS acceleration and parallelization](https://manual.gromacs.org/documentation/current/user-guide/mdrun-performance.html)
+
+{% include 'aliases.md' %}
 
