@@ -6,7 +6,9 @@
 
 
 # Managing your TACC Account
-*Last update: April 07, 2025*
+*Last update: April 14, 2025*
+
+## Notices
 
 !!! warning
 	Beginning immediately, all TACC account holders are required to have an active MFA pairing.  If you do not have an active MFA pairing your account will be deactivated.
@@ -35,30 +37,16 @@ Any user of TACC resources must first obtain a TACC account.  A TACC account ema
 To create a new account: 
 
 1. Go to the [TACC Accounts Portal][TACCACCOUNTS] and click "Create a New Account" to begin registration.
+1. Set up [Multi-Factor Authentication][TACCMFA] (MFA) on your account. 
 1. Check for an email containing a confirmation and activation link.  Once you confirm your email, your account status will update to either "Pending" or "Active".
 1. If your account status is "Pending" then your account request will need further review by our User Services team. No action is required and a team member will reach to you.
-1. Once your account is "Active":
-	* Set up [Multi-Factor Authentication][TACCMFA] (MFA) on your account. 
-	* Log onto the [TACC User Portal][TACCUSERPORTAL] to view your allocation status.
+1. Once your account is "Active" log onto the [TACC User Portal][TACCUSERPORTAL] to view your allocation status.
 
 !!! warning 
 	An individual may not have more than one TACC account.  Shared accounts and/or multi-user accounts are strictly prohibited.  
 
 !!! tip
 	In order to log on to TACC's HPC resources, your TACC account must be "[Active](#table1)" **AND** you must have an active allocation on that particular resource.
-
-### Identity Management
-
-As part of ongoing cybersecurity enhancements, TACC now requires using a 3rd party Identity Provider.  Any user registering for a new account, reactivating a [deactivated](#table1) account, or updating their profile will be required to authenticate using one of the UT approved Identity Provider services listed below.  All existing accounts will be required to authenticate with one of these identity providers at the annual account profile update. 
-
-* UT EID
-* Apple
-* Google
-* Microsoft
-<!-- * InCommon Federation - commenting out 01/30/2025 due to problems on their end -->
-
-!!! important
-	Use your institution's email, not your Apple, Google or Microsoft email, when registering/activating your TACC account.
 
 
 ## Login Problems: `Improper ssh Configuration!`
