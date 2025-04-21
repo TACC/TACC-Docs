@@ -25,13 +25,17 @@ Job script for Vista's Grace-Hopper nodes: 1 task per node.
 #!/bin/bash
 #SBATCH -J test         # Job Name
 #SBATCH -o test.o%j
-#SBATCH -N 1            # Total number of nodes
-#SBATCH -n 1            # Total number of mpi tasks
+#SBATCH -N 2            # Total number of nodes
+#SBATCH -n 2            # Total number of mpi tasks
 #SBATCH -p gh           # Queue name
 #SBATCH -t 24:00:00     # Run time (hh:mm:ss) - 24 hours
 
-module load namd-gpu/3.0
-namd3 +setcpuaffinity +idlepoll +p72 +devices 0 test.namd
+module load cuda/12.6
+module load nvmath/12.6.0
+module load openmpi/5.0.5
+module load namd-gpu/3.0.1
+      
+run_namd_gpu test.namd test.out
 ```
 
 ### GG 4 Tasks per Node
@@ -47,8 +51,8 @@ Job script for Vista's Grace-Grace nodes: 4 tasks per node.
 #SBATCH -p gg            # Queue name
 #SBATCH -t 24:00:00      # Run time (hh:mm:ss) - 24 hours
 
-module load namd/3.0
-ibrun namd3 +ppn 35 +pemap 1-35,37-71,73-107,109-143 +commap 0,36,72,108 input &> output
+module load namd/3.0.1
+srun --mpi=pmpi2 namd3 +ppn 35 +pemap 1-35,37-71,73-107,109-143 +commap 0,36,72,108 input &> output
 ```
 
 ### GG 4 Tasks per Node
@@ -64,8 +68,8 @@ Job script for Vista's Grace-Grace nodes: 8 tasks per node.
 #SBATCH -p gg           # Queue name
 #SBATCH -t 24:00:00     # Run time (hh:mm:ss) - 24 hours
 
-module load namd/3.0
-ibrun namd3 +ppn 17 +pemap 1-17,19-35,37-53,73-89,91-107,109-125,127-143 +commap 0,18,36,54,72,90,108,126 input &> output
+module load namd/3.0.1
+srun --mpi=pmi2 namd3 +ppn 17 +pemap 1-17,19-35,37-53,55-71,73-89,91-107,109-125,127-143 +commap 0,18,36,54,72,90,108,126 input &> output
 ```
 
 ## Frontera { #frontera }
@@ -254,13 +258,14 @@ ibrun namd3 +ppn 5 \
 
 ## Lonestar6 { #lonestar6 }
 
+### CPU Nodes: 4 Tasks per Node
 NAMD ver3.0 is installed on Lonestar6 as this version provides best performance. 
 
 ```cmd-line
 login1$ module load namd/3.0
 ```
 
-TACC staff recommends assigning 4 tasks per node for NAMD jobs running on Lonestar6's [compute](../../hpc/lonestar6/#system-compute) nodes.
+TACC staff recommends assigning 4 tasks per node for NAMD jobs running on Lonestar6's CPU [compute](../../hpc/lonestar6/#system-compute) nodes.
 
 The following Lonestar6 job script requests 2 node and 8 MPI tasks. To run the same job on more nodes, vary the `-N` and `-n` Slurm directives, **ensuring the value of `n` is four times the value of `N`**.  
 
@@ -280,6 +285,33 @@ ibrun namd3 +ppn 31 \
 			+commap 0,32,64,96 input &> output
 ```
 
+### GPU Nodes: 1 Task per Node
+NAMD ver3.0 is installed on Lonestar6 as this version provides best performance. 
+
+```cmd-line
+login1$ module load namd_gpu/3.0
+```
+
+TACC staff recommends assigning 1 task per node for NAMD jobs running on Lonestar6's GPU [compute](../../hpc/lonestar6/#system-compute) nodes.
+
+The following Lonestar6 job script requests 3 GPU nodes. To run the same job on more nodes, vary the `-N` and `-n` Slurm directives, **ensuring the value of `n` is the same as that of `N`**.  
+
+``` job-script
+#!/bin/bash
+#SBATCH -J test   		# Job Name
+#SBATCH -o test.o%j
+#SBATCH -N 3      		# Total number of nodes
+#SBATCH -n 3      		# Total number of mpi tasks
+#SBATCH -p gpu-a100 		# Queue name
+#SBATCH -t 24:00:00 	# Run time (hh:mm:ss) - 24 hours
+
+module load gcc/11.2
+module load mkl
+module load cuda/12.2
+module load namd_gpu/3.0
+
+run_namd_gpu input output
+```
 ## References { #refs }
 
 * [NAMD](http://www.ks.uiuc.edu/Research/namd/) website
