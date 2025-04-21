@@ -249,7 +249,7 @@ Job script for Stampede3's Skylake nodes: 8 tasks per node.
 #SBATCH -p skx               # Queue name
 #SBATCH -t 24:00:00          # Run time (hh:mm:ss) - 24 hours
 
-module load namd/3.0b6
+module load namd/3.0
 ibrun namd3 +ppn 5 \
 			+pemap 2-10:2,14-22:2,26-34:2,38-46:2,3-11:2,15-23:2,27-35:2,39-47:2 \
 			+commap 0,12,24,36,1,13,25,37 input &> output
