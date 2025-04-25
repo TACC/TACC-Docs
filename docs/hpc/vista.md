@@ -420,6 +420,11 @@ sleep 5                          # Wait for daemons to initialize
 # 3. Run your CUDA application
 echo "Launching application..."
 ibrun ./your_cuda_executable     # Replace with your executable
+
+# 4. Optional: Quit MPS daemon on all nodes
+export TACC_TASKS_PER_NODE=1     # Force 1 task/node
+ibrun -np $SLURM_NNODES bash -c "echo quit | nvidia-cuda-mps-control"
+unset TACC_TASKS_PER_NODE
 ```
 
 ### Notes on Performance
