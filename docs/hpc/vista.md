@@ -1,5 +1,5 @@
 # Vista User Guide 
-*Last update: February 18, 2025*
+*Last update: April 28, 2025*
 
 ## Notices { #notices }
 
@@ -379,9 +379,9 @@ Follow these steps to configure MPS on Vista for optimized multi-process workflo
 
 	```job-script
 	# Launch MPS daemon on all nodes
-	export TACC_TASKS_PER_NODE=1  # Force one task per node
+	export TACC_TASKS_PER_NODE=1     # Force one task per node
 	ibrun -np $SLURM_NNODES nvidia-cuda-mps-control -d
-	unset TACC_TASKS_PER_NODE     # Reset to default task distribution
+	unset TACC_TASKS_PER_NODE        # Reset to default task distribution
 	```
 
 3. **Submit Your GPU Job**
@@ -390,6 +390,14 @@ Follow these steps to configure MPS on Vista for optimized multi-process workflo
 
 	```job-script
 	ibrun ./your_cuda_executable 
+	```
+
+4. **Optional: Quit MPS daemon on all nodes**
+
+	```job-script
+	export TACC_TASKS_PER_NODE=1     # Force 1 task/node
+	ibrun -np $SLURM_NNODES bash -c "echo quit | nvidia-cuda-mps-control"
+	unset TACC_TASKS_PER_NODE
 	```
 
 ### Sample Job Script { #scripts }
