@@ -55,7 +55,7 @@ module load namd/3.0.1
 srun --mpi=pmpi2 namd3 +ppn 35 +pemap 1-35,37-71,73-107,109-143 +commap 0,36,72,108 input &> output
 ```
 
-### GG 4 Tasks per Node
+### GG 8 Tasks per Node
 
 Job script for Vista's Grace-Grace nodes: 8 tasks per node.
 
