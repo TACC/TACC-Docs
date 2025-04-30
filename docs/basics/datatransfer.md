@@ -1,5 +1,5 @@
 # Data Transfer { #datatransfer }
-*Last update: April 14, 2025*
+*Last update: April 30, 2025*
 
 TACC supports two primary technologies for data transfer: SSH (also referred to as SCP and SFTP) and Globus (also referred to as GridFTP). All TACC systems support SSH-based transfer, and most TACC systems support Globus-based transfer. When in doubt, we recommend that you start with SSH-based transfer as this requires the least setup and utilizes the TACC authentication system. Globus uses its own authentication system and will require additional setup steps, [outlined below](#globus).
 
@@ -80,8 +80,8 @@ localhost$ scp bjones@stampede3.utexas.edu:myTACCfile .
 
 Transfer files between TACC HPC resources, e.g. Stampede3 to Vista.  
 
-If you have an allocation on more than one TACC HPC resource, and want to move a file from one home directory or another, make use of the shared `$WORK` file system.
-	
+If you have an allocation on more than one TACC HPC resource, and want to move a file from one home directory or another, make use of the shared `$WORK` file system.  There's no need for `scp` when both the source and destination involve subdirectories of `$STOCKYARD`. 
+
 Example: copy `myfile` in my home directory on Stampede3 to my account on Vista.
 	
 ```cmd-line
@@ -100,7 +100,7 @@ If you are a researcher with data located at multiple institutions, we recommend
 
 To backup files to TACC's Ranch archive, consult the [Ranch User Guide](https://docs.tacc.utexas.edu/hpc/corral/#transferring).  Consult the [Corral User Guide][TACCCORRALUG] for instructions on transferring between Lonestar6 and Corral.
 
-### SSH Command-Line Examples  { #ssh }
+## SSH Command-Line Examples  { #ssh }
 
 Transfer files between TACC HPC resources and other Linux-based systems using either [`scp`](http://linux.com/learn/intro-to-linux/2017/2/how-securely-transfer-files-between-servers-scp) or [`rsync`](http://linux.com/learn/get-know-rsync). Both `scp` and `rsync` are available in the Mac Terminal app. Windows SSH clients typically include `scp`-based file transfer capabilities.
 
@@ -112,7 +112,7 @@ The `scp` and `rsync` commands are standard UNIX data transfer mechanisms used t
 To simplify the data transfer process, we recommend that Windows users follow the <a href="#datatransfer-cyberduck">How to Transfer Data with Cyberduck</a> guide as detailed below.
 
 
-## Advanced `scp` Examples 
+### Advanced `scp` Examples 
 
 The Linux `scp` (secure copy) utility is a component of the OpenSSH suite. Assuming your Lonestar6 username is `bjones`, a simple `scp` transfer that copies a file named `myfile` from your local Linux system to Lonestar6 `$HOME` would look like this:
 
@@ -213,7 +213,6 @@ login1$ man rsync
 
 !!! Warning
 	When executing multiple instantiations of any of the commands listed above, `scp`, `sftp` and `rsync`, limit your active transfers to no more than 2-3 processes at a time.
-
 
 
 
