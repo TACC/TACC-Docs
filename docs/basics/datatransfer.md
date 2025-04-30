@@ -1,39 +1,22 @@
 # Data Transfer { #datatransfer }
 *Last update: April 14, 2025*
 
-## Protocols
-
-TACC supports two primary technologies for data transfer: 
-
-1. The Secure Shell Protocol (SSH)
-
-	* The SSH protocol encompasses the `scp`, `rsync` and `sftp` command-line utilities.  
-	* use a GUI if you don't like the command-line, see Cyberduck, Putty, Moab
-	* Windows Users
-	
-2. Globus 
-
-  	* define Globus, formerly GridFTP
-	* best for transferring large data-sets
-	* often used across institutions
-
-All TACC resources support SSH-based transfer, and most TACC resources support Globus-based transfer.  
-
-
-
-## SSH 
+TACC supports two primary technologies for data transfer: SSH (also referred to as SCP and SFTP) and Globus (also referred to as GridFTP). All TACC systems support SSH-based transfer, and most TACC systems support Globus-based transfer. When in doubt, we recommend that you start with SSH-based transfer as this requires the least setup and utilizes the TACC authentication system. Globus uses its own authentication system and will require additional setup steps, [outlined below](#globus).
 
 There are many SSH-compatible clients across all platforms, and almost any modern SSH client will successfully interoperate with TACC systems. While we provide [examples using the Cyberduck application](#cyberduck), users are encouraged to select and utilize whichever transfer client is most familiar to them and most functional on your platform. Many SSH clients are organized to assist with specific workflows.  
 
-You can access SSH utilities via a client application, a GUI interface, or on the command-line via a Terminal application.
+For SSH-based transfers, you will need two pieces of information in addition to your TACC username/password combination: the HOSTNAME of the system you are transferring to, and the PATH that you are attempting to access. Especially if you are uploading data, it is very important that you select the correct path for the resource and project - otherwise your data will be at risk of being lost or misplaced. The path may include a functional name such as /scratch/ or a resource name such as /corral/ .
 
-SSH clients generally fall into two categories:
+Globus-based transfers usually utilize an endpoint name (usually the name of the HPC or Storage resource you are connecting to) rather than a hostname, but you will still need to know the endpoint name, and you will always need the PATH that you are addressing, in order to successfully transfer data.
+
+All TACC resources support SSH-based transfer, and most TACC resources support Globus-based transfer.
+
+## SSH 
+
+You can access SSH utilities via a client application, a GUI interface, or on the command-line via a Terminal application.
 
 1. Graphical User Interface (GUI) tools, e.g. [Cyberduck](#cyberduck).
 1. Command-line (CLI) tools e.g. `scp`, `sftp`, `rsync`
-
-For SSH-based transfers, you will need two pieces of information in addition to your TACC username/password combination: 1) the HOSTNAME of the system you are transferring to, and the PATH that you are attempting to access. Especially if you are uploading data, it is very important that you select the correct path for the resource and project - otherwise your data will be at risk of being lost or misplaced. <!-- The path may include a functional name such as /scratch/ or a resource name such as /corral/ . -->
-
 
 
 ### Cyberduck { #cyberduck }
@@ -66,58 +49,38 @@ Consult Figure 2. below to ensure the information you have provided is correct. 
 Once connected, you can navigate through your remote file hierarchy using the graphical user interface. You may also drag-and-drop files from your local computer into the Cyberduck window to transfer files to the system.
       
 
-### SSH Command-Line Examples  { #ssh }
-
-Transfer files between TACC HPC resources and other Linux-based systems using either [`scp`](http://linux.com/learn/intro-to-linux/2017/2/how-securely-transfer-files-between-servers-scp) or [`rsync`](http://linux.com/learn/get-know-rsync). Both `scp` and `rsync` are available in the Mac Terminal app. Windows SSH clients typically include `scp`-based file transfer capabilities.
-
-The `scp` and `rsync` commands are standard UNIX data transfer mechanisms used to transfer moderate size files and data collections between systems. These applications use a single thread to transfer each file one at a time. The `scp` and `rsync` utilities are typically the best methods when transferring Gigabytes of data.  For larger data transfers, parallel data transfer mechanisms, e.g., Globus, can often improve total throughput and reliability.
-
-!!! note
-	It is possible to use these command line tools if your local machine runs Windows, but you will need to use an SSH client (ex. [CyberDuck][DOWNLOADCYBERDUCK]).
-
-To simplify the data transfer process, we recommend that Windows users follow the <a href="#datatransfer-cyberduck">How to Transfer Data with Cyberduck</a> guide as detailed below.
-
 ## Transfer Scenarios
 
 Let's examine the most common data transfer scenarios for TACC users.  In all the following text, the term "data" can refer to anything from a single file to multiple directories.
 
-1. [Transfer data between your laptop and TACC resources](#txf1)
-1. [Transfer data between TACC HPC resources](#txf2)
-1. [Transfer data between institutions](#txf3)
-1. [Transfer data between TACC HPC and storage resources](#txf4)  
+1. [Between your laptop and TACC resources](#txf1)
+1. [Between TACC HPC resources](#txf2)
+1. [Between institutions](#txf3)
+1. [Between TACC HPC and storage resources](#txf4)  
 
 
-### Transfer data between your laptop and a TACC resource { #txf1 }
+### 1. Transfer data between your laptop and a TACC resource { #txf1 }
 
 Moving data from your home computer/laptop to a TACC resource is called "pushing" or "uploading" that file.  Conversely, when copying data from a TACC resource to your laptop, this is "pulling" or "downloading" data.  In the following examples, all transfers are initiated from your laptop, not the TACC resource, since your laptop likely does not have a fixed IP address.
 
-#### Example 1
-
-TACC account holder `bjones` uploads a local file, `mylaptopfile`, to his home directory on Stampede3. 
+Example 1: TACC account holder `bjones` uploads a local file, `mylaptopfile`, to his home directory on Stampede3. 
 
 ```cmd-line
 localhost$ scp mylaptopfile bjones@stampede3.tacc.utexas.edu:
 ```
-
 Note the "`:`" at the end of the line.
 
-#### Example 2 
-
-TACC account holder `bjones` downloads a file located in his home directory on Stampede3, `myTACCfile`, to his laptop.  
-
+Example 2: TACC account holder `bjones` downloads a file located in his home directory on Stampede3, `myTACCfile`, to his laptop.  
 
 ```cmd-line
 localhost$ scp bjones@stampede3.utexas.edu:myTACCfile .
 ```
 
-<pre>
-<b>localhost$</b> scp bjones
-</pre>
-
-### Transfer files between TACC HPC resources { #txf2 }
+### 2. Transfer files between TACC HPC resources { #txf2 }
 
 Transfer files between TACC HPC resources, e.g. Stampede3 to Vista.  
-If you have an allocation on more than one TACC HPC resource, and want to move a file from one home directory or another, make use of the shared $WORK file system.
+
+If you have an allocation on more than one TACC HPC resource, and want to move a file from one home directory or another, make use of the shared `$WORK` file system.
 	
 Example: copy `myfile` in my home directory on Stampede3 to my account on Vista.
 	
@@ -129,22 +92,27 @@ vista$ exit
 stampede3$ 
 ```
 
-### Transfer files between institutions { #txf3 }
+### 3. Transfer Files Between Institutions { #txf3 }
 
-If you are a researcher with
-Transfer files between institutions e.g. from TACC to Cornell University. 
+If you are a researcher with data located at multiple institutions, we recommend you use Globus for large data set transfers to TACC.  You will need to authenticate with your institution.  [See how to set up your TACC account to use Globus](#globus).
 
-If you wish to transfer files between institutions, we recommend you use Globus for large data set transfers.  You will need to authenticate with your institution.  See how to set up your TACC account to use Globus.
-
-### Backup/Transfer files between TACC HPC and TACC storage resources { #txf4 }
-
-Transfer files between TACC HPC and storage resources e.g. from Lonestar6 to Corral, Stampede3 to Ranch. 
+### 4. Backup/Transfer files between TACC HPC and TACC storage resources { #txf4 }
 
 To backup files to TACC's Ranch archive, consult the [Ranch User Guide](https://docs.tacc.utexas.edu/hpc/corral/#transferring).  Consult the [Corral User Guide][TACCCORRALUG] for instructions on transferring between Lonestar6 and Corral.
 
+### SSH Command-Line Examples  { #ssh }
 
-#### Advanced `scp` 
+Transfer files between TACC HPC resources and other Linux-based systems using either [`scp`](http://linux.com/learn/intro-to-linux/2017/2/how-securely-transfer-files-between-servers-scp) or [`rsync`](http://linux.com/learn/get-know-rsync). Both `scp` and `rsync` are available in the Mac Terminal app. Windows SSH clients typically include `scp`-based file transfer capabilities.
 
+The `scp` and `rsync` commands are standard UNIX data transfer mechanisms used to transfer moderate size files and data collections between systems. These applications use a single thread to transfer each file one at a time. The `scp` and `rsync` utilities are typically the best methods when transferring Gigabytes of data.  For larger data transfers, parallel data transfer mechanisms, e.g., Globus, can often improve total throughput and reliability.
+
+!!! note
+	It is possible to use these command line tools if your local machine runs Windows, but you will need to use an SSH client (ex. [CyberDuck][DOWNLOADCYBERDUCK]).
+
+To simplify the data transfer process, we recommend that Windows users follow the <a href="#datatransfer-cyberduck">How to Transfer Data with Cyberduck</a> guide as detailed below.
+
+
+## Advanced `scp` Examples 
 
 The Linux `scp` (secure copy) utility is a component of the OpenSSH suite. Assuming your Lonestar6 username is `bjones`, a simple `scp` transfer that copies a file named `myfile` from your local Linux system to Lonestar6 `$HOME` would look like this:
 
@@ -199,7 +167,7 @@ Consult the `scp` man pages for more information:
 login1$ man scp
 ```
 
-#### Transferring Files with `rsync` { #transferring-rsync } 
+## Transferring Files with `rsync` { #transferring-rsync } 
 
 The `rsync` (remote synchronization) utility is another way to keep your data up to date. In contrast to `scp`, `rsync` transfers only the actual changed parts of a file (instead of transferring an entire file). Hence, this selective method of data transfer can be much more efficient than `scp`. The following example demonstrates usage of the `rsync` command for transferring a file named `myfile.c` from its current location on Stampede to Frontera's `$DATA` directory.
 
@@ -246,10 +214,6 @@ login1$ man rsync
 !!! Warning
 	When executing multiple instantiations of any of the commands listed above, `scp`, `sftp` and `rsync`, limit your active transfers to no more than 2-3 processes at a time.
 
-<!-- 
-globus is a GUI and is excellent for transferring l
-
-TACC staff recommends that you start with SSH-based transfer as this requires the least setup and utilizes the TACC authentication system. Globus uses its own authentication system and will require additional setup steps, [outlined below](#globus). -->
 
 
 
