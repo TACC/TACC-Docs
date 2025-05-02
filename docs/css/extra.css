@@ -7,3 +7,8 @@ footer {
 [data-page-name="index.md"] .wy-nav-content {
   padding-bottom: 0; /* to undo ReadTheDocs theme.css */
 }
+
+/* to improve appearance of external tab icons on cards */
+[class*="card--"] i.fa {
+    margin-block: -1rem 1rem;
+}
