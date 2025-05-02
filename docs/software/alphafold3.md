@@ -1,7 +1,5 @@
 # AlphaFold3 at TACC
 *Last update: April 8, 2025*
-# AlphaFold3 at TACC
-*Last update: April 8, 2025*
 
 ![AlphaFold logo](../imgs/alphafold3-logo.png){ .align-right }
 
