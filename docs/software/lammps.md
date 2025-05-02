@@ -1,7 +1,9 @@
 # LAMMPS at TACC
 *Last update: March 11, 2024*
 
-<img style="float:left; padding-bottom:20px; padding-right:20px; width:300px;" alt="LAMMPS logo" src="../imgs/lammps-logo.png">LAMMPS is a classical molecular dynamics code developed at Sandia National Laboratories and is available under the GPL license. LAMMPS (<b>L</b>arge-scale <b>A</b>tomic/<b>M</b>olecular <b>M</b>assively <b>P</b>arallel <b>S</b>imulator) makes use of spatial-decomposition techniques to partition the simulation domain.  LAMMPS runs in serial or in parallel using MPI. The code is capable of modeling systems with millions or even billions of particles on a large High Performance Computing machine. A variety of force fields and boundary conditions are provided in LAMMPS which can be used to model atomic, polymeric, biological, metallic, granular, and coarse-grained systems.
+![LAMMPS logo](../imgs/lammps-logo.png){ .align-right }
+
+LAMMPS is a classical molecular dynamics code developed at Sandia National Laboratories and is available under the GPL license. LAMMPS (<b>L</b>arge-scale <b>A</b>tomic/<b>M</b>olecular <b>M</b>assively <b>P</b>arallel <b>S</b>imulator) makes use of spatial-decomposition techniques to partition the simulation domain.  LAMMPS runs in serial or in parallel using MPI. The code is capable of modeling systems with millions or even billions of particles on a large High Performance Computing machine. A variety of force fields and boundary conditions are provided in LAMMPS which can be used to model atomic, polymeric, biological, metallic, granular, and coarse-grained systems.
 
 
 ## Installations { #installations }

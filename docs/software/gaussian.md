@@ -1,11 +1,11 @@
 # Gaussian at TACC
 *Last update: April 22, 2024* 
 
-<table cellspacing="5" cellpadding="5" border="1"><tr>
-<td><img alt="Gaussian logo" src="../imgs/gaussian-logo.png"></td><td>Gaussian is a quantum mechanics package for calculating molecular properties from first principles. From the Gaussian website:</td></tr></table>
+![Gaussian logo](../imgs/gaussian-logo.png){ .align-right }
 
-<blockquote>Starting from the fundamental laws of quantum mechanics, Gaussian 16 predicts the energies, molecular structures, vibrational frequencies and molecular properties of compounds and reactions in a wide variety of chemical environments. Gaussian 16's models can be applied to both stable species and compounds which are difficult or impossible to observe experimentally, whether due to their nature (e.g., toxicity, combustibility, radioactivity) or their inherent fleeting nature (e.g., short-lived intermediates and transition structures).
-</blockquote>
+Gaussian is a quantum mechanics package for calculating molecular properties from first principles. From the Gaussian website:
+
+> Starting from the fundamental laws of quantum mechanics, Gaussian 16 predicts the energies, molecular structures, vibrational frequencies and molecular properties of compounds and reactions in a wide variety of chemical environments. Gaussian 16's models can be applied to both stable species and compounds which are difficult or impossible to observe experimentally, whether due to their nature (e.g., toxicity, combustibility, radioactivity) or their inherent fleeting nature (e.g., short-lived intermediates and transition structures).
 
 
 ## Licenses { #licenses }

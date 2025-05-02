@@ -1,7 +1,8 @@
 # ParaView at TACC
 *Last update: February 12, 2025*
 
-<img alt="ParaView logo" src="../imgs/paraview-logo.svg" width="25%">   
+![ParaView logo](../imgs/paraview-logo.svg){ .align-right }
+
 [ParaView](https://www.paraview.org/) is an open-source, multi-platform data analysis and visualization application. ParaView users can quickly build visualizations to analyze their data using qualitative and quantitative techniques. The data exploration can be done interactively in 3D or programmatically using ParaView's batch processing capabilities.
 
 ParaView was developed to analyze extremely large datasets using distributed memory computing resources. ParaView can be run on supercomputers to analyze datasets of petascale size as well as on laptops for smaller data. ParaView has become an integral tool in many national laboratories, universities and industry, and has won several awards related to high performance computation.
