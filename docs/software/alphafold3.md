@@ -1,5 +1,5 @@
 # AlphaFold3 at TACC
-*Last update: April 8, 2025*
+*Last update: May 5, 2025*
 
 
 <table cellpadding="5" cellspacing="5"><tr>
@@ -32,7 +32,7 @@ Due to AlphaFold's licensing restrictions, users must obtain the model parameter
 
 After downloading, you must **manually place the model parameters** in the appropriate directory in your work environment.
 
-**Note:** TACC cannot distribute the AlphaFold3 model weights.
+**Note:** TACC cannot distribute the AlphaFold3 model parameters.
 
 ## Running AlphaFold3  { #running }
 
@@ -98,7 +98,7 @@ module load alphafold3/3.0.1-ctr.lua
 # Set environment variable definitions to point to your input, output, and model parameters directories:
 export AF3_INPUT_DIR=$SCRATCH/input/
 export AF3_OUTPUT_DIR=$SCRATCH/output/
-export AF3_MODEL_PARAMETERS_DIR=$WORK/af3_weights
+export AF3_MODEL_PARAMETERS_DIR=$WORK/af3_parameters
 
 # Run AlphaFold3 container 
 apptainer exec \
@@ -125,7 +125,7 @@ Variable | What it does | User Action Required?
 -- | -- | --
 `AF3_INPUT_DIR` | Directory containing the `input.json` file | Location of your input files (e.g., `$SCRATCH/input`)
 `AF3_OUTPUT_DIR` | Directory where output will be written | Desired output path (e.g., `$SCRATCH/output`)
-`AF3_MODEL_PARAMETERS_DIR` | Directory where you manually downloaded and extracted the AlphaFold3 model weights | Set this to where you stored the models (e.g., `$WORK/af3_weights`)
+`AF3_MODEL_PARAMETERS_DIR` | Directory where you manually downloaded and extracted the AlphaFold3 model parameters | Set this to where you stored the models (e.g., `$WORK/af3_parameters`)
 `AF3_DATABASES_DIR` | Location of shared AlphaFold3 database files on TACC systems | **Do not modify** 
 `AF3_IMAGE` | Path to the AlphaFold3 container image | **Do not modify** 
 `AF3_CODE_DIR` | Location of AlphaFold3 source code inside the container | **Do not modify** 
