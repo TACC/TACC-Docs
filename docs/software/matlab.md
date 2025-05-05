@@ -1,7 +1,7 @@
 # MATLAB at TACC
 *Last update: January 16, 2024* 
 
-![MATLAB logo](../imgs/matlab-logo.png){ .align-right width="75px" }
+![MATLAB logo](../imgs/matlab-logo.png){ .align-left width="75px" }
 
 [Mathwork's](https://www.mathworks.com/) MATLAB is installed and supported at TACC and is available on the following TACC resources: [Frontera][TACCFRONTERAUG], [Stampede3][TACCSTAMPEDE3UG] and [Lonestar6][TACCLONESTAR6UG].  
 

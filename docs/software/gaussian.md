@@ -1,7 +1,7 @@
 # Gaussian at TACC
 *Last update: April 22, 2024* 
 
-![Gaussian logo](../imgs/gaussian-logo.png){ .align-right }
+![Gaussian logo](../imgs/gaussian-logo.png){ .align-left }
 
 Gaussian is a quantum mechanics package for calculating molecular properties from first principles. From the Gaussian website:
 
