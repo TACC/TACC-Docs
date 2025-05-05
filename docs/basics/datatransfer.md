@@ -1,5 +1,5 @@
 # Data Transfer { #datatransfer }
-*Last update: April 30, 2025*
+*Last update: May 5, 2025*
 
 TACC supports two primary technologies for data transfer: SSH (also referred to as SCP and SFTP) and Globus (also referred to as GridFTP). All TACC systems support SSH-based transfer, and most TACC systems support Globus-based transfer. When in doubt, we recommend that you start with SSH-based transfer as this requires the least setup and utilizes the TACC authentication system. Globus uses its own authentication system and will require additional setup steps, [outlined below](#globus).
 
@@ -241,7 +241,7 @@ To start using Globus, you need to do two things: Generate a unique identifier, 
 
 ### Step 1. **Retrieve your Unique ePPN**.  { #step1 }
 
-Login to [CILogon](https://cilogon.org) and click on "User Attributes".  Make note of your ePPN.
+Login to [CILogon](https://cilogon.org) and click on "User Attributes".  Make note of your **case-sensitive** ePPN.
 
 <figure id="figure4">
 <img src="../imgs/globus-CIlogin.png" style="width:65%"> 
