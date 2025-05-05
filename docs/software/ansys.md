@@ -1,10 +1,9 @@
 # ANSYS at TACC
 *Last update: June 12, 2024*
 
-<table cellpadding="5" cellspacing="5"><tr>
-<td><img alt="ANSYS logo" src="../imgs/ansys-logo.png"> </td>
-<td>ANSYS offers a comprehensive software suite that spans the entire range of physics, providing access to virtually any field of engineering simulation that a design process requires. ANSYS software is used to simulate computer models of structures, electronics, or machine components for analyzing strength, toughness, elasticity, temperature distribution, electromagnetism, fluid flow, and other attributes.</td>
-</tr></table>
+![ANSYS logo](../imgs/ansys-logo.png){ .align-right width="200px" }
+
+ANSYS offers a comprehensive software suite that spans the entire range of physics, providing access to virtually any field of engineering simulation that a design process requires. ANSYS software is used to simulate computer models of structures, electronics, or machine components for analyzing strength, toughness, elasticity, temperature distribution, electromagnetism, fluid flow, and other attributes.
 
 ANSYS is currently installed on TACC's [Frontera][TACCFRONTERAUG], [Lonestar6][TACCLONESTAR6UG] and [Stampede3][TACCSTAMPEDE3UG] resources. 
 
