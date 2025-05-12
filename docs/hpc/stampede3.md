@@ -1844,7 +1844,7 @@ Follow these instructions to begin using Intel's Conda environment with PyTorch 
 
 ## Python { #python }
 
-Python on Stampede3 has been made into a module to mirror the environments of TACC others machines. Load the python like so:
+Python on Stampede3 has been made into a module to mirror the environments of TACC others machines. Load python like so:
 
 ```cmd-line
 $ module load python
@@ -1956,4 +1956,5 @@ TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for 
 [TACCANALYSISPORTAL]: http://tap.tacc.utexas.edu "TACC Analysis Portal"
 
 [DOWNLOADCYBERDUCK]: https://cyberduck.io/download/ "Download Cyberduck"
+[CYBERDUCK]: https://cyberduck.io "Download Cyberduck"
 [TACCSOFTWARELIST]: https://tacc.utexas.edu/use-tacc/software-list/ "TACC Software List"

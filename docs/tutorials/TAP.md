@@ -1,5 +1,5 @@
-# TACC Analysis Portal User Guide
-*Last update: March 13, 2025*
+# TACC Analysis Portal (TAP) 
+*Last update: May 12, 2025*
 
 The [TACC Analysis Portal][TACCANALYSISPORTAL] (TAP) provides simplified access to interactive sessions on TACC large-scale computing resources. TAP targets users who want the convenience of web-based portal access while maintaining control over low-level job behavior.  
 
@@ -7,8 +7,12 @@ Any user with an allocation on one of TACC's HPC Systems, e.g. Frontera, Stamped
 
 * DCV remote desktop
 * VNC remote desktop
-* Jupyter Notebook
+* Jupyter Notebook[&#42;](#s3note)
 * RStudio
+
+<a id="s3note">
+!!! important
+	&#42;Stampede3 users see the [Jupyter Notebooks](/hpc/stampede3/#python-jupyter) section in the [Stampede3 User Guide][TACCSTAMPEDE3UG].
 
 
 ## Accessing the Portal { #access }

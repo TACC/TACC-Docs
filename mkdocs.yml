@@ -95,7 +95,7 @@ nav:
     - MAP: tutorials/map.md
     - Remote Desktop Access: tutorials/remotedesktopaccess.md
     - Sharing Project Files: tutorials/sharingprojectfiles.md
-    - TACC Analysis Portal: tutorials/TAP.md
+    - TACC Analysis Portal (TAP): tutorials/TAP.md
 #  - Fiddling:
 #    - Testing Extensions: testingextensions.md
 #    - Code Examples: code-examples/index.md
