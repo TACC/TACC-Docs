@@ -45,7 +45,6 @@ nav:
     - Documentation Overview: index.md
     - Getting Started: https://www.tacc.utexas.edu/use-tacc/getting-started/
     - Managing Your TACC Account: basics/accounts.md
-#    - Portal Access: portal.md
     - Multi-Factor Authentication: basics/mfa.md
     - TACC Good Conduct Guide: basics/conduct.md
     - Data Transfer Guide: basics/datatransfer.md
@@ -62,7 +61,6 @@ nav:
     - Stallion: hpc/stallion.md
     - Vista: hpc/vista.md
   - Software Packages:
-#    - ABAQUS: software/abaqus.md
     - AlphaFold2 : software/alphafold.md
     - AlphaFold3 : software/alphafold3.md
     - ANSYS: software/ansys.md
@@ -71,7 +69,6 @@ nav:
     - GROMACS: software/gromacs.md
     - idev: software/idev.md
     - LAMMPS: software/lammps.md
-#    - Launcher: software/launcher.md
     - Lmod: https://lmod.readthedocs.io/en/latest
     - MATLAB: software/matlab.md
     - NAMD: software/namd.md
@@ -81,7 +78,6 @@ nav:
     - Quantum Espresso: software/quantumespresso.md 
     - REMORA: software/remora.md
     - TAU: software/tau.md
-#    - Tensorflow: software/tensorflow.md
     - VASP: software/vasp.md
     - VisIt: software/visit.md
   - TACC Tutorials:
@@ -96,18 +92,18 @@ nav:
     - Remote Desktop Access: tutorials/remotedesktopaccess.md
     - Sharing Project Files: tutorials/sharingprojectfiles.md
     - TACC Analysis Portal (TAP): tutorials/TAP.md
-#  - Fiddling:
-#    - Testing Extensions: testingextensions.md
-#    - Code Examples: code-examples/index.md
+
+
 
 plugins:
   - search
   - exclude-search:
       exclude:
         - aliases.md
+        - archives/*
         - include/*
         - code-examples/*
-        - testingextensions.md
       exclude_unreferenced: true
   - macros # allows {% include ... %} (and macros)
-    # NOTE: warnings if file included by {% include '…' %} has relative paths
+
+# NOTE: warnings if file included by {% include '…' %} has relative paths

@@ -1,5 +1,5 @@
 # VASP at TACC
-*Last update: May 12, 2024*
+*Last update: May 12, 2025*
 
 ![VASP logo](../imgs/vasp-logo.png){ .align-right width="200px" }
 
