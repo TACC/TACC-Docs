@@ -230,7 +230,7 @@ $ module help launcher
 ```
 
 <figure id="figure2">
-<img alt="Stampede2" src="../imgs/stampede2/Stampede2.jpg">
+<img alt="Stampede2" src="../imgs/Stampede2.png">
 <figcaption>Figure 2. Login and compute nodes</figcaption></figure>
 
 ### Using Modules to Manage your Environment { #using-modules }
@@ -347,7 +347,7 @@ Your account-specific `$WORK` environment variable varies from system to system 
 
 See the example for fictitious user `bjones` in the figure below. All directories are accessible from all systems, however a given sub-directory (e.g. `lonestar6`, `frontera`) will exist **only** if you have an allocation on that system.  Figure 3 illustrates account-level directories on the `$WORK` file system (Global Shared File System hosted on Stockyard). Example for fictitious user `bjones`. All directories usable from all systems. Sub-directories (e.g. `lonestar6`, `frontera`) exist only when you have allocations on the associated system.
 
-<figure id="figure3"><img border="1" alt="Stockyard 2022" src="../imgs/stockyard-2022.jpg"<figcaption>Figure 3.</figcaption></figure>
+<figure id="figure3"><img border="1" alt="Stockyard 2022" src="../imgs/Stockyard-2022.png"<figcaption>Figure 3.</figcaption></figure>
 
 Note that resource-specific sub-directories of `$STOCKYARD` are nothing more than convenient ways to manage your <u>resource-specific</u> files. You have access to any such <u>sub-directory</u> from any TACC resources. If you are logged into Stampede2, for example, executing the alias `cdw` (equivalent to `cd $WORK`) will take you to the <u>resource-specific</u> <u>sub-directory</u> `$STOCKYARD/stampede2`. But you can access this directory from other TACC systems as well by executing `cd $STOCKYARD/stampede2`. These commands allow you to share files across TACC systems. In fact, several convenient <u>account-level</u> aliases make it even easier to navigate across the directories you own in the shared file systems:
 
@@ -1975,7 +1975,7 @@ Each core can run up to 4 hardware threads. The two cores on a tile share a 1MB 
 The processor's memory mode determines whether the fast MCDRAM operates as RAM, as direct-mapped L3 cache, or as a mixture of the two. The output of commands like `top`, `free`, and `ps -v` reflect the consequences of memory mode. Such commands will show the amount of RAM available to the operating system, not the hardware (DDR + MCDRAM) installed.
 
 
-<figure id="figure-knlmemorymodes"><img src="../imgs/stampede2/KNL-Memory-Modes.png"><figcaption>Figure 4. KNL Memory Modes</figcaption></figure>
+<figure id="figure-knlmemorymodes"><img src="../imgs/KNL-Memory-Modes.png"><figcaption>Figure 4. KNL Memory Modes</figcaption></figure>
 
 * **Cache Mode**. In this mode, the fast MCDRAM is configured as an L3 cache. The operating system transparently uses the MCDRAM to move data from main memory. In this mode, the user has access to 96GB of RAM, all of it traditional DDR4. **Most Stampede2 KNL nodes are configured in cache mode.**
 
@@ -1997,7 +1997,7 @@ The KNL can do this in several ways, each of which is called a cluster mode. Eac
 
 * **Sub-NUMA 4 (variation: Sub-NUMA 2)**. This mode, abbreviated **SNC-4**, divides the chip into four NUMA nodes so that it acts like a four-socket processor. SNC-4 aims to optimize coherency-related on-chip communication by confining this communication to a single NUMA node when it is possible to do so. To achieve any performance benefit, this requires explicit manual memory management by the programmer/user (in particular, allocating memory within the NUMA node that will use that memory). Stampede2 does not have nodes in this cluster mode.
 
-<figure id="figure-knlclustermodes"><img src="../imgs/stampede2/KNL-Cluster-Modes.png"><figcaption>Figure 5. KNL Cluster Modes</figcaption></figure>
+<figure id="figure-knlclustermodes"><img src="../imgs/KNL-Cluster-Modes.png"><figcaption>Figure 5. KNL Cluster Modes</figcaption></figure>
 
 TACC's early experience with the KNL suggests that there is little reason to deviate from Intel's recommended default memory and cluster modes. Cache-quadrant tends to be a good choice for almost all workflows; it offers a nice compromise between performance and ease of use for the applications we have tested. Flat-quadrant is the most promising alternative and sometimes offers moderately better performance, especially when memory requirements per node are less than 16GB. We have not yet observed significant performance differences across cluster modes, and our current recommendation is that configurations other than cache-quadrant and flat-quadrant are worth considering only for very specialized needs. For more information see [Managing Memory](#programming-knl-managingmemory) and [Best Known Practices...](#programming-knl-bestpractices).
 

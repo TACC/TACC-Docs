@@ -73,7 +73,7 @@ $ module help launcher
 ```
 
 <figure id="figure2">
-<img alt="Stampede2" src="../imgs/stampede2/Stampede2.jpg">
+<img alt="Stampede2" src="../imgs/Stampede2.png">
 <figcaption>Figure 2. Login and compute nodes</figcaption></figure>
 
 ### Using Modules to Manage your Environment { #using-modules }

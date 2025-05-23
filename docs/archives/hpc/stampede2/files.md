@@ -16,7 +16,7 @@ Your account-specific `$WORK` environment variable varies from system to system 
 
 See the example for fictitious user `bjones` in the figure below. All directories are accessible from all systems, however a given sub-directory (e.g. `lonestar6`, `frontera`) will exist **only** if you have an allocation on that system.  Figure 3 illustrates account-level directories on the `$WORK` file system (Global Shared File System hosted on Stockyard). Example for fictitious user `bjones`. All directories usable from all systems. Sub-directories (e.g. `lonestar6`, `frontera`) exist only when you have allocations on the associated system.
 
-<figure id="figure3"><img border="1" alt="Stockyard 2022" src="../imgs/stockyard-2022.jpg"<figcaption>Figure 3.</figcaption></figure>
+<figure id="figure3"><img border="1" alt="Stockyard 2022" src="../imgs/Stockyard-2022.png"<figcaption>Figure 3.</figcaption></figure>
 
 Note that resource-specific sub-directories of `$STOCKYARD` are nothing more than convenient ways to manage your <u>resource-specific</u> files. You have access to any such <u>sub-directory</u> from any TACC resources. If you are logged into Stampede2, for example, executing the alias `cdw` (equivalent to `cd $WORK`) will take you to the <u>resource-specific</u> <u>sub-directory</u> `$STOCKYARD/stampede2`. But you can access this directory from other TACC systems as well by executing `cd $STOCKYARD/stampede2`. These commands allow you to share files across TACC systems. In fact, several convenient <u>account-level</u> aliases make it even easier to navigate across the directories you own in the shared file systems:
 
