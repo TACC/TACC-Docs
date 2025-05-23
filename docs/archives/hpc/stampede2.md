@@ -661,7 +661,7 @@ If you use GNU compilers, see [GNU x86 Options](https://gcc.gnu.org/onlinedocs/g
 
 ## Running Jobs { #running }
 
-{% include 'archives/hpc/stampede2/stampede2/stampede2-jobaccounting.md' %}
+{% include 'archives/hpc/stampede2/stampede2-jobaccounting.md' %}
 
 ### Slurm Job Scheduler { #running-slurm }
 

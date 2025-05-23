@@ -1,6 +1,6 @@
 ## Running Jobs { #running }
 
-<!-- { % include 'include/maverick2-jobaccounting.md' % } -->
+{% include 'archives/hpc/maverick2/maverick2-jobaccounting.md' %}
 
 ### Slurm Job Scheduler { #running-slurm }
 

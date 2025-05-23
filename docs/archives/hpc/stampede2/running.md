@@ -1,6 +1,6 @@
 ## Running Jobs { #running }
 
-{% include 'archives/hpc/stampede2/stampede2/stampede2-jobaccounting.md' %}
+{% include 'archives/hpc/stampede2/stampede2-jobaccounting.md' %}
 
 ### Slurm Job Scheduler { #running-slurm }
 
