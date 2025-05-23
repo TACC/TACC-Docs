@@ -11,7 +11,7 @@ SRC =   \
         vis.md \
         programming.md \
         references.md \
-		../../include/stampede2-help.md \
+		stampede2-help.md \
         history.md
 
 
