@@ -1,5 +1,5 @@
 # Software at TACC
-Last update: *October 30, 2024*
+Last update: *May 27, 2025*
 
 ## System-Installed 
 
@@ -18,15 +18,16 @@ If the software search results are inconclusive you have two choices:
 
 See each resource user guide's Building Software and Performance sections for architecture-specific build instructions:
 
-* [Frontera](../hpc/frontera#building)
-* [Lonestar6](../hpc/lonestar6#building)
-* [Stampede3](../hpc/stampede3#building)
-* [Vista](../hpc/vista#building)
+* [Frontera](../../hpc/frontera#building)
+* [Lonestar6](../../hpc/lonestar6#building)
+* [Stampede3](../../hpc/stampede3#building)
+* [Vista](../../hpc/vista#building)
 
 
+<a id="thirdparty">
 ## Building Third-Party Software
 
-You are welcome to download third-party research software and install it in your own account. In most cases you'll want to download the source code and build the software so it's compatible with the resource's software environment.
+You are welcome to download third-party research software and build and install it in your own account. In most cases you'll want to download the source code and build the software so it's compatible with the resource's software environment.
 
 !!!warning
 	You cannot use the `sudo` command or any package manager or installation process that requires elevated or "root" user privileges.
