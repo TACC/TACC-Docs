@@ -35,13 +35,13 @@ You are welcome to download third-party research software and build and install 
 Instead, the key is to specify an installation directory for which you have write permissions. Details vary; you should consult the package's documentation and be prepared to experiment. Using the [three-step autotools build process](https://www.gnu.org/software/automake/manual/html_node/Autotools-Introduction.html), the standard approach is to use the `$PREFIX` environment variable to specify a non-default, user-owned installation directory at the time you execute `configure` or `make`:
 
 ```cmd-line
-$ export INSTALLDIR=$WORK/apps/t3pi
+$ export INSTALLDIR=$WORK/apps/fftw3
 $ ./configure --prefix=$INSTALLDIR
 $ make
 $ make install
 ```
 
-CMake based installations have a similar workflow where you specify the install location. Unlike with configure, you create a separate build location and tell cmake where to find the source:
+CMake based installations have a similar workflow where you specify the install location. Unlike with `configure`, you create a separate build location and tell `cmake` where to find the source:
 
 ```cmd-line
 $ mkdir build && cd build
@@ -70,7 +70,7 @@ $ R                                                 # launch R
 > install.packages('devtools')                      # R will prompt for install location
 ```
 
-You may, of course, need to customize the build process in other ways. It's likely, for example, that you'll need to edit a makefile or other build artifacts to specify resource-specific include and library paths or other compiler settings. A good way to proceed is to write a shell script that implements the entire process: definitions of environment variables, module commands, and calls to the build utilities. Include echo statements with appropriate diagnostics. Run the script until you encounter an error. Research and fix the current problem. Document your experience in the script itself; including dead-ends, alternatives, and lessons learned. Re-run the script to get to the next error, then repeat until done. When you're finished, you'll have a repeatable process that you can archive until it's time to update the software or move to a new machine.
+You may, of course, need to customize the build process in other ways. It's likely, for example, that you'll need to edit a makefile or other build artifacts to specify resource-specific include and library paths or other compiler settings. A good way to proceed is to write a shell script that implements the entire process: definitions of environment variables, module commands, and calls to the build utilities. Include `echo` statements with appropriate diagnostics. Run the script until you encounter an error. Research and fix the current problem. Document your experience in the script itself; including dead-ends, alternatives, and lessons learned. Re-run the script to get to the next error, then repeat until done. When you're finished, you'll have a repeatable process that you can archive until it's time to update the software or move to a new machine.
 
 If you wish to share a software package with collaborators, you may need to modify file permissions. See [Sharing Files with Collaborators][TACCSHARINGPROJECTFILES] for more information and detailed instructions.
 
