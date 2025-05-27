@@ -1421,7 +1421,6 @@ TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for 
 
 [TACCACCOUNTS]: https://accounts.tacc.utexas.edu "TACC Accounts Portal"
 [TACCUSERPROFILE]: https://accounts.tacc.utexas.edu/profile "TACC Accounts User Profile"
-[TACCUSERMFA]: https://accounts.tacc.utexas.edu/mfa "TACC User MFA"
 [TACCSUBSCRIBE]: https://accounts.tacc.utexas.edu/user_updates "Subscribe to News"
 [TACCLOGINSUPPORT]: https://accounts.tacc.utexas.edu/login_support "TACC Accounts Login Support Tool"
 

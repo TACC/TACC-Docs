@@ -1,4 +1,4 @@
-## Building Software
+## Building Software { #building } 
 
 !!!important
     TACC maintains a database of currently installed software packages and libraries across all HPC resources.

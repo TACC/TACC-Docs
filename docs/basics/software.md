@@ -11,7 +11,7 @@ TACC maintains a database of currently installed software packages and libraries
 If the software search results are inconclusive you have two choices:
 
 1. Request TACC staff make a global, system-wide, installation of your software package
-1. Install the software package in your own directory.  You can always make the executable available to project members.
+1. Install the software package in your own workspace as outlined below.  You can always make the resulting executable available to project members.
 
 
 ### Resource-Specific Build Instructions
@@ -24,8 +24,7 @@ See each resource user guide's Building Software and Performance sections for ar
 * [Vista](../../hpc/vista#building)
 
 
-<a id="thirdparty">
-## Building Third-Party Software
+## Building Third-Party Software { #thirdparty }
 
 You are welcome to download third-party research software and build and install it in your own account. In most cases you'll want to download the source code and build the software so it's compatible with the resource's software environment.
 
