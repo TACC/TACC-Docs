@@ -1,5 +1,5 @@
 # Stampede3 User Guide 
-*Last update: March 20, 2025*
+*Last update: May 27, 2025*
 
 ## Notices { #notices }
 
@@ -585,7 +585,7 @@ The job status messages indicate that your interactive session is waiting in the
 For command line options and other information, execute `idev --help`. It's easy to tailor your submission request (e.g. shorter or longer duration) using Slurm-like syntax:
 
 ``` cmd-line
-login1$ idev -p skx-normal -N 2 -n 8 -m 150 # skx-normal queue, 2 nodes, 8 total tasks, 150 minutes
+login1$ idev -p skx -N 2 -n 8 -m 150 # skx queue, 2 nodes, 8 total tasks, 150 minutes
 ```
 
 For more information [see the `idev` documentation][TACCIDEV].
@@ -593,7 +593,7 @@ For more information [see the `idev` documentation][TACCIDEV].
 You can also launch an interactive session with Slurm's `srun` command. A typical launch line would look like this:
 
 ``` cmd-line
-login1$ srun --pty -N 2 -n 8 -t 2:30:00 -p skx-normal /bin/bash -l # same conditions as above
+login1$ srun --pty -N 2 -n 8 -t 2:30:00 -p skx /bin/bash -l # same conditions as above
 ```
 
 #### Interactive Sessions using `ssh` { #launching-interactive-ssh }
@@ -1939,6 +1939,7 @@ TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for 
 
 [TACCACCOUNTS]: https://accounts.tacc.utexas.edu "TACC Accounts Portal"
 [TACCUSERPROFILE]: https://accounts.tacc.utexas.edu/profile "TACC Accounts User Profile"
+[TACCUSERMFA]: https://accounts.tacc.utexas.edu/mfa "TACC User MFA"
 [TACCSUBSCRIBE]: https://accounts.tacc.utexas.edu/user_updates "Subscribe to News"
 [TACCLOGINSUPPORT]: https://accounts.tacc.utexas.edu/login_support "TACC Accounts Login Support Tool"
 
