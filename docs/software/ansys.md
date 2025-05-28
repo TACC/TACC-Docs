@@ -2,7 +2,7 @@
 *Last update: June 12, 2024*
 
 <!-- ![ANSYS logo](../imgs/ansys-logo.png){ .align-right width="200px" } -->
-<img src="../imgs/ansys-logo.png" width="250" alt="ANSYS logo" align="right">
+<img src="../imgs/ansys-logo.png" width="250" alt="ANSYS logo" class="align-right">
 
 ANSYS offers a comprehensive software suite that spans the entire range of physics, providing access to virtually any field of engineering simulation that a design process requires. ANSYS software is used to simulate computer models of structures, electronics, or machine components for analyzing strength, toughness, elasticity, temperature distribution, electromagnetism, fluid flow, and other attributes.
 
