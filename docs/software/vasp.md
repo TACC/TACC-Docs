@@ -1,7 +1,7 @@
 # VASP at TACC
 *Last update: May 12, 2025*
 
-<!-- ![VASP logo](../imgs/vasp-logo.png){ .align-right width="200px" } -->
+<!-- ![VASP logo](../imgs/vasp-logo.png){ .align-right width="300" } -->
 <img src="../imgs/vasp-logo.png" width="300" alt="VASP logo" class="align-right">
 
 **V**ienna **A**b initio **S**imulation **P**ackage (VASP) is a computer program for atomic scale materials modeling, e.g. electronic structure calculations and quantum-mechanical molecular dynamics, from first principles.
