@@ -1,9 +1,10 @@
 # Quantum Espresso at TACC
 *Last update: May 15, 2024*
 
+<!-- ![Quantum Espresso logo](../imgs/qespresso-logo.png){ .align-right width="300" } -->
+<img src="../imgs/qe-logo.png" width="300" alt="Quantum Espresso logo" align="right">
 
-<img alt="Quantum Espresso logo" src="../imgs/qespresso-logo.png" style="width: 75px;" />
-Quantum Espresso (QE) is an integrated suite of open-source codes for electronic-structure calculations and materials modeling at the nanoscale. Quantum Espresso (op<b>E</b>n-<b>S</b>ource <b>P</b>ackage for <b>R</b>esearch in <b>E</b>lectronic <b>S</b>tructure, <b>S</b>imulation, and <b>O</b>ptimization) is based on density-functional theory, plane waves, and pseudopotentials.  
+Quantum Espresso (QE) is an integrated suite of open-source codes for electronic-structure calculations and materials modeling at the nanoscale. Quantum Espresso (**Quantum** op<b>E</b>n-<b>S</b>ource <b>P</b>ackage for <b>R</b>esearch in <b>E</b>lectronic <b>S</b>tructure, <b>S</b>imulation, and <b>O</b>ptimization) is based on density-functional theory, plane waves, and pseudopotentials.  
 
 ## Installations { #installations }
 

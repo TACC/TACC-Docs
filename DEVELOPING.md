@@ -10,6 +10,18 @@ To change just this project, learn how to [configure](https://tacc.github.io/mkd
 
 To make functional changes, [use extensions](https://tacc.github.io/mkdocs-tacc/extensions/).
 
+## How to Upgrade the Theme
+
+1. ```shell
+    poetry remove mkdocs-tacc
+    poetry add "mkdocs-tacc[all]"@latest
+    ```
+2. Verify changes in:
+    - `pyproject.toml`
+    - `poetry.lock`
+3. Test.
+4. Commit.
+
 ## How to Test Your Changes
 
 > [!NOTE]

@@ -1,8 +1,10 @@
 # NAMD at TACC
 *Last update: April 28, 2025*
 
-<img alt="NAMD logo" src="../imgs/namd-logo.png" style="width:40%;">   
-<a href="http://www.ks.uiuc.edu/Research/namd/">NAMD</a> **Na**noscale **M**olecular **D**ynamics program, is a parallel molecular dynamics code designed for high-performance simulation of large biomolecular systems. Based on Charm++ parallel objects, NAMD scales to hundreds of cores for typical simulations and beyond 500,000 cores for the largest simulations. NAMD uses the popular molecular graphics program VMD for simulation setup and trajectory analysis, but is also file-compatible with AMBER, CHARMM, and X-PLOR. NAMD can perform geometry optimization, molecular dynamics simulations, chemical and conformational free energy calculations, enhanced sampling via replica exchange. It also supports Tcl based scripting and steering forces.  
+<!-- ![NAMD logo](../imgs/namd-logo.png){ .align-right width="300" } -->
+<img src="../imgs/namd-logo.png" width="300" alt="NAMD logo" align="right">
+
+[NAMD](http://www.ks.uiuc.edu/Research/namd/), **Na**noscale **M**olecular **D**ynamics program, is a parallel molecular dynamics code designed for high-performance simulation of large biomolecular systems. Based on Charm++ parallel objects, NAMD scales to hundreds of cores for typical simulations and beyond 500,000 cores for the largest simulations. NAMD uses the popular molecular graphics program VMD for simulation setup and trajectory analysis, but is also file-compatible with AMBER, CHARMM, and X-PLOR. NAMD can perform geometry optimization, molecular dynamics simulations, chemical and conformational free energy calculations, enhanced sampling via replica exchange. It also supports Tcl based scripting and steering forces.  
 
 ## Installations { #installations }
 

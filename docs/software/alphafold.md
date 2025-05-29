@@ -1,10 +1,10 @@
 # AlphaFold2 at TACC
 *Last update: February 26, 2025*
 
+<!-- ![AlphaFold logo](../imgs/alphafold-logo.png){ .align-right width="250" } -->
+<img src="../imgs/alphafold-logo.png" width="250" alt="AlphaFold logo" align="right">
 
-<table cellpadding="5" cellspacing="5"><tr>
-<td> <img alt="AlphaFold logo" src="../imgs/alphafold-logo.png"></td><td>
-AlphaFold2 is a protein structure prediction tool developed by DeepMind (Google). AlphaFold2 uses a novel machine learning approach to predict 3D protein structures from primary sequences alone. In July 2021, the developers made the <a href="https://github.com/deepmind/alphafold">source code available on Github</a> and published a <a href="https://www.nature.com/articles/s41586-021-03819-2">Nature paper</a> (<a href="https://static-content.springer.com/esm/art%3A10.1038%2Fs41586-021-03819-2/MediaObjects/41586_2021_3819_MOESM1_ESM.pdf">supplementary information</a>) describing the method. In addition to the software, AlphaFold2 depends on ~2.9 TB of databases and model parameters. Researchers interested in making protein structure predictions with AlphaFold2 are encouraged to follow the guide below, and use the databases and model parameters that have been prepared.</td></tr></table>
+AlphaFold2 is a protein structure prediction tool developed by DeepMind (Google). AlphaFold2 uses a novel machine learning approach to predict 3D protein structures from primary sequences alone. In July 2021, the developers made the [source code available on Github](https://github.com/deepmind/alphafold) and published a [Nature paper](https://www.nature.com/articles/s41586-021-03819-2) ([supplementary information](https://static-content.springer.com/esm/art%3A10.1038%2Fs41586-021-03819-2/MediaObjects/41586_2021_3819_MOESM1_ESM.pdf)) describing the method. In addition to the software, AlphaFold2 depends on ~2.9 TB of databases and model parameters. Researchers interested in making protein structure predictions with AlphaFold2 are encouraged to follow the guide below, and use the databases and model parameters that have been prepared.
 
 ## Installations at TACC { #installations } 
 

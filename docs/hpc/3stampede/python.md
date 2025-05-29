@@ -1,6 +1,6 @@
 ## Python { #python }
 
-Python on Stampede3 has been made into a module to mirror the environments of TACC others machines. Load the python like so:
+Python on Stampede3 has been made into a module to mirror the environments of TACC others machines. Load python like so:
 
 ```cmd-line
 $ module load python

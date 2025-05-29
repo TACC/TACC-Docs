@@ -1,10 +1,10 @@
 # AlphaFold3 at TACC
-*Last update: April 8, 2025*
+*Last update: May 5, 2025*
 
+<!-- ![AlphaFold logo](../imgs/alphafold3-logo.png){ .align-right width="250" } -->
+<img src="../imgs/alphafold3-logo.png" width="250" alt="AlphaFold3 logo" align="right">
 
-<table cellpadding="5" cellspacing="5"><tr>
-<td> <img alt="AlphaFold logo" src="../imgs/alphafold3-logo.png"></td><td>
-AlphaFold3 is Google Deepmind's latest deep learning model for predicting the structure and interactions of biological macromolecules, including proteins, nucleic acids, small molecules, ions, and post-translational modifications. AlphaFold3 significantly expands the capabilities of AlphaFold2, offering highly accurate complex structure predictions beyond protein folding alone. In November 2024, the developers made the <a href="https://github.com/deepmind/alphafold">source code available on Github</a> and published a <a href="https://www.nature.com/articles/s41586-024-07487-w">Nature paper</a> (<a href="https://static-content.springer.com/esm/art%3A10.1038%2Fs41586-024-07487-w/MediaObjects/41586_2024_7487_MOESM1_ESM.pdf">supplementary information</a>) describing the method. In addition to the software, AlphaFold3 depends on ~253 GB of databases and model parameters. Researchers interested in making protein structure predictions with AlphaFold3 are encouraged to follow the guide below, and use the databases that have been prepared.</td></tr></table>
+AlphaFold3 is Google Deepmind's latest deep learning model for predicting the structure and interactions of biological macromolecules, including proteins, nucleic acids, small molecules, ions, and post-translational modifications. AlphaFold3 significantly expands the capabilities of AlphaFold2, offering highly accurate complex structure predictions beyond protein folding alone. In November 2024, the developers made the [source code available on Github](https://github.com/deepmind/alphafold) and published a [Nature paper](https://www.nature.com/articles/s41586-024-07487-w) ([supplementary information](https://static-content.springer.com/esm/art%3A10.1038%2Fs41586-024-07487-w/MediaObjects/41586_2024_7487_MOESM1_ESM.pdf)) describing the method. In addition to the software, AlphaFold3 depends on ~253 GB of databases and model parameters. Researchers interested in making protein structure predictions with AlphaFold3 are encouraged to follow the guide below, and use the databases that have been prepared.
 
 ## Installations at TACC { #installations } 
 
@@ -32,7 +32,7 @@ Due to AlphaFold's licensing restrictions, users must obtain the model parameter
 
 After downloading, you must **manually place the model parameters** in the appropriate directory in your work environment.
 
-**Note:** TACC cannot distribute the AlphaFold3 model weights.
+**Note:** TACC cannot distribute the AlphaFold3 model parameters.
 
 ## Running AlphaFold3  { #running }
 
@@ -98,7 +98,7 @@ module load alphafold3/3.0.1-ctr.lua
 # Set environment variable definitions to point to your input, output, and model parameters directories:
 export AF3_INPUT_DIR=$SCRATCH/input/
 export AF3_OUTPUT_DIR=$SCRATCH/output/
-export AF3_MODEL_PARAMETERS_DIR=$WORK/af3_weights
+export AF3_MODEL_PARAMETERS_DIR=$WORK/af3_parameters
 
 # Run AlphaFold3 container 
 apptainer exec \
@@ -125,7 +125,7 @@ Variable | What it does | User Action Required?
 -- | -- | --
 `AF3_INPUT_DIR` | Directory containing the `input.json` file | Location of your input files (e.g., `$SCRATCH/input`)
 `AF3_OUTPUT_DIR` | Directory where output will be written | Desired output path (e.g., `$SCRATCH/output`)
-`AF3_MODEL_PARAMETERS_DIR` | Directory where you manually downloaded and extracted the AlphaFold3 model weights | Set this to where you stored the models (e.g., `$WORK/af3_weights`)
+`AF3_MODEL_PARAMETERS_DIR` | Directory where you manually downloaded and extracted the AlphaFold3 model parameters | Set this to where you stored the models (e.g., `$WORK/af3_parameters`)
 `AF3_DATABASES_DIR` | Location of shared AlphaFold3 database files on TACC systems | **Do not modify** 
 `AF3_IMAGE` | Path to the AlphaFold3 container image | **Do not modify** 
 `AF3_CODE_DIR` | Location of AlphaFold3 source code inside the container | **Do not modify** 

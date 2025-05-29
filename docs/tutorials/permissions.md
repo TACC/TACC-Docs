@@ -1,5 +1,5 @@
 # Unix Group Permissions and Environment
-Last update: *October 15, 2024*
+Last update: *May 5, 2025*
 
 
 Unix generally has a concept of a user owner and a group owner for any given file or directory, and it is important to understand these concepts to manage access to files at TACC.  There are two primary ways in which a users current and full set of groups can impact access to files on a TACC Unix file system.  These are:
@@ -46,7 +46,8 @@ This is because the file is already shared with the Group owner, but it is curre
 ```cmd-line
 $ chmod g+r anaconda.cfg
 ```
-See [Sharing Project Files][TACCSHARINGPROJECTFILES] for specific instructions for using these tools to setup a shared project folder. 
+!!!tip
+	See [Sharing Project Files][TACCSHARINGPROJECTFILES] for specific instructions for using these tools to set up a shared project folder. 
 
 ## Controlling the active or current group
 
@@ -62,7 +63,15 @@ This will list all the groups of which you are a member, with the currently acti
 $ newgrp G-example
 ```
 
-This will change your currently active group for the remainder of your login session.  Another way to change the current group context, for a single command, is to run it via the `sg` command, which will execute a command as different group ID:
+This will change your currently active group for the remainder of your login session.  
+
+
+!!! important
+	Do not use the `newgrp` command in any of your login scripts.  Problems will ensue.
+
+	Instead, if you wish to change your default group id (GID), log on to the <a href="https://accounts.tacc.utexas.edu/account_info">TACC Accounts Portal</a>, then click on "Account Information" to edit your default GID.
+
+Another way to change the current group context, for a single command, is to run it via the `sg` command, which will execute a command as different group ID:
 
 ```cmd-line
 $ sg G-example ls
@@ -74,8 +83,9 @@ The example above will run the `ls` command using the group "G-example" as the c
 
 Users who are members of multiple projects may have several groups associated with their user accounts, and may have a default group that is no longer active or relevant to their current work.  The first group shown in the output of the `groups` command is the users "default" group, which will be selected every time a user logs in.  
 
-!!!tip
-	If this group is no longer relevant to your needs, you can change your default group by editing your account profile through the TACC Accounts portal : <https://accounts.tacc.utexas.edu/account_info>
+If this group is no longer relevant to your needs, you can change your default group by editing your account profile through the [TACC Accounts Portal][TACCACCOUNTS]. 
+
+<img src="../imgs/defaultGID.png">
 
 You can see the numeric GID assigned to any project in the portal by looking at the project details: <https://tacc.utexas.edu/portal/projects>
 
@@ -85,6 +95,7 @@ After making changes through the TACC portal, you will need to log out any activ
 
 ## References
 
+* [TACC Accounts Portal][TACCACCOUNTS]
 * [Manage Permissions with Access Control Lists][TACCACLS]
 * [Sharing Project Files at TACC][TACCSHARINGPROJECTFILES]
 * [TACC Corral User Guide][TACCCORRALUG]

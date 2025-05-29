@@ -1,7 +1,9 @@
 # VASP at TACC
-*Last update: May 06, 2024*
+*Last update: May 12, 2025*
 
-<img alt="VASP logo" src="../imgs/vasp-logo.png" style="width: 75px;" />
+<!-- ![VASP logo](../imgs/vasp-logo.png){ .align-right width="300" } -->
+<img src="../imgs/vasp-logo.png" width="300" alt="VASP logo" align="right">
+
 **V**ienna **A**b initio **S**imulation **P**ackage (VASP) is a computer program for atomic scale materials modeling, e.g. electronic structure calculations and quantum-mechanical molecular dynamics, from first principles.
 
 
@@ -41,6 +43,24 @@ login1$ module load vasp/6.3.0
 ## Running VASP Jobs { #running }
 
 You may use and customize the following sample job scripts for VASP jobs on TACC's Stampede3, Lonestar6 and Frontera resources.
+
+### Sample Job Script: VASP on Vista { #running-vista }
+
+The script below submits a VASP job to Vista's `gg` queue ( Grace compute nodes), requesting 2 nodes and 280 tasks for a maximum of 4 hours.
+
+```job-script
+#!/bin/bash
+#SBATCH -J vasp
+#SBATCH -o vasp.%j.out
+#SBATCH -e vasp.%j.err
+#SBATCH -n 280
+#SBATCH -N 2
+#SBATCH -p gg
+#SBATCH -t 4:00:00
+#SBATCH -A projectnumber
+module load vasp/6.4.3
+ibrun vasp_std > vasp_test.out
+```
 
 ### Sample Job Script: VASP on Stampede3 { #running-stampede3 }
 
