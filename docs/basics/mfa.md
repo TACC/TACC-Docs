@@ -1,5 +1,5 @@
 # Multifactor Authentication at TACC 
-*Last update: May 28, 2025*
+*Last update: May 30, 2025*
 
 !!! tip
 	TACC's [Login Support Tool][TACCLOGINSUPPORT] tool can assist you if you are having difficulty logging into TACC resources.  
@@ -14,7 +14,7 @@ Authentication is the process of determining if you are you. Traditional methods
 !!! important
 	TACC requires Multi-Factor Authentication (MFA) as an additional security measure when accessing all compute and storage resources.  All TACC account holders must maintain a valid MFA pairing.  
 
-If you are familiar with the pairing process, you can proceed directly to the [pairing page](https://accounts.tacc.utexas.edu/mfa) on the [TACC Accounts Portal][TACCACCOUNTPORTAL], otherwise follow the steps below to set up MFA..
+If you are familiar with the pairing process, then proceed directly to the [pairing page](https://accounts.tacc.utexas.edu/mfa) on the [TACC Accounts Portal][TACCACCOUNTPORTAL], otherwise follow the steps below to set up MFA..
 
 
 ### 1. Manage Account { #setupmfa-step1 }
@@ -155,3 +155,14 @@ Unpair your device via the same method you originally paired: by app token or by
 1. Once you've unpaired with this device, you are free to pair again with another device or another method.
 
 {% include 'aliases.md' %}
+
+<img border="1" alt="" src="../imgs/mfa-mfaunpair.png" style="width:50%">
+<img border="1" alt="" src="../imgs/mfa-mfapairingscreen2.png" style="width:50%">
+<img border="1" alt="" src="../imgs/mfa-mfaunpairing-successful2.png" style="width:50%">
+<img border="1" alt="" src="../imgs/mfa-smspairing.png" style="width:50%">
+<img border="1" alt="" src="../imgs/mfa-smspairingsuccessful.png" style="width:50%">
+<img border="1" alt="" src="../imgs/mfa-smsunpair.png" style="width:50%">
+<img border="1" alt="" src="../imgs/mfa-mfaunpairingsuccessful.png" style="width:50%">
+<img border="1" alt="" src="../imgs/mfa-selectpairing.png" style="width:50%">
+<img border="1" alt="" src="../imgs/mfa-mfapairingscreen.png" style="width:50%">
+<img border="1" alt="" src="../imgs/mfa-mfapairingsuccessful.png" style="width:50%">
