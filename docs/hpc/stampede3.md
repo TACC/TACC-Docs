@@ -1,5 +1,5 @@
 # Stampede3 User Guide 
-*Last update: May 27, 2025*
+*Last update: June 4, 2025*
 
 ## Notices { #notices }
 
@@ -38,7 +38,6 @@ RAM: | 4TB NVDIMM
 Cache:  | 48KB L1 data cache per core; 1.25 MB L2 per core; 60 MB L3 per socket.<br>Each socket can cache up to 110 MB (sum of L2 and L3 capacity)
 Local storage: | 280GB `/tmp` partition
 
-
 ### Ice Lake Compute Nodes { #system-icx }
 
 Stampede3 hosts 224 "Ice Lake" (ICX) compute nodes.
@@ -74,30 +73,12 @@ Memory: | 128 GB HBM 2e
 Cache: | 48 KB L1 data cache per core; 1MB L2 per core; 112.5 MB L3 per socket.<br>Each socket can cache up to 168.5 MB (sum of L2 and L3 capacity).
 Local storage: | 150 GB /tmp partition
 
-### Ponte Vecchio Compute Nodes { #system-pvc }
-
-Stampede3 hosts 20 nodes with four Intel Data Center GPU Max 1550s "Ponte Vecchio" (PVC) each.<br>Each PVC GPU has 128 GB of HBM2e and 128 Xe cores providing a peak performance of 4x 52 FP64 TFLOPS per node for scientific workflows and 4x 832 BF16 TFLOPS for ML workflows. 
-
-#### Table 4. PVC Specifications { #table4 }
-
-Specification | Value
---- | --
-GPU: | 4x Intel Data Center GPU Max 1550s ("Ponte Vecchio")
-GPU Memory: | 128 GB HBM 2e
-CPU: | Intel Xeon Platinum 8480 ("Sapphire Rapids")
-Total cores per node: | 96 cores on two sockets (2 x 48 cores)
-Hardware threads per core: | 1
-Hardware threads per node: | 2x48 = 96
-Clock rate: | 2.0 GHz
-Memory: | 512 GB DDR5
-Cache: | 48 KB L1 data cache per core; 1MB L2 per core; 112.5 MB L3 per socket.<br>Each socket can cache up to 168.t MB (sum of L2 and L3 capacity).
-Local storage: | 150 GB /tmp partition
 
 ### Skylake Compute Nodes { #system-skx }
 
 Stampede3 hosts 1,060 "Skylake" (SKX) compute nodes.
 
-#### Table 5. SKX Specifications { #table5 }
+#### Table 4. SKX Specifications { #table4 }
 
 Specification | Value
 --- | ---
@@ -110,6 +91,50 @@ RAM: | 192GB (2.67GHz) DDR4
 Cache: | 32 KB L1 data cache per core; 1 MB L2 per core; 33 MB L3 per socket.<br>Each socket can cache up to 57 MB (sum of L2 and L3 capacity).
 Local storage: | 90 GB /tmp 
 
+### GPU Nodes { #system-gpu }
+
+Stampede3 hosts two types of GPU nodes, Intel's Ponte Vecchio and NVIDIA's H100 nodes, accessible through the `pvc` and `h100` [queues](#queues) respectively. 
+
+#### H100 nodes { #system-gpu-h100 }
+
+Stampede3 has 27 H100 nodes.
+
+##### Table 5a. H100 Specifications { #table5a }
+
+Specification | Value
+--- | --
+GPU:  | 4x NVIDIA H100 SXM5
+GPU Memory:  | 96GB
+CPU:  | Intel Xeon Platinum 8468 ("Sapphire Rapids")
+Total cores per node: | 96 cores on two sockets (2 x 48 cores)
+Hardware threads per core:  | 1
+Hardware threads per node:  | 2x48 = 96
+Clock rate:  | 2.10 GHz
+Memory:  | 1TB DDR5
+Cache:  | 80 KB L1 per core; 2MB L2 per core; 105 MB per socket
+Local Storage:  | 3.5 TB /tmp partition
+Additional Fabric:  | Mellanox InfiniBand NDR (split ports 200Gb/s) direct-GPU
+
+#### Ponte Vecchio Compute Nodes { #system-gpu-pvc }
+
+Stampede3 hosts 20 nodes with four Intel Data Center GPU Max 1550s "Ponte Vecchio" (PVC) each.   
+
+Each PVC GPU has 128 GB of HBM2e and 128 Xe cores providing a peak performance of 4x 52 FP64 TFLOPS per node for scientific workflows and 4x 832 BF16 TFLOPS for ML workflows. 
+
+##### Table 5b. PVC Specifications { #table5b }
+
+Specification | Value
+--- | --
+GPU: | 4x Intel Data Center GPU Max 1550s ("Ponte Vecchio")
+GPU Memory: | 128 GB HBM 2e
+CPU: | Intel Xeon Platinum 8480 ("Sapphire Rapids")
+Total cores per node: | 96 cores on two sockets (2 x 48 cores)
+Hardware threads per core: | 1
+Hardware threads per node: | 2x48 = 96
+Clock rate: | 2.10 GHz
+Memory: | 1TB DDR5
+Cache: | 80 KB L1 per core; 2MB L2 per core; 105 MB per socket
+Local storage: | 3.5 TB /tmp partition
 
 ### Login Nodes { #system-login }
 
@@ -379,16 +404,17 @@ Stampede3's job scheduler is the Slurm Workload Manager. Slurm commands enable y
     Use TACC's `qlimits` utility to see the latest queue configurations.
 
 <!-- 
-04/09/2025
+06/04/2025
 [slindsey@login2 ~]$ <1001> qlimits
 Current queue/partition limits on TACC's stampede3 system:
 
 Name             MinNode  MaxNode     MaxWall  MaxNodePU  MaxJobsPU   MaxSubmit
+h100                   1        4  2-00:00:00          4          2           4
 icx                    1       32  2-00:00:00         48         12          20
-nvdimm                 1        1  2-00:00:00          1          1           3
+nvdimm                 1        1  2-00:00:00          1          2           4
 pvc                    1        4  2-00:00:00          4          2           4
 skx                    1      256  2-00:00:00        384         40          60
-skx-dev                1       16    02:00:00         16          1           3
+skx-dev                1       16    02:00:00         16          2           4
 spr                    1       32  2-00:00:00        180         24          36
 [slindsey@login2 ~]$ <1002>
 -->
@@ -398,6 +424,7 @@ spr                    1       32  2-00:00:00        180         24          36
 
 Queue Name   | Node Type | Max Nodes per Job<br>(assoc'd cores) | Max Duration | Max Jobs in Queue | Charge Rate<br>(per node-hour)
 --           | --        | --                                   | --           | --                |  
+h100         | H100      | 4 nodes<br>(384 cores)               | 48 hrs       | 2                 | 3 SUs
 icx          | ICX       | 32 nodes<br>(2560 cores)             | 48 hrs       | 12                | 1.5 SUs
 nvdimm       | ICX       | 1 node<br>(80 cores)                 | 48 hrs       | 3                 | 4 SUs 
 pvc          | PVC       | 4 nodes<br>(384 cores)               | 48 hrs       | 2                 | 3 SUs
