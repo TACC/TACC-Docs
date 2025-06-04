@@ -32,7 +32,7 @@ spr                    1       32  2-00:00:00        180         24          36
 
 Queue Name   | Node Type | Max Nodes per Job<br>(assoc'd cores) | Max Duration | Max Jobs in Queue | Charge Rate<br>(per node-hour)
 --           | --        | --                                   | --           | --                |  
-h100         | H100      | 4 nodes<br>(384 cores)               | 48 hrs       | 2                 | 3 SUs
+h100         | H100      | 4 nodes<br>(384 cores)               | 48 hrs       | 2                 | 4 SUs
 icx          | ICX       | 32 nodes<br>(2560 cores)             | 48 hrs       | 12                | 1.5 SUs
 nvdimm       | ICX       | 1 node<br>(80 cores)                 | 48 hrs       | 3                 | 4 SUs 
 pvc          | PVC       | 4 nodes<br>(384 cores)               | 48 hrs       | 2                 | 3 SUs
