@@ -76,7 +76,7 @@ Stampede3 hosts two types of GPU nodes, Intel's Ponte Vecchio and NVIDIA's H100 
 
 #### H100 nodes { #system-gpu-h100 }
 
-Stampede3 has 27 H100 nodes.
+Stampede3 has 24 H100 nodes.
 
 ##### Table 5a. H100 Specifications { #table5a }
 
@@ -98,14 +98,18 @@ Additional Fabric:  | Mellanox InfiniBand NDR (split ports 200Gb/s) direct-GPU
 
 Stampede3 hosts 20 nodes with four Intel Data Center GPU Max 1550s "Ponte Vecchio" (PVC) each.   
 
-Each PVC GPU has 128 GB of HBM2e and 128 Xe cores providing a peak performance of 4x 52 FP64 TFLOPS per node for scientific workflows and 4x 832 BF16 TFLOPS for ML workflows. 
+<!-- Each PVC GPU has 128 GB of HBM2e and 128 Xe cores providing a peak performance of 4x 52 FP64 TFLOPS per node for scientific workflows and 4x 832 BF16 TFLOPS for ML workflows. -->
+
+Each PVC GPU has two 62GB tiles of video memory each, for a combined 124GB of memory per GPU.
+
+
 
 ##### Table 5b. PVC Specifications { #table5b }
 
 Specification | Value
 --- | --
 GPU: | 4x Intel Data Center GPU Max 1550s ("Ponte Vecchio")
-GPU Memory: | 128 GB HBM 2e
+GPU Memory: | 62 GB per tile; 124 GB per GPU
 CPU: | Intel Xeon Platinum 8480 ("Sapphire Rapids")
 Total cores per node: | 96 cores on two sockets (2 x 48 cores)
 Hardware threads per core: | 1
