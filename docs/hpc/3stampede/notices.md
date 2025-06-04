@@ -3,8 +3,7 @@
 
 ## Notices { #notices }
 
-* **NEW**: Stampede3 now hosts 3 [large memory "Ice Lake" (ICX) nodes](#system-icxlargemem). (02/19/2025)
-* **Important**: Please note [TACC's new SU charge policy](#sunotice). (09/20/2024)
+* **NEW**: Stampede3 now hosts 24 [NVIDIA H100 GPU nodes](#system-gpu-h100). (06/04/2025)
 * **Attention Jupyter users: learn how to [configure your environment](#python-jupyter) to enable notebooks.** (05/16/2024)
 * **Attention VASP users: DO NOT run VASP using Stampede3's SPR nodes!**  TACC staff has noticed many VASP jobs causing issues on the SPR nodes and impacting overall system stability and performance.  Please run your VASP jobs using either the [SKX](../../hpc/stampede3#table5) or [ICX](../../hpc/stampede3#table2) nodes.  See [Running VASP Jobs](../../software/vasp/#running) for more information.  (05/06/2024)
 
