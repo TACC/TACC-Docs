@@ -34,7 +34,7 @@ or
 !!! important
 	Users located outside the U.S. **must** pair using a [Multi-Factor Authentication app](#mfaapps) method. Because the cost associated with sending multiple international text messages is prohibitive, international users may NOT set up multi-factor authentication with SMS.
 
-####  Authenticator Applications { #mfaapps }
+### Example: Pairing with an Authentication App { #authapp }
 
 Users with Apple iOS and Android devices may set up device pairing using a one of a variety of authentication applications available for both <a href="https://itunes.apple.com/us/app/tacc-token/id1081516137?mt=8">Android</a> and <a href="https://itunes.apple.com/us/app/tacc-token/id1081516137?mt=8">iPhone</a> devices.
 
@@ -47,10 +47,7 @@ Operating System | MFA Authentication Apps
 IOS / Apple devices<br>Apple App Store | <a href="https://apps.apple.com/us/app/duo-mobile/id422663827" target="_blank">Duo</a><sup>&#8663;</sup>   <a href="https://apps.apple.com/us/app/1password-password-manager/id568903335" target="_blank">1Password</a><sup>&#8663;</sup>   <a href="https://apps.apple.com/us/app/google-authenticator/id388497605" target="_blank">Google Authenticator</a><sup>&#8663;</sup>
 Android<br>Google Play | <a href="https://play.google.com/store/apps/details?id=com.duosecurity.duomobile&hl=en_US&gl=US" target="_blank">Duo</a><sup>&#8663;</sup>   <a href="https://play.google.com/store/apps/details?id=com.onepassword.android&hl=en_US&gl=US" target="_blank">1Password</a><sup>&#8663;</sup>   <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en_US&gl=US" target="_blank">Google Authenticator</a><sup>&#8663;</sup>
 
-### Example: Pairing with an Authentication App { #authapp }
-
 This tutorial demonstrates pairing with the Duo App, though you may use any any MFA app you like. 
-
 
 <img border="1" alt="" src="../imgs/mfa-mfapairingscreen.png" style="width:60%">
 
@@ -67,7 +64,7 @@ This tutorial demonstrates pairing with the Duo App, though you may use any any 
 	<img border="1" alt="" src="../imgs/mfa-mfapairingsuccessful.png" style="width:60%">
 
 
-#### Example: SMS (text) Messaging { #sms }
+#### Example: Pairing with SMS (text) Messaging { #sms }
 
 Instead of using an app, users may instead enable multi-factor authentication with SMS, standard text messaging.
 
@@ -133,11 +130,6 @@ After typing in your password, you'll be prompted for "**`TACC Token Code:`**". 
 	</tr></table>
 
 1. Similar to the pairing process, you must verify unpairing by entering your device's token code when prompted (Figures xx and xx).  
-
-	<table border="0"><tr>
-	<td><figure id="figure8a"><img alt="" src="../imgs/mfa-duo-626574.png">
-	<figcaption>Figure xx.</figcaption></figure></td>
-	</tr></table>
 
 	<img border="1" alt="" src="../imgs/mfa-smsunpair.png" style="width:60%">
 
