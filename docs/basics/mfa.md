@@ -11,21 +11,19 @@ Authentication is the process of determining if you are you. Traditional methods
 
 ## Setting up MFA at TACC { #setupmfa }
 
-!!! important
-	TACC requires Multi-Factor Authentication (MFA) as an additional security measure when accessing all compute and storage resources.  All TACC account holders must maintain a valid MFA pairing.  
+TACC requires Multi-Factor Authentication (MFA) as an additional security measure when accessing all compute and storage resources.  All TACC account holders must maintain a valid MFA pairing.  
 
 
 !!! tip 
-	All account management is done via the [TACC Accounts Portal][TACCACCOUNTS].  Account utilities include MFA pairing, password, user-profile and subscription management.  You may also view account information such as your UID, default GID, and home directory path.
+	All account management is done via the [TACC Accounts Portal][TACCACCOUNTS].  Portal utilities include MFA pairing, as well as password, user-profile and subscription management.  You may also view account information such as your UID, default GID, and home directory path.
 
 
-### 1. Manage Account { #setupmfa-step1 }
+### 1. Select Pairing Method { #setupmfa-step1 }
 
-Proceed to the [pairing page](https://accounts.tacc.utexas.edu/mfa) on the [TACC Accounts Portal][TACCACCOUNTS]:
+Login to the [TACC Accounts Portal][TACCACCOUNTS] and select your pairing method. 
 
 <img border="1" alt="" src="../imgs/mfa-selectpairing.png" style="width:60%">
 
-### 2. Select Pairing Method { #setupmfa-step2 }
 
 TACC offers two mutually-exclusive authentication (pairing) methods.  You may choose to authenticate with one and only one method. 
 
@@ -120,12 +118,16 @@ After typing in your password, you'll be prompted for "**`TACC Token Code:`**". 
 ## Unpairing your Device { #unpair }
 
 
-1. Login to the [TACC Accounts Portal][TACCACCOUNTS], click on Multi-Factor Auth in the left-hand navigation (Figure xx), and click the "Unpair" link to proceed (Figure xx).   You'll unpair your device via the same method you originally paired: by authentication app or by SMS.  If you've lost access to the device you originally paired with, you may unpair using email notification (Figure xx).
-
+1. Login to the [TACC Accounts Portal][TACCACCOUNTS], click on Multi-Factor Auth in the left-hand navigation (Figure xx), and click the "Unpair" link to proceed (Figure xx).   
 
 	<table border="0"><tr>
 	<td><figure id="figurexx"><img alt="" src="../imgs/mfa-mfaunpair.png">
 	<figcaption>Figure xx.</figcaption></figure></td>
+	</tr></table>
+
+1. You'll unpair your device via the same method you originally paired: by authentication app or by SMS.  If you've lost access to the device you originally paired with, you may unpair using email notification (Figure xx).
+
+	<table border="0"><tr>
 	<td><figure id="figurexx"><img alt="" src="../imgs/mfa-unpair-email.png">
 	<figcaption>Figure xx.</figcaption></figure></td>
 	</tr></table>
@@ -135,17 +137,15 @@ After typing in your password, you'll be prompted for "**`TACC Token Code:`**". 
 	<table border="0"><tr>
 	<td><figure id="figure8a"><img alt="" src="../imgs/mfa-duo-626574.png">
 	<figcaption>Figure xx.</figcaption></figure></td>
-	<td><figure id="figure8a"><img alt="" src="../imgs/mfa-unpairing.png">
-	<figcaption>Figure xx.</figcaption></figure></td>
 	</tr></table>
-<img border="1" alt="" src="../imgs/mfa-smsunpair.png" style="width:60%">
+
+	<img border="1" alt="" src="../imgs/mfa-smsunpair.png" style="width:60%">
 
 1. Once you've unpaired with this device, you are free to pair again with another device or another method.
 
-	<img border="1" alt="" src="../imgs/mfa-mfaunpairing-successful2.png" style="width:60%">
-<img border="1" alt="" src="../imgs/mfa-mfaunpairingsuccessful.png" style="width:60%">
+	<img border="1" alt="" src="../imgs/mfa-unpairing-successful.png" style="width:60%">
 
 {% include 'aliases.md' %}
 
-----
+
 
