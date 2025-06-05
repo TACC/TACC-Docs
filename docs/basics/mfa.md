@@ -33,9 +33,6 @@ TACC offers two mutually-exclusive authentication (pairing) methods.  You may ch
 or
 * Standard SMS text messaging.  
 
-<!-- !!! important
-	DesignSafe users **must** pair using a [Multi-Factor Authentication app](#mfaapps) method.  DesignSafe users may not pair using SMS text messaging. -->
-
 !!! important
 	Users located outside the U.S. **must** pair using a [Multi-Factor Authentication app](#mfaapps) method. Because the cost associated with sending multiple international text messages is prohibitive, international users may NOT set up multi-factor authentication with SMS.
 
@@ -57,6 +54,8 @@ Android<br>Google Play | <a href="https://play.google.com/store/apps/details?id=
 This tutorial demonstrates pairing with the Duo App, though you may use any any MFA app you like. 
 
 
+<img border="1" alt="" src="../imgs/mfa-mfapairingscreen.png" style="width:60%">
+
 1. Open the Duo App on your device. Your mobile device screen should appear similar to Figure xx. Tap the "+" in the upper right corner of the app to start the pairing process.  The app will launch the mobile device's camera.  Scan the generated QR code on your computer screen.  Do not scan the image on this tutorial's page. Show the Duo token code on your device (Figure xx) and then enter that token into the web form (Figure xx).
 
 	<table border="0"><tr>
@@ -67,7 +66,7 @@ This tutorial demonstrates pairing with the Duo App, though you may use any any 
 
 1. You've now paired your device! (Figure xx)  If you have any problems with this process, please [submit a help ticket][CREATETICKET].
 
-	<figure id="figure6"><img border="1" src="../imgs/mfa-pairingsuccessful.png" style="width:50%; height:50%"> <figcaption>Figure xx</figcaption></figure>
+	<img border="1" alt="" src="../imgs/mfa-mfapairingsuccessful.png" style="width:60%">
 
 
 #### Example: SMS (text) Messaging { #sms }
@@ -77,6 +76,11 @@ Instead of using an app, users may instead enable multi-factor authentication wi
 When logging into a TACC resource you'll be prompted for your standard password, and then prompted for a "TACC Token Code".  At this point a text message will be sent to your phone with a unique six-digit code.  Enter this code at the prompt.  
 
 **This token code is valid for this login session only and cannot be re-used.  It may take up to 60 seconds for the text to reach you.  We advise clearing out your text messages in order to avoid confusion during future logins.**
+
+<table border="0"><tr>
+<td><figure id="figurexx"><img border="1" src="../imgs/mfa-smspairing.png"> <figcaption>Figure xx.</figcaption></figure></td>
+<td><figure id="figurexx"><img border="1" src="../imgs/mfa-smspairingsuccessful.png"> <figcaption>Figure xx.</figcaption></figure></td>
+</tr></table>
 
 
 ## Logging into TACC Resources { #login }
@@ -134,18 +138,14 @@ After typing in your password, you'll be prompted for "**`TACC Token Code:`**". 
 	<td><figure id="figure8a"><img alt="" src="../imgs/mfa-unpairing.png">
 	<figcaption>Figure xx.</figcaption></figure></td>
 	</tr></table>
+<img border="1" alt="" src="../imgs/mfa-smsunpair.png" style="width:60%">
 
 1. Once you've unpaired with this device, you are free to pair again with another device or another method.
 
 	<img border="1" alt="" src="../imgs/mfa-mfaunpairing-successful2.png" style="width:60%">
+<img border="1" alt="" src="../imgs/mfa-mfaunpairingsuccessful.png" style="width:60%">
 
 {% include 'aliases.md' %}
 
 ----
 
-<img border="1" alt="" src="../imgs/mfa-smspairing.png" style="width:60%">
-<img border="1" alt="" src="../imgs/mfa-smspairingsuccessful.png" style="width:60%">
-<img border="1" alt="" src="../imgs/mfa-smsunpair.png" style="width:60%">
-<img border="1" alt="" src="../imgs/mfa-mfaunpairingsuccessful.png" style="width:60%">
-<img border="1" alt="" src="../imgs/mfa-mfapairingsuccessful.png" style="width:60%">
-<img border="1" alt="" src="../imgs/mfa-mfapairingscreen.png" style="width:60%">
