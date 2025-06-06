@@ -9,32 +9,25 @@
 
 Authentication is the process of determining if you are you. Traditional methods of associating a user account with a single password are no longer sufficient.  Multi-Factor Authentication (MFA) requires another step, or "factor", in the authenticaton process. In addition to the usual password, users must complete authentication using another device unique to them, usually their mobile phone/device. 
 
-## Setting up MFA at TACC { #setupmfa }
-
 TACC requires Multi-Factor Authentication (MFA) as an additional security measure when accessing all compute and storage resources.  All TACC account holders must maintain a valid MFA pairing.  
 
+## Set up MFA via TACC Accounts Portal
 
-!!! tip 
-	All account management is done via the [TACC Accounts Portal][TACCACCOUNTS].  Portal utilities include MFA pairing, as well as password, user-profile and subscription management.  You may also view account information such as your UID, default GID, and home directory path.
+All account management is done via the [TACC Accounts Portal][TACCACCOUNTS].  TACC Accounts Portal utilities include MFA pairing, as well as password, user-profile, and subscription management.  You may also view detailed account information such as your UID, default GID, and home directory path.
+
+Login to the [TACC Accounts Portal][TACCACCOUNTS] and select your pairing method (Figure xx). .  
+
+TACC offers two mutually-exclusive authentication (pairing) methods: 1) Authenticator applications e.g., Google Authenticator, Duo, 1Password  and 2) Standard SMS text messaging.  You may choose to authenticate with one and only one method.  
+
+<img alt="" src="../imgs/mfa-selectpairing.png" style="width:800px;">
+
+Follow the examples below to where we demonstrate how to pair using the [DUO authentication](#authapp) app and [standard SMS](#sms).  In general, TACC staff recommends pairing with an authentication app rather than SMS, due to costs, lag, yada.
+
+!!! important 
+	Users located outside the U.S. **must** pair using a [Multi-Factor Authentication app](#mfaapps) of your choice. Because the cost associated with sending multiple international text messages is prohibitive, international users may NOT set up multi-factor authentication with SMS.  
 
 
-### 1. Select Pairing Method { #setupmfa-step1 }
-
-Login to the [TACC Accounts Portal][TACCACCOUNTS] and select your pairing method. 
-
-<img border="1" alt="" src="../imgs/mfa-selectpairing.png" style="width:60%">
-
-
-TACC offers two mutually-exclusive authentication (pairing) methods.  You may choose to authenticate with one and only one method. 
-
-* Authenticator applications e.g., Google Authenticator, Duo, 1Password  
-or
-* Standard SMS text messaging.  
-
-!!! important
-	Users located outside the U.S. **must** pair using a [Multi-Factor Authentication app](#mfaapps) method. Because the cost associated with sending multiple international text messages is prohibitive, international users may NOT set up multi-factor authentication with SMS.
-
-### Example: Pairing with an Authentication App { #authapp }
+### Example: Pairing with the DUO Authentication App { #authapp }
 
 Users with Apple iOS and Android devices may set up device pairing using a one of a variety of authentication applications available for both <a href="https://itunes.apple.com/us/app/tacc-token/id1081516137?mt=8">Android</a> and <a href="https://itunes.apple.com/us/app/tacc-token/id1081516137?mt=8">iPhone</a> devices.
 
@@ -49,7 +42,7 @@ Android<br>Google Play | <a href="https://play.google.com/store/apps/details?id=
 
 This tutorial demonstrates pairing with the Duo App, though you may use any any MFA app you like. 
 
-<img border="1" alt="" src="../imgs/mfa-mfapairingscreen.png" style="width:60%">
+<img border="1" alt="" src="../imgs/mfa-mfapairingscreen.png" style="width:800px;">
 
 1. Open the Duo App on your device. Your mobile device screen should appear similar to Figure xx. Tap the "+" in the upper right corner of the app to start the pairing process.  The app will launch the mobile device's camera.  Scan the generated QR code on your computer screen.  Do not scan the image on this tutorial's page. Show the Duo token code on your device (Figure xx) and then enter that token into the web form (Figure xx).
 
@@ -61,10 +54,10 @@ This tutorial demonstrates pairing with the Duo App, though you may use any any 
 
 1. You've now paired your device! (Figure xx)  If you have any problems with this process, please [submit a help ticket][CREATETICKET].
 
-	<img border="1" alt="" src="../imgs/mfa-mfapairingsuccessful.png" style="width:60%">
+	<img border="1" alt="" src="../imgs/mfa-mfapairingsuccessful.png" style="width:800px;">
 
 
-#### Example: Pairing with SMS (text) Messaging { #sms }
+### Example: Pairing with SMS (text) Messaging { #sms }
 
 Instead of using an app, users may instead enable multi-factor authentication with SMS, standard text messaging.
 
@@ -107,11 +100,6 @@ After typing in your password, you'll be prompted for "**`TACC Token Code:`**". 
 * If you've paired with SMS, you'll receive a text message containing a six digit verification code (figure 9a).  Enter this code at the **`TACC Token Code:`** prompt.  Please note that it may take up to 60 seconds for the text containing the token code to reach you.  Each token code is valid for one login only and cannot be re-used.  
 
 
-## International Users and Travelers { #international }
-
-!!! important 
-	Users located outside the U.S. **must** pair using a [Multi-Factor Authentication app](#mfaapps) of your choice. Because the cost associated with sending multiple international text messages is prohibitive, international users may NOT set up multi-factor authentication with SMS.  
-
 ## Unpairing your Device { #unpair }
 
 
@@ -131,11 +119,11 @@ After typing in your password, you'll be prompted for "**`TACC Token Code:`**". 
 
 1. Similar to the pairing process, you must verify unpairing by entering your device's token code when prompted (Figures xx and xx).  
 
-	<img border="1" alt="" src="../imgs/mfa-smsunpair.png" style="width:60%">
+	<img border="1" alt="" src="../imgs/mfa-smsunpair.png" style="width:800px;">
 
 1. Once you've unpaired with this device, you are free to pair again with another device or another method.
 
-	<img border="1" alt="" src="../imgs/mfa-unpairing-successful.png" style="width:60%">
+	<img border="1" alt="" src="../imgs/mfa-unpairing-successful.png" style="width:800px;">
 
 {% include 'aliases.md' %}
 
