@@ -54,7 +54,7 @@ MFA App | IOS/Apple devices<br>Apple App Store | Android<br>Google Play
 1. Open the authentication app on your device.  Tap the "+" in the upper right corner of the app to start the pairing process.  The app will launch the mobile device's camera.  Scan the generated QR code on your computer screen.  Do not scan the image on this tutorial's page. Enter the Duo token code shown on your device (Figure 3) and then enter that token into the web form (Figure 2. above).
 
 	<table border="0"><tr><td>
-	<figure id="figure3"><img border="1" src="../imgs/mfa-duo-314193.png" style="width:300px;"> 
+	<figure id="figure3"><img border="1" src="../imgs/mfa-duo-626574.png" style="width:300px;"> 
 	<figcaption>Figure 3.</figcaption></figure></td>
 	</td></table>
 
