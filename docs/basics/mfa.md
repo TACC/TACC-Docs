@@ -13,21 +13,24 @@ TACC requires Multi-Factor Authentication (MFA) as an additional security measur
 
 ## Set up MFA via TACC Accounts Portal
 
+Login to the [TACC Accounts Portal][TACCACCOUNTS] and select your pairing method (Figure 1.).   
+
 All account management is done via the [TACC Accounts Portal][TACCACCOUNTS].  TACC Accounts Portal utilities include MFA pairing, as well as password, user-profile, and subscription management.  You may also view detailed account information such as your UID, default GID, and home directory path.
 
-Login to the [TACC Accounts Portal][TACCACCOUNTS] and select your pairing method (Figure xx). .  
 
-TACC offers two mutually-exclusive authentication (pairing) methods: 1) Authenticator applications e.g., Google Authenticator, Duo, 1Password  and 2) Standard SMS text messaging.  You may choose to authenticate with one and only one method.  
-
-<img alt="" src="../imgs/mfa-selectpairing.png" style="width:800px;">
-
-Follow the examples below to where we demonstrate how to pair using the [DUO authentication](#authapp) app and [standard SMS](#sms).  In general, TACC staff recommends pairing with an authentication app rather than SMS, due to costs, lag, yada.
+TACC offers two mutually-exclusive authentication (pairing) methods: 1) Authenticator applications e.g., Google Authenticator, Duo, 1Password  and 2) Standard SMS text messaging.  You may choose to authenticate with one, and only one, method.  Follow the examples below where we demonstrate how to pair using the [DUO authentication](#authapp) app and [standard SMS](#sms).  
 
 !!! important 
 	Users located outside the U.S. **must** pair using a [Multi-Factor Authentication app](#mfaapps) of your choice. Because the cost associated with sending multiple international text messages is prohibitive, international users may NOT set up multi-factor authentication with SMS.  
 
 
-### Example: Pairing with the DUO Authentication App { #authapp }
+<figure>
+<img alt="" src="../imgs/mfa-selectpairing.png" style="width:800px;">
+<figcaption>Figure 1. Select pairing method</figcaption>
+</figure>
+
+
+### Example: Pairing with an Authentication App { #authapp }
 
 Users with Apple iOS and Android devices may set up device pairing using a one of a variety of authentication applications available for both <a href="https://itunes.apple.com/us/app/tacc-token/id1081516137?mt=8">Android</a> and <a href="https://itunes.apple.com/us/app/tacc-token/id1081516137?mt=8">iPhone</a> devices.
 
@@ -121,7 +124,7 @@ After typing in your password, you'll be prompted for "**`TACC Token Code:`**". 
 
 	<img border="1" alt="" src="../imgs/mfa-smsunpair.png" style="width:800px;">
 
-1. Once you've unpaired with this device, you are free to pair again with another device or another method.
+1. Once you've unpaired with this device, you are free to pair again with another device or another method.  If you had paired using an authentication app, be sure to remove the corresponding TACC entry.
 
 	<img border="1" alt="" src="../imgs/mfa-unpairing-successful.png" style="width:800px;">
 
