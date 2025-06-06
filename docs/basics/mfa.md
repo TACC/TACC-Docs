@@ -46,7 +46,7 @@ MFA App | IOS/Apple devices<br>Apple App Store | Android<br>Google Play
 1. Select "Authenticator App" to proceed to the authentication application pairing screen (Figure 2).  
 
 	<table border="0"><tr><td>
-	<figure id="figure2><img border="1" alt="" src="../imgs/mfa-mfapairingscreen.png" style="width:800px;">
+	<figure id="figure2"><img border="1" alt="" src="../imgs/mfa-selectpairing.png" style="width:800px;">
 	<figcaption>Figure 2. MFA authentication application pairing screen</figcaption></figure>
 	</td></table>
 
