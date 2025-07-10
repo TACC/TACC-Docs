@@ -1,5 +1,5 @@
 # Stampede3 User Guide 
-*Last update: June 4, 2025*
+*Last update: July 9, 2025*
 
 ## Notices { #notices }
 
@@ -407,7 +407,7 @@ Stampede3's job scheduler is the Slurm Workload Manager. Slurm commands enable y
     Use TACC's `qlimits` utility to see the latest queue configurations.
 
 <!-- 
-06/04/2025
+07/09/2025
 [slindsey@login2 ~]$ <1001> qlimits
 Current queue/partition limits on TACC's stampede3 system:
 

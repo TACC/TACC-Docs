@@ -53,6 +53,25 @@ Current queue/partition limits on TACC's Frontera system:
           grace                          30                      5-00:00:00            30        30       200
          corral                         512                      2-00:00:00          2048       100       200
              gh                           1                        02:00:00             1         1         2
+
+07/09/2025  normal queue - no minimum?
+frontera4(1)$ qlimits
+Current queue/partition limits on TACC's Frontera system:
+
+           Name       MinNode       MaxNode   PreemptExemptTime     MaxWall     MaxNodePU MaxJobsPU MaxSubmit
+           flex             1           128            01:00:00  2-00:00:00          2048        15       200
+    development                          40                        02:00:00            40         2         2
+         normal             1           512                      2-00:00:00          1280        75       200
+          large           513          2048                      2-00:00:00          3072         2        20
+          debug                        8368                      2-00:00:00          8368        30        60
+            rtx                          16                      2-00:00:00            32        15        36
+        rtx-dev                           2                        02:00:00             2         2         2
+         nvdimm                           4                      2-00:00:00             6         4         8
+          small             1             2                      2-00:00:00            25        20       200
+          grace                          30                      5-00:00:00            30        30       200
+         corral                         512                      2-00:00:00          2048       100       200
+             gh                           1                        02:00:00             1         2         2
+frontera4(2)$
 -->
 
 | Queue Name  | Min-Max Nodes per Job<br>(assoc'd cores) | Pre-empt<br>Exempt Time | Max Job Duration | Max Nodes per User | Max Jobs per User  | Charge Rate<br>per node-hour 

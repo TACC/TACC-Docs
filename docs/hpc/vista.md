@@ -1,5 +1,5 @@
 # Vista User Guide 
-*Last update: May 27, 2025*
+*Last update: July 9, 2025*
 
 ## Notices { #notices }
 
@@ -132,14 +132,15 @@ Vista's job scheduler is the Slurm Workload Manager. Slurm commands enable you t
     Use TACC's `qlimits` utility to see the latest queue configurations.
 
 <!--
-04/09/2025
-login1.vista(35)$ qlimits
+07/09/2025
+login1.vista(39)$ qlimits
 Current queue/partition limits on TACC's vista system:
 
 Name             MinNode  MaxNode     MaxWall  MaxNodePU  MaxJobsPU   MaxSubmit
 gg                     1       32  2-00:00:00        128         20          40
 gh                     1       64  2-00:00:00        192         20          40
 gh-dev                 1        8    02:00:00          8          1           3
+login1.vista(40)$
 -->
 
 #### Table 4. Production Queues { #table4 }
