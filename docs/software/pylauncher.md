@@ -183,7 +183,8 @@ mkdir out3 && cd out3 && PYL_MPIEXEC ./parallelprogram 3 10
 ### GPU launcher
 
 For GPU jobs, use the `GPULauncher`. This needs an extra parameter `gpuspernode` that is dependent on the cluster where you run this.
-If you omit this parameter or set it too high, the launcher may start your tasks when no GPUs are available.
+If you omit this parameter or set it too high, the launcher may start your tasks when no GPUs are available. 
+See the userguide for your cluster to find the correct number.
 ```job-script
 pylauncher.GPULauncher\
     ("gpucommandlines",
@@ -305,17 +306,6 @@ The default name "queuestate" can be overridden by giving an explicit name
 pylauncher.ClassicLauncher( "commandlines",queuestate="queustate5")
 ```
 
-### GPU Launcher
-
-PyLauncher can handle programs that need a GPU. Use:
-
-``` job-script
-pylauncher.GPULauncher("gpucommandlines")
-```
-
-
-!!! important
-	Set the Slurm parameter `--ntasks-per-node` to the number of GPUs per node.
 
 ### Submit Launcher
 
