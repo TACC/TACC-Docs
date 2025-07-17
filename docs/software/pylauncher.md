@@ -319,7 +319,8 @@ pylauncher.GPULauncher("gpucommandlines")
 
 ### Submit Launcher
 
-If your command lines take wildly different amounts of time a launcher job may be wasteful since it will leave cores (and nodes) unused while the longest running commandlines finish. One solution is the `SubmitLauncher` which runs outside of Slurm, and which submits Slurm jobs: For instance, the following command submits jobs to Frontera's [`small` queue](../../hpc/frontera/#table6), and makes sure that the maximum queue limit of 2 nodes is not exceeded:
+Suppose you allocate 10 nodes to a launcher job, and one commandline takes 10 hours longer than the others. This leads to 9 nodes being idle for several hours.
+For this sort of use case, consider the `SubmitLauncher', which runs outside of Slurm, and which submits Slurm jobs: For instance, the following command submits jobs to Frontera's [`small` queue](../../hpc/frontera/#table6), and makes sure that the maximum queue limit of 2 nodes is not exceeded:
 
 ``` job-script
 launcher.SubmitLauncher\
