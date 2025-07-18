@@ -24,8 +24,8 @@ $ module load pylauncher
 
 		`$ module load python3/3.9 # or newer`
 	
-	1. On some systems the Python installation is missing a required module. 
-	Do a one-time setup:   
+	1. On some systems the Python installation is missing the required `paramiko` module and the PyLauncher will abort with an error to that effect. 
+	In that case, do a one-time setup:   
 
 		`$ pip install paramiko`
 
