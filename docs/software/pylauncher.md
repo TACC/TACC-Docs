@@ -24,8 +24,8 @@ $ module load pylauncher
 
 		`$ module load python3/3.9 # or newer`
 	
-	1. On some systems the Python installation is missing a required module. 
-	Do a one-time setup:   
+	1. On some systems the Python installation is missing the required `paramiko` module and the PyLauncher will abort with an error to that effect. 
+	In that case, do a one-time setup:   
 
 		`$ pip install paramiko`
 
@@ -183,7 +183,8 @@ mkdir out3 && cd out3 && PYL_MPIEXEC ./parallelprogram 3 10
 ### GPU launcher
 
 For GPU jobs, use the `GPULauncher`. This needs an extra parameter `gpuspernode` that is dependent on the cluster where you run this.
-If you omit this parameter or set it too high, the launcher may start your tasks when no GPUs are available.
+If you omit this parameter or set it too high, the launcher may start your tasks when no GPUs are available. 
+See the userguide for your cluster to find the correct number.
 ```job-script
 pylauncher.GPULauncher\
     ("gpucommandlines",
@@ -305,17 +306,19 @@ The default name "queuestate" can be overridden by giving an explicit name
 pylauncher.ClassicLauncher( "commandlines",queuestate="queustate5")
 ```
 
-### GPU Launcher
 
-PyLauncher can handle programs that need a GPU. Use:
+### Submit Launcher
+
+Suppose you allocate 10 nodes to a launcher job, and one commandline takes 10 hours longer than the others. This leads to 9 nodes being idle for several hours.
+For this sort of use case, consider the `SubmitLauncher', which runs outside of Slurm, and which submits Slurm jobs: For instance, the following command submits jobs to Frontera's [`small` queue](../../hpc/frontera/#table6), and makes sure that the maximum queue limit of 2 nodes is not exceeded:
 
 ``` job-script
-pylauncher.GPULauncher("gpucommandlines")
+launcher.SubmitLauncher\
+	("commandlines",
+ 	"-A YourProject -N 1 -n 1 -p small -t 0:15:0", # slurm arguments
+ 	nactive=2, # queue limit
+    )
 ```
-
-
-!!! important
-	Set the Slurm parameter `--ntasks-per-node` to the number of GPUs per node.
 
 
 ### Debugging PyLauncher Output
