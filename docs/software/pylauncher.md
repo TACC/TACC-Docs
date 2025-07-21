@@ -340,6 +340,7 @@ Here are some parameters that may sometimes come in handy.
 | <code>delay=<i>fraction</i></code><br>default: `delay=.5` | The fraction of a second that PyLauncher waits to start up new jobs, or test for finished ones. If you fire up complicated python jobs, you may want to increase this from the default.
 | <code>workdir=<i>directory</i></code><br>default: generated from the SLURM jobid | This is the location of the internal execute/out/test files that PyLauncher generates.
 | <code>queuestate=<i>filename</i></code><br>default filename: `queuestate` | This is a file that PyLauncher can use to restart if your jobs aborts, or is killed for exceeding the time limit. If you run multiple simultaneous jobs, you may want to specify this explicitly.
+| <code>maxruntime=<i>seconds</i></code><br>default: infinite | Maximum runtime for the launcher job.
 
 
 ## References
