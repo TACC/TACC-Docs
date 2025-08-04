@@ -49,6 +49,24 @@ $ chmod g+r anaconda.cfg
 !!!tip
 	See [Sharing Project Files][TACCSHARINGPROJECTFILES] for specific instructions for using these tools to set up a shared project folder. 
 
+### Recursive permissions
+
+If you make a file readable to your group, `chmod g+r myfile.txt`, it is only actually readable if the directory it is in is also readable.
+And if that directory is not at the lowest level, the directory that *it* is in also needs to be readable.
+Let's say you want to share your file `$WORK/myproject/myfile.txt`. You need the following steps.
+- Your work area needs to be readable and your collaborators need to be able to get into it: `chmod g+rx $WORK`.
+- Next, the `myproject` directory needs to be similarly accessible: `chmod g+rx $WORK/myproject`.
+- And finally you would make the file `myfile.txt` accessible for reading.
+
+Often you don't just share a single file, but a whole directory or directory tree. 
+In that case you can change permissions recursively:
+```
+chmod -R g+rX $WORK/myproject
+```
+which makes everything in the `myproject` directory accessible.
+(The letter `X` does the same as `x` for directories, but does nothing with ordinary files.
+This prevents making every single file executable.)
+
 ## Controlling the active or current group
 
 When writing new data to the system, it is important to have your current group identity set correctly - this ensures that you are able to share with your project members easily, as well as keeping your allocation status correct.  You can check your current group and all your group memberships with the `groups` command:
