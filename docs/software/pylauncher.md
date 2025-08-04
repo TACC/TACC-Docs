@@ -163,6 +163,8 @@ If your program is MPI parallel, replace the ClassicLauncher call:
 launcher.IbrunLauncher("parallellines",cores=3)
 ```
 
+(This also holds for the case of running a python code that, perhaps indirectly, relies on `mpi4py`.)
+
 The "parallellines" file consists of command-lines without the MPI job starter, which is supplied by PyLauncher:
 
 ```file
