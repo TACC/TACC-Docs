@@ -1,5 +1,5 @@
 # Vista User Guide 
-*Last update: July 9, 2025*
+*Last update: August 13, 2025*
 
 ## Notices { #notices }
 
@@ -47,6 +47,9 @@ Each top rack shelf switch in all racks connects to sixteen core switches via du
 
 !!!tip
 	See NVIDIA'S <a href="https://docs.nvidia.com/grace-perf-tuning-guide/index.html">Grace Performance Tuning Guide</a> for very detailed information on the Grace system..
+
+!!!info
+	See TACC's [Performance Analysis of Scientific Applications on an NVIDIA Grace System](https://doi.org/10.1109/SCW63240.2024.00078)
 
 
 ### Grace Grace Compute Nodes { #system-gg }
@@ -846,6 +849,7 @@ TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for 
 
 * [NVIDIA Grace Performance Tuning Guide](https://docs.nvidia.com/grace-perf-tuning-guide/index.html)
 * [NVIDIA Performance Libraries Documentation](https://docs.nvidia.com/nvpl/)
+* [Performance Analysis of Scientific Applications on an NVIDIA Grace System](https://ieeexplore-ieee-org.ezproxy.lib.utexas.edu/document/10820760)
 
 
 [CREATETICKET]: https://tacc.utexas.edu/about/help/ "Create Support Ticket"
