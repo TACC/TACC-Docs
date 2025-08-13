@@ -1,8 +1,8 @@
 VISTA_OBJS	=	\
 	notices.md \
-	access.md \
 	admin.md \
 	system.md \
+	access.md \
 	running.md \
 	launching.md \
 	mps.md \
