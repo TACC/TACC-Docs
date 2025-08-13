@@ -1,5 +1,6 @@
 VISTA_OBJS	=	\
 	notices.md \
+	access.md \
 	admin.md \
 	system.md \
 	running.md \
@@ -10,7 +11,6 @@ VISTA_OBJS	=	\
 	nvidia.md \
 	../../include/vista-help.md \
 	refs.md
-#	access.md \
 #	files.md \
 #	mkl.md \
 #	scripts.md \
@@ -19,7 +19,6 @@ VISTA_OBJS	=	\
 #	ml.md \
 #	python.md \
 #	vis.md \
-#	refs.md
 
 all:	vista
 
