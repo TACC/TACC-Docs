@@ -32,7 +32,11 @@ $ module load pylauncher
 
 ## Basic setup { #setup }
 
-PyLauncher, like any compute-intensive application, must be invoked from a Slurm job script, or interactively within an `idev` session. PyLauncher interrogates Slurm's environment variables to query the available computational resources, but the only parameter you have to set is Slurm's `-N` directive.  The number of nodes depends on how much work you have.
+PyLauncher, like any compute-intensive application, must be invoked from a Slurm job script, or interactively within an `idev` session. 
+PyLauncher interrogates Slurm's environment variables to query the available computational resources, but the only parameter you have to set is Slurm's `-N` directive. 
+Other parameters, such as the `-n` commandline option or the SLURM `--tasks-per-node` parameter are ignored; 
+instead Pylauncher queries the number of cores that are available per node.
+The number of nodes depends on how many tasks you want to execute; typically you would have more tasks than cores.
 
 ```job-script
 #SBATCH -N 5 # number of nodes you want to use
@@ -137,6 +141,9 @@ launcher.ClassicLauncher("commandlines",cores=4)
 ```
 
 This can also be used if your program takes more memory than would normally be assigned to a single core.
+Say you have nodes with 64 cores each and 128Gbyte of memory. 
+By default, each of the 64 task on the node would then have access to 2Gbyte.
+By specifying `cores=4`, only 16 tasks would be allocated to a node, but each task now has access to 8Gbyte.
 
 If you want each command line to use all the cores of a node, specify:
 
@@ -277,11 +284,13 @@ queued  	5 jobs: 99-103
 running	39 jobs: 45-46 49 54-55 57 59 62-63 65 67 69 71-74 76-98
 ```
 
-This states that in the 104’th stage some jobs were completed/queued for running/actually running. 
+This states that in the 104’th stage some jobs were completed/queued/running. 
 
-The  `tick` message is output every half second. This can be changed, for instance to 1/10th of a second, by specifying `delay=.1` in the launcher command. In some cases, for instance if each command is a python invocation that does many `imports`, you could increase the delay parameter.
+The  `tick` message is output every half second. This can be changed, for instance to 1/10th of a second, by specifying `delay=.1` in the launcher command. 
+In some cases, for instance if each command is a python invocation that does many `imports`, you could increase the delay parameter.
 
 For even more trace output, use `debug="host+exec+task+job+ssh"`.
+(If you need to submit a problem ticket, it helps diagnosis if you run with this full trace output.)
 
 
 ## Advanced PyLauncher usage
