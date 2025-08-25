@@ -245,7 +245,7 @@ Contact the OOOPS developers, <a href="mailto:huang@tacc.utexas.edu">Lei Huang</
 
 For jobs that make use of large numbers of Python modules or use local installations of Python/Anaconda/MiniConda, TACC staff provides additional tools to help manage the I/O activity caused by library and module calls.
 
-**On Frontera**: Load the `python_cacher` module in your job script:
+**To Activate**: Load the `python_cacher` module in your job script:
 
 ```job-script
 module load python_cacher
