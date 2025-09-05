@@ -1,6 +1,6 @@
 ## Managing Files { #files }
 
-Frontera mounts three Lustre file systems that are shared across all nodes: the `/home`, `/work`, and `/scratch` file systems. <!-- Frontera also contains a fourth file system, <code>FLASH</code>, supporting applications with very high bandwidth or IOPS requirements.-->
+Frontera mounts three Lustre file systems that are shared across all nodes: the `/home`, `/work`, and three `/scratch` file systems. <!-- Frontera also contains a fourth file system, <code>FLASH</code>, supporting applications with very high bandwidth or IOPS requirements.-->
 
 {% include 'include/spacetip.md' %}
 
@@ -29,7 +29,19 @@ File System | Characteristics	| Purpose |
 `/scratch3` | Size:	 21.2 PB <br>OSTs:	32 <br>Bandwidth: 120 GB/s | Designated for workflows with large scale parallel I/O operations.
 
 
-{%include './include/scratchpolicy.md' %}
+<!-- {%include './include/scratchpolicy.md' %} 
+amended to include Frontera's multiple scratch file systems-->
+
+
+### Scratch File System Purge Policy { #scratchpolicy }
+
+!!! warning
+	The <code>$SCRATCH</code> file systems, as their name indicates, is a **temporary storage space**.  Files that have not been accessed&#42; in ten days are subject to purge.  This policy applies to all scratch systems on Frontera: `scratch1`, `scratch2` and `scratch3`.   
+
+	Deliberately modifying file access time (using any method, tool, or program) for the purpose of circumventing purge policies is prohibited.
+
+&#42;The operating system updates a file's access time when that file is modified on a login or compute node. Reading or executing a file/script on a login node does not update the access time, but reading or executing on a compute node does update the access time. This approach helps us distinguish between routine management tasks <u>(e.g. `tar`, `scp`)</u> and production use. Use the command `ls -ul` to view access times.
+
 
 
 ### Navigating the Shared File Systems { #files-navigating } 
