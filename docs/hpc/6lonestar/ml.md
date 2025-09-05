@@ -9,13 +9,15 @@ You may utilize one or more nodes for machine-learning model training tasks on L
 
 Before diving into machine learning frameworks, it's essential to set up your environment correctly. Lonestar6 supports Python virtual environments, which help manage dependencies and isolate projects. This guide walks you through setting up environments for both PyTorch and Accelerate.
 
-We recommend using a Python virtual environment to manage machine learning packages. Once set up, users can run jobs within this environment using either idev sessions or SLURM batch scripts.
+We recommend using a Python virtual environment to manage machine learning packages. Once set up, users can run jobs within this environment using either [`idev`][TACCIDEV] sessions or [SLURM batch scripts](#scripts).
 
-Below we detail how to set up PyTorch on Lonestar6 within a Python virtual environment:
 
-### Set up Environment for PyTorch
+### PyTorch
 
-SDL Note that we install in Lonestar6’s /scratch directory - purge - yada
+Follow these step to set up PyTorch on Lonestar6 within a Python virtual environment.  
+
+!!!important
+	Install your python virtual environments on Lonestar6's `$SCRATCH`, file system.  Do not use TACC's `$WORK` file system.
 
 1. Request a single compute node in Lonestar6's [`gpu-a100-dev` queue](#queues) using TACC's [`idev utility`](#TACCIDEV):
 	```cmd-line
@@ -57,7 +59,8 @@ Distributed Data Parallel in PyTorch. These tutorials include several scripts se
 	c123-456$ torchrun --nproc_per_node=3 examples/distributed/ddp-tutorial-series/multigpu_torchrun.py 50 10
 	```
 
-Multi-Node
+#### Multi-Node
+
 1. Request two nodes in the gpu-a100-dev queue using TACC's idev  utility:
 	```cmd-line
 	login1$ idev -N 2 -n 2 -p gpu-a100-dev -t 01:00:00
@@ -84,7 +87,7 @@ Multi-Node
 	```
 
 
-### Setting Up Transformers with Accelerate
+### Transformers with Accelerate
 
 Transformers is a Python library developed by Hugging Face that provides pre-trained models for machine learning tasks. It includes implementations of popular architectures like BERT, GPT, and T5, making it easy to fine-tune and deploy state-of-the-art models.
 
@@ -149,5 +152,4 @@ c123-456$ accelerate launch --num_processes 3 ./finetune.py
 	```cmd-line
 	c123-456$ mpirun -np 2  --map-by ppr:1:node multinode.sh
 	```
-
 
