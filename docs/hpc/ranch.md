@@ -1,10 +1,9 @@
 # Ranch User Guide
 *Last update: March 19, 2025*
 
-<!-- ## Notices { #notices } -->
+## Notices { #notices } 
 
-<!-- **The XSEDE project concluded formal operations as an NSF-funded project on August 31, 2022**.  Similar services are now operated through NSF's follow-on program, Advanced Cyberinfrastructure Coordination Ecosystem: Services &amp; Support, or ACCESS.  Find out more at the [ACCESS website](http://access-ci.org). (09/01/2022) -->
-
+Ranch is migrating - se the migration doc
 
 ## Introduction { #intro }
 
