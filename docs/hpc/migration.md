@@ -1,31 +1,27 @@
 # Ranch System Replacement - Data Migration Required
 
-Over the next year, TACC staff will perform a complete system replacement of Ranch, the archival data system, transitioning to new hardware and software. We are migrating from our the older system based on a Quantum StorNext tape archive system (hereinafter referred to as "Old Ranch” to a new Versity (hierarchical storage management software) and Spectra Logic (tape archive system) based Ranch archive, to be referred to as "New Ranch”.
+**NOTICE September 23, 2025** Over the next year, [TACC's Ranch, the archival data system][TACCRANCHUG], will undergo a complete system replacement, requiring all current Ranch users to curate, then migrate, all Ranch data from the old to the new system.  
 
-Old Ranch - 2019-2025 Quantum StorNext tape archive
-New Ranch - 2025 - 2035+ Versity ScoutAM & Spectra Logic TFinity
+## Guts
 
-Since this is a total system replacement, and not an upgrade to existing hardware, all data on the current (Old) Ranch must be COPIED OVER to the New Ranch system.  users are responsible for migrating their data to the new system, New Ranch.  Data on Old Ranch will be accessible through September, 2026 while users migrate their data to New Ranch.  
+Ranch will transition from the Quantum StorNext tape archive system (hereinafter referred to as "Old Ranch" to a new Versity (hierarchical storage management software) and Spectra Logic (tape archive system), to be referred to as "New Ranch".
 
-## Estimated Timeline:  
-
-<table border="1">
-<thead><tr><td>Date</td><td>Action</td></tr></thead>
+<table>
+<thead><tr><td colspan="2">Definitions</td></tr></thead>
 <tr>
-<td style="white-space:nowrap">September 23, 2025</td>
-<td>New Ranch hardware available to general users. <br>Begin migrating your data.  <br>Old ranch directories will be mounted as a read-only directory called 'olddata'.</td>
+<td style="white-space:nowrap">Old Ranch</td>
+<td>2019-2025 Quantum StorNext tape archive  </td>
 </tr>
 <tr>
-<td style="white-space:nowrap">November 1, 2026</td><td>Old Ranch hardware removed from service </td></tr>
+<td style="white-space:nowrap">New Ranch - 2025 - 2035</td><td>Versity ScoutAM & Spectra Logic TFinity  </td></tr>
 </table>
 
-*All dates subject to change based on hardware availability and condition *
+Since this is a total system replacement, and not an upgrade to existing hardware, all data on the current (Old) Ranch must be COPIED OVER to the New Ranch system in order to save it permanently.  users are responsible for migrating their data to the new system, New Ranch.  Data on Old Ranch will be accessible through September, 2026 giving all PIs and delegates ample time to curate and migrate their data.
 
-Old Ranch will become a read-only file system on 09/23/2025, accessible via an NFS mount on the New Ranch’s login nodes. 
 
-For All users who have data on Ranch prior to 09/23/2025 
 
-Data on Old Ranch will NOT automatically transfer to New Ranch. Data that is stored on Old Ranch must be migrated by you, or your project PI, before the end of September 2026. 
+!!! important
+	Data on Old Ranch will NOT automatically transfer to New Ranch. Data that is stored on Old Ranch, either in your personal directory, or in a designated Project space,  must be migrated by you, or your project PI, before the end of September 2026. 
 
 
 This includes your home directory, and the project directories.
@@ -34,16 +30,29 @@ This includes your home directory, and the project directories.
 !!! important 
 	PIs are responsible for managing and migrating the data in their project spaces (or delegating the migration).
 
-Now's a nifty time to re-evaluate the data stored on Ranch e.g. decide if you want to keep it and transfer over.
+
+## Estimated Timeline:  
+
+<table border="1">
+<thead><tr><td>Date</td><td>Action</td></tr></thead>
+<tr>
+<td style="white-space:nowrap">September 23, 2025</td>
+<td>New Ranch hardware available to general users. <br>Begin migrating your data.  <br>Old ranch directories will be mounted as a read-only directory called 'olddata'.
+Old Ranch will become a read-only file system on 09/23/2025, accessible via an NFS mount on the New Ranch’s login nodes. </td>
+</tr>
+<tr>
+<td style="white-space:nowrap">November 1, 2026</td><td>Old Ranch hardware removed from service </td></tr>
+</table>
+
+&#42;All dates subject to change based on hardware availability and condition 
 
 All new Ranch allocation requests will automatically be placed on New Ranch. 
 
-## Curating your data
+### Curating your data
 
-!!! important 
-	Migrate ONLY the data you need to keep long term. 
+Now is a nifty time to re-evaluate your archived data e.g. decide if the data is still valuable and worth of long-term storage, or not.
 
-The data on Old Ranch will be accessible for at least a year, so if you only need access to it in the short term, it can stay on the old system, and be accessed via the olddata directory/NFS mount. 
+The data on Old Ranch will be accessible for at least a year, so if you only need access to it in the short term, it can stay on the old system, and be accessed via the olddata directory/NFS mount until November, 2026.. 
 
 !!! tip
 	To see your usage, check the "`HSM_usage`" text file in your Old Ranch home directory or project directory. 
@@ -56,9 +65,9 @@ The data on Old Ranch will be accessible for at least a year, so if you only nee
 For very large data migration (>=1PB), or other special use cases, please contact the support team for assistance: https://tacc.utexas.edu/portal/tickets 
 
 
-## Data Migration Directions
+### Data Migration Directions
 
-Once logged into New Ranch (`ranch.tacc.utexas.edu`), copy your data using either the `cp` or `rsync` commands from the NFS-mounted directory called "olddata” to your new home directory. The `olddata` directory is read-only. 
+Once logged into New Ranch (`ranch.tacc.utexas.edu`), copy your data using either the `cp` or `rsync` commands from the NFS-mounted directory called "olddata" to your new home directory. The `olddata` directory is read-only. 
 Since Old Ranch is a read-only file system, you must use either the `cp` or `rsync` UNIX commands to move your data.
 
 ```cmd-line
@@ -74,6 +83,7 @@ Alternatively, you can use the `rsync` command to copy your data from the old sy
 ```cmd-line
 login1$ rsync -avhP olddata/mystuff.tar .
 ```
+
 
  
 !!! warning 
