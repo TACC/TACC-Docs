@@ -1,3 +1,10 @@
+
+<!-- Users should feel free to save their research data in any format under the constraint of quota granted.  It is their decision what is worth longer term preservation.   Frequently changing data or temporary checkpoint sets may not be ideal and ranch will not guarantee performance for those transactions.
+Although we do NOT charge for data on ranch and it has huge capacity, it cannot be free for everybody and data stored are supposed to be research related.
+Since we support open science, data stored in Ranch are NOT supposed to be sensitive data or highly personal documents.   Users cannot assume any privacy on data saved on ranch.
+(We used to see blindly dumped departmental records in plain format which contain purchase transaction records, hiring records, personal browser histories for every person in the group..... and they can be accessed by anybody if they change the default setting on directories.  Since we implemented strict quota, we see much fewer of those, but will not be surprised if we come across some.) -->
+
+
 # Ranch User Guide
 *Last update: March 19, 2025*
 
