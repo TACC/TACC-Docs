@@ -2,29 +2,30 @@
 
 **NOTICE September 23, 2025** Over the next year, [TACC's Ranch, the archival data system][TACCRANCHUG], will undergo a complete system replacement, requiring all current Ranch users to curate, then migrate, all their Ranch data from the old to the new system.  
 
-## Guts
 
 Ranch will transition from the current Quantum StorNext tape archive system, hereinafter referred to as "Old Ranch", to a new Versity hierarchical storage management software and Spectra Logic tape archive system, to be referred to as "New Ranch".
 
 <table>
-<thead><tr><td colspan="2">Definitions</td></tr></thead>
 <tr><td style="white-space:nowrap">Old Ranch (2019-2025)</td><td>Quantum StorNext tape archive</td> </tr>
 <tr><td style="white-space:nowrap">New Ranch (2025-2035)</td><td>Versity ScoutAM & Spectra Logic TFinity</td></tr>
 </table>
 
+Since this is a total system replacement, and not an upgrade to existing hardware, all data on the current (Old) Ranch must be MANUALLY COPIED OVER to the New Ranch system in order to save it permanently.   Data on Old Ranch will NOT automatically transfer to New Ranch.  You are responsible for migrating your own data that is stored on Old Ranch, either in your personal directory, or in a designated Project space, before the end of September 2026.  
 
-Since this is a total system replacement, and not an upgrade to existing hardware, all data on the current (Old) Ranch must be MANUALLY COPIED OVER to the New Ranch system in order to save it permanently.  <!-- Data on Old Ranch will NOT automatically transfer to New Ranch. -->  PIs are responsible for managing and migrating the data in their project spaces (or delegating the migration).   Data that is stored on Old Ranch, either in your personal directory, or in a designated Project space, must be migrated by you, or your project PI, before the end of September 2026.  
+!!! important
+	PIs are responsible for managing and migrating the data in their project spaces (or delegating the migration).
 
-Data on Old Ranch will be accessible through September, 2026 giving all PIs and delegates ample time to curate and migrate their data.
-
-## Estimated Timeline:  
+### Estimated Timeline:  
 
 <table border="1">
-<thead><tr><td>Date</td><td>Action</td></tr></thead>
+<thead><tr><td>Dates</td><td>Action</td></tr></thead>
 <tr>
 <td style="white-space:nowrap">September 23, 2025</td>
-<td>New Ranch hardware available to general users. <br>Begin migrating your data.  <br>Old Ranch directories will be mounted as a read-only directory called 'OldRanchData'.
-Old Ranch will become a read-only file system on 09/23/2025, accessible via an NFS mount on the New Ranch’s login nodes. </td>
+<td>
+<li>New Ranch hardware available to general users. 
+<li>Old Ranch will become a read-only file system on 09/23/2025.
+<li>Old Ranch directories will be accessible via an NFS mount on New Ranch's login nodes called `OldRanchData`. 
+<li>Begin migrating your data.  
 </tr>
 <tr>
 <td style="white-space:nowrap">November 1, 2026</td><td>Old Ranch hardware removed from service </td></tr>
@@ -34,14 +35,14 @@ Old Ranch will become a read-only file system on 09/23/2025, accessible via an N
 
 All Ranch allocations subsequent to September 23, 2025 will automatically be placed on New Ranch. 
 
-### Curating your data
+## Curating your data
 
-Now is a nifty time to re-evaluate your archived data e.g. decide if the data is still valuable and worth of long-term storage, or is no longer needed. 
+Data on Old Ranch will be accessible through September, 2026 giving all PIs and delegates ample time to curate and migrate their data.  Now is the time to re-evaluate your archived data e.g. decide if the data is still valuable and worth of long-term storage, or if the data is redundant or no longer needed. 
 
 The data on Old Ranch will be accessible for at least a year, so if you only need access to it in the short term, it can stay on the old system, and be accessed via the OldRanchData directory/NFS mount until November, 2026.. 
 
 !!! tip
-	To see your usage, check the "`HSM_usage`" text file in your Old Ranch home directory or project directory. 
+	To see your disk usage on Old Ranch, check the "`HSM_usage`" text file in your Old Ranch home directory or project directory. 
 
 	```
 	[slindsey@login1-ranch ~]$ ls
@@ -50,8 +51,6 @@ The data on Old Ranch will be accessible for at least a year, so if you only nee
 	Fri Sep 19 04:32:01 2025 /stornext/ranch_01/ranch/users/01158/slindsey total storage allocated: 2.0T on-disk in use: 476K (Under) total files allocated: 50K in use: 12 (Under) on-tape in use: 995.2 MB
 	ranch$ ls
 	```
-
-
 
 ## Data Migration Directions
 
