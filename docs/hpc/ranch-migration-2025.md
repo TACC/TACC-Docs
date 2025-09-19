@@ -1,7 +1,8 @@
 # Ranch System Replacement - Data Migration Required
+*Last update: September 19, 2025*
 
-**NOTICE September 23, 2025** Over the next year, [TACC's Ranch, the archival data system][TACCRANCHUG], will undergo a complete system replacement, requiring all current Ranch users to curate, then migrate, all their Ranch data from the old to the new system.  
 
+**NOTICE September 23, 2025** Over the next year, [TACC's archival data system, Ranch,][TACCRANCHUG], will undergo a complete system replacement, requiring all current Ranch users to curate, then migrate, all their Ranch data from the old to the new system.  
 
 Ranch will transition from the current Quantum StorNext tape archive system, hereinafter referred to as "Old Ranch", to a new Versity hierarchical storage management software and Spectra Logic tape archive system, to be referred to as "New Ranch".
 
