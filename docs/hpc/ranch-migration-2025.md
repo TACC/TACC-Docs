@@ -1,10 +1,13 @@
-# Ranch System Replacement - Data Migration Required
+# Ranch System Replacement<br>Data Migration Instructions for all Users
 *Last update: September 22, 2025*
 
 !!! warning
 	**NOTICE September XX, 2025** Over the next year, [TACC's archival data system, Ranch,][TACCRANCHUG], will undergo a complete system replacement, requiring all current Ranch users to curate, then migrate, all their Ranch data from the old to the new system.  
 
-	Since this is a total system replacement, and not an upgrade to existing hardware, all data on the current (Old) Ranch must be MANUALLY COPIED OVER by the respective data's owner, to the New Ranch system in order to save it permanently.   Data on Old Ranch will NOT automatically transfer to New Ranch.  You are responsible for migrating your own data that is stored on Old Ranch, either in your personal directory, or in a designated Project space, prior to the end of November, 2026.  
+Since this is a total system replacement, and not an upgrade to existing hardware, all data on the current (Old) Ranch must be MANUALLY COPIED OVER by the respective data's owner, to the New Ranch system in order to save it permanently.   Data on Old Ranch will NOT automatically transfer to New Ranch.  You are responsible for migrating your own data that is stored on Old Ranch, either in your personal directory, or in a designated Project space, prior to the end of November, 2026.  
+
+!!! tip
+	Subscribe to [Ranch User News](https://accounts.tacc.utexas.edu/user_updates) to receive system status updates and news.
 
 ## Technical Information
 
