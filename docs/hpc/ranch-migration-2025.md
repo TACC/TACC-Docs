@@ -1,10 +1,10 @@
 # Ranch System Replacement<br>Data Migration Instructions for all Users
-*Last update: September 22, 2025*
+*Last update: September 24, 2025*
 
 !!! warning
-	**NOTICE September XX, 2025** Over the next year, [TACC's archival data system, Ranch,][TACCRANCHUG], will undergo a complete system replacement, requiring all current Ranch users to curate, then migrate, all their Ranch data from the old to the new system.  
+	**September 24, 2025** Over the next year, [TACC's archival data system, Ranch,][TACCRANCHUG], will undergo a complete system replacement, requiring all current Ranch users to curate, then migrate, all their Ranch data from the old to the new system.  
 
-Since this is a total system replacement, and not an upgrade to existing hardware, all data on the current (Old) Ranch must be MANUALLY COPIED OVER by the respective data's owner, to the New Ranch system in order to save it permanently.   Data on Old Ranch will NOT automatically transfer to New Ranch.  You are responsible for migrating your own data that is stored on Old Ranch, either in your personal directory, or in a designated Project space, prior to the end of November, 2026.  
+Since this is a total system replacement, and not an upgrade to existing hardware, all data on the current (Old) Ranch must be MANUALLY COPIED OVER to the New Ranch system,  by the respective data's owner, in order to save it permanently.   Data on Old Ranch will NOT automatically transfer to New Ranch.  You are responsible for migrating your own data that is stored on Old Ranch, either in your personal directory, or in a designated Project space, prior to the end of November, 2026.  
 
 !!! tip
 	Subscribe to [Ranch User News](https://accounts.tacc.utexas.edu/user_updates) to receive system status updates and news.
@@ -19,47 +19,45 @@ Ranch will transition from the current Quantum StorNext tape archive system, her
 <tr><td style="white-space:nowrap">New Ranch </td><td>2025-2035</td><td>Versity ScoutAM & Spectra Logic TFinity</td></tr>
 </table>
 
-!!! important
-	PIs are responsible for managing and migrating the data in their project spaces (or delegating the migration).
 
-### Estimated Timeline:  
+## Curating your data
+
+**Data on Old Ranch will be accessible through November, 2026**.  This time span allows PIs and their delegates ample time to curate and migrate their data from Old Ranch to New Ranch. Now is the time to re-evaluate your archived data on Old Ranch e.g. decide if the data is still valuable and worth of long-term storage, or if the data is redundant or no longer needed.  
+
+If you only need access to your data in the short term (within the next year), then the data can stay on Old Ranch, and be accessed via the `OldRanchData` directory/NFS mount until November, 2026. 
+
+### Examining Usage on Old Ranch
+
+To see your disk usage on Old Ranch, check the "`HSM_usage`" text file in your Old Ranch home directory or project directory. 
+
+```
+[slindsey@login1-ranch ~]$ ls
+OldRanchData
+[slindsey@login1-ranch ~]$ tail -1 OldRanchData/HSM_usage
+Fri Sep 19 04:32:01 2025 /stornext/ranch_01/ranch/users/01158/slindsey total storage allocated: 2.0T on-disk in use: 476K (Under) total files allocated: 50K in use: 12 (Under) on-tape in use: 995.2 MB
+ranch$ ls
+```
+
+### Important Dates
 
 <table border="1">
 <thead><tr><td>Dates</td><td>Action</td></tr></thead>
 <tr>
-<td style="white-space:nowrap">September XX, 2025</td>
+<td style="white-space:nowrap">September 30, 2025</td>
 <td>
-<li>New Ranch hardware available to general users. 
-<li>Old Ranch will become a read-only file system on 09/XX/2025.
-<li>Old Ranch directories will be accessible via an NFS mount on New Ranch's login nodes called `OldRanchData`. 
-<li>Begin migrating your data.  
+<li>New Ranch hardware available to general users. Begin migrating your data.  
+<li>Old Ranch will becomes a read-only file system.
+<li>Old Ranch directories will be accessible via an NFS mount, <code>OldRanchData</code>, on New Ranch's login nodes. 
+<li>All new Ranch allocations subsequent to September 30, 2025 will automatically be placed on New Ranch. 
 </tr>
 <tr>
 <td style="white-space:nowrap">November 1, 2026</td><td>Old Ranch hardware removed from service </td></tr>
 </table>
 
-&#42;All dates subject to change based on hardware availability and condition 
+<!-- &#42;All dates subject to change based on hardware availability and condition -->
 
-All Ranch allocations subsequent to September XX, 2025 will automatically be placed on New Ranch. 
-
-## Curating your data
-
-**Data on Old Ranch will be accessible through November, 2026**, allowing PIs and delegates ample time to curate and migrate their data.  
-
-Now is the time to re-evaluate your archived data e.g. decide if the data is still valuable and worth of long-term storage, or if the data is redundant or no longer needed. 
-
-If you only need access to your data in the short term, it can stay on the old system, and be accessed via the `OldRanchData` directory/NFS mount until November, 2026. 
-
-!!! tip
-	To see your disk usage on Old Ranch, check the "`HSM_usage`" text file in your Old Ranch home directory or project directory. 
-
-	```
-	[slindsey@login1-ranch ~]$ ls
-	OldRanchData
-	[slindsey@login1-ranch ~]$ tail -1 OldRanchData/HSM_usage
-	Fri Sep 19 04:32:01 2025 /stornext/ranch_01/ranch/users/01158/slindsey total storage allocated: 2.0T on-disk in use: 476K (Under) total files allocated: 50K in use: 12 (Under) on-tape in use: 995.2 MB
-	ranch$ ls
-	```
+!!! important
+	PIs are responsible for managing and migrating the data in their project spaces (or delegating the migration).
 
 ## Data Migration Directions
 
@@ -102,11 +100,5 @@ Ranch quotas and policies will remain constant across the new and old system.
 </table>
 
 See the Ranch User Guide for more about [Ranch's "Project" Storage](https://docs.tacc.utexas.edu/hpc/ranch/#projects), a special directory structure designed to support both shared and oversized data directories for users or projects whose storage needs exceed the standard 2TB quota. 
-
-## References
-
-* [Ranch User Guide][TACCRANCHUG]
-* Subscribe to [Ranch User News](https://accounts.tacc.utexas.edu/user_updates) to receive system status updates and news.
-
 
 {% include 'aliases.md' %}

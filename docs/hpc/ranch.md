@@ -1,15 +1,16 @@
 # Ranch User Guide
-*Last update: September 22, 2025*
+*Last update: September 23, 2025*
 
 ## Notices { #notices } 
 
+!!! warning
+	**09/24/2025**: As part of a year-long Ranch system replacement, all Ranch users are required to migrate their own or their project's data from the "Old Ranch" to the "New Ranch" system.
+
+	Consult the [Ranch Data Migration Guide](../../hpc/ranch-migration-2025) for important information and directions.. 
+
+
 !!! important
-	**September XX, 2025**: As part of a year-long Ranch system replacement, all Ranch users are required to migrate their own or their project's data from the "Old Ranch" to the "New Ranch" system.
-
-	Please review and follow directions in the [Ranch Data Migration Guide](./hpc/ranch-migration-2025). 
-
-
-* **09/22/2025**: This user guide is in progress as Ranch transitions to its new self.
+	**09/24/2025**: This user guide is in progress as Ranch transitions to its new self.
 
 
 ## Introduction { #intro }

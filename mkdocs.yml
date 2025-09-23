@@ -57,6 +57,7 @@ nav:
     - Lonestar6: hpc/lonestar6.md
     - Jetstream2: https://docs.jetstream-cloud.org
     - Ranch: hpc/ranch.md
+    - Ranch Migration Guide 2025: hpc/ranch-migration-2025.md
     - Stampede3: hpc/stampede3.md
     - Stallion: hpc/stallion.md
     - Vista: hpc/vista.md
@@ -97,13 +98,13 @@ nav:
 
 plugins:
   - search
-  - exclude-search:
-      exclude:
-        - aliases.md
-        - archives/*
-        - include/*
-        - code-examples/*
-      exclude_unreferenced: true
-  - macros # allows {% include ... %} (and macros)
+   - exclude-search:
+       exclude:
+         - aliases.md
+         - archives/*
+         - include/*
+         - code-examples/*
+       exclude_unreferenced: true
+   - macros # allows {% include ... %} (and macros)
 
 # NOTE: warnings if file included by {% include '…' %} has relative paths
