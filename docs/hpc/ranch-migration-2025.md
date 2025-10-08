@@ -1,8 +1,40 @@
-# Ranch System Replacement<br>Data Migration Instructions for all Users
-*Last update: September 24, 2025*
+<!-- 
+Heo
+Recursive cp or rsync is reasonable way to transfer.  The key here is that user should partition the batch in reasonable sizes, e.g. 10TB-100TB range.  We see a user who already copied 100TB last week from old projects to new ones.   In general, it will be a slow process for most users.   One thing we should warn users against is futile attempt to parallelize multiple batches in the hope to speed things up, which will bog down finite number of tape drives available on both source and target side, ultimately blocking all other resources.  This can easily happen, and we will have to terminate those processes and clean up.
 
-!!! warning
-	**September 24, 2025** Over the next year, [TACC's archival data system, Ranch,][TACCRANCHUG], will undergo a complete system replacement, requiring all current Ranch users to curate, then migrate, all their Ranch data from the old to the new system.  
+
+David
+Could you also add something about du to the migration guide? On the Quantum Ranch system, data that had been migrated to tape wasn't reflected in du output, which is why we had the HSM_usage file, but on the ScoutFS filesystem, the du output actually includes the data on tape usage, so is a lot more useful to the users.
+
+add Globus as a means of transfer
+
+
+
+heo
+Junseong Heo
+  4:54 PM
+/qranch/{users,projects} are ReadOnly re-export of the old ranch data.   For every project that was on the old ranch, one can find the new one in /scoutfs/{users,projects} on new machines.  Each directory in the new one has a symbolic link to the old one called "OldRanchData".  The copy in /qranch will go away in 12 months or so.  User guide states that users need to review and copy wanted data to new ranch.
+:+1:
+2
+
+-->
+
+
+
+
+
+
+
+
+# Ranch System Replacement<br>Data Migration Instructions for all Users
+*Last update: October 8, 2025*
+
+## Notices
+
+* 10/08/2025 **VSCode users: Accessing Ranch and managing transfers via VSCode is prohibited.**  Ranch is an archival file system, not a computational resource.  Please use a terminal application to manage your Ranch data.
+
+
+09/24/2025  Over the next year, [TACC's archival data system, Ranch,][TACCRANCHUG], will undergo a complete system replacement, requiring all current Ranch users to curate, then migrate, all their Ranch data from the old to the new system.  
 
 Since this is a total system replacement, and not an upgrade to existing hardware, all data on the current (Old) Ranch must be MANUALLY COPIED OVER to the New Ranch system,  by the respective data's owner, in order to save it permanently.   Data on Old Ranch will NOT automatically transfer to New Ranch.  You are responsible for migrating your own data that is stored on Old Ranch, either in your personal directory, or in a designated Project space, prior to the end of November, 2026.  
 
@@ -38,6 +70,8 @@ Fri Sep 19 04:32:01 2025 /stornext/ranch_01/ranch/users/01158/slindsey total sto
 ranch$ ls
 ```
 
+
+
 ### Important Dates
 
 <table border="1">
@@ -61,7 +95,8 @@ ranch$ ls
 
 ## Data Migration Directions
 
-Since Old Ranch is a read-only file system, you must use either the `cp` and/or the `rsync` UNIX commands to copy over your data.
+Since Old Ranch is a read-only file system, you must use either the `cp` and/or the `rsync` UNIX commands to copy over your data.  **Do not use VSCode to access or manage data on Ranch.**  <!-- **VSCode users: Accessing Ranch and managing transfers via VSCode is prohibited.**  Ranch is an archival file system, not a computational resource.  Please use a terminal application to manage your Ranch data.-->
+
 
 <table border="1">
 <tr><thead><th>Using <code>cp</code></th><th>Using <code>rsync</code></th></thead></tr>
