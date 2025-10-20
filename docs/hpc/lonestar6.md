@@ -1,5 +1,5 @@
 # Lonestar6 User Guide
-*Last update: September 5, 2025*
+*Last update: October 20, 2025*
 
 <!-- ## Notices { #notices } -->
 
@@ -720,35 +720,45 @@ The jobs in this queue consume 1/7 the resources of a full node.  Jobs are charg
     Use TACC's `qlimits` utility to see the latest queue configurations.
 
 <!--
-07/09/2025 
-login2.ls6(477)$ qlimits
+10/20/2025
+login2.ls6(493)$ qlimits
 Current queue/partition limits on TACC's ls6 system:
 
 Name             MinNode  MaxNode     MaxWall  MaxNodePU  MaxJobsPU   MaxSubmit
 development            1        8    02:00:00          8          1           3
-gpu-a100               1        8  2-00:00:00         12          8          40
+gpu-a100               1        8  2-00:00:00         12          8          32
 gpu-a100-dev           1        2    02:00:00          2          1           3
-gpu-a100-small         1        1  2-00:00:00          3          3          40
+gpu-a100-small         1        1  2-00:00:00          3          3          12
 gpu-h100               1        1  2-00:00:00          1          1           4
-grace                  1       64  2-00:00:00         75         20         200
-grace-serial           1       64  3-00:00:00         75         20         200
-large                 65      256  2-00:00:00        256          1          20
-normal                 1       64  2-00:00:00         75         20         200
-vm-small               1        1  2-00:00:00          4          4          50
-login2.ls6(478)$
+grace                  1       64  2-00:00:00         75         20         100
+grace-serial           1       64  5-00:00:00         75         20          80
+large                 65      256  2-00:00:00        256          1           4
+normal                 1       64  2-00:00:00         75         20         100
+vm-small               1        1  2-00:00:00          4          4          16
+
+/usr/local/etc/queue.map
+development:1.0
+gpu-a100:3.0
+gpu-a100-dev:3.0
+gpu-a100-small:1.5
+gpu-h100:6.0
+large:1.0
+normal:1.0
+vm-small:0.143
 -->
 
 
-Queue Name | Min/Max Nodes per Job<br /> (assoc'd cores)&#42; | Max Job Duration | Max Nodes<br> per User | Max Jobs<br> per User | Charge Rate<br /><u>(per node-hour)</u>
+
+Queue Name | Min/Max Nodes per Job<br>(assoc'd cores)&#42; | Max Job<br>Duration | Max Nodes<br>per User | Max Jobs<br>per User | Charge Rate<br>(per node-hour)
 --- | --- | --- | --- | --- | ---
 <code>development</code>                         | 8 nodes<br>(1024 cores)       |  2 hours |   8 |  1 | 1 SU
-<code>gpu-a100</code>                            | 8 nodes<br>(1024 cores)       | 48 hours |  12 |  8 | 4 SUs
-<code>gpu-a100-dev</code>                        | 2 nodes<br>(256 cores)        |  2 hours |   2 |  1 | 4 SUs
+<code>gpu-a100</code>                            | 8 nodes<br>(1024 cores)       | 48 hours |  12 |  8 | 3 SUs
+<code>gpu-a100-dev</code>                        | 2 nodes<br>(256 cores)        |  2 hours |   2 |  1 | 3 SUs
 <code>gpu-a100-small</code><sup>&#42;&#42;</sup> | 1 node                        | 48 hours |   3 |  3 | 1.5 SUs
 <code>gpu-h100</code>                            | 1 node                        | 48 hours |   1 |  1 | 6 SUs | (96 cores)
 <code>large</code><sup>&#42;</sup>               | 65/256 nodes<br>(65536 cores) | 48 hours | 256 |  1 | 1 SU
 <code>normal</code>                              | 1/64 nodes<br>(8192 cores)    | 48 hours |  75 | 20 | 1 SU
-<code>vm-small</code><sup>&#42;&#42;</sup>       | 1/1 node<br>(16 cores)        | 48 hours |   4 |  4 | 0.143 SU
+<code>vm-small</code><sup>&#42;&#42;</sup>       | 1 node<br>(16 cores)          | 48 hours |   4 |  4 | 0.143 SU
 
 
 &#42; Access to the `large` queue is restricted. To request more nodes than are available in the normal queue, submit a consulting (help desk) ticket through the TACC User Portal. Include in your request reasonable evidence of your readiness to run under the conditions you're requesting. In most cases this should include your own strong or weak scaling results from Lonestar6.

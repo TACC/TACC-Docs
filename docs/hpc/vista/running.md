@@ -13,24 +13,28 @@ Vista's job scheduler is the Slurm Workload Manager. Slurm commands enable you t
     Use TACC's `qlimits` utility to see the latest queue configurations.
 
 <!--
-07/09/2025
-login1.vista(39)$ qlimits
+10/20/2025
+login1.vista(43)$ qlimits
 Current queue/partition limits on TACC's vista system:
 
 Name             MinNode  MaxNode     MaxWall  MaxNodePU  MaxJobsPU   MaxSubmit
 gg                     1       32  2-00:00:00        128         20          40
 gh                     1       64  2-00:00:00        192         20          40
 gh-dev                 1        8    02:00:00          8          1           3
-login1.vista(40)$
+
+/usr/local/etc/queue.map
+gg:0.33
+gh:1.0
+gh-dev:1.0
 -->
 
 #### Table 4. Production Queues { #table4 }
 
-Queue Name     | Node Type     | Max Nodes per Job<br>(assoc'd cores) | Max Duration | Max Jobs in Queue | Charge Rate<br>(per node-hour)
---             | --            | --                                   | --           | --                |  
-`gg`           | Grace/Grace   | 32 nodes<br>(4608 cores)             | 48 hrs       | 20                | 0.33 SU
-`gh`           | Grace/Hopper  | 64 nodes<br>(4608 cores/64 gpus)     | 48 hrs       | 20                | 1 SUs
-`gh-dev`       | Grace Hopper  | 8 nodes<br>(576 cores)               |  2 hrs       |  1                | 1 SU
+Queue Name  | Node Type     | Max Nodes per Job<br>(assoc'd cores) | Max Job<br>Duration | Max Nodes<br>per User   | Max Jobs<br>per User | Charge Rate<br>(per node-hour)
+--          | --            | --                                   | --                  | --                      |--                    |--
+`gg`        | Grace/Grace   | 32 nodes<br>(4608 cores)             | 48 hrs              | 128                     | 20                   | 0.33 SU
+`gh`        | Grace/Hopper  | 64 nodes<br>(4608 cores/64 gpus)     | 48 hrs              | 192                     | 20                   | 1 SUs
+`gh-dev`    | Grace Hopper  | 8 nodes<br>(576 cores)               |  2 hrs              | 8                       | 1                    | 1 SU
 
 
 {% include 'include/vista-jobaccounting.md' %}
