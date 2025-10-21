@@ -2,13 +2,10 @@
 Heo
 Recursive cp or rsync is reasonable way to transfer.  The key here is that user should partition the batch in reasonable sizes, e.g. 10TB-100TB range.  We see a user who already copied 100TB last week from old projects to new ones.   In general, it will be a slow process for most users.   One thing we should warn users against is futile attempt to parallelize multiple batches in the hope to speed things up, which will bog down finite number of tape drives available on both source and target side, ultimately blocking all other resources.  This can easily happen, and we will have to terminate those processes and clean up.
 
-
 David
 Could you also add something about du to the migration guide? On the Quantum Ranch system, data that had been migrated to tape wasn't reflected in du output, which is why we had the HSM_usage file, but on the ScoutFS filesystem, the du output actually includes the data on tape usage, so is a lot more useful to the users.
 
 add Globus as a means of transfer
-
-
 
 heo
 Junseong Heo
@@ -16,21 +13,15 @@ Junseong Heo
 /qranch/{users,projects} are ReadOnly re-export of the old ranch data.   For every project that was on the old ranch, one can find the new one in /scoutfs/{users,projects} on new machines.  Each directory in the new one has a symbolic link to the old one called "OldRanchData".  The copy in /qranch will go away in 12 months or so.  User guide states that users need to review and copy wanted data to new ranch.
 :+1:
 2
-
 -->
 
 
-
-
-
-
-
-
 # Ranch System Replacement<br>Data Migration Instructions for all Users
-*Last update: October 8, 2025*
+*Last update: October 20, 2025*
 
 ## Notices
 
+* 10/20/2025 You may now use Globus Online to manage transfers between New Ranch and Old Ranch.
 * 10/08/2025 **VSCode users: Accessing Ranch and managing transfers via VSCode is prohibited.**  Ranch is an archival file system, not a computational resource.  Please use a terminal application to manage your Ranch data.
 
 
@@ -51,26 +42,33 @@ Ranch will transition from the current Quantum StorNext tape archive system, her
 <tr><td style="white-space:nowrap">New Ranch </td><td>2025-2035</td><td>Versity ScoutAM & Spectra Logic TFinity</td></tr>
 </table>
 
-
 ## Curating your data
 
 **Data on Old Ranch will be accessible through November, 2026**.  This time span allows PIs and their delegates ample time to curate and migrate their data from Old Ranch to New Ranch. Now is the time to re-evaluate your archived data on Old Ranch e.g. decide if the data is still valuable and worth of long-term storage, or if the data is redundant or no longer needed.  
 
 If you only need access to your data in the short term (within the next year), then the data can stay on Old Ranch, and be accessed via the `OldRanchData` directory/NFS mount until November, 2026. 
 
+### Project Spaces
+
+Project spaces on New Ranch are located at <code>/scoutfs/projects/*yourProjectName*</code> and contain the same pointer to `OldRanchData` as personal accounts.  Data migration instructions for Project spaces and personal accounts are identical.  
+
+
 ### Examining Usage on Old Ranch
 
-To see your disk usage on Old Ranch, check the "`HSM_usage`" text file in your Old Ranch home directory or project directory. 
+To see your total disk usage on Old Ranch, check the last entry in the "`HSM_usage`" text file in your Old Ranch home or project directory. 
 
-```
-[slindsey@login1-ranch ~]$ ls
-OldRanchData
+```cmd-line
+[slindsey@login1-ranch ~]$ ls -l
+total 4
+lrwxrwxrwx 1 root     root     30 Sep 17 14:05 OldRanchData -> /qranch/users/01158/slindsey/
+[slindsey@login1-ranch ~]$ ls -l OldRanchData/
+total 456
+-rw------- 1 slindsey G-40300 995166818 Oct 12  2022 bigfile
+-rw-r--r-- 1 root     root       455384 Oct 20 04:35 HSM_usage
 [slindsey@login1-ranch ~]$ tail -1 OldRanchData/HSM_usage
-Fri Sep 19 04:32:01 2025 /stornext/ranch_01/ranch/users/01158/slindsey total storage allocated: 2.0T on-disk in use: 476K (Under) total files allocated: 50K in use: 12 (Under) on-tape in use: 995.2 MB
-ranch$ ls
+Mon Oct 20 04:30:24 2025 /stornext/ranch_01/ranch/users/01158/slindsey total storage allocated: 2.0T on-disk in use: 484K (Under) total files allocated: 50K in use: 12 (Under) on-tape in use: 995.2 MB
+[slindsey@login1-ranch ~]$
 ```
-
-
 
 ### Important Dates
 
@@ -93,9 +91,20 @@ ranch$ ls
 !!! important
 	PIs are responsible for managing and migrating the data in their project spaces (or delegating the migration).
 
+
 ## Data Migration Directions
 
-Since Old Ranch is a read-only file system, you must use either the `cp` and/or the `rsync` UNIX commands to copy over your data.  **Do not use VSCode to access or manage data on Ranch.**  <!-- **VSCode users: Accessing Ranch and managing transfers via VSCode is prohibited.**  Ranch is an archival file system, not a computational resource.  Please use a terminal application to manage your Ranch data.-->
+Since Old Ranch is a read-only file system, you must copy, not move, your data over to its new destination.
+
+1. Terminal applications: You may use either the `cp` and/or the `rsync` UNIX commands to copy over your data.  
+1. [Globus Online ]() - the new Ranch3 endpoint points to New Ranch.
+
+Transfer speeds via either method are equivalent.
+
+!!! warning
+	**Do not use VSCode to access or manage data on Ranch.**  
+
+<!-- **VSCode users: Accessing Ranch and managing transfers via VSCode is prohibited.**  Ranch is an archival file system, not a computational resource.  Please use a terminal application to manage your Ranch data.-->
 
 
 <table border="1">
@@ -121,6 +130,17 @@ ranch$ rsync -avhP OldRanchData/mystuff.tar .
 !!! tip 
 	Limit your `cp` and/or `rsync` transfers to no more than three simultaneous processes.  Initiating excessive processes on the login nodes is prohibited.  See [File Transfer Guidelines](https://docs.tacc.utexas.edu/basics/conduct/#conduct-transfers) in the Good Conduct guide.
 
+
+<!--
+## Large Data Migrations Guidelines 
+
+For those of you with large amounts of data stored on Old Ranch, greater than 1PB, please follow these guidelines:
+
+* Bundle your data into 10-100TB tarballs and migrate only after each successful transfer.  Otherwise, you can bring down the system by requesting more than the number of transfers the tape drives can handle. 
+
+If in doubt, one thread of copy may give a good estimate before submitting three copies (we ask that no user exceed more than three simultaneous transfers at a time).  One user transferred about 100TB in two threads last week, for example, and they continue without causing any issues.
+
+To put the overall time into perspective, for 9 PB it would take a good three months if transfers continue without interruption or severe contention with other users. -->
 
 ## Ranch Quotas and Polices
 
