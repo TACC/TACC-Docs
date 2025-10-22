@@ -1,14 +1,15 @@
 # Frontera User Guide
-*Last update: September 5, 2025*
+*Last update: October 22, 2025*
 
 <!-- **Important**: (10-15-2024) Please note [TACC's new SU charge policy](#sunotice). -->
 
 
 <!-- SDL <a href="https://frontera-xortal.tacc.utexas.edu/user-guide/docs/user-guide.pdf">Download PDF <i class="fa fa-file-pdf-o"></i></a></span>-->
 
-<!-- 
 ## Notices { #notices }
 
+* Users are limited to using one and only one of Frontera's `scratch` file systems. (10/22/2025)
+<!-- 
 * Navigate to the [Frontera Web Portal](https://frontera-portal.tacc.utexas.edu/) to manage your Frontera allocations and access your [Frontera Workbench](https://frontera-portal.tacc.utexas.edu/workbench/dashboard). (04/19/2023)
 
 -->
@@ -342,6 +343,10 @@ File System | Quota | Key Features
 
 All new projects are assigned to `/scratch1` as their default `$SCRATCH` file system.  After running on Frontera, TACC staff may reassign users and projects to `/scratch2` or `/scratch3` depending on the resources required by their workflow.  The `/scratch3` file system employs twice as many OST's offering twice the available I/O bandwidth of `/scratch1` and `/scratch2`.  Frontera's three `$SCRATCH` file systems are further described below:
 
+
+!!! warning
+	Users are restricted to the use of one, and only one, of Frontera's `/scratch` file system.
+
 File System | Characteristics	| Purpose |
 ---         | ---               | ---     |
 `/scratch1` | Size:	 10.6 PB <br>OSTs:	16 <br>Bandwidth: 60 GB/s  | Default scratch file system.
@@ -356,7 +361,7 @@ amended to include Frontera's multiple scratch file systems-->
 ### Scratch File System Purge Policy { #scratchpolicy }
 
 !!! warning
-	The <code>$SCRATCH</code> file systems, as their name indicates, is a **temporary storage space**.  Files that have not been accessed&#42; in ten days are subject to purge.  This policy applies to all scratch systems on Frontera: `scratch1`, `scratch2` and `scratch3`.   
+	The <code>$SCRATCH</code> file systems, as their name indicates, is a **temporary storage space**.  Files that have not been accessed&#42; in ten days are subject to purge.  This policy applies to ALL scratch file systems on Frontera: `scratch1`, `scratch2` and `scratch3`.   
 
 	Deliberately modifying file access time (using any method, tool, or program) for the purpose of circumventing purge policies is prohibited.
 
