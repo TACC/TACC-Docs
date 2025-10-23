@@ -288,7 +288,7 @@ You will see four phenomena within Ranch, typically made manifest in your `HSM_u
 
 For example, if the file system were half full, there would be NO file truncation, and while older files would be steadily copied to tape, their entire contents would remain on disk.  Conversely, if the file system were to grow to over 80% full, the system would be transparently searching for, and truncating, older files in order to create free disk space in the file system.  None of these truncation operations are driven by a particular user or Project reaching their quota of on-disk storage.  **The software is unaware that any particular directory has reached their quota and might need intervention via truncation.**
 
-Given all that was described above with regard to storge allocations and the `HSM_usage` file, if a user has reached their current quota of on-disk storage, there are two solutions that can be used.
+Given all that was described above with regard to storage allocations and the `HSM_usage` file, if a user has reached their current quota of on-disk storage, there are two solutions that can be used.
 
 1. Perform an "early truncation" wherein your old files are explicitly discovered and truncated.  This presumes that these old files have already been written to tape.
 1. Expand you or your Project's on-disk quota.  Given that Ranch is a shared resource with hundreds of Projects and thousands of users, this on-disk quota expansion is not the preferred solution.
