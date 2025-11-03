@@ -744,7 +744,8 @@ large:1.0
 normal:1.0
 vm-small:0.143
 -->
-Queue Name | Min/Max Nodes per Job<br>(assoc'd cores)&#42; | Max Job<br>Duration | Max Nodes<br>per User | Max Jobs<br>per User | | Max Submit | Charge Rate<br>(per node-hour)
+
+Queue Name | Min/Max Nodes per Job<br>(assoc'd cores)&#42; | Max Job<br>Duration | Max Nodes<br>per User | Max Jobs<br>per User | Max Submit | Charge Rate<br>(per node-hour)
 --- | --- | --- | --- | --- | --- | ---
 <code>development</code>                         | 8 nodes<br>(1024 cores)       |  2 hours |   8 |  1 | 3 | 1 SU
 <code>gpu-a100</code>                            | 8 nodes<br>(1024 cores)       | 48 hours |  12 |  8 | 32 | 3 SUs
