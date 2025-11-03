@@ -1,53 +1,39 @@
-<style>
-.grid {
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-}
-</style>
-
-
 # Managing your TACC Account
-*Last update: April 14, 2025*
+*Last update: November 3, 2025*
+
 
 ## Notices
 
-!!! warning
-	Beginning immediately, all TACC account holders are required to have an active MFA pairing.  If you do not have an active MFA pairing your account will be deactivated.
+* (11/03/2025) **VSCode users:  TACC staff are aware of the difficulties VSCode users are experiencing when attempting to login to TACC HPC resources.**  Please see [Resolving VSCode issues](#vscode) below.
+* (04/14/2025) Beginning immediately, all TACC account holders are required to have an active MFA pairing.  If you do not have an active MFA pairing your account will be deactivated.
 
-In order to access any TACC compute or storage resource you must maintain an "Active" TACC user account.  You may view your account status at any time on the [TACC Accounts Portal][TACCACCOUNTS] in the User Profile section. [Table 1.](#table1) below lists all possible conditions for your account.
+## How to Access TACC Resources
 
-
-!!! tip
-	If you are having login issues see TACC's [Login Support Tool][TACCLOGINSUPPORT] to resolve problems.  
-
-	If your [account status](#table1) is "Active" and you still can't login, try [un-pairing and re-pairing your MFA device][TACCMFA].
-
-
-## Deactivated Accounts
-
-If you have not accessed your account within the past 120 consecutive days, your account will be automatically deactivated in accordance with UT's [security protocols](https://security.utexas.edu/policies/irusp).  To re-activate your acccount, login to the [TACC Accounts Portal][TACCACCOUNTS] and request an activation link.  
+In order to access any TACC compute or storage resource you must maintain an "Active" TACC user account.  You may view your account status at any time on the [TACC Accounts Portal][TACCACCOUNTS] in the User Profile section. [Table 1.](#table1) below lists all possible conditions for your account.  New users please see the [New Accounts](#newaccounts) section below.  If you are a current user having issues logging in, see TACC's [Login Support Tool][TACCLOGINSUPPORT] to resolve problems.  
 
 !!! important
-	Once you have re-activated your account, you will need to [un-pair and re-pair][TACCMFA] your two-factor authentication.
+	An active TACC user account does not guarantee or imply access to any of TACC's compute resources.  You must be added to an active allocation in order to gain access to that project's resources.  
 
-## New Accounts
-
-
-Any user of TACC resources must first obtain a TACC account.  A TACC account email is of the form *username*@tacc.utexas.edu.  All new users are required to authenticate with a [UT approved Identity Provider](#identity-management).  
-
-To create a new account: 
-
-1. Go to the [TACC Accounts Portal][TACCACCOUNTS] and click "Create a New Account" to begin registration.
-1. Set up [Multi-Factor Authentication][TACCMFA] (MFA) on your account. 
-1. Check for an email containing a confirmation and activation link.  Once you confirm your email, your account status will update to either "Pending" or "Active".
-1. If your account status is "Pending" then your account request will need further review by our User Services team. No action is required and a team member will reach to you.
-1. Once your account is "Active" log onto the [TACC User Portal][TACCUSERPORTAL] to view your allocation status.
-
-!!! warning 
-	An individual may not have more than one TACC account.  Shared accounts and/or multi-user accounts are strictly prohibited.  
 
 !!! tip
-	In order to log on to TACC's HPC resources, your TACC account must be "[Active](#table1)" **AND** you must have an active allocation on that particular resource.
+	If your [account status](#table1) is "Active" and you still can't login, try [un-pairing and re-pairing your MFA device](https://docs.tacc.utexas.edu/basics/mfa/#unpair).
 
+
+## Login Problems: Resolving VSCode Issues { #vscode }
+
+Recent upgrades by Microsoft to the VSCode application have rendered it incompatible when trying to access TACC's compute resources.  TACC Staff are aware of the problems users are experiencing.  Until Microsoft fixes this bug, we are only able to offer possible solutions and workarounds.   
+
+* **Downgrade your VSCode version**: Version 1.98, in particular, has been seen to be the most consistent and stable when connecting to TACC resources.
+* **Edit your .bashrc file:** Connect via a terminal application to your compute resource and append the following line to your `$HOME/.bashrc` file: 
+
+		export NODE_OPTIONS="--disable-wasm-trap-handler"
+
+* The [TACC Analyis Portal][TACCANALYSISPORTAL] (TAP) offers simplified access to common interactive sessions.  
+
+!!! important
+	VSCode is a voracious consumer of resources and thus is inherently disrespectful to the needs of a multi-user environment, e.g. the shared login nodes.  Thus, TACC staff discourages developing/editing your code with VSCode on any TACC resources.  
+
+	Also note that VSCode access is **prohibited** on TACC's Ranch and Corral storage resources.
 
 ## Login Problems: `Improper ssh Configuration!`
 
@@ -77,6 +63,26 @@ This is most likely because you have modified your `./ssh/known_hosts` file.  Th
 3. Log out of the system and then log back in.  This will auto-generate a new `.ssh` folder and key for you. 
 
 
+## New Accounts { #newaccounts }
+
+Any user of TACC resources must first obtain a TACC account.  A TACC account email is of the form *username*@tacc.utexas.edu.  All new users are required to authenticate with a [UT approved Identity Provider](#identity-management).  
+
+To create a new account: 
+
+1. Go to the [TACC Accounts Portal][TACCACCOUNTS] and click "Create a New Account" to begin registration.
+1. Set up [Multi-Factor Authentication][TACCMFA] (MFA) on your account. 
+1. Check for an email containing a confirmation and activation link.  Once you confirm your email, your account status will update to either "Pending" or "Active".
+1. If your account status is "Pending" then your account request will need further review by our User Services team. No action is required and a team member will reach to you.
+1. Once your account is "Active" log onto the [TACC User Portal][TACCUSERPORTAL] to view your allocation status.
+
+!!! warning 
+	An individual may not have more than one TACC account.  Shared accounts and/or multi-user accounts are strictly prohibited.  
+
+<!-- repeated above
+!!! tip
+	In order to log on to TACC's HPC resources, your TACC account must be "[Active](#table1)" **AND** you must have an active allocation on that particular resource.
+--> 
+
 ## Table 1. TACC Account Status { #table1 }
 
 Account Status             | Description
@@ -87,6 +93,13 @@ Pending                    | Your account is under administrative review.
 Deactivated                | Reactivate your account by logging into the [TACC Accounts Portal][TACCACCOUNTS] and requesting an activation link.  **You will have to re-pair MFA once your account is reactivated**.
 Suspended                  | If your account is suspended you will be prohibited from logging into the TACC User Portal and as well as any TACC HPC resources.  Please [submit a help desk ticket](SUBMITTICKET) and a member of our User Services team will respond. Account suspension may result if: <li>your HPC jobs are violating [Good Conduct Policies][TACCGOODCONDUCT] or causing harm to our systems <li>your account usage is in violation of TACC's [Acceptable Use Policy][TACCAUP].     
 
+
+## Deactivated Accounts
+
+If you have not accessed your account within the past 120 consecutive days, your account will be automatically deactivated in accordance with UT's [security protocols](https://security.utexas.edu/policies/irusp).  To re-activate your acccount, login to the [TACC Accounts Portal][TACCACCOUNTS] and request an activation link.  
+
+!!! important
+	Once you have re-activated your account, you will need to [un-pair and re-pair][TACCMFA] your two-factor authentication.
 
 ## TACC Portals 
 
@@ -146,6 +159,29 @@ The [TACC User Portal][TACCUSERPORTAL] provides the following services:
 * [Multi-Factor Authentication at TACC][TACCMFA]
 
 {% include 'aliases.md' %}
+
+<!-- sources
+Jack sez there's a workaround
+* **Kill Zombied processes**: We have seen issues with zombied processes remaining on the login nodes after users run with VSCode, leading to them running into the process limits set in "`ulimit -a`".  This can manifest with this error:
+To remedy, You can always check the logins for running tasks from your account with "ps -ef | grep $USER" and shut down anything that isn't needed with "kill [process_id]".
+
+https://consult.tacc.utexas.edu/Ticket/Display.html?id=111310
+
+"computationally expensive" as noted in Good Conduct Guide 
+-->
+
+<!-- 
+###  Corrupted Mac on Input
+PS C:\Users\allis> ssh ans5695@ls6.tacc.utexas.edu
+Corrupted MAC on input.
+ssh_dispatch_run_fatal: Con
+
+
+We recently updated security ciphers for TACC systems, which has been determined to be root cause of the issue you are experiencing. While we work to resolve this, a temporary work around is to slightly change your ssh command to the following:
+
+ssh -m hmac-sha2-512 <user_name>@<remote_address>
+-->
+
 
 
 
