@@ -28,7 +28,7 @@ Recent upgrades by Microsoft to the VSCode application have rendered it incompat
 
 		export NODE_OPTIONS="--disable-wasm-trap-handler"
 
-* The [TACC Analyis Portal][TACCANALYSISPORTAL] (TAP) offers simplified access to common interactive sessions.  
+* The [TACC Analysis Portal][TACCANALYSISPORTAL] (TAP) offers simplified access to common interactive sessions.  
 
 !!! important
 	VSCode is a voracious consumer of resources and thus is inherently disrespectful to the needs of a multi-user environment, e.g. the shared login nodes.  Thus, TACC staff discourages developing/editing your code with VSCode on any TACC resources.  
