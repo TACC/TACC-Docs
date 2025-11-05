@@ -20,22 +20,6 @@ In order to access any TACC compute or storage resource you must maintain an "Ac
 
 ## Login Problems: Resolving VSCode Issues { #vscode }
 
-<!--
-Recent upgrades by Microsoft to the VSCode application have resulted in the program causing issues with user accounts. TACC Staff are aware of the problems users are experiencing. Until Microsoft fixes this bug, we are only able to offer possible solutions and workarounds.
-	
-	1. Downgrade your VSCode version: Version 1.98 appears to be the most consistent and stable when connecting to TACC resources.
-	2. Edit your .bashrc file: Connect via a terminal application to the desired compute resource and append the following line to your $HOME/.bashrc file:
-	
-	export NODE_OPTIONS="--disable-wasm-trap-handler"
-	
-	3. The TACC Analysis Portal (TAP) offers simplified access to common interactive sessions such as DCV, VNC, or JupyterNotebooks.
-	
-	Important
-	
-	
-	Also note that VSCode access is prohibited on TACC's Ranch and Corral storage resources.
--->
-
 Recent upgrades by Microsoft to the VSCode application have resulted in the program causing issues with user accounts.  TACC Staff are aware of the problems users are experiencing.  Until Microsoft fixes this bug, we are only able to offer possible solutions and workarounds.   
 
 1. **Downgrade your VSCode version**: Version 1.98 appears to be the most consistent and stable when connecting to TACC resources.
