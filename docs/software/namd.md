@@ -4,14 +4,14 @@
 <!-- ![NAMD logo](../imgs/namd-logo.png){ .align-right width="300" } -->
 <img src="../imgs/namd-logo.png" width="300" alt="NAMD logo" class="align-right">
 
-[NAMD](http://www.ks.uiuc.edu/Research/namd/), **Na**noscale **M**olecular **D**ynamics program, is a parallel molecular dynamics code designed for high-performance simulation of large biomolecular systems. Based on Charm++ parallel objects, NAMD scales to hundreds of cores for typical simulations and beyond 500,000 cores for the largest simulations. NAMD uses the popular molecular graphics program VMD for simulation setup and trajectory analysis, but is also file-compatible with AMBER, CHARMM, and X-PLOR. NAMD can perform geometry optimization, molecular dynamics simulations, chemical and conformational free energy calculations, enhanced sampling via replica exchange. It also supports Tcl based scripting and steering forces.  
+[NAMD](http://www.ks.uiuc.edu/Research/namd/), **Na**noscale **M**olecular **D**ynamics program, is a parallel molecular dynamics code designed for high-performance simulation of large biomolecular systems. Based on Charm++ parallel objects, NAMD scales to hundreds of cores for typical simulations and beyond 500,000 cores for the largest simulations. NAMD uses the popular molecular graphics program VMD for simulation setup and trajectory analysis, but is also file-compatible with AMBER, CHARMM, and X-PLOR. NAMD can perform geometry optimization, molecular dynamics simulations, chemical and conformational free energy calculations, and enhanced sampling via replica exchange. It also supports Tcl-based scripting and steering forces.  
 
 ## Installations { #installations }
 
 NAMD is currently installed on TACC's [Frontera][TACCFRONTERAUG], [Stampede3][TACCSTAMPEDE3UG], [Lonestar6][TACCLONESTAR6UG] and [Vista][TACCVISTAUG] compute resources.  NAMD is managed under the [Lmod][TACCLMOD] module system on TACC resources. 
 
 !!! important
-	Read the following instructions carefully. NAMD performance is particularly sensitive to its configuration.  Try running benchmarks with different configurations to find your optimal NAMD set up. You can initiate interactive [`idev`][TACCIDEV] debugging sessions on all systems.
+	Read the following instructions carefully. NAMD performance is particularly sensitive to its configuration.  Try running benchmarks with different configurations to find your optimal NAMD setup. You can initiate interactive [`idev`][TACCIDEV] debugging sessions on all systems.
 
 You are welcome to install different NAMD versions in your own directories. See [Building Third-Party Software](../../basics/software/#building-third-party-software) in the [Software at TACC](../../basics/software) documentation.
 
@@ -269,7 +269,7 @@ login1$ module load namd/3.0
 
 TACC staff recommends assigning 4 tasks per node for NAMD jobs running on Lonestar6's CPU [compute](../../hpc/lonestar6/#system-compute) nodes.
 
-The following Lonestar6 job script requests 2 node and 8 MPI tasks. To run the same job on more nodes, vary the `-N` and `-n` Slurm directives, **ensuring the value of `n` is four times the value of `N`**.  
+The following Lonestar6 job script requests 2 nodes and 8 MPI tasks. To run the same job on more nodes, vary the `-N` and `-n` Slurm directives, **ensuring the value of `n` is four times the value of `N`**.  
 
 ``` job-script
 #!/bin/bash
