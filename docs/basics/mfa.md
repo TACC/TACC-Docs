@@ -7,7 +7,7 @@
 
 ## What is MFA? { #whatismfa }
 
-Authentication is the process of determining if you are you. Traditional methods of associating a user account with a single password are no longer sufficient.  Multi-Factor Authentication (MFA) requires another step, or "factor", in the authenticaton process. In addition to the usual password, users must complete authentication using another device unique to them, usually their mobile phone/device. 
+Authentication is the process of determining if you are you. Traditional methods of associating a user account with a single password are no longer sufficient.  Multi-Factor Authentication (MFA) requires another step, or "factor", in the authentication process. In addition to the usual password, users must complete authentication using another device unique to them, usually their mobile phone/device. 
 
 TACC requires Multi-Factor Authentication (MFA) as an additional security measure when accessing all compute and storage resources.  All TACC account holders must maintain a valid MFA pairing.  
 
