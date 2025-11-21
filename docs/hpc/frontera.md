@@ -1,14 +1,21 @@
 # Frontera User Guide
-*Last update: November 3, 2025*
+*Last update: November 21, 2025*
 
 <!-- **Important**: (10-15-2024) Please note [TACC's new SU charge policy](#sunotice). -->
 
 
 <!-- SDL <a href="https://frontera-xortal.tacc.utexas.edu/user-guide/docs/user-guide.pdf">Download PDF <i class="fa fa-file-pdf-o"></i></a></span>-->
+## Notices
 
-## Notices { #notices }
+!!!warning
 
-* Users are limited to using one and only one of Frontera's `scratch` file systems. (10/22/2025)
+	Frontera's `/scratch1` file system has developed persistent problems that have led to frequent system downtimes.  The `/scratch1` file system has now been mounted as a read-only file system and will be decommissioned on December 3rd.  (11-17-2025)
+
+	You will need to migrate any wanted data in `/scratch1` to your [new Frontera scratch file system](#scratch-notice) immediately.  
+
+	Going forward, users will have access to either the `/scratch2` or `/scratch3` file system, but not both.  See more [below](#scratch-notice).
+
+<!-- * Users are limited to using one and only one of Frontera's `scratch` file systems. (10/22/2025) -->
 <!-- 
 * Navigate to the [Frontera Web Portal](https://frontera-portal.tacc.utexas.edu/) to manage your Frontera allocations and access your [Frontera Workbench](https://frontera-portal.tacc.utexas.edu/workbench/dashboard). (04/19/2023)
 
@@ -341,15 +348,58 @@ File System | Quota | Key Features
 
 #### Table 4b. Scratch File Systems { #table4b } 
 
-All new projects are assigned to `/scratch1` as their default `$SCRATCH` file system.  After running on Frontera, TACC staff may reassign users and projects to `/scratch2` or `/scratch3` depending on the resources required by their workflow.  The `/scratch3` file system employs twice as many OST's offering twice the available I/O bandwidth of `/scratch1` and `/scratch2`.  Frontera's three `$SCRATCH` file systems are further described below:
-
+#### Important Notice about `/scratch1` { #scratch-notice }
 
 !!! warning
-	Users are restricted to the use of one, and only one, of Frontera's `/scratch` file system.
+
+	Frontera's `/scratch1` file system has developed persistent problems that have led to frequent system downtimes.  The `/scratch1` file system has now been mounted as a read-only file system and will be decommissioned on December 3rd.  (11-17-2025)
+
+	You will need to migrate any wanted data in `/scratch1` to your new Frontera scratch filesystem immediately.  
+
+	Please only migrate what you need; `/scratch1` performance is still degraded and migration will be slow. 
+
+	If you are running jobs that use `/scratch1`, you will need to modify your job scripts to reflect your new path.  
+
+	When you log back into Frontera, most users will have read/write access to the `/scratch2` filesystem to write new files (with the remainder on `/scratch3`).   
+ 
+	If you were already running jobs from scratch2 or scratch3, you will not notice any changes. If you had pending jobs that exclusively used one of those filesystems, those jobs have likely already executed during this maintenance period. The `/work` and `/home` file systems are similarly unaffected.  
+ 
+	The current `/scratch1` will continue to be mounted read only for users to access existing data until Dec. 3, 2025. Please copy any scratch1 data that is still needed to your new scratch filesystem directory (on scratch2 or scratch3). All `/scratch1` data will be removed permanently starting on Dec. 3, 2025. 
+ 
+	Your `$SCRATCH` variable will point to either the new scratch2 or scratch3 location. Users will need to modify their workflows to read/write to the new scratch filesystem directory (if you refer to it using simply the `$SCRATCH` variable name, nothing will change). 
+
+ 
+	To find your new scratch directory location, a check can be done with the following command:
+ 
+		echo $SCRATCH
+ 
+	When migrating your data please only transfer the data you need and use the rsync command. The migration process will be slow due to continued performance issues on `/scratch1`: 
+ 
+		rsync /scratch1/00000/username/directory $SCRATCH
+ 
+	All jobs still pending in the current queues are temporarily paused. If you do not need to write to `/scratch1`, or you have modified your job to no longer write to `/scratch1`, you may release your job to run at any time using the command:
+ 
+		scontrol release <jobid>
+ 
+	If your job attempts to writes to `/scratch1` it will fail.  Please review your workflow to ensure there are no writes to `/scratch1`. Jobs that utilize `/scratch2`, `/scratch3`, or `/work` should not be impacted and can be started immediately. 
+ 
+	If you would prefer to cancel your pending jobs and simply submit new ones, you may delete submitted jobs with the command: 
+ 
+		scancel <jobid> 
+ 
+	Reminders:
+
+	* Users will have access to either scratch2 or scratch3 filesystem (but not both).  
+	* The `$WORK` file system (`/work`) is meant to be a general access repository for reading data.  Do NOT launch jobs using `/work` as temporary storage. 
+ 
+<s>All new projects are assigned to `/scratch1` as their default `$SCRATCH` file system.</s>  After running on Frontera, TACC staff may reassign users and projects to `/scratch2` or `/scratch3` depending on the resources required by their workflow.  The `/scratch3` file system employs twice as many OST's offering twice the available I/O bandwidth of `/scratch1` and `/scratch2`.  Frontera's three `$SCRATCH` file systems are further described below:
+
+<!-- !!! warning
+	Users are restricted to the use of one, and only one, of Frontera's `/scratch` file system. -->
 
 File System | Characteristics	| Purpose |
 ---         | ---               | ---     |
-`/scratch1` | Size:	 10.6 PB <br>OSTs:	16 <br>Bandwidth: 60 GB/s  | Default scratch file system.
+`/scratch1` | Size:	 10.6 PB <br>OSTs:	16 <br>Bandwidth: 60 GB/s  | <s>Default scratch file system</s>
 `/scratch2` | Size:	 10.6 PB <br>OSTs:	16 <br>Bandwidth: 60 GB/s  | Designated for workflows with intensive I/O operations.
 `/scratch3` | Size:	 21.2 PB <br>OSTs:	32 <br>Bandwidth: 120 GB/s | Designated for workflows with large scale parallel I/O operations.
 
