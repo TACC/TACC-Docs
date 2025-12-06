@@ -1,6 +1,6 @@
 FROM python:3.11-bullseye as python-base
 
-LABEL maintainer="TACC-ACI-WMA <wma_prtl@tacc.utexas.edu>"
+LABEL maintainer="TACC COA CMD <coa-cmd@tacc.utexas.edu>"
 
 ARG DEBIAN_FRONTEND=noninteractive
 
