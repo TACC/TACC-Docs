@@ -1,9 +1,7 @@
 # Lonestar6 User Guide
-*Last update: May 27, 2025*
+*Last update: November 3, 2025*
 
-## Notices { #notices }
-
-* **Important**: Please note [TACC's new SU charge policy](#sunotice). (09/20/2024)
+<!-- ## Notices { #notices } -->
 
 ## Introduction { #intro }
 
@@ -717,40 +715,46 @@ The jobs in this queue consume 1/7 the resources of a full node.  Jobs are charg
 #### Table 5. Production Queues { #table5 }
 
 !!! important
-    **Queue limits are subject to change without notice.**  
-    TACC Staff will occasionally adjust the QOS settings in order to ensure fair scheduling for the entire user community.  
-    Use TACC's `qlimits` utility to see the latest queue configurations.
+    **Queue limits are subject to change without notice.**
+    Frontera admins may occasionally adjust queue <!--the QOS--> settings in order to ensure fair scheduling for the entire user community.
+    TACC's `qlimits` utility will display the latest queue configurations.
 
 <!--
-04/09/2025
-login1.ls6(474)$ qlimits
+10/20/2025
+login2.ls6(493)$ qlimits
 Current queue/partition limits on TACC's ls6 system:
 
 Name             MinNode  MaxNode     MaxWall  MaxNodePU  MaxJobsPU   MaxSubmit
-development            1        4    02:00:00          6          1           3
-gpu-a100               1        8  2-00:00:00         12          8          40
+development            1        8    02:00:00          8          1           3
+gpu-a100               1        8  2-00:00:00         12          8          32
 gpu-a100-dev           1        2    02:00:00          2          1           3
-gpu-a100-small         1        1  2-00:00:00          2          2          40
+gpu-a100-small         1        1  2-00:00:00          3          3          12
 gpu-h100               1        1  2-00:00:00          1          1           4
-grace                  1       64  2-00:00:00         75         20         200
-grace-serial           1       64  3-00:00:00         75         20         200
-large                 65      256  2-00:00:00        256          1          20
-normal                 1       64  2-00:00:00         75         20         200
-vm-small               1        1  2-00:00:00          4          4          50
-login1.ls6(475)$
+large                 65      256  2-00:00:00        256          1           4
+normal                 1       64  2-00:00:00         75         20         100
+vm-small               1        1  2-00:00:00          4          4          16
+
+/usr/local/etc/queue.map
+development:1.0
+gpu-a100:3.0
+gpu-a100-dev:3.0
+gpu-a100-small:1.5
+gpu-h100:6.0
+large:1.0
+normal:1.0
+vm-small:0.143
 -->
 
-
-Queue Name | Min/Max Nodes per Job<br /> (assoc'd cores)&#42; | Max Job Duration | Max Nodes<br> per User | Max Jobs<br> per User | Charge Rate<br /><u>(per node-hour)</u>
---- | --- | --- | --- | --- | ---
-<code>development</code>                         | 4 nodes<br>(512 cores)        |  2 hours |   6 |  1 | 1 SU
-<code>gpu-a100</code>                            | 8 nodes<br>(1024 cores)       | 48 hours |  12 |  8 | 4 SUs
-<code>gpu-a100-dev</code>                        | 2 nodes<br>(256 cores)        |  2 hours |   2 |  1 | 4 SUs
-<code>gpu-a100-small</code><sup>&#42;&#42;</sup> | 1 node                        | 48 hours |   2 |  2 | 1.5 SUs
-<code>gpu-h100</code>                            | 1 node                        | 48 hours |   1 |  1 | 6 SUs | (96 cores)
-<code>large</code><sup>&#42;</sup>               | 65/256 nodes<br>(65536 cores) | 48 hours | 256 |  1 | 1 SU
-<code>normal</code>                              | 1/64 nodes<br>(8192 cores)    | 48 hours |  75 | 20 | 1 SU
-<code>vm-small</code><sup>&#42;&#42;</sup>       | 1/1 node<br>(16 cores)        | 48 hours |   4 |  4 | 0.143 SU
+Queue Name | Min/Max Nodes per Job<br>(assoc'd cores)&#42; | Max Job<br>Duration | Max Nodes<br>per User | Max Jobs<br>per User | Max Submit | Charge Rate<br>(per node-hour)
+--- | --- | --- | --- | --- | --- | ---
+<code>development</code>                         | 8 nodes<br>(1024 cores)       |  2 hours |   8 |  1 | 3 | 1 SU
+<code>gpu-a100</code>                            | 8 nodes<br>(1024 cores)       | 48 hours |  12 |  8 | 32 | 3 SUs
+<code>gpu-a100-dev</code>                        | 2 nodes<br>(256 cores)        |  2 hours |   2 |  1 | 3 | 3 SUs
+<code>gpu-a100-small</code><sup>&#42;&#42;</sup> | 1 node                        | 48 hours |   3 |  3 | 12 | 1.5 SUs
+<code>gpu-h100</code>                            | 1 node                        | 48 hours |   1 |  1 | 4 | 6 SUs | (96 cores)
+<code>large</code><sup>&#42;</sup>               | 65/256 nodes<br>(65536 cores) | 48 hours | 256 |  1 | 4 | 1 SU
+<code>normal</code>                              | 1/64 nodes<br>(8192 cores)    | 48 hours |  75 | 20 | 100 | 1 SU
+<code>vm-small</code><sup>&#42;&#42;</sup>       | 1 node<br>(16 cores)          | 48 hours |   4 |  4 | 16 | 0.143 SU
 
 
 &#42; Access to the `large` queue is restricted. To request more nodes than are available in the normal queue, submit a consulting (help desk) ticket through the TACC User Portal. Include in your request reasonable evidence of your readiness to run under the conditions you're requesting. In most cases this should include your own strong or weak scaling results from Lonestar6.
@@ -770,7 +774,7 @@ Copy and customize the following scripts to specify and refine your job's requir
 
 In general, the fewer resources (nodes) you specify in your batch script, the less time your job will wait in the queue. See [5. Job Submissions Tips](../../basics/conduct#conduct-jobs) in the [Good Conduct][TACCGOODCONDUCT] document. 
 
-Consult [Table 6](../stampede3#table6) in the [Stampede3 User Guide][TACCSTAMPEDE3UG] for a listing of common Slurm `#SBATCH` options.
+Consult [Table 9](../stampede3#table9) in the [Stampede3 User Guide][TACCSTAMPEDE3UG] for a listing of common Slurm `#SBATCH` options.
 
 Click on a tab header below to display it's job script, then copy and customize to suit your own application.
 
@@ -1143,16 +1147,31 @@ login1$ sacct --starttime 2019-06-01  # show jobs that started on or after this 
 
 ## Machine Learning on LS6 { #ml }
 
-Lonestar6 is well equipped to provide researchers with the latest in Machine Learning frameworks, PyTorch and Tensorflow. We recommend using the Python virtual environment to manage machine learning packages. Below we detail how to install PyTorch on our systems with a virtual environment: 
+You may utilize one or more nodes for machine-learning model training tasks on Lonestar6. Lonestar6 supports both configurations, enabling researchers to scale their training efficiently based on project requirements.
 
-### Install PyTorch 
+* Single-node training utilizes one or multiple GPUs on a single node and is ideal for smaller models and datasets, offering faster job throughput and easier debugging. 
+* Multi-node training, on the other hand, distributes the workload across multiple nodes, each with its own set of GPUs. This approach is necessary for large-scale models and datasets that exceed the memory or compute capacity of a single node, and is essential for scalability. 
 
-1. Request a single compute node in Lonestar6's `gpu-a100-dev` queue using TACC's [`idev`][TACCIDEV] utility:
+### Environment Setup
+
+Before diving into machine learning frameworks, it's essential to set up your environment correctly. Lonestar6 supports Python virtual environments, which help manage dependencies and isolate projects. This guide walks you through setting up environments for both PyTorch and Accelerate.
+
+We recommend using a Python virtual environment to manage machine learning packages. Once set up, users can run jobs within this environment using either [`idev`][TACCIDEV] sessions or [SLURM batch scripts](#scripts).
+
+
+### PyTorch
+
+Follow these step to set up PyTorch on Lonestar6 within a Python virtual environment.  
+
+!!!important
+	Install your python virtual environments on Lonestar6's `$SCRATCH`, file system.  Do not use TACC's `$WORK` file system.
+
+1. Request a single compute node in Lonestar6's [`gpu-a100-dev` queue](#queues) using TACC's [`idev utility`](#TACCIDEV):
 	```cmd-line
-	login$ idev -p gpu-a100-dev -N 1 -n 1 -t 1:00:00
+	login1$ idev -p gpu-a100-dev -N 1 -n 1 -t 1:00:00
 	```
 
-1. Create a Python virtual environment: 
+1. Create a Python virtual environment:
 	```cmd-line
 	c123-456$ module load python3/3.9.7
 	c123-456$ python3 -m venv /path/to/virtual-env  # (e.g., $SCRATCH/python-envs/test)
@@ -1163,20 +1182,22 @@ Lonestar6 is well equipped to provide researchers with the latest in Machine Lea
 	c123-456$ source /path/to/virtual-env/bin/activate
 	```
 
-1. Now install PyTorch: 
+1. Now install PyTorch:
 	```cmd-line
-	c123-456$ pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
+	c123-456$ pip3 install torch==2.8.0 torchvision torchaudio --index-url https://download.pytorch.org/whl/test/cu128
 	```
 
-### Testing PyTorch Installation 
+### Testing PyTorch Installation
 
-To test your installation of PyTorch we point you to a few benchmark calculations that are part of PyTorch's tutorials on multi-GPU and multi-node training.  See PyTorch's documentation: [Distributed Data Parallel in PyTorch](https://pytorch.org/tutorials/beginner/ddp_series_intro.html). These tutorials include several scripts set up to run single-node training and multi-node training.
+To test your installation of PyTorch we point you to a few benchmark calculations that are part of PyTorch's tutorials on multi-GPU and multi-node training. See PyTorch's documentation: 
+
+Distributed Data Parallel in PyTorch. These tutorials include several scripts set up to run single-node training and multi-node training.
 
 #### Single-Node
 
 1. Download the benchmark:
 	```cmd-line
-	c123-456$ cd $SCRATCH 
+	c123-456$ cd $SCRATCH
 	c123-456$  git clone https://github.com/pytorch/examples.git
 	```
 
@@ -1184,28 +1205,27 @@ To test your installation of PyTorch we point you to a few benchmark calculation
 	```cmd-line
 	c123-456$ torchrun --nproc_per_node=3 examples/distributed/ddp-tutorial-series/multigpu_torchrun.py 50 10
 	```
-	
+
 #### Multi-Node
 
-1. Request two nodes in the [`gpu-a100-dev`](#queues) queue using TACC's [`idev`][TACCIDEV] utility:
+1. Request two nodes in the gpu-a100-dev queue using TACC's idev  utility:
 	```cmd-line
-	login2.ls6$ idev -N 2 -n 2 -p gpu-a100-dev -t 01:00:00
+	login1$ idev -N 2 -n 2 -p gpu-a100-dev -t 01:00:00
 	```
 
 1. Move to the benchmark directory:
 	```cmd-line
-	c123-456$ cd $SCRATCH 
+	c123-456$ cd $SCRATCH
 	```
 
 1. Create a script called "run.sh". This script needs two parameters, the hostname of the master node and the number of nodes. Add execution permission for the file "run.sh".
-
-	```file
+	```cmd-line
 	#!/bin/bash
 	HOST=$1
 	NODES=$2
 	LOCAL_RANK=${PMI_RANK}
 	torchrun --nproc_per_node=3  --nnodes=$NODES --node_rank=${LOCAL_RANK} --master_addr=$HOST \
-		examples/distributed/ddp-tutorial-series/multinode.py 50 10
+	   	examples/distributed/ddp-tutorial-series/multinode.py 50 10
 	```
 
 1. Run multi-gpu training:
@@ -1213,6 +1233,72 @@ To test your installation of PyTorch we point you to a few benchmark calculation
 	c123-456$ ibrun -np 2 ./run.sh c123-456 2
 	```
 
+
+### Transformers with Accelerate
+
+Transformers is a Python library developed by Hugging Face that provides pre-trained models for machine learning tasks. It includes implementations of popular architectures like BERT, GPT, and T5, making it easy to fine-tune and deploy state-of-the-art models.
+
+Accelerate is a Hugging Face library designed to streamline distributed training. It abstracts away the complexity of launching multi-GPU and multi-node jobs, allowing users to scale their training with minimal code changes. Follow these steps to set up and run training jobs.
+
+#### Set up Environment for Transformers
+
+1. Download the code and scripts for the job and change directory 
+	```cmd-line
+	c123-456$ cd $SCRATCH
+	c123-456$  git clone https://github.com/skye-glitch/Machine-Learning-on-LS6.git
+	c123-456$ cd Machine-Learning-on-LS6
+	```
+1. Request a single compute node in Lonestar6's `gpu-a100-dev` queue using TACC's `idev` utility:
+	```cmd-line
+	login1$ idev -p gpu-a100-dev -N 1 -n 1 -t 1:00:00
+	```
+
+1. Create a Python virtual environment:
+	```cmd-line
+	c123-456$ module load python3/3.9.7
+	c123-456$ python3 -m venv .venv 
+	```
+1. Request a single compute node in Lonestar6's  gpu-a100-dev queue using TACC's  idev utility:
+	```cmd-line
+	login1$ idev -p gpu-a100-dev -N 1 -n 1 -t 1:00:00
+	```
+
+1. Activate the Python virtual environment:
+	```cmd-line
+	c123-456$ source .venv
+	```
+
+1. Now install dependencies:
+	```cmd-line
+	c123-456$ pip3 install -r requirements.txt
+	```
+
+### Testing Transformers Installation
+
+#### Single-Node
+
+Run the training on one node (3 GPUs):
+
+```cmd-line
+c123-456$ accelerate launch --num_processes 3 ./finetune.py
+```
+
+#### Multi-Node
+
+1. Request two nodes in the gpu-a100-dev queue using TACC's idev  utility:
+	```cmd-line
+	login2.ls6$ idev -N 2 -n 2 -p gpu-a100-dev -t 01:00:00
+	```
+
+1. Move to the code directory:
+	```cmd-line
+	c123-456$ cd $SCRATCH/Machine-Learning-on-LS6
+	```
+
+1. Run the multi-gpu training:
+	```cmd-line
+	c123-456$ mpirun -np 2  --map-by ppr:1:node multinode.sh
+	```
 
 ## Visualization and VNC Sessions { #vis }
 

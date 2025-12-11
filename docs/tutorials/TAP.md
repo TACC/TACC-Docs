@@ -1,19 +1,14 @@
 # TACC Analysis Portal (TAP) 
-*Last update: May 12, 2025*
+*Last update: June 16, 2025*
 
 The [TACC Analysis Portal][TACCANALYSISPORTAL] (TAP) provides simplified access to interactive sessions on TACC large-scale computing resources. TAP targets users who want the convenience of web-based portal access while maintaining control over low-level job behavior.  
 
-Any user with an allocation on one of TACC's HPC Systems, e.g. Frontera, Stampede3, Lonestar6, has access to the TACC Analysis Portal.  TAP-Supported applications include:
+Any user with an allocation on one of TACC's HPC Systems, e.g. Frontera, Stampede3, Lonestar6, has access to the TACC Analysis Portal.  TAP-supported applications include:
 
 * DCV remote desktop
 * VNC remote desktop
-* Jupyter Notebook[&#42;](#s3note)
+* Jupyter Notebook (see [Jupyter: Managing Modules](#modules))
 * RStudio
-
-<a id="s3note">
-!!! important
-	&#42;Stampede3 users see the [Jupyter Notebooks](/hpc/stampede3/#python-jupyter) section in the [Stampede3 User Guide][TACCSTAMPEDE3UG].
-
 
 ## Accessing the Portal { #access }
 
@@ -24,7 +19,7 @@ The [TACC Analysis Portal][TACCANALYSISPORTAL] is available to users with an all
 
 ## Job Management { #jobmanagement }
 
-Submit, end and resubmit jobs on the TACC Analysis Portal.
+You can submit, end, and resubmit jobs on the TACC Analysis Portal.
 
 ### Submitting a Job using TAP { #jobmanagement-submit }
 
@@ -77,7 +72,7 @@ Configuring Jupyter Notebook
 
 The Utilities section provides access to several common actions related to Jupyter Notebooks. "Use Python3" sets the TACC Python3 module as part of your default modules so that TAP will use Python3 for Jupyter Notebooks. If you want to use a non-default Python installation, such as Conda, you will need to install it yourself via the system command line. TAP will use the first "jupyter-notebook" command in your `$PATH`, so make sure that the command "which jupyter-notebook" returns the Jupyter Notebook you want to use. Conda install typically configures your environment so that Conda is first on your `$PATH`.
 
-"Link `$WORK` from `$HOME`" and "Link `$SCRATCH` from `$HOME`" create symbolic links in your `$HOME` directory so that you can access `$WORK` and `$SCRATCH` from within a Jupyter Notebook. TAP launches Jupyter Notebooks from within your `$HOME` directory, so these other file systems are not reachable without such a linking mechanism. The links will show up as "WORK" and "SCRATCH" in the Jupyter file browser. You only need to create these links once and they will remain available for all future jobs.
+The "Link `$WORK` from `$HOME`" and "Link `$SCRATCH` from `$HOME`" options create symbolic links in your `$HOME` directory so that you can access `$WORK` and `$SCRATCH` from within a Jupyter Notebook. TAP launches Jupyter Notebooks from within your `$HOME` directory, so these other file systems are not reachable without such a linking mechanism. The links will show up as "WORK" and "SCRATCH" in the Jupyter file browser. You only need to create these links once and they will remain available for all future jobs.
 
 ### Setting a Remote Desktop to Full Screen Mode { #utilities-fullscreen }
 
@@ -118,6 +113,40 @@ If the TAP status page shows that the job status is "ERROR", then there was an i
 
 <figure id="figure9"><img alt="" src="../imgs/9TAP.png"><br />
 <figcaption>Figure 9. TAP "Error"</figcaption></figure>
+
+<!--
+<a id="s3note">
+!!! important
+	&#42;Stampede3 users see the [Jupyter Notebooks](/hpc/stampede3/#python-jupyter) section in the [Stampede3 User Guide][TACCSTAMPEDE3UG]. -->
+
+### Jupyter: Managing Modules { #modules }
+
+To use preferred modules in a notebook session you have to first modify your default modules environment via a terminal session.  Start a session from a terminal, load the preferred modules, then run "`module save`". This creates a new default set of modules which will be automatically loaded in future sessions, including notebooks. 
+
+<a id="s3note">
+#### For Stampede3 Users: { #jupyter-s3 }
+
+<!--Unlike TACC's other HPC resources, Jupyter is not installed with the Python module on Stampede3.-->  
+In order to use Jupyter notebooks, you must install notebooks locally with the following one-time setup:  
+
+1. Log into Stampede3, then edit your `.bashrc` file.  Add the following line to the "SECTION 1" portion of the file to update your `$PATH` environment variable.  
+
+	```
+	export PATH=$PATH:$HOME/.local/bin
+	```	
+
+2. Then install notebooks locally:
+
+	```cmd-line
+	pip install --user notebook==6.0.3
+	```
+
+This setup enables the [TACC Analysis Portal](http://tap.tacc.utexas.edu) to find the non-standard-location JupyterLab or Jupyter Notebook commands. 
+
+If you prefer the old Jupyter notebook style then move the JupyterLab executable to something else. Note that the TAP portal software is expecting a particular version of Jupyter. This version is consistent across TACC systems. 
+
+<!-- ### Conda
+For Conda environments, you'd need to use the conda options that update your .bashrc to automatically activate your preferred environment. This will ensure the environment is activated during your future notebook sessions, similar to the modules. -->
 
 
 {% include 'aliases.md' %}

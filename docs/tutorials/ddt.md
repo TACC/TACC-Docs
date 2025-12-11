@@ -1,7 +1,7 @@
-﻿# Arm DDT Debugger at TACC
-*Last update: May 18, 2020*
+﻿# Linaro DDT Debugger at TACC
+*Last update: July 14, 2025*
 
-[Arm DDT](https://www.arm.com/products/development-tools/server-and-hpc/forge/ddt) is a symbolic, parallel debugger providing graphical debugging of C, C++ and Fortran threaded and parallel codes (MPI, OpenMP, and Pthreads applications). DDT is available on all TACC compute resources. Use the DDT Debugger with the [MAP Profiler](../../tutorials/map) to develop and analyze your HPC applications.
+[Linaro DDT](https://www.linaroforge.com/linaro-ddt) is a symbolic, parallel debugger providing graphical debugging of C, C++ and Fortran threaded and parallel codes (MPI, OpenMP, and Pthreads applications). DDT is available on all TACC compute resources. Use the DDT Debugger with the [MAP Profiler](../../tutorials/map) to develop and analyze your HPC applications.
 
 ## Set up Debugging Environment { #env }
 

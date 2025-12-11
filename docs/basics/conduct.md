@@ -1,5 +1,9 @@
 # Good Conduct on TACC's HPC Systems { #conduct }
-*Last Update: January 13, 2025*
+*Last Update: November 5, 2025*
+
+## Notices 
+
+* VSCode users please [see below](#vscode) for updated guidance. (11/05/2025) 
 
 **You share TACC's HPC resources with many, sometimes hundreds, of other users, and what you do on the resource affects others**. All TACC account holders  must follow a set of good practices which entail limiting activities that may impact the system for other users. Exercise good conduct to ensure that your activity does not adversely impact the resource and the research community with whom you share it.
 
@@ -8,13 +12,14 @@ TACC staff has developed the following guidelines to good conduct on all TACC re
 
 ## 1. Do Not Run Jobs on the Login Nodes { #conduct-loginnodes }
 
-Each HPC system's login nodes are a *shared resource* amongst all users currently logged on. Depending on the system, dozens of users may be logged on at one time accessing the shared file systems.  A single user running computationally expensive or disk intensive task/s may negatively impact performance for all other users. 
+Each HPC system's login nodes are a *shared resource* amongst all users currently logged on. Depending on the system, dozens, or even hundreds, of users may be logged on at one time accessing the shared file systems.  A single user running computationally expensive or disk intensive task/s may negatively impact performance for all other users. 
 
 !!! important
 	Do not run jobs or perform intensive computational activity on the login nodes or the shared file systems.  Your account may be suspended if your jobs are impacting other users.
 
 
 Think of the login nodes as a prep area, where you may edit and manage files, compile code, perform file management, issue transfers, submit new and track existing batch jobs etc. The login nodes provide an interface to the "back-end" compute nodes, where actual computations occur and where research is done. Hundreds of jobs may be running on all compute nodes, with hundreds more queued up to run. 
+
 
 All batch jobs and executables, as well as development and debugging sessions, must be run on the compute nodes. To access compute nodes on TACC resources, one must either [submit a job to a batch queue](../../hpc/stampede3#running-sbatch) or initiate an interactive session using the [`idev`][TACCIDEV] utility. 
 
@@ -26,6 +31,14 @@ All batch jobs and executables, as well as development and debugging sessions, m
 !!! tip
 	The login nodes have throttled memory limits for individual processes in order to prevent users from occupying more than their fair portion of the shared resource. The compute nodes do not have this limitation.
 
+### VSCode Users { #vscode }
+!!! warning
+    VSCode consumes significant resources when running and can interfere with the needs of a multi-user environment such as the shared login nodes on each resource. Thus, TACC staff encourage all VSCode users to run the program on a compute node and not any of the login nodes.
+
+    If you choose to run VSCode on the login node and it begins to impact the system or other users, your account will be suspended and we will ask you to move to a compute node.
+
+    Also note that VSCode access is **prohibited** on TACC's Ranch and Corral storage resources.
+
 
 ### Dos &amp; Don'ts on the Login Nodes { #conduct-loginnodes-examples }
 
@@ -34,6 +47,7 @@ All batch jobs and executables, as well as development and debugging sessions, m
 	This includes frameworks like MATLAB and R, as well as computationally or I/O intensive Python scripts. If you need interactive access, use the `idev` utility or Slurm's `srun` to schedule one or more compute nodes.
 
 
+<!--
 	!!! hint "Do This"
 		Start an interactive session on a compute node, then run Matlab.
 		```cmd-line
@@ -47,11 +61,13 @@ All batch jobs and executables, as well as development and debugging sessions, m
 		```cmd-line
 		login1$ matlab
 		```
+-->
 
 * **Do not launch too many simultaneous processes;** 
 
 	While it's fine to compile on a login node, a command like "`make -j 16`" (which compiles on 16 cores) may impact other users.  Similarly, do not launch to many transfer sessions on the login nodes. 
 
+<!--
 	!!! hint "Do This"
 		Build and submit a batch job. All batch jobs run on the compute nodes.
 
@@ -67,6 +83,7 @@ All batch jobs and executables, as well as development and debugging sessions, m
 		login1$ make -j 12		# do not run intense builds/compilations on a login node
 		login1$ ./myprogram		# do not run programs on a login node
 		```
+-->
 
 * **That script you wrote to poll job status should probably do so once every few minutes rather than several times a second.**
 

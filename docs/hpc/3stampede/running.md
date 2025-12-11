@@ -7,36 +7,44 @@
 Stampede3's job scheduler is the Slurm Workload Manager. Slurm commands enable you to submit, manage, monitor, and control your jobs.  See the [Job Management](#jobs) section below for further information. 
 
 !!! important
-    **Queue limits are subject to change without notice.**  
-    TACC Staff will occasionally adjust the QOS settings in order to ensure fair scheduling for the entire user community.  
-    Use TACC's `qlimits` utility to see the latest queue configurations.
+    **Queue limits are subject to change without notice.**
+    Frontera admins may occasionally adjust queue <!--the QOS--> settings in order to ensure fair scheduling for the entire user community.
+    TACC's `qlimits` utility will display the latest queue configurations.
 
-<!-- 
-04/09/2025
-[slindsey@login2 ~]$ <1001> qlimits
+<!--
+10/20/2025
+[slindsey@login1 ~]$ <1001> qlimits
 Current queue/partition limits on TACC's stampede3 system:
 
 Name             MinNode  MaxNode     MaxWall  MaxNodePU  MaxJobsPU   MaxSubmit
+h100                   1        4  2-00:00:00          4          2           4
 icx                    1       32  2-00:00:00         48         12          20
-nvdimm                 1        1  2-00:00:00          1          1           3
+nvdimm                 1        1  2-00:00:00          1          2           4
 pvc                    1        4  2-00:00:00          4          2           4
-skx                    1      256  2-00:00:00        384         40          60
-skx-dev                1       16    02:00:00         16          1           3
-spr                    1       32  2-00:00:00        180         24          36
-[slindsey@login2 ~]$ <1002>
+skx                    1      256  2-00:00:00        256         40          60
+skx-dev                1       16    02:00:00         16          2           4
+spr                    1       32  2-00:00:00         40         24          36
+--- /usr/local/etc/queue.map 
+h100:4.0
+icx:1.5
+nvdimm:4.0
+pvc:3.0
+skx:1.0
+skx-dev:1.0
+spr:2.0
 -->
 
 #### Table 8. Production Queues { #table8 }
 
-
-Queue Name   | Node Type | Max Nodes per Job<br>(assoc'd cores) | Max Duration | Max Jobs in Queue | Charge Rate<br>(per node-hour)
---           | --        | --                                   | --           | --                |  
-icx          | ICX       | 32 nodes<br>(2560 cores)             | 48 hrs       | 12                | 1.5 SUs
-nvdimm       | ICX       | 1 node<br>(80 cores)                 | 48 hrs       | 3                 | 4 SUs 
-pvc          | PVC       | 4 nodes<br>(384 cores)               | 48 hrs       | 2                 | 3 SUs
-skx          | SKX       | 256 nodes<br>(12288 cores)           | 48 hrs       | 40                | 1 SU
-skx-dev      | SKX       | 16 nodes<br>(768 cores)              | 2 hrs        | 1                 | 1 SU
-spr          | SPR       | 32 nodes<br>(3584 cores)             | 48 hrs       | 24                | 2 SUs
+Queue Name   | Node Type | Max Nodes per Job<br>(assoc'd cores) | Max Job<br>Duration | Max Nodes<br>per User | Max Jobs<br>per User | Max Submit |  Charge Rate<br>(per node-hour)
+--           | --        | --                                   | --               | --                    | --      |--             |-- 
+h100         | H100      | 4 nodes<br>(384 cores)               | 48 hrs           | 4                     | 2       | 4         | 4 SUs
+icx          | ICX       | 32 nodes<br>(2560 cores)             | 48 hrs           | 48                    | 12      | 20         | 1.5 SUs
+nvdimm       | ICX       | 1 node<br>(80 cores)                 | 48 hrs           | 1                     | 2       | 4          | 4 SUs 
+pvc          | PVC       | 4 nodes<br>(384 cores)               | 48 hrs           | 4                     | 2       | 4          | 3 SUs
+skx          | SKX       | 256 nodes<br>(12288 cores)           | 48 hrs           | 256                   | 40      | 60         | 1 SU
+skx-dev      | SKX       | 16 nodes<br>(768 cores)              | 2 hrs            | 16                    | 2       | 4          | 1 SU
+spr          | SPR       | 32 nodes<br>(3584 cores)             | 48 hrs           | 40                    | 24      | 36         | 2 SUs
 
 
 ### Submitting Batch Jobs with `sbatch` { #running-sbatch }

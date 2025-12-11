@@ -1,14 +1,22 @@
 # Frontera User Guide
-*Last update: May 27, 2025*
+*Last update: November 21, 2025*
 
-**Important**: (10-15-2024) Please note [TACC's new SU charge policy](#sunotice).
+<!-- **Important**: (10-15-2024) Please note [TACC's new SU charge policy](#sunotice). -->
 
 
 <!-- SDL <a href="https://frontera-xortal.tacc.utexas.edu/user-guide/docs/user-guide.pdf">Download PDF <i class="fa fa-file-pdf-o"></i></a></span>-->
+## Notices
 
+!!!warning
+
+	Frontera's `/scratch1` file system has developed persistent problems that have led to frequent system downtimes.  The `/scratch1` file system has now been mounted as a read-only file system and will be decommissioned on December 3rd.  (11-17-2025)
+
+	You will need to migrate any wanted data in `/scratch1` to your [new Frontera scratch file system](#scratch-notice) immediately.  
+
+	Going forward, users will have access to either the `/scratch2` or `/scratch3` file system, but not both.  See more [below](#scratch-notice).
+
+<!-- * Users are limited to using one and only one of Frontera's `scratch` file systems. (10/22/2025) -->
 <!-- 
-## Notices { #notices }
-
 * Navigate to the [Frontera Web Portal](https://frontera-portal.tacc.utexas.edu/) to manage your Frontera allocations and access your [Frontera Workbench](https://frontera-portal.tacc.utexas.edu/workbench/dashboard). (04/19/2023)
 
 -->
@@ -320,7 +328,7 @@ The interconnect is based on Mellanox HDR technology with full HDR (200 Gb/s) co
 
 ## Managing Files { #files }
 
-Frontera mounts three Lustre file systems that are shared across all nodes: the `/home`, `/work`, and `/scratch` file systems. <!-- Frontera also contains a fourth file system, <code>FLASH</code>, supporting applications with very high bandwidth or IOPS requirements.-->
+Frontera mounts three Lustre file systems that are shared across all nodes: the `/home`, `/work`, and three `/scratch` file systems. <!-- Frontera also contains a fourth file system, <code>FLASH</code>, supporting applications with very high bandwidth or IOPS requirements.-->
 
 {% include 'include/spacetip.md' %}
 
@@ -340,16 +348,75 @@ File System | Quota | Key Features
 
 #### Table 4b. Scratch File Systems { #table4b } 
 
-All new projects are assigned to `/scratch1` as their default `$SCRATCH` file system.  After running on Frontera, TACC staff may reassign users and projects to `/scratch2` or `/scratch3` depending on the resources required by their workflow.  The `/scratch3` file system employs twice as many OST's offering twice the available I/O bandwidth of `/scratch1` and `/scratch2`.  Frontera's three `$SCRATCH` file systems are further described below:
+#### Important Notice about `/scratch1` { #scratch-notice }
+
+!!! warning
+
+	Frontera's `/scratch1` file system has developed persistent problems that have led to frequent system downtimes.  The `/scratch1` file system has now been mounted as a read-only file system and will be decommissioned on December 3rd.  (11-17-2025)
+
+	You will need to migrate any wanted data in `/scratch1` to your new Frontera scratch filesystem immediately.  
+
+	Please only migrate what you need; `/scratch1` performance is still degraded and migration will be slow. 
+
+	If you are running jobs that use `/scratch1`, you will need to modify your job scripts to reflect your new path.  
+
+	When you log back into Frontera, most users will have read/write access to the `/scratch2` filesystem to write new files (with the remainder on `/scratch3`).   
+ 
+	If you were already running jobs from scratch2 or scratch3, you will not notice any changes. If you had pending jobs that exclusively used one of those filesystems, those jobs have likely already executed during this maintenance period. The `/work` and `/home` file systems are similarly unaffected.  
+ 
+	The current `/scratch1` will continue to be mounted read only for users to access existing data until Dec. 3, 2025. Please copy any scratch1 data that is still needed to your new scratch filesystem directory (on scratch2 or scratch3). All `/scratch1` data will be removed permanently starting on Dec. 3, 2025. 
+ 
+	Your `$SCRATCH` variable will point to either the new scratch2 or scratch3 location. Users will need to modify their workflows to read/write to the new scratch filesystem directory (if you refer to it using simply the `$SCRATCH` variable name, nothing will change). 
+
+ 
+	To find your new scratch directory location, a check can be done with the following command:
+ 
+		echo $SCRATCH
+ 
+	When migrating your data please only transfer the data you need and use the rsync command. The migration process will be slow due to continued performance issues on `/scratch1`: 
+ 
+		rsync /scratch1/00000/username/directory $SCRATCH
+ 
+	All jobs still pending in the current queues are temporarily paused. If you do not need to write to `/scratch1`, or you have modified your job to no longer write to `/scratch1`, you may release your job to run at any time using the command:
+ 
+		scontrol release <jobid>
+ 
+	If your job attempts to writes to `/scratch1` it will fail.  Please review your workflow to ensure there are no writes to `/scratch1`. Jobs that utilize `/scratch2`, `/scratch3`, or `/work` should not be impacted and can be started immediately. 
+ 
+	If you would prefer to cancel your pending jobs and simply submit new ones, you may delete submitted jobs with the command: 
+ 
+		scancel <jobid> 
+ 
+	Reminders:
+
+	* Users will have access to either scratch2 or scratch3 filesystem (but not both).  
+	* The `$WORK` file system (`/work`) is meant to be a general access repository for reading data.  Do NOT launch jobs using `/work` as temporary storage. 
+ 
+<s>All new projects are assigned to `/scratch1` as their default `$SCRATCH` file system.</s>  After running on Frontera, TACC staff may reassign users and projects to `/scratch2` or `/scratch3` depending on the resources required by their workflow.  The `/scratch3` file system employs twice as many OST's offering twice the available I/O bandwidth of `/scratch1` and `/scratch2`.  Frontera's three `$SCRATCH` file systems are further described below:
+
+<!-- !!! warning
+	Users are restricted to the use of one, and only one, of Frontera's `/scratch` file system. -->
 
 File System | Characteristics	| Purpose |
 ---         | ---               | ---     |
-`/scratch1` | Size:	 10.6 PB <br>OSTs:	16 <br>Bandwidth: 60 GB/s  | Default scratch file system.
+`/scratch1` | Size:	 10.6 PB <br>OSTs:	16 <br>Bandwidth: 60 GB/s  | <s>Default scratch file system</s>
 `/scratch2` | Size:	 10.6 PB <br>OSTs:	16 <br>Bandwidth: 60 GB/s  | Designated for workflows with intensive I/O operations.
 `/scratch3` | Size:	 21.2 PB <br>OSTs:	32 <br>Bandwidth: 120 GB/s | Designated for workflows with large scale parallel I/O operations.
 
 
-{%include './include/scratchpolicy.md' %}
+<!-- {%include './include/scratchpolicy.md' %} 
+amended to include Frontera's multiple scratch file systems-->
+
+
+### Scratch File System Purge Policy { #scratchpolicy }
+
+!!! warning
+	The <code>$SCRATCH</code> file systems, as their name indicates, is a **temporary storage space**.  Files that have not been accessed&#42; in ten days are subject to purge.  This policy applies to ALL scratch file systems on Frontera: `scratch1`, `scratch2` and `scratch3`.   
+
+	Deliberately modifying file access time (using any method, tool, or program) for the purpose of circumventing purge policies is prohibited.
+
+&#42;The operating system updates a file's access time when that file is modified on a login or compute node. Reading or executing a file/script on a login node does not update the access time, but reading or executing on a compute node does update the access time. This approach helps us distinguish between routine management tasks <u>(e.g. `tar`, `scp`)</u> and production use. Use the command `ls -ul` to view access times.
+
 
 
 ### Navigating the Shared File Systems { #files-navigating } 
@@ -715,41 +782,44 @@ Frontera's `flex` queue offers users a low cost queue for lower priority/node co
 
 !!! important
     **Queue limits are subject to change without notice.**   
-	Frontera admins may occasionally adjust the QOS settings in order to ensure fair scheduling for the entire user community.   
-    Use TACC's `qlimits` utility to see the latest queue configurations.  
+	Frontera admins may occasionally adjust queue <!--the QOS--> settings in order to ensure fair scheduling for the entire user community.   
+    TACC's `qlimits` utility will display the latest queue configurations.  
 
-Users are limited to a maximum of 50 running and 200 pending jobs in all queues at one time. 
-
-<!-- 
-04/09/2025 
+<!--
+10/20/2025
+/usr/local/etc/queue.map
 frontera4(1)$ qlimits
 Current queue/partition limits on TACC's Frontera system:
 
+The "running job limit" is the MaxJobsPU column. MaxJobsPU is the maximum number of jobs a user can have running simultaneously.
+The "job submission limit" is the MaxSubmit column. The MaxSubmit limit is the maximum number of jobs a user can have in the queue. 
+
            Name       MinNode       MaxNode   PreemptExemptTime     MaxWall     MaxNodePU MaxJobsPU MaxSubmit
-           flex             1           128            01:00:00  2-00:00:00          2048        15       200
-    development                          40                        02:00:00            40         1         2
-         normal             3           512                      2-00:00:00          1024        75       200
-          large           513          2048                      2-00:00:00          3072         2        20
+           flex             1           128            01:00:00  2-00:00:00          2048        15        60
+    development                          40                        02:00:00            40         2         2
+         normal             3           512                      2-00:00:00          1280        75       200
+          large           513          2048                      2-00:00:00          3072         2         8
           debug                        8368                      2-00:00:00          8368        30        60
             rtx                          16                      2-00:00:00            32        15        36
-        rtx-dev                           2                        02:00:00             2         1         2
-         nvdimm                           4                      2-00:00:00             6         3         8
-          small             1             2                      2-00:00:00            25        20       200
-          grace                          30                      5-00:00:00            30        30       200
+        rtx-dev                           2                        02:00:00             2         2         2
+         nvdimm                           4                      2-00:00:00             6         4         8
+          small             1             2                      2-00:00:00            30        22        80
+          grace                          30                      5-00:00:00            30        30       100
          corral                         512                      2-00:00:00          2048       100       200
-             gh                           1                        02:00:00             1         1         2
+             gh                           1                        02:00:00             1         2         2
 -->
 
-| Queue Name  | Min-Max Nodes per Job<br>(assoc'd cores) | Pre-empt<br>Exempt Time | Max Job Duration | Max Nodes per User | Max Jobs per User  | Charge Rate<br>per node-hour 
-| ------                        | -----                             | ----   | ----    | ----               | ----     | ----
-| <code>flex&#42;</code>        | 1-128 nodes<br>(7,168 cores)      | 1 hour | 48 hrs  | 6400 nodes         | 15       | .8 Service Units (SUs) 
-| <code>development</code>      | 1-40 nodes<br>(2,240 cores)       | N/A    | 2 hrs   |   40 nodes         |  1       | 1 SU 
-| <code>normal</code>           | 3-512 nodes<br>(28,672 cores)     | N/A    | 48 hrs  | 1024 nodes         | 75       | 1 SU   
-| <code>large&#42;&#42;</code>  | 513-2048 nodes<br>(114,688 cores) | N/A    | 48 hrs  | 3072 nodes         |  1       | 1 SU
-| <code>rtx</code>              | 16 nodes                          | N/A    | 48 hrs  |   32 nodes         | 12       | 3 SUs
-| <code>rtx-dev</code>          | 2 nodes                           | N/A    | 2 hrs   |    2 nodes         |  1       | 3 SUs
-| <code>nvdimm</code>           | 4 nodes                           | N/A    | 48 hrs  |    6 nodes         |  3       | 2 SUs 
-| <code>small</code>            | 1-2 nodes                         | N/A    | 48 hrs  |   25 nodes         | 15       | 1 SU
+| Queue Name | Min-Max Nodes per Job<br>(assoc'd cores) | Pre-empt<br>Exempt Time | Max Job Duration | Max Nodes per User | Max Jobs per User | Max Submit | Charge Rate<br>per node-hour
+| ------                        | -----                             | ----        | ----             | ----        | ----   |    | ----
+| <code>flex&#42;</code>        | 1-128 nodes<br>(7,168 cores)      | 1 hour      | 48 hrs           | 6400 nodes  | 15     |  60 | .8 Service Units (SUs) 
+| <code>development</code>      | 1-40 nodes<br>(2,240 cores)       | N/A         | 2 hrs            |   40 nodes  |  1     |   2 | 1 SU 
+| <code>normal</code>           | 3-512 nodes<br>(28,672 cores)     | N/A         | 48 hrs           | 1024 nodes  | 75     | 200 | 1 SU   
+| <code>large&#42;&#42;</code>  | 513-2048 nodes<br>(114,688 cores) | N/A         | 48 hrs           | 3072 nodes  |  1     |   8 | 1 SU
+| <code>rtx</code>              | 16 nodes                          | N/A         | 48 hrs           |   32 nodes  | 12     |  36 | 3 SUs
+| <code>rtx-dev</code>          | 2 nodes                           | N/A         | 2 hrs            |    2 nodes  |  1     |   2 | 3 SUs
+| <code>nvdimm</code>           | 4 nodes                           | N/A         | 48 hrs           |    6 nodes  |  3     |   8 | 2 SUs 
+| <code>small</code>            | 1-2 nodes                         | N/A         | 48 hrs           |   25 nodes  | 15     |  80 | 1 SU
+
 
    
 &#42; **Jobs in the `flex` queue are charged less than jobs in other queues but are eligible for preemption after running for more than one hour.**  

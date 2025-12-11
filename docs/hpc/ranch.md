@@ -1,16 +1,24 @@
 # Ranch User Guide
-*Last update: March 19, 2025*
+*Last update: September 23, 2025*
 
-<!-- ## Notices { #notices } -->
+## Notices { #notices } 
 
-<!-- **The XSEDE project concluded formal operations as an NSF-funded project on August 31, 2022**.  Similar services are now operated through NSF's follow-on program, Advanced Cyberinfrastructure Coordination Ecosystem: Services &amp; Support, or ACCESS.  Find out more at the [ACCESS website](http://access-ci.org). (09/01/2022) -->
+!!! warning
+	**09/24/2025**: As part of a year-long Ranch system replacement, all Ranch users are required to migrate their own or their project's data from the "Old Ranch" to the "New Ranch" system.
+
+	Consult the [Ranch Data Migration Guide](../../hpc/ranch-migration-2025) for important information and directions.. 
+
+
+!!! important
+	**09/24/2025**: This user guide is in progress as Ranch transitions to its new self.
 
 
 ## Introduction { #intro }
 
 TACC's High Performance Computing (HPC) systems are used primarily for scientific computing and while their disk systems are large, they are unable to store the long-term final data generated on these systems. The Ranch archive system fills this need for high capacity long-term storage, by providing a massive high performance file system and tape-based backing store designed, implemented, and supported specifically for archival purposes.
 
-Ranch (**`ranch.tacc.utexas.edu`**), is a Quantum StorNext-based system, with a DDN- provided front-end disk system (30PB raw), and a 5000 slot Quantum Scalar i6000 library for its back-end tape archive.
+Ranch (**`ranch.tacc.utexas.edu`**), is a Versity ScoutAM based archive system with 4PB of front end flash on Dell storage arrays, and a 16PB Dell ECS system for storing small files. It is backed by two 15 frame TFinity tape libraries from Spectra Logic, with LTO-9 and LTO-10 tape drives.
+
 
 Ranch is an allocated resource, meaning that Ranch is available only to users with an allocation on one of TACC's computational resources such as [Frontera][TACCFRONTERAUG], [Stampede3][TACCSTAMPEDE3UG], or [Lonestar6][TACCLONESTAR6UG]. ACCESS PIs will be prompted automatically for the companion storage allocation as part of the proposal submission process and should include a justification of the storage needs in their proposal.  UT and UT system PIs should also make a request and justify the storage requested when applying for a Ranch shared "Project" (non-user) allocation. The default allocation on Ranch for users is 2TB. To request a [shared Ranch project space](#projects) for your team's use, please submit a [TACC Helpdesk ticket][HELPDESK].
 
@@ -21,14 +29,20 @@ Ranch is an allocated resource, meaning that Ranch is available only to users wi
 
 **Ranch is a single-copy archival system.** Ranch user data is neither backed up nor replicated. This means that Ranch contains only a single, active, instance of user data. While lost data due to tape damage or other system failure is rare, please keep this possibility in mind when formulating your data management plans. If you have irreplaceable data and would like a different level of service, let us know via the ticketing system, and we may be able to help you find a solution.
 
+<!-- Users should feel free to save their research data in any format under the constraint of quota granted.  It is their decision what is worth longer term preservation.   Frequently changing data or temporary checkpoint sets may not be ideal and ranch will not guarantee performance for those transactions.
+Although we do NOT charge for data on ranch and it has huge capacity, it cannot be free for everybody and data stored are supposed to be research related.
+Since we support open science, data stored in Ranch are NOT supposed to be sensitive data or highly personal documents.   Users cannot assume any privacy on data saved on ranch.
+(We used to see blindly dumped departmental records in plain format which contain purchase transaction records, hiring records, personal browser histories for every person in the group..... and they can be accessed by anybody if they change the default setting on directories.  Since we implemented strict quota, we see much fewer of those, but will not be surprised if we come across some.) -->
+
 
 
 ### System Configuration { #intro-configuration }
 
-Ranch's primary disk storage system is a DDN SFA14K DCR (Declustered RAID) system which is managed by Quantum's StorNext file system. The raw capacity is approximately 30PB, of which 17PB is user-facing. File metadata is stored on a Quantum SSD-based appliance. The back-end tape library, to which files automatically migrate after they have been inactive (neither modified nor accessed) on disk for a period of time, is a Quantum Scalar i6000, with 24 LTO-8 tape drives.  Each tape has an uncompressed capacity of approximately 12.5TB.
+The 2025 Ranch system has a 4PB flash front end disk system from Dell, with a 16PB Dell ECS storage system for files we want to remain on disk, and two Spectra Logic 15 frame TFinity tape libraries for back end storage. We currently have 20 LTO-9 tape drives, but we will swap in 16 LTO-10 drives in the near future. The front end flash system has Versity’s ScoutFS (SCale-OUT File System) filesystem on it. The archive management is done by Versity’s ScoutAM (SCale-OUT Archival Manager) product. 
 
-Previously, the Ranch system was based on Oracle's HSM software, with two SL8500 libraries, each with 20,000 tape slots. This Oracle system will remain as a legacy system while we migrate relevant data from Oracle HSM to the new Quantum environment.
+The 2019 to 2025 Ranch system ("Old Ranch"), which is being replaced, has a frontend DDN SFA14K DCR (Declustered RAID) storage system, which is managed by Quantum’s StorNext file system. The raw capacity is approximately 30PB, of which 17PB is user-facing. File metadata is stored on a Quantum SSD-based appliance. The back-end tape library, to which files automatically migrate after they have been inactive (neither modified nor accessed) on disk for a period of time, is a Quantum Scalar i6000, with 24 LTO-8 tape drives. Each tape has an uncompressed capacity of approximately 12.5TB.
 
+The previous iteration of the Ranch system was based on Oracle’s HSM software, with two SL8500 libraries, each with 20,000 tape slots. This Oracle system will remain as a legacy system while we migrate relevant data from Oracle HSM to the new Quantum environment.
 
 ## System Access { #access }
 
@@ -61,7 +75,7 @@ The best way to bundle files is to use the UNIX `tar` or `gtar` commands to crea
 
 Users should be using `tar` or `gtar` to achieve file sizes in this range before placing them in Ranch.  Manipulating smaller files will detrimentally affect performance during both storage and retrieval.  For example, retrieval time of a 120TB data set comprised of `tar` files of 300GB can be an order of magnitude faster, or more, than the retrieval of the same data stored in its original form as individual files of 1GB or less.
 
-The new Quantum-based environment is designed to meet the demand of retrieving multi-TB to PB-sized data sets in hours or days, rather than in weeks, which is possible only when the data set is stored into files with an average file size set optimally as described above.
+The new Versity-based environment is designed to meet the demand of retrieving multi-TB to PB-sized data sets in hours or days, rather than in weeks, which is possible only when the data set is stored into files with an average file size set optimally as described above.
 
 
 ### Ranch Quotas { #organizing-quotas }
@@ -83,7 +97,7 @@ Keep in mind the above commands only display file **space** used, not a total fi
 ranch$ find . -type f | wc
 ```
 
-It is your responsibility to keep the file count below the 50,000 quota by using the UNIX `tar` command or some other methodology to bundle files when necessary. Both the file space and file count quotas apply to all data copied from the Oracle archive and all new incoming data.
+It is your responsibility to keep the file count below the 50,000 quota by using the UNIX `tar` command or some other methodology to bundle files when necessary. Both the file space and file count quotas apply to all data copied from the Quantum archive and all new incoming data.
 
 
 
@@ -274,7 +288,7 @@ You will see four phenomena within Ranch, typically made manifest in your `HSM_u
 
 For example, if the file system were half full, there would be NO file truncation, and while older files would be steadily copied to tape, their entire contents would remain on disk.  Conversely, if the file system were to grow to over 80% full, the system would be transparently searching for, and truncating, older files in order to create free disk space in the file system.  None of these truncation operations are driven by a particular user or Project reaching their quota of on-disk storage.  **The software is unaware that any particular directory has reached their quota and might need intervention via truncation.**
 
-Given all that was described above with regard to storge allocations and the `HSM_usage` file, if a user has reached their current quota of on-disk storage, there are two solutions that can be used.
+Given all that was described above with regard to storage allocations and the `HSM_usage` file, if a user has reached their current quota of on-disk storage, there are two solutions that can be used.
 
 1. Perform an "early truncation" wherein your old files are explicitly discovered and truncated.  This presumes that these old files have already been written to tape.
 1. Expand you or your Project's on-disk quota.  Given that Ranch is a shared resource with hundreds of Projects and thousands of users, this on-disk quota expansion is not the preferred solution.

@@ -1,5 +1,5 @@
 # Data Transfer { #datatransfer }
-*Last update: May 5, 2025*
+*Last update: October 13, 2025*
 
 TACC supports two primary technologies for data transfer: SSH (also referred to as SCP and SFTP) and Globus (also referred to as GridFTP). All TACC systems support SSH-based transfer, and most TACC systems support Globus-based transfer. When in doubt, we recommend that you start with SSH-based transfer as this requires the least setup and utilizes the TACC authentication system. Globus uses its own authentication system and will require additional setup steps, [outlined below](#globus).
 
@@ -212,7 +212,7 @@ login1$ man rsync
 ```
 
 !!! Warning
-	When executing multiple instantiations of any of the commands listed above, `scp`, `sftp` and `rsync`, limit your active transfers to no more than 2-3 processes at a time.
+	When executing multiple instantiations of any of the commands listed above, `scp`, `sftp` and `rsync`, limit your active transfers to 2-3 processes at a time.
 
 
 
@@ -232,7 +232,7 @@ This document leads you through the steps required to set up Globus to use for t
 
 To start using Globus, you need to do two things: Generate a unique identifier, <a href="#1">an ePPN<sup>&#42;</a></sup>, for all Globus services, and enroll the machine you are transferring data to/from with Globus.  This can be your personal laptop or desktop, or a server to which you have access. Follow this one-time process to set up the Globus file transfer capability.
 
-!!! Note 
+!!! note 
 	**Globus Transition**. Globus has transitioned to version 5.4. This transition impacts all TACC researchers who use Globus and requires you to update your profile with an ePPN to continue using the Globus service. The use of "Distinguished Names", or DNs, is no longer supported.
 
 !!! important 
@@ -252,8 +252,10 @@ Login to [CILogon](https://cilogon.org) and click on "User Attributes".  Make no
 
 Login to the [TACC Accounts Portal][TACCACCOUNTS], click "Account Information" in the left-hand menu, then add or edit your ePPN from Step 1.
 
-!!! important
-	The institution (ePPN) listed in your TACC account profile, must map to the ePPN you are using to log into GlobusOnline.  
+!!! warning
+	The institution (ePPN) listed in your [TACC account profile](https://accounts.tacc.utexas.edu/account_info), must match the ePPN you are using to log into GlobusOnline.  
+
+
 
 <figure id="figure5">
 <img src="../imgs/globus-setup-step2.png" style="width:65%">

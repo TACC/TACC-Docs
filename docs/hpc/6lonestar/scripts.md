@@ -9,7 +9,7 @@ Copy and customize the following scripts to specify and refine your job's requir
 
 In general, the fewer resources (nodes) you specify in your batch script, the less time your job will wait in the queue. See [5. Job Submissions Tips](../../basics/conduct#conduct-jobs) in the [Good Conduct][TACCGOODCONDUCT] document. 
 
-Consult [Table 6](../stampede3#table6) in the [Stampede3 User Guide][TACCSTAMPEDE3UG] for a listing of common Slurm `#SBATCH` options.
+Consult [Table 9](../stampede3#table9) in the [Stampede3 User Guide][TACCSTAMPEDE3UG] for a listing of common Slurm `#SBATCH` options.
 
 Click on a tab header below to display it's job script, then copy and customize to suit your own application.
 
