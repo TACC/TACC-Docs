@@ -1,15 +1,26 @@
 # Data Transfer { #datatransfer }
-*Last update: October 13, 2025*
+*Last update: November 12, 2025*
 
-TACC supports two primary technologies for data transfer: SSH (also referred to as SCP and SFTP) and Globus (also referred to as GridFTP). All TACC systems support SSH-based transfer, and most TACC systems support Globus-based transfer. When in doubt, we recommend that you start with SSH-based transfer as this requires the least setup and utilizes the TACC authentication system. Globus uses its own authentication system and will require additional setup steps, [outlined below](#globus).
+TACC supports two primary technologies for data transfer: **SSH** (used by `scp`, `sftp`, and `rsync`) and **Globus** (also referred to as GridFTP).
+
+All TACC systems support SSH-based transfers, and most also support Globus-based transfers.
+
+When in doubt, start with **SSH-based transfer** — it requires minimal setup and uses your existing TACC credentials.  
+**Globus**, on the other hand, has its own authentication system and requires additional setup steps, [outlined below](#globus).
+
+However, SSH-based transfers are often **slow on high-latency paths**. If you need to move **large datasets (e.g., over 500 GB)** across network paths where the **round-trip time (RTT) exceeds 10 ms**, we recommend using [Globus](#globus) instead. More information about performance issues with SSH-based tools can be found at [fasterdata](https://fasterdata.es.net/data-transfer-tools/say-no-to-scp/). By default, Globus also performs file-level checksum verification, which helps detect data corruption—especially important when transferring large datasets.
 
 There are many SSH-compatible clients across all platforms, and almost any modern SSH client will successfully interoperate with TACC systems. While we provide [examples using the Cyberduck application](#cyberduck), users are encouraged to select and utilize whichever transfer client is most familiar to them and most functional on your platform. Many SSH clients are organized to assist with specific workflows.  
 
-For SSH-based transfers, you will need two pieces of information in addition to your TACC username/password combination: the HOSTNAME of the system you are transferring to, and the PATH that you are attempting to access. Especially if you are uploading data, it is very important that you select the correct path for the resource and project - otherwise your data will be at risk of being lost or misplaced. The path may include a functional name such as /scratch/ or a resource name such as /corral/ .
+For **SSH-based transfers**, you will need two pieces of information in addition to your TACC username and password:
+   1. The **hostname** of the target system  
+   2. The **path** to the directory or file you want to access
+If you are **uploading data**, make sure you specify the **correct path** for your project or resource. Using the wrong path may cause your data to be lost or misplaced.
 
-Globus-based transfers usually utilize an endpoint name (usually the name of the HPC or Storage resource you are connecting to) rather than a hostname, but you will still need to know the endpoint name, and you will always need the PATH that you are addressing, in order to successfully transfer data.
+Paths typically include a **functional name** (e.g., `/scratch/`) or a **resource name** (e.g., `/corral/`).
 
-All TACC resources support SSH-based transfer, and most TACC resources support Globus-based transfer.
+**Globus-based transfers** use an **endpoint name** instead of a hostname.  
+The endpoint name usually matches the name of the HPC or storage resource you are connecting to. You will  need to know both the **endpoint name** and the **path** to the data location in order to complete a transfer successfully.
 
 ## SSH 
 
@@ -21,7 +32,7 @@ You can access SSH utilities via a client application, a GUI interface, or on th
 
 ### Cyberduck { #cyberduck }
 
-TACC staff recommends the open-source [Cyberduck](https://cyberduck.io/) utility for both Windows and Mac users that do not already have a preferred tool.
+To transfer to/from your laptop/desktop, TACC staff recommends the open-source [Cyberduck](https://cyberduck.io/) utility for both Windows and Mac users that do not already have a preferred tool.
 
 <a target="_blank" href="https://cyberduck.io/">Cyberduck</a> is a free graphical user interface for data transfer and is an alternative to using the command line. With a drag-and-drop interface, it is easy to transfer a file from your local system to the remote secure system. You can use <a target="_blank" href="https://cyberduck.io/">Cyberduck</a> for Windows or macOS.
 
@@ -233,7 +244,7 @@ This document leads you through the steps required to set up Globus to use for t
 To start using Globus, you need to do two things: Generate a unique identifier, <a href="#1">an ePPN<sup>&#42;</a></sup>, for all Globus services, and enroll the machine you are transferring data to/from with Globus.  This can be your personal laptop or desktop, or a server to which you have access. Follow this one-time process to set up the Globus file transfer capability.
 
 !!! note 
-	**Globus Transition**. Globus has transitioned to version 5.4. This transition impacts all TACC researchers who use Globus and requires you to update your profile with an ePPN to continue using the Globus service. The use of "Distinguished Names", or DNs, is no longer supported.
+	**Globus Transition**. As of 2021, Globus has transitioned to version 5.4. This transition impacts all TACC researchers who use Globus and requires you to update your profile with an ePPN to continue using the Globus service. The use of "Distinguished Names", or DNs, is no longer supported.
 
 !!! important 
 	You must use your institution's credentials and **not your personal email account (e.g. Google, Yahoo!, AOL)** when setting up Globus.  You will encounter problems with the transfer endpoints (e.g. Frontera, Stampede3, Corral, Ranch) if you use your personal account information.
@@ -272,6 +283,13 @@ Once you've completed these steps, you will be able to use the [Globus File Mana
 
 Globus-based transfers usually utilize an endpoint name (usually the name of the HPC or Storage resource you are connecting to) rather than a hostname, but you will still need to know the endpoint name, and you will always need the PATH that you are addressing, in order to successfully transfer data.
 
+### Globus Connect Personal (GCP) and the Globus command line API (CLI) 
+
+To use Globus to transfer files to/from your laptop or desktop computer, use [Globus Connect Personal (GCP)](https://docs.globus.org/globus-connect-personal/).
+
+To use Globus inside of a shell script, use the [Globus command line API](https://docs.globus.org/cli/quickstart/).
+
+A quick start guide to **GCP** and the **Globus CLI** can also be found on [fasterdata](https://fasterdata.es.net/data-transfer-tools/globus/globus-cli/).
 
 
 {% include 'aliases.md' %}
