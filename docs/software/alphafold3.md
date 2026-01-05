@@ -1,10 +1,12 @@
 # AlphaFold3 at TACC
-*Last update: August 11, 2025*
+*Last update: January 5, 2026*
 
 <!-- ![AlphaFold logo](../imgs/alphafold3-logo.png){ .align-right width="250" } -->
 <img src="../imgs/alphafold3-logo.png" width="250" alt="AlphaFold3 logo" class="align-right">
 
-AlphaFold3 is Google Deepmind's latest deep learning model for predicting the structure and interactions of biological macromolecules, including proteins, nucleic acids, small molecules, ions, and post-translational modifications. AlphaFold3 significantly expands the capabilities of AlphaFold2, offering highly accurate complex structure predictions beyond protein folding alone. In November 2024, the developers made the [source code available on Github](https://github.com/deepmind/alphafold) and published a [Nature paper](https://www.nature.com/articles/s41586-024-07487-w) ([supplementary information](https://static-content.springer.com/esm/art%3A10.1038%2Fs41586-024-07487-w/MediaObjects/41586_2024_7487_MOESM1_ESM.pdf)) describing the method. In addition to the software, AlphaFold3 depends on ~250 GB of databases and model parameters. Researchers interested in making protein structure predictions with AlphaFold3 are encouraged to follow the guide below, and use the databases that have been prepared.
+AlphaFold3 is Google Deepmind's latest deep learning model for predicting the structure and interactions of biological macromolecules, including proteins, nucleic acids, small molecules, ions, and post-translational modifications. AlphaFold3 significantly expands the capabilities of AlphaFold2, offering highly accurate complex structure predictions beyond protein folding alone. In November 2024, the developers made the [source code available on Github](https://github.com/deepmind/alphafold) and published a [Nature paper](https://www.nature.com/articles/s41586-024-07487-w) ([supplementary information](https://static-content.springer.com/esm/art%3A10.1038%2Fs41586-024-07487-w/MediaObjects/41586_2024_7487_MOESM1_ESM.pdf)) describing the method. In addition to the software, AlphaFold3 depends on ~250 GB of databases and model parameters. 
+
+We encourage researchers interested in making protein structure predictions with AlphaFold3 to follow the guide below, and use the prepared databases.  
 
 ## Installations at TACC { #installations } 
 
@@ -76,7 +78,7 @@ A valid protein chain may look like:
 
 Next, prepare a batch job submission script for running AlphaFold3. *Model inference must be run on a GPU*. See the [Running MSA and Inference Separately](#split-stages) section of this page and the [AlphaFold3 performance documentation](https://github.com/google-deepmind/alphafold3/blob/main/docs/performance.md) for more information on executing AlphaFold3 jobs in stages to optimize resource utilization. 
 
-Templates for batch job submission scripts are provided within the "Examples" paths listed in [Table 1.](#table1) above. The example templates need to be customized before they can be used. Copy the desired tample to your `$WORK` or `$SCRATCH` space along with the input `.json` file. After necessary customizations, a batch script for running AlphaFold3 on Lonestar6 may look like this:
+Templates for batch job submission scripts are provided within the "Examples" paths listed in [Table 1.](#table1) above. The example templates need to be customized before they can be used. Copy the desired tample to your `$WORK` or `$SCRATCH` space along with the input `.json` file. After necessary customizations, a batch script for running AlphaFold3 on Lonestar6 may look like the following :
 
 ```job-script
 #!/bin/bash
@@ -105,7 +107,10 @@ run_alphafold3 --json_path=$AF3_INPUT_DIR/input.json           # MODIFY name of 
 
 In the batch script, make sure to specify the partition (queue) (`#SBATCH -p`), node / wallclock limits, and allocation name (`#SBATCH -A`) appropriate to the machine you are running on. Also, make sure the path shown in the `module use` line matches the machine-specific "Module" path listed in [Table 1.](#table1) above.
 
-When preparing a batch job script to run AlphaFold3, users must set several environment variables to point to their input, output, and model directories. The table below describes each variable and what users need to change. 
+!!!tip 
+	To run on Lonestar6's <a href="https://docs.tacc.utexas.edu/hpc/lonestar6/#table25">h100 nodes</a>, add the following Slurm directive to your job script:<p><code>#SBATCH --nodelist=c318-[001,004]</code>
+
+When preparing a batch job script to run AlphaFold3, users must set several environment variables to point to their input, output, and model directories. The table below describes each variable and the necessary edits. 
 
 #### Table 2. Required Variables to Set in Job Script { #table2 }
 
