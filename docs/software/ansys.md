@@ -1,5 +1,5 @@
 # ANSYS at TACC
-*Last update: January 05, 2026*
+*Last update: January 06, 2026*
 
 <!-- ![ANSYS logo](../imgs/ansys-logo.png){ .align-right width="250" } -->
 <img src="../imgs/ansys-logo.png" width="250" alt="ANSYS logo" class="align-right">
