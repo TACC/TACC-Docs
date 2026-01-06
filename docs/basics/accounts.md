@@ -1,10 +1,10 @@
 # Managing your TACC Account
-*Last update: November 5, 2025*
+*Last update: January 6, 2025*
 
 ## Notices
 
+* (01/06/2026) Beginning immediately, **all users are required to have an approved institutional affiliation with an associated email address**.  See [New Accounts](#newaccounts) below for more information.
 * (11/03/2025) **VSCode users:  TACC staff are aware of the difficulties VSCode users are experiencing when attempting to login to TACC HPC resources.**  Please see [Resolving VSCode issues](#vscode) below.
-* (04/14/2025) Beginning immediately, all TACC account holders are required to have an active MFA pairing.  If you do not have an active MFA pairing your account will be deactivated.
 
 ## How to Access TACC Resources
 
@@ -17,6 +17,28 @@ In order to access any TACC compute or storage resource you must maintain an "Ac
 !!! tip
 	If your [account status](#table1) is "Active" and you still can't login, try [un-pairing and re-pairing your MFA device](https://docs.tacc.utexas.edu/basics/mfa/#unpair).
 
+## New Accounts { #newaccounts }
+
+Any user of TACC resources must first obtain a TACC account.  A TACC account email is of the form  <code><i>username</i>@tacc.utexas.edu</code>.  
+
+!!!important
+	You must have an approved institutional affiliation with an associated email address. For example, if you are affiliated with The University of Texas at Austin, you will need to have a `utexas.edu` email address associated with your account.  Generic domains such as `gmail.com`, `yahoo.com`, or `qq.com` are prohibited. 
+
+To create a new account: 
+
+1. Go to the [TACC Accounts Portal][TACCACCOUNTS] and click "Create a New Account" to begin registration.
+1. Set up [Multi-Factor Authentication][TACCMFA] (MFA) on your account. 
+1. Check for an email containing a confirmation and activation link.  Once you confirm your email, your account status will update to either "Pending" or "Active".
+1. If your account status is "Pending" then your account request will need further review by our User Services team. No action is required and a team member will reach to you.
+1. Once your account is "Active" log onto the [TACC User Portal][TACCUSERPORTAL] to view your allocation status.
+
+!!! warning 
+	An individual may not have more than one TACC account.  Shared accounts and/or multi-user accounts are strictly prohibited.  
+
+<!-- repeated above
+!!! tip
+	In order to log on to TACC's HPC resources, your TACC account must be "[Active](#table1)" **AND** you must have an active allocation on that particular resource.
+--> 
 
 ## Login Problems: Resolving VSCode Issues { #vscode }
 
@@ -64,25 +86,6 @@ This is most likely because you have modified your `./ssh/known_hosts` file.  Th
 3. Log out of the system and then log back in.  This will auto-generate a new `.ssh` folder and key for you. 
 
 
-## New Accounts { #newaccounts }
-
-Any user of TACC resources must first obtain a TACC account.  A TACC account email is of the form *username*@tacc.utexas.edu.  All new users are required to authenticate with a [UT approved Identity Provider](#identity-management).  
-
-To create a new account: 
-
-1. Go to the [TACC Accounts Portal][TACCACCOUNTS] and click "Create a New Account" to begin registration.
-1. Set up [Multi-Factor Authentication][TACCMFA] (MFA) on your account. 
-1. Check for an email containing a confirmation and activation link.  Once you confirm your email, your account status will update to either "Pending" or "Active".
-1. If your account status is "Pending" then your account request will need further review by our User Services team. No action is required and a team member will reach to you.
-1. Once your account is "Active" log onto the [TACC User Portal][TACCUSERPORTAL] to view your allocation status.
-
-!!! warning 
-	An individual may not have more than one TACC account.  Shared accounts and/or multi-user accounts are strictly prohibited.  
-
-<!-- repeated above
-!!! tip
-	In order to log on to TACC's HPC resources, your TACC account must be "[Active](#table1)" **AND** you must have an active allocation on that particular resource.
---> 
 
 ## Table 1. TACC Account Status { #table1 }
 
