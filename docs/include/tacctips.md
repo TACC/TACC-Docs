@@ -1,3 +1,4 @@
+<!--
 ### TACC Tips { #tips }
 
 TACC staff has amassed a database of helpful tips for our users.  Access these tips via the `tacc_tips` module and `showTip` command as demonstrated below:
@@ -14,3 +15,4 @@ Tip 40   (See "module help tacc_tips" for features or how to disable)
      * Type !-1
      * Press Ctrl+P
 ```
+-->
