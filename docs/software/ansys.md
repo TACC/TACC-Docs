@@ -1,5 +1,5 @@
 # ANSYS at TACC
-*Last update: January 06, 2026*
+*Last update: January 12, 2026*
 
 <!-- ![ANSYS logo](../imgs/ansys-logo.png){ .align-right width="250" } -->
 <img src="../imgs/ansys-logo.png" width="250" alt="ANSYS logo" class="align-right">
@@ -24,8 +24,8 @@ ANSYS is currently installed under `/home1/apps/ANSYS` on TACC's Frontera and St
 Resource | ANSYS Version |Components |Location
 --- | --- | --- | ---
 Frontera  | 2023R2 | Structures, Fluids, Electronics, LS-Dyna | <code>/home1/apps/ANSYS/2023R2/v232</code><br><code>/home1/apps/ANSYS/2023R2/AnsysEM</code>
-Stampede3 | 2024R2 | Structures, Fluids, Electronics, LS-Dyna | <code>/home1/apps/ANSYS/2024R2/v242</code><br><code>/home1/apps/ANSYS/2024R2/AnsysEM</code>
-Lonestar6 | 2024R2 | Structures, Fluids, Electronics, LS-Dyna | <code>/scratch/tacc/apps/ANSYS/2024R2/v242</code><br><code>/scratch/tacc/apps/ANSYS/2024R2/AnsysEM</code>
+Stampede3 | 2025R2 | Structures, Fluids, Electronics, LS-Dyna | <code>/home1/apps/ANSYS/2025R2/v242</code><br><code>/home1/apps/ANSYS/2025R2/AnsysEM</code>
+Lonestar6 | 2025R2 | Structures, Fluids, Electronics, LS-Dyna | <code>/scratch/tacc/apps/ANSYS/2025R2/v242</code><br><code>/scratch/tacc/apps/ANSYS/2025R2/AnsysEM</code>
 
 
 ## Running ANSYS { #running }
