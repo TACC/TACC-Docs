@@ -61,6 +61,10 @@ nav:
     - Stampede3: hpc/stampede3.md
     - Stallion: hpc/stallion.md
     - Vista: hpc/vista.md
+  - Machine Learning:
+    - Virtual Environments : aiml/venvs.md
+    - Containers: aiml/containers.md
+    - Conda/Pytorch: aiml/conda.md
   - Software Packages:
     - AlphaFold2 : software/alphafold.md
     - AlphaFold3 : software/alphafold3.md

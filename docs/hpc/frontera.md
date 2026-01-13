@@ -1643,7 +1643,8 @@ c123-456$  git clone https://github.com/pytorch/examples.git
 	c123-456$ torchrun --nproc_per_node=4 examples/distributed/ddp-tutorial-series/multigpu_torchrun.py 50 10
 	```
 	
-Multi-Node
+### Multi-Node
+
 1. Request two nodes in the [`rtx-dev`](#queues) queue using the [`idev`][TACCIDEV] utility:
 	```cmd-line
 	login2.frontera$idev -N 2 -n 2 -p rtx-dev -t 02:00:00
@@ -1654,7 +1655,7 @@ Multi-Node
 	```
 1. Create a script called "run.sh". This script needs two parameters, the hostname of the master node and the number of nodes. Add execution permission for the file "run.sh".
 
-	```file
+	```syntax
 	#!/bin/bash
 	HOST=$1
 	NODES=$2
