@@ -27,6 +27,10 @@ For large conda environments, moving the conda environment into a container can 
 !!! important
 	It is best practice to build conda environments in the $SCRATCH directory because conda can overload the file system when using $WORK  and $HOME does not have the storage space for ML tasks. It is important to note that on $SCRATCH your environment is subject to being purged.  Care should be taken to back up the environments you build on $WORK. 
 
+Chris Ramos: To avoid any kind of interruption to your access I recommend running on the safe side and using an idev session to install conda packages. Your conda env should be available across all systems with access to $WORK since it is containerized. I was able to test this in my own account and was successful on LS6 and S3. 
+SDL conda activity  must be performed within an idev session and scratch directory
+
+
 Need workflow: do we transfer / copy the venvs back and forth from SCRATCH
 All actions to be performed within an idev session?
 
@@ -227,3 +231,7 @@ Typically, conda environments are managed in a file called **environment.yml**, 
 
 * For more information about multi-GPU training, see the following documentation: [Distributed Data Parallel in Pytorch](https://pytorch.org/tutorials/beginner/ddp_series_intro.html)
 * [Conda documentation](https://docs.conda.io/)
+
+
+--
+
