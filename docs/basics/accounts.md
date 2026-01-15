@@ -45,7 +45,7 @@ To create a new account:
 Windows users attempting to login with PowerShell may have to amend the SSH command line with additional flags:
 
 ```cmd-line
-$ ssh -m hmac-sha2-512 taccusername@lonestar6.tacc.utexas.edu
+$ ssh -m hmac-sha2-512 taccusername@ls6.tacc.utexas.edu
 ```
 
 ## Login Problems: Resolving VSCode Issues { #vscode }
