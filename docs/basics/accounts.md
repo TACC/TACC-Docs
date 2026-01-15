@@ -40,6 +40,14 @@ To create a new account:
 	In order to log on to TACC's HPC resources, your TACC account must be "[Active](#table1)" **AND** you must have an active allocation on that particular resource.
 --> 
 
+## Login Problems: Windows Users
+
+Windows users attempting to login with PowerShell may have to amend the SSH command line with additional flags:
+
+```cmd-line
+$ ssh -m hmac-sha2-512 taccusername@lonestar6.tacc.utexas.edu
+```
+
 ## Login Problems: Resolving VSCode Issues { #vscode }
 
 Recent upgrades by Microsoft to the VSCode application have resulted in the program causing issues with user accounts.  TACC Staff are aware of the problems users are experiencing.  Until Microsoft fixes this bug, we are only able to offer possible solutions and workarounds.   
