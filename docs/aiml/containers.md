@@ -1,54 +1,71 @@
 # Containers with Pytorch
 
+Here we will pulled a PyTorch image from Docker Hub and run a Python script within an Apptainer container. Need more- what are we doing? conducting a sanity test
 
-You have now successfully pulled a PyTorch image from Docker Hub and run a Python script within an Apptainer container.
+## Defining Terms
 
-Docker is a platform for developing, shipping, and running applications inside **containers**.  A **software container** is a lightweight, portable package that includes everything an application needs to run—including code, libraries, dependencies, operating system, and system settings. 
+What is a Docker? What are Images?
 
-It ensures your code can be deployed to different machines without worrying about installing dependencies. Although often compared to virtual machines because of their structure, containers are generally faster and more efficient than virtual machines.
+term | def
+-- | --
+**Docker** | is a platform that allows developers to package applications into containers and share them through the cloud.  Docker is a platform for developing, shipping, and running applications inside **containers**.  A **software container** is a lightweight, portable package that includes everything an application needs to run—including code, libraries, dependencies, operating system, and system settings. 
+**Docker image** | is a pre-configured package that contains everything needed to run an application, including the code, runtime, libraries, and dependencies. 
+**container** | Once an image is **instantiated**, it becomes a **container**. Multiple containers can be instantiated from the same base image.
+	Containers ensure your code can be deployed to different machines without worrying about installing dependencies. 
+** [Apptainer](https://containers-at-tacc.readthedocs.io/en/latest/singularity/01.singularity_basics.html) (formerly Singularity) | is a containerization platform designed specifically for high-performance computing (HPC) environments, offering a solution optimized for scientific research and large-scale data processing. 
 
-This containerization guide will focus specifically on the AI/ML applications of containerization with Docker. For a more in-depth guide, see the [TACC containers guide](https://containers-at-tacc.readthedocs.io/en/latest/).
+Most general containers like Docker require root privileges and are commonly used for development and cloud-based applications, Apptainer is built to run efficiently on shared systems such as TACC's supercomputers.   
 
+Apptainer  provides portability, reproducibility, and seamless integration with HPC job schedulers, making it ideal for researchers who need to run complex applications in secure, isolated environments without compromising performance or requiring administrative access.  
 
-## What is a Docker? What are Images?
+Use apptainer to run the container on a TACC HPC system
 
-**Docker** is a platform that allows developers to package applications into containers and share them through the cloud.
+<!-- In this tutorial, we follow the workflow highlighted in [TACC's container tutorial](https://containers-at-tacc.readthedocs.io/en/latest/singularity/01.singularity_basics.html). -->
 
-A **Docker image** is a pre-configured package that contains everything needed to run an application, including the code, runtime, libraries, and dependencies. Once an image is **instantiated**, it becomes a **container**. The distinction is necessary because multiple containers can be instantiated from the same base image.
-
-
-## Apptainers vs Containers
-
-[Apptainer](https://containers-at-tacc.readthedocs.io/en/latest/singularity/01.singularity_basics.html) (formerly *Singularity*) is a containerization platform designed specifically for high-performance computing (HPC) environments, offering a solution optimized for scientific research and large-scale data processing. 
-
-Unlike general containers like Docker, which require root privileges and are commonly used for development and cloud-based applications, Apptainer is built to run efficiently on shared systems such as TACC's supercomputers.   
-
-It provides portability, reproducibility, and seamless integration with HPC job schedulers, making it ideal for researchers who need to run complex applications in secure, isolated environments without compromising performance or requiring administrative access.  
-
-In this tutorial, we follow the workflow highlighted in [TACC's container tutorial](https://containers-at-tacc.readthedocs.io/en/latest/singularity/01.singularity_basics.html). 
-
-**We will:**
-
-* Use Docker to develop containers locally
-* Push (upload) our container to Docker hub
-* Use *apptainer* to run the container on a TACC HPC system
-
-Note: we can skip steps 1 and 2 above if a base container exists with all dependencies for our application, as you will see highlighted in the demo below. 
+<!-- * Use Docker to develop containers locally
+* Push (upload) our container to Docker hub 
+-->
 
 ## Running GPU enabled PyTorch Containers at TACC
 
 Set up a GPU-enabled Pytorch container at TACC to run the **Multigpu_Torchrun.py** testing script 
 
+!!!tip
+	* `apptainer` is only available on compute nodes at TACCs system. 
+	* always use idev and explain why
 
-1. Grab an idev node
+1. Download test data
 
-    cd $SCRATCH 
-    
-1. Request a Node**
+	* Always use the $SCRATCH systen, not $WORK
+	First, we will download some test data to run a simple ML task on. Clone the examples library from the official Pytorch Github repository by running:
 
-	Apptainer is only available on compute nodes at TACCs system. To test container on our systems, we suggest launching an interactive session with idev. Below we request an interactive session on an gpu development node (-p rtx-dev) for a total time of 2 hours (-t 02:00:00). 
+	```cmd-line
+	login1$ cd $SCRATCH
+	login1$ git clone https://github.com/pytorch/examples.git
+	```
 
-    	idev -p rtx-dev -t 02:00:00
+
+### Table 1. `idev` commands per TACC system
+
+System      | Node Architecture                                       | Queue 			| Command
+--          | --                                                      | -- 				| --
+Frontera    | [GPU](../../hpc/frontera/#system-gpu)                   | [`rtx-dev`](../../hpc/frontera#queues) | `idev -p rtx-dev -t 02:00:00`
+Stampede3   | [NVIDIA GPU H100](../../hpc/stampede3/#system-gpu-h100) | [`h100`](../../hpc/stampede3#queues)    |  `idev -p h100 -t 02:00:00`
+Lonestar6   | [NVIDIA GPU A100](../../hpc/lonestar6/#system-gpu-a100) | [`gpu-a100-dev`](../../hpc/lonestar6#queues)  |  `idev -p gpu-a100-dev -t 02:00:00`
+Vista       | [Grace Hopper GPU](../../hpc/vista/#system-gh)          | [`gh-dev`](../../hpcstampede3#queues)  |  `idev -p gh-dev -t 02:00:00`
+
+<!-- LS6 a100 or h100 nodes? -->
+
+1. Grab a compute node via idev.
+
+
+
+
+	 Launch an interactive session with TACC's `idev` utility.  The following command requests an interactive session on a GPU development node (`-p rtx-dev`) for a total time of 2 hours (`-t 02:00:00`). 
+
+	```cmd-line
+	login1$ idev -p rtx-dev -t 02:00:00
+	```
 
 	There may be a wait time as you sit in the queue. Once the command runs successfully, you will have a shell on a dedicated compute node, and your working directory will appear as follows:
 
@@ -57,8 +74,6 @@ Set up a GPU-enabled Pytorch container at TACC to run the **Multigpu_Torchrun.py
 1. Load in Apptainer
 
 	Once you have successfully have a shell launched on a compute node, you will need to load apptainer using module.  
-
-	To view the default modules on Frontera, view tutorials `here. <https://docs.tacc.utexas.edu/hpc/frontera/#admin-configuring-modules>`_
 
 	To load the apptainer module, run:
 
@@ -72,12 +87,6 @@ Set up a GPU-enabled Pytorch container at TACC to run the **Multigpu_Torchrun.py
 
     	apptainer is /opt/apps/tacc-apptainer/1.3.3/bin/apptainer
 
-
-1. Download test data
-
-	First, we will download some test data to run a simple ML task on. Clone the examples library from the official Pytorch Github repository by running:
-
-    	git clone https://github.com/pytorch/examples.git
 
 
 1. Pull a Prebuilt PyTorch Docker Image
@@ -109,7 +118,5 @@ Set up a GPU-enabled Pytorch container at TACC to run the **Multigpu_Torchrun.py
 
 * [Containers at TACC tutorial](https://containers-at-tacc.readthedocs.io/en/latest/index.html).
 * [TACC Docker Hub](https://hub.docker.com/u/tacc)
-
-
 
 
