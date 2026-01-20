@@ -12,8 +12,8 @@ Stampede3's job scheduler is the Slurm Workload Manager. Slurm commands enable y
     TACC's `qlimits` utility will display the latest queue configurations.
 
 <!--
-10/20/2025
-[slindsey@login1 ~]$ <1001> qlimits
+01/20/2026
+[slindsey@login2 ~]$ <1001> qlimits
 Current queue/partition limits on TACC's stampede3 system:
 
 Name             MinNode  MaxNode     MaxWall  MaxNodePU  MaxJobsPU   MaxSubmit
@@ -24,7 +24,7 @@ pvc                    1        4  2-00:00:00          4          2           4
 skx                    1      256  2-00:00:00        256         40          60
 skx-dev                1       16    02:00:00         16          2           4
 spr                    1       32  2-00:00:00         40         24          36
---- /usr/local/etc/queue.map 
+--- /usr/local/etc/queue.map
 h100:4.0
 icx:1.5
 nvdimm:4.0
@@ -37,8 +37,8 @@ spr:2.0
 #### Table 8. Production Queues { #table8 }
 
 Queue Name   | Node Type | Max Nodes per Job<br>(assoc'd cores) | Max Job<br>Duration | Max Nodes<br>per User | Max Jobs<br>per User | Max Submit |  Charge Rate<br>(per node-hour)
---           | --        | --                                   | --               | --                    | --      |--             |-- 
-h100         | H100      | 4 nodes<br>(384 cores)               | 48 hrs           | 4                     | 2       | 4         | 4 SUs
+--           | --        | --                                   | --               | --                    | --      |--          |-- 
+h100         | H100      | 4 nodes<br>(384 cores)               | 48 hrs           | 4                     | 2       | 4          | 4 SUs
 icx          | ICX       | 32 nodes<br>(2560 cores)             | 48 hrs           | 48                    | 12      | 20         | 1.5 SUs
 nvdimm       | ICX       | 1 node<br>(80 cores)                 | 48 hrs           | 1                     | 2       | 4          | 4 SUs 
 pvc          | PVC       | 4 nodes<br>(384 cores)               | 48 hrs           | 4                     | 2       | 4          | 3 SUs
