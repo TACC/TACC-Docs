@@ -1,17 +1,5 @@
 # Virtual Environments at TACC/Environment Management Tools
 
-* Python venv
-
-	* Using PyTorch within venv
-	* Using Tensoflow?
-
-* Conda (user-installed)
-
-	* Using Pytorch within Conda
-
-* Conda (system Conda)
-
-
 This section provides an overview of three common software tools that are used to manage dependcies and environments. Python virtual environments, conda, and containers all offer different ways of creating an isolated place on your machine where you can install specific versions of software. This enables users to work on multiple projects on the same machine without worrying about mismatches in software depencies between projects.  
 
 
@@ -21,7 +9,7 @@ This section provides an overview of three common software tools that are used t
 A python virtual environment, often referred to as a "venv", installs all python packages into a specific target folder on your machine. When you "activate" the environment all of the installed packages are made visible to your python installation.  Under the hood, virtual environments are controlling your system variables (e.g. PATH) to manage where software is installed and in which directories programs like python look for installed packages. 
 
 **Key Features**  
-^^^^^^^^^^^^^^^^  
+
 * **Lightweight**: 
    Unlike Conda or containers, virtual environments in Python only manage Python libraries, which can make them simpler and faster to set up.
 * **No System-Level Dependencies**: 
@@ -35,12 +23,12 @@ A python virtual environment, often referred to as a "venv", installs all python
 .. image:: images/Conda_logo.svg
    :align: center
 
-Image source: `github.com/conda <https://github.com/conda>`_
+Image source: [github.com/conda (https://github.com/conda)]
 
 Conda is similar to python virtual environments except that it can also install non-python packages. This capability can be useful when your project involves not just python code but many external software dependencies.
 
 **Key Features**  
-^^^^^^^^^^^^^^^^  
+
 * **Versatility**: 
    Allows the installation of both Python and non-Python packages.
 * **Cross-Language Support**: 
@@ -54,7 +42,7 @@ Containers are lightweight and portable software platforms, similar to virtual m
 
 
 **Key Features**  
-^^^^^^^^^^^^^^^^  
+
 * **Complete and Portable Environment**: 
    Bundles the application with all necessary dependencies, making it portable across different systems without the need for installation on the target machine.
 * **Scalable**: 
@@ -62,17 +50,10 @@ Containers are lightweight and portable software platforms, similar to virtual m
 * **Root Priveleges**: 
    Software in containers can be installed with root priveleges and then the container can be uploaded and run on a HPC system. 
 
-.. image:: https://containers-at-tacc.readthedocs.io/en/latest/_images/arch_container.png
-   :alt: Applications isolated by containers.
-   :width: 500px
-   :align: center
-
-
 
 ## Create and Activate a Python Virtual Environment { #pythonvenv }
 
 Virtual environments are essential for isolating project dependencies and ensuring compatibility across different projects. This guide explains how to create a virtual environment using Python's built-in `venv` module on TACC compute resources.
-
 
 Once logged into one of TACC's compute resources.
 
@@ -204,5 +185,7 @@ The multigpu_torchrun.py script can be found in the github repository below: <ht
     The task may take a few minutes to run.
 
 
+
+## Refs
 
 
