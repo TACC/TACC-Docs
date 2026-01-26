@@ -87,7 +87,7 @@ Very important that you run all training models within an idev session or you wi
 
 1. Download test data
 
-	Always use the $SCRATCH systen, not $WORK
+	Always use the `$SCRATCH` systen, not `$WORK`
 	First, we will download some test data to run a simple ML task on. Clone the examples library from the official Pytorch Github repository by running:
 
 		login1$ git clone https://github.com/pytorch/examples.git

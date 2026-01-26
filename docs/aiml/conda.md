@@ -9,7 +9,7 @@ Conda is a powerful package manager and environment management tool, widely used
 
 Conda-Forge is a comunity-driven repository of Conda packages. Mini-Forge is a lightweight installer for Conda, optimized to use Conda-Forge by default. For this guide's purposes, we will use MiniForge.
 
-Using Conda at TACC in a performant way is tricky. The reason for this is that large conda environments, containing many thousands of files, can cause issues with the TACC system-wide $WORK (Lustre) file system.  In this tutorial we will discuss a few options you have for how to use conda on our systems in a way that avoids these issues.  In general, there are two ways to use conda: 
+Using Conda at TACC in a performant way is tricky. The reason for this is that large conda environments, containing many thousands of files, can cause issues with the TACC system-wide `$WORK` (Lustre) file system.  In this tutorial we will discuss a few options you have for how to use conda on our systems in a way that avoids these issues.  In general, there are two ways to use conda: 
 
 * Installed on our file systems
 * Installed inside of a container 
@@ -57,9 +57,9 @@ Install Conda
 
 1. Install MiniForge - the Conda installer
 
-	Miniforge is one of several Conda installers, others examples include Anaconda and Miniconda. We will be use miniforge  to download Conda into the $SCRATCH directory.  We are going to install Conda on **Vista/FronteraSDL** for the sake of this tutorial. When you SSH into Frontera, you will see this screen:
+	Miniforge is one of several Conda installers, others examples include Anaconda and Miniconda. We will be use miniforge  to download Conda into the `$SCRATCH` directory.  We are going to install Conda on **Vista/FronteraSDL** for the sake of this tutorial. When you SSH into Frontera, you will see this screen:
 
-	Once you are in the $SCRATCH directory for frontera, we can install Conda. Use **curl** (a command-line tool to transfer data from a server via HTTP) to download Miniforge which will come bundled with conda.
+	Once you are in the `$SCRATCH` directory for frontera, we can install Conda. Use **curl** (a command-line tool to transfer data from a server via HTTP) to download Miniforge which will come bundled with conda.
 
 		cd $SCRATCH
 		curl -LO https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh
@@ -159,7 +159,7 @@ This script facilitates and streamlines the training of ML models on multiple GP
 
 1. Install Pytorch in Conda Environment
 
-	To install Pytorch in our new Conda environment- which is in the $SCRATCH directory of Frontera, running in a single rtx node idev session- run the following Conda command in the environment:
+	To install Pytorch in our new Conda environment- which is in the `$SCRATCH` directory of Frontera, running in a single rtx node idev session- run the following Conda command in the environment:
 
 	We will need to install Cuda to run the multigpu_torchrun.py file on the Frontera's NVIDIA GPUs.
 
