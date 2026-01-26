@@ -1,10 +1,56 @@
+# PyTorch with Python Virtual Environments (venv)
+
+This page documents how to run the PyTorch multi-GPU sanity test inside a Python virtual environment created with `venv`.
+
+------------------------------------------------------------------------
+
+## Workflow Summary
+
+1.  Create a virtual environment in `$SCRATCH`
+2.  Activate the environment inside `idev`
+3.  Install PyTorch
+4.  Clone the examples repository
+5.  Run `torchrun`
+
+
+### Create the Environment in `$SCRATCH`
+
+    cd $SCRATCH
+    python3 -m venv pytorch-venv
+
+
+### Activate the Environment
+
+    source pytorch-venv/bin/activate
+
+
+### Install PyTorch
+
+    pip install torch torchvision torchaudio
+
+### Clone the Examples Repository
+
+    git clone https://github.com/pytorch/examples.git
+
+### Run the Sanity Test
+
+    cd examples/distributed/ddp-tutorial-series
+    torchrun --standalone --nproc_per_node=gpu multigpu_torchrun.py 5 10
+
+### Expected Output
+
+Successful execution will display rank assignments and training progress for each GPU.
+
+
+-------
+
+
 # Virtual Environments at TACC/Environment Management Tools
 
 This section provides an overview of three common software tools that are used to manage dependcies and environments. Python virtual environments, conda, and containers all offer different ways of creating an isolated place on your machine where you can install specific versions of software. This enables users to work on multiple projects on the same machine without worrying about mismatches in software depencies between projects.  
 
 
 ## Virtual Environments
-
 
 A python virtual environment, often referred to as a "venv", installs all python packages into a specific target folder on your machine. When you "activate" the environment all of the installed packages are made visible to your python installation.  Under the hood, virtual environments are controlling your system variables (e.g. PATH) to manage where software is installed and in which directories programs like python look for installed packages. 
 

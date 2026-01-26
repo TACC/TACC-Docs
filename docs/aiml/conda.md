@@ -1,4 +1,9 @@
-# Overview of Conda at TACC
+# PyTorch with User-Installed Conda
+
+## Conda Intro
+
+This page documents how to run the PyTorch multi-GPU sanity test using a Conda environment installed in `$SCRATCH`.
+
 
 Conda is a powerful package manager and environment management tool, widely used in data science and machine learning to manage dependencies and create isolated environments for different projects. This guide will walk you through the steps to install Conda on your system.
 
@@ -15,33 +20,29 @@ Let's start by discussing the best way to use conda outside of a container
 
 If we are using conda outside of a container, some thought needs to go into where to place it on our file systems (HOME, WORK, or SCRATCH).  No location is perfect– here are pros and cons of each:
 
-* **HOME** : Generally, you should not place conda in HOME unless the environment you build is very small due to the small disk quota in HOME. 
 * **SCRATCH** : In terms of optimizing the I/O that takes place with conda, SCRATCH  is the correct location.  Unfortunately since SCRATCH can be purged, storing conda environments here is non-ideal.
-* **WORK** : Conda environments should NOT be run from WORK as it can overload the file system for all users. If you are transfering or storing a conda environment on WORK, please copy it to SCRATCH before activating it.
 
 For large conda environments, moving the conda environment into a container can reduce the file I/O overhead.  Next, let's take a look at an example of where we use miniforge within a container to build an environment. 
 
 
-## Install Conda
+## Workflow Summary
 
-!!! important
-	It is best practice to build conda environments in the $SCRATCH directory because conda can overload the file system when using $WORK  and $HOME does not have the storage space for ML tasks. It is important to note that on $SCRATCH your environment is subject to being purged.  Care should be taken to back up the environments you build on $WORK. 
+1. create idev session
+1.  Install Miniforge in `$SCRATCH`
+2.  Create a PyTorch Conda environment
+4.  Clone the examples repository
+5.  Run `torchrun`
 
-Chris Ramos: To avoid any kind of interruption to your access I recommend running on the safe side and using an idev session to install conda packages. Your conda env should be available across all systems with access to $WORK since it is containerized. I was able to test this in my own account and was successful on LS6 and S3. 
-SDL conda activity  must be performed within an idev session and scratch directory
+### Install Conda in `$SCRATCH`
 
+Download and install Miniforge:
 
-Need workflow: do we transfer / copy the venvs back and forth from SCRATCH
-All actions to be performed within an idev session?
+    cd $SCRATCH
+    curl -LO https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh
+    bash Miniforge3-Linux-x86_64.sh
 
-
-Computer Resource | single-node GPU idev command | gpus per node
--- | -- | --
-Frontera | idev -N 1 -n 1 -p rtx-dev -t 02:00:00 | X
-Stampede3| h100 | X
-Vista | idev yada | X
-Lonestar6 | idev yada | X
-
+---
+Install Conda
 
 1. Grab a GPU node using TACC's `idev` utility: 
 
@@ -53,7 +54,6 @@ Lonestar6 | idev yada | X
 	When you request a node through idev, you will see a status update print to the terminal while your job is waiting in the queue. After your idev session starts, your terminal session will automatically be connected to the node you requested. Once connected, you should see your terminal prompt change to the node name:
 
 		c196-012[rtx](416)$
-
 
 1. Install MiniForge - the Conda installer
 
@@ -78,6 +78,26 @@ Lonestar6 | idev yada | X
 
 	After running the bash script, it will ask you to update your shell profile to automatically initialize conda. **Type ‘yes'.**
 
+### Create and Activate Environment
+
+    conda create -n pytorch python=3.10
+    conda activate pytorch
+
+### Install CUDA-enabled PyTorch
+
+    conda install pytorch torchvision torchaudio pytorch-cuda=12.6 -c pytorch -c nvidia
+
+### Clone the Examples Repository
+
+    git clone https://github.com/pytorch/examples.git
+
+### Run the Sanity Test
+
+    cd examples/distributed/ddp-tutorial-series
+    torchrun --standalone --nproc_per_node=gpu multigpu_torchrun.py 5 10
+
+
+------
 1. Initialize Conda
 
 	After installation, initialize Conda to configure your shell:
