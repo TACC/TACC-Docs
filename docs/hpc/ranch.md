@@ -1,5 +1,5 @@
 # Ranch User Guide
-*Last update: September 23, 2025*
+*Last update: January 26, 2025*
 
 ## Notices { #notices } 
 
@@ -7,10 +7,6 @@
 	**09/24/2025**: As part of a year-long Ranch system replacement, all Ranch users are required to migrate their own or their project's data from the "Old Ranch" to the "New Ranch" system.
 
 	Consult the [Ranch Data Migration Guide](../../hpc/ranch-migration-2025) for important information and directions.. 
-
-
-!!! important
-	**09/24/2025**: This user guide is in progress as Ranch transitions to its new self.
 
 
 ## Introduction { #intro }
@@ -38,11 +34,11 @@ Since we support open science, data stored in Ranch are NOT supposed to be sensi
 
 ### System Configuration { #intro-configuration }
 
-The 2025 Ranch system has a 4PB flash front end disk system from Dell, with a 16PB Dell ECS storage system for files we want to remain on disk, and two Spectra Logic 15 frame TFinity tape libraries for back end storage. We currently have 20 LTO-9 tape drives, but we will swap in 16 LTO-10 drives in the near future. The front end flash system has Versity’s ScoutFS (SCale-OUT File System) filesystem on it. The archive management is done by Versity’s ScoutAM (SCale-OUT Archival Manager) product. 
+The 2025 Ranch system has a 4PB flash front end disk system from Dell, with a 16PB Dell ECS storage system for files we want to remain on disk, and two Spectra Logic 15 frame TFinity tape libraries for back end storage. We currently have 20 LTO-9 tape drives, but we will swap in 16 LTO-10 drives in the near future. The front end flash system has Versity's ScoutFS (SCale-OUT File System) filesystem on it. The archive management is done by Versity's ScoutAM (SCale-OUT Archival Manager) product. 
 
-The 2019 to 2025 Ranch system ("Old Ranch"), which is being replaced, has a frontend DDN SFA14K DCR (Declustered RAID) storage system, which is managed by Quantum’s StorNext file system. The raw capacity is approximately 30PB, of which 17PB is user-facing. File metadata is stored on a Quantum SSD-based appliance. The back-end tape library, to which files automatically migrate after they have been inactive (neither modified nor accessed) on disk for a period of time, is a Quantum Scalar i6000, with 24 LTO-8 tape drives. Each tape has an uncompressed capacity of approximately 12.5TB.
+The 2019 to 2025 Ranch system ("Old Ranch"), which is being replaced, has a frontend DDN SFA14K DCR (Declustered RAID) storage system, which is managed by Quantum's StorNext file system. The raw capacity is approximately 30PB, of which 17PB is user-facing. File metadata is stored on a Quantum SSD-based appliance. The back-end tape library, to which files automatically migrate after they have been inactive (neither modified nor accessed) on disk for a period of time, is a Quantum Scalar i6000, with 24 LTO-8 tape drives. Each tape has an uncompressed capacity of approximately 12.5TB.
 
-The previous iteration of the Ranch system was based on Oracle’s HSM software, with two SL8500 libraries, each with 20,000 tape slots. This Oracle system will remain as a legacy system while we migrate relevant data from Oracle HSM to the new Quantum environment.
+The previous iteration of the Ranch system was based on Oracle's HSM software, with two SL8500 libraries, each with 20,000 tape slots. This Oracle system will remain as a legacy system while we migrate relevant data from Oracle HSM to the new Quantum environment.
 
 ## System Access { #access }
 
@@ -73,7 +69,7 @@ The best way to bundle files is to use the UNIX `tar` or `gtar` commands to crea
 !!! tip
 	From careful auditing of past performance (predominantly the total retrieval time for a given data set until completion), we strongly recommend an average file size within Ranch of between 300GB to 4TB.
 
-Users should be using `tar` or `gtar` to achieve file sizes in this range before placing them in Ranch.  Manipulating smaller files will detrimentally affect performance during both storage and retrieval.  For example, retrieval time of a 120TB data set comprised of `tar` files of 300GB can be an order of magnitude faster, or more, than the retrieval of the same data stored in its original form as individual files of 1GB or less.
+Users should employ the  `tar` or `gtar` utilities to achieve file sizes in this range before placing them in Ranch.  Manipulating smaller files will detrimentally affect performance during both storage and retrieval.  For example, retrieval time of a 120TB data set comprised of `tar` files of 300GB can be an order of magnitude faster, or more, than the retrieval of the same data stored in its original form as individual files of 1GB or less.
 
 The new Versity-based environment is designed to meet the demand of retrieving multi-TB to PB-sized data sets in hours or days, rather than in weeks, which is possible only when the data set is stored into files with an average file size set optimally as described above.
 
@@ -103,13 +99,19 @@ It is your responsibility to keep the file count below the 50,000 quota by using
 
 ### Monitor your Disk Usage and File Counts { #organizing-quotas }
 
-Users can check their current and historical Ranch usage by looking at the contents of the `HSM_usage` file in their Ranch user directory. Note that this file contains quota, on-disk, and on-tape, usage information for the directory it is in and all those beneath it.
+Users can check their current filesystem usage with the following command:
+
+```cmd-line
+ranch$ samcli quota use -H
+```
+
+Users can examine their historical Quantum Ranch usage by looking at the contents of the `HSM_usage` file in their OldRanchData directory. Note that this file contains quota, on-disk, and on-tape, usage information for the directory it is in and all those beneath it.
 
 ```cmd-line
 ranch$ tail ~/HSM_usage
 ```
 
-This file is updated nightly.  Each entry also shows the date and time of its update. **Do not delete or edit this file.**  Note that the format of the file has changed over time, and may again as necessary, to provide better information and improved readability for users.
+Each entry also shows the date and time of its update. **Do not delete or edit this file.**  Note that the format of the file has changed over time, and may again as necessary, to provide better information and improved readability for users.
 
 
 ## Ranch "Project" Storage { #projects }
