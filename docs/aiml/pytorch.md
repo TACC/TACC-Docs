@@ -1,17 +1,3 @@
-```{=html}
-<!-- ## Purpose of This Guide
-
-These pages focus on validating:
-
--   GPU visibility inside user environments
--   CUDA correctness
--   NCCL/DDP communication
--   `torchrun` launcher functionality
--   Filesystem access from compute nodes
-
-This workload is a **sanity test**, not a benchmark or production
-training run. -->
-```
 # PyTorch at TACC
 
 PyTorch is a Python framework for machine and deep learning. It is built upon the torch library and also provides a C++ interface. It supports CPU and GPU execution for single-node and multi-node systems. 
@@ -24,15 +10,17 @@ This documentation describes how to run a PyTorch multi-GPU sanity test (`multig
 * User-installed Conda environments
 * Containers via Apptainer
 
+This workload is a **sanity test**, not a benchmark or production training run. 
+
 ## Python Virtual Environments (venv)
 
 A python virtual environment, often referred to as a "venv", installs all python packages into a specific target folder on your machine. When you "activate" the environment all of the installed packages are made visible to your python installation. Under the hood, virtual environments are controlling your system variables (e.g. `$PATH`) to manage where software is installed and in which directories programs like python look for installed packages.
 
 ### Key Features
 
--   **Lightweight**: Unlike Conda or containers, virtual environments in Python only manage Python libraries, which can make them simpler and faster to set up.
--   **No System-Level Dependencies**: Virtual environments do not handle non-Python system libraries or software dependencies.
--   **Ideal for Small Projects**: Best suited for smaller projects where only Python dependencies need to be isolated, without the complexity of managing other tools.
+* **Lightweight**: Unlike Conda or containers, virtual environments in Python only manage Python libraries, which can make them simpler and faster to set up.
+* **No System-Level Dependencies**: Virtual environments do not handle non-Python system libraries or software dependencies.
+* **Ideal for Small Projects**: Best suited for smaller projects where only Python dependencies need to be isolated, without the complexity of managing other tools.
 
 ## Conda
 
@@ -40,8 +28,8 @@ Conda is similar to python virtual environments except that it can also install 
 
 ### Key Features
 
--   **Versatility**: Allows the installation of both Python and non-Python packages.
--   **Cross-Language Support**: Supports a variety of programming languages- not just Python!
+* **Versatility**: Allows the installation of both Python and non-Python packages.
+* **Cross-Language Support**: Supports a variety of programming languages- not just Python!
 
 The way conda manages files is not optimized for use on HPC systems owing to the distributed and shared nature of HPC data storage. If you would like to use Conda, view our tutorial on [How to Install Conda](\ai_environments_at_tacc\docs\getting_starting_section\How%20to%20Install%20Conda.rst) for use on our systems as well as our advanced Conda section. This will give examples of various ways to install conda on our system to get the best performance.
 

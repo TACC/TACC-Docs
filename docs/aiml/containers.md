@@ -1,15 +1,13 @@
 # PyTorch with Containers (Apptainer)
 **Last update: January 26, 2026**
 
-This page documents how to run the PyTorch multi-GPU sanity test inside an Apptainer container on TACC systems. Here we will pulled a PyTorch image from Docker Hub and run a Python script within an Apptainer container. Need more- what are we doing? conducting a sanity test Running an example DDP training model within a Pytorch container on TACC's Vista compute resource.
-
-Set up a GPU-enabled Pytorch container on TACC's Vista compute resource.  Run the benchmark `multigpu_torchrun.py` testing script.
+This page documents how to run the PyTorch multi-GPU sanity test inside an Apptainer container on TACC systems. We will pull a PyTorch image from Docker Hub and run a Python script within an Apptainer container.  Set up a GPU-enabled Pytorch container on one of TACC's HPC compute resources.  Run the benchmark `multigpu_torchrun.py` testing script.
 
 ### Notes
 
--   Always run containers from `$SCRATCH`
--   Use `--nv` for GPU access
--   Adjust `--nproc_per_node` to match GPUs allocated
+*  Always run containers from `$SCRATCH`
+*  Use `--nv` for GPU access
+*  Adjust `--nproc_per_node` to match GPUs allocated
 
 
 ## Detailed Instructions
@@ -24,8 +22,7 @@ Set up a GPU-enabled Pytorch container on TACC's Vista compute resource.  Run th
 
     Always use the `$SCRATCH` systen, not `$WORK` First, we will download some test data to run a simple ML task on. Clone the examples library from the official Pytorch Github repository by running:
 
-         login1$ git clone https://github.com/pytorch/examples.git
-
+         prompt$ git clone https://github.com/pytorch/examples.git
 
 3.  Pull a Prebuilt PyTorch Docker Image
 
@@ -43,13 +40,9 @@ Set up a GPU-enabled Pytorch container on TACC's Vista compute resource.  Run th
 
 4.  Run training code/sanity test on GPU
 
-    What exactly are we running - one node, multiple GPUs per node DDP Distributed Data Parallel - we are running a training script.  Single-Node, Multi-GPU training
-
     Execute the multigpu training script within our Pytorch container with the following command:.
 
-    It is important to note in the command below that apptainer will only recognize the presence of a GPU by passing the apptainer command the `--nv` flag.
-
-         c123-456$$ apptainer exec --nv output.sif torchrun --nproc_per_node=<GPU_COUNT> examples/distributed/ddp-tutorial-series/multigpu_torchrun.py 50 10 
+         prompt$ apptainer exec --nv output.sif torchrun --nproc_per_node=<GPU_COUNT> examples/distributed/ddp-tutorial-series/multigpu_torchrun.py 50 10 
 
     Examine the terminal's output to check for any issues or errors.
 

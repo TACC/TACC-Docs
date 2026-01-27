@@ -1,4 +1,5 @@
 # PyTorch with User-Installed Conda
+**Last update: January 26, 2026**
 
 In this tutorial, you used idev to request a GPU node to work on, installed and used Conda to create a virtual environment, installed Pytorch in a virtual environment, and then ran an example script using multiple GPUs for AI/ML training tasks and benchmarking. Run a successful multi-GPU training task in a Conda environment. This script facilitates and streamlines the training of ML models on multiple GPUs, as well as benchmarks the performance of Pytorch-based models on multiple GPUs.
 
@@ -13,11 +14,11 @@ Conda-Forge is a comunity-driven repository of Conda packages.  Mini-Forge is a 
 * Installed on TACC's file systems
 * Installed inside of a container
 
-## Where to Install Conda
+Using Conda at TACC in a performant way can be tricky. The reason for this is that large conda environments, containing many thousands of files, can cause issues with the TACC system-wide `$WORK` (Lustre) file system.  For this reason, you must run all computational models in the SCRATCH file system.
 
-Using Conda at TACC in a performant way is tricky. The reason for this is that large conda environments, containing many thousands of files, can cause issues with the TACC system-wide `$WORK` (Lustre) file system.  In this tutorial we will discuss a few options you have for how to use conda on our systems in a way that avoids these issues. In general, there are two ways to use conda:
 
-**SCRATCH** : In terms of optimizing the I/O that takes place with conda, SCRATCH is the correct location. Unfortunately since SCRATCH can be purged, storing conda environments here is non-ideal.  See the [Backing up/Workflow](pytorch.md) section.
+!!!common tip
+	**SCRATCH** : In terms of optimizing the I/O that takes place with conda, SCRATCH is the correct location. Unfortunately since SCRATCH can be purged, storing conda environments here is non-ideal.  See the [Backing up/Workflow](pytorch.md) section.
 
 
 ## Detailed Steps
@@ -37,68 +38,60 @@ Using Conda at TACC in a performant way is tricky. The reason for this is that l
 
 2.  Create a PyTorch Conda environment
 
-         conda create -n pytorch python=3.10
-         conda activate pytorch
-
-    Initialize Conda
-
-    After installation, initialize Conda to configure your shell:
-
-         conda init
-
-    Restart your terminal for the changes to take effect.
-
-    Verify the Installation
-
-    Confirm that Conda is installed by running:
-
-         conda --version
-
-    This should display the installed Conda version.
-
-3.  Install Pytorch in Conda Environment
-
-    To install Pytorch in our new Conda environment running in a single rtx node idev session- run the following Conda command in the environment:
-
-    We will need to install Cuda to run the multigpu_torchrun.py file on Frontera's NVIDIA GPUs.
-
-         conda install pytorch torchvision torchaudio pytorch-cuda=12.6 -c pytorch -c nvidia
-
-4.  Create a Conda Environment
-
     We can now create our first Conda Environment. Create a **Python 3.10** environment to ensure it works with CUDA by running the command:
 
-        conda create --name pytorch_env python=3.10
+        prompt$ conda create --name mypytorchvenv python=3.10
 
     Upon creation, the terminal should prompt you with a series of yes/no questions pertaining to the libraries that Conda will automatically install in the environment.
 
     Once the environment is created, **activate** it with:
 
-        conda activate pytorch_environment
+        prompt$ conda activate mypytorchvenv
 
     Once the environment is properly activated, your working directory should look like:
 
-        (pytorch_env) c196-012[rtx](418)$
+        (mypytorchenv) c196-012[rtx](418)$
 
-5.  Clone the Pytorch Examples Repository
+
+    After installation, initialize Conda to configure your shell:
+
+         prompt$ conda init
+
+    Restart your terminal for the changes to take effect.
+
+    Verify the Installation Confirm that Conda is installed by running:
+
+         prompt$ conda --version
+
+    This should display the installed Conda version.
+
+1.  Install Pytorch in Conda Environment
+
+    To install Pytorch in our new Conda environment 
+
+    Now install Cuda to run the `multigpu_torchrun.py` training set: 
+
+         conda install pytorch torchvision torchaudio pytorch-cuda=12.6 -c pytorch -c nvidia
+
+1.  Clone the Pytorch Examples Repository
 
     This is an official repository containing dozens of example scripts from the Pytorch library. For the purposes of this tutorial, we will be cloning it into our new environment.
 
         git clone https://github.com/pytorch/examples.git
 
-6.  CD into the ddp tutorial series folder
+1.  CD into the ddp tutorial series folder
 
     Upon listing all of the directories now present in the **\$SCRATCH** folder, we should now see a new directory called **examples**.
 
          cd examples/distributed/ddp-tutorial-series
 
-7.  Run the Sanity Test
+1.  Run the Sanity Test
 
     Now that we have requested a specific number of GPU nodes to use with idev and created a Conda environment with Pytorch, we can try running an example script where we ensure that our environment works for multi-GPU training- a task with many applications in ML/AI in HPCs.
 
     By downloading and running a python script from the official Pytorch repository called **multigpu_torchrun.py**, we can enable single training jobs to utilize multiple GPUs on a machine.
 
-    And within our virtual environment, we will use the **torchrun** command to launch the training script across all of the available nodes (1).
+    And within our virtual environment, we will use the `torchrun` command to launch the training script across all of the available nodes.
 
         torchrun --standalone --nproc_per_node=<GPU_COUNT> multigpu_torchrun.py 5 10
         cd examples/distributed/ddp-tutorial-series
@@ -112,14 +105,14 @@ Using Conda at TACC in a performant way is tricky. The reason for this is that l
     .. image:: images/multigpu_result.png
     :alt: multigpu_result
 -->
+
 ## Refs
 
--   For more information about multi-GPU training, see the following
-    documentation: [Distributed Data Parallel in
-    Pytorch](https://pytorch.org/tutorials/beginner/ddp_series_intro.html)
--   [Conda documentation](https://docs.conda.io/)
+* For more information about multi-GPU training, see the following documentation: [Distributed Data Parallel in Pytorch](https://pytorch.org/tutorials/beginner/ddp_series_intro.html)
+* [Conda documentation](https://docs.conda.io/)
 
 
+<!--
 
 ## Creating and Managing Conda Environments
 
@@ -137,7 +130,7 @@ Once Conda is installed, you can start creating and managing environments using 
 3.  Remove an environment
 
          c123-4456$ conda remove --name myenv --all
-
+-->
 
 <!--
 ## OPTIONAL: Export Environment & Manage Dependencies with a YAML file

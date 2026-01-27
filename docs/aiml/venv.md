@@ -11,8 +11,17 @@ training tasks across GPUs, allowing for a more efficient runtime.
 
 The multigpu_torchrun.py script can be found in the github repository below: <https://github.com/pytorch/examples>
 
-## Synopsis
+## Quickstart (venv)
 
+1. Create a virtual environment in `$SCRATCH`.
+1. Activate it.
+1. Install PyTorch.
+1. Clone the PyTorch examples repository.
+1. Change into the DDP tutorial directory.
+1. Run:
+
+   torchrun --standalone --nproc_per_node=<GPU_COUNT> multigpu_torchrun.py 5 10
+1. Deactivate when finished.
 
 ## Detailed Instructions
 
@@ -20,7 +29,7 @@ Virtual environments are essential for isolating project dependencies and ensuri
 
 !!! important 
 
-1.  Create and Activate a Python Virtual Environment { #pythonvenv }
+1.  Create and Activate a Python Virtual Environment 
 
     Create the Environment in `$SCRATCH`
 
