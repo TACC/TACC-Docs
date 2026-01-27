@@ -62,9 +62,10 @@ nav:
     - Stallion: hpc/stallion.md
     - Vista: hpc/vista.md
   - Machine Learning:
-    - Virtual Environments : aiml/venvs.md
-    - Containers: aiml/containers.md
+    - PyTorch at TACC : aiml/pytorch.md
     - Conda/Pytorch: aiml/conda.md
+    - Containers: aiml/containers.md
+    - Virtual Environments : aiml/venv.md
   - Software Packages:
     - AlphaFold2 : software/alphafold.md
     - AlphaFold3 : software/alphafold3.md
