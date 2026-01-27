@@ -1,17 +1,3 @@
-# PyTorch with Python Virtual Environments (venv)
-
-A python virtual environment, often referred to as a "venv", installs all python packages into a specific target folder on your machine. When you "activate" the environment all of the installed packages are made visible to your python installation.  Under the hood, virtual environments are controlling your system variables (e.g. `$PATH`) to manage where software is installed and in which directories programs like python look for installed packages. 
-
-**Key Features**  
-
-* **Lightweight**: 
-   Unlike Conda or containers, virtual environments in Python only manage Python libraries, which can make them simpler and faster to set up.
-* **No System-Level Dependencies**: 
-   Virtual environments do not handle non-Python system libraries or software dependencies.
-* **Ideal for Small Projects**: 
-   Best suited for smaller projects where only Python dependencies need to be isolated, without the complexity of managing other tools.
-
-
 
 This page documents how to run the PyTorch multi-GPU sanity test inside a Python virtual environment created with `venv`.
 
