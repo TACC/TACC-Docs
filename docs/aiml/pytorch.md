@@ -106,13 +106,23 @@ Need workflow: do we transfer / copy the venvs back and forth from SCRATCH
 All actions to be performed within an idev session?
 --> 
 
-<!-- 
-this is Chat-GPT and incorrect 
-### GPU Verification
+### Prompt meanings
 
-		nvidia-smi
-		python - << EOF
-		import torch
-		print(torch.cuda.device_count())
-		EOF
--->
+Table x. 
+
+Prompt | location/meaning
+-- | --
+`login1$` | activities performed on a login node
+`c123-456$` | activities performed within an idev session
+`localhost$` | activites on your laptop/desktop
+
+
+## Virtual Environments with Pytorch { venv-pytorch }
+
+This is a general guide to pytorch on TACC resources,  Frontera, LS6 and Vista and Stampede3.  See each resource's respective user guide for more advanced usage.
+
+* [Vista - ml](http://docs.tacc.utexas.edu/hpc/vista#ml)
+* [Stampede3 - pytorch](http://docs.tacc.utexas.edu/hpc/stampede3#ml)
+* [Frontera - pytorch](http://docs.tacc.utexas.edu/hpc/frontera#ml)  no point updating this?
+* [Lonestar6 - pytorch](http://docs.tacc.utexas.edu/hpc/lonestar6#ml)
+

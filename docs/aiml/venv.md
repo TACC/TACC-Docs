@@ -9,16 +9,42 @@ This page documents how to run the PyTorch multi-GPU sanity test inside a Python
 4.  Clone the examples repository
 5.  Run `torchrun`
 
+a;lskdjfl;askdjf;laskdfj
 
-### Create the Environment in `$SCRATCH`
+1. Create and Activate a Python Virtual Environment { #pythonvenv }
+	Create the Environment in `$SCRATCH`
 
     cd $SCRATCH
     python3 -m venv pytorch-venv
 
-### Activate the Environment
+	Virtual environments are essential for isolating project dependencies and ensuring compatibility across different projects. This guide explains how to create a virtual environment using Python's built-in `venv` module on TACC compute resources.
 
-    source pytorch-venv/bin/activate
+Once logged into one of TACC's compute resources.
 
+	Create environment
+
+	Run this command to create a virtual environment. You can replace `myenv` with whatever you want to name your virtual environment.
+
+		python3 -m venv myenv
+
+	Verify the Creation
+
+	After running the command, a new directory (e.g., `myenv`) will be created in your current location. This directory contains the files needed for the virtual environment.
+
+		(base) UserName@System myenv % ls
+		bin		include		lib		pyvenv.cfg
+
+
+1. Activate the environment
+
+		source myenv/bin/activate
+    	source pytorch-venv/bin/activate
+
+	Upon activation, you should see parentheses around the name of your environment appear in front of your working directory:
+
+		(myenv) login3.frontera(470)$
+
+	If the `activate` command is not recognized, ensure you’re in the correct directory where the virtual environment was created.
 
 ### Install PyTorch
 
@@ -37,45 +63,7 @@ This page documents how to run the PyTorch multi-GPU sanity test inside a Python
 
 Successful execution will display rank assignments and training progress for each GPU.
 
-## Create and Activate a Python Virtual Environment { #pythonvenv }
-
-Virtual environments are essential for isolating project dependencies and ensuring compatibility across different projects. This guide explains how to create a virtual environment using Python's built-in `venv` module on TACC compute resources.
-
-Once logged into one of TACC's compute resources.
-
-1. Create environment
-
-	Run this command to create a virtual environment. You can replace `myenv` with whatever you want to name your virtual environment.
-
-		python3 -m venv myenv
-
-2. Verify the Creation
-
-	After running the command, a new directory (e.g., `myenv`) will be created in your current location. This directory contains the files needed for the virtual environment.
-
-		(base) UserName@System myenv % ls
-		bin		include		lib		pyvenv.cfg
-
-3. Activate the environment
-
-		source myenv/bin/activate
-
-	Upon activation, you should see parentheses around the name of your environment appear in front of your working directory:
-
-		(myenv) login3.frontera(470)$
-
-	If the `activate` command is not recognized, ensure you’re in the correct directory where the virtual environment was created.
-
-
-### Understanding the Structure
-
-The virtual environment directory contains:
-
-directory | contains
--- | --
-**`bin` or `Scripts`**| Contains the executables, including the Python interpreter.
-**`lib`**| Includes the standard library and site packages for your virtual environment.
-**`pyvenv.cfg`**| Configuration file for the virtual environment.
+----
 
 
 ### Deactivating a Virtual Environment
@@ -88,15 +76,6 @@ When you're done working in your virtual environment, you can deactivate it to r
 
 2. You’ll notice the environment name disappears from your command line, confirming the environment has been deactivated.
 
-
-## Virtual Environments with Pytorch { venv-pytorch }
-
-This is a general guide to pytorch on TACC resources,  Frontera, LS6 and Vista and Stampede3.  See each resource's respective user guide for more advanced usage.
-
-* [Vista - ml](http://docs.tacc.utexas.edu/hpc/vista#ml)
-* [Stampede3 - pytorch](http://docs.tacc.utexas.edu/hpc/stampede3#ml)
-* [Frontera - pytorch](http://docs.tacc.utexas.edu/hpc/frontera#ml)  no point updating this?
-* [Lonestar6 - pytorch](http://docs.tacc.utexas.edu/hpc/lonestar6#ml)
 
 
 PyTorch is a Python framework for machine and deep learning. It is built upon the torch library and also provides a C++ interface. It supports CPU and GPU execution for single-node and multi-node systems.
@@ -136,14 +115,14 @@ The multigpu_torchrun.py script can be found in the github repository below: <ht
 	This is how you will know your idev session has begun. **Ensure you see the (myenv) tag before your working directory. If you do not, activate your virtual environment again.** 
 
 
-8. Install Pytorch into our Virtual Environment**
+1. Install Pytorch into our Virtual Environment**
 
 	<!-- To run multigpu_torchrun, we will need to install pytorch.--> 
 	Run the following pip command inside of your virtual environment:
 
     	pip3 install torch torchvision torchaudio
 
-9. CD into the ddp tutorial series folder**
+1. CD into the ddp tutorial series folder**
 
 	We should now see a new directory called **examples** present in our virtual environment.  **cd** into the following directory:
 
@@ -151,7 +130,7 @@ The multigpu_torchrun.py script can be found in the github repository below: <ht
 
 		<!-- *This will be a hidden directory.* -->
 
-10. Run multigpu_torchrun.py**
+1. Run multigpu_torchrun.py**
 
 	And within our virtual environment, we will use the **torchrun** command to launch the training script across all of the available nodes (1).
 
@@ -167,4 +146,14 @@ The multigpu_torchrun.py script can be found in the github repository below: <ht
 .. note::
     The task may take a few minutes to run.
 
+
+### Understanding the Structure
+
+The virtual environment directory contains:
+
+directory | contains
+-- | --
+**`bin` or `Scripts`**| Contains the executables, including the Python interpreter.
+**`lib`**| Includes the standard library and site packages for your virtual environment.
+**`pyvenv.cfg`**| Configuration file for the virtual environment.
 
