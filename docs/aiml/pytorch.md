@@ -1,5 +1,17 @@
 # PyTorch at TACC
 
+
+# Testing Matrix
+
+<table border="1">
+<tr><th>&nbsp;</th><th colspan="3">Environment</th></tr>
+<tr><th>Resource</th><th>Python venv</th><th>Conda</th><th>Containers</th></tr>
+<tr><td>Vista</td><td><a href="https://docs.tacc.utexas.edu/hpc/vista/#ml">XX</a></td><td>XXX</td><td>XXX</td>
+<tr><td>Frontera</td><td>XXX</td><td>XXX</td><td>XXX</td>
+<tr><td>Stampede3</td><td>XXX</td><td>XXX</td><td>XXX</td>
+<tr><td>Lonestar6</td><td>XXX</td><td>XXX</td><td>XXX</td>
+</table>
+
 PyTorch is a Python framework for machine and deep learning. It is built upon the torch library and also provides a C++ interface. It supports CPU and GPU execution for single-node and multi-node systems. 
 
 This section provides an overview of three common software tools that are used to manage dependcies and environments. Python virtual environments, conda, and containers all offer different ways of creating an isolated place on your machine where you can install specific versions of software. This enables users to work on multiple projects on the same machine without worrying about mismatches in software depencies between projects.
@@ -63,7 +75,8 @@ Compute Resource  | single-node GPU `idev` invocation                | GPUs per 
 Frontera          | `idev -N 1 -n 1 -m 120 -p rtx-dev`               | X
 Stampede3         | `idev -N 1 -n 1 -m 120 -p xxxxx`                 | X
 Vista             | `idev -N 1 -n 1 -m 120 -p gh-dev`                | X
-Lonestar6         | `idev -N 1 -n 1 -m 120 -p xxxxx`                 | X
+Lonestar6         | `idev -N 1 -n 1 -m 120 -p gpu-a100-dev`          | X
+idev -N 1 -n 1 -p -m 120
 
 
 ## `idev` Instructions 

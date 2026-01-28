@@ -18,9 +18,7 @@ The multigpu_torchrun.py script can be found in the github repository below: <ht
 1. Install PyTorch.
 1. Clone the PyTorch examples repository.
 1. Change into the DDP tutorial directory.
-1. Run:
-
-   torchrun --standalone --nproc_per_node=<GPU_COUNT> multigpu_torchrun.py 5 10
+1. Run: `torchrun --standalone --nproc_per_node=<GPU_COUNT> multigpu_torchrun.py 5 10`
 1. Deactivate when finished.
 
 ## Detailed Instructions
@@ -29,36 +27,20 @@ Virtual environments are essential for isolating project dependencies and ensuri
 
 !!! important 
 
-1.  Create and Activate a Python Virtual Environment 
+1.  Create a Python virtual environment 
 
-    Create the Environment in `$SCRATCH`
+		c123-456$$ cd $SCRATCH
+		c123-456$$ python3 -m venv mypytorchvenv
 
-    	prompt$ cd $SCRATCH
-	 	prompt$ python3 -m venv pytorch-venv
+1.  Activate the virtual environment
 
-    Create environment
+		c123-456$ source mypytorchenv/bin/activate
 
-    Run this command to create a virtual environment. You can replace `myenv` with whatever you want to name your virtual environment.
+	Upon activation, you should see parentheses around the name of your environment appear in front of your working directory:
 
-        prompt$ python3 -m venv myenv
+		(mypytorchenv) c123-456[gh](117)$
 
-    Verify the Creation
-
-    After running the command, a new directory (e.g., `myenv`) will be created in your current location. This directory contains the files needed for the virtual environment.
-
-        (base) UserName@System myenv % ls
-        bin     include     lib     pyvenv.cfg
-
-1.  Activate the environment
-
-         prompt$ source myenv/bin/activate
-         prompt$ source pytorch-venv/bin/activate
-
-    Upon activation, you should see parentheses around the name of your environment appear in front of your working directory:
-
-         (myenv) login3.frontera(470)$
-
-    If the `activate` command is not recognized, ensure you're in the correct directory where the virtual environment was created.
+	If the `activate` command is not recognized, ensure you're in the correct directory where the virtual environment was created.
 
 1. Install Pytorch into our Virtual Environment
 
@@ -102,6 +84,13 @@ When you're done working in your virtual environment, you can deactivate it to r
 	You'll notice the environment name disappears from your command line, confirming the environment has been deactivated.
 
 <!--
+	Verify the Creation
+
+    After running the command, a new directory (e.g., `myenv`) will be created in your current location. This directory contains the files needed for the virtual environment.
+
+        (base) UserName@System myenv % ls
+        bin     include     lib     pyvenv.cfg
+
 ### Understanding the Directory Structure
 
 The virtual environment directory contains:
