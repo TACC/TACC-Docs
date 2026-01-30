@@ -8,7 +8,7 @@ Quantum Espresso (QE) is an integrated suite of open-source codes for electronic
 
 ## Installations { #installations }
 
-The latest QE stable release is installed on TACC's [Stampede3][TACCSTAMPEDE3UG], [Lonestar6][TACCLONESTAR6UG] and [Frontera][TACCFRONTERAUG] systems. Use `module` commands to load the latest installed version by default, and to list all installed versions.  
+The latest QE stable release is installed on TACC's [Frontera][TACCFRONTERAUG], [Stampede3][TACCSTAMPEDE3UG], [Lonestar6][TACCLONESTAR6UG], and [Vista][TACCVISTAUG] systems. Use `module` commands to load the latest installed version by default, and to list all installed versions.  
 
 ``` cmd-line
 $ module load qe
@@ -20,9 +20,9 @@ $ module spider qe
 Quantum Espresso executables have many optional command line arguments described in the [user manual](http://www.quantum-espresso.org/resources/users-manual). QE users may run with their default settings usually with no problem. QE contains many packages and executables and `pw.x` is the most popular. 
 
 !!!tip
-	TACC staff strongly recommends you refer to the [Quantum Espresso documentation](http://www.quantum-espresso.org/resources/users-manual) to learn how to construct input files, and learn the correct and optimal way to run your codes.
+	TACC staff strongly recommend you refer to the [Quantum Espresso documentation](http://www.quantum-espresso.org/resources/users-manual) to learn how to construct input files and the correct, optimal way to run your codes.
 
-Use the following job scripts for Quantum Espresso runs on Stampede3, Lonestar6 and Frontera. 
+Use the following job scripts for Quantum Espresso runs on Lonestar6, Frontera, Stampede3, and Vista. 
 
 ### Sample Job Script: Lonestar6 { #jobscript-lonestar6 }
 
@@ -31,8 +31,8 @@ Use the following job scripts for Quantum Espresso runs on Stampede3, Lonestar6 
 #SBATCH -J qe                               # define the job name
 #SBATCH -o qe.%j.out                        # define stdout & stderr output files 
 #SBATCH -e qe.%j.err 
-#SBATCH -N 2                                # request 4 nodes 
-#SBATCH -n 256                              # 224 total tasks = 56 tasks/node
+#SBATCH -N 2                                # request 2 nodes 
+#SBATCH -n 256                              # 256 total tasks = 128 tasks/node
 #SBATCH -p normal                           # submit to "normal" queue 
 #SBATCH -t 4:00:00                          # run for 4 hours max 
 #SBATCH -A projectname
@@ -70,14 +70,30 @@ The script below submits a Quantum Espresso job to Stampede3's `skx` queue (SkyL
 #SBATCH -o qe.%j.out                        # define stdout & stderr output files 
 #SBATCH -e qe.%j.err 
 #SBATCH -N 4                                # request 4 nodes 
-#SBATCH -n 192                              # 224 total tasks = 56 tasks/node
-#SBATCH -p skx                              # submit to "normal" queue 
+#SBATCH -n 192                              # 192 total tasks = 48 tasks/node
+#SBATCH -p skx                              # submit to "skx" queue 
 #SBATCH -t 4:00:00                          # run for 4 hours max 
 #SBATCH -A projectname
 
 module load qe/7.3                          # setup environment
 ibrun pw.x -input qeinput > qe_test.out     # launch job
+```
 
+### Sample Job Script: Vista { #jobscript-vista }
+
+``` job-script
+#!/bin/bash 
+#SBATCH -J qe                               # define the job name
+#SBATCH -o qe.%j.out                        # define stdout & stderr output files 
+#SBATCH -e qe.%j.err 
+#SBATCH -N 2                                # request 2 nodes 
+#SBATCH -n 280                              # 280 total tasks = 140 tasks/node
+#SBATCH -p gg                               # submit to "gg" queue 
+#SBATCH -t 4:00:00                          # run for 4 hours max 
+#SBATCH -A projectname
+
+module load qe/7.3                          # setup environment
+ibrun pw.x -input qeinput > qe_test.out     # launch job
 ```
 
 ## References { #refs }
