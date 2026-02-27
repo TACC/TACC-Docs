@@ -4,7 +4,7 @@
 <!-- ![AlphaFold logo](../imgs/alphafold3-logo.png){ .align-right width="250" } -->
 <img src="../imgs/alphafold3-logo.png" width="250" alt="AlphaFold3 logo" class="align-right">
 
-AlphaFold3 is Google Deepmind's latest deep learning model for predicting the structure and interactions of biological macromolecules, including proteins, nucleic acids, small molecules, ions, and post-translational modifications. AlphaFold3 significantly expands the capabilities of AlphaFold2, offering highly accurate complex structure predictions beyond protein folding alone. In November 2024, the developers made the [source code available on Github](https://github.com/deepmind/alphafold) and published a [Nature paper](https://www.nature.com/articles/s41586-024-07487-w) ([supplementary information](https://static-content.springer.com/esm/art%3A10.1038%2Fs41586-024-07487-w/MediaObjects/41586_2024_7487_MOESM1_ESM.pdf)) describing the method. In addition to the software, AlphaFold3 depends on ~250 GB of databases and model parameters. 
+AlphaFold3 is Google Deepmind's latest deep learning model for predicting the structure and interactions of biological macromolecules, including proteins, nucleic acids, small molecules, ions, and post-translational modifications. AlphaFold3 significantly expands the capabilities of AlphaFold2, offering highly accurate complex structure predictions beyond protein folding alone. In November 2024, the developers made the [source code available on Github](https://github.com/deepmind/alphafold) and published a [Nature paper](https://www.nature.com/articles/s41586-024-07487-w) ([supplementary information](https://static-content.springer.com/esm/art%3A10.1038%2Fs41586-024-07487-w/MediaObjects/41586_2024_7487_MOESM1_ESM.pdf)) describing the method. In addition to the software, AlphaFold3 depends on ~630 GB of disk space to hold genetic databases. 
 
 We encourage researchers interested in making protein structure predictions with AlphaFold3 to follow the guide below, and use the prepared databases.  
 
@@ -86,7 +86,7 @@ Templates for batch job submission scripts are provided within the "Examples" pa
 #SBATCH -J AF3_protein             # Job name
 #SBATCH -o AF3_protein.o%j         # Name of stdout output file
 #SBATCH -e AF3_protein.e%j         # Name of stderr error file
-#SBATCH -p gpu-a100                # Queue (partition) name
+#SBATCH -p gpu-a100-small          # Queue (partition) name
 #SBATCH -N 1                       # Total # of nodes
 #SBATCH -t 01:00:00                # Run time (hh:mm:ss)
 #SBATCH -A my-project              # Allocation name
@@ -107,9 +107,6 @@ run_alphafold3 --json_path=$AF3_INPUT_DIR/input.json           # MODIFY name of 
 
 In the batch script, make sure to specify the partition (queue) (`#SBATCH -p`), node / wallclock limits, and allocation name (`#SBATCH -A`) appropriate to the machine you are running on. Also, make sure the path shown in the `module use` line matches the machine-specific "Module" path listed in [Table 1.](#table1) above.
 
-!!!tip 
-	To run on Lonestar6's <a href="https://docs.tacc.utexas.edu/hpc/lonestar6/#table25">h100 nodes</a>, add the following Slurm directive to your job script:<p><code>#SBATCH --nodelist=c318-[001,004]</code>
-
 When preparing a batch job script to run AlphaFold3, users must set several environment variables to point to their input, output, and model directories. The table below describes each variable and the necessary edits. 
 
 #### Table 2. Required Variables to Set in Job Script { #table2 }
@@ -128,7 +125,21 @@ e.g.:
 
 `login1$ sbatch AF3_protein.slurm`
 
-### Running MSA and Inference Separately { #split-stages }
+### Optimizing Your AlphaFold3 Run { #optimizing }
+
+#### Enabling Unified Memory (GPU Spill to Host RAM)
+
+Unified memory lets the GPU use host RAM when GPU memory is insufficient. Using unified memory will make the job run slower, but can help with large structures or when you hit out-of-memory errors. Add these exports to your job script before calling `run_alphafold3`:
+
+```bash
+export XLA_PYTHON_CLIENT_PREALLOCATE=false
+export TF_FORCE_UNIFIED_MEMORY=true
+export XLA_CLIENT_MEM_FRACTION=3.2
+```
+
+`XLA_CLIENT_MEM_FRACTION=3.2` allows the client to use up to 3.2× the GPU memory size (spilling into host RAM). Tune this value based on available host memory and job size.
+
+#### Running MSA and Inference Separately { #split-stages }
 
 AlphaFold3 can be run in two stages:
 
@@ -137,7 +148,7 @@ AlphaFold3 can be run in two stages:
 
 Running the stages separately allows you to run the MSA on a CPU node and run the inference step on a GPU node.
 
-#### Step 1: Run MSA
+##### Step 1: Run MSA
 
 A sample `protein_MSA.slurm` job script with the `--norun_inference` flag is included in the machine-specific "Examples" path listed in [Table 1.](#table1) above. After necessary customizations, a batch script for running the MSA step on Frontera may look like this:
 
@@ -172,7 +183,7 @@ In the batch script above:
  - The `--norun_inference` flag tells AlphaFold3 to stop after generating the MSA and other preprocessed data.
  - The specified `AF3_OUTPUT_DIR` will contain all files needed for inference, including a new directory (named after the "name" value in our `input.json` file (e.g., `uqcr11_hsapiens`)) containing a new file called `uqcr11_hsapiens_data.json`. This will be our input for the inference step. 
 
-#### Step 2: Run Inference
+##### Step 2: Run Inference
 
 A sample `protein_inference.slurm` job script with the `--norun_data_pipeline` flag is included in the machine-specific "Examples" path listed in [Table 1.](#table1) above. After necessary customizations, a batch script for running the inference step on Frontera may look like this:
 
