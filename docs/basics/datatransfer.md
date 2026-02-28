@@ -34,7 +34,7 @@ Once installed, click "Open Connection" in the top left corner of your Cyberduck
 Once connected, you can navigate through your remote file hierarchy using familiar graphical navigation techniques. You may also drag-and-drop files into and out of the Cyberduck window to transfer files to and from Frontera.
 
 
-<figure id="figure2"><img src="../imgs/dtg-2-open-connection-context.png" />
+<figure id="figure2"><img alt="Windows Cyberduck Set Up Screen" src="../imgs/dtg-2-open-connection-context.png" />
 <figcaption>Figure 2. Windows Cyberduck and "Open Connection" set up screen<figcaption></figure>
 
 To set up a connection, type in the server name, host. Add your TACC username and password in the spaces provided. If the "More Options" area is not shown, click the small triangle button to expand the window; this will allow you to enter the path to your transfer directory, `/transfer/directory/path`, so that when Cyberduck opens the connection you will immediately be in your individualized transfer directory on the system. Click the "Connect" button to open your connection.
@@ -244,7 +244,7 @@ To start using Globus, you need to do two things: Generate a unique identifier, 
 Login to [CILogon](https://cilogon.org) and click on "User Attributes".  Make note of your **case-sensitive** ePPN.
 
 <figure id="figure4">
-<img src="../imgs/globus-CIlogin.png" style="width:65%"> 
+<img alt="Globus CI Login" src="../imgs/globus-CIlogin.png" style="width:65%"> 
 <figcaption>Figure 4. Make note of your ePPN</figcaption>
 </figure>
 
@@ -258,7 +258,7 @@ Login to the [TACC Accounts Portal][TACCACCOUNTS], click "Account Information" i
 
 
 <figure id="figure5">
-<img src="../imgs/globus-setup-step2.png" style="width:65%">
+<img alt="Update TACC User Profile"src="../imgs/globus-setup-step2.png" style="width:65%">
 <figcaption>Figure 5. Update your TACC user profile.</figcaption>
 </figure>
 

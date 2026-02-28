@@ -25,7 +25,7 @@ All batch jobs and executables, as well as development and debugging sessions, m
 
 
 <figure id="figure-logincomputenodes">
-<img src="../imgs/login-compute-nodes.jpg">
+<img alt="Login and Compute Node Diagram" src="../imgs/login-compute-nodes.jpg">
 <figcaption>Figure 2. Login and compute nodes</figcaption></figure>
 
 !!! tip
