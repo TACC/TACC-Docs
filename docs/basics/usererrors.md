@@ -1,11 +1,13 @@
-# Common User Mistakes *or* How to Get The Hammer
-
-TACC User Support has compiled the following list of the most common user errors that may result in revocation of queue access.
-Many of these items are detailed in TACC's [Good Conduct Guide][TACCGOODCONDUCT].
-
-In any of the following scenarios, TACC User Support makes a best effort to notify users of administrative warnings and required changes to the workflow.  In any case, If a user's activities or jobs are causing significant harm to the system, then the admins will revoke queue access immediately for the health of the systems and the benefit of other users.  
+# Common User Mistakes *or* How to Banned from the System
 
 
+Occasionally a user's activities may negatively affect system performance, system stability or impact other users.  
+
+TACC User Support makes a best effort to notify users of administrative warnings and required changes to the workflow.  However, should a user's activities or jobs are causing significant harm to the system, then the admins will revoke queue access immediately for the health of the systems and the benefit of other users.  
+
+Loss of queue access means that you will no longer be able to submit jobs via `sbatch`, run an `idev` session, or initiate a TAP session.  The ban will be lifted only when the system admins are certain the problems have been remediated.  This process may take several days. 
+
+Here we detail the most common user mistakes that may affect system performance and/or stability, and may lead to revocation of queue access.  Many of these items are detailed in TACC's [Good Conduct Guide][TACCGOODCONDUCT].
 
 1. Running the entire workflow (code as well as data) out of /WORK
 
@@ -20,25 +22,19 @@ In any of the following scenarios, TACC User Support makes a best effort to noti
 ## Respect the File System Quotas
 
 BAD: Exceeding file system quotas
-
-Each file system (home, work, SCratch) has a quota with two limits
-
-* number of files
-* disk space
-
-
-* If a user reaches their quota, it will stress the shared filesystem. because.....  make it technical.   If you're at 95% is that "near"
-
-* Users are encouraged to routinely review their files and delete all unnecessary files.  quota cmd, taccinfo? 
-
-
-* Overloading storage will result in a notification from the admins through User Support, and failure to stay within the limits will result in a revocation of queue access.
-
 BAD: Poor file organization
+
+Each file system (`home`, `work`, `scratch`) has two distinct quotas: 
+
+* total number of files
+* total disk space
 
 * Example: If thousands of files are in a single directory, etc.
 
-* This could adversely affect the filesystem and might result in a user's account getting suspended or queue access getting revoked until files are managed and admins review it.
+Once a user nears ether of these quotas, it will stress the shared filesystem. because.....  make it technical.   If you're at 95% is that "near"
+
+Action: review your files routines and delete all unnecessary files.  quota cmd, taccinfo? 
+
 
 ## Accounts
 
