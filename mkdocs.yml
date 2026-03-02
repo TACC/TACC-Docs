@@ -47,6 +47,7 @@ nav:
     - Managing Your TACC Account: basics/accounts.md
     - Multi-Factor Authentication: basics/mfa.md
     - TACC Good Conduct Guide: basics/conduct.md
+    - Common User Errors: basics/usererrors.md
     - Data Transfer Guide: basics/datatransfer.md
     - Software at TACC: basics/software.md
     - Help: basics/help.md
