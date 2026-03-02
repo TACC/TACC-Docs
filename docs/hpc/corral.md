@@ -126,7 +126,7 @@ A wide variety of graphical tools are available that support the secure copy (SC
 
 #### Cyberduck Configuration and Use { #cyberduck-config }
 
-<img src="../../../imgs/cyberduck.jpg"><a href="http://download.cnet.com/Cyberduck/3000-2160_4-10246246.html" target="_blank">Download Cyberduck here</a>
+<img alt="Download Cyberduck" src="../../../imgs/cyberduck.jpg"><a href="http://download.cnet.com/Cyberduck/3000-2160_4-10246246.html" target="_blank">Download Cyberduck here</a>
 
 Click on the "Open Connection" button in the top right corner of the Cyberduck window to open a connection configuration window (as shown below) transfer mechanism, and type in the server name `data.tacc.utexas.edu`. Add your username and password in the spaces provided, and if the "more options" area is not shown click the small triangle or button to expand the window; this will allow you to enter the path to your project area so that when Cyberduck opens the connection you will immediately see your data. Then click the "Connect" button to open your connection.
 

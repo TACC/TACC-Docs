@@ -103,7 +103,7 @@ Users who are members of multiple projects may have several groups associated wi
 
 If this group is no longer relevant to your needs, you can change your default group by editing your account profile through the [TACC Accounts Portal][TACCACCOUNTS]. 
 
-<img src="../imgs/defaultGID.png">
+<img alt="Changing Default Group ID" src="../imgs/defaultGID.png">
 
 You can see the numeric GID assigned to any project in the portal by looking at the project details: <https://tacc.utexas.edu/portal/projects>
 
