@@ -1,13 +1,14 @@
-# Common User Mistakes *or* How to Banned from the System
+# Common User Issues 
+<!-- *or* How to Banned from the System-->
+Last update: *March 02, 2026*
 
-Occasionally a user's activities may negatively affect system performance, system stability or impact other users.  In that case TACC User Support makes a best effort to notify that user of administrative warnings and any required workflow changes.  However, if a user's activities or jobs are causing significant harm to the system, then the admins will revoke queue access immediately for the health of the systems and the benefit of other users.  
+On occasion a user's activities may negatively affect system performance, system stability or impact other users.  In that case TACC User Support makes a best effort to notify that user of administrative warnings and any required workflow changes.  However, if a user's activities or jobs are causing significant harm to the system, then the admins will revoke queue access immediately for the health of the systems and the benefit of other users.  
 
-Loss of queue access means that you will no longer be able to submit jobs via `sbatch`, run an `idev` session, or initiate a TAP session.  The ban will be lifted only when the system admins are certain the problems have been remediated.  
+Loss of queue access means that you will no longer be able to submit jobs via `sbatch`, run an `idev` session, or initiate a TAP session.  The ban will be lifted once the system admins are certain the problems have been remediated.  
 
-Here we list the most common user mistakes that may affect system performance and/or stability, and may lead to revocation of queue access.  Many of these items are detailed in [TACC's Good Conduct Guide][TACCGOODCONDUCT].
+Here we list the most common user mistakes that may affect system performance and/or stability, and may lead to revocation of queue access. Many of these items are detailed in [TACC's Good Conduct Guide][TACCGOODCONDUCT].
 
-
-**Respect the File System Quotas**:
+**Respect the File System Quotas**   
 
 All TACC resources have access to three file systems, (`home`, `work`, `scratch`) and each file system has two distinct quotas: 
 
@@ -20,39 +21,33 @@ Once a user nears either of these quotas, (trouble usually at 93% of quota), any
         To display a summary of your TACC project balances and disk quotas at any time, execute:<br><br><code>login1$ <b>/usr/local/etc/taccinfo</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Generally more current than balances displayed on the portals.</code></p>
 
 
-## Respect the Login Nodes
+**Respect the Login Nodes**   
 
 The login nodes are a shared resource amongst all users currently logged into that resource.  A single user hogging that nodes resources, either via excessive number of transfers, running MATLAB or any other package, or any other method will be immediately suspended.  Read the good conduct guide. 
 
-1. Running jobs on login nodes
+**Launching jobs on login nodes**: Under no circumstances should a user run jobs on login nodes. Login nodes are strictly for submitting jobs, the actual jobs must be run on compute nodes only.
 
-	* Under no circumstances should a user run jobs on login nodes. Login nodes are strictly for submitting jobs, the actual jobs must be run on compute nodes only.
-	* If a user runs jobs on login nodes, their queue access will be revoked until written assurance that they will not do so going forward. 
+**Running research applications on login nodes**: Users should not run frameworks like MATLAB, R, and other computationally and I/O intensive python scripts, and doing so will result in queue access getting revoked.
 
-1. Running research applications on login nodes
+* If a user needs interactive access, they may use the idev utility or Slurm's srun to schedule one or more compute nodes.
 
-	* Users should not run frameworks like MATLAB, R, and other computationally and IO intensive python scripts, and doing so will result in queue access getting revoked.
-	* If a user needs interactive access, they may use the idev utility or Slurm's srun to schedule one or more compute nodes.
+**Launching too many simultaneous processes on login nodes**: 
 
-1. Launching too many simultaneous processes on login nodes
+* Users may compile on a login node, but commands like "make -j 16" (which compiles on 16 cores) may impact other users.
+* Doing so will result in the user's queue access getting revoked.
 
-	* Users may compile on a login node, but commands like "make -j 16" (which compiles on 16 cores) may impact other users.
-	* Doing so will result in the user's queue access getting revoked.
+**Excessive cron job or polling scripts**: 
 
-	* This is similar to the process overload in Point 10, and will result in the user's queue access getting revoked.
-
-1. Improper poll job status scripts
-
-	* Poll job status scripts are permitted if they are run every few minutes, but should not be run several times a second.
-	* Running them several times a second will result in the user's queue access getting revoked.
+* Poll job status scripts are permitted if they are run every few minutes, but should not be run several times a second.
+* Running them several times a second will result in the user's queue access getting revoked.
 
 
 ## Launching jobs out of your $HOME or $WORK directory
 
 **Running jobs out of the /HOME directory**
 
-	* /HOME is for routine file management, not parallel jobs. 
-	* Jobs run out of /HOME may likely overload the system and result in a revocation of the user's queue access.
+* /HOME is for routine file management, not parallel jobs. 
+* Jobs run out of /HOME may likely overload the system and result in a revocation of the user's queue access.
 
 **Running the entire workflow (code as well as data) out of /WORK**
 
@@ -66,17 +61,9 @@ The login nodes are a shared resource amongst all users currently logged into th
 
 Frequent read and/or writes to disk (I/O) may cause high loads on the file system.
 
-1. I/O intensive sessions
-
-	* Lots of reads and writes to the disk or rapidly opening and closing files will stress the shared filesystem.
-	* Overloading the system will result in a revocation of queue access.
-	* See [Managing I/O on TACC Resources][TACCMANAGINGIO] for details and workarounds.
-
-1. Causing high loads on /WORK
-
-	* If a user causes high loads on /WORK, they will lose access to queues, and will be unable to run jobs until admin review and approval.
-
-	* Additionally, the user's overall account may also get suspended.
+* Lots of reads and writes to the disk or rapidly opening and closing files will stress the shared filesystem.
+* Overloading the system will result in a revocation of queue access.
+* See [Managing I/O on TACC Resources][TACCMANAGINGIO] for details and workarounds.
 
 See the "Limit Input/Output Activity" section in the Good Conduct Guide and [Managing I/O on TACC's HPC Resources][TACCMANAGINGIO] document.
 
