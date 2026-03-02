@@ -61,19 +61,19 @@ Follow these steps to set up your debugging environment on Frontera, Stampede3, 
 
 1. **Click the "Run and Debug a Program" button in the "DDT - Welcome" window**:
 
-	<figure id="figure1"><img src="../imgs/DDT-1.png">
+	<figure id="figure1"><img alt="DDT Welcome Window" src="../imgs/DDT-1.png">
 	<figcaption></figcaption></figure>
 
 1. This displays the "Run" window, where you **specify the executable path, command-line arguments, and processor count**. Once set, these values remain from one session to the next.
 
-	<figure id="figure2"><img src="../imgs/DDT-2.png">
+	<figure id="figure2"><img alt="DDT Run Window"src="../imgs/DDT-2.png">
 	<figcaption></figcaption></figure>
 
 1. **Select each of the "Change" buttons in this window, and adjust the job parameters**.
 
 	* With the "Options" change button, set the MPI Implementation to either "Intel MPI" or "MVAPICH 2i", depending on which MPI software stack you used to compile your program. Click OK.
 
-		<figure id="figure3"><img src="../imgs/DDT-3.png">
+		<figure id="figure3"><img alt="Adjusting DDT Parameters"src="../imgs/DDT-3.png">
 	<figcaption></figcaption></figure>
 
 	* In the "Queue Submission Parameters" window, fill in the following fields:
@@ -95,7 +95,7 @@ Follow these steps to set up your debugging environment on Frontera, Stampede3, 
 
 1. **Finally, click "Submit"**. A submitted status box will appear:
 
-	<figure id="figure6"><img src="../imgs/DDT-6.png">
+	<figure id="figure6"><img alt="DDT Submitted Status Box" src="../imgs/DDT-6.png">
 	<figcaption></figcaption></figure>
 
 
@@ -114,14 +114,14 @@ By starting DDT from a login node you let it use X11 graphics, which can be slow
 
 1. **Under "Remote Launch" make a new configuration**:
 
-	<figure id="figure8"><img src="../imgs/DDT-8.png">
+	<figure id="figure8"><img alt="Making New Configuration"src="../imgs/DDT-8.png">
 	<figcaption></figcaption></figure>
 
 	Fill in your login name and the cluster to connect to, for instance `stampede2.tacc.utexas.edu`. The remote installation directory is stored in the `$TACC_DDT_DIR` environment variable after the module is loaded.
 
 1. **Make the connection; you'll be promped for your password and two-factor code**:
 
-	<figure id="figure9"><img src="../imgs/DDT-9.png">
+	<figure id="figure9"><img alt="Password and MFA Prompt" src="../imgs/DDT-9.png">
 	<figcaption></figcaption></figure>
 
 1. **From any login node, submit a batch job where the `ibrun` line is replaced by**:
@@ -132,7 +132,7 @@ By starting DDT from a login node you let it use X11 graphics, which can be slow
 
 1. **When your batch job (and therefore your DDT execution) starts, the remote client will ask you to accept the connection**:
 
-	<figure id="figure10"><img src="../imgs/DDT-10.png">
+	<figure id="figure10"><img alt="Remote Client Connection Window"src="../imgs/DDT-10.png">
 	<figcaption></figcaption></figure>
 
 	**Your DDT session will now use the remote client.**

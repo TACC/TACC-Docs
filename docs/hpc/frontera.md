@@ -268,7 +268,7 @@ The navigation menu currently enables you access to additional information.
 Frontera has two computing subsystems, a primary computing system focused on double precision performance, and a second subsystem focused on single precision streaming-memory computing. Frontera also has multiple storage systems, as well as interfaces to cloud and archive systems, and a set of application nodes for hosting virtual servers.
 
 <figure id="figure1">
-<img src="../imgs/frontera/Ecosystem-Graphic.png" style="width:800px">
+<img alt="Frontera Ecosystem" src="../imgs/frontera/Ecosystem-Graphic.png" style="width:800px">
 <figcaption>Frontera Ecosystem</figcaption></figure>
 
 ### Cascade Lake (CLX) Compute Nodes { #system-clx }

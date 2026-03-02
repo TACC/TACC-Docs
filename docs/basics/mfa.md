@@ -37,9 +37,9 @@ Users with Apple iOS and Android devices may set up device pairing using a one o
 
 MFA App | IOS/Apple devices<br>Apple App Store | Android<br>Google Play
 --- | --- | ---
-<img src="../imgs/1password-logo.png" width="50px;"> | <a href="https://apps.apple.com/us/app/1password-password-manager/id568903335" target="_blank">1Password</a> | <a href="https://play.google.com/store/apps/details?id=com.onepassword.android&hl=en_US&gl=US" target="_blank">1Password</a>
-<img src="../imgs/duo-logo.png" width="50px;"> | <a href="https://apps.apple.com/us/app/duo-mobile/id422663827" target="_blank">Duo</a> | <a href="https://play.google.com/store/apps/details?id=com.duosecurity.duomobile&hl=en_US&gl=US" target="_blank">Duo</a>
-<img src="../imgs/google-authenticator-logo.png" width="50px;"> | <a href="https://apps.apple.com/us/app/google-authenticator/id388497605" target="_blank">Google Authenticator</a> | <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en_US&gl=US" target="_blank">Google Authenticator</a>   
+<img alt="1Password Logo" src="../imgs/1password-logo.png" width="50px;"> | <a href="https://apps.apple.com/us/app/1password-password-manager/id568903335" target="_blank">1Password</a> | <a href="https://play.google.com/store/apps/details?id=com.onepassword.android&hl=en_US&gl=US" target="_blank">1Password</a>
+<img alt="Duo App Logo" src="../imgs/duo-logo.png" width="50px;"> | <a href="https://apps.apple.com/us/app/duo-mobile/id422663827" target="_blank">Duo</a> | <a href="https://play.google.com/store/apps/details?id=com.duosecurity.duomobile&hl=en_US&gl=US" target="_blank">Duo</a>
+<img alt="Google Authenticator Logo"  src="../imgs/google-authenticator-logo.png" width="50px;"> | <a href="https://apps.apple.com/us/app/google-authenticator/id388497605" target="_blank">Google Authenticator</a> | <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en_US&gl=US" target="_blank">Google Authenticator</a>   
 
 
 1. Download and install your preferred MFA App on your Apple IOS or Android device. This tutorial demonstrates pairing with the Duo App, though you may use any any MFA app you like. 
@@ -54,7 +54,7 @@ MFA App | IOS/Apple devices<br>Apple App Store | Android<br>Google Play
 1. Open the authentication app on your device.  Tap the "+" in the upper right corner of the app to start the pairing process.  The app will launch the mobile device's camera.  Scan the generated QR code on your computer screen.  Do not scan the image on this tutorial's page. Enter the Duo token code shown on your device (Figure 3) and then enter that token into the web form (Figure 2. above).
 
 	<table border="0"><tr><td>
-	<figure id="figure3"><img border="1" src="../imgs/mfa-duo-626574.png" style="width:300px;"> 
+	<figure id="figure3"><img border="1" alt="Setting up MFA on Duo" src="../imgs/mfa-duo-626574.png" style="width:300px;"> 
 	<figcaption>Figure 3.</figcaption></figure></td>
 	</td></table>
 
@@ -71,7 +71,7 @@ MFA App | IOS/Apple devices<br>Apple App Store | Android<br>Google Play
 Instead of using an authentication application, you may instead enable multi-factor authentication with SMS, standard text messaging. Follow the instructions on the SMS pairing form below (Figure 5).
 
 <table border="0"><tr><td>
-<figure id="figure5"><img border="1" src="../imgs/mfa-smspairing.png" style="width:800px;"> 
+<figure id="figure5"><img border="1" alt="Setting up MFA SMS Pairing" src="../imgs/mfa-smspairing.png" style="width:800px;"> 
 <figcaption>Figure 5.</figcaption></figure></td>
 </tr></table>
 
