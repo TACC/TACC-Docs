@@ -27,7 +27,7 @@ The login nodes are a **shared** resource amongst all users currently logged int
 
 This mandate includes:
 
-* **Launching jobs on login nodes**: Under no circumstances should a user run jobs on login nodes. Login nodes are strictly for submitting jobs, the actual jobs must be run on compute nodes only.
+* **Running jobs on login nodes**: Under no circumstances should a user run jobs on login nodes. Login nodes are strictly for submitting jobs, the actual jobs must be run on compute nodes only.
 
 * **Running research applications on login nodes**: Do not launch frameworks such as MATLAB, R, and other computationally and I/O intensive python scripts from the login nodes. 
 
@@ -37,18 +37,20 @@ This mandate includes:
 
 ### Allowing compute jobs to access the wrong file system
 
-**Running jobs out of the /HOME directory**
+All compute jobs should be staged out of each resource's `$SCRATCH` file system.  
+
+**Do not run jobs out of the `$HOME` file system**
 
 * `/HOME` is for routine file management, not for computational jobs.  
 * Jobs run out of /HOME may likely overload the system and result in a revocation of the user's queue access.
 
-**Running the entire workflow (code as well as data) out of /WORK**
+**Do not run the entire workflow (code as well as data) out of `$WORK`**
 
-* If all of the code, intermediate and non-intermediate data resides in /WORK and is run out of there, it will cause an overload on /WORK and result in consequences described in Point 1.
+* If all of the code, intermediate and non-intermediate data resides in `$WORK` and is run out of there, it will cause an overload on `$WORK` and result in consequences described in Point 1.
 
-* Always direct any intermediate I/O and all job activity to each resources' `$SCRATCH` file system.  Ensure /SCRATCH is used for intermediate IO and actual job activity, while /HOME and /WORK are for storage and keeping track of important items.  See  [Table X. File System Usage Recommendations](https://docs.tacc.utexas.edu/basics/conduct/#table-file-system-usage-recommendations) for details.
+* Always direct any intermediate I/O and all job activity to each resources' `$SCRATCH` file system.  Ensure `$SCRATCH` is used for intermediate IO and actual job activity, while /HOME and `$WORK` are for storage and keeping track of important items.  See [File System Usage Recommendations](https://docs.tacc.utexas.edu/basics/conduct/#table-file-system-usage-recommendations) for details.
 
-* Compute nodes should not reference /WORK unless it is to stage data in/out only before/after jobs.
+* Compute nodes should not read or write data `$WORK` unless it is to stage data in/out only before/after jobs.
 
 ### Running I/O Intensive Sessions
 
@@ -59,36 +61,46 @@ Frequent read and/or writes to disk (I/O) may cause high loads on the file syste
 
 See the "Limit Input/Output Activity" section in the Good Conduct Guide and [Managing I/O on TACC's HPC Resources][TACCMANAGINGIO] document.
 
-### Admin: Multiple User Accounts 
-
-TACC User Policy strictly prohibits an individual from having multiple accounts.  Should this occur, then TACC User Support will verify the user's identity, and all accounts belonging to the user will be merged into a single account.  TACC staff will disable all the other accounts.
-
-**Large, unmanaged file transfers**:  Ensure receiving directories are striped, avoid too many simultaneous file transfers and recursive file transfers: <https://docs.tacc.utexas.edu/basics/conduct/#conduct-transfers> 
-
+<!-- 
 ### PyLauncher: Too Many Tasks
 
 * Beware of running too many large tasks or a large number of small tasks on PyLauncher. 
 * An upper limit for the number of tasks cannot be provided as it is entirely dependent on the specifications of the user's workflow.
+-->
 
 ### Avoid Hardcoding Environment Variables in your Startup Files 
 
 Be wary of hard-coding certain environment variables in your startup scripts, e.g. `.bashrc` .  Environment variables such `LD_LIBRARY_PATH`, `MPIRUNLIB` may override system and/or vendor libraries.  Instead, make use of [LMOD][TACCLMOD] system (`module load`),  job-specific exports, and `.env` files to configure your environment.
 
-#### Conda 
+#### Automatic Conda Startup
 
-Do not automatically source a Conda environment upon from within your `.bashrc` or other startup file. You must amend your workflow to *manually* activate a Conda evironment.
+Do not automatically source a Conda environment from within your `.bashrc` or other startup file. You must amend your workflow to *manually* activate a Conda evironment.
+
+### Admin: Multiple User Accounts 
+
+The [TACC Acceptable Use Policy][TACCAUP] strictly prohibits an individual from having multiple accounts.  Should this occur, then TACC User Support will verify the user's identity, and all accounts belonging to the user will be merged into a single account.  TACC staff will disable any other accounts.
+
+### Large, unmanaged file transfers  
+
+Ensure receiving directories on Frontera's `$WORK` and `$SCRATCH` file systems are <a href="../hpc/frontera/#files-striping">striped</a>, avoid too many simultaneous file transfers and recursive file transfers.
+
+
+### Storing important data in the `$SCRATCH` 
+
+Do not store important, long-term data and files in any resource's `$SCRATCH` directory.  Each resource's `$SCRATCH` file system/s are [temporary storage spaces](https://docs.tacc.utexas.edu/basics/conduct/#scratchpolicy) and are subject to routine purging.  Data cannot be recovered after a purge.
+
+It is the user's responsibility to create a backup workflow to the Stockyard `$WORK` or `$HOME` file systems, TACC's long-term storage resources, [Ranch][TACCRANCHUG], or [Corral][TACCCORRALUG], or another backup destination of your choice.
 
 
 {% include 'aliases.md' %}
 
-<!---
-this won't get you suspended
 
-## Workflows
 
-1. Do not store important, long term data and files in /SCRATCH
 
-	* /SCRATCH is a temporary storage space and is subject to routine purging (<https://docs.tacc.utexas.edu/basics/conduct/#scratchpolicy>)
-	* Users may lose data permanently and this cannot be recovered if users don't save their important files in /WORK or /HOME.
---->
+
+
+
+
+
+
 
