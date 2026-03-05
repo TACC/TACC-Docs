@@ -1,9 +1,12 @@
-# Transferring Very Large Datasets with Globus { #datatransfer_globus }
+# Globus Data Transfer Guide at TACC
 
+Globus is the **preferred, safest, and fastest** way to move very large datasets to and from TACC systems. It minimizes user effort while maximizing throughput and reliability, especially over long‑distance or unstable networks.
 Globus is the **recommended tool for transferring very large datasets** (e.g. 100 GB to many TB) to and from TACC and other research computing facilities. It is designed for **high performance, reliability, and fault tolerance** over wide-area networks.
 
+For smaller datasets, see the [TACC SSH-based Tools Guide](datatransfer_ssh.md). 
 
-### Key Concepts
+
+## Key Concepts
 
 ### Endpoints
 A Globus transfer always occurs between two endpoints:
@@ -59,7 +62,7 @@ Login to the [TACC Accounts Portal][TACCACCOUNTS], click "Account Information" i
 <figcaption>Figure 5. Update your TACC user profile.</figcaption>
 </figure>
 
-!!! tip
+!!! important
 	Once you update your ePPN, please allow up to 2 hours for the changes to propagate across TACC systems.
 
 
@@ -78,12 +81,13 @@ Globus-based transfers usually utilize an endpoint name (usually the name of the
 
 Transfers run **asynchronously** — you may close your browser.
 
+<!-- 
 ### Using the Globus CLI (Advanced)
 
 If you currently use a shell script / cron job to migrate data using scp/sftp/rsync, the Globus CLI is useful for scripting and automation. 
 
 See our [Globus CLI Guide](datatransfer_globus_cli.md) for a short summary of using the Globus CLI. 
-
+-->
 
 ### Recommended Practices
 
@@ -97,11 +101,4 @@ See our [Globus CLI Guide](datatransfer_globus_cli.md) for a short summary of us
 - Progress is visible in the Globus web UI
 - Email notifications can be enabled
 - Failed file transfers are clearly reported
-
-## Summary
-
-Globus is the **preferred, safest, and fastest** way to move very large datasets to and from TACC systems. It minimizes user effort while maximizing throughput and reliability, especially over long‑distance or unstable networks.
-
-
-For smaller datasets, see the [TACC SSH-based Tools Guide](datatransfer_ssh.md). 
 

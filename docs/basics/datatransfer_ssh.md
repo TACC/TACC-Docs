@@ -3,13 +3,11 @@
 
 TACC supports two primary technologies for data transfer: SSH (SCP, SFTP, and RSYNC all use SSH) and Globus (also referred to as GridFTP). All TACC systems support SSH-based transfer, and most large TACC systems support Globus-based transfer. 
 
-For large file transfers (e.g.: > 100 GB), Globus is recommended. See the [TACC Globus Guide](datatransfer_globus.md). 
+For large file transfers (e.g.: > 200 GB), Globus is recommended. See the [TACC Globus Guide](datatransfer_globus.md). 
 
-There are many SSH-compatible clients across all platforms, and almost any modern SSH client will successfully interoperate with TACC systems. While we provide [examples using the Cyberduck application](#cyberduck), users are encouraged to select and utilize whichever transfer client is most familiar to them and most functional on your platform. Many SSH clients are organized to assist with specific workflows.  
+There are many SSH-compatible clients across all platforms, and almost any modern SSH client will successfully interoperate with TACC systems. While we provide [examples using the Cyberduck application](#cyberduck), we  encourage usersto select and utilize whichever transfer client is most familiar to them and most functional on your platform. Many SSH clients are organized to assist with specific workflows.  
 
 For SSH-based transfers, you will need two pieces of information in addition to your TACC username/password combination: the HOSTNAME of the system you are transferring to, and the PATH that you are attempting to access. Especially if you are uploading data, it is very important that you select the correct path for the resource and project - otherwise your data will be at risk of being lost or misplaced. The path may include a functional name such as /scratch/ or a resource name such as /corral/ .
-
-
 
 ## SSH 
 
@@ -27,8 +25,7 @@ TACC staff recommends the open-source [Cyberduck](https://cyberduck.io/) utility
 
 <img alt="cyberduck logo" src="../../../imgs/cyberduck.jpg"> [Download Cyberduck](https://cyberduck.io/download/)
 
-Click on the "Open Connection" button in the top right corner of the Cyberduck window to open a connection configuration window (as shown below), select the transfer mechanism, and type in the server name
-"**`stampede3.tacc.utexas.edu`**". Add your username and password in the spaces provided, and if the "more options" area is not shown click the small triangle or button to expand the window; this will allow you to enter the path to your project area so that when Cyberduck opens the connection you will immediately see your data. Then click the "Connect" button to open your connection.
+Click on the "Open Connection" button in the top right corner of the Cyberduck window to open a connection configuration window (as shown below), select the transfer mechanism, and type in the server name "**`stampede3.tacc.utexas.edu`**". Add your username and password in the spaces provided, and if the "more options" area is not shown click the small triangle or button to expand the window; this will allow you to enter the path to your project area so that when Cyberduck opens the connection you will immediately see your data. Then click the "Connect" button to open your connection.
 
 Once installed, click "Open Connection" in the top left corner of your Cyberduck window.
 
@@ -49,56 +46,6 @@ Consult Figure 3 below to ensure the information you have provided is correct.  
       
 Once connected, you can navigate through your remote file hierarchy using the graphical user interface. You may also drag-and-drop files from your local computer into the Cyberduck window to transfer files to the system.
       
-
-## Transfer Scenarios
-
-Let's examine the most common data transfer scenarios for TACC users.  In all the following text, the term "data" can refer to anything from a single file to multiple directories.
-
-1. [Between your laptop and TACC resources](#txf1)
-1. [Between TACC HPC resources](#txf2)
-1. [Between institutions](#txf3)
-1. [Between TACC HPC and storage resources](#txf4)  
-
-
-### 1. Transfer data between your laptop and a TACC resource { #txf1 }
-
-Moving data from your home computer/laptop to a TACC resource is called "pushing" or "uploading" that file.  Conversely, when copying data from a TACC resource to your laptop, this is "pulling" or "downloading" data.  In the following examples, all transfers are initiated from your laptop, not the TACC resource, since your laptop likely does not have a fixed IP address.
-
-Example 1: TACC account holder `bjones` uploads a local file, `mylaptopfile`, to his home directory on Stampede3. 
-
-```cmd-line
-localhost$ scp mylaptopfile bjones@stampede3.tacc.utexas.edu:
-```
-Note the "`:`" at the end of the line.
-
-Example 2: TACC account holder `bjones` downloads a file located in his home directory on Stampede3, `myTACCfile`, to his laptop.  
-
-```cmd-line
-localhost$ scp bjones@stampede3.utexas.edu:myTACCfile .
-```
-
-### 2. Transfer files between TACC HPC resources { #txf2 }
-
-Transfer files between TACC HPC resources, e.g. Stampede3 to Vista.  
-
-If you have an allocation on more than one TACC HPC resource, and want to move a file from one home directory or another, make use of the shared `$WORK` file system.  There's no need for `scp` when both the source and destination involve subdirectories of `$STOCKYARD`. 
-
-Example: copy `myfile` in my home directory on Stampede3 to my account on Vista.
-	
-```cmd-line
-stampede3$ cp myfile $WORK
-stampede3$ ssh vista
-vista$ mv $WORK/myfile .
-vista$ exit
-stampede3$ 
-```
-
-### 3. Transfer Files Between Institutions { #txf3 }
-
-
-### 4. Backup/Transfer files between TACC HPC and TACC storage resources { #txf4 }
-
-To backup files to TACC's Ranch archive, consult the [Ranch User Guide](https://docs.tacc.utexas.edu/hpc/corral/#transferring).  Consult the [Corral User Guide][TACCCORRALUG] for instructions on transferring between Lonestar6 and Corral.
 
 ## SSH Command-Line Examples  { #ssh }
 
@@ -214,20 +161,9 @@ login1$ man rsync
 	When executing multiple instantiations of any of the commands listed above, `scp`, `sftp` and `rsync`, limit your active transfers to 2-3 processes at a time.
 
 
-
-## UTBox and other Third-Party Storage Services { #datatransfer-thirdparty }
-
-Unfortunately TACC does not allow direct access from UT Box or other third-party storage services such as Dropbox, Google or Amazon storage services. To transfer files from one of these services:
-
-1. Manually download the files from one of these services to your laptop
-2. Using one of the tools outlined in this document (e.g. `scp` or Cyberduck), upload the files from your laptop to the desired TACC resource (e.g. Stampede3, Frontera).
-
-
-
 {% include 'aliases.md' %}
 
 <!--
-
 put this somewhere when re-organzing
 
 ## Determining Paths { #cli-paths }
