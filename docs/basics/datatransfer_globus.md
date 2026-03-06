@@ -1,14 +1,19 @@
 # Globus Data Transfer Guide at TACC
+*Last update: March 05, 2026*
 
-Globus is the **preferred, safest, and fastest** way to move very large datasets to and from TACC systems. It minimizes user effort while maximizing throughput and reliability, especially over long‑distance or unstable networks.
-Globus is the **recommended tool for transferring very large datasets** (e.g. 100 GB to many TB) to and from TACC and other research computing facilities. It is designed for **high performance, reliability, and fault tolerance** over wide-area networks.
+Globus is the preferred, safest, and fastest way to move very large datasets to and from TACC systems.  Globus minimizes user effort while maximizing throughput and reliability, especially over long‑distance or unstable networks.  TACC User Support recommends Globus for transferring very large datasets (e.g. 200 GB to many PB) to and from TACC and other research computing facilities. 
 
-For smaller datasets, see the [TACC SSH-based Tools Guide](datatransfer_ssh.md). 
+For datasets &lt; 200GB, see the [TACC SSH-based Tools Guide](datatransfer_ssh.md). 
+
+<!-- Globus also provides **end-to-end file-level checksum verification by default**, which is critical for ensuring data integrity during large transfers. SSH-based tools report transfer success based on transport-layer completion but **do not verify file content equivalence** at the source and destination. Unlike Globus, `scp` lacks built-in checksum verification and robust resume capabilities, making it unsuitable for validating large or irreplaceable datasets without manual checksum comparison (e.g., MD5 or SHA-256). -->
+
+<!-- File-level checksums act as a digital fingerprint of file content. Comparing checksums before and after transfer ensures that data arrives intact and protects against silent data corruption introduced during disk I/O, staging, or wide-area network transfer. -->
 
 
 ## Key Concepts
 
 ### Endpoints
+
 A Globus transfer always occurs between two endpoints:
 
 - A TACC system endpoint (e.g., Stampede, Frontera, Lonestar)
@@ -20,11 +25,12 @@ Endpoints may be:
 - **Globus Connect Personal (GCP) endpoints** (your laptop or desktop)
 
 ### Paths
+
 Transfers use **absolute paths** on each endpoint:
 - Example TACC paths:  
   `/scratch/`, `/work/`, `/corral/`, or resource‑specific directories
 
-You must have permission to read/write the paths used.
+You must have permission to read/write the paths specified..
 
   
 ## Using Globus
@@ -68,9 +74,10 @@ Login to the [TACC Accounts Portal][TACCACCOUNTS], click "Account Information" i
 
 ### Using the Globus File Manager (Web Interface)
 
-Once you've completed these steps, you will be able to use the [Globus File Manager](https://app.globus.org) as usual.  If you encounter any issues, please [submit a support ticket](https://tacc.utexas.edu/portal/tickets).
+Once you've completed these steps, you will be able to use the [Globus File Manager](https://app.globus.org) as usual.  If you encounter any issues, please [submit a support ticket][SUBMITTICKET].
 
-Globus-based transfers usually utilize an endpoint name (usually the name of the HPC or Storage resource you are connecting to) rather than a hostname, but you will still need to know the endpoint name, and you will always need the PATH that you are addressing, in order to successfully transfer data.
+Globus-based transfers often utilize an endpoint name (often the name of the HPC or Storage resource you are connecting to) rather than a hostname, but you will still need to know the endpoint name, and you will always need the PATH that you are addressing, in order to successfully transfer data.
+
 
 1. Go to: [https://app.globus.org](https://app.globus.org)
 2. Activate the source endpoint

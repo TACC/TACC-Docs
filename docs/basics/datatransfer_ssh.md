@@ -3,11 +3,10 @@
 
 TACC supports two primary technologies for data transfer: SSH (SCP, SFTP, and RSYNC all use SSH) and Globus (also referred to as GridFTP). All TACC systems support SSH-based transfer, and most large TACC systems support Globus-based transfer. 
 
-For large file transfers (e.g.: > 200 GB), Globus is recommended. See the [TACC Globus Guide](datatransfer_globus.md). 
+TACC User Support recommends using SSH based tools for file transfers less than 200GB.  For large file transfers (e.g.: > 200 GB), Globus is recommended. See the [TACC Globus Guide](datatransfer_globus.md). 
 
-There are many SSH-compatible clients across all platforms, and almost any modern SSH client will successfully interoperate with TACC systems. While we provide [examples using the Cyberduck application](#cyberduck), we  encourage usersto select and utilize whichever transfer client is most familiar to them and most functional on your platform. Many SSH clients are organized to assist with specific workflows.  
 
-For SSH-based transfers, you will need two pieces of information in addition to your TACC username/password combination: the HOSTNAME of the system you are transferring to, and the PATH that you are attempting to access. Especially if you are uploading data, it is very important that you select the correct path for the resource and project - otherwise your data will be at risk of being lost or misplaced. The path may include a functional name such as /scratch/ or a resource name such as /corral/ .
+<!-- Note that SSH-based transfers perform poorly on **high-latency network paths**. For large data transfers (e.g. > 200 GB) over paths with round-trip times (RTT) greater than ~10 ms (e.g. outside Texas), Globus is strongly recommended. In these environments, Globus is often **orders of magnitude faster** than `scp`, frequently achieving **100× or greater throughput improvements**.  -->
 
 ## SSH 
 
@@ -15,6 +14,10 @@ You can access SSH utilities via a client application, a GUI interface, or on th
 
 1. Graphical User Interface (GUI) tools, e.g. [Cyberduck](#cyberduck).
 1. Command-line (CLI) tools e.g. `scp`, `sftp`, `rsync`
+
+There are many SSH-compatible clients across all platforms, and almost any modern SSH client will successfully interoperate with TACC systems. While we provide [examples using the Cyberduck application](#cyberduck), we encourage users to choose whichever transfer client is most familiar to them and most functional on your platform. Many SSH clients are organized to assist with specific workflows.  
+
+For SSH-based transfers, you will need two pieces of information in addition to your TACC username/password combination: the HOSTNAME of the system you are transferring to, and the PATH that you are attempting to access. Especially if you are uploading data, it is very important that you select the correct path for the resource and project - otherwise your data will be at risk of being lost or misplaced. The path may include a functional name such as /scratch/ or a resource name such as /corral/ .
 
 
 ### Cyberduck { #cyberduck }
