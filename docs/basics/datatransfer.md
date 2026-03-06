@@ -88,57 +88,6 @@ Unfortunately TACC does not allow direct access from UT Box or other third-party
 1. Manually download the files from one of these services to your laptop
 2. Using one of the tools outlined in this document (e.g. `scp` or Cyberduck), upload the files from your laptop to the desired TACC resource (e.g. Stampede3, Frontera).
 
-
-## Globus Data Transfer Guide { #globus }
-
-Globus supplies high speed, reliable, asynchronous transfers to the portal. Globus is fast, for large volumes of data, as it uses multiple network sockets simultaneously to transfer data. It is reliable for large numbers of directories and files, as it can automatically fail and restart itself, and will only notify you when the transfers are completed successfully.
-
-This document leads you through the steps required to set up Globus to use for the first time. Several steps will need to be repeated each time you set up a new computer to use Globus for the portal. Once you are set up, you can use Globus not only for transfers to and from the portal, but also to access other cyberinfrastructure resources at TACC and around the world.
-
-To start using Globus, you need to do two things: Generate a unique identifier, <a href="#1">an ePPN<sup>&#42;</a></sup>, for all Globus services, and enroll the machine you are transferring data to/from with Globus.  This can be your personal laptop or desktop, or a server to which you have access. Follow this one-time process to set up the Globus file transfer capability.
-
-!!! note 
-	**Globus Transition**. Globus has transitioned to version 5.4. This transition impacts all TACC researchers who use Globus and requires you to update your profile with an ePPN to continue using the Globus service. The use of "Distinguished Names", or DNs, is no longer supported.
-
-!!! important 
-	You must use your institution's credentials and **not your personal email account (e.g. Google, Yahoo!, AOL)** when setting up Globus.  You will encounter problems with the transfer endpoints (e.g. Frontera, Stampede3, Corral, Ranch) if you use your personal account information.
-
-
-### Step 1. **Retrieve your Unique ePPN**.  { #step1 }
-
-Login to [CILogon](https://cilogon.org) and click on "User Attributes".  Make note of your **case-sensitive** ePPN.
-
-<figure id="figure4">
-<img alt="Globus CI Login" src="../imgs/globus-CIlogin.png" style="width:65%"> 
-<figcaption>Figure 4. Make note of your ePPN</figcaption>
-</figure>
-
-### Step 2. **Associate your EPPN with your TACC Account.**  { #step2 }
-
-Login to the [TACC Accounts Portal][TACCACCOUNTS], click "Account Information" in the left-hand menu, then add or edit your ePPN from Step 1.
-
-!!! warning
-	The institution (ePPN) listed in your [TACC account profile](https://accounts.tacc.utexas.edu/account_info), must match the ePPN you are using to log into GlobusOnline.  
-
-
-
-<figure id="figure5">
-<img alt="Update TACC User Profile"src="../imgs/globus-setup-step2.png" style="width:65%">
-<figcaption>Figure 5. Update your TACC user profile.</figcaption>
-</figure>
-
-!!! tip
-	Once you update your ePPN, please allow up to 2 hours for the changes to propagate across TACC systems.
-
-
-### Step 3. **Globus File Manager** { #step3 }
-
-Once you've completed these steps, you will be able to use the [Globus File Manager](https://app.globus.org) as usual.  If you encounter any issues, please [submit a support ticket](https://tacc.utexas.edu/portal/tickets).
-
-Globus-based transfers usually utilize an endpoint name (usually the name of the HPC or Storage resource you are connecting to) rather than a hostname, but you will still need to know the endpoint name, and you will always need the PATH that you are addressing, in order to successfully transfer data.
-
-
-
 {% include 'aliases.md' %}
 
 <!--
