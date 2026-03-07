@@ -52,9 +52,11 @@ The reference implementation for BLAS/LAPACK is written in Fortran and is very l
 This gives access to the compiled Fortran sources from netlib.org/lapack. When building your program with this library, you either need to use the Fortran compiler as linker, or add `-lgfortran` to the link line.
 
 
-### Goto Blas and OpenBlas { #goto }
+### Other BLAS implementations { #goto }
 
-Older implementations such as Goto Blas (after former TACC employee Kazushige Goto), and its offshoot, OpenBlas, are no longer maintained and should not be used. Instead, use MKL or BLIS as described above.
+Other implementations exist, such as Atlas, or OpenBLas, a further development of Goto Blas (after former TACC employee Kazushige Goto).
+These packages, while giving higher performance than the reference BLAS, are not necessarily optimized for TACC architectures.
+It is better to use MKL, NVPL, or Blis.
 
 ### NVIDIA Performance Libraries { #nvpl }
 
