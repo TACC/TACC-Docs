@@ -583,46 +583,15 @@ The `AVAIL` column displays the overall status of each queue (up or down), while
 
 ### Monitoring Job Status { #jobs-monitoring-jobstatus }
 
-#### Slurm's `squeue` command { #sjobs-monitoring-queuestatus }
+#### Slurm's `squeue` command { #jobs-monitoring-queuestatus }
 
-Slurm's `squeue` command displays the state of all queued and running jobs.  
+Use Slurm's `squeue` command to display the state of all queued and running jobs.  
 
 ```cmd-line
 login1$ squeue             # show all jobs in all queues
 login1$ squeue -u bjones   # show all jobs owned by bjones
 login1$ man squeue         # more info
 ```
-
-<!-- 
-Pending jobs appear in order of decreasing priority. Tack on the `-u` option to display only your jobs:
-
-<figure id="squeuefigure">
-```cmd-line
-login1$ squeue -u slindsey | more
-JOBID   PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
-10454         icx l4chcoo2 tg123456 PD       0:00      1 (QOSMaxJobsPerUserLimit)
- 8018         icx l4bident tg123456  R   14:57:56      1 c461-218
-10945         icx SM34_687 slindsey  R      27:30     10 c463-[218-227]
-10940         icx SM34_685 slindsey  R      28:44      1 c463-214
- 8936         icx  mark5.1   bjones  R   21:53:14     12 c460-207,c461-[206-212,221-224]
- 9795         icx  mark1.2   bjones  R   12:08:59     10 c460-[220-227],c461-[219-220]
-10956         icx       i2 sniffjck  R      14:14      4 c460-[208-211]
-10997         skx     NAME rtoscano CG       1:13      4 c477-[092-094,101]
-10996         skx     NAME rtoscano CG       2:44      4 c479-034,c490-[082-084]
- 9609         skx sample-s tg987654 PD       0:00      1 (QOSMaxJobsPerUserLimit)
-11002         skx     NAME  ashleyp PD       0:00      4 (Priority)
-11004         skx     NAME  ashleyp PD       0:00      4 (Priority)
-11000         skx     NAME  ashleyp PD       0:00      4 (Resources)
-10673         skx trD4.204 jemerson PD       0:00      4 (Dependency)
-10457         skx l4dimcha tg123456 PD       0:00      2 (QOSMaxJobsPerUserLimit)
-10563         skx lcdm_bas kellygue PD       0:00      1 (Dependency)
-10961         skx    d2_12 tg111111 PD       0:00      1 (QOSMaxJobsPerUserLimit)
-```
-</figure><figcaption>Figure 2. Sample <code>squeue</code> output</figcaption></figure>
--->
-
-<!-- The default format for `squeue` now reports total nodes associated with a job rather than cores, tasks, or hardware threads. One reason for this change is clarity: the operating system sees each compute node's SDL56 hardware threads as "processors", and output based on that information can be ambiguous or otherwise difficult to interpret. -->
-
 
 !!!tip
 	The `squeue`'s default format lists all nodes assigned to displayed jobs; this can make the output difficult to read. A handy variation that suppresses the nodelist is:
@@ -638,14 +607,14 @@ JOBID   PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
 	login1$ squeue --start -j 167635     # display estimated start time for job 167635
 	```
 
-#### Job Status Meanings { #jobs-monitoring-sqeue-status }
+#### Job Status { #jobs-monitoring-sqeue-status }
 
 The `squeue` command's output displays two columns of interest, the column labeled `ST` displays each job's status, and the last column, labeled `NODELIST/REASON`, includes a nodelist for running/completing jobs, or a reason for pending jobs.  
 
 <!-- See [Figure 2](#squeuefigure). above for sample output. -->
 
 
-#### Table 6. Queue Status Meanings { #table6 }
+##### Table 6. Job Status Meanings { #table6 }
 
 Status Code | Status          | Description
 --          | --              | --
@@ -661,7 +630,7 @@ Status Code | Status          | Description
 
 
 
-#### Table 7. Pending Jobs Reason { #table7 }
+##### Table 7. Pending Jobs Reason { #table7 }
 
 The last column, labeled `NODELIST/REASON`, includes a nodelist for running/completing jobs, or a reason for pending jobs.  
 
@@ -737,6 +706,36 @@ To view some **accounting data** associated with your own jobs, use `sacct`:
 ```cmd-line
 login1$ sacct --starttime 2019-06-01  # show jobs that started on or after this date
 ```
+
+<!-- 
+Pending jobs appear in order of decreasing priority. Tack on the `-u` option to display only your jobs:
+
+<figure id="squeuefigure">
+```cmd-line
+login1$ squeue -u slindsey | more
+JOBID   PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+10454         icx l4chcoo2 tg123456 PD       0:00      1 (QOSMaxJobsPerUserLimit)
+ 8018         icx l4bident tg123456  R   14:57:56      1 c461-218
+10945         icx SM34_687 slindsey  R      27:30     10 c463-[218-227]
+10940         icx SM34_685 slindsey  R      28:44      1 c463-214
+ 8936         icx  mark5.1   bjones  R   21:53:14     12 c460-207,c461-[206-212,221-224]
+ 9795         icx  mark1.2   bjones  R   12:08:59     10 c460-[220-227],c461-[219-220]
+10956         icx       i2 sniffjck  R      14:14      4 c460-[208-211]
+10997         skx     NAME rtoscano CG       1:13      4 c477-[092-094,101]
+10996         skx     NAME rtoscano CG       2:44      4 c479-034,c490-[082-084]
+ 9609         skx sample-s tg987654 PD       0:00      1 (QOSMaxJobsPerUserLimit)
+11002         skx     NAME  ashleyp PD       0:00      4 (Priority)
+11004         skx     NAME  ashleyp PD       0:00      4 (Priority)
+11000         skx     NAME  ashleyp PD       0:00      4 (Resources)
+10673         skx trD4.204 jemerson PD       0:00      4 (Dependency)
+10457         skx l4dimcha tg123456 PD       0:00      2 (QOSMaxJobsPerUserLimit)
+10563         skx lcdm_bas kellygue PD       0:00      1 (Dependency)
+10961         skx    d2_12 tg111111 PD       0:00      1 (QOSMaxJobsPerUserLimit)
+```
+</figure><figcaption>Figure 2. Sample <code>squeue</code> output</figcaption></figure>
+-->
+
+<!-- The default format for `squeue` now reports total nodes associated with a job rather than cores, tasks, or hardware threads. One reason for this change is clarity: the operating system sees each compute node's SDL56 hardware threads as "processors", and output based on that information can be ambiguous or otherwise difficult to interpret. -->
 
 ## NVIDIA  MPS { #mps }
 
