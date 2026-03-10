@@ -4,8 +4,8 @@ VISTA_OBJS	=	\
 	access.md \
 	admin.md \
 	running.md \
-	jobmanagement.md \
 	launching.md \
+	jobmanagement.md \
 	mps.md \
 	ml.md \
 	building.md \
