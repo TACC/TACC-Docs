@@ -310,7 +310,7 @@ Vista's job scheduler is the Slurm Workload Manager. Slurm commands enable you t
 
 !!! important
     **Queue limits are subject to change without notice.**
-    Frontera admins may occasionally adjust queue <!--the QOS--> settings in order to ensure fair scheduling for the entire user community.
+    Vista admins may occasionally adjust queue <!--the QOS--> settings in order to ensure fair scheduling for the entire user community.
     TACC's `qlimits` utility will display the latest queue configurations.
 
 <!--
