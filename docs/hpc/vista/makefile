@@ -4,6 +4,7 @@ VISTA_OBJS	=	\
 	access.md \
 	admin.md \
 	running.md \
+	jobmanagement.md \
 	launching.md \
 	mps.md \
 	ml.md \
@@ -14,7 +15,6 @@ VISTA_OBJS	=	\
 #	files.md \
 #	mkl.md \
 #	scripts.md \
-#	jobmanagement.md \
 #	programming.md \
 #	ml.md \
 #	python.md \
