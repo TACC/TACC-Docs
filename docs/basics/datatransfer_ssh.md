@@ -1,73 +1,32 @@
-# SSH-based Data Transfer { #datatransfer_ssh }
-*Last update: March 05, 2026*
-
-
-TACC supports two primary technologies for data transfer: SSH (SCP, SFTP, and RSYNC all use SSH) and Globus (also referred to as GridFTP). All TACC systems support SSH-based transfer, and most large TACC systems support Globus-based transfer. 
+# SSH-based Data Transfer { #datatransfer-ssh }
+*Last update: March 12, 2026*
 
 TACC User Support recommends using SSH based tools for file transfers less than 200GB.  For large file transfers (e.g.: > 200 GB), Globus is recommended. See the [TACC Globus Guide](datatransfer_globus.md). 
 
-
-<!-- Note that SSH-based transfers perform poorly on **high-latency network paths**. For large data transfers (e.g. > 200 GB) over paths with round-trip times (RTT) greater than ~10 ms (e.g. outside Texas), Globus is strongly recommended. In these environments, Globus is often **orders of magnitude faster** than `scp`, frequently achieving **100× or greater throughput improvements**.  -->
-
-## SSH 
-
 You can access SSH utilities via a client application, a GUI interface, or on the command-line via a Terminal application.
 
+1. SSH Command-line (CLI) tools e.g. `scp`, `sftp`, `rsync`
 1. Graphical User Interface (GUI) tools, e.g. [Cyberduck](#cyberduck).
-1. Command-line (CLI) tools e.g. `scp`, `sftp`, `rsync`
 
-There are many SSH-compatible clients across all platforms, and almost any modern SSH client will successfully interoperate with TACC systems. While we provide [examples using the Cyberduck application](#cyberduck), we encourage users to choose whichever transfer client is most familiar to them and most functional on your platform. Many SSH clients are organized to assist with specific workflows.  
+There are many SSH-compatible clients across all platforms, and almost any modern SSH client will successfully interoperate with TACC systems. While we provide [examples using the Cyberduck application](#datatransfer-cyberduck), we encourage you to choose whichever transfer client is most familiar and most functional on your platform. Many SSH clients are organized to assist with specific workflows.  
 
-For SSH-based transfers, you will need two pieces of information in addition to your TACC username/password combination: the HOSTNAME of the system you are transferring to, and the PATH that you are attempting to access. Especially if you are uploading data, it is very important that you select the correct path for the resource and project - otherwise your data will be at risk of being lost or misplaced. The path may include a functional name such as /scratch/ or a resource name such as /corral/ .
+For SSH-based transfers, you will need two pieces of information in addition to your TACC username/password combination: the HOSTNAME of the system you are transferring to, and the PATH that you are attempting to access. Especially if you are uploading data, it is very important that you select the correct path for the resource and project - otherwise your data will be at risk of being lost or misplaced. The path may include a functional name such as `/scratch/` or a resource name such as `/corral/`.
 
-
-### Cyberduck { #cyberduck }
-
-TACC staff recommends the open-source [Cyberduck](https://cyberduck.io/) utility for both Windows and Mac users that do not already have a preferred tool.
-
-<a target="_blank" href="https://cyberduck.io/">Cyberduck</a> is a free graphical user interface for data transfer and is an alternative to using the command line. With a drag-and-drop interface, it is easy to transfer a file from your local system to the remote secure system. You can use <a target="_blank" href="https://cyberduck.io/">Cyberduck</a> for Windows or macOS.
-
-<img alt="cyberduck logo" src="../../../imgs/cyberduck.jpg"> [Download Cyberduck](https://cyberduck.io/download/)
-
-Click on the "Open Connection" button in the top right corner of the Cyberduck window to open a connection configuration window (as shown below), select the transfer mechanism, and type in the server name "**`stampede3.tacc.utexas.edu`**". Add your username and password in the spaces provided, and if the "more options" area is not shown click the small triangle or button to expand the window; this will allow you to enter the path to your project area so that when Cyberduck opens the connection you will immediately see your data. Then click the "Connect" button to open your connection.
-
-Once installed, click "Open Connection" in the top left corner of your Cyberduck window.
-
-Once connected, you can navigate through your remote file hierarchy using familiar graphical navigation techniques. You may also drag-and-drop files into and out of the Cyberduck window to transfer files to and from Frontera.
-
-
-<figure id="figure2"><img src="../imgs/dtg-2-open-connection-context.png" />
-<figcaption>Figure 2. Windows Cyberduck and "Open Connection" set up screen<figcaption></figure>
-
-To set up a connection, type in the server name, host. Add your TACC username and password in the spaces provided. If the "More Options" area is not shown, click the small triangle button to expand the window; this will allow you to enter the path to your transfer directory, `/transfer/directory/path`, so that when Cyberduck opens the connection you will immediately be in your individualized transfer directory on the system. Click the "Connect" button to open your connection.
-
-Consult Figure 3 below to ensure the information you have provided is correct.  *If you have not done so already, replace the "Path" with the path to your individualized transfer directory.* 
-
-<figure id="figure3"><img alt="Cyberduck-SSH" src="../imgs/cyberduck-ssh.png" width="500px"><figcaption>FRetrieve your Uigure 3. Cyberduck connection setup screen</figcaption></figure>
-
-!!! note
-	You will be prompted to "allow unknown fingerprint" upon connection. Select "allow" and then enter your TACC token value.
-      
-Once connected, you can navigate through your remote file hierarchy using the graphical user interface. You may also drag-and-drop files from your local computer into the Cyberduck window to transfer files to the system.
-      
-
-## SSH Command-Line Examples  { #ssh }
-
-Transfer files between TACC HPC resources and other Linux-based systems using either [`scp`](http://linux.com/learn/intro-to-linux/2017/2/how-securely-transfer-files-between-servers-scp) or [`rsync`](http://linux.com/learn/get-know-rsync). Both `scp` and `rsync` are available in the Mac Terminal app. Windows SSH clients typically include `scp`-based file transfer capabilities.
-
+Transfer files between TACC HPC resources and other Linux-based systems using either `scp`, `sftp`, or `rsync`. All three utilities are available in the Mac Terminal app.  Windows SSH clients typically include `scp`-based file transfer capabilities.
 
 !!! note
 	It is possible to use these command line tools if your local machine runs Windows, but you will need to use an SSH client (ex. [CyberDuck][DOWNLOADCYBERDUCK]).
 
-To simplify the data transfer process, we recommend that Windows users follow the <a href="#datatransfer-cyberduck">How to Transfer Data with Cyberduck</a> guide as detailed below.
+To simplify the data transfer process, we recommend that Windows users follow the <a href="#datatransfer-cyberduck">How to Transfer Data with Cyberduck</a> guide as [detailed below](datatransfer-cyberduck).
 
+## SSH Command-Line Examples  { #ssh }
 
-### Advanced `scp` Examples 
+### using `scp`
 
-The Linux `scp` (secure copy) utility is a component of the OpenSSH suite. Assuming your Lonestar6 username is `bjones`, a simple `scp` transfer that copies a file named `myfile` from your local Linux system to Lonestar6 `$HOME` would look like this:
+The Linux `scp` (secure copy) utility is a component of the OpenSSH suite. Assuming your Lonestar6 username is `bjones`, a simple `scp` transfer that copies a file named `myfile` from your local Linux system to Lonestar6 `$HOME` would look like this: (note the colon at end of line)
 
 ```cmd-line
-localhost$ scp ./myfile bjones@ls6.tacc.utexas.edu:  # note colon at end of line
+localhost$ scp ./myfile bjones@ls6.tacc.utexas.edu:  
 ```
 
 You can use wildcards, but you need to be careful about when and where you want wildcard expansion to occur. For example, to push all files ending in `.txt` from the current directory on your local machine to `/work/01234/bjones/scripts` on Lonestar6:
@@ -164,7 +123,43 @@ login1$ man rsync
 !!! Warning
 	When executing multiple instantiations of any of the commands listed above, `scp`, `sftp` and `rsync`, limit your active transfers to 2-3 processes at a time.
 
+## More Reading
 
+* Linux Foundation's classic article ["How to Securely Transfer Files Between Servers with scp"](http://linux.com/learn/intro-to-linux/2017/2/how-securely-transfer-files-between-servers-scp).  
+* Linux.com's excellent article ["Get to Know rsync"](http://linux.com/learn/get-know-rsync)
+
+
+
+## Cyberduck { #datatransfer-cyberduck }
+
+TACC staff recommends the open-source [Cyberduck](https://cyberduck.io/) utility for both Windows and Mac users that do not already have a preferred tool.
+
+<a target="_blank" href="https://cyberduck.io/">Cyberduck</a> is a free graphical user interface for data transfer and is an alternative to using the command line. With a drag-and-drop interface, it is easy to transfer a file from your local system to the remote secure system. You can use <a target="_blank" href="https://cyberduck.io/">Cyberduck</a> for Windows or macOS.
+
+<img alt="cyberduck logo" src="../../../imgs/cyberduck.jpg"> [Download Cyberduck](https://cyberduck.io/download/)
+
+Click on the "Open Connection" button in the top right corner of the Cyberduck window to open a connection configuration window (as shown below), select the transfer mechanism, and type in the server name "**`stampede3.tacc.utexas.edu`**". Add your username and password in the spaces provided, and if the "more options" area is not shown click the small triangle or button to expand the window; this will allow you to enter the path to your project area so that when Cyberduck opens the connection you will immediately see your data. Then click the "Connect" button to open your connection.
+
+Once installed, click "Open Connection" in the top left corner of your Cyberduck window.
+
+
+<figure id="figure2"><img src="../imgs/dtg-2-open-connection-context.png" />
+<figcaption>Figure 2. Windows Cyberduck and "Open Connection" set up screen<figcaption></figure>
+
+To set up a connection, type in the server name, host. Add your TACC username and password in the spaces provided. If the "More Options" area is not shown, click the small triangle button to expand the window; this will allow you to enter the path to your transfer directory, `/transfer/directory/path`, so that when Cyberduck opens the connection you will immediately be in your individualized transfer directory on the system. Click the "Connect" button to open your connection.
+
+Once connected, you can navigate through your remote file hierarchy using familiar graphical navigation techniques. You may also drag-and-drop files into and out of the Cyberduck window to transfer files to and from Frontera.
+
+Consult Figure 3. below to ensure the information you have provided is correct.  *If you have not done so already, replace the "Path" with the path to your individualized transfer directory.* 
+
+<figure id="figure3"><img alt="Cyberduck-SSH" src="../imgs/cyberduck-ssh.png" width="500px">
+<figcaption>Figure 3. Cyberduck connection setup screen</figcaption></figure>
+
+!!! note
+	You will be prompted to "allow unknown fingerprint" upon connection. Select "allow" and then enter your TACC token value.
+      
+Once connected, you can navigate through your remote file hierarchy using the graphical user interface. You may also drag-and-drop files from your local computer into the Cyberduck window to transfer files to the system.
+      
 {% include 'aliases.md' %}
 
 <!--
@@ -197,7 +192,6 @@ For example, a file located in a folder named `portal-data` under `Documents` wo
 -->
 
 <!--
-
 Put these sftp instructions in later, after re-organizing
 
 ### Transfer with `sftp` { #sftp }

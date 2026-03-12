@@ -1,7 +1,7 @@
 # Data Transfer at TACC
-*Last update: March 05, 2026*
+*Last update: March 12, 2026*
 
-TACC supports two primary data transfer technologies: **SSH-based tools** (SCP, SFTP, rsync) and **Globus** (formerly GridFTP). All TACC systems support SSH-based transfers, and most large TACC systems also support Globus.   
+TACC supports two primary data transfer technologies: **SSH-based tools** (`scp`, `sftp`, rsync) and **Globus** (formerly GridFTP). All TACC systems support SSH-based transfers, and most large TACC systems also support Globus.   
 
 ## Recommendations
 
@@ -75,7 +75,7 @@ stampede3$
 
 ### 3. Transfer Files Between Institutions { #txf3 }
 
-If you are a researcher with data located at multiple institutions, we highly you use Globus for large data set transfers to TACC.  You will need to authenticate with your institution.  [See how to set up your TACC account to use Globus](#globus).
+If you are a researcher with data located at multiple institutions, we suggest you use Globus for large data set transfers to TACC.  You will need to authenticate with your institution.  [See how to set up your TACC account to use Globus](#globus).
 
 ### 4. Backup/Transfer files between TACC HPC and TACC storage resources { #txf4 }
 
@@ -83,15 +83,18 @@ To backup files to TACC's Ranch archive, consult the [Ranch User Guide](https://
 
 ## UTBox and other Third-Party Storage Services { #datatransfer-thirdparty }
 
-Unfortunately TACC does not allow direct access from UT Box or other third-party storage services such as Dropbox, Google or Amazon storage services. To transfer files from one of these services:
+UTBox and Dropbox do not support compatible transfer mechanisms.  To transfer files from one of these services:
 
 1. Manually download the files from one of these services to your laptop
-2. Using one of the tools outlined in this document (e.g. `scp` or Cyberduck), upload the files from your laptop to the desired TACC resource (e.g. Stampede3, Frontera).
+2. Using one of the tools outlined in this document (e.g. `scp` or Cyberduck), upload the files from your laptop to the desired TACC resource (e.g. Stampede3, Vista).
+
+For Google, Amazon, and any other S3-compatible storage, [the "`rclone`" utility](https://rclone.org/) and many other tools and libraries can be used for command-line access from TACC systems, using the S3 protocol. However, S3 transfers are not directly supported by TACC, and users are responsible for understanding how to install and operate these tools within their own accounts.
 
 {% include 'aliases.md' %}
 
-<!--
 
+
+<!--
 put this somewhere when re-organzing
 
 ## Determining Paths { #cli-paths }
@@ -186,7 +189,6 @@ sftp> ls
 my_file.txt
 utaustin_dir.txt
 ```
-
 To exit out of `sftp` on the terminal:
 
 ```cmd-line
