@@ -1,6 +1,6 @@
-# Globus CLI Guide
+# Globus CLI Guide (Advanced)
 
-You can use the [Globus Command Line Interface (CLI)](https://docs.globus.org/cli/) to manage Globus transfers from the command line, or from a script or cron job.
+You can use the [Globus Command Line Interface (CLI)](https://docs.globus.org/cli/) to manage Globus transfers from the command line, or from a script or cron job. The CLI would be used on a host at your home institution, not at TACC. 
 
 ## Installation QuickStart (Linux)
 
