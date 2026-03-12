@@ -1,10 +1,12 @@
 ## TACC Test DTN (Data Transfer Node)
 
-### Running tests to TACC Data Transfer Node (DTN)
+TACC provides publicly accessible **test Data Transfer Node (DTN)** for high-speed disk-to-disk performance testing. This hosts is intended for users on research and education (R&amp;E) networks worldwide, and support anonymous GridFTP access. This test DTN serves as a reference implementation of a <a href="https://fasterdata.es.net/DTN/">Science DMZ DTN</a>. 
 
-TACC provides publicly accessible **test Data Transfer Node (DTN)** for high-speed disk-to-disk performance testing. These hosts are intended for users on research and education (R&amp;E) networks worldwide, and support anonymous GridFTP access. This test DTN serves as a reference implementation of a <a href="https://fasterdata.es.net/DTN/">Science DMZ DTN</a>.
+The purpose of this host is to help system administrators at remote sites verify that their DTNs are properly tuned for high-performance data transfers to and from TACC, and to give TACC users a realistic expectation of achievable transfer performance.
 
-The TACC test 100G DTN is available in the <a href="https://app.globus.org/">Globus File Manager</a> as **TACC DME**. (DME = Data Mobility Exhibition).
+### Running tests to TACC Test DTN
+
+The TACC test 100G DTN is available in the <a href="https://app.globus.org/">Globus File Manager</a> as **TACC DME**. (DME = Data Mobility Exhibition). 
 
 ### This DTN features:
 
@@ -70,7 +72,6 @@ Sites with firewalls must allow **GridFTP ports**:
 * TCP 443
 * TCP 50000–51000
 
-
-See the Globus firewall documentation for additional details.
+See the <a href="https://docs.globus.org/globus-connect-server/v5/#open-tcp-ports_section"> Globus firewall documentation</a> for additional details.
       
 
