@@ -9,9 +9,9 @@ When in doubt, we recommend that you start with SSH-based transfer as this requi
 
 In general, we'll define "small" data sets as less than 200GB and "large" datasets as greater than 200GB.
 
-*  Small Datasets (SSH-based tools): For smaller data sets, SSH-based tools are likely easier to work with.  See the [TACC SSH-based Tools Guide](datatransfer_ssh.md). 
+*  Small Datasets (SSH-based tools): For smaller data sets, SSH-based tools are likely easier to work with.  See the [TACC SSH-based Tools Guide](./ssh.md). 
 
-*  Large Datasets (Globus): We recommend Globus when transferring or moving datasets greater than 200GB.  See the [TACC Globus Guide](datatransfer_globus.md). 
+*  Large Datasets (Globus): We recommend Globus when transferring or moving datasets greater than 200GB.  See the [TACC Globus Guide](./globus.md). 
 
 
 <!-- 
@@ -81,7 +81,7 @@ If you are a researcher with data located at multiple institutions, we suggest y
 
 To backup files to TACC's Ranch archive, consult the [Ranch User Guide](https://docs.tacc.utexas.edu/hpc/corral/#transferring).  Consult the [Corral User Guide][TACCCORRALUG] for instructions on transferring between Lonestar6 and Corral.
 
-## UTBox and other Third-Party Storage Services { #datatransfer-thirdparty }
+## UTBox and other Third-Party Storage Services { #thirdparty }
 
 UTBox and Dropbox do not support compatible transfer mechanisms.  To transfer files from one of these services:
 

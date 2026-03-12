@@ -3,7 +3,7 @@
 
 Globus is the preferred, safest, and fastest way to move very large datasets to and from TACC systems.  Globus minimizes user effort while maximizing throughput and reliability, especially over long‑distance or unstable networks.  TACC User Support recommends Globus for transferring very large datasets (e.g. 200 GB to many PB) to and from TACC and other research computing facilities. 
 
-For datasets &lt; 200GB, see the [TACC SSH-based Tools Guide](datatransfer_ssh.md). 
+For datasets &lt; 200GB, see the [TACC SSH-based Tools Guide](./ssh.md). 
 
 ## Key Concepts
 
@@ -101,11 +101,14 @@ Note that SSH-based transfers perform poorly on **high-latency network paths**. 
 
 If you want to compare your data transfer performance to others, you can use the [TACC NetSage Portal](https://tacc.netsage.io/). For example [this page](https://tacc.netsage.io/grafana/d/-l3_u8nWl/1b22d62) shows transfer rates for Globus jobs between TACC and the rest of the world. In general, you should be able to get at least 1 Gbps transfer speeds.
 
+<!-- 
 ### Using the Globus CLI (Advanced)
 
 If you currently use a shell script / cron job to migrate data using scp/sftp/rsync, the Globus CLI is useful for scripting and automation.
 
-See our [Globus CLI Guide](datatransfer_globus_cli.md) for a short summary of using the Globus CLI.
+See our [Globus CLI Guide](globus-cli.md) for a short summary of using the Globus CLI.
+
+-->
 
 ### A Note on End-to-End Checksums
 

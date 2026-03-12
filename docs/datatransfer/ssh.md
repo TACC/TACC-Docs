@@ -1,14 +1,14 @@
-# SSH-based Data Transfer { #datatransfer-ssh }
+# SSH-based Data Transfer { #ssh }
 *Last update: March 12, 2026*
 
-TACC User Support recommends using SSH based tools for file transfers less than 200GB.  For large file transfers (e.g.: > 200 GB), Globus is recommended. See the [TACC Globus Guide](datatransfer_globus.md). 
+TACC User Support recommends using SSH based tools for file transfers less than 200GB.  For large file transfers (e.g.: > 200 GB), Globus is recommended. See the [TACC Globus Guide](./globus.md). 
 
 You can access SSH utilities via a client application, a GUI interface, or on the command-line via a Terminal application.
 
 1. SSH Command-line (CLI) tools e.g. `scp`, `sftp`, `rsync`
 1. Graphical User Interface (GUI) tools, e.g. [Cyberduck](#cyberduck).
 
-There are many SSH-compatible clients across all platforms, and almost any modern SSH client will successfully interoperate with TACC systems. While we provide [examples using the Cyberduck application](#datatransfer-cyberduck), we encourage you to choose whichever transfer client is most familiar and most functional on your platform. Many SSH clients are organized to assist with specific workflows.  
+There are many SSH-compatible clients across all platforms, and almost any modern SSH client will successfully interoperate with TACC systems. While we provide [examples using the Cyberduck application](#cyberduck), we encourage you to choose whichever transfer client is most familiar and most functional on your platform. Many SSH clients are organized to assist with specific workflows.  
 
 For SSH-based transfers, you will need two pieces of information in addition to your TACC username/password combination: the HOSTNAME of the system you are transferring to, and the PATH that you are attempting to access. Especially if you are uploading data, it is very important that you select the correct path for the resource and project - otherwise your data will be at risk of being lost or misplaced. The path may include a functional name such as `/scratch/` or a resource name such as `/corral/`.
 
@@ -17,7 +17,7 @@ Transfer files between TACC HPC resources and other Linux-based systems using ei
 !!! note
 	It is possible to use these command line tools if your local machine runs Windows, but you will need to use an SSH client (ex. [CyberDuck][DOWNLOADCYBERDUCK]).
 
-To simplify the data transfer process, we recommend that Windows users follow the <a href="#datatransfer-cyberduck">How to Transfer Data with Cyberduck</a> guide as [detailed below](datatransfer-cyberduck).
+To simplify the data transfer process, we recommend that Windows users follow the <a href="#cyberduck">How to Transfer Data with Cyberduck</a> guide as [detailed below](#cyberduck).
 
 ## SSH Command-Line Examples  { #ssh }
 
@@ -130,7 +130,7 @@ login1$ man rsync
 
 
 
-## Cyberduck { #datatransfer-cyberduck }
+## Cyberduck { #cyberduck }
 
 TACC staff recommends the open-source [Cyberduck](https://cyberduck.io/) utility for both Windows and Mac users that do not already have a preferred tool.
 

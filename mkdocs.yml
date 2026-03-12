@@ -51,9 +51,9 @@ nav:
     - Software at TACC: basics/software.md
     - Help: basics/help.md
   - Data Transfer Guides:
-    - Recommendations: basics/datatransfer.md
-    - Globus: basics/datatransfer_globus.md
-    - SSH Tools: basics/datatransfer_ssh.md
+    - Recommendations: datatransfer/recommendations.md
+    - SSH Tools: datatransfer/ssh.md
+    - Globus: datatransfer/globus.md
   - HPC User Guides:
     - Chameleon: https://chameleoncloud.readthedocs.io/en/latest
     - Corral: hpc/corral.md
@@ -97,7 +97,6 @@ nav:
     - Remote Desktop Access: tutorials/remotedesktopaccess.md
     - Sharing Project Files: tutorials/sharingprojectfiles.md
     - TACC Analysis Portal (TAP): tutorials/TAP.md
-
 
 
 plugins:
