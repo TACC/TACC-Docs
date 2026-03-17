@@ -160,10 +160,6 @@ Consult Figure 3. below to ensure the information you have provided is correct. 
       
 Once connected, you can navigate through your remote file hierarchy using the graphical user interface. You may also drag-and-drop files from your local computer into the Cyberduck window to transfer files to the system.
       
-{% include 'aliases.md' %}
-
-<!--
-put this somewhere when re-organzing
 
 ## Determining Paths { #cli-paths }
 
@@ -190,9 +186,6 @@ For example, a file located in a folder named `portal-data` under `Documents` wo
 <tr><td>On Windows</td><td><code>\Users\username\My Documents\portal-data\my_file.txt</code></td></tr>
 </table>
 -->
-
-<!--
-Put these sftp instructions in later, after re-organizing
 
 ### Transfer with `sftp` { #sftp }
 
@@ -263,4 +256,34 @@ To exit out of `sftp` on the terminal:
 sftp> bye
 localhost1$
 ```
+
+{% include 'aliases.md' %}
+<!--
+put this somewhere when re-organzing
+
+## Determining Paths { #cli-paths }
+
+Before beginning data transfer with command-line tools, you will need to know:
+
+* the path to your data file(s) on your local system
+* the path to your transfer directory on the remote system
+
+In order to transfer your project data, you will first need to know where the files are located on your local system.
+
+To do so, navigate to the location of the files on your computer. This can be accomplished on a Mac by using the Finder application or on Windows with File Explorer application. Common locations for user data at the user's home directory, the Desktop and My Documents.
+      
+Once you have identified the location of the files, you can right-click on them and select either Get Info (on Mac) or Properties (on Windows) to view the path location on your local system.
+      
+Figure 1. Use Get Info to determine "Where" the path of your data file(s) is
+
+<figure id="figure1"><img src="../imgs/dtg-1-determine-path.png" /></a>
+<figcaption> Figure 1. Use Get Info to determine "Where" the path of your data file(s) is</figcaption></figure>
+
+For example, a file located in a folder named `portal-data` under `Documents` would have the following path:
+
+<table>
+<tr><td>On Mac</td><td><code>/Users/username/Documents/portal-data/my_file.txt</code></td></tr>
+<tr><td>On Windows</td><td><code>\Users\username\My Documents\portal-data\my_file.txt</code></td></tr>
+</table>
 -->
+

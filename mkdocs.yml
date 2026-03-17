@@ -51,7 +51,7 @@ nav:
     - Software at TACC: basics/software.md
     - Help: basics/help.md
   - Data Transfer Guides:
-    - Recommendations: datatransfer/recommendations.md
+    - Data Transfer at TACC: datatransfer/datatransferguide.md
     - SSH Tools: datatransfer/ssh.md
     - Globus: datatransfer/globus.md
   - HPC User Guides:
