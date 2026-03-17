@@ -12,18 +12,17 @@ In general, we'll define "small" data sets as less than 200GB and "large" datase
 *  **Small Datasets (SSH-based tools)**: For smaller data sets, SSH-based tools are likely easier to work with.  See the [TACC SSH-based Tools Guide](./ssh.md). 
 *  **Large Datasets (Globus)**: We recommend Globus when transferring or moving datasets greater than 200GB.  See the [TACC Globus Guide](./globus.md). 
 
-When in doubt, start with SSH-based transfer as this requires the least setup, uses the TACC authentication system, and is sufficient for most users' needs.  
-Globus is ideal for large data transfers and in some of the workflows detailed below.  Globus uses its own authentication system and requires additional setup steps.
+When in doubt, start with SSH-based transfer as this requires the least setup, uses the TACC authentication system, and is sufficient for most users' needs.  Globus is ideal for large data transfers and in some of the workflows detailed below.  Globus uses its own authentication system and requires additional setup steps.
 
 
 ### Table 1. Choosing a Transfer Method
 
 | Scenario | Recommended Tool |
 |---|---|
+| Transfer between personal laptop and TACC systems | SSH tools
 | Transfer between institutions | Globus |
 | Transfer between TACC systems | Shared file systems (`$WORK`) |
 | Transfer many small files | `tar` + SSH or Globus |
-| Transfer between personal laptop and TACC systems | SSH tools
 
 ## Common Workflows
 
