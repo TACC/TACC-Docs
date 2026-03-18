@@ -15,7 +15,7 @@ In general, we'll define "small" data sets as less than 200GB and "large" datase
 When in doubt, start with SSH-based transfer as this requires the least setup, uses the TACC authentication system, and is sufficient for most users' needs.  Globus is ideal for large data transfers and in some of the workflows detailed below.  Globus uses its own authentication system and requires additional setup steps.
 
 
-### Table 1. Choosing a Transfer Method
+### Table 1. Choosing a Transfer Method { #table1 }
 
 | Scenario | Recommended Tool |
 |---|---|
@@ -51,7 +51,6 @@ localhost$ scp mylaptopfile bjones@stampede3.tacc.utexas.edu:               # No
 localhost$ scp bjones@stampede3.utexas.edu:myTACCfile .	                    # Note the "`.`" at the end of the line
 ```
 
-
 ### 2. Between TACC HPC Resources { #txf2 }
 
 Transfer files between TACC HPC resources, e.g. Stampede3 to Vista.  
@@ -68,7 +67,7 @@ vista$ exit
 stampede3$ 
 ```
 
-### 3. Between Institutions
+### 3. Between Institutions { #txf3 }
 
 If you are a researcher with data located at multiple institutions, we suggest you use Globus for large data set transfers to TACC.  You will need to authenticate with your institution.  [See how to set up your TACC account to use Globus](#globus).
 
@@ -88,8 +87,7 @@ UTBox and Dropbox do not support compatible transfer mechanisms.  To transfer fi
 
 ### S3-Compatible Storage
 
-For Google, Amazon, and any other S3-compatible storage, [the "`rclone`" utility](https://rclone.org/) and many other tools and libraries can be used for command-line access from TACC systems, using the S3 protocol. However, S3 transfers are not directly supported by TACC, and users are responsible for understanding how to install and operate these tools within their own accounts.
-
+For Google, Amazon, and any other S3-compatible storage, [the `rclone` utility](https://rclone.org/) and many other tools and libraries can be used for command-line access from TACC systems, using the S3 protocol. However, S3 transfers are not directly supported by TACC, and users are responsible for understanding how to install and operate these tools within their own accounts.
 
 {% include 'aliases.md' %}
 

@@ -1,5 +1,5 @@
 # SSH-based Data Transfer { #ssh }
-*Last update: March 12, 2026*
+*Last update: March 17, 2026*
 
 TACC User Support recommends using SSH based tools for file transfers less than 200GB.  For large file transfers (e.g.: > 200 GB), Globus is recommended. See the [TACC Globus Guide](./globus.md). 
 
@@ -21,7 +21,31 @@ To simplify the data transfer process, we recommend that Windows users follow th
 
 ## SSH Command-Line Examples  { #ssh }
 
-### using `scp`
+### Determining Paths { #cli-paths }
+
+Before beginning data transfer with command-line tools, you will need to know:
+
+* the path to your data file(s) on your local system
+* the path to your transfer directory on the remote system
+
+In order to transfer your project data, you will first need to know where the files are located on your local system.
+
+To do so, navigate to the location of the files on your computer. This can be accomplished on a Mac by using the Finder application or on Windows with File Explorer application. Common locations for user data at the user's home directory, the Desktop and My Documents.
+      
+Once you have identified the location of the files, you can right-click on them and select either Get Info (on Mac) or Properties (on Windows) to view the path location on your local system.
+      
+Figure 1. Use Get Info to determine "Where" the path of your data file(s) is
+
+<figure id="figure1"><img src="../imgs/dtg-1-determine-path.png" /></a>
+<figcaption> Figure 1. Use Get Info to determine "Where" the path of your data file(s) is</figcaption></figure>
+
+For example, a file located in a folder named `portal-data` under `Documents` would have the following path:
+
+<table>
+<tr><td>On Mac</td><td><code>/Users/username/Documents/portal-data/my_file.txt</code></td></tr>
+<tr><td>On Windows</td><td><code>\Users\username\My Documents\portal-data\my_file.txt</code></td></tr>
+</table>
+### Using `scp`
 
 The Linux `scp` (secure copy) utility is a component of the OpenSSH suite. Assuming your Lonestar6 username is `bjones`, a simple `scp` transfer that copies a file named `myfile` from your local Linux system to Lonestar6 `$HOME` would look like this: (note the colon at end of line)
 
@@ -76,7 +100,7 @@ Consult the `scp` man pages for more information:
 login1$ man scp
 ```
 
-## Transferring Files with `rsync` { #transferring-rsync } 
+### Using `rsync` { #transferring-rsync } 
 
 The `rsync` (remote synchronization) utility is another way to keep your data up to date. In contrast to `scp`, `rsync` transfers only the actual changed parts of a file (instead of transferring an entire file). Hence, this selective method of data transfer can be much more efficient than `scp`. The following example demonstrates usage of the `rsync` command for transferring a file named `myfile.c` from its current location on Stampede to Frontera's `$DATA` directory.
 
@@ -123,71 +147,8 @@ login1$ man rsync
 !!! Warning
 	When executing multiple instantiations of any of the commands listed above, `scp`, `sftp` and `rsync`, limit your active transfers to 2-3 processes at a time.
 
-## More Reading
 
-* Linux Foundation's classic article ["How to Securely Transfer Files Between Servers with scp"](http://linux.com/learn/intro-to-linux/2017/2/how-securely-transfer-files-between-servers-scp).  
-* Linux.com's excellent article ["Get to Know rsync"](http://linux.com/learn/get-know-rsync)
-
-
-
-## Cyberduck { #cyberduck }
-
-TACC staff recommends the open-source [Cyberduck](https://cyberduck.io/) utility for both Windows and Mac users that do not already have a preferred tool.
-
-<a target="_blank" href="https://cyberduck.io/">Cyberduck</a> is a free graphical user interface for data transfer and is an alternative to using the command line. With a drag-and-drop interface, it is easy to transfer a file from your local system to the remote secure system. You can use <a target="_blank" href="https://cyberduck.io/">Cyberduck</a> for Windows or macOS.
-
-<img alt="cyberduck logo" src="../../../imgs/cyberduck.jpg"> [Download Cyberduck](https://cyberduck.io/download/)
-
-Click on the "Open Connection" button in the top right corner of the Cyberduck window to open a connection configuration window (as shown below), select the transfer mechanism, and type in the server name "**`stampede3.tacc.utexas.edu`**". Add your username and password in the spaces provided, and if the "more options" area is not shown click the small triangle or button to expand the window; this will allow you to enter the path to your project area so that when Cyberduck opens the connection you will immediately see your data. Then click the "Connect" button to open your connection.
-
-Once installed, click "Open Connection" in the top left corner of your Cyberduck window.
-
-
-<figure id="figure2"><img src="../imgs/dtg-2-open-connection-context.png" />
-<figcaption>Figure 2. Windows Cyberduck and "Open Connection" set up screen<figcaption></figure>
-
-To set up a connection, type in the server name, host. Add your TACC username and password in the spaces provided. If the "More Options" area is not shown, click the small triangle button to expand the window; this will allow you to enter the path to your transfer directory, `/transfer/directory/path`, so that when Cyberduck opens the connection you will immediately be in your individualized transfer directory on the system. Click the "Connect" button to open your connection.
-
-Once connected, you can navigate through your remote file hierarchy using familiar graphical navigation techniques. You may also drag-and-drop files into and out of the Cyberduck window to transfer files to and from Frontera.
-
-Consult Figure 3. below to ensure the information you have provided is correct.  *If you have not done so already, replace the "Path" with the path to your individualized transfer directory.* 
-
-<figure id="figure3"><img alt="Cyberduck-SSH" src="../imgs/cyberduck-ssh.png" width="500px">
-<figcaption>Figure 3. Cyberduck connection setup screen</figcaption></figure>
-
-!!! note
-	You will be prompted to "allow unknown fingerprint" upon connection. Select "allow" and then enter your TACC token value.
-      
-Once connected, you can navigate through your remote file hierarchy using the graphical user interface. You may also drag-and-drop files from your local computer into the Cyberduck window to transfer files to the system.
-      
-
-## Determining Paths { #cli-paths }
-
-Before beginning data transfer with command-line tools, you will need to know:
-
-* the path to your data file(s) on your local system
-* the path to your transfer directory on the remote system
-
-In order to transfer your project data, you will first need to know where the files are located on your local system.
-
-To do so, navigate to the location of the files on your computer. This can be accomplished on a Mac by using the Finder application or on Windows with File Explorer application. Common locations for user data at the user's home directory, the Desktop and My Documents.
-      
-Once you have identified the location of the files, you can right-click on them and select either Get Info (on Mac) or Properties (on Windows) to view the path location on your local system.
-      
-Figure 1. Use Get Info to determine "Where" the path of your data file(s) is
-
-<figure id="figure1"><img src="../imgs/dtg-1-determine-path.png" /></a>
-<figcaption> Figure 1. Use Get Info to determine "Where" the path of your data file(s) is</figcaption></figure>
-
-For example, a file located in a folder named `portal-data` under `Documents` would have the following path:
-
-<table>
-<tr><td>On Mac</td><td><code>/Users/username/Documents/portal-data/my_file.txt</code></td></tr>
-<tr><td>On Windows</td><td><code>\Users\username\My Documents\portal-data\my_file.txt</code></td></tr>
-</table>
--->
-
-### Transfer with `sftp` { #sftp }
+### Using `sftp` { #sftp }
 
 `sftp` is a file transfer program that allows you to interactively navigate between your local file system and the remote secure system. To transfer a file (ex. `my_file.txt`) to the remote secure system via `sftp`, open a terminal on your local computer and navigate to the path where your data file is located.
       
@@ -250,7 +211,7 @@ my_file.txt
 utaustin_dir.txt
 ```
 
-To exit out of `sftp` on the terminal:
+To exit out of `sftp`:
 
 ```cmd-line
 sftp> bye
@@ -258,32 +219,38 @@ localhost1$
 ```
 
 {% include 'aliases.md' %}
-<!--
-put this somewhere when re-organzing
+### More Reading
 
-## Determining Paths { #cli-paths }
+* Linux Foundation's classic article ["How to Securely Transfer Files Between Servers with scp"](http://linux.com/learn/intro-to-linux/2017/2/how-securely-transfer-files-between-servers-scp).  
+* Linux.com's excellent article ["Get to Know rsync"](http://linux.com/learn/get-know-rsync)
 
-Before beginning data transfer with command-line tools, you will need to know:
 
-* the path to your data file(s) on your local system
-* the path to your transfer directory on the remote system
+## Example: Cyberduck GUI { #cyberduck }
 
-In order to transfer your project data, you will first need to know where the files are located on your local system.
+TACC staff recommends the open-source [Cyberduck](https://cyberduck.io/) utility for both Windows and Mac users that do not already have a preferred tool.  <a target="_blank" href="https://cyberduck.io/">Cyberduck</a> is a free graphical user interface for data transfer and is an alternative to using the command line. With a drag-and-drop interface, it is easy to transfer a file from your local system (your laptop) to the remote secure system (TACC resource). You can use <a target="_blank" href="https://cyberduck.io/">Cyberduck</a> for Windows or macOS.
 
-To do so, navigate to the location of the files on your computer. This can be accomplished on a Mac by using the Finder application or on Windows with File Explorer application. Common locations for user data at the user's home directory, the Desktop and My Documents.
+<img alt="cyberduck logo" src="../../../imgs/cyberduck.jpg"> [Download Cyberduck](https://cyberduck.io/download/)
+
+Click on the "Open Connection" button in the top right corner of the Cyberduck window to open a connection configuration window (as shown below), select the transfer mechanism, and type in the server name "**`stampede3.tacc.utexas.edu`**". Add your username and password in the spaces provided, and if the "more options" area is not shown click the small triangle or button to expand the window; this will allow you to enter the path to your project area so that when Cyberduck opens the connection you will immediately see your data. Then click the "Connect" button to open your connection.
+
+Once installed, click "Open Connection" in the top left corner of your Cyberduck window.
+
+
+<figure id="figure2"><img src="../imgs/dtg-2-open-connection-context.png" />
+<figcaption>Figure 2. Windows Cyberduck and "Open Connection" set up screen<figcaption></figure>
+
+To set up a connection, type in the server name, host. Add your TACC username and password in the spaces provided. If the "More Options" area is not shown, click the small triangle button to expand the window; this will allow you to enter the path to your transfer directory, `/transfer/directory/path`, so that when Cyberduck opens the connection you will immediately be in your individualized transfer directory on the system. Click the "Connect" button to open your connection.
+
+Once connected, you can navigate through your remote file hierarchy using familiar graphical navigation techniques. You may also drag-and-drop files into and out of the Cyberduck window to transfer files to and from Frontera.
+
+Consult Figure 3. below to ensure the information you have provided is correct.  *If you have not done so already, replace the "Path" with the path to your individualized transfer directory.* 
+
+<figure id="figure3"><img alt="Cyberduck-SSH" src="../imgs/cyberduck-ssh.png" width="500px">
+<figcaption>Figure 3. Cyberduck connection setup screen</figcaption></figure>
+
+!!! note
+	You will be prompted to "allow unknown fingerprint" upon connection. Select "allow" and then enter your TACC token value.
       
-Once you have identified the location of the files, you can right-click on them and select either Get Info (on Mac) or Properties (on Windows) to view the path location on your local system.
+Once connected, you can navigate through your remote file hierarchy using the graphical user interface. You may also drag-and-drop files from your local computer into the Cyberduck window to transfer files to the system.
       
-Figure 1. Use Get Info to determine "Where" the path of your data file(s) is
-
-<figure id="figure1"><img src="../imgs/dtg-1-determine-path.png" /></a>
-<figcaption> Figure 1. Use Get Info to determine "Where" the path of your data file(s) is</figcaption></figure>
-
-For example, a file located in a folder named `portal-data` under `Documents` would have the following path:
-
-<table>
-<tr><td>On Mac</td><td><code>/Users/username/Documents/portal-data/my_file.txt</code></td></tr>
-<tr><td>On Windows</td><td><code>\Users\username\My Documents\portal-data\my_file.txt</code></td></tr>
-</table>
--->
 

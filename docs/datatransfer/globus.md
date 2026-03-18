@@ -1,5 +1,5 @@
 # Globus Data Transfer Guide at TACC
-*Last update: March 05, 2026*
+*Last update: March 17, 2026*
 
 Globus is the preferred, safest, and fastest way to move very large datasets to and from TACC systems.  Globus minimizes user effort while maximizing throughput and reliability, especially over long‑distance or unstable networks.  TACC User Support recommends Globus for transferring very large datasets (e.g. 200 GB to many PB) to and from TACC and other research computing facilities. 
 
