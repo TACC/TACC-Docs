@@ -1,33 +1,10 @@
 # Globus Data Transfer Guide at TACC
-*Last update: March 05, 2026*
+*Last update: March 17, 2026*
 
 Globus is the preferred, safest, and fastest way to move very large datasets to and from TACC systems.  Globus minimizes user effort while maximizing throughput and reliability, especially over long‑distance or unstable networks.  TACC User Support recommends Globus for transferring very large datasets (e.g. 200 GB to many PB) to and from TACC and other research computing facilities. 
 
-For datasets &lt; 200GB, see the [TACC SSH-based Tools Guide](datatransfer_ssh.md). 
+For datasets &lt; 200GB, see the [TACC SSH-based Tools Guide](./ssh.md). 
 
-## Key Concepts
-
-### Endpoints
-
-A Globus transfer always occurs between two endpoints:
-
-- A TACC system endpoint (e.g., Stampede, Frontera, Lonestar)
-- A source endpoint (your laptop, another HPC center, cloud storage, etc.)
-
-Endpoints may be:
-
-- **Managed endpoints** (TACC systems, institutional servers)
-- **Globus Connect Personal (GCP) endpoints** (your laptop or desktop)
-
-### Paths
-
-Transfers use **absolute paths** on each endpoint:
-- Example TACC paths:  
-  `/scratch/`, `/work/`, `/corral/`, or resource‑specific directories
-
-You must have permission to read/write the paths specified..
-
-  
 ## Using Globus
 
 Globus uses **federated login**, where you authenticate with your home institution. Authentication tokens are cached and renewed automatically.
@@ -67,10 +44,31 @@ Login to the [TACC Accounts Portal][TACCACCOUNTS], click "Account Information" i
 	Once you update your ePPN, please allow up to 2 hours for the changes to propagate across TACC systems.
 
 
-### Using the Globus File Manager (Web Interface)
+### Using the Globus File Manager
 
 Once you've completed these steps, you will be able to use the [Globus File Manager](https://app.globus.org) as usual.  If you encounter any issues, please [submit a support ticket][SUBMITTICKET].
 
+## Key Concepts
+
+### Endpoints
+
+A Globus transfer always occurs between two endpoints:
+
+- A TACC system endpoint (e.g., Stampede, Frontera, Lonestar)
+- A source endpoint (your laptop, another HPC center, cloud storage, etc.)
+
+Endpoints may be:
+
+- **Managed endpoints** (TACC systems, institutional servers)
+- **Globus Connect Personal (GCP) endpoints** (your laptop or desktop)
+
+### Paths
+
+Transfers use **absolute paths** on each endpoint:
+- Example TACC paths:  
+  `/scratch/`, `/work/`, `/corral/`, or resource‑specific directories
+
+You must have permission to read/write the paths specified..
 Globus-based transfers often utilize an endpoint name (often the name of the HPC or Storage resource you are connecting to) rather than a hostname, but you will still need to know the endpoint name, and you will always need the PATH that you are addressing, in order to successfully transfer data.
 
 1. Go to: [https://app.globus.org](https://app.globus.org)
@@ -97,18 +95,18 @@ Transfers run **asynchronously** — you may close your browser.
 
 ### Performance Expectations
 
-Note that SSH-based transfers perform poorly on **high-latency network paths**. For large data transfers (e.g. > 200 GB) over paths with round-trip times (RTT) greater than ~10 ms (e.g. outside Texas), Globus is strongly recommended. In these environments, Globus is often **orders of magnitude faster** than `scp`, frequently achieving **100× or greater throughput improvements**.
-
 If you want to compare your data transfer performance to others, you can use the [TACC NetSage Portal](https://tacc.netsage.io/). For example [this page](https://tacc.netsage.io/grafana/d/-l3_u8nWl/1b22d62) shows transfer rates for Globus jobs between TACC and the rest of the world. In general, you should be able to get at least 1 Gbps transfer speeds.
 
+<!-- 
 ### Using the Globus CLI (Advanced)
 
 If you currently use a shell script / cron job to migrate data using scp/sftp/rsync, the Globus CLI is useful for scripting and automation.
 
-See our [Globus CLI Guide](datatransfer_globus_cli.md) for a short summary of using the Globus CLI.
+See our [Globus CLI Guide](globus-cli.md) for a short summary of using the Globus CLI.
+-->
 
 ### A Note on End-to-End Checksums
 
-Globus also provides **end-to-end file-level checksum verification by default**, which is critical for ensuring data integrity during large transfers. SSH-based tools report transfer success based on transport-layer completion but **do not verify file content equivalence** at the source and destination. Unlike Globus, `scp` lacks built-in checksum verification and robust resume capabilities, making it unsuitable for validating large or irreplaceable datasets without manual checksum comparison (e.g., MD5 or SHA-256). File-level checksums act as a digital fingerprint of file content. Comparing checksums before and after transfer ensures that data arrives intact and protects against silent data corruption introduced during disk I/O, staging, or wide-area network transfer.
+Globus also provides end-to-end file-level checksum verification by default, which is critical for ensuring data integrity during large transfers. SSH-based tools report transfer success based on transport-layer completion but do not verify file content equivalence at the source and destination. Unlike Globus, `scp` lacks built-in checksum verification and robust resume capabilities, making it unsuitable for validating large or irreplaceable datasets without manual checksum comparison (e.g., MD5 or SHA-256). File-level checksums act as a digital fingerprint of file content. Comparing checksums before and after transfer ensures that data arrives intact and protects against silent data corruption introduced during disk I/O, staging, or wide-area network transfer.
 
 {% include 'aliases.md' %}
