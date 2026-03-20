@@ -65,7 +65,7 @@ Each of our HPC resources has a user guide, with extensive instructions and info
 
 
 
-///// html | a.card--plain.card--image-top[href="./hpc/stampede3/"]
+///// html | a.card--plain.card--image-top[href="./hpc/vista/"]
      markdown: block
 
 ////// html | img[alt="TACC's Vista AI supercomputer"][src="imgs/home/vista.png" height="400"]
