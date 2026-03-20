@@ -20,7 +20,7 @@ $ module spider qe
 Quantum Espresso executables have many optional command line arguments described in the [user manual](http://www.quantum-espresso.org/resources/users-manual). QE users may run with their default settings usually with no problem. QE contains many packages and executables and `pw.x` is the most popular. 
 
 !!!tip
-	TACC staff strongly recommend you refer to the [Quantum Espresso documentation](http://www.quantum-espresso.org/resources/users-manual) to learn how to construct input files and the correct, optimal way to run your codes.
+	TACC staff strongly recommends you refer to the [Quantum Espresso documentation](http://www.quantum-espresso.org/resources/users-manual) to learn how to construct input files, and learn the correct and optimal way to run your codes.
 
 Use the following job scripts for Quantum Espresso runs on Lonestar6, Frontera, Stampede3, and Vista. 
 
