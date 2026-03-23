@@ -12,10 +12,3 @@ footer {
 [class*="card--"] i.fa {
     margin-block: -1rem 1rem;
 }
-
-/* to limit width of aligned images */
-/* https://github.com/TACC/Core-Styles/blob/v2.43.2/src/lib/_imports/components/align.css#L33 */
-.align-right,
-.align-left {
-  max-width: 25vw;
-}

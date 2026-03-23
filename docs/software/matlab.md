@@ -3,7 +3,6 @@
 
 <!-- ![MATLAB logo](../imgs/matlab-logo.png){ .align-right width="100" } -->
 <img src="../imgs/matlab-logo.png" width="100" alt="MATLAB logo" align="right">
-
 [Mathwork's](https://www.mathworks.com/) MATLAB is installed and supported at TACC and is available on the following TACC resources: [Frontera][TACCFRONTERAUG], [Stampede3][TACCSTAMPEDE3UG] and [Lonestar6][TACCLONESTAR6UG].  
 
 ## Licenses { #license }
