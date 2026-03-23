@@ -99,15 +99,21 @@ The `$STOCKYARD` environment variable points to the highest level directory you 
 
 	a. Set the group id bit. Any new files created in the shared directory will inherit the group ownership:
 
-		login1$ chmod g+s mysharedirectory
+	```cmd-line
+	login1$ chmod g+s mysharedirectory
+	```
 
 	b. Then edit your `.bashrc` and set the umask variable to "027". This ensures that all NEW files created will inherit the proper permissions.
 
-		umask 027
+	```syntax
+	umask 027
+	```
 	
 	c. Last, set permissions to readable and accessible to group members:
 
-		login1$ chmod g+rX mysharedirectory
+	```cmd-line
+	login1$ chmod g+rX mysharedirectory
+	```
 
 1. (optional) Grant write access to the directory. The project manager may wish to grant project collaborators write access to the directory or leave the directory as read-only.
 

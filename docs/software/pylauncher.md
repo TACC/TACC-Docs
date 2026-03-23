@@ -24,15 +24,19 @@ $ module load pylauncher
 
 		`$ module load python3/3.9 # or newer`
 	
-	1. On some systems the Python installation is missing a required module. 
-	Do a one-time setup:   
+	1. On some systems the Python installation is missing the required `paramiko` module and the PyLauncher will abort with an error to that effect. 
+	In that case, do a one-time setup:   
 
 		`$ pip install paramiko`
 
 
 ## Basic setup { #setup }
 
-PyLauncher, like any compute-intensive application, must be invoked from a Slurm job script, or interactively within an `idev` session. PyLauncher interrogates Slurm's environment variables to query the available computational resources, but the only parameter you have to set is Slurm's `-N` directive.  The number of nodes depends on how much work you have.
+PyLauncher, like any compute-intensive application, must be invoked from a Slurm job script, or interactively within an `idev` session. 
+PyLauncher interrogates Slurm's environment variables to query the available computational resources, but the only parameter you have to set is Slurm's `-N` directive. 
+Other parameters, such as the `-n` commandline option or the SLURM `--tasks-per-node` parameter are ignored; 
+instead Pylauncher queries the number of cores that are available per node.
+The number of nodes depends on how many tasks you want to execute; typically you would have more tasks than cores.
 
 ```job-script
 #SBATCH -N 5 # number of nodes you want to use
@@ -137,6 +141,9 @@ launcher.ClassicLauncher("commandlines",cores=4)
 ```
 
 This can also be used if your program takes more memory than would normally be assigned to a single core.
+Say you have nodes with 64 cores each and 128Gbyte of memory. 
+By default, each of the 64 task on the node would then have access to 2Gbyte.
+By specifying `cores=4`, only 16 tasks would be allocated to a node, but each task now has access to 8Gbyte.
 
 If you want each command line to use all the cores of a node, specify:
 
@@ -163,6 +170,8 @@ If your program is MPI parallel, replace the ClassicLauncher call:
 launcher.IbrunLauncher("parallellines",cores=3)
 ```
 
+(This also holds for the case of running a python code that, perhaps indirectly, relies on `mpi4py`.)
+
 The "parallellines" file consists of command-lines without the MPI job starter, which is supplied by PyLauncher:
 
 ```file
@@ -183,7 +192,8 @@ mkdir out3 && cd out3 && PYL_MPIEXEC ./parallelprogram 3 10
 ### GPU launcher
 
 For GPU jobs, use the `GPULauncher`. This needs an extra parameter `gpuspernode` that is dependent on the cluster where you run this.
-If you omit this parameter or set it too high, the launcher may start your tasks when no GPUs are available.
+If you omit this parameter or set it too high, the launcher may start your tasks when no GPUs are available. 
+See the userguide for your cluster to find the correct number.
 ```job-script
 pylauncher.GPULauncher\
     ("gpucommandlines",
@@ -274,11 +284,13 @@ queued  	5 jobs: 99-103
 running	39 jobs: 45-46 49 54-55 57 59 62-63 65 67 69 71-74 76-98
 ```
 
-This states that in the 104’th stage some jobs were completed/queued for running/actually running. 
+This states that in the 104’th stage some jobs were completed/queued/running. 
 
-The  `tick` message is output every half second. This can be changed, for instance to 1/10th of a second, by specifying `delay=.1` in the launcher command. In some cases, for instance if each command is a python invocation that does many `imports`, you could increase the delay parameter.
+The  `tick` message is output every half second. This can be changed, for instance to 1/10th of a second, by specifying `delay=.1` in the launcher command. 
+In some cases, for instance if each command is a python invocation that does many `imports`, you could increase the delay parameter.
 
 For even more trace output, use `debug="host+exec+task+job+ssh"`.
+(If you need to submit a problem ticket, it helps diagnosis if you run with this full trace output.)
 
 
 ## Advanced PyLauncher usage
@@ -305,21 +317,11 @@ The default name "queuestate" can be overridden by giving an explicit name
 pylauncher.ClassicLauncher( "commandlines",queuestate="queustate5")
 ```
 
-### GPU Launcher
-
-PyLauncher can handle programs that need a GPU. Use:
-
-``` job-script
-pylauncher.GPULauncher("gpucommandlines")
-```
-
-
-!!! important
-	Set the Slurm parameter `--ntasks-per-node` to the number of GPUs per node.
 
 ### Submit Launcher
 
-If your command lines take wildly different amounts of time a launcher job may be wasteful since it will leave cores (and nodes) unused while the longest running commandlines finish. One solution is the `SubmitLauncher` which runs outside of Slurm, and which submits Slurm jobs: For instance, the following command submits jobs to Frontera's [`small` queue](../../hpc/frontera/#table6), and makes sure that the maximum queue limit of 2 nodes is not exceeded:
+Suppose you allocate 10 nodes to a launcher job, and one commandline takes 10 hours longer than the others. This leads to 9 nodes being idle for several hours.
+For this sort of use case, consider the `SubmitLauncher', which runs outside of Slurm, and which submits Slurm jobs: For instance, the following command submits jobs to Frontera's [`small` queue](../../hpc/frontera/#table6), and makes sure that the maximum queue limit of 2 nodes is not exceeded:
 
 ``` job-script
 launcher.SubmitLauncher\
@@ -328,6 +330,7 @@ launcher.SubmitLauncher\
  	nactive=2, # queue limit
     )
 ```
+
 
 ### Debugging PyLauncher Output
 
@@ -348,6 +351,7 @@ Here are some parameters that may sometimes come in handy.
 | <code>delay=<i>fraction</i></code><br>default: `delay=.5` | The fraction of a second that PyLauncher waits to start up new jobs, or test for finished ones. If you fire up complicated python jobs, you may want to increase this from the default.
 | <code>workdir=<i>directory</i></code><br>default: generated from the SLURM jobid | This is the location of the internal execute/out/test files that PyLauncher generates.
 | <code>queuestate=<i>filename</i></code><br>default filename: `queuestate` | This is a file that PyLauncher can use to restart if your jobs aborts, or is killed for exceeding the time limit. If you run multiple simultaneous jobs, you may want to specify this explicitly.
+| <code>maxruntime=<i>seconds</i></code><br>default: infinite | Maximum runtime for the launcher job.
 
 
 ## References

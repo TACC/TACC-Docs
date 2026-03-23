@@ -8,28 +8,40 @@
 Vista's job scheduler is the Slurm Workload Manager. Slurm commands enable you to submit, manage, monitor, and control your jobs.  <!-- See the [Job Management](#jobmanagement) section below for further information. -->
 
 !!! important
-    **Queue limits are subject to change without notice.**  
-    TACC Staff will occasionally adjust the QOS settings in order to ensure fair scheduling for the entire user community.  
-    Use TACC's `qlimits` utility to see the latest queue configurations.
+    **Queue limits are subject to change without notice.**
+    Vista admins may occasionally adjust queue <!--the QOS--> settings in order to ensure fair scheduling for the entire user community.
+    TACC's `qlimits` utility will display the latest queue configurations.
 
 <!--
-04/09/2025
-login1.vista(35)$ qlimits
+01/20/2026 
+login1.vista(76)$ qlimits
 Current queue/partition limits on TACC's vista system:
 
 Name             MinNode  MaxNode     MaxWall  MaxNodePU  MaxJobsPU   MaxSubmit
 gg                     1       32  2-00:00:00        128         20          40
 gh                     1       64  2-00:00:00        192         20          40
 gh-dev                 1        8    02:00:00          8          1           3
+login1.vista(77)$
+
+/usr/local/etc/queue.map
+# vista
+gg:0.33
+gh:1.0
+gh-dev:1.0
+gh-4k:1.0
+debug:1.0
+gg-dev:0.33
+gg-4k:0.33
 -->
 
+<a id="queues">
 #### Table 4. Production Queues { #table4 }
 
-Queue Name     | Node Type     | Max Nodes per Job<br>(assoc'd cores) | Max Duration | Max Jobs in Queue | Charge Rate<br>(per node-hour)
---             | --            | --                                   | --           | --                |  
-`gg`           | Grace/Grace   | 32 nodes<br>(4608 cores)             | 48 hrs       | 20                | 0.33 SU
-`gh`           | Grace/Hopper  | 64 nodes<br>(4608 cores/64 gpus)     | 48 hrs       | 20                | 1 SUs
-`gh-dev`       | Grace Hopper  | 8 nodes<br>(576 cores)               |  2 hrs       |  1                | 1 SU
+Queue Name  | Node Type     | Max Nodes per Job<br>(assoc'd cores) | Max Job<br>Duration | Max Nodes<br>per User   | Max Jobs<br>per User | Max Submit | Charge Rate<br>(per node-hour)
+--          | --            | --                                   | --                  | --                      |--        |--         |--
+`gg`        | Grace/Grace   | 32 nodes<br>(4608 cores)             | 48 hrs              | 128                     | 20       | 40        | 0.33 SU
+`gh`        | Grace/Hopper  | 64 nodes<br>(4608 cores/64 gpus)     | 48 hrs              | 192                     | 20       | 40        | 1 SUs
+`gh-dev`    | Grace Hopper  | 8 nodes<br>(576 cores)               |  2 hrs              | 8                       | 1        | 3         | 1 SU
 
 
 {% include 'include/vista-jobaccounting.md' %}
@@ -48,14 +60,14 @@ In your job script you (1) use `#SBATCH` directives to request computing resourc
 
 Your job will run in the environment it inherits at submission time; this environment includes the modules you have loaded and the current working directory. In most cases you should run your applications(s) after loading the same modules that you used to build them. You can of course use your job submission script to modify this environment by defining new environment variables; changing the values of existing environment variables; loading or unloading modules; changing directory; or specifying relative or absolute paths to files. **Do not** use the Slurm `--export` option to manage your job's environment: doing so can interfere with the way the system propagates the inherited environment.
 
-[Table 8.](#table8) below describes some of the most common `sbatch` command options. Slurm directives begin with `#SBATCH`; most have a short form (e.g. `-N`) and a long form (e.g. `--nodes`). You can pass options to `sbatch` using either the command line or job script; most users find that the job script is the easier approach. The first line of your job script must specify the interpreter that will parse non-Slurm commands; in most cases `#!/bin/bash` or `#!/bin/csh` is the right choice. Avoid `#!/bin/sh` (its startup behavior can lead to subtle problems on Vista), and do not include comments or any other characters on this first line. All `#SBATCH` directives must precede all shell commands. Note also that certain `#SBATCH` options or combinations of options are mandatory, while others are not available on Vista.
+[Table 5.](#table5) below describes some of the most common `sbatch` command options. Slurm directives begin with `#SBATCH`; most have a short form (e.g. `-N`) and a long form (e.g. `--nodes`). You can pass options to `sbatch` using either the command line or job script; most users find that the job script is the easier approach. The first line of your job script must specify the interpreter that will parse non-Slurm commands; in most cases `#!/bin/bash` or `#!/bin/csh` is the right choice. Avoid `#!/bin/sh` (its startup behavior can lead to subtle problems on Vista), and do not include comments or any other characters on this first line. All `#SBATCH` directives must precede all shell commands. Note also that certain `#SBATCH` options or combinations of options are mandatory, while others are not available on Vista.
 
 By default, Slurm writes all console output to a file named "`slurm-%j.out`", where `%j` is the numerical job ID. To specify a different filename use the `-o` option. To save `stdout` (standard out) and `stderr` (standard error) to separate files, specify both `-o` and `-e` options.
 
 !!! tip
 	The maximum runtime for any individual job is 48 hours.  However, if you have good checkpointing implemented, you can easily chain jobs such that the outputs of one job are the inputs of the next, effectively running indefinitely for as long as needed.  See Slurm's `-d` option.
 
-#### Table 8. Common `sbatch` Options { #table8 }
+#### Table 5. Common `sbatch` Options { #table5 }
 
 Option | Argument | Comments
 --- | --- | ---

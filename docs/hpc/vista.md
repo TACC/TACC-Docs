@@ -1,10 +1,9 @@
 # Vista User Guide 
-*Last update: May 27, 2025*
+*Last update: March 10, 2026*
 
 ## Notices { #notices }
 
 * **New**: See TACC Staff's [notes on incorporating NVIDIA's Multi-Process Service](#mps). (MPS) 
-* **Important**: Please note [TACC's new SU charge policy](#sunotice). (09/20/2024)
 * **[Subscribe][TACCSUBSCRIBE] to Vista User News**. Stay up-to-date on Vista's status, scheduled maintenances and other notifications.  (09/01/2024)
 
 ## Introduction { #intro }
@@ -25,12 +24,6 @@ Vista is funded by the National Science Foundation (NSF) via a supplement to the
 
 
 
-## Account Administration
-
-{% include 'include/vista-crontab.md' %}
-
-{% include 'include/tacctips.md' %}
-
 ## System Architecture { #system }
 
 ### Vista Topology { #system-topology }
@@ -46,7 +39,10 @@ The Grace-Hopper (GH) subsystem, on the other  hand,  consists of nodes using th
 Each top rack shelf switch in all racks connects to sixteen core switches via dual-400G cables. In total, Vista contains 256 GG nodes and 600 GH nodes.   Both sets of nodes are connected with NDR fabric to two local file systems, `$HOME` and `$SCRATCH`. These are NFS-based flash file systems from VAST Data. The `$HOME` file system is designed for a small permanent storage area and is quota'd and backed up daily, while the `$SCRATCH` file system is designed for short term use from many nodes and is not quota'd but may be purged as needed. These file systems are connected to the management switch, which in turn is fully connected to the core network switches. The `$WORK` file system is a global Lustre file system connected to all of the TACC HPC resources. It is connected to Vista via LNeT routers. 
 
 !!!tip
-	See NVIDIA'S <a href="https://docs.nvidia.com/grace-perf-tuning-guide/index.html">Grace Performance Tuning Guide</a> for very detailed information on the Grace system..
+	See NVIDIA'S <a href="https://docs.nvidia.com/grace-perf-tuning-guide/index.html">Grace Performance Tuning Guide</a> for very detailed information on the Grace system.
+
+!!!info
+	See TACC's [Performance Analysis of Scientific Applications on an NVIDIA Grace System](https://doi.org/10.1109/SCW63240.2024.00078)
 
 
 ### Grace Grace Compute Nodes { #system-gg }
@@ -117,6 +113,192 @@ File System | Type | Quota | Key Features
 {% include 'include/scratchpolicy.md' %}
 
 
+## Accessing the System { #access }
+
+Access to all TACC systems requires Multi-Factor Authentication (MFA). You can create an MFA pairing under "Manage Account" in the TACC Portal.  See [Multi-Factor Authentication at TACC][TACCMFA] for further information.
+
+!!! important
+	You will be able to log on to Vista **only if** you have an allocation on Vista, otherwise your password will be rejected.  
+	Monitor your projects &amp; allocations the via the [TACC Portal](https://tacc.utexas.edu/portal/projects).
+
+### Secure Shell (SSH) { #access-ssh }
+
+The `ssh` command (Secure Shell, or SSH protocol) is the standard way to connect to Vista and initiate a login session. SSH also includes support for the UNIX file transfer utilities `scp` and `sftp`.  These commands are available within Linux and the Terminal application within Mac OS. If you are using Windows, you will need a modern terminal application such as [Windows Terminal](https://apps.microsoft.com/detail/9N0DX20HK701?hl=en-US&gl=US), [MobaXterm](https://mobaxterm.mobatek.net/) or [Cyberduck](https://cyberduck.io/download/).  
+
+Initiate an SSH session using the `ssh` command or the equivalent: 
+
+	localhost$ ssh taccusername@vista.tacc.utexas.edu
+
+The above command will rotate connections across all available login nodes and route your connection to the next available node. 
+
+!!! important
+	Vista's login nodes are a *shared resource*. See TACC's [Good Conduct Policy][TACCGOODCONDUCT] for more information.
+
+
+To connect to a specific login node, use its full domain name:
+
+	localhost$ ssh taccusername@login2.vista.tacc.utexas.edu
+
+To connect with X11 support on Vista (usually required for applications with graphical user interfaces), use the `-X` or `-Y` option:
+
+	localhost$ ssh -X taccusername@vista.tacc.utexas.edu
+
+Use your TACC portal password for direct logins to TACC resources. You can change or reset your TACC password via the [TACC Portal][TACCUSERPORTAL] under "Manage Account".  To report a connection problem, execute the `ssh` command with the `-vvv` option and include this command's verbose output when submitting a help ticket.
+
+Do not run the `ssh-keygen` command on Vista. This command will create and configure a key pair that will interfere with the execution of job scripts in the batch system.  If you do this by mistake, you can recover by renaming or deleting the `.ssh` directory located in your home directory; the system will automatically generate a new pair for you when you next log into Vista.
+
+1. execute `mv .ssh dot.ssh.old`
+1. log out
+1. log into Vista again
+
+After logging in again, the system will generate a properly configured key SSH pair.
+
+## Account Administration { #admin }
+
+This section explores ways to configure and manage your Linux account on Vista.  Regardless of your research workflow, you'll likely need to master Linux command-line basics along with a Linux-based text editor (e.g. `emacs`, `nano`, `gedit`, or `vi`/`vim`) to use the system properly. If you encounter a term or concept in this user guide that is new to you, a quick internet search should help you resolve the matter quickly.
+
+### Allocation Status { #admin-allocation }
+
+If your password is rejected while attempting to log in, it's possible your account or project has not been added to a Vista allocation.  You can list and manage your allocations via the [TACC Portal](https://tacc.utexas.edu/portal/projects).  
+
+### Linux Shell { #admin-linux }
+
+The default login shell for your user account is Bash. To determine your current login shell, examine the contents of the `$SHELL` environment variable: 
+
+```cmd-line
+$ echo $SHELL
+```
+
+!!! tip
+	If you'd like to change your login shell to `csh`, `tcsh`, or `zsh`, [submit a help ticket][HELPDESK]. 
+	The `chsh` ("change shell") command will not work on TACC systems.
+
+When you start a shell on Vista, system-level startup files initialize your account-level environment and aliases before the system sources your own user-level startup scripts. You can use these startup scripts to customize your shell by defining your own environment variables, aliases, and functions. These scripts (e.g. `.profile` and `.bashrc`) are generally hidden files: so-called "dotfiles" that begin with a period, visible when you execute: `ls -a`.
+
+Before editing your startup files, however, it's worth taking the time to understand the basics of how your shell manages startup. Bash startup behavior is very different from the simpler `csh` behavior, for example. The Bash startup sequence varies depending on how you start the shell (e.g. using `ssh` to open a login shell, executing the `bash` command to begin an interactive shell, or launching a script to start a non-interactive shell). Moreover, Bash does not automatically source your `.bashrc` file when you start a login shell by using `ssh` to connect to a node. Unless you have specialized needs, however, this is undoubtedly more flexibility than you want: you will probably want your environment to be the same regardless of how you start the shell. The easiest way to achieve this is to execute `source ~/.bashrc` from your `.profile`, then put all your customizations in your `.bashrc` file. The system-generated default startup scripts demonstrate this approach. We recommend that you use these default files as templates.
+
+For more information see the [Bash Users' Startup Files: Quick Start Guide][TACCBASHQUICKSTART] and other online resources that explain shell startup. To recover the originals that appear in a newly created account, execute `/usr/local/startup_scripts/install_default_scripts`.
+
+
+{% include 'include/checklist.md' %}
+
+### Environment Variables { #admin-envvars }
+
+Your environment includes the environment variables and functions defined in your current shell: those initialized by the system, those you define or modify in your account-level startup scripts, and those defined or modified by the modules that you load to configure your software environment. Be sure to distinguish between an environment variable's name (e.g. `HISTSIZE`) and its value (`$HISTSIZE`). Understand as well that a sub-shell (e.g. a script) inherits environment variables from its parent, but does not inherit ordinary shell variables or aliases. Use `export` (in Bash) or `setenv` (in `csh`) to define an environment variable.
+
+Execute the `env` command to see the environment variables that define the way your shell and child shells behave.
+Pipe the results of `env` into `grep` to focus on specific environment variables. For example, to see all environment variables that contain the string GIT (in all caps), execute:
+	
+```cmd-line
+$ env | grep GIT
+```
+
+The environment variables, `PATH` and `LD_LIBRARY_PATH`, are especially important. The `PATH` is a colon-separated list of directory paths that determines where the system looks for your executables.  The `LD_LIBRARY_PATH` environment variable is a similar list that determines where the system looks for shared libraries.
+
+
+### Using Modules { #admin-modules }
+
+Lmod, a module system developed and maintained at TACC, makes it easy to manage your environment so you have access to the software packages and versions that you need to using your research. This is especially important on a system like Vista that serves thousands of users with an enormous range of needs and software. Loading a module amounts to choosing a specific package from among available alternatives:
+
+```cmd-line
+$ module load intel          # load the default Intel compiler
+$ module load intel/24.0.0   # load a specific version of Intel compiler
+```
+
+A module does its job by defining or modifying environment variables (and sometimes aliases and functions). For example, a module may prepend appropriate paths to `$PATH` and `$LD_LIBRARY_PATH` so that the system can find the executables and libraries associated with a given software package. The module creates the illusion that the system is installing software for your personal use. Unloading a module reverses these changes and creates the illusion that the system just uninstalled the software:
+
+```cmd-line
+$ module load   ddt  # defines DDT-related env vars; modifies others
+$ module unload ddt  # undoes changes made by load
+```
+
+The module system does more, however. When you load a given module, the module system can automatically replace or deactivate modules to ensure the packages you have loaded are compatible with each other. In the example below, the module system automatically unloads one compiler when you load another, and replaces Intel-compatible versions of IMPI and PETSc with versions compatible with `gcc`:
+
+```cmd-line
+$ module load intel
+$ module load petsc
+$ module load gcc
+
+Lmod is automatically replacing "intel/24.0" with "gcc/13.2.0".
+
+
+Due to MODULEPATH changes, the following have been reloaded:
+  1) catch2/3.8.1     2) petsc/3.24
+
+The following have been reloaded with a version change:
+  1) impi/21.11 => impi/21.9
+```
+
+!!! tip
+	See [Lmod's documentation](https://lmod.readthedocs.io/en/latest/) for extensive information. The online documentation addresses the basics in more detail, but also covers several topics beyond the scope of the help text (e.g. writing and using your own module files).
+
+On Vista, modules generally adhere to a TACC naming convention when defining environment variables that are helpful for building and running software. For example, the papi module defines `TACC_PAPI_BIN` (the path to PAPI executables), `TACC_PAPI_LIB` (the path to PAPI libraries), `TACC_PAPI_INC` (the path to PAPI include files), and `TACC_PAPI_DIR` (top-level PAPI directory). After loading a module, here are some easy ways to observe its effects:
+
+```cmd-line
+$ module show papi   # see what this module does to your environment
+$ env | grep PAPI    # see env vars that contain the string PAPI
+$ env | grep -i papi # case-insensitive search for 'papi' in environment
+```
+
+To see the modules you currently have loaded:
+
+```cmd-line
+$ module list
+```
+
+To see all modules that you can load right now because they are compatible with the currently loaded modules:
+
+```cmd-line
+$ module avail
+```
+
+To see all installed modules, even if they are not currently available because they are incompatible with your currently loaded modules:
+
+```cmd-line
+$ module spider                  # list all modules, even those not available to load
+```
+
+To filter your search:
+
+```cmd-line
+$ module spider slep             # all modules with names containing 'slep'
+$ module spider sundials/2.5.0   # additional details on a specific module
+```
+
+Among other things, the latter command will tell you which modules you need to load before the module is available to load. You might also search for modules that are tagged with a keyword related to your needs (though your success here depends on the diligence of the module writers). For example:
+
+```cmd-line
+$ module keyword performance
+```
+
+You can save a collection of modules as a personal default collection that will load every time you log into Vista. To do so, load the modules you want in your collection, then execute:
+
+```cmd-line
+$ module save            # save the currently loaded collection of modules
+```
+
+Two commands make it easy to return to a known, reproducible state:
+
+```cmd-line
+$ module reset           # load the system default collection of modules
+$ module restore         # load your personal default collection of modules
+```
+
+On TACC systems, the command `module reset` is equivalent to `module purge; module load` TACC. It's a safer, easier way to get to a known baseline state than issuing the two commands separately.
+
+Help text is available for both individual modules and the module system itself:
+
+```cmd-line
+$ module help swr        # show help text for software package swr
+$ module help            # show help text for the module system itself
+```
+
+It's safe to execute module commands in job scripts. In fact, this is a good way to write self-documenting, portable job scripts that produce reproducible results.  If you use `module save` to define a personal default module collection, it's rarely necessary to execute module commands in shell startup scripts, and it can be tricky to do so safely. If you do wish to put module commands in your startup scripts, see Vista's default startup scripts in `/usr/local/startup_scripts` for a safe way to do so.
+
+{% include 'include/vista-crontab.md' %}
+
+{% include 'include/tacctips.md' %}
+
 ## Running Jobs { #running }
 
 
@@ -127,28 +309,40 @@ File System | Type | Quota | Key Features
 Vista's job scheduler is the Slurm Workload Manager. Slurm commands enable you to submit, manage, monitor, and control your jobs.  <!-- See the [Job Management](#jobmanagement) section below for further information. -->
 
 !!! important
-    **Queue limits are subject to change without notice.**  
-    TACC Staff will occasionally adjust the QOS settings in order to ensure fair scheduling for the entire user community.  
-    Use TACC's `qlimits` utility to see the latest queue configurations.
+    **Queue limits are subject to change without notice.**
+    Vista admins may occasionally adjust queue <!--the QOS--> settings in order to ensure fair scheduling for the entire user community.
+    TACC's `qlimits` utility will display the latest queue configurations.
 
 <!--
-04/09/2025
-login1.vista(35)$ qlimits
+01/20/2026 
+login1.vista(76)$ qlimits
 Current queue/partition limits on TACC's vista system:
 
 Name             MinNode  MaxNode     MaxWall  MaxNodePU  MaxJobsPU   MaxSubmit
 gg                     1       32  2-00:00:00        128         20          40
 gh                     1       64  2-00:00:00        192         20          40
 gh-dev                 1        8    02:00:00          8          1           3
+login1.vista(77)$
+
+/usr/local/etc/queue.map
+# vista
+gg:0.33
+gh:1.0
+gh-dev:1.0
+gh-4k:1.0
+debug:1.0
+gg-dev:0.33
+gg-4k:0.33
 -->
 
+<a id="queues">
 #### Table 4. Production Queues { #table4 }
 
-Queue Name     | Node Type     | Max Nodes per Job<br>(assoc'd cores) | Max Duration | Max Jobs in Queue | Charge Rate<br>(per node-hour)
---             | --            | --                                   | --           | --                |  
-`gg`           | Grace/Grace   | 32 nodes<br>(4608 cores)             | 48 hrs       | 20                | 0.33 SU
-`gh`           | Grace/Hopper  | 64 nodes<br>(4608 cores/64 gpus)     | 48 hrs       | 20                | 1 SUs
-`gh-dev`       | Grace Hopper  | 8 nodes<br>(576 cores)               |  2 hrs       |  1                | 1 SU
+Queue Name  | Node Type     | Max Nodes per Job<br>(assoc'd cores) | Max Job<br>Duration | Max Nodes<br>per User   | Max Jobs<br>per User | Max Submit | Charge Rate<br>(per node-hour)
+--          | --            | --                                   | --                  | --                      |--        |--         |--
+`gg`        | Grace/Grace   | 32 nodes<br>(4608 cores)             | 48 hrs              | 128                     | 20       | 40        | 0.33 SU
+`gh`        | Grace/Hopper  | 64 nodes<br>(4608 cores/64 gpus)     | 48 hrs              | 192                     | 20       | 40        | 1 SUs
+`gh-dev`    | Grace Hopper  | 8 nodes<br>(576 cores)               |  2 hrs              | 8                       | 1        | 3         | 1 SU
 
 
 {% include 'include/vista-jobaccounting.md' %}
@@ -167,14 +361,14 @@ In your job script you (1) use `#SBATCH` directives to request computing resourc
 
 Your job will run in the environment it inherits at submission time; this environment includes the modules you have loaded and the current working directory. In most cases you should run your applications(s) after loading the same modules that you used to build them. You can of course use your job submission script to modify this environment by defining new environment variables; changing the values of existing environment variables; loading or unloading modules; changing directory; or specifying relative or absolute paths to files. **Do not** use the Slurm `--export` option to manage your job's environment: doing so can interfere with the way the system propagates the inherited environment.
 
-[Table 8.](#table8) below describes some of the most common `sbatch` command options. Slurm directives begin with `#SBATCH`; most have a short form (e.g. `-N`) and a long form (e.g. `--nodes`). You can pass options to `sbatch` using either the command line or job script; most users find that the job script is the easier approach. The first line of your job script must specify the interpreter that will parse non-Slurm commands; in most cases `#!/bin/bash` or `#!/bin/csh` is the right choice. Avoid `#!/bin/sh` (its startup behavior can lead to subtle problems on Vista), and do not include comments or any other characters on this first line. All `#SBATCH` directives must precede all shell commands. Note also that certain `#SBATCH` options or combinations of options are mandatory, while others are not available on Vista.
+[Table 5.](#table5) below describes some of the most common `sbatch` command options. Slurm directives begin with `#SBATCH`; most have a short form (e.g. `-N`) and a long form (e.g. `--nodes`). You can pass options to `sbatch` using either the command line or job script; most users find that the job script is the easier approach. The first line of your job script must specify the interpreter that will parse non-Slurm commands; in most cases `#!/bin/bash` or `#!/bin/csh` is the right choice. Avoid `#!/bin/sh` (its startup behavior can lead to subtle problems on Vista), and do not include comments or any other characters on this first line. All `#SBATCH` directives must precede all shell commands. Note also that certain `#SBATCH` options or combinations of options are mandatory, while others are not available on Vista.
 
 By default, Slurm writes all console output to a file named "`slurm-%j.out`", where `%j` is the numerical job ID. To specify a different filename use the `-o` option. To save `stdout` (standard out) and `stderr` (standard error) to separate files, specify both `-o` and `-e` options.
 
 !!! tip
 	The maximum runtime for any individual job is 48 hours.  However, if you have good checkpointing implemented, you can easily chain jobs such that the outputs of one job are the inputs of the next, effectively running indefinitely for as long as needed.  See Slurm's `-d` option.
 
-#### Table 8. Common `sbatch` Options { #table8 }
+#### Table 5. Common `sbatch` Options { #table5 }
 
 Option | Argument | Comments
 --- | --- | ---
@@ -355,6 +549,194 @@ For more information on this and other matters related to Slurm job submission, 
 
 
 
+## Job Management { #jobs }
+
+In this section, we present several Slurm commands and other utilities that are available to help you plan and track your job submissions as well as check the status of the Slurm queues.
+
+!!!important
+	When interpreting queue and job status, remember that **Vista does not operate on a first-come-first-served basis**. Instead, the sophisticated, tunable algorithms built into Slurm attempt to keep the system busy, while scheduling jobs in a way that is as fair as possible to everyone. At times this means leaving nodes idle ("draining the queue") to make room for a large job that would otherwise never run. It also means considering each user's "fair share", scheduling jobs so that those who haven't run jobs recently may have a slightly higher priority than those who have.
+
+### Monitoring Queue Status { #jobs-monitoring }
+
+#### TACC's `qlimits` command { #jobs-monitoring-qlimits }
+
+To display resource limits for the Lonestar queues, execute: `qlimits`. The result is real-time data; the corresponding information in this document's [table of Vista queues](#queues) may lag behind the actual configuration that the `qlimits` utility displays.
+
+#### Slurm's `sinfo` command { #jobs-monitoring-sinfo }
+
+Slurm's `sinfo` command allows you to monitor the status of the queues. If you execute `sinfo` without arguments, you'll see a list of every node in the system together with its status. To skip the node list and produce a tight, alphabetized summary of the available queues and their status, execute:
+
+```cmd-line
+login1$ sinfo -S+P -o "%18P %8a %20F"    # compact summary of queue status
+```
+
+This command's output might look like this:
+
+```cmd-line
+PARTITION          AVAIL    NODES(A/I/O/T)
+icx                up       103/2/7/112
+skx                up       402/6/32/440
+skx-dev*           up       6/70/4/80
+```
+	
+The `AVAIL` column displays the overall status of each queue (up or down), while the column labeled `NODES(A/I/O/T)` shows the number of nodes in each of several states ("**A**llocated", "**I**dle", "**O**ffline", and "**T**otal"). Execute `man sinfo` for more information. Use caution when reading the generic documentation, however: some available fields are not meaningful or are misleading on Vista (e.g. `TIMELIMIT`, displayed using the `%l` option).
+
+### Monitoring Job Status { #jobs-monitoring-jobstatus }
+
+#### Slurm's `squeue` command { #jobs-monitoring-queuestatus }
+
+Use Slurm's `squeue` command to display the state of all queued and running jobs.  
+
+```cmd-line
+login1$ squeue             # show all jobs in all queues
+login1$ squeue -u bjones   # show all jobs owned by bjones
+login1$ man squeue         # more info
+```
+
+!!!tip
+	The `squeue`'s default format lists all nodes assigned to displayed jobs; this can make the output difficult to read. A handy variation that suppresses the nodelist is:
+
+	```cmd-line
+	login1$ squeue -o "%.10i %.12P %.12j %.9u %.2t %.9M %.6D"  # suppress nodelist
+	```
+
+!!!tip
+	The `--start` option to the `squeue` displays job start times, including very rough estimates for the expected start times of some pending jobs that are relatively high in the queue:
+
+	```cmd-line
+	login1$ squeue --start -j 167635     # display estimated start time for job 167635
+	```
+
+#### Job Status { #jobs-monitoring-sqeue-status }
+
+The `squeue` command's output displays two columns of interest, the column labeled `ST` displays each job's status, and the last column, labeled `NODELIST/REASON`, includes a nodelist for running/completing jobs, or a reason for pending jobs.  
+
+<!-- See [Figure 2](#squeuefigure). above for sample output. -->
+
+
+##### Table 6. Job Status Meanings { #table6 }
+
+Status Code | Status          | Description
+--          | --              | --
+`CA`        | CANCELLED       | Job was explicitly cancelled by the user or system administrator
+`CD`        | COMPLETED       | Job has terminated all processes on all nodes with an exit code of zero.
+`CG`        | COMPLETING      | Job is in the process of completing. Some processes on some nodes may still be active.
+`F`         | FAILED          | Job terminated with non-zero exit code or other failure condition.
+`NF`        | NODE_FAIL       | Job terminated due to failure of one or more allocated nodes.
+`PD`        | PENDING         | Job is awaiting resource allocation.
+`PR`        | PREEMPTED       | Job terminated due to preemption.
+`R`         | RUNNING         | Job has an allocation and is currently running.
+`TO`        | TIMEOUT         | Job terminated upon reaching its time limit.
+
+
+
+##### Table 7. Pending Jobs Reason { #table7 }
+
+The last column, labeled `NODELIST/REASON`, includes a nodelist for running/completing jobs, or a reason for pending jobs.  
+
+`NODELIST/REASON` | Description
+--- | ---
+`Resources`       | The necessary combination of nodes/GPUs for your job are not available
+`Priority`        | There are other jobs in the queue with a higher priority 
+`Dependency`      | The job will not start until the dependency specified by you is satisfied.
+`ReqNodeNotAvailable` | If you submit a job before a scheduled system maintenance period, and the job cannot complete before the maintenance begins, your job will run when the maintenance/reservation concludes.  The job will remain in the `PD` state until Vista returns to production.
+`QOSMaxJobsPerUserLimit` | The number of your jobs queued exceeds that [queue's limits](#jobs-monitoring-qlimits). These jobs will run once your previous jobs have ended.
+
+
+<!-- `(QOS<something>)` | This tells you which limit the job is exceeding in the particular QOS. For example, QOSGrpCpuLimit means that the jobs running in that QOS (e.g., long) are using all of the allotted resources as set by the GrpTRES value. In this case, simply wait and your job will run. Run the qos command to see the limits. The number of "procs" or CPU-cores in use per QOS is displayed at the bottom of the output. One sees that "Grp" relates to the QOS and not to your research group. -->
+
+
+
+#### TACC's `showq` utility { #jobs-monitoring-showq }
+
+TACC's `showq` utility mimics a tool that originated in the PBS project, and serves as a popular alternative to the Slurm `squeue` command:
+
+```cmd-line
+login1$ showq                 # show all jobs; default format
+login1$ showq -u              # show your own jobs
+login1$ showq -U bjones       # show jobs associated with user bjones
+login1$ showq -h              # more info
+```
+
+The output groups jobs in four categories: `ACTIVE`, `WAITING`, `BLOCKED`, and `COMPLETING/ERRORED`. A `BLOCKED` job is one that cannot yet run due to temporary circumstances (e.g. a pending maintenance or other large reservation.).
+
+If your waiting job cannot complete before a maintenance/reservation begins, `showq` will display its state as `**WaitNod**` ("Waiting for Nodes"). The job will remain in this state until Vista returns to production.
+
+<!-- old text The default format for `showq` now reports total nodes associated with a job rather than cores, tasks, or hardware threads. One reason for this change is clarity: the operating system sees each compute node's hardware threads as "processors", and output based on that information can be ambiguous or otherwise difficult to interpret. -->
+
+Since TACC charges by the node rather than core, `showq`'s default format now reports total nodes associated with a job rather than cores, tasks, or hardware threads.  Run `showq` with the `-l` option to display the number of cores and the job's queue.
+
+
+### Dependent Jobs using `sbatch` { #jobs-dependencies }
+
+You can use `sbatch` to help manage workflows that involve multiple steps: the `--dependency` option allows you to launch jobs that depend on the completion (or successful completion) of another job. For example you could use this technique to split into three jobs a workflow that requires you to (1) compile on a single node; then (2) compute on 40 nodes; then finally (3) post-process your results using 4 nodes. 
+
+``` cmd-line
+login1$ sbatch --dependency=afterok:173210 myjobscript
+```
+
+For more information see the [Slurm online documentation](http://www.schedmd.com). Note that you can use `$SLURM_JOBID` from one job to find the jobid you'll need to construct the `sbatch` launch line for a subsequent one. But also remember that you can't use `sbatch` to submit a job from a compute node.
+
+
+### Other Job Management Commands { #jobs-other }
+
+Use `scancel` to remove one of your jobs from the queue., 
+Use `scontrol`to , and `sacct`
+
+!!! warning
+	It is not possible to add resources to a job (e.g. allow more time) once you've submitted the job to the queue.
+
+To **cancel** a pending or running job, first determine its jobid, then use `scancel`:
+
+```cmd-line
+login1$ squeue -u bjones    # one way to determine jobid
+ JOBID   PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+170361        v100   spec12   bjones PD       0:00     32 (Resources)
+login1$ scancel 170361      # cancel job
+```
+
+For **detailed information** about the configuration of a specific job, use `scontrol`:
+
+```cmd-line
+login1$ scontrol show job=170361
+```
+
+To view some **accounting data** associated with your own jobs, use `sacct`:
+
+```cmd-line
+login1$ sacct --starttime 2019-06-01  # show jobs that started on or after this date
+```
+
+<!-- 
+Pending jobs appear in order of decreasing priority. Tack on the `-u` option to display only your jobs:
+
+<figure id="squeuefigure">
+```cmd-line
+login1$ squeue -u slindsey | more
+JOBID   PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+10454         icx l4chcoo2 tg123456 PD       0:00      1 (QOSMaxJobsPerUserLimit)
+ 8018         icx l4bident tg123456  R   14:57:56      1 c461-218
+10945         icx SM34_687 slindsey  R      27:30     10 c463-[218-227]
+10940         icx SM34_685 slindsey  R      28:44      1 c463-214
+ 8936         icx  mark5.1   bjones  R   21:53:14     12 c460-207,c461-[206-212,221-224]
+ 9795         icx  mark1.2   bjones  R   12:08:59     10 c460-[220-227],c461-[219-220]
+10956         icx       i2 sniffjck  R      14:14      4 c460-[208-211]
+10997         skx     NAME rtoscano CG       1:13      4 c477-[092-094,101]
+10996         skx     NAME rtoscano CG       2:44      4 c479-034,c490-[082-084]
+ 9609         skx sample-s tg987654 PD       0:00      1 (QOSMaxJobsPerUserLimit)
+11002         skx     NAME  ashleyp PD       0:00      4 (Priority)
+11004         skx     NAME  ashleyp PD       0:00      4 (Priority)
+11000         skx     NAME  ashleyp PD       0:00      4 (Resources)
+10673         skx trD4.204 jemerson PD       0:00      4 (Dependency)
+10457         skx l4dimcha tg123456 PD       0:00      2 (QOSMaxJobsPerUserLimit)
+10563         skx lcdm_bas kellygue PD       0:00      1 (Dependency)
+10961         skx    d2_12 tg111111 PD       0:00      1 (QOSMaxJobsPerUserLimit)
+```
+</figure><figcaption>Figure 2. Sample <code>squeue</code> output</figcaption></figure>
+-->
+
+<!-- The default format for `squeue` now reports total nodes associated with a job rather than cores, tasks, or hardware threads. One reason for this change is clarity: the operating system sees each compute node's SDL56 hardware threads as "processors", and output based on that information can be ambiguous or otherwise difficult to interpret. -->
+
 ## NVIDIA  MPS { #mps }
 
 NVIDIA's [Multi-Process Service](https://docs.nvidia.com/deploy/mps/) (MPS) allows multiple processes to share a GPU efficiently by reducing scheduling overhead. MPS can improve GPU resource sharing between processes when a single process cannot fully saturate the GPU's compute capacity. 
@@ -451,21 +833,27 @@ The side-by-side plots in Figure 1 illustrate the performance enhancement obtain
 <figure><img src="../imgs/vista/MPS-graphs.png" width="800"><figcaption>Figure 1.  Usage (SM, Memory and FP32) and SM occupancy percentages for single and dual Amber GPU executions (single-precision) on Hopper H200.</figcaption></figure>
 
 
-## Machine Learning { #ml }
+## Machine Learning on Vista { #ml }
 
-Vista is well equipped to provide researchers with the latest in Machine Learning frameworks, for example, PyTorch. The installation process will be a little different depending on whether you are using single or multiple nodes. Below we detail how to use PyTorch on our systems for both scenarios.
+You may utilize one or more nodes for machine-learning model training tasks on Vista. Vista supports both configurations, enabling researchers to scale their training efficiently based on project requirements.
+
+* Single-node training utilizes one or multiple GPUs on a single node and is ideal for smaller models and datasets, offering faster job throughput and easier debugging. 
+* Multi-node training, on the other hand, distributes the workload across multiple nodes, each with its own set of GPUs. This approach is necessary for large-scale models and datasets that exceed the memory or compute capacity of a single node, and is essential for scalability. 
+
+### Environment Setup
+
+Before diving into machine learning frameworks, it's essential to set up your environment correctly. Vista supports Python virtual environments, which help manage dependencies and isolate projects. This guide walks you through setting up environments for both PyTorch and Accelerate.
+
+We recommend using a Python virtual environment to manage machine learning packages. Once set up, users can run jobs within this environment using either [`idev`][TACCIDEV] sessions or [SLURM batch scripts](#scripts).
 
 ### Running PyTorch (Single Node)
 
-#### Using the System PyTorch 
-
 Follow these steps to use Vista's system PyTorch with a single GPU node.
 
-1. Request a single compute node in Vista's `gh-dev` queue using the [`idev`][TACCIDEV] utility:
+1. Request a single compute node in Vista's [`gh-dev` queue](#queues) using the [`idev`][TACCIDEV] utility:
 	```cmd-line
-	login1.vista(76)$ idev -p gh-dev -N 1 -n 1 -t 1:00:00
+	login1$ idev -p gh-dev -N 1 -n 1 -t 1:00:00
 	```
-
 1. Load modules
 	```cmd-line
 	c123-456$ module load gcc cuda
@@ -478,15 +866,20 @@ Follow these steps to use Vista's system PyTorch with a single GPU node.
 	torch.cuda.is_available()
 	```
 
-#### Installing PyTorch 
+### Installing PyTorch
 
 Depending on your particular application, you may also need to install your own local copy of PyTorch. We recommend using the Python virtual environment to manage machine learning packages. Below we detail how to install PyTorch on our systems with a virtual environment:
 
-1. Request a single compute node in Vista's `gh-dev` queue using the [`idev`][TACCIDEV] utility:
+1. Request a single compute node in Vista's [`gh-dev` queue](#queues) using the [`idev`][TACCIDEV] utility:
 	```cmd-line
-	login1.vista(76)$ idev -p gh-dev -N 1 -n 1 -t 1:00:00
+	login1$ idev -p gh-dev -N 1 -n 1 -t 1:00:00
 	```
-1. Create a Python virtual environment: 
+1. Load modules
+	```cmd-line
+	c123-456$ module load gcc/15.1.0  
+	c123-456$ module load python3/3.11.8
+	```
+1. Create a Python virtual environment:
 	```cmd-line
 	c123-456$ module load gcc cuda
 	c123-456$ module load python3
@@ -496,20 +889,20 @@ Depending on your particular application, you may also need to install your own 
 	```cmd-line
 	c123-456$ source /path/to/virtual-env-single-node/bin/activate
 	```
-1. Install PyTorch 
+1. Install PyTorch
 	```cmd-line
-	c123-456$ pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
+	c123-456$ pip3 install torch torchvision --index-url https://download.pytorch.org/whl/cu129
 	```
 
-#### Testing PyTorch Installation
-
-To test your installation of PyTorch we point you to a few benchmark calculations that are part of PyTorch's tutorials on multi-GPU and multi-node training.  See PyTorch's documentation: [Distributed Data Parallel in PyTorch](https://pytorch.org/tutorials/beginner/ddp_series_intro.html). These tutorials include several scripts set up to run single-node training and multi-node training.
+### Testing PyTorch Installation
+To test your installation of PyTorch we point you to a few benchmark calculations that are part of PyTorch's tutorials on multi-GPU and multi-node training. See PyTorch's documentation: Distributed Data Parallel in PyTorch. These tutorials include several scripts set up to run single-node training and multi-node training.
 
 1. Download the benchmark:
 	```cmd-line
 	c123-456$ cd $SCRATCH (or directory on scratch where you want this repo to reside)
 	c123-456$ git clone https://github.com/pytorch/examples.git
 	```
+
 1. Run the benchmark on one node (1 GPU):
 	```cmd-line
 	c123-456$ python3 examples/distributed/ddp-tutorial-series/single_gpu.py 50 10
@@ -517,118 +910,96 @@ To test your installation of PyTorch we point you to a few benchmark calculation
 
 ### Running PyTorch (Multi-node)
 
-To run multi-node jobs with Grace Hopper nodes on Vista you will need to use MPI-enabled Python. Follow these instructions to install and test these environments with MPI-enabled Python.
-
-#### Using System PyTorch
-
-Follow these steps to use Vista's system PyTorch with multiple GPU nodes.
-
-1. Request a single compute node in Vista's `gh-dev` queue using the `idev` utility:
+1. Request two nodes in the [`gh-dev` queue](#queues) using TACC's [`idev`][TACCIDEV]  utility:
 	```cmd-line
-	login1.vista(76)$ idev -p gh-dev -N 2 -n 2 -t 1:00:00
+	login1$ idev -p gh-dev -N 2 -n 2 -t 1:00:00
+	```
+
+1. Move to the benchmark directory:
+	```cmd-line
+	c123-456$ cd $SCRATCH
+	```
+
+1. Create a script called "run.sh". This script needs two parameters, the hostname of the master node and the number of nodes. Add execution permission for the file "run.sh".
+	```
+	#!/bin/bash
+	HOST=$1
+	NODES=$2
+	LOCAL_RANK=${OMPI_COMM_WORLD_RANK}
+	torchrun --nproc_per_node=1  --nnodes=$NODES --node_rank=${LOCAL_RANK} --master_addr=$HOST \
+   		examples/distributed/ddp-tutorial-series/multinode.py 50 10
+	```
+1. Run multi-gpu training:
+	```cmd-line
+	c123-456$ mpirun -np 2  --map-by ppr:1:node run.sh c123-456 2
+	```
+
+### Setting Up Transformers with Accelerate
+
+Transformers is a Python library developed by Hugging Face that provides pre-trained models for machine learning tasks. It includes implementations of popular architectures like BERT, GPT, and T5, making it easy to fine-tune and deploy state-of-the-art models.
+
+Accelerate is a Hugging Face library designed to streamline distributed training. It abstracts away the complexity of launching multi-GPU and multi-node jobs, allowing users to scale their training with minimal code changes. Follow these steps to set up and run training jobs.
+
+### Set up Environment for Transformers and Accelerate
+
+
+1. Download the code and scripts for the job and change directory 
+	```cmd-line
+	c123-456$ cd $SCRATCH
+	c123-456$ git clone https://github.com/skye-glitch/Machine-Learning-on-Vista.git
+	c123-456$ cd Machine-Learning-on-Vista
+	```
+
+1. Request a single compute node in Vista [`gh-dev` queue](#queues) using TACC's [`idev`][TACCIDEV] utility:
+	```cmd-line
+	login1$ idev -p gh-dev -N 1 -n 1 -t 1:00:00
 	```
 1. Load modules
 	```cmd-line
 	c123-456$ module load gcc cuda
-	c123-456$ module load python3_mpi
+	c123-456$ module load python3
 	```
-
-1. Launch Python interpreter and check to see that you can import PyTorch and that it can utilize the GPU nodes:
+1. Create a Python virtual environment:
 	```cmd-line
-	import torch 
-	torch.cuda.is_available()
-	```	
-
-### Installing PyTorch
-
-To run multi-node jobs with Grace Hopper nodes on Vista you will need to use MPI-enabled Python.  Below we detail how to install PyTorch with MPI-enabled Python using a virtual environment:
-
-1. Request two nodes in the `gh-dev` queue using the `idev` utility:
-	```cmd-line
-	idev -N 2 -n 2 -p gh-dev -t 01:00:00
+	c123-456$ python3 -m venv .venv 
 	```
-
-1. Create a Python virtual environment: 
-	```cmd-line
-	c123-456$ module load gcc cuda
-	c123-456$ module load python3_mpi
-	c123-456$ python3 -m venv /path/to/virtual-env-single-node  # (e.g., $SCRATCH/python-envs/test)
-	```
-
 1. Activate the Python virtual environment:
 	```cmd-line
-	c123-456$ source /path/to/virtual-env-single-node/bin/activate
+	c123-456$ source .venv
 	```
-
-1. Now install PyTorch: 
+1. Now install dependencies:
 	```cmd-line
-	c123-456$ pip3 install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/cu124
+	c123-456$ pip3 install -r requirements.txt
 	```
 
-### Testing PyTorch Installation
+### Testing Transformers and Accelerate Installation
 
-To test your installation of multi-node PyTorch we supply a simple script below.  To launch this script run the following command:
+#### Single-Node
 
+Run the training on one node (1 GPU):
 ```cmd-line
-c123-456$ ibrun -np 2 python3 test.py c123-456
+c123-456$ python ./finetune.py
 ```
 
-Python script ("test.py")
+#### Multi-Node
 
-```file
-import os
-import argparse
+1. Request two nodes in the [`gh-dev` queue](#queues) using TACC's [`idev`][TACCIDEV]  utility:
+	```
+	login1$ idev -p gh-dev -N 2 -n 2 -t 1:00:00
+	```
 
-from mpi4py import MPI
 
-import torch
-import torch.distributed as dist
+1. Move to the code directory:
+	```
+	c123-456$ cd $SCRATCH/Machine-Learning-on-Vista
+	```
 
-# use mpi4py to get the world size and tasks rank
-WORLD_SIZE = MPI.COMM_WORLD.Get_size()
-WORLD_RANK = MPI.COMM_WORLD.Get_rank()
+1. Run the multi-gp training:
+	```
+	c123-456$ mpirun -np 2  --map-by ppr:1:node multinode.sh
+	```
 
-# use the convention that gets the local rank based on how many
-# GPUs there are on the node.
-GPU_ID = WORLD_RANK % torch.cuda.device_count()
-name = MPI.Get_processor_name()
 
-def run(backend):
-	tensor = torch.randn(10000,10000)
-
-	# Need to put tensor on a GPU device for nccl backend
-	if backend == 'nccl':
-    	device = torch.device("cuda:{}".format(GPU_ID))
-    	tensor = tensor.to(device)
-	print("Starting process on " + name+ ":" +torch.cuda.get_device_name(GPU_ID))
-	if WORLD_RANK == 0:
-    	for rank_recv in range(1, WORLD_SIZE):
-        	dist.send(tensor=tensor, dst=rank_recv)
-        	print('worker_{} sent data to Rank {}\n'.format(0, rank_recv))
-	else:
-    	dist.recv(tensor=tensor, src=0)
-    	print('worker_{} has received data from rank {}\n'.format(WORLD_RANK,0))
-
-def init_processes(backend, master_address):
-	print("World Rank: %s, World Size: %s, GPU_ID: %s"%(WORLD_RANK,WORLD_SIZE,GPU_ID))
-	os.environ["MASTER_ADDR"] = master_address
-	os.environ["MASTER_PORT"] = "12355"
-	dist.init_process_group(backend, rank=WORLD_RANK, world_size=WORLD_SIZE)
-	run(backend)
-
-if __name__ == "__main__":
-
-	parser = argparse.ArgumentParser()
-	parser.add_argument("master_node", type=str)
-	parser.add_argument("--backend", type=str, default="nccl", choices=['nccl', 'gloo'])
-	args = parser.parse_args()
-	backend=args.backend
-	if torch.cuda.device_count() == 0:
-    	print("No gpu detected...switching to gloo for backend")
-    	backend="gloo"
-	init_processes(backend=backend,master_address=args.master_node)
-	dist.destroy_process_group()
-```
 ## Building Software { #building } 
 
 !!!important
@@ -845,6 +1216,7 @@ TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for 
 
 * [NVIDIA Grace Performance Tuning Guide](https://docs.nvidia.com/grace-perf-tuning-guide/index.html)
 * [NVIDIA Performance Libraries Documentation](https://docs.nvidia.com/nvpl/)
+* [Performance Analysis of Scientific Applications on an NVIDIA Grace System](https://ieeexplore-ieee-org.ezproxy.lib.utexas.edu/document/10820760)
 
 
 [CREATETICKET]: https://tacc.utexas.edu/about/help/ "Create Support Ticket"
@@ -880,7 +1252,7 @@ TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for 
 [TACCLOGINSUPPORT]: https://accounts.tacc.utexas.edu/login_support "TACC Accounts Login Support Tool"
 
 [TACCALLOCATIONS]: https://tacc.utexas.edu/use-tacc/allocations/ "TACC Allocations"
-[TACCAUP]: https://accounts.tacc.utexas.edu/aup "TACC Acceptable Use Policy"
+[TACCAUP]: https://tacc.utexas.edu/use-tacc/user-policies/ "TACC Acceptable Use Policy"
 [TACCCITE]: https://tacc.utexas.edu/about/citing-tacc/ "Citing TACC"
 
 [TACCSTAMPEDE3UG]: https://docs.tacc.utexas.edu/hpc/stampede3/ "TACC Stampede3 User Guide"

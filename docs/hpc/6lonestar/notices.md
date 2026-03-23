@@ -1,9 +1,7 @@
 # Lonestar6 User Guide
-*Last update: May 27, 2025*
+*Last update: November 3, 2025*
 
-## Notices { #notices }
-
-* **Important**: Please note [TACC's new SU charge policy](#sunotice). (09/20/2024)
+<!-- ## Notices { #notices } -->
 
 ## Introduction { #intro }
 
