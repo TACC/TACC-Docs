@@ -2,7 +2,6 @@
 *Last update: February 12, 2025*
 
 <!-- ![ParaView logo](../imgs/paraview-logo.svg){ .align-right width="300" } -->
-<img src="../imgs/paraview-logo.svg" width="300" alt="ParaView logo" class="align-right">
 
 [ParaView](https://www.paraview.org/) is an open-source, multi-platform data analysis and visualization application. ParaView users can quickly build visualizations to analyze their data using qualitative and quantitative techniques. The data exploration can be done interactively in 3D or programmatically using ParaView's batch processing capabilities.
 
@@ -35,7 +34,7 @@ In the image below the user is submitting a request for a 30-minute DCV session 
 !!!tip
 	You can choose either the VNC or DCV method to provide the desktop.  DCV is preferred but has a limited number of licenses available.
 
-<figure><img src="../imgs/paraview-1.png" width=60%>
+<figure><img alt="Submit DCV Session Request" src="../imgs/paraview-1.png" width=60%>
 <figcaption>Submit DCV session request</figcaption></figure>
 
 Eventually the job will run, allocate the specified nodes and tasks, and provide a means to connect to it in a separate browser tab.   There you will see a desktop.   In the terminal window on that desktop:
@@ -63,7 +62,7 @@ Eventually the job will run, allocate the specified nodes and tasks, and provide
 
 1.	And the ParaView GUI will appear on the desktop.
 
-	<figure><img src="../imgs/paraview-2.png" width=60%>
+	<figure><img "Paraview GUI" src="../imgs/paraview-2.png" width=60%>
 	<figcaption>ParaView session</figcaption></figure>
 
 
@@ -127,7 +126,7 @@ TACC:  Shutdown complete. Exiting.
 Ignore the scary looking text that emerges.  This will create a file named 'tt.png' containing an image of a sphere:
 
 <figure>
-<img src="../imgs/paraview-4.png">
+<img alt="Image of a Sphere" src="../imgs/paraview-4.png">
 <figcaption></figcaption></figure>
 
 Alternatively, you can run `pvpython` and then enter the above statements at the prompt.  

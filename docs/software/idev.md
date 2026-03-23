@@ -11,10 +11,10 @@ The `idev` utility creates an interactive development environment from the user'
 
 The `idev` command submits a batch job that creates a copy of the batch environment and then goes to sleep. After the job begins, `idev` acquires a copy of the batch environment, SSH's to the master node, and then re-creates the batch environment. The SSH command allows X11 tunneling for setting up a display back to the user's laptop for debugging.
 
-On any TACC system execute `idev -help` to view an extensive list of options:
+On any TACC system execute `idev --help` to view an extensive list of options:
 
 ``` cmd-line
-login2$ idev -help
+login2$ idev --help
 ```
 
 <!--    # command options:  -p partition_name

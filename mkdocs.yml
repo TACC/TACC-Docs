@@ -47,9 +47,13 @@ nav:
     - Managing Your TACC Account: basics/accounts.md
     - Multi-Factor Authentication: basics/mfa.md
     - TACC Good Conduct Guide: basics/conduct.md
-    - Data Transfer Guide: basics/datatransfer.md
+    - Common User Issues: basics/userissues.md
     - Software at TACC: basics/software.md
     - Help: basics/help.md
+  - Data Transfer Guides:
+    - Data Transfer at TACC: datatransfer/datatransferguide.md
+    - SSH Tools: datatransfer/ssh.md
+    - Globus: datatransfer/globus.md
   - HPC User Guides:
     - Chameleon: https://chameleoncloud.readthedocs.io/en/latest
     - Corral: hpc/corral.md
@@ -57,6 +61,7 @@ nav:
     - Lonestar6: hpc/lonestar6.md
     - Jetstream2: https://docs.jetstream-cloud.org
     - Ranch: hpc/ranch.md
+    - Ranch Migration 2026: hpc/ranch-migration-2025.md
     - Stampede3: hpc/stampede3.md
     - Stallion: hpc/stallion.md
     - Vista: hpc/vista.md
@@ -92,7 +97,6 @@ nav:
     - Remote Desktop Access: tutorials/remotedesktopaccess.md
     - Sharing Project Files: tutorials/sharingprojectfiles.md
     - TACC Analysis Portal (TAP): tutorials/TAP.md
-
 
 
 plugins:

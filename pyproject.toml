@@ -2,6 +2,9 @@
 requires = ["poetry-core>=1.5.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
 
+[tool.poetry]
+package-mode = true # to make PIP use [project.dependencies]
+
 [project]
 name = "tacc-docs"
 version = "1.0.0"
@@ -18,7 +21,7 @@ requires-python = ">=3.10,<3.13"
 dependencies = [
   "mkdocs-macros-plugin>=1.0.4",
   "mkdocs-exclude-search>=0.6.6",
-  "mkdocs-tacc[all] (>=0.6.1,<0.7.0)",
+  "mkdocs-tacc[all] (>=1.0.0,<2.0.0)",
 ]
 
 # FAQ: for Poetry 1.x compatibility (Poetry 2+ should use above format)

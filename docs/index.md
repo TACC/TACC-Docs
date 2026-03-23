@@ -65,7 +65,7 @@ Each of our HPC resources has a user guide, with extensive instructions and info
 
 
 
-///// html | a.card--plain.card--image-top[href="./hpc/stampede3/"]
+///// html | a.card--plain.card--image-top[href="./hpc/vista/"]
      markdown: block
 
 ////// html | img[alt="TACC's Vista AI supercomputer"][src="imgs/home/vista.png" height="400"]
@@ -192,22 +192,11 @@ TACC offers a variety of training and education programs. You may search and reg
 
 /////
 
-///// html | a.card--plain.card--image-top[href="https://www.tacc.utexas.edu/use-tacc/training/#institutes"]
+
+///// html | a.card--plain.card--image-top[href="https://www.youtube.com/@TACC_training"]
      markdown: block
 
-////// html | img[alt="a photograph of rows of tables with trainees using laptops"][src="imgs/home/institutes.png"]
-//////
-
-<h3>TACC Institutes</h3>
-
-In-person, multi-day, immersive, training opportunities meant to enhance users knowledge of broad HPC topics.
-
-/////
-
-///// html | a.card--plain.card--image-top[href="https://www.youtube.com/watch?v=DWmAWT5e3iQ"]
-     markdown: block
-
-////// html | img[alt="an interface window with a graduation cap and a play button being pressed by a finger"][src="imgs/home/video.png"]
+////// html | img[alt=""][src="imgs/home/video.png"]
 //////
 
 <h3>Training Videos</h3>
@@ -217,6 +206,17 @@ Self-guided training videos ranging from short how-to guides to detailed topical
 
 /////
 
+///// html | a.card--plain.card--image-top[href="https://www.tacc.utexas.edu/use-tacc/training/#institutes"]
+     markdown: block
+
+////// html | img[alt=""][src="imgs/home/institutes.png"]
+//////
+
+<h3>TACC Institutes</h3>
+
+In-person, multi-day, immersive, training opportunities meant to enhance users knowledge of broad HPC topics.
+
+/////
 ////
 ///
 
