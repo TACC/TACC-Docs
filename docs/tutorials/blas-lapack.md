@@ -1,5 +1,5 @@
 # BLAS and LAPACK at TACC
-*Last update: August 22, 2024*
+*Last update: March 09, 2024*
 
 BLAS (Basic Linear Algebra Subprograms) is a set of definitions of common operations on vectors and (dense) matrices. LAPACK is the Linear Algebra Package that builds on BLAS and that offers numerical algorithms such as linear system solving and eigenvalue calculations. The so-called "reference" implementations of BLAS/LAPACK are written in Fortran and can be found on <http://netlib.org>, but in practice you don't want to use them since they have low performance. Instead, TACC offers libraries that conform to the specification, but that achieve high performance. They are typically written in a combination of C and Assembly.
 
