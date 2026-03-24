@@ -1,6 +1,10 @@
 ## System Architecture { #system }
 
+*content*
+
 ### Horizon Topology { #system-topology }
+
+*image needed*
 
 <!-- Horizon's compute system is divided into Grace-Grace and Grace-Hopper subsystems networked in two-level fat-tree topology as illustrated in Figure 1. below.
 
@@ -24,40 +28,42 @@ Each top rack shelf switch in all racks connects to sixteen core switches via du
 
 ### Vera Rubin Compute Nodes { #system-vr }
 
+*description*
 
 #### Table 1. Vera Rubin Specifications { #table1 }
 
 Specification | Value 
 --- | ---
-CPU:                       | NVIDIA Grace CPU Superchip
-Total cores per node:      | 144 cores on two sockets (2 x 72 cores)
-Hardware threads per core: | 1
-Hardware threads per node: | 2x72 = 144
-Clock rate:                | 3.4 GHz
-Memory:                    | 237 GB LPDDR
-Cache:                     | 64 KB L1 data cache per core; 1MB L2 per core; 114 MB L3 per socket.<br>Each socket can cache up to 186 MB (sum of L2 and L3 capacity).
-Local storage:             | 286 GB `/tmp` partition
-DRAM:                      | LPDDR5
+CPU:                       | 
+Total cores per node:      | 
+Hardware threads per core: | 
+Hardware threads per node: | 
+Clock rate:                | 
+Memory:                    | 
+Cache:                     | 
+Local storage:             | 
+DRAM:                      | 
 
 ### Vera Vera Compute Nodes { #system-vv }
 
+*description*
 
 
 #### Table 2. Vera Vera Specifications { #table2 }
 
 Specification                | Value 
 ---                          | ---
-GPU:                         | NVIDIA H200 GPU 
-GPU Memory:                  | 96 GB HBM 3
-CPU:                         | NVIDIA Grace CPU
-Total cores per node:        | 72 cores on one socket
-Hardware threads per core:   | 1
-Hardware threads per node:   | 1x48 = 72
-Clock rate:                  | 3.1 GHz
-Memory:                      | 116 GB DDR5
-Cache:                       | 64 KB L1 data cache per core; 1MB L2 per core; 114 MB L3 per socket.<br>Each socket can cache up to 186 MB (sum of L2 and L3 capacity).
-Local storage:               | 286 GB `/tmp` partition
-DRAM:                        | LPDDR5
+GPU:                         | 
+GPU Memory:                  | 
+CPU:                         | 
+Total cores per node:        | 
+Hardware threads per core:   | 
+Hardware threads per node:   | 
+Clock rate:                  | 
+Memory:                      | 
+Cache:                       | 
+Local storage:               | 
+DRAM:                        | 
 
 ### Login Nodes { #system-login }
 
@@ -66,6 +72,8 @@ DRAM:                        | LPDDR5
 *description needed*
 
 ### Network { #system-network }
+
+*copied from Vista*
 
 The interconnect is based on Mellanox NDR technology with full NDR (400 Gb/s) connectivity between the switches and the GH GPU nodes and with NDR200 (200 Gb/s) connectivity to the GG compute nodes. A fat tree topology connects the compute nodes and the GPU nodes within separate trees.  Both sets of nodes are connected with NDR to the `$HOME` and `$SCRATCH` file systems. 
 
@@ -81,12 +89,15 @@ As with Stampede3, the `$WORK` file system will also be mounted.  Unlike `$HOME`
 
 #### Table 3. File Systems { #table3 }
 
+*update this table for Horizon*
+
 File System | Type | Quota | Key Features
 ---         | -- | ---   | ---
 `$HOME` | VAST   | 23 GB, 500,000 files | Not intended for parallel or high−intensity file operations.<br>Backed up regularly.
 `$WORK` | Lustre | 1 TB, 3,000,000 files across all TACC systems<br>Not intended for parallel or high−intensity file operations.<br>See [Stockyard system description][TACCSTOCKYARD] for more information. | Not backed up. | Not purged.
 `$SCRATCH` | VAST | no quota<br>Overall capacity ~10 PB. | Not backed up.<br>Files are subject to purge if access time* is more than 10 days old. See TACC's [Scratch File System Purge Policy](#scratchpolicy) below.
 
-{% include 'include/scratchpolicy.md' %}
+
+<!-- commenting out for Google Docs version {% include 'include/scratchpolicy.md' %}  -->
 
 

@@ -1,6 +1,7 @@
 HORIZON_OBJS	=	\
 	notices.md \
 	system.md \
+	running.md \
 	mps.md \
 	nvidia.md 
 
@@ -12,7 +13,6 @@ HORIZON_OBJS	=	\
 #	vis.md \
 #	access.md \
 #	admin.md \
-#	running.md \
 #	launching.md \
 #	jobmanagement.md \
 #	building.md \
