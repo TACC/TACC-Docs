@@ -171,5 +171,4 @@ Table x.
   `container prompt`
   venv prompt
   conda prompt
-
 -->

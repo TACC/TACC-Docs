@@ -27,25 +27,26 @@ Using Conda at TACC in a performant way can be tricky. The reason for this is th
 
     Install MiniForge - the Conda installer Miniforge is one of several Conda installers, others examples include Anaconda and Miniconda. We will be use miniforge to download Conda into the `$SCRATCH` directory.
 
-         curl -LO https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh
-         bash Miniforge3-Linux-x86_64.sh
+	```cmd-line
+	$ curl -LO https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh
+	$ bash Miniforge3-Linux-x86_64.sh
+	```
 
-    When you run the bash script, you will have some disclaimers pop up on your command line during the installation process. This disclaimer will walk you through the installation steps for Miniforge, but it will present to you a default installation folder that is in the `$HOME` directory.
-
-    **Ensure you change this to your scratch/frontera directory before you install Miniforge.**
-
-    After running the bash script, it will ask you to update your shell profile to automatically initialize conda. **Type 'yes'.**
+    When you run the bash script, you will have some disclaimers pop up on your command line during the installation process. This disclaimer will walk you through the installation steps for Miniforge, but it will present to you a default installation folder that is in the `$HOME` directory. **Ensure you change this to your scratch/frontera directory before you install Miniforge.** After running the bash script, it will ask you to update your shell profile to automatically initialize conda. **Type 'yes'.**
 
 2.  Create a PyTorch Conda environment
 
     We can now create our first Conda Environment. Create a **Python 3.10** environment to ensure it works with CUDA by running the command:
 
-        prompt$ conda create --name mypytorchvenv python=3.10
-
+	```cmd-line
+	prompt$ conda create --name mypytorchvenv python=3.10
+	```
     Upon creation, the terminal should prompt you with a series of yes/no questions pertaining to the libraries that Conda will automatically install in the environment.
 
     Once the environment is created, **activate** it with:
 
+	```cmd-line
+	```
         prompt$ conda activate mypytorchvenv
 
     Once the environment is properly activated, your working directory should look like:
@@ -73,17 +74,19 @@ Using Conda at TACC in a performant way can be tricky. The reason for this is th
 
          conda install pytorch torchvision torchaudio pytorch-cuda=12.6 -c pytorch -c nvidia
 
-1.  Clone the Pytorch Examples Repository
+1.  Clone the Pytorch Examples Repository and `cd` into the new repository
 
-    This is an official repository containing dozens of example scripts from the Pytorch library. For the purposes of this tutorial, we will be cloning it into our new environment.
+	```cmd-line
+	git clone https://github.com/pytorch/examples.git
+	cd examples/distributed/ddp-tutorial-series
+	```
 
-        git clone https://github.com/pytorch/examples.git
-
-1.  CD into the ddp tutorial series folder
+1.  
 
     Upon listing all of the directories now present in the **\$SCRATCH** folder, we should now see a new directory called **examples**.
 
-         cd examples/distributed/ddp-tutorial-series
+	```cmd-line
+	```
 
 1.  Run the Sanity Test
 
@@ -93,8 +96,10 @@ Using Conda at TACC in a performant way can be tricky. The reason for this is th
 
     And within our virtual environment, we will use the `torchrun` command to launch the training script across all of the available nodes.
 
-        torchrun --standalone --nproc_per_node=<GPU_COUNT> multigpu_torchrun.py 5 10
-        cd examples/distributed/ddp-tutorial-series
+	```cmd-line
+	$ torchrun --standalone --nproc_per_node=<GPU_COUNT> multigpu_torchrun.py 5 10
+	$ cd examples/distributed/ddp-tutorial-series
+	```
 
     This will distribute the training workload across all GPUs on your machine using `torch.distributed` and `DistributedDataParallel` (DDP), and train the model for 5 epochs and run checkpoints every 10
     seconds.
@@ -108,7 +113,7 @@ Using Conda at TACC in a performant way can be tricky. The reason for this is th
 
 ## Refs
 
-* For more information about multi-GPU training, see the following documentation: [Distributed Data Parallel in Pytorch](https://pytorch.org/tutorials/beginner/ddp_series_intro.html)
+* [Distributed Data Parallel in Pytorch](https://pytorch.org/tutorials/beginner/ddp_series_intro.html)
 * [Conda documentation](https://docs.conda.io/)
 
 
