@@ -1,5 +1,5 @@
 # Horizon User Guide 
-*Last update: March 23, 2026*
+*Last update: March 30, 2026*
 
 ## Notices { #notices }
 
@@ -9,7 +9,7 @@
 
 *Intro here*
 
-Horizon is funded by the National Science Foundation (NSF) via a supplement to the Computing for the Endless Frontier award, [Award Abstract #XXXXXXX]().  Please [reference TACC](https://tacc.utexas.edu/about/citing-tacc/) when providing any citations. 
+Horizon is a National Science Foundation-funded system that is part of the the Leadership Class Computing Facility (LCCF) award, [Award Abstract #2323116](https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2323116).  Please [reference TACC](https://tacc.utexas.edu/about/citing-tacc/) when providing any citations. 
 
 ### Allocations { #intro-allocations }
 
@@ -18,7 +18,11 @@ Horizon is funded by the National Science Foundation (NSF) via a supplement to t
 
 ## System Architecture { #system }
 
+*content*
+
 ### Horizon Topology { #system-topology }
+
+*image needed*
 
 <!-- Horizon's compute system is divided into Grace-Grace and Grace-Hopper subsystems networked in two-level fat-tree topology as illustrated in Figure 1. below.
 
@@ -42,40 +46,42 @@ Each top rack shelf switch in all racks connects to sixteen core switches via du
 
 ### Vera Rubin Compute Nodes { #system-vr }
 
+*description*
 
 #### Table 1. Vera Rubin Specifications { #table1 }
 
 Specification | Value 
 --- | ---
-CPU:                       | NVIDIA Grace CPU Superchip
-Total cores per node:      | 144 cores on two sockets (2 x 72 cores)
-Hardware threads per core: | 1
-Hardware threads per node: | 2x72 = 144
-Clock rate:                | 3.4 GHz
-Memory:                    | 237 GB LPDDR
-Cache:                     | 64 KB L1 data cache per core; 1MB L2 per core; 114 MB L3 per socket.<br>Each socket can cache up to 186 MB (sum of L2 and L3 capacity).
-Local storage:             | 286 GB `/tmp` partition
-DRAM:                      | LPDDR5
+CPU:                       | 
+Total cores per node:      | 
+Hardware threads per core: | 
+Hardware threads per node: | 
+Clock rate:                | 
+Memory:                    | 
+Cache:                     | 
+Local storage:             | 
+DRAM:                      | 
 
 ### Vera Vera Compute Nodes { #system-vv }
 
+*description*
 
 
 #### Table 2. Vera Vera Specifications { #table2 }
 
 Specification                | Value 
 ---                          | ---
-GPU:                         | NVIDIA H200 GPU 
-GPU Memory:                  | 96 GB HBM 3
-CPU:                         | NVIDIA Grace CPU
-Total cores per node:        | 72 cores on one socket
-Hardware threads per core:   | 1
-Hardware threads per node:   | 1x48 = 72
-Clock rate:                  | 3.1 GHz
-Memory:                      | 116 GB DDR5
-Cache:                       | 64 KB L1 data cache per core; 1MB L2 per core; 114 MB L3 per socket.<br>Each socket can cache up to 186 MB (sum of L2 and L3 capacity).
-Local storage:               | 286 GB `/tmp` partition
-DRAM:                        | LPDDR5
+GPU:                         | 
+GPU Memory:                  | 
+CPU:                         | 
+Total cores per node:        | 
+Hardware threads per core:   | 
+Hardware threads per node:   | 
+Clock rate:                  | 
+Memory:                      | 
+Cache:                       | 
+Local storage:               | 
+DRAM:                        | 
 
 ### Login Nodes { #system-login }
 
@@ -84,6 +90,8 @@ DRAM:                        | LPDDR5
 *description needed*
 
 ### Network { #system-network }
+
+*copied from Vista*
 
 The interconnect is based on Mellanox NDR technology with full NDR (400 Gb/s) connectivity between the switches and the GH GPU nodes and with NDR200 (200 Gb/s) connectivity to the GG compute nodes. A fat tree topology connects the compute nodes and the GPU nodes within separate trees.  Both sets of nodes are connected with NDR to the `$HOME` and `$SCRATCH` file systems. 
 
@@ -99,15 +107,92 @@ As with Stampede3, the `$WORK` file system will also be mounted.  Unlike `$HOME`
 
 #### Table 3. File Systems { #table3 }
 
+*update this table for Horizon*
+
 File System | Type | Quota | Key Features
 ---         | -- | ---   | ---
 `$HOME` | VAST   | 23 GB, 500,000 files | Not intended for parallel or high−intensity file operations.<br>Backed up regularly.
 `$WORK` | Lustre | 1 TB, 3,000,000 files across all TACC systems<br>Not intended for parallel or high−intensity file operations.<br>See [Stockyard system description][TACCSTOCKYARD] for more information. | Not backed up. | Not purged.
 `$SCRATCH` | VAST | no quota<br>Overall capacity ~10 PB. | Not backed up.<br>Files are subject to purge if access time* is more than 10 days old. See TACC's [Scratch File System Purge Policy](#scratchpolicy) below.
 
-{% include 'include/scratchpolicy.md' %}
+
+<!-- commenting out for Google Docs version {% include 'include/scratchpolicy.md' %}  -->
 
 
+## Running Jobs { #running }
+
+
+<!-- ### Slurm Job Scheduler { #running-slurm } -->
+
+### Slurm Partitions (Queues) { #queues }
+
+Horizon's job scheduler is the Slurm Workload Manager. Slurm commands enable you to submit, manage, monitor, and control your jobs.  <!-- See the [Job Management](#jobmanagement) section below for further information. -->
+
+!!! important
+    **Queue limits are subject to change without notice.**
+    Horizon admins may occasionally adjust queue <!--the QOS--> settings in order to ensure fair scheduling for the entire user community.
+    TACC's `qlimits` utility will display the latest queue configurations.
+
+
+<a id="queues">
+#### Table 4. Production Queues { #table4 }
+
+*copied from Vista - update*
+
+Queue Name  | Node Type     | Max Nodes per Job<br>(assoc'd cores) | Max Job<br>Duration | Max Nodes<br>per User   | Max Jobs<br>per User | Max Submit | Charge Rate<br>(per node-hour)
+--          | --            | --                                   | --                  | --                      |--        |--         |--
+`gg`        | Grace/Grace   | 32 nodes<br>(4608 cores)             | 48 hrs              | 128                     | 20       | 40        | 0.33 SU
+`gh`        | Grace/Hopper  | 64 nodes<br>(4608 cores/64 gpus)     | 48 hrs              | 192                     | 20       | 40        | 1 SUs
+`gh-dev`    | Grace Hopper  | 8 nodes<br>(576 cores)               |  2 hrs              | 8                       | 1        | 3         | 1 SU
+
+
+<!-- commenting out for Google Docs version 
+{% include 'include/horizon-jobaccounting.md' %}
+
+### Submitting Batch Jobs with `sbatch` { #running-sbatch }
+
+Use Slurm's `sbatch` command to submit a batch job to one of the Horizon queues:
+
+```cmd-line
+login1$ sbatch myjobscript
+```
+
+Where `myjobscript` is the name of a text file containing `#SBATCH` directives and shell commands that describe the particulars of the job you are submitting. The details of your job script's contents depend on the type of job you intend to run.
+
+In your job script you (1) use `#SBATCH` directives to request computing resources (e.g. 10 nodes for 2 hrs); and then (2) use shell commands to specify what work you're going to do once your job begins. There are many possibilities: you might elect to launch a single application, or you might want to accomplish several steps in a workflow. You may even choose to launch more than one application at the same time. The details will vary, and there are many possibilities. But your own job script will probably include at least one launch line that is a variation of one of the examples described here.
+
+Your job will run in the environment it inherits at submission time; this environment includes the modules you have loaded and the current working directory. In most cases you should run your applications(s) after loading the same modules that you used to build them. You can of course use your job submission script to modify this environment by defining new environment variables; changing the values of existing environment variables; loading or unloading modules; changing directory; or specifying relative or absolute paths to files. **Do not** use the Slurm `--export` option to manage your job's environment: doing so can interfere with the way the system propagates the inherited environment.
+
+[Table 5.](#table5) below describes some of the most common `sbatch` command options. Slurm directives begin with `#SBATCH`; most have a short form (e.g. `-N`) and a long form (e.g. `--nodes`). You can pass options to `sbatch` using either the command line or job script; most users find that the job script is the easier approach. The first line of your job script must specify the interpreter that will parse non-Slurm commands; in most cases `#!/bin/bash` or `#!/bin/csh` is the right choice. Avoid `#!/bin/sh` (its startup behavior can lead to subtle problems on Horizon), and do not include comments or any other characters on this first line. All `#SBATCH` directives must precede all shell commands. Note also that certain `#SBATCH` options or combinations of options are mandatory, while others are not available on Horizon.
+
+By default, Slurm writes all console output to a file named "`slurm-%j.out`", where `%j` is the numerical job ID. To specify a different filename use the `-o` option. To save `stdout` (standard out) and `stderr` (standard error) to separate files, specify both `-o` and `-e` options.
+
+!!! tip
+	The maximum runtime for any individual job is 48 hours.  However, if you have good checkpointing implemented, you can easily chain jobs such that the outputs of one job are the inputs of the next, effectively running indefinitely for as long as needed.  See Slurm's `-d` option.
+
+#### Table 5. Common `sbatch` Options { #table5 }
+
+Option | Argument | Comments
+--- | --- | ---
+`-A`  | *projectid* | Charge job to the specified project/allocation number. This option is only necessary for logins associated with multiple projects.
+`-a`<br>or<br>`--array` | =*tasklist* | Horizon supports Slurm job arrays.  See the [Slurm documentation on job arrays](https://slurm.schedmd.com/job_array.html) for more information.
+`-d=` | afterok:*jobid* | Specifies a dependency: this run will start only after the specified job (jobid) successfully finishes
+`-export=` | N/A | Avoid this option on Horizon. Using it is rarely necessary and can interfere with the way the system propagates your environment.
+`--gres` | | TACC does not support this option.
+`--gpus-per-task` | | TACC does not support this option.
+`-p`  | *queue_name* | Submits to queue (partition) designated by queue_name
+`-J`  | *job_name*   | Job Name
+`-N`  | *total_nodes* | Required. Define the resources you need by specifying either:<br>(1) `-N` and `-n`; or<br>(2) `-N` and `-ntasks-per-node`.
+`-n`  | *total_tasks* | This is total MPI tasks in this job. See `-N` above for a good way to use this option. When using this option in a non-MPI job, it is usually best to set it to the same value as `-N`.
+`-ntasks-per-node`<br>or<br>`-tasks-per-node` | tasks_per_node | This is MPI tasks per node. See `-N` above for a good way to use this option. When using this option in a non-MPI job, it is usually best to set `-ntasks-per-node` to 1.
+`-t`  | *hh:mm:ss* | Required. Wall clock time for job.
+`-mail-type=` | `begin`, `end`, `fail`, or `all` | Specify when user notifications are to be sent (one option per line).
+`-mail-user=` | *email_address* | Specify the email address to use for notifications. Use with the `-mail-type=` flag above.
+`-o`  | *output_file* | Direct job standard output to output_file (without `-e` option error goes to this file)
+`-e`  | *error_file* | Direct job error output to error_file
+`-mem`  | N/A | Not available. If you attempt to use this option, the scheduler will not accept your job.
+
+-->
 ## NVIDIA  MPS { #mps }
 
 NVIDIA's [Multi-Process Service](https://docs.nvidia.com/deploy/mps/) (MPS) allows multiple processes to share a GPU efficiently by reducing scheduling overhead. MPS can improve GPU resource sharing between processes when a single process cannot fully saturate the GPU's compute capacity. 
@@ -201,7 +286,7 @@ c608-052$ nvidia-smi dmon --gpm-metrics=3,12 -s u
 The side-by-side plots in Figure 1 illustrate the performance enhancement obtained by running two GPU processes simultaneous on a single Hopper node with MPS. The GPU performance improvement is ~12%, compared to no improvement without MPS. Also, the setup cost on the CPU (about 12 seconds) is completely overlapped, resulting in in a 1.2x total improvement for 2 simultaneous Amber executions. Even better performance is expected for applications which don't load the GPU as much as Amber.
 
  
-<figure><img src="../imgs/horizon/MPS-graphs.png" width="800"><figcaption>Figure 1.  Usage (SM, Memory and FP32) and SM occupancy percentages for single and dual Amber GPU executions (single-precision) on Hopper H200.</figcaption></figure>
+<figure><img src="../imgs/vista/MPS-graphs.png" width="800"><figcaption>Figure 1.  Usage (SM, Memory and FP32) and SM occupancy percentages for single and dual Amber GPU executions (single-precision) on Hopper H200.</figcaption></figure>
 
 
 ## NVIDIA Performance Libraries (NVPL) {nvpl}

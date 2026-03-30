@@ -1,5 +1,5 @@
 # Horizon User Guide 
-*Last update: March 23, 2026*
+*Last update: March 30, 2026*
 
 ## Notices { #notices }
 
@@ -9,7 +9,7 @@
 
 *Intro here*
 
-Horizon is funded by the National Science Foundation (NSF) via a supplement to the Computing for the Endless Frontier award, [Award Abstract #XXXXXXX]().  Please [reference TACC](https://tacc.utexas.edu/about/citing-tacc/) when providing any citations. 
+Horizon is a National Science Foundation-funded system that is part of the the Leadership Class Computing Facility (LCCF) award, [Award Abstract #2323116](https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2323116).  Please [reference TACC](https://tacc.utexas.edu/about/citing-tacc/) when providing any citations. 
 
 ### Allocations { #intro-allocations }
 

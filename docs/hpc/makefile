@@ -10,6 +10,10 @@ frontera: FORCE
 	echo "====== Building Frontera ======"
 	cd frontera; make;
 
+horizon: FORCE
+	echo "====== Building Horizon ======"
+	cd horizon; make;
+
 lonestar6: FORCE
 	echo "====== Building Lonestar6  ======"
 	cd 6lonestar; make; 
