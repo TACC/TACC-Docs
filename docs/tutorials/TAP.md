@@ -38,7 +38,14 @@ A TAP job also accepts these additional optional inputs:  <span style="backgroun
 * **Reservation:** the reservation in which to run the job. If you have a reservation on the selected system and want the job to run within that reservation, specify the name here.  
 * **VNC Desktop Resolution:** desktop resolution for a VNC job. If this is left blank, a VNC job will use the default resolution of 1024x768.  
 
-After specifying the job inputs, select the **Submit** <span style="background-color:#FF7F00; color:#FFFFFF;">(&nbsp;8&nbsp;)</span> &nbsp;button, and your job will be submitted to the remote system. After submitting the job, you will be automatically redirected to the job status page. You can get back to this page from the **Status** <span style="background-color:#FF7F00; color:#FFFFFF;">(&nbsp;3&nbsp;)</span> &nbsp;button. If the job is already running on the system, click the **Connect** <span style="background-color:#FF7F00; color:#FFFFFF;">(&nbsp;5&nbsp;)</span>&nbsp; button from the Home Screen or Job status to connect to your application.
+After specifying the job inputs, select the **Submit** <span style="background-color:#FF7F00; color:#FFFFFF;">(&nbsp;8&nbsp;)</span> &nbsp;button, and your job will be submitted to the remote system. After submitting the job, you will be automatically redirected to the job status page. 
+The reported status can be one of the following:
+- Running. In this case you can click the **Connect** <span style="background-color:#FF7F00; color:#FFFFFF;">(&nbsp;5&nbsp;)</span>&nbsp; button  to connect to your application.
+- `SCRIPT_DELAYED`. In this case you ....
+- Any more?
+
+  
+You can get back to this page from the **Status** <span style="background-color:#FF7F00; color:#FFFFFF;">(&nbsp;3&nbsp;)</span> &nbsp;button. If the job is already running on the system, click the **Connect** <span style="background-color:#FF7F00; color:#FFFFFF;">(&nbsp;5&nbsp;)</span>&nbsp; button from the Home Screen or Job status to connect to your application.
 
 <figure id="figure2"><img alt="" src="../imgs/2TAP.png"><br />
 <figcaption>Figure 2. Job Status</figcaption></figure>
