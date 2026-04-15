@@ -5,17 +5,22 @@
 
 ## Set up Debugging Environment { #env }
 
-Before running any debugger, the application code must be compiled with the `-g` and `-O0` options as shown below:
+Before running any debugger, the application code must be compiled with the `-g` options as shown below:
 
 ```cmd-line
-login1$ mpif90 -g -O0 mycode.f90
+login1$ mpif90 -g mycode.f90
 ```
 
 or
 
 ```cmd-line
-login1$ mpiCC -g -O0 mycode.c
+login1$ mpiCC -g mycode.c
 ```
+
+If you use CMake, make sure the option `-D CMAKE_BUILD_TYPE=RelWithDebInfo` is supplied.
+
+Note: the compiler will often "optimize away" certain variables, making it tricky to debug some code.
+For this reason, you could recompile your code with `-O0`.
 
 Follow these steps to set up your debugging environment on Frontera, Stampede3, Lonestar6 and other TACC compute resources.
 
