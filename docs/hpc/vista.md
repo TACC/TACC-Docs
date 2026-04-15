@@ -1,5 +1,5 @@
 # Vista User Guide 
-*Last update: March 10, 2026*
+*Last update: April 15, 2026*
 
 ## Notices { #notices }
 
@@ -314,22 +314,23 @@ Vista's job scheduler is the Slurm Workload Manager. Slurm commands enable you t
     TACC's `qlimits` utility will display the latest queue configurations.
 
 <!--
-01/20/2026 
-login1.vista(76)$ qlimits
+04/15/2026 no change since 01/20/2026
+login1.vista(219)$ qlimits
 Current queue/partition limits on TACC's vista system:
 
 Name             MinNode  MaxNode     MaxWall  MaxNodePU  MaxJobsPU   MaxSubmit
 gg                     1       32  2-00:00:00        128         20          40
 gh                     1       64  2-00:00:00        192         20          40
 gh-dev                 1        8    02:00:00          8          1           3
-login1.vista(77)$
 
-/usr/local/etc/queue.map
-# vista
-gg:0.33
-gh:1.0
-gh-dev:1.0
-gh-4k:1.0
+login1.vista(220)$
+--
+login1.vista(220)$ more /usr/local/etc/queue.map
+# vista  
+gg:0.33 
+gh:1.0 
+gh-dev:1.0 
+gh-4k:1.0 
 debug:1.0
 gg-dev:0.33
 gg-4k:0.33
@@ -1234,7 +1235,7 @@ TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for 
 [TACCIDEV]: https://docs.tacc.utexas.edu/software/idev "idev at TACC"
 [TACCLMOD]: https://lmod.readthedocs.io/en/latest/ "Lmod"
 [TACCMANAGINGACCOUNT]: https://docs.tacc.utexas.edu/basics/accounts "Managing your TACC Account"
-[TACCMANAGINGIO]: https://docs.tacc.utexas.edu/tutorials/managingio "Managing I/O at TACC""
+[TACCMANAGINGIO]: https://docs.tacc.utexas.edu/tutorials/managingio "Managing I/O at TACC"
 [TACCMANAGINGPERMISSIONS]: https://docs.tacc.utexas.edu/tutorials/permissions "Unix Group Permissions and Environment"
 [TACCMFA]: https://docs.tacc.utexas.edu/basics/mfa "Multi-Factor Authentication at TACC"
 [TACCPYLAUNCHER]: https://docs.tacc.utexas.edu/software/pylauncher "PyLauncher at TACC"

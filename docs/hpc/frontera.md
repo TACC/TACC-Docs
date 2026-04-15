@@ -1,5 +1,5 @@
 # Frontera User Guide
-*Last update: November 21, 2025*
+*Last update: April 15, 2026*
 
 <!-- **Important**: (10-15-2024) Please note [TACC's new SU charge policy](#sunotice). -->
 
@@ -788,11 +788,6 @@ Frontera's `flex` queue offers users a low cost queue for lower priority/node co
 <!--
 01/20/2026
 frontera2(1)$ qlimits
-Current queue/partition limits on TACC's Frontera system:
-
-The "running job limit" is the MaxJobsPU column. MaxJobsPU is the maximum number of jobs a user can have running simultaneously.
-The "job submission limit" is the MaxSubmit column. The MaxSubmit limit is the maximum number of jobs a user can have in the queue. 
-
            Name       MinNode       MaxNode   PreemptExemptTime     MaxWall     MaxNodePU MaxJobsPU MaxSubmit
            flex             1           128            01:00:00  2-00:00:00          2048        15        60
     development                          40                        02:00:00            40         2         2
@@ -808,7 +803,6 @@ The "job submission limit" is the MaxSubmit column. The MaxSubmit limit is the m
              gh                           1                        02:00:00             1         2         2
 
 frontera2(2)$ m /usr/local/etc/queue.map
-# frontera
 flex:0.8
 development:1.0
 normal:1.0
@@ -817,6 +811,35 @@ rtx:3.0
 rtx-dev:3.0
 nvdimm:2.0
 small:1.0
+-->
+<!--
+(base) frontera1(1)$ qlimits
+           Name       MinNode       MaxNode   PreemptExemptTime     MaxWall     MaxNodePU MaxJobsPU MaxSubmit
+           flex             1           128            01:00:00  2-00:00:00          2048        15        60
+    development                          40                        02:00:00            40         2         2
+         normal             1           512                      2-00:00:00          1280        75       200
+          large           513          2048                      2-00:00:00          3072         2         8
+          debug                        8368                      2-00:00:00          8368        30        60
+            rtx                          16                      2-00:00:00            32        20        36
+        rtx-dev                           2                        02:00:00             2         2         2
+         nvdimm                           4                      2-00:00:00             6         4         8
+          small             1             2                      2-00:00:00            30        22        80
+          grace                          30                      5-00:00:00            30        30       100
+         corral                         512                      2-00:00:00          2048       100       200
+             gh                           1                        02:00:00             1         2         2
+--
+(base) frontera1(2)$  m /usr/local/etc/queue.map
+# frontera
+flex:0.8
+development:1.0
+normal:1.0
+large:1.0
+serial:1.0
+small:1.0
+rtx:3.0
+rtx-dev:3.0
+rtxsystest:0.0
+nvdimm:2.0
 -->
 
 | Queue Name | Min-Max Nodes per Job<br>(assoc'd cores) | Pre-empt<br>Exempt Time | Max Job Duration | Max Nodes per User | Max Jobs per User | Max Submit | Charge Rate<br>per node-hour
@@ -2048,7 +2071,7 @@ TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for 
 [TACCIDEV]: https://docs.tacc.utexas.edu/software/idev "idev at TACC"
 [TACCLMOD]: https://lmod.readthedocs.io/en/latest/ "Lmod"
 [TACCMANAGINGACCOUNT]: https://docs.tacc.utexas.edu/basics/accounts "Managing your TACC Account"
-[TACCMANAGINGIO]: https://docs.tacc.utexas.edu/tutorials/managingio "Managing I/O at TACC""
+[TACCMANAGINGIO]: https://docs.tacc.utexas.edu/tutorials/managingio "Managing I/O at TACC"
 [TACCMANAGINGPERMISSIONS]: https://docs.tacc.utexas.edu/tutorials/permissions "Unix Group Permissions and Environment"
 [TACCMFA]: https://docs.tacc.utexas.edu/basics/mfa "Multi-Factor Authentication at TACC"
 [TACCPYLAUNCHER]: https://docs.tacc.utexas.edu/software/pylauncher "PyLauncher at TACC"
