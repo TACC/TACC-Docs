@@ -1,103 +1,84 @@
-## System Architecture { #system }
+## System Specifications  { #system }
 
-*content*
+Developed in collaboration with Dell Technologies, NVIDIA, VAST Data, Spectra Logic, Versity, and Sabey Data Centers, the Horizon supercomputer combines cutting-edge technologies with advanced infrastructure to redefine what is possible in scientific computing.
 
-### Horizon Topology { #system-topology }
+| Specification                      | Value
+| -----                              | ----- |
+| Performance<br>GPU component only) | 160 petaflops (FP64 units)<br>320 petaflops (FP32 units)<p>~288 petaflops<br>(DGEMM using Ozaki method)
+| AI Performance                     | 20 exaflops for AI at BF16/FP16<br>40 exaflops for AI at FP8<br>80 exaflops for AI at FP4 |
+| Scale                              | NVIDIA Grace Blackwell platform featuring 4,000 GPUs and NVIDIA Vera Vera servers featuring 4752 nodes |
+| Networking                         | Interconnected by the NVIDIA Quantum-x800 InfiniBand networking platform |
+| Local All-Solid State Storage      | 400PB of storage delivering more than 8TB/s of read/write bandwidth along with multi-tenancy and Quality-of-Service capabilities. |
+| Efficiency                         | Up to 6x more energy efficient, powered by a new 20 MW data center with advanced liquid cooling in Round Rock, Texas. |
 
-*image needed*
+### Grace Blackwell Compute Nodes
 
-<!-- Horizon's compute system is divided into Grace-Grace and Grace-Hopper subsystems networked in two-level fat-tree topology as illustrated in Figure 1. below.
+Horizon hosts 2,000 Grace Blackwell (GB) nodes. The Grace Blackwell (GB) subsystem consists of nodes using the GB200 NVL4 platform. The NVL4 platform is configured as 2 nodes each with 2 NVIDIA Blackwell GPUs each with 185 GiB of HBM3 memory and 1 Grace CPU with 120 GiB of LPDDR5X memory and 72 cores. 
 
-<figure><img src="../imgs/horizon/horizon-topology.png"> <figcaption>Figure 1. Horizon Topology</figcaption></figure>
+A GB node provides 80 TFlops of FP64 performance (~160 TFlops DGEMM performance using NVML) and 20 PFlops of FP16 performance for ML workflows. The GB subsystem is housed in 28 racks, each containing 72 GB nodes. These nodes connect via an NVIDIA InfiniBand 800 Gb/s fabric to NVIDIA XDR InfiniBand switches using a fully connected two-level fat-tree topology.
 
-The Grace-Grace (GG) subsystem, a purely CPU-based system, is housed in four racks, each containing 64 Grace-Grace (GG) nodes. Each GG node contains 144 processing cores. A GG node provides over 7 TFlops of double precision performance and up to 1 TiB/s of memory bandwidth. GG nodes connect via an InfiniBand 200 Gb/s fabric to a top rack shelf NVIDIA Quantum-2 MQM9790 NDR switch. In total, the subsystem contains sixty-four 200 Gb/s uplinks to the NDR rack shelf switch.
+#### Table 1. Grace Blackwell Specifications
 
-The Grace-Hopper (GH) subsystem, on the other  hand,  consists of nodes using the GH200 Grace-Hopper Superchip. Each GH node contains an NVIDIA H200 GPU  with 96 GiB of HBM3 memory and a Grace CPU with 120 GiB of LPDDR5X memory and 72 cores. A GH node provides 34 TFlops of FP64 performance and 1979 TFlops of FP16 performance for ML workflows on the H200 chip. The GH subsystem is housed in 19 racks, each containing 32 Grace-Hopper (GH) nodes. These nodes connect via an NVIDIA InfiniBand 400 Gb/s fabric to the NVIDIA Quantum-2 MQM9790 NDR switch having 64 ports of 400Gb/s InfiniBand per port. There are thirty-two 400 Gb/s uplinks to the NDR rack shelf switch. The GH nodes have twice the network bandwidth of the GG nodes.
+| Specification | Value |
+| ----- | ----- |
+| GPU: | Blackwell, GB200 |
+| GPU Memory: | 185 Mib |
+| CPU: | NVIDIA Grace CPU |
+| Total CPU cores per node: | 72 cores on one socket |
+| Hardware threads per core: | 1 |
+| Hardware threads per node: | 72 |
+| Clock rate: | 3.4 GHz |
+| Memory: | 240 GiB LPDDR |
+| Cache: | 64 KB L1 data cache per core; 1MB L2 per core; 114 MB L3 |
+| Local storage: | 130 GiB |
+| DRAM: | LPDDR5 |
 
-Each top rack shelf switch in all racks connects to sixteen core switches via dual-400G cables. In total, Horizon contains 256 GG nodes and 600 GH nodes.   Both sets of nodes are connected with NDR fabric to two local file systems, `$HOME` and `$SCRATCH`. These are NFS-based flash file systems from VAST Data. The `$HOME` file system is designed for a small permanent storage area and is quota'd and backed up daily, while the `$SCRATCH` file system is designed for short term use from many nodes and is not quota'd but may be purged as needed. These file systems are connected to the management switch, which in turn is fully connected to the core network switches. The `$WORK` file system is a global Lustre file system connected to all of the TACC HPC resources. It is connected to Horizon via LNeT routers. 
+### Vera Vera Compute Nodes
 
-!!!tip
-	See NVIDIA'S <a href="https://docs.nvidia.com/grace-perf-tuning-guide/index.html">Grace Performance Tuning Guide</a> for very detailed information on the Grace system.
+#### Table 2. Vera Vera Specifications
 
-!!!info
-	See TACC's [Performance Analysis of Scientific Applications on an NVIDIA Grace System](https://doi.org/10.1109/SCW63240.2024.00078)
+| Specification | Value |
+| ----- | ----- |
+| CPU: | NVIDIA Vera CPU |
+| Total cores per node: | 176 cores on two sockets (2 x 88)  |
+| Hardware threads per core: | 2 (Spatial Multi-Threading) |
+| Hardware threads per node: | 2 x 88 x 2 = 352 |
+| Clock rate: | TBA |
+| Memory: | 500 GB LPDDR |
+| Cache: | TBA |
+| Local storage: | 240 GB |
+| DRAM: | LPDDR5 |
 
--->
+Horizon hosts 4752 "Vera Vera" (VV) nodes with 176 cores each. Each VV node provides a performance increase of  over 3x compared to Frontera's CLX nodes and ~2x compared to the Grace Grace nodes of Vista.  This improved performance per node is due to increase in core count, 176 vs 144, an increase in vector units per core, 6 vs 4, and an increase in memory bandwidth, 2.4 TB/s vs 1 TB/s. Each VV node provides over 13 TFlops of double precision performance and over 2 TiB/s of memory bandwidth.
 
-*system description needed*
+### Login Nodes
 
-### Vera Rubin Compute Nodes { #system-vr }
+The Horizon login nodes are Grace Grace (GG) nodes with 144 cores and 237 GB of LPDDR. They are compatible with the NVIDA and GNU software stacks installed for the GB and VV nodes.
 
-*description*
+### Network
 
-#### Table 1. Vera Rubin Specifications { #table1 }
-
-Specification | Value 
---- | ---
-CPU:                       | 
-Total cores per node:      | 
-Hardware threads per core: | 
-Hardware threads per node: | 
-Clock rate:                | 
-Memory:                    | 
-Cache:                     | 
-Local storage:             | 
-DRAM:                      | 
-
-### Vera Vera Compute Nodes { #system-vv }
-
-*description*
+The interconnect is based on Mellanox XDR technology with full XDR (800 Gb/s) connectivity between the switches and the GB GPU nodes and with XDR400 (400 Gb/s) connectivity to the VV compute nodes. A fat tree topology fully connects the compute nodes and the GPU nodes within separate trees with no over subscription within each tree.  Every GB node is fully connected using full XDR (800 Gb/s) to every other GB node.  Every VV node is fully connected using XDR400 (400 Gb/s) to every other VV node. Both sets of nodes are connected to the `$HOME` and `$SCRATCH` file systems via Infiniband.
 
 
-#### Table 2. Vera Vera Specifications { #table2 }
+### File Systems 
 
-Specification                | Value 
----                          | ---
-GPU:                         | 
-GPU Memory:                  | 
-CPU:                         | 
-Total cores per node:        | 
-Hardware threads per core:   | 
-Hardware threads per node:   | 
-Clock rate:                  | 
-Memory:                      | 
-Cache:                       | 
-Local storage:               | 
-DRAM:                        | 
+Horizon will use a shared VAST file system for the `$HOME` and `$SCRATCH` directories.
 
-### Login Nodes { #system-login }
-
-<!-- The Horizon login nodes are NVIDIA Grace Grace (GG) nodes, each with 144 cores on two sockets (72 cores/socket) with 237 GB of LPDDR. -->
-
-*description needed*
-
-### Network { #system-network }
-
-*copied from Vista*
-
-The interconnect is based on Mellanox NDR technology with full NDR (400 Gb/s) connectivity between the switches and the GH GPU nodes and with NDR200 (200 Gb/s) connectivity to the GG compute nodes. A fat tree topology connects the compute nodes and the GPU nodes within separate trees.  Both sets of nodes are connected with NDR to the `$HOME` and `$SCRATCH` file systems. 
-
-### File Systems { #system-filesystems }
-
-Horizon will use a shared VAST file system for the `$HOME` and `$SCRATCH` directories. 
-
-!!! important
-	Horizon's `$HOME` and `$SCRATCH` file systems are NOT Lustre file systems and do not support setting a stripe count or stripe size. 
-
-As with Stampede3, the `$WORK` file system will also be mounted.  Unlike `$HOME` and `$SCRATCH`, the `$WORK` file system is a Lustre file system and supports Lustre's `lfs` commands. All three file systems, `$HOME`, `$SCRATCH`, and `$WORK` are available from all Horizon nodes. The `/tmp` partition is also available to users but is local to each node. The `$WORK` file system is available on most other TACC HPC systems as well.
+!!!  warning
+	The $WORK filesystem will not be available for early users.  A `$WORK` filesystem will be made available later in 2026.  The `/tmp` partition is also available to users but is local to each node. 
 
 
 #### Table 3. File Systems { #table3 }
 
-*update this table for Horizon*
+*in progress*
 
-File System | Type | Quota | Key Features
----         | -- | ---   | ---
-`$HOME` | VAST   | 23 GB, 500,000 files | Not intended for parallel or high−intensity file operations.<br>Backed up regularly.
-`$WORK` | Lustre | 1 TB, 3,000,000 files across all TACC systems<br>Not intended for parallel or high−intensity file operations.<br>See [Stockyard system description][TACCSTOCKYARD] for more information. | Not backed up. | Not purged.
-`$SCRATCH` | VAST | no quota<br>Overall capacity ~10 PB. | Not backed up.<br>Files are subject to purge if access time* is more than 10 days old. See TACC's [Scratch File System Purge Policy](#scratchpolicy) below.
-
-
-<!-- commenting out for Google Docs version {% include 'include/scratchpolicy.md' %}  -->
+| File System | Type     | Quota                               | Key Features
+| -----       | -----    | -----                               | -----|
+| `$HOME`    | VAST      | TBD                                 | Not intended for parallel or high−intensity file operations.<br>Backed up daily. 
+| `$WORK`    | VAST      | TBD                                 | Not backed up.
+| `$SCRATCH` | VAST      | no quota Overall capacity ~400 PB. | Not backed up.<br>Files are subject to purge if access time\* is more than 10 days old. See TACC's Scratch File System Purge Policy below.
 
 
+{% include 'include/scratchpolicy.md' %}
+
+---

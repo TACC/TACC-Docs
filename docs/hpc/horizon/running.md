@@ -1,29 +1,29 @@
 ## Running Jobs { #running }
 
-
 <!-- ### Slurm Job Scheduler { #running-slurm } -->
+
+Like all other current TACC systems, Horizon employs the Slurm Workload Manager as it's job scheduler.  Slurm commands enable you to submit, manage, monitor, and control your jobs.  <!-- See the [Job Management](#jobmanagement) section below for further information. -->
 
 ### Slurm Partitions (Queues) { #queues }
 
-Horizon's job scheduler is the Slurm Workload Manager. Slurm commands enable you to submit, manage, monitor, and control your jobs.  <!-- See the [Job Management](#jobmanagement) section below for further information. -->
-
-!!! important
+!!! warning
     **Queue limits are subject to change without notice.**
-    Horizon admins may occasionally adjust queue <!--the QOS--> settings in order to ensure fair scheduling for the entire user community.
+    Horizon admins may occasionally adjust queue settings in order to ensure fair scheduling for the entire user community.
     TACC's `qlimits` utility will display the latest queue configurations.
-
 
 <a id="queues">
 #### Table 4. Production Queues { #table4 }
 
-*copied from Vista - update*
+| Queue Name | Node Type       | Max Nodes per Job | Max Job Duration | Charge Rate (per node-hour) 
+| -----      | -----           | -----             | -----            | -----                       
+| `gb`       | Grace Blackwell | 128               | 48 hrs           | 1 SU 
+| `gb-dev`   | Grace Blackwell | 16                | 2 hrs            | 1 SU 
+| `gb-large` | Grace Blackwell | 512               | 48 hrs           | 1 SU 
+| `vv`       | Vera Vera       | 256               | 48 hrs           | 0.25 SUs 
+| `vv-dev`   | Vera Vera       | 32                | 2 hrs            | 0.25 SUs 
+| `vv-large` | Vera Vera       | 1024              | 48 hrs           | 0.25 SUs 
 
-Queue Name  | Node Type     | Max Nodes per Job<br>(assoc'd cores) | Max Job<br>Duration | Max Nodes<br>per User   | Max Jobs<br>per User | Max Submit | Charge Rate<br>(per node-hour)
---          | --            | --                                   | --                  | --                      |--        |--         |--
-`gg`        | Grace/Grace   | 32 nodes<br>(4608 cores)             | 48 hrs              | 128                     | 20       | 40        | 0.33 SU
-`gh`        | Grace/Hopper  | 64 nodes<br>(4608 cores/64 gpus)     | 48 hrs              | 192                     | 20       | 40        | 1 SUs
-`gh-dev`    | Grace Hopper  | 8 nodes<br>(576 cores)               |  2 hrs              | 8                       | 1        | 3         | 1 SU
-
+Reminder: A Grace Blackwell node contains 1 Grace CPU and 2 Blackwell GPUs. 
 
 <!-- commenting out for Google Docs version 
 {% include 'include/horizon-jobaccounting.md' %}
@@ -72,3 +72,5 @@ Option | Argument | Comments
 `-mem`  | N/A | Not available. If you attempt to use this option, the scheduler will not accept your job.
 
 -->
+
+

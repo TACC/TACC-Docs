@@ -1,8 +1,8 @@
 HORIZON_OBJS	=	\
-	notices.md\
-#	system.md \
+	notices.md \
+	system.md \
+	running.md 
 #	files.md \
-#	running.md \
 #	mps.md \
 #	nvidia.md 
 
