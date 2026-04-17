@@ -1260,6 +1260,7 @@ TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for 
 [TACCLONESTAR6UG]: https://docs.tacc.utexas.edu/hpc/lonestar6/ "TACC Lonestar6 User Guide"
 [TACCFRONTERAUG]: https://docs.tacc.utexas.edu/hpc/frontera/ "TACC Frontera User Guide"
 [TACCVISTAUG]: https://docs.tacc.utexas.edu/hpc/vista/ "TACC Vista User Guide"
+[TACCHORIZONAUG]: https://docs.tacc.utexas.edu/hpc/horizon/ "TACC Horizon User Guide"
 [TACCRANCHUG]: https://docs.tacc.utexas.edu/hpc/ranch/ "TACC Ranch User Guide"
 [TACCCORRALUG]: https://docs.tacc.utexas.edu/hpc/corral/ "TACC Corral User Guide"
 [TACCSTOCKYARD]: https://tacc.utexas.edu/systems/stockyard  "Stockyard File System"
