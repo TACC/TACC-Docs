@@ -1,5 +1,5 @@
 # Horizon User Guide 
-*Last update: April 16, 2026*
+*Last update: April 20, 2026*
 
 ---
 
@@ -9,6 +9,7 @@
 
 ## Notices { #notices }
 
+* See the latest TACC Announcement regarding [Horizon opportunities](https://tacc.utexas.edu/news/user-updates/107622/). (04/17/2026)
 * **[Subscribe][TACCSUBSCRIBE] to Horizon User News**. Stay up-to-date on Horizon's status, scheduled maintenances and other notifications.  (04/15/2026) 
 
 ## Introduction { #intro }
@@ -19,6 +20,8 @@ Horizon is a National Science Foundation-funded system that is part of the the L
 
 * NAIRR: NAIRR <https://nairrpilot.org/>
 * TxRAS: Submit to opportunities, including LRAC at <https://submit-tacc.xras.org/>
+* See the latest TACC Announcement regarding [Horizon opportunities](https://tacc.utexas.edu/news/user-updates/107622/). 
+
 
 
 ## System Specifications  { #system }
