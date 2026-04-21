@@ -1,5 +1,34 @@
-# PyTorch with Containers (Apptainer)
-**Last update: January 26, 2026**
+# Containers (Apptainer)
+**Last update: April 21, 2026**
+
+## When to Use
+
+* Maximum reproducibility
+* Complex or prebuilt environments
+
+
+## Quickstart 
+
+```bash
+cd $SCRATCH
+module load tacc-apptainer
+apptainer pull pytorch.sif docker://pytorch/pytorch:2.5.1-cuda12.4-cudnn9-devel
+```
+
+Run the **Core Workflow** via:
+
+```bash
+apptainer exec --nv pytorch.sif \
+  torchrun --nproc_per_node=<GPU_COUNT> \
+  examples/distributed/ddp-tutorial-series/multigpu_torchrun.py 5 10
+```
+
+## Notes
+
+* CUDA bundled in container
+* `--nv` required for GPU access
+---
+
 
 This page documents how to run the PyTorch multi-GPU sanity test inside an Apptainer container on TACC systems. We will pull a PyTorch image from Docker Hub and run a Python script within an Apptainer container.  Set up a GPU-enabled Pytorch container on one of TACC's HPC compute resources.  Run the benchmark `multigpu_torchrun.py` testing script.
 
@@ -52,7 +81,6 @@ This page documents how to run the PyTorch multi-GPU sanity test inside an Appta
 *   [TACC Docker Hub](https://hub.docker.com/u/tacc)
 *   [Pytorch DDP](https://docs.pytorch.org/tutorials/intermediate/ddp_tutorial.html)
 
-<!-- 
 ## Defining Terms
 
 What is a Docker? What are Images?
@@ -71,4 +99,3 @@ Apptainer  provides portability, reproducibility, and seamless integration with 
 Use apptainer to run the container on a TACC HPC system
 
 In this tutorial, we follow the workflow highlighted in [TACC's container tutorial](https://containers-at-tacc.readthedocs.io/en/latest/singularity/01.singularity_basics.html).
--->

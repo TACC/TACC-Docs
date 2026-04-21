@@ -1,7 +1,44 @@
+---
+# Conda Environments
+
+## When to Use
+
+* Need Python + non-Python dependencies
+* Need controlled CUDA versions
+
+---
+
+## Quickstart (≤ 5 steps)
+
+```bash
+cd $SCRATCH
+bash Miniforge3-Linux-x86_64.sh
+conda create -n myenv python=3.10
+conda activate myenv
+conda install pytorch torchvision torchaudio pytorch-cuda=12.6 -c pytorch -c nvidia
+```
+
+→ Then run the **Core Workflow** in `pytorch.md`
+
+---
+
+## Notes
+
+* Install in `$SCRATCH`
+* Conda manages CUDA runtime
+* Large environments stress HPC filesystems
+---
+
 # PyTorch with User-Installed Conda
 **Last update: January 26, 2026**
 
-In this tutorial, you used idev to request a GPU node to work on, installed and used Conda to create a virtual environment, installed Pytorch in a virtual environment, and then ran an example script using multiple GPUs for AI/ML training tasks and benchmarking. Run a successful multi-GPU training task in a Conda environment. This script facilitates and streamlines the training of ML models on multiple GPUs, as well as benchmarks the performance of Pytorch-based models on multiple GPUs.
+In this tutorial, 
+* you used idev to request a GPU node to work on, 
+* installed and used Conda to create a virtual environment, 
+* installed Pytorch in a virtual environment, 
+* and then ran an example script using multiple GPUs for AI/ML training tasks and benchmarking. 
+
+Run a successful multi-GPU training task in a Conda environment. This script facilitates and streamlines the training of ML models on multiple GPUs, as well as benchmarks the performance of Pytorch-based models on multiple GPUs.
 
 This page documents how to run the PyTorch multi-GPU sanity test using a Conda environment installed in `$SCRATCH`.
 

@@ -1,4 +1,33 @@
-# Python Virtual Environments at TACC
+# Python Virtual Environments (`venv`)
+
+---
+
+## When to Use
+
+* Lightweight Python-only workflows
+* Minimal dependencies
+
+---
+
+## Quickstart (≤ 4 steps)
+
+```bash
+cd $SCRATCH
+python3 -m venv myenv
+source myenv/bin/activate
+pip install torch torchvision torchaudio
+```
+
+→ Then run the **Core Workflow** in `pytorch.md`
+
+---
+
+## Notes
+
+* Uses system CUDA
+* No system-level dependency management
+---
+
 
 PyTorch is a Python framework for machine and deep learning. It is built upon the torch library and also provides a C++ interface. It supports CPU and GPU execution for single-node and multi-node systems. 
 
