@@ -3,8 +3,14 @@
 
 ## Notices { #notices }
 
-* **New**: See TACC Staff's [notes on incorporating NVIDIA's Multi-Process Service](#mps). (MPS) 
-* **[Subscribe][TACCSUBSCRIBE] to Vista User News**. Stay up-to-date on Vista's status, scheduled maintenances and other notifications.  (09/01/2024)
+* **Using Artifical Intelligence clients (AI) on TACC resources**: We *strongly* recommend you run all AI assisted tasks on a compute node.  Reminder: The login nodes are <a href="../../basics/conduct/#conduct-loginnodes">a shared resource</a> among a multitude of users.  (04/21/2026)
+
+    Furthermore
+
+    * You are responsible for any processes launched on TACC resources via any AI process
+    * Any and all SUs consumed by an AI process will be charged to your allocation.
+
+
 
 ## Introduction { #intro }
 
