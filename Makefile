@@ -15,7 +15,7 @@ build:
 
 .PHONY: build-full
 build-full:
-	$(DOCKER_COMPOSE_CMD) -f ./docker-compose.yml -t $(DOCKER_IMAGE_SHORTSHA) build
+	docker build -t $(DOCKER_IMAGE_SHORTSHA) --target production -f ./Dockerfile .
 	docker tag $(DOCKER_IMAGE_SHORTSHA) $(DOCKER_IMAGE_BRANCH) # Note: Special chars replaced with dashes
 
 .PHONY: publish
