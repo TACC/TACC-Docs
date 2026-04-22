@@ -4,3 +4,5 @@
 {% include 'redirect.md' %}
 
 - [Data Transfer at TACC](/datatransfer/datatransferguide/)
+- [Data Transfer: Globus](/datatransfer/globus/)
+- [Data Transfer: SSH](/datatransfer/ssh/)
