@@ -8,6 +8,7 @@ all:	includes
 
 includes:	$(SRC)
 	./configurestrings.sh frontera
+	./configurestrings.sh horizon
 	./configurestrings.sh lonestar6
 	./configurestrings.sh stampede3
 	./configurestrings.sh vista

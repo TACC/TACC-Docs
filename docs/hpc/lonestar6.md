@@ -1,7 +1,16 @@
 # Lonestar6 User Guide
-*Last update: November 3, 2025*
+*Last update: April 21, 2026*
 
-<!-- ## Notices { #notices } -->
+## Notices 
+
+* **Using Artifical Intelligence clients (AI) on TACC resources**: We *strongly* recommend you run all AI assisted tasks on a compute node.  Reminder: The login nodes are <a href="../../basics/conduct/#conduct-loginnodes">a shared resource</a> among a multitude of users.  (04/21/2026)
+
+    Furthermore
+
+    * You are responsible for any processes launched on TACC resources via any AI process
+    * Any and all SUs consumed by an AI process will be charged to your allocation.
+
+
 
 ## Introduction { #intro }
 
@@ -720,10 +729,7 @@ The jobs in this queue consume 1/7 the resources of a full node.  Jobs are charg
     TACC's `qlimits` utility will display the latest queue configurations.
 
 <!--
-10/20/2025
-login2.ls6(493)$ qlimits
-Current queue/partition limits on TACC's ls6 system:
-
+login1.ls6(568)$ qlimits
 Name             MinNode  MaxNode     MaxWall  MaxNodePU  MaxJobsPU   MaxSubmit
 development            1        8    02:00:00          8          1           3
 gpu-a100               1        8  2-00:00:00         12          8          32
@@ -731,10 +737,11 @@ gpu-a100-dev           1        2    02:00:00          2          1           3
 gpu-a100-small         1        1  2-00:00:00          3          3          12
 gpu-h100               1        1  2-00:00:00          1          1           4
 large                 65      256  2-00:00:00        256          1           4
-normal                 1       64  2-00:00:00         75         20         100
+normal                 1       64  2-00:00:00         64         20         100
 vm-small               1        1  2-00:00:00          4          4          16
-
-/usr/local/etc/queue.map
+--
+login1.ls6(569)$ m /usr/local/etc/queue.map
+# ls6
 development:1.0
 gpu-a100:3.0
 gpu-a100-dev:3.0
@@ -753,7 +760,7 @@ Queue Name | Min/Max Nodes per Job<br>(assoc'd cores)&#42; | Max Job<br>Duration
 <code>gpu-a100-small</code><sup>&#42;&#42;</sup> | 1 node                        | 48 hours |   3 |  3 | 12 | 1.5 SUs
 <code>gpu-h100</code>                            | 1 node                        | 48 hours |   1 |  1 | 4 | 6 SUs | (96 cores)
 <code>large</code><sup>&#42;</sup>               | 65/256 nodes<br>(65536 cores) | 48 hours | 256 |  1 | 4 | 1 SU
-<code>normal</code>                              | 1/64 nodes<br>(8192 cores)    | 48 hours |  75 | 20 | 100 | 1 SU
+<code>normal</code>                              | 1/64 nodes<br>(8192 cores)    | 48 hours |  64 | 20 | 100 | 1 SU
 <code>vm-small</code><sup>&#42;&#42;</sup>       | 1 node<br>(16 cores)          | 48 hours |   4 |  4 | 16 | 0.143 SU
 
 
@@ -1493,7 +1500,7 @@ TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for 
 [TACCIDEV]: https://docs.tacc.utexas.edu/software/idev "idev at TACC"
 [TACCLMOD]: https://lmod.readthedocs.io/en/latest/ "Lmod"
 [TACCMANAGINGACCOUNT]: https://docs.tacc.utexas.edu/basics/accounts "Managing your TACC Account"
-[TACCMANAGINGIO]: https://docs.tacc.utexas.edu/tutorials/managingio "Managing I/O at TACC""
+[TACCMANAGINGIO]: https://docs.tacc.utexas.edu/tutorials/managingio "Managing I/O at TACC"
 [TACCMANAGINGPERMISSIONS]: https://docs.tacc.utexas.edu/tutorials/permissions "Unix Group Permissions and Environment"
 [TACCMFA]: https://docs.tacc.utexas.edu/basics/mfa "Multi-Factor Authentication at TACC"
 [TACCPYLAUNCHER]: https://docs.tacc.utexas.edu/software/pylauncher "PyLauncher at TACC"
@@ -1518,6 +1525,7 @@ TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for 
 [TACCLONESTAR6UG]: https://docs.tacc.utexas.edu/hpc/lonestar6/ "TACC Lonestar6 User Guide"
 [TACCFRONTERAUG]: https://docs.tacc.utexas.edu/hpc/frontera/ "TACC Frontera User Guide"
 [TACCVISTAUG]: https://docs.tacc.utexas.edu/hpc/vista/ "TACC Vista User Guide"
+[TACCHORIZONAUG]: https://docs.tacc.utexas.edu/hpc/horizon/ "TACC Horizon User Guide"
 [TACCRANCHUG]: https://docs.tacc.utexas.edu/hpc/ranch/ "TACC Ranch User Guide"
 [TACCCORRALUG]: https://docs.tacc.utexas.edu/hpc/corral/ "TACC Corral User Guide"
 [TACCSTOCKYARD]: https://tacc.utexas.edu/systems/stockyard  "Stockyard File System"

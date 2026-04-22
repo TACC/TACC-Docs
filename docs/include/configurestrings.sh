@@ -1,5 +1,5 @@
 #!/bin/sh
-# include files for all TUP documentation, mostly HPC guidees
+# include files for all TUP documentation, mostly HPC guides
 # this workflow is a remnant from way back when, slowly changing functionality
 
 # Frontera
@@ -19,6 +19,24 @@ then
 	sed	-e "s/MACHINENAME/$lcmachinename/g" < crontabsrc.md > $crontaboutputfile
 
 	sed	-e "s/HWTHREADS/$hwthreads/g" < mklsrc.md > $mkloutputfile
+
+	sed	-e "s/MACHINENAME/$machinename/g" \
+		-e "s/HELPMSG/$helpmsg/g" < helpsrc.md > $helpoutputfile
+
+### Horizon
+elif [ "$1" = "horizon" ] 
+then
+	echo "building includes for Horizon user guide"
+	machinename="Horizon"
+	lcmachinename="horizon"
+	helpoutputfile="horizon-help.md"
+	jobaccountingoutputfile="horizon-jobaccounting.md"
+	crontaboutputfile="horizon-crontab.md"
+	helpmsg="Be sure to include \"$machinename\" in the Resource field."
+
+	sed	-e "s/MACHINENAME/$machinename/g" < jobaccountingsrc.md > $jobaccountingoutputfile
+
+	sed	-e "s/MACHINENAME/$lcmachinename/g" < crontabsrc.md > $crontaboutputfile
 
 	sed	-e "s/MACHINENAME/$machinename/g" \
 		-e "s/HELPMSG/$helpmsg/g" < helpsrc.md > $helpoutputfile

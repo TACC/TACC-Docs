@@ -1,12 +1,14 @@
 # Stampede3 User Guide 
-*Last update: November 3, 2025*
+*Last update: April 15, 2026*
 
 ## Notices { #notices }
 
-* **NEW**: Stampede3 now hosts 24 [NVIDIA H100 GPU nodes](#system-gpu-h100). (06/04/2025)
-* **Attention Jupyter users: learn how to [configure your environment](#python-jupyter) to enable notebooks.** (05/16/2024)
-* **Attention VASP users: DO NOT run VASP using Stampede3's SPR nodes!**  TACC staff has noticed many VASP jobs causing issues on the SPR nodes and impacting overall system stability and performance.  Please run your VASP jobs using either the [SKX](../../hpc/stampede3#table5) or [ICX](../../hpc/stampede3#table2) nodes.  See [Running VASP Jobs](../../software/vasp/#running) for more information.  (05/06/2024)
+* **Using Artifical Intelligence clients (AI) on TACC resources**: We *strongly* recommend you run all AI assisted tasks on a compute node.  Reminder: The login nodes are <a href="../../basics/conduct/#conduct-loginnodes">a shared resource</a> among a multitude of users.  (04/21/2026)
 
+	Furthermore
+
+	* You are responsible for any processes launched on TACC resources via any AI process
+	* Any and all SUs consumed by an AI process will be charged to your allocation.
 
 ## Introduction { #intro }
 

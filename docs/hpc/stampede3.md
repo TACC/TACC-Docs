@@ -1,12 +1,14 @@
 # Stampede3 User Guide 
-*Last update: November 3, 2025*
+*Last update: April 15, 2026*
 
 ## Notices { #notices }
 
-* **NEW**: Stampede3 now hosts 24 [NVIDIA H100 GPU nodes](#system-gpu-h100). (06/04/2025)
-* **Attention Jupyter users: learn how to [configure your environment](#python-jupyter) to enable notebooks.** (05/16/2024)
-* **Attention VASP users: DO NOT run VASP using Stampede3's SPR nodes!**  TACC staff has noticed many VASP jobs causing issues on the SPR nodes and impacting overall system stability and performance.  Please run your VASP jobs using either the [SKX](../../hpc/stampede3#table5) or [ICX](../../hpc/stampede3#table2) nodes.  See [Running VASP Jobs](../../software/vasp/#running) for more information.  (05/06/2024)
+* **Using Artifical Intelligence clients (AI) on TACC resources**: We *strongly* recommend you run all AI assisted tasks on a compute node.  Reminder: The login nodes are <a href="../../basics/conduct/#conduct-loginnodes">a shared resource</a> among a multitude of users.  (04/21/2026)
 
+	Furthermore
+
+	* You are responsible for any processes launched on TACC resources via any AI process
+	* Any and all SUs consumed by an AI process will be charged to your allocation.
 
 ## Introduction { #intro }
 
@@ -407,11 +409,11 @@ Stampede3's job scheduler is the Slurm Workload Manager. Slurm commands enable y
     TACC's `qlimits` utility will display the latest queue configurations.
 
 <!--
-01/20/2026
-[slindsey@login2 ~]$ <1001> qlimits
-Current queue/partition limits on TACC's stampede3 system:
+04/15/2026
+[slindsey@login1 ~]$ <1003> qlimits
 
 Name             MinNode  MaxNode     MaxWall  MaxNodePU  MaxJobsPU   MaxSubmit
+amd-rtx                1        1  2-00:00:00          1          1           2
 h100                   1        4  2-00:00:00          4          2           4
 icx                    1       32  2-00:00:00         48         12          20
 nvdimm                 1        1  2-00:00:00          1          2           4
@@ -419,7 +421,10 @@ pvc                    1        4  2-00:00:00          4          2           4
 skx                    1      256  2-00:00:00        256         40          60
 skx-dev                1       16    02:00:00         16          2           4
 spr                    1       32  2-00:00:00         40         24          36
---- /usr/local/etc/queue.map
+-- 
+[slindsey@login1 ~]$ <1004>  m /usr/local/etc/queue.map
+# stampede3
+amd-rtx:8.0
 h100:4.0
 icx:1.5
 nvdimm:4.0
@@ -428,6 +433,7 @@ skx:1.0
 skx-dev:1.0
 spr:2.0
 -->
+
 
 #### Table 8. Production Queues { #table8 }
 
@@ -1919,7 +1925,7 @@ TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for 
 [TACCIDEV]: https://docs.tacc.utexas.edu/software/idev "idev at TACC"
 [TACCLMOD]: https://lmod.readthedocs.io/en/latest/ "Lmod"
 [TACCMANAGINGACCOUNT]: https://docs.tacc.utexas.edu/basics/accounts "Managing your TACC Account"
-[TACCMANAGINGIO]: https://docs.tacc.utexas.edu/tutorials/managingio "Managing I/O at TACC""
+[TACCMANAGINGIO]: https://docs.tacc.utexas.edu/tutorials/managingio "Managing I/O at TACC"
 [TACCMANAGINGPERMISSIONS]: https://docs.tacc.utexas.edu/tutorials/permissions "Unix Group Permissions and Environment"
 [TACCMFA]: https://docs.tacc.utexas.edu/basics/mfa "Multi-Factor Authentication at TACC"
 [TACCPYLAUNCHER]: https://docs.tacc.utexas.edu/software/pylauncher "PyLauncher at TACC"
@@ -1944,6 +1950,7 @@ TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for 
 [TACCLONESTAR6UG]: https://docs.tacc.utexas.edu/hpc/lonestar6/ "TACC Lonestar6 User Guide"
 [TACCFRONTERAUG]: https://docs.tacc.utexas.edu/hpc/frontera/ "TACC Frontera User Guide"
 [TACCVISTAUG]: https://docs.tacc.utexas.edu/hpc/vista/ "TACC Vista User Guide"
+[TACCHORIZONAUG]: https://docs.tacc.utexas.edu/hpc/horizon/ "TACC Horizon User Guide"
 [TACCRANCHUG]: https://docs.tacc.utexas.edu/hpc/ranch/ "TACC Ranch User Guide"
 [TACCCORRALUG]: https://docs.tacc.utexas.edu/hpc/corral/ "TACC Corral User Guide"
 [TACCSTOCKYARD]: https://tacc.utexas.edu/systems/stockyard  "Stockyard File System"
