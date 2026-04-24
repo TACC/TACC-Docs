@@ -1,13 +1,16 @@
 # Good Conduct on TACC's HPC Systems { #conduct }
-*Last Update: November 5, 2025*
+*Last Update: April 24, 2026*
 
 ## Notices 
 
+* **See [updated guidance for AI users below](#ai)**.  (04/24/2026)
 * VSCode users please [see below](#vscode) for updated guidance. (11/05/2025) 
+
 
 **You share TACC's HPC resources with many, sometimes hundreds, of other users, and what you do on the resource affects others**. All TACC account holders  must follow a set of good practices which entail limiting activities that may impact the system for other users. Exercise good conduct to ensure that your activity does not adversely impact the resource and the research community with whom you share it.
 
 TACC staff has developed the following guidelines to good conduct on all TACC resources. Please familiarize yourself with all the following guidelines.
+
 
 
 ## 1. Do Not Run Jobs on the Login Nodes { #conduct-loginnodes }
@@ -20,9 +23,7 @@ Each HPC system's login nodes are a *shared resource* amongst all users currentl
 
 Think of the login nodes as a prep area, where you may edit and manage files, compile code, perform file management, issue transfers, submit new and track existing batch jobs etc. The login nodes provide an interface to the "back-end" compute nodes, where actual computations occur and where research is done. Hundreds of jobs may be running on all compute nodes, with hundreds more queued up to run. 
 
-
 All batch jobs and executables, as well as development and debugging sessions, must be run on the compute nodes. To access compute nodes on TACC resources, one must either [submit a job to a batch queue](../../hpc/stampede3#running-sbatch) or initiate an interactive session using the [`idev`][TACCIDEV] utility. 
-
 
 <figure id="figure-logincomputenodes">
 <img alt="Login and Compute Node Diagram" src="../imgs/login-compute-nodes.jpg">
@@ -31,10 +32,28 @@ All batch jobs and executables, as well as development and debugging sessions, m
 !!! tip
 	The login nodes have throttled memory limits for individual processes in order to prevent users from occupying more than their fair portion of the shared resource. The compute nodes do not have this limitation.
 
-### VSCode Users { #vscode }
-!!! warning
-    VSCode consumes significant resources when running and can interfere with the needs of a multi-user environment such as the shared login nodes on each resource. Thus, TACC staff encourage all VSCode users to run the program on a compute node and not any of the login nodes.
+### AI on TACC Resources { #ai } 
 
+Please be aware of the following new policies regarding the use of Artificial Intelligence agents and tools  on TACC resources.
+
+!!! warning
+	Failure to follow these guidelines will result in degraded access or administrative action to protect system stability.
+
+* **All AI-assisted workloads must be executed on compute nodes only**.
+* YOU are responsible for all your processes initiated on TACC resources, including those launched via AI tools or agents.
+* All Service Units (SUs) consumed by AI-related workloads will be charged against your allocation.
+
+Suggested Workflow:
+
+1. Grab one or more compute nodes via the the `idev` utility.
+1. Once the `idev` session begins, then use AI to connect to the alloted compute node/s.
+
+
+### VSCode Users { #vscode }
+
+VSCode consumes significant resources when running and can interfere with the needs of a multi-user environment such as the shared login nodes on each resource.  TACC staff encourages all VSCode users to run the program on a compute node and not any of the login nodes.
+
+!!! warning
     If you choose to run VSCode on the login node and it begins to impact the system or other users, your account will be suspended and we will ask you to move to a compute node.
 
     Also note that VSCode access is **prohibited** on TACC's Ranch and Corral storage resources.
