@@ -97,13 +97,11 @@ Transfers run **asynchronously** — you may close your browser.
 
 If you want to compare your data transfer performance to others, you can use the [TACC NetSage Portal](https://tacc.netsage.io/). For example [this page](https://tacc.netsage.io/grafana/d/-l3_u8nWl/1b22d62) shows transfer rates for Globus jobs between TACC and the rest of the world. In general, you should be able to get at least 1 Gbps transfer speeds.
 
-<!-- 
 ### Using the Globus CLI (Advanced)
 
 If you currently use a shell script / cron job to migrate data using scp/sftp/rsync, the Globus CLI is useful for scripting and automation.
 
-See our [Globus CLI Guide](globus-cli.md) for a short summary of using the Globus CLI.
--->
+See our [Globus CLI Guide](./globus-cli.md) for a short summary of using the Globus CLI.
 
 ### A Note on End-to-End Checksums
 
