@@ -1,5 +1,5 @@
 # Managing your TACC Account
-*Last update: January 6, 2025*
+*Last update: May 4, 2026*
 
 ## Notices
 
@@ -66,7 +66,7 @@ Recent upgrades by Microsoft to the VSCode application have resulted in the prog
 
 	Also note that VSCode access is **prohibited** on TACC's Ranch and Corral storage resources.
 
-## Login Problems: `Improper ssh Configuration!`
+## Login Problems: `Improper ssh configuration!`
 
 If you see this message:
 

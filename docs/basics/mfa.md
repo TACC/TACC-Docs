@@ -1,11 +1,11 @@
-# Multifactor Authentication at TACC 
+# Multi-Factor Authentication at TACC 
 *Last update: June 06, 2025*
 
 !!! tip
 	TACC's [Login Support Tool][TACCLOGINSUPPORT] tool can assist you if you are having difficulty logging into TACC resources.  
 	See also [Managing Your TACC Account][TACCMANAGINGACCOUNT].
 
-## What is MFA? { #whatismfa }
+## What is Multi-Factor Authentication? { #whatismfa }
 
 Authentication is the process of determining if you are you. Traditional methods of associating a user account with a single password are no longer sufficient.  Multi-Factor Authentication (MFA) requires another step, or "factor", in the authentication process. In addition to the usual password, users must complete authentication using another device unique to them, usually their mobile phone/device. 
 

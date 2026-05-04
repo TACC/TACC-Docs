@@ -1,5 +1,5 @@
 # Good Conduct on TACC's HPC Systems { #conduct }
-*Last Update: April 24, 2026*
+*Last Update: April 28, 2026*
 
 ## Notices 
 
@@ -32,21 +32,26 @@ All batch jobs and executables, as well as development and debugging sessions, m
 !!! tip
 	The login nodes have throttled memory limits for individual processes in order to prevent users from occupying more than their fair portion of the shared resource. The compute nodes do not have this limitation.
 
-### AI on TACC Resources { #ai } 
+### AI Tools on TACC Resources { #ai } 
 
-Please be aware of the following new policies regarding the use of Artificial Intelligence agents and tools  on TACC resources.
+Please be aware of the following policies regarding the use of Artificial Intelligence agents and tools on TACC resources.
 
 !!! warning
-	Failure to follow these guidelines will result in degraded access or administrative action to protect system stability.
+	Failure to follow these guidelines will result in degraded access to TACC resources or administrative action to protect system stability.
 
-* **All AI-assisted workloads must be executed on compute nodes only**.
+* **All AI-assisted workloads must be executed on compute nodes only**.  
+
+<!-- This includes: * Polling the login nodes for job status  -->
+	
+	
+
 * YOU are responsible for all your processes initiated on TACC resources, including those launched via AI tools or agents.
 * All Service Units (SUs) consumed by AI-related workloads will be charged against your allocation.
 
 Suggested Workflow:
 
-1. Grab one or more compute nodes via the the `idev` utility.
-1. Once the `idev` session begins, then use AI to connect to the alloted compute node/s.
+1. Grab one or more compute nodes via TACC's [`idev`][TACCIDEV] utility.
+1. Once your `idev` session begins, then use your AI tool to connect to the alloted compute node/s.
 
 
 ### VSCode Users { #vscode }
