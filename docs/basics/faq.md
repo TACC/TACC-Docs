@@ -14,6 +14,8 @@
 * **[My job is currently running but it's going to run out of time.  Can you give it more time?](#q6)**   
 * **[I need more than 48 hours to run my job, can you allow an extension or give me an exception?](#q7)**   
 * **[My job has been waiting in the queue, but I see a bunch of idle nodes.  Why isn't my job running?](#q9)**  
+* **[I can no longer submit jobs, I got the message "One or more of your jobs...", how can i fix this.?](#q12)**
+* **[Why didn't you notify me before suspending my queue access?  I have important work to do!](#q13)** 
 
 ## Storage and File Systems
 
@@ -21,7 +23,7 @@
 
 ## Policies 
 
-* **[Can I run Artificial Intelligence (AI) tools on TACC HPC systems?](#q10)**  
+* **[Can I run Artificial Intelligence (AI) tools on TACC's systems?](#q10)**  
 
 ---
 
@@ -82,12 +84,28 @@ Workarounds:
 
 A. If your job is in the queue pending with reason "Priority", but there are idle nodes, then those nodes are likely being collected for a larger job that is ahead in the queue. The same nodes for large jobs are shared with small jobs, so strictly looking at the idle nodes can sometimes be misleading. 
 
+<a id="q12"></a>
+#### Q. I can no longer submit jobs. I got the message "One or more of your jobs...", How can i fix this.?
+
+A. Revocation of queue access is almost always the result of not following the TACC Good Conduct guidelines.  
+
+* Running computationally excessive tasks on the login nodes
+* Taxing the `$WORK` file system, e.g. not running your jobs out of `$SCRATCH`
+* Improper use of AI tools
+
+<a id="q13"></a>
+
+#### Q. Why didn't you notify me before suspending my queue access?  I have important work to do!
+
+A. The system admins are responsible for several thousand users and multiple machines. Their priority is to keep the machines in a healthy state for all users.  If your jobs are impeding the optimal functioning of the machine for others users, our User Services team usually does not have time to reach out beforehand.     
+
+
 
 ---
 <a id="q9"></a>
 #### Q. My allocated `$WORK` space of 1TB isn't sufficient.  Can I request more?
 
-A. No.  The Stockyard file system is mounted across all TACC HPC resources: Stampede3, Lonestar6, Frontera and Vista, and thus is shared by thousands of users.  As with many of our policies, we must balance resource availability, in this case disk space, for all our users.  
+A. No.  The Stockyard file system is mounted across all TACC High Performance Computing (HPC)  resources: Stampede3, Lonestar6, Frontera and Vista, and thus is shared by thousands of users.  As with many of our policies, we must balance resource availability, in this case disk space, for all our users.  
 
 Workaround: Each HPC resource contains a scratch file system, with no quotas on file space or limits.  Store important data in your `/work` directory while allowing your jobs to output data to `/scratch` without dealing with a quota. 
 
@@ -97,7 +115,7 @@ Workaround: Each HPC resource contains a scratch file system, with no quotas on 
 ---
 
 <a id="q10"></a>
-#### Q. Can I run Artificial Intelligence (AI) tools on TACC HPC systems?
+#### Q. Can I run Artificial Intelligence (AI) tools on TACC's systems?
 
 A. Yes, but only on each resource's compute nodes.  Running AI tools on the login nodes may result in account suspension.  See [AI on TACC Resources](https://docs.tacc.utexas.edu/basics/conduct/#ai) in TACC's [Good Conduct Guide][TACCGOODCONDUCT].  
 
