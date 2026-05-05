@@ -1,10 +1,9 @@
 # Frequently Asked Questions
-*Last update: May 4, 2026*
+*Last update: May 5, 2026*
 
 ## Accounts and Access
 
 * **[I can log into the TACC User Portal, but the same password doesn't work on Frontera/Lonestar6/Stampede3/Vista. How can I log in to my machine?](#q1)**  
-* **[How do I share my files with my project members?](#q5)**   
 * **[A member of my group has left.  How do I get access/ownership to their files?](#q2)**   
 * **[I can't log in because of "Improper ssh Configuration!" How do I fix this?](#q3)**   
 
@@ -14,11 +13,12 @@
 * **[My job is currently running but it's going to run out of time.  Can you give it more time?](#q6)**   
 * **[I need more than 48 hours to run my job, can you allow an extension or give me an exception?](#q7)**   
 * **[My job has been waiting in the queue, but I see a bunch of idle nodes.  Why isn't my job running?](#q9)**  
-* **[I can no longer submit jobs, I got the message "One or more of your jobs...", how can i fix this.?](#q12)**
-* **[Why didn't you notify me before suspending my queue access?  I have important work to do!](#q13)** 
+* **[I can no longer submit jobs, I got the message "One or more of your jobs...", how can I gain back access?](#q12)**
+* **[Why didn't you notify me before suspending my queue access?](#q13)** 
 
 ## Storage and File Systems
 
+* **[How do I share my files with my project members?](#q5)**   
 * **[Q. My allocated `$WORK` space of 1TB isn't sufficient.  Can I request more?](#q9)**   
 
 ## Policies 
@@ -95,7 +95,7 @@ A. Revocation of queue access is almost always the result of not following the T
 
 <a id="q13"></a>
 
-#### Q. Why didn't you notify me before suspending my queue access?  I have important work to do!
+#### Q. Why didn't you notify me before suspending my queue access?
 
 A. The system admins are responsible for several thousand users and multiple machines. Their priority is to keep the machines in a healthy state for all users.  If your jobs are impeding the optimal functioning of the machine for others users, our User Services team usually does not have time to reach out beforehand.     
 
