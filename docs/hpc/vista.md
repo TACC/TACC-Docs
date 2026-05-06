@@ -1,5 +1,5 @@
 # Vista User Guide 
-*Last update: April 24, 2026*
+*Last update: May 6, 2026*
 
 ## Notices { #notices }
 
@@ -558,6 +558,8 @@ In this section, we present several Slurm commands and other utilities that are 
 
 ### Monitoring Queue Status { #jobs-monitoring }
 
+You may monitor queue status via Slurm's `sinfo` command, and TACC's `qlimits` utility.
+
 #### TACC's `qlimits` command { #jobs-monitoring-qlimits }
 
 To display resource limits for the Lonestar queues, execute: `qlimits`. The result is real-time data; the corresponding information in this document's [table of Vista queues](#queues) may lag behind the actual configuration that the `qlimits` utility displays.
@@ -583,6 +585,8 @@ The `AVAIL` column displays the overall status of each queue (up or down), while
 
 ### Monitoring Job Status { #jobs-monitoring-jobstatus }
 
+You can monitor your job's status in the queue via Slurm's `squeue` command and TACC's `showq` utility.
+
 #### Slurm's `squeue` command { #jobs-monitoring-queuestatus }
 
 Use Slurm's `squeue` command to display the state of all queued and running jobs.  
@@ -593,25 +597,40 @@ login1$ squeue -u bjones   # show all jobs owned by bjones
 login1$ man squeue         # more info
 ```
 
-!!!tip
-	The `squeue`'s default format lists all nodes assigned to displayed jobs; this can make the output difficult to read. A handy variation that suppresses the nodelist is:
+The `squeue` command's default output format lists all nodes assigned to displayed jobs; this can make the output difficult to read. See the example below for a handy variation that suppresses the nodelist:
 
-	```cmd-line
-	login1$ squeue -o "%.10i %.12P %.12j %.9u %.2t %.9M %.6D"  # suppress nodelist
-	```
+```cmd-line
+login1$ squeue -o "%.10i %.12P %.12j %.9u %.2t %.9M %.6D" | more
+     JOBID    PARTITION         NAME      USER ST      TIME  NODES
+    696256           gg    LRfluxcbd  slindsey PD      0:00     16
+    696599           gg  tessa-louis     gbell PD      0:00      2
+    674649           gg    bb_rag_sr   ashleyp PD      0:00      1
+    674648           gg   fey_rag_sr   ashleyp PD      0:00      1
+    674612           gg      bb_rsrm   ashleyp PD      0:00      1
+    696577           gg        pd_nb  sniffjck PD      0:00      1
+    696331           gg star_transie kellykell PD      0:00      4
+    696669           gg     idv99124  jheldman PD      0:00      1
+    695846           gh       expr50  rtoscano PD      0:00      1
+    695884           gh       expr52  rtoscano  R      0:00      1
+    695983           gh grpo_math_7b  sarajane  R      0:00      4
+    695980           gh train_3b_big   bcatton CG      0:00      1
+    695992           gh   ag_handler   jzthree CG      0:00     16
+    696617       gh-dev   maggeiedev  jemerson PD      0:00      1
+    696619       gh-dev     idv19170  tg123456 PD      0:00      1
+    696616       gh-dev     idv46558 christina PD      0:00      1
+    696685       gh-dev run-epidemic  tg123456 PD      0:00      1
+    696532       gh-dev          dev    nilesh PD      0:00      8
+    696672       gh-dev     idv07952  slindsey  R      0:00      1
+```
 
 !!!tip
-	The `--start` option to the `squeue` displays job start times, including very rough estimates for the expected start times of some pending jobs that are relatively high in the queue:
+	The `--start` option to the `squeue` command displays job start times, including very rough estimates for the expected start times of some pending jobs that are relatively high in the queue:
 
 	```cmd-line
 	login1$ squeue --start -j 167635     # display estimated start time for job 167635
 	```
 
-#### Job Status { #jobs-monitoring-sqeue-status }
-
 The `squeue` command's output displays two columns of interest, the column labeled `ST` displays each job's status, and the last column, labeled `NODELIST/REASON`, includes a nodelist for running/completing jobs, or a reason for pending jobs.  
-
-<!-- See [Figure 2](#squeuefigure). above for sample output. -->
 
 
 ##### Table 6. Job Status Meanings { #table6 }
