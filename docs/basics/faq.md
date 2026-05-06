@@ -1,14 +1,6 @@
 # User Services Frequently Asked Questions
-*Last update: May 5, 2026*
+*Last update: May 6, 2026*
 
-<style id="faq-style">
-summary {
-    font-weight: var(--medium);
-}
-details {
-    margin-block: 1em;
-}
-</style>
 
 
 ## FAQ Categories { #categories }
@@ -91,7 +83,7 @@ Revocation of queue access is almost always the result of not following the TACC
 
 /// details | Why didn't you notify me before suspending my queue access?
 
-The system admins are responsible for several thousand users and multiple machines. Their priority is to keep the machines in a healthy state for all users.  If your jobs are impeding the optimal functioning of the machine for others users, our User Services team usually does not have time to reach out beforehand.     
+The system admins are responsible for several thousand users and multiple machines. Their priority is to keep the machines in a healthy state for all users.  If your jobs are impeding the optimal functioning of the machine, our User Services team usually does not have time to reach out beforehand.     
 ///
 
 ---
@@ -101,10 +93,9 @@ The system admins are responsible for several thousand users and multiple machin
 
 No.  The Stockyard file system is mounted across all TACC High Performance Computing (HPC)  resources: Stampede3, Lonestar6, Frontera and Vista, and thus is shared by thousands of users.  As with many of our policies, we must balance resource availability, in this case disk space, for all our users.  
 
-Workaround: Each HPC resource contains a scratch file system, with no quotas on file space or limits.  Store important data in your `/work` directory while allowing your jobs to output data to `/scratch` without dealing with a quota. 
+**Workaround**: Each HPC resource contains a scratch file system, with no quotas on file space or limits.  Store important data in your `/work` directory while allowing your jobs to output data to `/scratch` without dealing with a quota.  **Every `/scratch` file system has a 10-day purge policy**.   
 
-!!! warning
-	Every `/scratch` file system has a 10-day purge policy.   
+**Workaround**: Long-term and project storage are also available on TACC's [Ranch][TACCRANCHUG] and [Corral][TACCCORRALUG] resources.
 ///
 
 ---
@@ -112,7 +103,7 @@ Workaround: Each HPC resource contains a scratch file system, with no quotas on 
 
 /// details | Can I run Artificial Intelligence (AI) tools on TACC's systems?
 
-Yes, but only on each resource's compute nodes.  Running AI tools on the login nodes may result in account suspension.  See [AI on TACC Resources](https://docs.tacc.utexas.edu/basics/conduct/#ai) in TACC's [Good Conduct Guide][TACCGOODCONDUCT].  
+Yes, but only on each resource's compute nodes.  Running AI tools on the login nodes may result in account suspension.  See [AI on TACC Resources](https://docs.tacc.utexas.edu/basics/conduct#ai) in TACC's [Good Conduct Guide][TACCGOODCONDUCT].  
 ///
 
 
