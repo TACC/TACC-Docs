@@ -2,9 +2,6 @@
 *Last update: May 6, 2026*
 
 
-
-## FAQ Categories { #categories }
-
 * [Accounts and Access](#accounts)
 * [Queues and Jobs](#queues)
 * [Storage and File Systems](#storage)
