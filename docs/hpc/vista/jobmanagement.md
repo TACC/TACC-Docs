@@ -117,15 +117,12 @@ The last column, labeled `NODELIST/REASON`, includes a nodelist for running/comp
 `QOSMaxJobsPerUserLimit` | The number of your jobs queued exceeds that [queue's limits](#jobs-monitoring-qlimits). These jobs will run once your previous jobs have ended.
 
 
-<!-- `(QOS<something>)` | This tells you which limit the job is exceeding in the particular QOS. For example, QOSGrpCpuLimit means that the jobs running in that QOS (e.g., long) are using all of the allotted resources as set by the GrpTRES value. In this case, simply wait and your job will run. Run the qos command to see the limits. The number of "procs" or CPU-cores in use per QOS is displayed at the bottom of the output. One sees that "Grp" relates to the QOS and not to your research group. -->
-
 !!!tip
 	The `--start` option to the `squeue` command displays job start times, including very rough estimates for the expected start times of some pending jobs that are relatively high in the queue:
 
 	```cmd-line
 	login1$ squeue --start -j 167635     # display estimated start time for job 167635
 	```
-
 
 
 #### TACC's `showq` utility { #jobs-monitoring-showq }
@@ -142,8 +139,6 @@ login1$ showq -h              # more info
 The output groups jobs in four categories: `ACTIVE`, `WAITING`, `BLOCKED`, and `COMPLETING/ERRORED`. A `BLOCKED` job is one that cannot yet run due to temporary circumstances (e.g. a pending maintenance or other large reservation.).
 
 If your waiting job cannot complete before a maintenance/reservation begins, `showq` will display its state as `**WaitNod**` ("Waiting for Nodes"). The job will remain in this state until Vista returns to production.
-
-<!-- old text The default format for `showq` now reports total nodes associated with a job rather than cores, tasks, or hardware threads. One reason for this change is clarity: the operating system sees each compute node's hardware threads as "processors", and output based on that information can be ambiguous or otherwise difficult to interpret. -->
 
 Since TACC charges by the node rather than core, `showq`'s default format now reports total nodes associated with a job rather than cores, tasks, or hardware threads.  Run `showq` with the `-l` option to display the number of cores and the job's queue.
 
@@ -162,8 +157,14 @@ login1$ sbatch --dependency=afterok:173210 myjobscript
 For more information see the [Slurm online documentation](http://www.schedmd.com). Note that you can use `$SLURM_JOBID` from one job to find the jobid you'll need to construct the `sbatch` launch line for a subsequent one. But also remember that you can't use `sbatch` to submit a job from a compute node.
 
 
-### Other Job Management Commands { #jobs-other }
+### Inspecting Running and Completed Jobs { #jobs-other }
 
+
+* To view some **accounting data** associated with your own jobs, use `sacct`:
+
+	```cmd-line
+	login1$ sacct --starttime 2019-06-01  # show jobs that started on or after this date
+	```
 
 * To **cancel** a pending or running job, first determine its jobid, then use `scancel`:
 
@@ -178,11 +179,5 @@ For more information see the [Slurm online documentation](http://www.schedmd.com
 
 	```cmd-line
 	login1$ scontrol show job=170361
-	```
-
-* To view some **accounting data** associated with your own jobs, use `sacct`:
-
-	```cmd-line
-	login1$ sacct --starttime 2019-06-01  # show jobs that started on or after this date
 	```
 
