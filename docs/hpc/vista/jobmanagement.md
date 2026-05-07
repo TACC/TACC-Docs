@@ -71,18 +71,18 @@ The `squeue` command's output displays two columns of interest, the column label
     697740          gh lysozyme sarajane PD       0:00     16 (Priority)
     697456          gh grpo_eva jemerson PD       0:00      1 (Dependency)
     695288          gh tldr_int kellykel PD       0:00      1 (DependencyNeverSatisfied)
-    695427          gh idv02624 rohand24  R 1-18:40:00      8 c611-[071,122],c619-031,c620-[051,141-142],c640-[061-062]
+    695427          gh idv02624 reynolds  R 1-18:40:00      8 c611-[071,122],c619-031,c620-[051,141-142],c640-[061-062]
     697606          gh musique3 tg111111  R    3:22:17      1 c612-021
-    697613          gh ga_vmme_ sniffjck  R    3:02:21      2 c613-152,c619-052
+    697613          gh ga_vmme_  bcatton  R    3:02:21      2 c613-152,c619-052
     695666          gh idv43155 camiguet  R 1-16:44:38      1 c621-052
-    697723          gh ga_lvb_r joungbin  R      16:19      2 c637-021,c641-061
+    697723          gh ga_lvb_r  mylouis  R      16:19      2 c637-021,c641-061
     697782          gh proc_syn cmannion  R      34:45      8 c611-032,c613-[141,151],c619-151,c620-031,c622-[102,131,152]
     697057      gh-dev  BNS_VLR  acw6923 CG    1:02:28      1 c642-002
     697675      gh-dev     bash minchaoh CG    1:48:16      5 c642-[072,081-082,091-092]
     697802      gh-dev idv24504    gbell PD       0:00      1 (Resources)
     614573      gh-dev jupyter- jheldman PD       0:00      1 (JobHeldAdmin)
     611728      gh-dev jupyter- jheldman PD       0:00      1 (JobHeldAdmin)
-    697772      gh-dev idv19251 danielbu  R      43:26      1 c642-011
+    697772      gh-dev idv19251 reynolds  R      43:26      1 c642-011
 ```
 </figure><figcaption>Figure 2. Sample <code>squeue</code> output</figcaption></figure>
 
