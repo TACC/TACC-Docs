@@ -20,14 +20,13 @@ Slurm's `sinfo` command allows you to monitor the status of the queues. If you e
 ```cmd-line
 login1$ sinfo -S+P -o "%18P %8a %20F"    # compact summary of queue status
 ```
-
-This command's output might look like this:
+his command's output might look like this:
 
 ```cmd-line
 PARTITION          AVAIL    NODES(A/I/O/T)
-icx                up       103/2/7/112
-skx                up       402/6/32/440
-skx-dev*           up       6/70/4/80
+gg                 up       208/7/36/251
+gh                 up       572/4/0/576
+gh-dev*            up       18/0/2/20
 ```
 	
 The `AVAIL` column displays the overall status of each queue (up or down), while the column labeled `NODES(A/I/O/T)` shows the number of nodes in each of several states ("**A**llocated", "**I**dle", "**O**ffline", and "**T**otal"). Execute `man sinfo` for more information. Use caution when reading the generic documentation, however: some available fields are not meaningful or are misleading on Vista (e.g. `TIMELIMIT`, displayed using the `%l` option).
@@ -163,7 +162,7 @@ For more information see the [Slurm online documentation](http://www.schedmd.com
 * To view some **accounting data** associated with your own jobs, use `sacct`:
 
 	```cmd-line
-	login1$ sacct --starttime 2019-06-01  # show jobs that started on or after this date
+	login1$ sacct --starttime 2026-05-01  # show jobs that started on or after this date
 	```
 
 * To **cancel** a pending or running job, first determine its jobid, then use `scancel`:
@@ -171,7 +170,7 @@ For more information see the [Slurm online documentation](http://www.schedmd.com
 	```cmd-line
 	login1$ squeue -u bjones    # one way to determine jobid
      JOBID   PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
-	170361        v100   spec12   bjones PD       0:00     32 (Resources)
+	170361          gh   spec12   bjones PD       0:00     32 (Resources)
 	login1$ scancel 170361      # cancel job
 	```
 

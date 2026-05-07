@@ -2,7 +2,7 @@
 *Last update: June 06, 2025*
 
 !!! tip
-	TACC's [Login Support Tool][TACCLOGINSUPPORT] tool can assist you if you are having difficulty logging into TACC resources.  
+	TACC's [Login Support Tool][TACCLOGINSUPPORT] can assist you if you are having difficulty logging into TACC resources.  
 	See also [Managing Your TACC Account][TACCMANAGINGACCOUNT].
 
 ## What is Multi-Factor Authentication? { #whatismfa }
@@ -15,7 +15,7 @@ TACC requires Multi-Factor Authentication (MFA) as an additional security measur
 
 All account management is done via the [TACC Accounts Portal][TACCACCOUNTS].  TACC Accounts Portal utilities include MFA pairing, as well as password, user-profile, and subscription management.  You may also view detailed account information such as your UID, default GID, and home directory path.
 
-Login to the [TACC Accounts Portal][TACCACCOUNTS], select "Multi-factor Auth" in the left-hand navigation, then select your pairing method (Figure 1.).   
+Login to the [TACC Accounts Portal][TACCACCOUNTS], select "Multi-Factor Auth" in the left-hand navigation, then select your pairing method (Figure 1.).   
 
 TACC offers two mutually-exclusive authentication (pairing) methods: 1) Authenticator applications e.g., Google Authenticator, Duo, 1Password  and 2) Standard SMS text messaging.  You may choose to authenticate with one, and only one, method.  
 
@@ -27,11 +27,11 @@ Follow the examples below where we demonstrate how to pair using the [DUO authen
 </figure>
 
 !!! important 
-	Users located outside the U.S. **must** pair using a [Multi-Factor Authentication app](#mfaapps) of your choice. Because the cost associated with sending multiple international text messages is prohibitive, international users may NOT set up multi-factor authentication with SMS.  
+	Users located outside the U.S. **must** pair using a [Multi-Factor Authentication app](#mfaapps) of your choice. Because the cost associated with sending multiple international text messages is prohibitive, international users may NOT set up MFA with SMS.  
 
 ### Example: Pairing with an Authentication App { #authapp }
 
-Users with Apple iOS and Android devices may set up device pairing using a one of a variety of authentication applications available for both platforms.  Table 1. below features a few of the more popular applications along with links to the respective Apple App and Google Play stores.
+Users with Apple iOS and Android devices may set up device pairing using one of a variety of authentication applications available for both platforms.  Table 1. below features a few of the more popular applications along with links to the respective Apple App and Google Play stores.
 
 #### Table 1. MFA Apps { #table1 }
 
@@ -42,7 +42,7 @@ MFA App | IOS/Apple devices<br>Apple App Store | Android<br>Google Play
 <img alt="Google Authenticator Logo"  src="../imgs/google-authenticator-logo.png" width="50px;"> | <a href="https://apps.apple.com/us/app/google-authenticator/id388497605" target="_blank">Google Authenticator</a> | <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en_US&gl=US" target="_blank">Google Authenticator</a>   
 
 
-1. Download and install your preferred MFA App on your Apple IOS or Android device. This tutorial demonstrates pairing with the Duo App, though you may use any any MFA app you like. 
+1. Download and install your preferred MFA App on your Apple IOS or Android device. This tutorial demonstrates pairing with the Duo App, though you may use any MFA app you like. 
 1. Select "Authenticator App" to proceed to the authentication application pairing screen (Figure 2).  
 
 	<table border="0"><tr><td>
@@ -68,7 +68,7 @@ MFA App | IOS/Apple devices<br>Apple App Store | Android<br>Google Play
 
 ### Example: Pairing with SMS (text) Messaging { #sms }
 
-Instead of using an authentication application, you may instead enable multi-factor authentication with SMS, standard text messaging. Follow the instructions on the SMS pairing form below (Figure 5).
+Instead of using an authentication application, you may instead enable MFA with SMS, standard text messaging. Follow the instructions on the SMS pairing form below (Figure 5).
 
 <table border="0"><tr><td>
 <figure id="figure5"><img border="1" alt="Setting up MFA SMS Pairing" src="../imgs/mfa-smspairing.png" style="width:800px;"> 

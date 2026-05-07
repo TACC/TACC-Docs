@@ -81,7 +81,7 @@ Follow these instructions to enable MFA on your account. **Do not navigate away 
 	<figure id="securitycredentials"><img alt="AWS-securitycredentials" src="../imgs/frontera/AWS-securitycredentials.png"> 
 	<figcaption></figcaption></figure>
 
-1. Click on the "Assign MFA device" button in the "Multi-factor authentication (MFA)" section. Then, select the "Virtual MFA device" option and click "Continue".  
+1. Click on the "Assign MFA device" button in the "Multi-Factor Authentication (MFA)" section. Then, select the "Virtual MFA device" option and click "Continue".  
 	<figure id="managemfadevice"><img alt="AWS-managemfadevice" src="../imgs/frontera/AWS-managemfadevice.png"> 
 	<figcaption></figcaption></figure>
 
