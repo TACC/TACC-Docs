@@ -14,9 +14,9 @@ One to two sentences.
 
 ## Changes
 
-<!--
-- succinct list of changes that summarizes diff
--->
+<!-- succinct list of changes that summarizes diff -->
+
+- …
 
 ## Testing
 
