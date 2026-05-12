@@ -80,14 +80,14 @@ module load ansys
 # Your-ANSYS-COMMAND-HERE
 
 # Define your working directory
-MY_JOB_DIR = /scratch1/01234/joe/Ansys_test
+MY_JOB_DIR=/scratch1/01234/joe/Ansys_test
 
 # Run ANSYS Job
 "/home1/apps/ANSYS/2023R2/v232/ansys/bin/mapdl" \
 		-p ansys -dis -mpi INTELMPI -np 56 -lch    \
 		-dir "$MY_JOB_DIR" \
 		-j "Ansys_test" -s read -l en-us -b \
-		&lt; "$MY_JOB_DIR/Ansys_test_input.txt" &gt; "$MY_JOB_DIR/Ansys_test_output.out"
+		< "$MY_JOB_DIR/Ansys_test_input.txt" > "$MY_JOB_DIR/Ansys_test_output.out"
 ```
 
 To obtain the correct `Your-ANSYS-COMMAND-HERE`, launch the ANSYS Mechanical GUI used in interactive mode. Here, we use the ANSYS Mechanical APDL as an example. After entering the correct *Working directory*, *Job Name*, *Input File*, *Output File*, and *Number of Processors*, you can click Tools and then Display Command Line to get the complete command to run ANSYS jobs in batch mode. No `ibrun` or `mpirun` command is needed for running ANSYS jobs.
