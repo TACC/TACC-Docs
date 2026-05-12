@@ -8,7 +8,14 @@ footer {
   padding-bottom: 0; /* to undo ReadTheDocs theme.css */
 }
 
-/* to improve appearance of external tab icons on cards */
-[class*="card--"] i.fa {
-    margin-block: -1rem 1rem;
+/* to improve appearance of external tab icons on image cards */
+/* TODO: Integrate into mkdocs-tacc */
+[class*="card--image-top"] .fa-external-link {
+    margin-right: calc(-1 * var(--global-space--pattern-pad) );
+    bottom: 0.25em;
+    top: unset;
+    display: block;
+}
+[class*="card--image"] .fa-external-link::before {
+    display: block;
 }
