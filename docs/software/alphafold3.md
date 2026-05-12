@@ -1,5 +1,5 @@
 # AlphaFold3 at TACC
-*Last update: February 26, 2026*
+*Last update: April 29, 2026*
 
 <img src="../imgs/alphafold3-logo.png" width="250" alt="AlphaFold3 logo" class="align-right">
 
@@ -16,12 +16,12 @@ We encourage researchers interested in making protein structure predictions with
     
 ### Table 1. Installations at TACC { #table1 }
 
-HPC Resource | Versions
+HPC Resource | Latest Version
 -- | --
-Lonestar6 | AlphaFold3: v3.0.1<br>**Data**: `/scratch/tacc/apps/bio/alphafold3/3.0.1/data`<br>**Examples**: `/scratch/tacc/apps/bio/alphafold3/3.0.1/examples`<br> Module: `/scratch/tacc/apps/bio/alphafold3/modulefiles`
-Frontera | AlphaFold3: v3.0.1<br>**Data**: `/scratch2/projects/bio/alphafold3/3.0.1/data`<br>**Examples**: `/scratch2/projects/bio/alphafold3/3.0.1/examples`<br> Module: `/scratch2/projects/bio/alphafold3/modulefiles`
-Stampede3 | AlphaFold3: v3.0.1<br> *Coming soon*
-Vista | AlphaFold3: v3.0.1<br> *Coming soon*
+Lonestar6 | AlphaFold3: v3.0.2<br>**Data**: `/scratch/tacc/apps/bio/alphafold3/3.0.2/data`<br>**Examples**: `/scratch/tacc/apps/bio/alphafold3/3.0.2/examples`<br>**Module**: `/scratch/tacc/apps/bio/alphafold3/modulefiles`
+Frontera | AlphaFold3: v3.0.2<br>**Data**: `/scratch2/projects/bio/alphafold3/3.0.2/data`<br>**Examples**: `/scratch2/projects/bio/alphafold3/3.0.2/examples`<br>**Module**: `/scratch2/projects/bio/alphafold3/modulefiles`
+Vista | AlphaFold3: v3.0.2<br>**Data**: `/scratch/tacc/apps/bio/alphafold3/3.0.2/data`<br>**Examples**: `/scratch/tacc/apps/bio/alphafold3/3.0.2/examples`<br>**Module**: `/scratch/tacc/apps/bio/alphafold3/modulefiles`
+Stampede3 | AlphaFold3: v3.0.2<br> *Coming soon*
 
 ## Access
 
@@ -90,18 +90,18 @@ Templates for batch job submission scripts are provided within the "Examples" pa
 #SBATCH -t 01:00:00                # Run time (hh:mm:ss)
 #SBATCH -A my-project              # Allocation name
 #----------------------------------------------------------------------
-
+ 
 # Load required modules
 module use /scratch/tacc/apps/bio/alphafold3/modulefiles
-module load alphafold3/3.0.1-ctr.lua
-
+module load alphafold3/3.0.2-ctr
+ 
 # Set environment variable definitions to point to your input, output, and model parameters directories:
 export AF3_INPUT_DIR=$SCRATCH/input/
 export AF3_OUTPUT_DIR=$SCRATCH/output/
 export AF3_MODEL_PARAMETERS_DIR=$WORK/af3_parameters
-
-# Run AlphaFold3 
-run_alphafold3 --json_path=$AF3_INPUT_DIR/input.json           # MODIFY name of input.json                                
+ 
+# Run AlphaFold3
+run_alphafold3 --json_path=$AF3_INPUT_DIR/input.json           # MODIFY name of input.json                             
 ```
 
 In the batch script, make sure to specify the partition (queue) (`#SBATCH -p`), node / wallclock limits, and allocation name (`#SBATCH -A`) appropriate to the machine you are running on. Also, make sure the path shown in the `module use` line matches the machine-specific "Module" path listed in [Table 1.](#table1) above.
@@ -154,24 +154,24 @@ A sample `protein_MSA.slurm` job script with the `--norun_inference` flag is inc
 ```job-script
 #!/bin/bash
 #----------------------------------------------------------------------
-#SBATCH -J protein_MSA             
-#SBATCH -o protein_MSA.o%j         
-#SBATCH -e protein_MSA.e%j        
+#SBATCH -J protein_MSA
+#SBATCH -o protein_MSA.o%j
+#SBATCH -e protein_MSA.e%j
 #SBATCH -p normal                  # Normal (CPU) queue
-#SBATCH -N 1                       
-#SBATCH -t 01:00:00                
-#SBATCH -A my-project              
+#SBATCH -N 1
+#SBATCH -t 01:00:00
+#SBATCH -A my-project
 #----------------------------------------------------------------------
-
+ 
 # Load required modules
 module use /scratch2/projects/bio/alphafold3/modulefiles
-module load alphafold3/3.0.1-ctr.lua
-
+module load alphafold3/3.0.2-ctr
+ 
 # Set environment variable definitions to point to your input, output, and model parameters directories:
 export AF3_INPUT_DIR=$SCRATCH/input/
 export AF3_OUTPUT_DIR=$SCRATCH/output/
 export AF3_MODEL_PARAMETERS_DIR=$WORK/af3_parameters
-
+ 
 # Run AlphaFold3 (MSA only)
 run_alphafold3 --json_path=$AF3_INPUT_DIR/input.json --norun_inference
 ```
@@ -189,24 +189,24 @@ A sample `protein_inference.slurm` job script with the `--norun_data_pipeline` f
 ```job-script
 #!/bin/bash
 #----------------------------------------------------------------------
-#SBATCH -J protein_inf             
-#SBATCH -o protein_inf.o%j         
-#SBATCH -e protein_inf.e%j        
-#SBATCH -p rtx                  # rtx queue
-#SBATCH -N 1                       
-#SBATCH -t 01:00:00                
-#SBATCH -A my-project              
+#SBATCH -J protein_inf
+#SBATCH -o protein_inf.o%j
+#SBATCH -e protein_inf.e%j
+#SBATCH -p rtx                     # rtx queue
+#SBATCH -N 1
+#SBATCH -t 01:00:00
+#SBATCH -A my-project
 #----------------------------------------------------------------------
-
+ 
 # Load required modules
 module use /scratch2/projects/bio/alphafold3/modulefiles
-module load alphafold3/3.0.1-ctr.lua
-
+module load alphafold3/3.0.2-ctr
+ 
 # Set environment variable definitions to point to your input, output, and model parameters directories:
 export AF3_INPUT_DIR=$SCRATCH/output/uqcr11_hsapiens
 export AF3_OUTPUT_DIR=$SCRATCH/output/uqcr11_hsapiens
 export AF3_MODEL_PARAMETERS_DIR=$WORK/af3_parameters
-
+ 
 # Run AlphaFold3 (inference only)
 run_alphafold3 --json_path=$AF3_INPUT_DIR/uqcr11_hsapiens_data.json --norun_data_pipeline
 ```

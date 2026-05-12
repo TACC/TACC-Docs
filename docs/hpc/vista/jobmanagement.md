@@ -7,6 +7,8 @@ In this section, we present several Slurm commands and other utilities that are 
 
 ### Monitoring Queue Status { #jobs-monitoring }
 
+Monitor queue status via Slurm's `sinfo` command and/or TACC's `qlimits` utility.
+
 #### TACC's `qlimits` command { #jobs-monitoring-qlimits }
 
 To display resource limits for the Lonestar queues, execute: `qlimits`. The result is real-time data; the corresponding information in this document's [table of Vista queues](#queues) may lag behind the actual configuration that the `qlimits` utility displays.
@@ -18,23 +20,24 @@ Slurm's `sinfo` command allows you to monitor the status of the queues. If you e
 ```cmd-line
 login1$ sinfo -S+P -o "%18P %8a %20F"    # compact summary of queue status
 ```
-
-This command's output might look like this:
+his command's output might look like this:
 
 ```cmd-line
 PARTITION          AVAIL    NODES(A/I/O/T)
-icx                up       103/2/7/112
-skx                up       402/6/32/440
-skx-dev*           up       6/70/4/80
+gg                 up       208/7/36/251
+gh                 up       572/4/0/576
+gh-dev*            up       18/0/2/20
 ```
 	
 The `AVAIL` column displays the overall status of each queue (up or down), while the column labeled `NODES(A/I/O/T)` shows the number of nodes in each of several states ("**A**llocated", "**I**dle", "**O**ffline", and "**T**otal"). Execute `man sinfo` for more information. Use caution when reading the generic documentation, however: some available fields are not meaningful or are misleading on Vista (e.g. `TIMELIMIT`, displayed using the `%l` option).
 
 ### Monitoring Job Status { #jobs-monitoring-jobstatus }
 
+Monitor your job's status in the queue via Slurm's `squeue` command and/or TACC's `showq` utility.
+
 #### Slurm's `squeue` command { #jobs-monitoring-queuestatus }
 
-Use Slurm's `squeue` command to display the state of all queued and running jobs.  
+Slurm's `squeue` command displays the state of all queued and running jobs.  
 
 ```cmd-line
 login1$ squeue             # show all jobs in all queues
@@ -42,25 +45,46 @@ login1$ squeue -u bjones   # show all jobs owned by bjones
 login1$ man squeue         # more info
 ```
 
+The `squeue` command's default output format lists all nodes assigned to displayed jobs; this can make the output difficult to read. See the example below for a handy variation that suppresses the nodelist:
+
 !!!tip
-	The `squeue`'s default format lists all nodes assigned to displayed jobs; this can make the output difficult to read. A handy variation that suppresses the nodelist is:
+	The `squeue` command's default output format lists all nodes assigned to displayed jobs; this can make the output difficult to read. See the example below for a handy variation that suppresses the nodelist:
 
 	```cmd-line
 	login1$ squeue -o "%.10i %.12P %.12j %.9u %.2t %.9M %.6D"  # suppress nodelist
 	```
+### Job and Queue Status Meanings 
 
-!!!tip
-	The `--start` option to the `squeue` displays job start times, including very rough estimates for the expected start times of some pending jobs that are relatively high in the queue:
+The `squeue` command's output displays two columns of interest, the column labeled `ST` displays each job's status, and the last column, labeled `NODELIST/REASON`, includes a nodelist for running/completing jobs, or a reason for pending jobs.  See [Table 6](#table6) and [Table 7](#table7) below for detailed explanations.
 
-	```cmd-line
-	login1$ squeue --start -j 167635     # display estimated start time for job 167635
-	```
-
-#### Job Status { #jobs-monitoring-sqeue-status }
-
-The `squeue` command's output displays two columns of interest, the column labeled `ST` displays each job's status, and the last column, labeled `NODELIST/REASON`, includes a nodelist for running/completing jobs, or a reason for pending jobs.  
-
-<!-- See [Figure 2](#squeuefigure). above for sample output. -->
+<figure id="figure2">
+```cmd-line
+     JOBID   PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+    674649          gg bb_rag_s rtoscano PD       0:00      1 (Dependency)
+    696999          gg  g6_deim   999999 PD       0:00      1 (DependencyNeverSatisfied)
+    696818          gg TESSA_J1 slindsey PD       0:00      2 (Dependency)
+    696817          gg TESSA_J2 slindsey PD       0:00      2 (Dependency)
+    690973          gg TESSA_J2 slindsey  R 1-23:42:47      2 i617-[062-063]
+    696803          gg TESSA_J2 slindsey  R    3:24:00      2 i617-[001-002]
+    697595          gh 2wiki300  ashleyp CG    3:36:29      1 c634-022
+    673236          gh   IFML-R   895124 PD       0:00      1 (QOSMaxWallDurationPerJobLimit)
+    697740          gh lysozyme sarajane PD       0:00     16 (Priority)
+    697456          gh grpo_eva jemerson PD       0:00      1 (Dependency)
+    695288          gh tldr_int kellykel PD       0:00      1 (DependencyNeverSatisfied)
+    695427          gh idv02624 reynolds  R 1-18:40:00      8 c611-[071,122],c619-031,c620-[051,141-142],c640-[061-062]
+    697606          gh musique3 tg111111  R    3:22:17      1 c612-021
+    697613          gh ga_vmme_  bcatton  R    3:02:21      2 c613-152,c619-052
+    695666          gh idv43155 camiguet  R 1-16:44:38      1 c621-052
+    697723          gh ga_lvb_r  mylouis  R      16:19      2 c637-021,c641-061
+    697782          gh proc_syn cmannion  R      34:45      8 c611-032,c613-[141,151],c619-151,c620-031,c622-[102,131,152]
+    697057      gh-dev  BNS_VLR  acw6923 CG    1:02:28      1 c642-002
+    697675      gh-dev     bash minchaoh CG    1:48:16      5 c642-[072,081-082,091-092]
+    697802      gh-dev idv24504    gbell PD       0:00      1 (Resources)
+    614573      gh-dev jupyter- jheldman PD       0:00      1 (JobHeldAdmin)
+    611728      gh-dev jupyter- jheldman PD       0:00      1 (JobHeldAdmin)
+    697772      gh-dev idv19251 reynolds  R      43:26      1 c642-011
+```
+</figure><figcaption>Figure 2. Sample <code>squeue</code> output</figcaption></figure>
 
 
 ##### Table 6. Job Status Meanings { #table6 }
@@ -92,8 +116,12 @@ The last column, labeled `NODELIST/REASON`, includes a nodelist for running/comp
 `QOSMaxJobsPerUserLimit` | The number of your jobs queued exceeds that [queue's limits](#jobs-monitoring-qlimits). These jobs will run once your previous jobs have ended.
 
 
-<!-- `(QOS<something>)` | This tells you which limit the job is exceeding in the particular QOS. For example, QOSGrpCpuLimit means that the jobs running in that QOS (e.g., long) are using all of the allotted resources as set by the GrpTRES value. In this case, simply wait and your job will run. Run the qos command to see the limits. The number of "procs" or CPU-cores in use per QOS is displayed at the bottom of the output. One sees that "Grp" relates to the QOS and not to your research group. -->
+!!!tip
+	The `--start` option to the `squeue` command displays job start times, including very rough estimates for the expected start times of some pending jobs that are relatively high in the queue:
 
+	```cmd-line
+	login1$ squeue --start -j 167635     # display estimated start time for job 167635
+	```
 
 
 #### TACC's `showq` utility { #jobs-monitoring-showq }
@@ -111,8 +139,6 @@ The output groups jobs in four categories: `ACTIVE`, `WAITING`, `BLOCKED`, and `
 
 If your waiting job cannot complete before a maintenance/reservation begins, `showq` will display its state as `**WaitNod**` ("Waiting for Nodes"). The job will remain in this state until Vista returns to production.
 
-<!-- old text The default format for `showq` now reports total nodes associated with a job rather than cores, tasks, or hardware threads. One reason for this change is clarity: the operating system sees each compute node's hardware threads as "processors", and output based on that information can be ambiguous or otherwise difficult to interpret. -->
-
 Since TACC charges by the node rather than core, `showq`'s default format now reports total nodes associated with a job rather than cores, tasks, or hardware threads.  Run `showq` with the `-l` option to display the number of cores and the job's queue.
 
 
@@ -124,65 +150,33 @@ You can use `sbatch` to help manage workflows that involve multiple steps: the `
 login1$ sbatch --dependency=afterok:173210 myjobscript
 ```
 
+!!! warning
+	It is not possible to add resources to a job (e.g. allow more time, increase number of nodes) once you've submitted the job to the queue.
+
 For more information see the [Slurm online documentation](http://www.schedmd.com). Note that you can use `$SLURM_JOBID` from one job to find the jobid you'll need to construct the `sbatch` launch line for a subsequent one. But also remember that you can't use `sbatch` to submit a job from a compute node.
 
 
-### Other Job Management Commands { #jobs-other }
+### Inspecting Running and Completed Jobs { #jobs-other }
 
-Use `scancel` to remove one of your jobs from the queue., 
-Use `scontrol`to , and `sacct`
 
-!!! warning
-	It is not possible to add resources to a job (e.g. allow more time) once you've submitted the job to the queue.
+* To view some **accounting data** associated with your own jobs, use `sacct`:
 
-To **cancel** a pending or running job, first determine its jobid, then use `scancel`:
+	```cmd-line
+	login1$ sacct --starttime 2026-05-01  # show jobs that started on or after this date
+	```
 
-```cmd-line
-login1$ squeue -u bjones    # one way to determine jobid
- JOBID   PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
-170361        v100   spec12   bjones PD       0:00     32 (Resources)
-login1$ scancel 170361      # cancel job
-```
+* To **cancel** a pending or running job, first determine its jobid, then use `scancel`:
 
-For **detailed information** about the configuration of a specific job, use `scontrol`:
+	```cmd-line
+	login1$ squeue -u bjones    # one way to determine jobid
+     JOBID   PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+	170361          gh   spec12   bjones PD       0:00     32 (Resources)
+	login1$ scancel 170361      # cancel job
+	```
 
-```cmd-line
-login1$ scontrol show job=170361
-```
+* For **detailed information** about the configuration of a specific job, use `scontrol`:
 
-To view some **accounting data** associated with your own jobs, use `sacct`:
-
-```cmd-line
-login1$ sacct --starttime 2019-06-01  # show jobs that started on or after this date
-```
-
-<!-- 
-Pending jobs appear in order of decreasing priority. Tack on the `-u` option to display only your jobs:
-
-<figure id="squeuefigure">
-```cmd-line
-login1$ squeue -u slindsey | more
-JOBID   PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
-10454         icx l4chcoo2 tg123456 PD       0:00      1 (QOSMaxJobsPerUserLimit)
- 8018         icx l4bident tg123456  R   14:57:56      1 c461-218
-10945         icx SM34_687 slindsey  R      27:30     10 c463-[218-227]
-10940         icx SM34_685 slindsey  R      28:44      1 c463-214
- 8936         icx  mark5.1   bjones  R   21:53:14     12 c460-207,c461-[206-212,221-224]
- 9795         icx  mark1.2   bjones  R   12:08:59     10 c460-[220-227],c461-[219-220]
-10956         icx       i2 sniffjck  R      14:14      4 c460-[208-211]
-10997         skx     NAME rtoscano CG       1:13      4 c477-[092-094,101]
-10996         skx     NAME rtoscano CG       2:44      4 c479-034,c490-[082-084]
- 9609         skx sample-s tg987654 PD       0:00      1 (QOSMaxJobsPerUserLimit)
-11002         skx     NAME  ashleyp PD       0:00      4 (Priority)
-11004         skx     NAME  ashleyp PD       0:00      4 (Priority)
-11000         skx     NAME  ashleyp PD       0:00      4 (Resources)
-10673         skx trD4.204 jemerson PD       0:00      4 (Dependency)
-10457         skx l4dimcha tg123456 PD       0:00      2 (QOSMaxJobsPerUserLimit)
-10563         skx lcdm_bas kellygue PD       0:00      1 (Dependency)
-10961         skx    d2_12 tg111111 PD       0:00      1 (QOSMaxJobsPerUserLimit)
-```
-</figure><figcaption>Figure 2. Sample <code>squeue</code> output</figcaption></figure>
--->
-
-<!-- The default format for `squeue` now reports total nodes associated with a job rather than cores, tasks, or hardware threads. One reason for this change is clarity: the operating system sees each compute node's SDL56 hardware threads as "processors", and output based on that information can be ambiguous or otherwise difficult to interpret. -->
+	```cmd-line
+	login1$ scontrol show job=170361
+	```
 

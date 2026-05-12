@@ -7,6 +7,8 @@ In this section, we present several Slurm commands and other utilities that are 
 
 ### Monitoring Queue Status { #jobs-monitoring }
 
+Monitor queue status via Slurm's `sinfo` command and/or TACC's `qlimits` utility.
+
 #### TACC's `qlimits` command { #jobs-monitoring-qlimits }
 
 To display resource limits for the Lonestar queues, execute: `qlimits`. The result is real-time data; the corresponding information in this document's [table of Stampede3 queues](#queues) may lag behind the actual configuration that the `qlimits` utility displays.
@@ -32,7 +34,9 @@ The `AVAIL` column displays the overall status of each queue (up or down), while
 
 ### Monitoring Job Status { #jobs-monitoring-jobstatus }
 
-#### Slurm's `squeue` command { #sjobs-monitoring-queuestatus }
+Monitor your job's status in the queue via Slurm's `squeue` command and/or TACC's `showq` utility.
+
+#### Slurm's `squeue` command { #jobs-monitoring-queuestatus }
 
 Slurm's `squeue` command displays the state of all queued and running jobs.  
 
@@ -42,7 +46,17 @@ login1$ squeue -u bjones   # show all jobs owned by bjones
 login1$ man squeue         # more info
 ```
 
-Pending jobs appear in order of decreasing priority. Tack on the `-u` option to display only your jobs:
+The `squeue` command's default output format lists all nodes assigned to displayed jobs; this can make the output difficult to read. See the example below for a handy variation that suppresses the nodelist:
+
+!!!tip
+	The `squeue` command's default output format lists all nodes assigned to displayed jobs; this can make the output difficult to read. See the example below for a handy variation that suppresses the nodelist:
+
+	```cmd-line
+	login1$ squeue -o "%.10i %.12P %.12j %.9u %.2t %.9M %.6D"  # suppress nodelist
+	```
+### Job and Queue Status Meanings 
+
+The `squeue` command's output displays two columns of interest, the column labeled `ST` displays each job's status, and the last column, labeled `NODELIST/REASON`, includes a nodelist for running/completing jobs, or a reason for pending jobs.  See [Table 10](#table10) and [Table 11](#table11) below for detailed explanations.
 
 <figure id="squeuefigure">
 ```cmd-line
@@ -68,33 +82,23 @@ JOBID   PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
 ```
 </figure><figcaption>Figure 2. Sample <code>squeue</code> output</figcaption></figure>
 
-<!-- The default format for `squeue` now reports total nodes associated with a job rather than cores, tasks, or hardware threads. One reason for this change is clarity: the operating system sees each compute node's SDL56 hardware threads as "processors", and output based on that information can be ambiguous or otherwise difficult to interpret. -->
 
-!!!tip
-	The `squeue`'s default format lists all nodes assigned to displayed jobs; this can make the output difficult to read. A handy variation that suppresses the nodelist is:
+##### Table 10. Job Status Meanings { #table10 }
 
-	```cmd-line
-	login1$ squeue -o "%.10i %.12P %.12j %.9u %.2t %.9M %.6D"  # suppress nodelist
-	```
+Status Code | Status          | Description
+--          | --              | --
+`CA`        | CANCELLED       | Job was explicitly cancelled by the user or system administrator
+`CD`        | COMPLETED       | Job has terminated all processes on all nodes with an exit code of zero.
+`CG`        | COMPLETING      | Job is in the process of completing. Some processes on some nodes may still be active.
+`F`         | FAILED          | Job terminated with non-zero exit code or other failure condition.
+`NF`        | NODE_FAIL       | Job terminated due to failure of one or more allocated nodes.
+`PD`        | PENDING         | Job is awaiting resource allocation.
+`PR`        | PREEMPTED       | Job terminated due to preemption.
+`R`         | RUNNING         | Job has an allocation and is currently running.
+`TO`        | TIMEOUT         | Job terminated upon reaching its time limit.
 
-!!!tip
-	The `--start` option to the `squeue` displays job start times, including very rough estimates for the expected start times of some pending jobs that are relatively high in the queue:
 
-	```cmd-line
-	login1$ squeue --start -j 167635     # display estimated start time for job 167635
-	```
-
-#### Queue Status Meanings { #jobs-monitoring-sqeue-status }
-
-The `squeue` command's output displays two columns of interest.  See [Figure 2](#squeuefigure). above for sample output.
-
-The column labeled `ST` displays each job's status: 
-
-* `PD` means "Pending" (waiting); 
-* `R`  means "Running";
-* `CG` means "Completing" (cleaning up after exiting the job script).
-
-#### Table 10. Pending Jobs Reason { #table10 }
+##### Table 11. Pending Jobs Reason { #table11 }
 
 The last column, labeled `NODELIST/REASON`, includes a nodelist for running/completing jobs, or a reason for pending jobs.  
 
@@ -107,8 +111,12 @@ The last column, labeled `NODELIST/REASON`, includes a nodelist for running/comp
 `QOSMaxJobsPerUserLimit` | The number of your jobs queued exceeds that [queue's limits](#jobs-monitoring-qlimits). These jobs will run once your previous jobs have ended.
 
 
-<!-- `(QOS<something>)` | This tells you which limit the job is exceeding in the particular QOS. For example, QOSGrpCpuLimit means that the jobs running in that QOS (e.g., long) are using all of the allotted resources as set by the GrpTRES value. In this case, simply wait and your job will run. Run the qos command to see the limits. The number of "procs" or CPU-cores in use per QOS is displayed at the bottom of the output. One sees that "Grp" relates to the QOS and not to your research group. -->
+!!!tip
+	The `--start` option to the `squeue` command displays job start times, including very rough estimates for the expected start times of some pending jobs that are relatively high in the queue:
 
+	```cmd-line
+	login1$ squeue --start -j 167635     # display estimated start time for job 167635
+	```
 
 
 #### TACC's `showq` utility { #jobs-monitoring-showq }
@@ -126,10 +134,7 @@ The output groups jobs in four categories: `ACTIVE`, `WAITING`, `BLOCKED`, and `
 
 If your waiting job cannot complete before a maintenance/reservation begins, `showq` will display its state as `**WaitNod**` ("Waiting for Nodes"). The job will remain in this state until Stampede3 returns to production.
 
-<!-- old text The default format for `showq` now reports total nodes associated with a job rather than cores, tasks, or hardware threads. One reason for this change is clarity: the operating system sees each compute node's hardware threads as "processors", and output based on that information can be ambiguous or otherwise difficult to interpret. -->
-
 Since TACC charges by the node rather than core, `showq`'s default format now reports total nodes associated with a job rather than cores, tasks, or hardware threads.  Run `showq` with the `-l` option to display the number of cores and the job's queue.
-
 
 
 ### Dependent Jobs using `sbatch` { #jobs-dependencies }
@@ -140,35 +145,33 @@ You can use `sbatch` to help manage workflows that involve multiple steps: the `
 login1$ sbatch --dependency=afterok:173210 myjobscript
 ```
 
+!!! warning
+	It is not possible to add resources to a job (e.g. allow more time, increase number of nodes) once you've submitted the job to the queue.
+
 For more information see the [Slurm online documentation](http://www.schedmd.com). Note that you can use `$SLURM_JOBID` from one job to find the jobid you'll need to construct the `sbatch` launch line for a subsequent one. But also remember that you can't use `sbatch` to submit a job from a compute node.
 
 
-### Other Job Management Commands { #jobs-other }
+### Inspecting Running and Completed Jobs { #jobs-other }
 
-Use `scancel` to remove one of your jobs from the queue., 
-Use `scontrol`to , and `sacct`
 
-!!! warning
-	It is not possible to add resources to a job (e.g. allow more time) once you've submitted the job to the queue.
+* To view some **accounting data** associated with your own jobs, use `sacct`:
 
-To **cancel** a pending or running job, first determine its jobid, then use `scancel`:
+	```cmd-line
+	login1$ sacct --starttime 2026-05-01  # show jobs that started on or after this date
+	```
 
-```cmd-line
-login1$ squeue -u bjones    # one way to determine jobid
- JOBID   PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
-170361        v100   spec12   bjones PD       0:00     32 (Resources)
-login1$ scancel 170361      # cancel job
-```
+* To **cancel** a pending or running job, first determine its jobid, then use `scancel`:
 
-For **detailed information** about the configuration of a specific job, use `scontrol`:
+	```cmd-line
+	login1$ squeue -u bjones    # one way to determine jobid
+     JOBID   PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+	170361         icx   spec12   bjones PD       0:00     32 (Resources)
+	login1$ scancel 170361      # cancel job
+	```
 
-```cmd-line
-login1$ scontrol show job=170361
-```
+* For **detailed information** about the configuration of a specific job, use `scontrol`:
 
-To view some **accounting data** associated with your own jobs, use `sacct`:
-
-```cmd-line
-login1$ sacct --starttime 2019-06-01  # show jobs that started on or after this date
-```
+	```cmd-line
+	login1$ scontrol show job=170361
+	```
 
