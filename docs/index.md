@@ -65,7 +65,7 @@ Each of our HPC resources has a user guide, with extensive instructions and info
 
 
 
-///// html | a.card--plain.card--image-top[href="./hpc/vista/"]
+///// html | a.card--plain.card--image-top[href="https://example.org"]
      markdown: block
 
 ////// html | img[alt="TACC's Vista AI supercomputer"][src="imgs/home/vista.png" height="400"]
@@ -104,7 +104,7 @@ Each guide contains sample job scripts per resource where applicable and any spe
 
 /////
 
-///// html | a.card--plain[href="./software/pylauncher/"]
+///// html | a.card--plain[href="https://example.org"]
      markdown: block
 
 <h3>PyLauncher</h3>
