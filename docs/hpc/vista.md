@@ -312,6 +312,12 @@ Vista's job scheduler is the Slurm Workload Manager. Slurm commands enable you t
     Vista admins may occasionally adjust queue <!--the QOS--> settings in order to ensure fair scheduling for the entire user community.
     TACC's `qlimits` utility will display the latest queue configurations.
 
+<!-- Requested per Dan 5/18/26...we may also want to add this to the good conduct page.  -->
+!!! important
+	**Queue Restrictions**
+	Do not request specific nodes when submitting jobs without prior approval from staff. 
+	Jobs that request specific nodes without permission will be removed from the queue. 
+
 <!--
 04/15/2026 no change since 01/20/2026
 login1.vista(219)$ qlimits
