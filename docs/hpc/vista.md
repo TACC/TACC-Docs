@@ -1,8 +1,9 @@
 # Vista User Guide 
-*Last update: May 7, 2026*
+*Last update: May 19, 2026*
 
 ## Notices { #notices }
 
+{% include 'include/nospecificnodes.md' %}:
 {% include 'include/ai.md' %}
 
 ## Introduction { #intro }
@@ -305,7 +306,7 @@ It's safe to execute module commands in job scripts. In fact, this is a good way
 
 ### Slurm Partitions (Queues) { #queues }
 
-Vista's job scheduler is the Slurm Workload Manager. Slurm commands enable you to submit, manage, monitor, and control your jobs.  <!-- See the [Job Management](#jobmanagement) section below for further information. -->
+Vista's job scheduler is the Slurm Workload Manager. Slurm commands enable you to submit, manage, monitor, and control your jobs.  See the [Job Management](#jobs) section below for further information.
 
 !!! important
     **Queue limits are subject to change without notice.**
@@ -313,10 +314,12 @@ Vista's job scheduler is the Slurm Workload Manager. Slurm commands enable you t
     TACC's `qlimits` utility will display the latest queue configurations.
 
 <!-- Requested per Dan 5/18/26...we may also want to add this to the good conduct page.  -->
-!!! important
-	**Queue Restrictions**
-	Do not request specific nodes when submitting jobs without prior approval from staff. 
-	Jobs that request specific nodes without permission will be removed from the queue. 
+!!! warning
+    **Queue Restrictions**
+    Do not request specific nodes when submitting jobs without prior approval from staff.  Allow Slurm to allocate nodes as appropriate.
+
+    Any job requesting specific compute nodes via batch scripts, `idev` invocations, or MPI hostfiles will be deleted from the queue.
+
 
 <!--
 04/15/2026 no change since 01/20/2026

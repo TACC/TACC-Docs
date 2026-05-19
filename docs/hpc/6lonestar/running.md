@@ -18,6 +18,12 @@ The jobs in this queue consume 1/7 the resources of a full node.  Jobs are charg
     Frontera admins may occasionally adjust queue <!--the QOS--> settings in order to ensure fair scheduling for the entire user community.
     TACC's `qlimits` utility will display the latest queue configurations.
 
+!!! warning
+    **Queue Restrictions**
+    Do not request specific nodes when submitting jobs without prior approval from staff.  Allow Slurm to allocate nodes as appropriate.
+
+    Any job requesting specific compute nodes via batch scripts, `idev` invocations, or MPI hostfiles will be deleted from the queue.
+
 <!--
 login1.ls6(568)$ qlimits
 Name             MinNode  MaxNode     MaxWall  MaxNodePU  MaxJobsPU   MaxSubmit

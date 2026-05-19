@@ -1,8 +1,9 @@
 # Lonestar6 User Guide
-*Last update: May 7, 2026*
+*Last update: May 19, 2026*
 
 ## Notices 
 
+{% include 'include/nospecificnodes.md' %}
 {% include 'include/ai.md' %}
 
 

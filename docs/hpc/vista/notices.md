@@ -1,8 +1,9 @@
 # Vista User Guide 
-*Last update: May 7, 2026*
+*Last update: May 19, 2026*
 
 ## Notices { #notices }
 
+{% include 'include/nospecificnodes.md' %}:
 {% include 'include/ai.md' %}
 
 ## Introduction { #intro }

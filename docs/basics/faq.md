@@ -30,7 +30,7 @@ Consult the [Login Problems: "Improper ssh configuration!"](https://docs.tacc.ut
 ///
 
 /// details | How do I share my files with my project members?  
-See the [Sharing Project files at TACC][TACCSHARINGPROJECTFILES] documentation.
+See [Sharing Project files at TACC][TACCSHARINGPROJECTFILES]
 ///
 
 ---
@@ -38,7 +38,7 @@ See the [Sharing Project files at TACC][TACCSHARINGPROJECTFILES] documentation.
 
 /// details | Queue wait times are so long.  Is there anything I can do to help my job run sooner?
 
-The wait times on any of our systems depends on the number and nature of the jobs in the queue and the resources (time, number of nodes, queue) requested.  Queue wait-times can vary significantly.  Busy periods coincide with ends of semesters, and allocation period endings.  
+The wait times on any of our systems depends on the number and nature of the jobs in the queue and the resources (time, number of nodes, queue) requested.  Queue wait-times can support significantly.  Busy periods coincide with ends of semesters, and allocation period endings.  
 
 Here are some helpful ways to reduce wait times on TACC systems:
 
@@ -49,7 +49,7 @@ Here are some helpful ways to reduce wait times on TACC systems:
 
 /// details | My job is currently running but it's going to run out of time.  Can you give it more time?
 
-No. The Slurm Workload Manager does not allow TACC staff to add resources, e.g. time, to a running job.
+No. Slurm does not allow TACC staff to add resources, such as time, to a running job.
 ///
 
 
@@ -59,7 +59,7 @@ No.  The 48-hour time limit is set to balance resource availability across TACC'
 
 Workarounds: 
 
-* **Implement checkpointing in your workflow**.  Many software packages contain checkpointing, the ability to save the state of a job at periodic intervals.  Should your job end due to time limits or node failure, you can re-submit the job allowing it to resume from the last checkpoint in a new job submission.
+* **Implement checkpointing in your workflow**.  Many software packages support checkpointing, the ability to save the state of a job at periodic intervals.  Should your job end due to time limits or node failure, you can re-submit the job allowing it to resume from the last checkpoint in a new job submission.
 
 * **Split up your jobs and use Slurm job dependencies to manage workflows that require multiple steps**.  See also [PyLauncher][TACCPYLAUNCHER].
 ///

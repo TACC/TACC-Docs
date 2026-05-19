@@ -1,4 +1,4 @@
-* **Using Artificial Intelligence (AI) clients on TACC resources**: We *strongly* recommend you run all AI assisted tasks on a compute node.  <!-- Reminder: The login nodes are <a href="http://docs.tacc.utexas.edu/basics/conduct/#conduct-loginnodes">a shared resource</a> among a multitude of users. -->  Consult the [Good Conduct Guide][TACCGOODCONDUCT] guide for [instructions](http://docs.tacc.utexas.edu/basics/conduct/#ai) on the use of AI tools and agents in the 
+* **Using Artificial Intelligence (AI) clients on TACC resources**: We *strongly* recommend you run all AI assisted tasks on a compute node. Consult the [Good Conduct Guide][TACCGOODCONDUCT] guide for [instructions](http://docs.tacc.utexas.edu/basics/conduct/#ai) on the use of AI tools and agents. (05/07/2026) 
 
 	!!! important 
     
