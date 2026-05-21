@@ -53,6 +53,7 @@ $ ssh -m hmac-sha2-512 taccusername@ls6.tacc.utexas.edu
 Recent upgrades by Microsoft to the VSCode application have resulted in the program causing issues with user accounts.  TACC Staff are aware of the problems users are experiencing.  Until Microsoft fixes this bug, we are only able to offer possible solutions and workarounds.   
 
 1. **Downgrade your VSCode version**: Version 1.98 appears to be the most consistent and stable when connecting to TACC resources.
+1. **Disable Auto Reconnect**: The auto reconnect feature in VSCode can result in excess processes that will block you from being able to login. Disable the feature to keep your space clean. 
 1. **Edit your .bashrc file:** Connect via a terminal application to your compute resource and append the following line to your `$HOME/.bashrc` file: 
 
 		export NODE_OPTIONS="--disable-wasm-trap-handler"
