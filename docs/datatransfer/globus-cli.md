@@ -110,5 +110,5 @@ Use this endpoint ID with `globus transfer` as shown above.
 
 ## Additional Documentation
 
-- [Globus CLI Quickstart](https://docs.globus.org/cli/quickstart/)
-- [Globus Connect Personal](https://docs.globus.org/globus-connect-personal)
+* [Globus CLI Quickstart](https://docs.globus.org/cli/quickstart/)
+* [Globus Connect Personal](https://docs.globus.org/globus-connect-personal)

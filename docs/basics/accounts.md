@@ -1,5 +1,5 @@
 # Managing your TACC Account
-*Last update: January 6, 2025*
+*Last update: May 4, 2026*
 
 ## Notices
 
@@ -66,7 +66,7 @@ Recent upgrades by Microsoft to the VSCode application have resulted in the prog
 
 	Also note that VSCode access is **prohibited** on TACC's Ranch and Corral storage resources.
 
-## Login Problems: `Improper ssh Configuration!`
+## Login Problems: `Improper ssh configuration!`
 
 If you see this message:
 
@@ -103,12 +103,12 @@ Active                     | All is well.  Active account holders may log on to 
 Pending Email Confirmation | You haven't confirmed your email account.  If you haven't received the confirmation email, check your spam or junk folder and any filters. Add "`no-reply@tacc.utexas.edu`" to your safe senders list, then request the activation link again.  
 Pending                    | Your account is under administrative review. 
 Deactivated                | Reactivate your account by logging into the [TACC Accounts Portal][TACCACCOUNTS] and requesting an activation link.  **You will have to re-pair MFA once your account is reactivated**.
-Suspended                  | If your account is suspended you will be prohibited from logging into the TACC User Portal and as well as any TACC HPC resources.  Please [submit a help desk ticket](SUBMITTICKET) and a member of our User Services team will respond. Account suspension may result if: <li>your HPC jobs are violating [Good Conduct Policies][TACCGOODCONDUCT] or causing harm to our systems <li>your account usage is in violation of TACC's [Acceptable Use Policy][TACCAUP].     
+Suspended                  | If your account is suspended you will be prohibited from logging into the TACC User Portal and any TACC HPC resources.  Please [submit a help desk ticket](SUBMITTICKET) and a member of our User Services team will respond. Account suspension may result if: <li>your HPC jobs are violating [Good Conduct Policies][TACCGOODCONDUCT] or causing harm to our systems <li>your account usage is in violation of TACC's [Acceptable Use Policy][TACCAUP].     
 
 
 ## Deactivated Accounts
 
-If you have not accessed your account within the past 120 consecutive days, your account will be automatically deactivated in accordance with UT's [security protocols](https://security.utexas.edu/policies/irusp).  To re-activate your acccount, login to the [TACC Accounts Portal][TACCACCOUNTS] and request an activation link.  
+If you have not accessed your account within the past 120 consecutive days, your account will be automatically deactivated in accordance with UT's [security protocols](https://security.utexas.edu/policies/irusp).  To re-activate your account, login to the [TACC Accounts Portal][TACCACCOUNTS] and request an activation link.  
 
 !!! important
 	Once you have re-activated your account, you will need to [un-pair and re-pair][TACCMFA] your two-factor authentication.

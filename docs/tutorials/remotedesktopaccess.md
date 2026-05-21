@@ -17,7 +17,7 @@ Once the `vncserver` process is running on the compute node and a tunnel through
 
 1. **TACC Vis Portal**: Available to all Frontera and Stampede3 users, the [TACC Analysis Portal](http://tap.tacc.utexas.edu) provides an easy-to-use web interface to submit a VNC job script.
 
-1. **DCV connection**: **D**esktop **C**loud **V**isualization (DCV) traffic is encrypted using Transport Layer Security (TLS) through your web browser, obviating the need to create a separate SSH tunnel. A DCV connection is easier to set up than a VNC connection, however TACC is limited to the number of concurrent DCV licenses. Stampede3 and Frontera are currently the only TACC resources allowing DCV connections. The DCV job script writes connection information to a file, `dcvserver.out`. You can connect to a DCV session with any modern web browswer.
+1. **DCV connection**: **D**esktop **C**loud **V**isualization (DCV) traffic is encrypted using Transport Layer Security (TLS) through your web browser, obviating the need to create a separate SSH tunnel. A DCV connection is easier to set up than a VNC connection, however TACC is limited to the number of concurrent DCV licenses. Stampede3 and Frontera are currently the only TACC resources allowing DCV connections. The DCV job script writes connection information to a file, `dcvserver.out`. You can connect to a DCV session with any modern web browser.
 
 
 ## TACC Analysis Portal { #tap }
@@ -73,7 +73,7 @@ See more `sbatch` options in the [Stampede3 User Guide: Common `sbatch` Options]
 
 <td align="center"> DCV
 <td nowrap> <code>/share/doc/slurm/job.dcv2vnc</code>
-<td>Request a DCV session, tried to launch a DCV session but if none is available then a VNC session is submitted.<br>Requests 1 node for 2 hours Stampede3's the <a href="../../hpc/stampede3#running-queues"><code>skx-dev</code></a> queue</td></tr>
+<td>Request a DCV session, tries to launch a DCV session but if none is available then a VNC session is submitted.<br>Requests 1 node for 2 hours Stampede3's the <a href="../../hpc/stampede3#running-queues"><code>skx-dev</code></a> queue</td></tr>
 <td align="center"> VNC
 <td><code>/share/doc/slurm/job.vnc</code>
 <td>Requests 1 node for 2 hours in Stampede3's <a href="../../hpc/stampede3#queues"><code>skx-dev</code></a> queue</td></tr>

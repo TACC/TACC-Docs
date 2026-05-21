@@ -49,6 +49,7 @@ nav:
     - TACC Good Conduct Guide: basics/conduct.md
     - Common User Issues: basics/userissues.md
     - Software at TACC: basics/software.md
+    - TACC FAQ: basics/faq.md
     - Help: basics/help.md
   - Data Transfer Guides:
     - Data Transfer at TACC: datatransfer/datatransferguide.md

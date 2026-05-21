@@ -1,15 +1,10 @@
 # Lonestar6 User Guide
-*Last update: April 21, 2026*
+*Last update: May 19, 2026*
 
 ## Notices 
 
-* **Using Artifical Intelligence clients (AI) on TACC resources**: We *strongly* recommend you run all AI assisted tasks on a compute node.  Reminder: The login nodes are <a href="../../basics/conduct/#conduct-loginnodes">a shared resource</a> among a multitude of users.  (04/21/2026)
-
-    Furthermore
-
-    * You are responsible for any processes launched on TACC resources via any AI process
-    * Any and all SUs consumed by an AI process will be charged to your allocation.
-
+{% include 'include/nospecificnodes.md' %}
+{% include 'include/ai.md' %}
 
 
 ## Introduction { #intro }
@@ -728,6 +723,12 @@ The jobs in this queue consume 1/7 the resources of a full node.  Jobs are charg
     Frontera admins may occasionally adjust queue <!--the QOS--> settings in order to ensure fair scheduling for the entire user community.
     TACC's `qlimits` utility will display the latest queue configurations.
 
+!!! warning
+    **Queue Restrictions**
+    Do not request specific nodes when submitting jobs without prior approval from staff.  Allow Slurm to allocate nodes as appropriate.
+
+    Any job requesting specific compute nodes via batch scripts, `idev` invocations, or MPI hostfiles will be deleted from the queue.
+
 <!--
 login1.ls6(568)$ qlimits
 Name             MinNode  MaxNode     MaxWall  MaxNodePU  MaxJobsPU   MaxSubmit
@@ -1019,9 +1020,12 @@ ibrun ./myprogram         # Use ibrun instead of mpirun or mpiexec
 
 In this section, we present several Slurm commands and other utilities that are available to help you plan and track your job submissions as well as check the status of the Slurm queues.
 
-When interpreting queue and job status, remember that **Lonestar6 doesn't operate on a first-come-first-served basis**. Instead, the sophisticated, tunable algorithms built into Slurm attempt to keep the system busy, while scheduling jobs in a way that is as fair as possible to everyone. At times this means leaving nodes idle ("draining the queue") to make room for a large job that would otherwise never run. It also means considering each user's "fair share", scheduling jobs so that those who haven't run jobs recently may have a slightly higher priority than those who have.
+!!!important
+	When interpreting queue and job status, remember that **Lonestar6 does not operate on a first-come-first-served basis**. Instead, the sophisticated, tunable algorithms built into Slurm attempt to keep the system busy, while scheduling jobs in a way that is as fair as possible to everyone. At times this means leaving nodes idle ("draining the queue") to make room for a large job that would otherwise never run. It also means considering each user's "fair share", scheduling jobs so that those who haven't run jobs recently may have a slightly higher priority than those who have.
 
 ### Monitoring Queue Status { #jobs-monitoring }
+
+Monitor queue status via Slurm's `sinfo` command and/or TACC's `qlimits` utility.
 
 #### TACC's `qlimits` command { #jobs-monitoring-qlimits }
 
@@ -1034,24 +1038,32 @@ Slurm's `sinfo` command allows you to monitor the status of the queues. If you e
 ```cmd-line
 login1$ sinfo -S+P -o "%18P %8a %20F"    # compact summary of queue status
 ```
-
-An excerpt from this command's output might look like this:
+This command's output might look like this:
 
 ```cmd-line
-login1$ sinfo -S+P -o "%18P %8a %20F"
-PARTITION          AVAIL    NODES(A/I/O/T)    
-development        up       0/8/0/8
-v100               up       44/43/1/96          
-v100-lm            up       0/8/0/8
+PARTITION          AVAIL    NODES(A/I/O/T)
+corralextra        up       512/0/1/513
+corralextra-dev    up       18/0/0/18
+corralextra-gpu    up       72/1/0/73
+development*       up       18/0/0/18
+gpu-a100           up       72/1/0/73
+gpu-a100-dev       up       4/0/0/4
+gpu-a100-small     up       14/10/0/24
+gpu-h100           up       2/2/0/4
+large              up       512/0/1/513
+normal             up       512/0/1/513
+vm-small           up       28/0/0/28
 ```
 	
 The `AVAIL` column displays the overall status of each queue (up or down), while the column labeled `NODES(A/I/O/T)` shows the number of nodes in each of several states ("**A**llocated", "**I**dle", "**O**ffline", and "**T**otal"). Execute `man sinfo` for more information. Use caution when reading the generic documentation, however: some available fields are not meaningful or are misleading on Lonestar6 (e.g. `TIMELIMIT`, displayed using the `%l` option).
 
 ### Monitoring Job Status { #jobs-monitoring-jobstatus }
 
-#### Slurm's `squeue` command { #sjobs-monitoring-queuestatus }
+Monitor your job's status in the queue via Slurm's `squeue` command and/or TACC's `showq` utility.
 
-Slurm's `squeue` command allows you to monitor jobs in the queues, whether pending (waiting) or currently running:
+#### Slurm's `squeue` command { #jobs-monitoring-queuestatus }
+
+Slurm's `squeue` command displays the state of all queued and running jobs.  
 
 ```cmd-line
 login1$ squeue             # show all jobs in all queues
@@ -1059,42 +1071,79 @@ login1$ squeue -u bjones   # show all jobs owned by bjones
 login1$ man squeue         # more info
 ```
 
-An excerpt from the default output might look like this:
+The `squeue` command's default output format lists all nodes assigned to displayed jobs; this can make the output difficult to read. See the example below for a handy variation that suppresses the nodelist:
 
+!!!tip
+	The `squeue` command's default output format lists all nodes assigned to displayed jobs; this can make the output difficult to read. See the example below for a handy variation that suppresses the nodelist:
+
+	```cmd-line
+	login1$ squeue -o "%.10i %.12P %.12j %.9u %.2t %.9M %.6D"  # suppress nodelist
+	```
+### Job and Queue Status Meanings 
+
+The `squeue` command's output displays two columns of interest, the column labeled `ST` displays each job's status, and the last column, labeled `NODELIST/REASON`, includes a nodelist for running/completing jobs, or a reason for pending jobs.  See [Table 6](#table6) and [Table 7](#table7) below for detailed explanations.
+
+<figure id="figure2">
 ```cmd-line
- JOBID   PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
-25781 development idv72397   bjones CG       9:36      2 c001-011,012
-25918 development ppm_4828   bjones PD       0:00     20 (Resources)
-25915 development MV2-test    siliu PD       0:00     14 (Priority)
-25589        v100   aatest slindsey PD       0:00      8 (Dependency)
-25949 development psdns_la sniffjck PD       0:00      2 (Priority)
-25618        v100   SP256U   connor PD       0:00      1 (Dependency)
-25944        v100  MoTi_hi   wchung  R      35:13      1 c005-003
-25945        v100 WTi_hi_e   wchung  R      27:11      1 c006-001
-25606        v100   trainA   jackhu  R   23:28:28      1 c008-012
+      JOBID   PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+    3146313 development st_archi   oxygen PD       0:00      1 (Dependency)
+    3148608 development   HETDEX  ecooper  R      29:05      4 c307-[005-006],c308-[005-006]
+    3148393 development rhoCentr subhajit  R    1:39:30      2 c305-[005-006]
+    3148334    gpu-a100 0.25_Li3    clp19 PD       0:00      1 (QOSMaxJobsPerUserLimit)
+    3148337    gpu-a100 0.25_Li3    clp19 PD       0:00      1 (QOSMaxJobsPerUserLimit)
+    3141553    gpu-a100      WOY yanghj20  R   21:47:55      1 c316-001
+    3148264    gpu-a100 ML_GC_ja mukherje  R    2:39:00      1 c316-010
+    3146770 gpu-a100-sm inpaint_ yantingx  R   18:28:29      1 v330-023
+    3145353 gpu-a100-sm RF_DQN_j mukherje  R 1-10:41:37      1 v330-001
+    3140472    gpu-h100    train   zxruan  R 1-06:00:32      1 c318-004
+    3147044    gpu-h100 idv66384 singhsud  R    3:48:51      1 c318-001
+    3142355      normal nvt-pack zbajalan PD       0:00      1 (QOSMaxJobsPerUserLimit)
+    3142353      normal nvt-pack zbajalan PD       0:00      1 (QOSMaxJobsPerUserLimit)
+    3148240      normal neid_202  jplneid  R    2:40:46      1 c314-053
+    3142640      normal  POLARIS    kmori  R 1-19:59:11      1 c312-214
+    3146504    vm-small  8sigGNP    pc104 PD       0:00      1 (QOSMaxJobsPerUserLimit)
+    3148638    vm-small       A2   nemian PD       0:00      1 (Resources)
+    3148649    vm-small MULTIPAR  rma0798 PD       0:00      1 (Priority)
+    3148446    vm-small rhoCentr subhajit  R      46:17      1 v320-016
 ```
+</figure><figcaption>Figure 2. Sample <code>squeue</code> output</figcaption></figure>
 
-The column labeled `ST` displays each job's status: 
 
-* `PD` means "Pending" (waiting); 
-* `R`  means "Running";
-* `CG` means "Completing" (cleaning up after exiting the job script).
+##### Table 6. Job Status Meanings { #table6 }
 
-Pending jobs appear in order of decreasing priority. The last column includes a nodelist for running/completing jobs, or a reason for pending jobs. If you submit a job before a scheduled system maintenance period, and the job cannot complete before the maintenance begins, your job will run when the maintenance/reservation concludes. The `squeue` command will report `ReqNodeNotAvailable` ("Required Node Not Available"). The job will remain in the `PD` state until Lonestar6 returns to production.
+Status Code | Status          | Description
+--          | --              | --
+`CA`        | CANCELLED       | Job was explicitly cancelled by the user or system administrator
+`CD`        | COMPLETED       | Job has terminated all processes on all nodes with an exit code of zero.
+`CG`        | COMPLETING      | Job is in the process of completing. Some processes on some nodes may still be active.
+`F`         | FAILED          | Job terminated with non-zero exit code or other failure condition.
+`NF`        | NODE_FAIL       | Job terminated due to failure of one or more allocated nodes.
+`PD`        | PENDING         | Job is awaiting resource allocation.
+`PR`        | PREEMPTED       | Job terminated due to preemption.
+`R`         | RUNNING         | Job has an allocation and is currently running.
+`TO`        | TIMEOUT         | Job terminated upon reaching its time limit.
 
-The default format for `squeue` now reports total nodes associated with a job rather than cores, tasks, or hardware threads. One reason for this change is clarity: the operating system sees each compute node's 56 hardware threads as "processors", and output based on that information can be ambiguous or otherwise difficult to interpret. 
 
-The default format lists all nodes assigned to displayed jobs; this can make the output difficult to read. A handy variation that suppresses the nodelist is:
+##### Table 7. Pending Jobs Reason { #table7 }
 
-```cmd-line
-login1$ squeue -o "%.10i %.12P %.12j %.9u %.2t %.9M %.6D"  # suppress nodelist
-```
+The last column, labeled `NODELIST/REASON`, includes a nodelist for running/completing jobs, or a reason for pending jobs.  
 
-The `--start` option displays job start times, including very rough estimates for the expected start times of some pending jobs that are relatively high in the queue:
+`NODELIST/REASON` | Description
+--- | ---
+`Resources`       | The necessary combination of nodes/GPUs for your job are not available
+`Priority`        | There are other jobs in the queue with a higher priority 
+`Dependency`      | The job will not start until the dependency specified by you is satisfied.
+`ReqNodeNotAvailable` | If you submit a job before a scheduled system maintenance period, and the job cannot complete before the maintenance begins, your job will run when the maintenance/reservation concludes.  The job will remain in the `PD` state until Lonestar6 returns to production.
+`QOSMaxJobsPerUserLimit` | The number of your jobs queued exceeds that [queue's limits](#jobs-monitoring-qlimits). These jobs will run once your previous jobs have ended.
 
-```cmd-line
-login1$ squeue --start -j 167635     # display estimated start time for job 167635
-```
+
+!!!tip
+	The `--start` option to the `squeue` command displays job start times, including very rough estimates for the expected start times of some pending jobs that are relatively high in the queue:
+
+	```cmd-line
+	login1$ squeue --start -j 167635     # display estimated start time for job 167635
+	```
+
 
 #### TACC's `showq` utility { #jobs-monitoring-showq }
 
@@ -1111,7 +1160,8 @@ The output groups jobs in four categories: `ACTIVE`, `WAITING`, `BLOCKED`, and `
 
 If your waiting job cannot complete before a maintenance/reservation begins, `showq` will display its state as `**WaitNod**` ("Waiting for Nodes"). The job will remain in this state until Lonestar6 returns to production.
 
-The default format for `showq` now reports total nodes associated with a job rather than cores, tasks, or hardware threads. One reason for this change is clarity: the operating system sees each compute node's 112 hardware threads as "processors", and output based on that information can be ambiguous or otherwise difficult to interpret.
+Since TACC charges by the node rather than core, `showq`'s default format now reports total nodes associated with a job rather than cores, tasks, or hardware threads.  Run `showq` with the `-l` option to display the number of cores and the job's queue.
+
 
 ### Dependent Jobs using `sbatch` { #jobs-dependencies }
 
@@ -1121,36 +1171,35 @@ You can use `sbatch` to help manage workflows that involve multiple steps: the `
 login1$ sbatch --dependency=afterok:173210 myjobscript
 ```
 
+!!! warning
+	It is not possible to add resources to a job (e.g. allow more time, increase number of nodes) once you've submitted the job to the queue.
+
 For more information see the [Slurm online documentation](http://www.schedmd.com). Note that you can use `$SLURM_JOBID` from one job to find the jobid you'll need to construct the `sbatch` launch line for a subsequent one. But also remember that you can't use `sbatch` to submit a job from a compute node.
 
 
-### Other Job Management Commands { #jobs-other }
+### Inspecting Running and Completed Jobs { #jobs-other }
 
- `scancel`, `scontrol`, and `sacct`
 
-!!! warning
-	**It's not possible to add resources to a job (e.g. allow more time)** once you've submitted the job to the queue.
+* To view some **accounting data** associated with your own jobs, use `sacct`:
 
-To **cancel** a pending or running job, first determine its jobid, then use `scancel`:
+	```cmd-line
+	login1$ sacct --starttime 2026-05-01  # show jobs that started on or after this date
+	```
 
-```cmd-line
-login1$ squeue -u bjones    # one way to determine jobid
- JOBID   PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
-170361        v100   spec12   bjones PD       0:00     32 (Resources)
-login1$ scancel 170361      # cancel job
-```
+* To **cancel** a pending or running job, first determine its jobid, then use `scancel`:
 
-For **detailed information** about the configuration of a specific job, use `scontrol`:
+	```cmd-line
+	login1$ squeue -u bjones    # one way to determine jobid
+     JOBID   PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+	170361        v100   spec12   bjones PD       0:00     32 (Resources)
+	login1$ scancel 170361      # cancel job
+	```
 
-```cmd-line
-login1$ scontrol show job=170361
-```
+* For **detailed information** about the configuration of a specific job, use `scontrol`:
 
-To view some **accounting data** associated with your own jobs, use `sacct`:
-
-```cmd-line
-login1$ sacct --starttime 2019-06-01  # show jobs that started on or after this date
-```
+	```cmd-line
+	login1$ scontrol show job=170361
+	```
 
 ## Machine Learning on LS6 { #ml }
 

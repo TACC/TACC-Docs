@@ -11,6 +11,7 @@
 
 * See the latest TACC Announcement regarding [Horizon opportunities](https://tacc.utexas.edu/news/user-updates/107622/). (04/17/2026)
 * **[Subscribe][TACCSUBSCRIBE] to Horizon User News**. Stay up-to-date on Horizon's status, scheduled maintenances and other notifications.  (04/15/2026) 
+{% include 'include/ai.md' %}
 
 ## Introduction { #intro }
 

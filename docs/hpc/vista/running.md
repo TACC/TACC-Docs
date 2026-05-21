@@ -5,12 +5,20 @@
 
 ### Slurm Partitions (Queues) { #queues }
 
-Vista's job scheduler is the Slurm Workload Manager. Slurm commands enable you to submit, manage, monitor, and control your jobs.  <!-- See the [Job Management](#jobmanagement) section below for further information. -->
+Vista's job scheduler is the Slurm Workload Manager. Slurm commands enable you to submit, manage, monitor, and control your jobs.  See the [Job Management](#jobs) section below for further information.
 
 !!! important
     **Queue limits are subject to change without notice.**
     Vista admins may occasionally adjust queue <!--the QOS--> settings in order to ensure fair scheduling for the entire user community.
     TACC's `qlimits` utility will display the latest queue configurations.
+
+<!-- Requested per Dan 5/18/26...we may also want to add this to the good conduct page.  -->
+!!! warning
+    **Queue Restrictions**
+    Do not request specific nodes when submitting jobs without prior approval from staff.  Allow Slurm to allocate nodes as appropriate.
+
+    Any job requesting specific compute nodes via batch scripts, `idev` invocations, or MPI hostfiles will be deleted from the queue.
+
 
 <!--
 04/15/2026 no change since 01/20/2026
