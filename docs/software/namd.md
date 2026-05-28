@@ -1,5 +1,5 @@
 # NAMD at TACC
-*Last update: April 28, 2025*
+*Last update: May 27, 2026*
 
 <!-- ![NAMD logo](../imgs/namd-logo.png){ .align-right width="300" } -->
 <img src="../imgs/namd-logo.png" width="300" alt="NAMD logo" class="align-right">
@@ -260,8 +260,9 @@ ibrun namd3 +ppn 5 \
 
 ## Lonestar6 { #lonestar6 }
 
-### CPU Nodes: 4 Tasks per Node
 NAMD ver3.0 is installed on Lonestar6 as this version provides best performance. 
+
+### CPU Nodes: 4 Tasks per Node
 
 ```cmd-line
 login1$ module load namd/3.0
@@ -288,7 +289,7 @@ ibrun namd3 +ppn 31 \
 ```
 
 ### GPU Nodes: 1 Task per Node
-NAMD ver3.0 is installed on Lonestar6 as this version provides best performance. 
+
 
 ```cmd-line
 login1$ module load namd_gpu/3.0
@@ -314,6 +315,31 @@ module load namd_gpu/3.0
 
 run_namd_gpu input output
 ```
+
+### GPU-resident mode
+
+NAMD3's GPU-resident mode runs only on a single GPU node with a single MPI task. 
+
+```job-script
+   #!/bin/bash
+   #SBATCH -J test  # Job Name
+   #SBATCH -o test.o%j
+   #SBATCH -N 1   # Total number of nodes
+   #SBATCH -n 1   # Total number of mpi tasks
+   #SBATCH -p gpu-a100 # Queue name
+   #SBATCH -t 24:00:00 # Run time (hh:mm:ss) - 24 hours
+
+   module load gcc/11.2
+   module load mkl
+   module load cuda/12.8
+   module load namd_gpu_resident/3.0.2
+
+   #If running on a Lonestar6 A100 GPU node
+   namd3 +setcpuaffinity +idlepoll +p128 +devices 0,1,2 input.namd
+   #If running a Lonestar6 H100 GPU node
+   namd3 +setcpuaffinity +idlepoll +p96 +devices 0,1 input.namd
+```
+
 ## References { #refs }
 
 * [NAMD](http://www.ks.uiuc.edu/Research/namd/) website
