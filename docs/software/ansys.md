@@ -25,7 +25,7 @@ Resource | ANSYS Version |Components |Location
 --- | --- | --- | ---
 Frontera  | 2023R2 | Structures, Fluids, Electronics, LS-Dyna | <code>/home1/apps/ANSYS/2023R2/v232</code><br><code>/home1/apps/ANSYS/2023R2/AnsysEM</code>
 Stampede3 | 2025R2 | Structures, Fluids, Electronics, LS-Dyna | <code>/home1/apps/ANSYS/2025R2/v242</code><br><code>/home1/apps/ANSYS/2025R2/AnsysEM</code>
-Lonestar6 | 2025R2 | Structures, Fluids, Electronics, LS-Dyna | <code>/scratch/tacc/apps/ANSYS/2025R2/v242</code><br><code>/scratch/tacc/apps/ANSYS/2025R2/AnsysEM</code>
+Lonestar6 | 2025R2 | Structures, Fluids, Electronics, LS-Dyna | <code>/scratch/tacc/apps/ANSYS/2025R2/v252</code><br><code>/scratch/tacc/apps/ANSYS/2025R2/AnsysEM</code>
 
 
 ## Running ANSYS { #running }
