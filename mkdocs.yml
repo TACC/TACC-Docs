@@ -68,6 +68,7 @@ nav:
     - Stallion: hpc/stallion.md
     - Vista: hpc/vista.md
   - Software Packages:
+    - ABAQUS : software/abaqus.md
     - AlphaFold2 : software/alphafold.md
     - AlphaFold3 : software/alphafold3.md
     - ANSYS: software/ansys.md

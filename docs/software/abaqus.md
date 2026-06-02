@@ -47,7 +47,7 @@ login1$ module load abaqus
 
 ## Running ABAQUS { #running }
 
-*Updates for Stampede3 and Vista coming soon.*  
+<!-- *Updates for Stampede3 and Vista coming soon.*  -->
 
 1. Familiarize yourself with the Frontera user guide section on "Running Applications".
 
@@ -177,12 +177,13 @@ sed -i "/mp_host_list/d" $abaqus_environment_file
 <td valign="top"><code>129.114.64.0/19<br>129.114.44.0/22</code></td>
 <td valign="top"><code>129.114.63.96/27</code></td>
 </tr>
+<!-- 
 <tr>
 <td>Stampede3</td>
 <td valign="top"><i>Coming Soon</i></td>
 <td valign="top"><i>Coming Soon</i></td>
 </tr>
-<tr>
+-->
 </table>
 
 ## References { #refs }
