@@ -104,7 +104,6 @@ The module system does more, however. When you load a given module, the module s
 $ module load intel  # load default version of Intel compiler
 $ module load fftw3  # load default version of fftw3
 $ module load gcc    # change compiler
-```
 
 Lmod is automatically replacing "intel/19.0.4" with "gcc/9.1.0".
 
@@ -113,6 +112,7 @@ Inactive Modules:
 
 Due to MODULEPATH changes, the following have been reloaded:
 1) fftw3/3.3.8     2) impi/19.0.4
+```
 
 On Lonestar6, modules generally adhere to a TACC naming convention when defining environment variables that are helpful for building and running software. For example, the `papi` module defines `TACC_PAPI_BIN` (the path to PAPI executables), `TACC_PAPI_LIB` (the path to PAPI libraries), `TACC_PAPI_INC` (the path to PAPI include files), and `TACC_PAPI_DIR` (top-level PAPI directory). After loading a module, here are some easy ways to observe its effects:
 

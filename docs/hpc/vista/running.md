@@ -3,7 +3,7 @@
 
 <!-- ### Slurm Job Scheduler { #running-slurm } -->
 
-### Slurm Partitions (Queues) { #queues }
+### Slurm Partitions (Queues) 
 
 Vista's job scheduler is the Slurm Workload Manager. Slurm commands enable you to submit, manage, monitor, and control your jobs.  See the [Job Management](#jobs) section below for further information.
 
@@ -43,7 +43,7 @@ gg-dev:0.33
 gg-4k:0.33
 -->
 
-<a id="queues">
+<a id="queues"></a>
 #### Table 4. Production Queues { #table4 }
 
 Queue Name  | Node Type     | Max Nodes per Job<br>(assoc'd cores) | Max Job<br>Duration | Max Nodes<br>per User   | Max Jobs<br>per User | Max Submit | Charge Rate<br>(per node-hour)
@@ -84,8 +84,8 @@ Option | Argument | Comments
 `-a`<br>or<br>`--array` | =*tasklist* | Vista supports Slurm job arrays.  See the [Slurm documentation on job arrays](https://slurm.schedmd.com/job_array.html) for more information.
 `-d=` | afterok:*jobid* | Specifies a dependency: this run will start only after the specified job (jobid) successfully finishes
 `-export=` | N/A | Avoid this option on Vista. Using it is rarely necessary and can interfere with the way the system propagates your environment.
-`--gres` | | TACC does not support this option.
-`--gpus-per-task` | | TACC does not support this option.
+`--gres` | N/A | Vista does not support this option. Slurm will reject any job script containing this directive.
+`--gpus-per-task` | N/A | Vista does not support this option. Slurm will reject any job script containing this directive.
 `-p`  | *queue_name* | Submits to queue (partition) designated by queue_name
 `-J`  | *job_name*   | Job Name
 `-N`  | *total_nodes* | Required. Define the resources you need by specifying either:<br>(1) `-N` and `-n`; or<br>(2) `-N` and `-ntasks-per-node`.

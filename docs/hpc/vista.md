@@ -1,5 +1,5 @@
 # Vista User Guide 
-*Last update: May 19, 2026*
+*Last update: June 2, 2026*
 
 ## Notices { #notices }
 
@@ -304,7 +304,7 @@ It's safe to execute module commands in job scripts. In fact, this is a good way
 
 <!-- ### Slurm Job Scheduler { #running-slurm } -->
 
-### Slurm Partitions (Queues) { #queues }
+### Slurm Partitions (Queues) 
 
 Vista's job scheduler is the Slurm Workload Manager. Slurm commands enable you to submit, manage, monitor, and control your jobs.  See the [Job Management](#jobs) section below for further information.
 
@@ -344,7 +344,7 @@ gg-dev:0.33
 gg-4k:0.33
 -->
 
-<a id="queues">
+<a id="queues"></a>
 #### Table 4. Production Queues { #table4 }
 
 Queue Name  | Node Type     | Max Nodes per Job<br>(assoc'd cores) | Max Job<br>Duration | Max Nodes<br>per User   | Max Jobs<br>per User | Max Submit | Charge Rate<br>(per node-hour)
@@ -385,8 +385,8 @@ Option | Argument | Comments
 `-a`<br>or<br>`--array` | =*tasklist* | Vista supports Slurm job arrays.  See the [Slurm documentation on job arrays](https://slurm.schedmd.com/job_array.html) for more information.
 `-d=` | afterok:*jobid* | Specifies a dependency: this run will start only after the specified job (jobid) successfully finishes
 `-export=` | N/A | Avoid this option on Vista. Using it is rarely necessary and can interfere with the way the system propagates your environment.
-`--gres` | | TACC does not support this option.
-`--gpus-per-task` | | TACC does not support this option.
+`--gres` | N/A | Vista does not support this option. Slurm will reject any job script containing this directive.
+`--gpus-per-task` | N/A | Vista does not support this option. Slurm will reject any job script containing this directive.
 `-p`  | *queue_name* | Submits to queue (partition) designated by queue_name
 `-J`  | *job_name*   | Job Name
 `-N`  | *total_nodes* | Required. Define the resources you need by specifying either:<br>(1) `-N` and `-n`; or<br>(2) `-N` and `-ntasks-per-node`.
@@ -1180,7 +1180,7 @@ When your third-party software requires BLAS or LAPACK, we recommend that you us
 
 ### Controlling Threading in NVPL
 
-All NVPL libraries support the both GCC and NVHPC OpenMP runtime libraries. See individual libraries documentation for details and API extensions supporting nested parallelism. NVPL Libraries do not explicitly link any particular OpenMP runtime, they rely on runtime loading of the OpenMP library as determined by the application and environment. Applications linked to NVPL should always use at runtime the same OpenMP distribution the application was compiled with. Mixing OpenMP distributions from compile-time to runtime may result in anomalous performance.  Please note that the default library linked with `-Mnvpl` flag is single threaded as of NVHPC 24.5, `-mpflag` is needed to linked with the threaded version. 
+All NVPL libraries support the both GCC and NVHPC OpenMP runtime libraries. See the individual libraries' documentation for details and API extensions supporting nested parallelism. NVPL libraries do not explicitly link any particular OpenMP runtime; they rely on runtime loading of the OpenMP library as determined by the application and environment. Applications linked to NVPL should always use at runtime the same OpenMP distribution the application was compiled with. Mixing OpenMP distributions from compile-time to runtime may result in anomalous performance. Please note that the default library linked with `-Mnvpl` flag is single-threaded as of NVHPC 24.5,  and the `-mp` flag is needed in order to link with the threaded version. 
 	
 NVIDIA HPC modules provide a `libgomp.so` symlink to `libnvomp.so`. This symlink will be on `LD_LIBRARY_PATH` if NVHPC environment modules are loaded. Use  [ldd](https://man7.org/linux/man-pages/man1/ldd.1.html) to ensure that applications built with GCC do not accidentally load `libgomp.sosymlink` from HPC SDK due to `LD_LIBRARY_PATH`. Use `libnvomp.soif` if and only if the application was built with NVHPC compilers.
 	
