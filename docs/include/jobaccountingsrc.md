@@ -11,4 +11,3 @@ The Slurm scheduler tracks and charges for usage to a granularity of a few secon
 !!! note
 	TACC does not implement node-sharing on any compute resource. Each MACHINENAME node can be assigned to only one user at a time; hence a complete node is dedicated to a user's job and accrues wall-clock time for all the node's cores whether or not all cores are used.
 
-{% include 'include/tinfo.md' %}

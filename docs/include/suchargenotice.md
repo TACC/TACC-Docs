@@ -1,6 +1,6 @@
 #### TACC Charging Policy { #sunotice }
 
-**All running jobs are charged a minimum of 15 minutes of queue time regardless of actual runtime.**
+**All running jobs are charged a minimum of 15 minutes (.25 hrs) of queue time regardless of actual runtime.**
 
 For example:  a 2-node job in the Frontera's [`rtx` queue](#queues) which runs for one minute would be charged as follows:
 
