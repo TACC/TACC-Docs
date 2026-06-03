@@ -62,9 +62,33 @@ Good conduct on the system ensures stability and helps TACC provide a reliable s
 Each of our HPC resources has a user guide, with extensive instructions and information.  Learn how to access and use our High Performance Computing (HPC) resources.
 /////
 
+<!-- begin Horizon block -->
+///// html | a.card--plain.card--image-top[href="./hpc/horizon/"]
+     markdown: block
 
+////// html | img[alt="TACC's Horizon"][src="imgs/home/horizon.png" height="400"]
+//////
 
+<h3>Horizon</h3>
 
+*Coming Soon* Horizon is the centerpiece of the National Science Foundation's LCCF program.  Horizon will be a national resource.
+
+/////
+<!-- end Horizon block -->
+
+<!-- begin Lonestar6 block -->
+///// html | a.card--plain.card--image-top[href="./hpc/lonestar6/"]
+     markdown: block
+
+////// html | img[alt="TACC's Lonestar6"][src="imgs/home/lonestar6.png" height="400"]
+//////
+
+<h3>Lonestar6</h3>
+Lonestar6 is the latest of the Lonestar series and supports and serves Texas researchers.
+/////
+<!-- end Lonestar6 block -->
+
+<!-- begin Vista block -->
 ///// html | a.card--plain.card--image-top[href="./hpc/vista/"]
      markdown: block
 
@@ -76,18 +100,25 @@ Each of our HPC resources has a user guide, with extensive instructions and info
 Vista is TACC's first AI-focused supercomputer with Arm-based NVIDIA technology.
 
 /////
+<!-- end Vista block -->
 
-///// html | a.card--plain.card--image-top[href="./hpc/lonestar6/"]
+
+<!-- begin Stampede3 block -->
+///// html | a.card--plain.card--image-top[href="./hpc/stampede3/"]
      markdown: block
 
-////// html | img[alt="TACC's Lonestar6"][src="imgs/home/lonestar6.png" height="400"]
+////// html | img[alt="TACC's Stampede3"][src="imgs/home/stampede3.jpg" height="400"]
 //////
 
-<h3>Lonestar6</h3>
+<h3>Stampede3</h3>
 
-Lonestar6 is the latest of the Lonestar series and supports and serves Texas researchers.
+<!-- Stampede3 blurb goes here. -->
 
 /////
+<!-- end Stampede3 block -->
+
+
+
 ////
 ///
 
