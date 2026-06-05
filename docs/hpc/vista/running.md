@@ -52,8 +52,17 @@ Queue Name  | Node Type     | Max Nodes per Job<br>(assoc'd cores) | Max Job<br>
 `gh`        | Grace/Hopper  | 64 nodes<br>(4608 cores/64 gpus)     | 48 hrs              | 192                     | 20       | 40        | 1 SUs
 `gh-dev`    | Grace Hopper  | 8 nodes<br>(576 cores)               |  2 hrs              | 8                       | 1        | 3         | 1 SU
 
-
 {% include 'include/vista-jobaccounting.md' %}
+
+#### TACC Charging Policy { #sunotice }
+
+**All running jobs are charged a minimum of 15 minutes (.25 hrs) of queue time regardless of actual runtime.** This policy ensures equal access to the queues for all users as TACC's user base expands. 
+
+For example:  a 2-node job in Vista's [`gh` queue](#queues) which runs for one minute would be charged as follows:
+
+	2 nodes * 0.25 hrs * 1 SU = .5 SUs
+
+We strongly encourage users launching large jobs to do thorough testing of your code at smaller node counts prior to maximizing your runs.  
 
 ### Submitting Batch Jobs with `sbatch` { #running-sbatch }
 

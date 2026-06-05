@@ -15,6 +15,14 @@ then
 	mkloutputfile="frontera-mkl.md"
 	helpmsg="Be sure to include \"$machinename\" in the Resource field."
 
+	# billing examples
+	queue="gh"
+	sucalc="4 nodes * 0.25 hrs * 1 SU = .5 SUs"
+
+	sed	-e "s/MACHINENAME/$machinename/g" \
+		-e "s/QUEUE/$queue/g" \
+	    -e "s/SUCALC/$sucalc/g" < jobaccountingsrc.md > $jobaccountingoutputfile
+
 	sed	-e "s/MACHINENAME/$machinename/g" < jobaccountingsrc.md > $jobaccountingoutputfile
 	sed	-e "s/MACHINENAME/$lcmachinename/g" < crontabsrc.md > $crontaboutputfile
 
@@ -34,6 +42,14 @@ then
 	crontaboutputfile="horizon-crontab.md"
 	helpmsg="Be sure to include \"$machinename\" in the Resource field."
 
+	# billing examples
+	queue="gh"
+	sucalc="4 nodes * 0.25 hrs * 1 SU = .5 SUs"
+
+	sed	-e "s/MACHINENAME/$machinename/g" \
+		-e "s/QUEUE/$queue/g" \
+	    -e "s/SUCALC/$sucalc/g" < jobaccountingsrc.md > $jobaccountingoutputfile
+
 	sed	-e "s/MACHINENAME/$machinename/g" < jobaccountingsrc.md > $jobaccountingoutputfile
 
 	sed	-e "s/MACHINENAME/$lcmachinename/g" < crontabsrc.md > $crontaboutputfile
@@ -51,6 +67,14 @@ then
 	jobaccountingoutputfile="vista-jobaccounting.md"
 	crontaboutputfile="vista-crontab.md"
 	helpmsg="Be sure to include \"$machinename\" in the Resource field."
+
+	# billing examples
+	queue="gh"
+	sucalc="4 nodes * 0.25 hrs * 1 SU = .5 SUs"
+
+	sed	-e "s/MACHINENAME/$machinename/g" \
+		-e "s/QUEUE/$queue/g" \
+	    -e "s/SUCALC/$sucalc/g" < jobaccountingsrc.md > $jobaccountingoutputfile
 
 	sed	-e "s/MACHINENAME/$machinename/g" < jobaccountingsrc.md > $jobaccountingoutputfile
 
@@ -72,7 +96,13 @@ then
 	mkloutputfile="lonestar6-mkl.md"
 	helpmsg="Be sure to include \"$machinename\" in the Resource field."
 
-	sed	-e "s/MACHINENAME/$machinename/g" < jobaccountingsrc.md > $jobaccountingoutputfile
+	# billing examples
+	queue="gh"
+	sucalc="4 nodes * 0.25 hrs * 1 SU = .5 SUs"
+
+	sed	-e "s/MACHINENAME/$machinename/g" \
+		-e "s/QUEUE/$queue/g" \
+	    -e "s/SUCALC/$sucalc/g" < jobaccountingsrc.md > $jobaccountingoutputfile
 
 	sed	-e "s/MACHINENAME/$lcmachinename/g" < crontabsrc.md > $crontaboutputfile
 
@@ -91,6 +121,14 @@ then
 	jobaccountingoutputfile="stampede3-jobaccounting.md"
 	crontaboutputfile="stampede3-crontab.md"
 	helpmsg="Be sure to include \"$machinename\" in the Resource field."
+
+	# billing examples
+	queue="gh"
+	sucalc="4 nodes * 0.25 hrs * 1 SU = .5 SUs"
+
+	sed	-e "s/MACHINENAME/$machinename/g" \
+		-e "s/QUEUE/$queue/g" \
+	    -e "s/SUCALC/$sucalc/g" < jobaccountingsrc.md > $jobaccountingoutputfile
 
 	sed	-e "s/MACHINENAME/$machinename/g" < jobaccountingsrc.md > $jobaccountingoutputfile
 

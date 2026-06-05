@@ -26,7 +26,18 @@ Like all other current TACC systems, Horizon employs the Slurm Workload Manager 
 Reminder: A Grace Blackwell node contains 1 Grace CPU and 2 Blackwell GPUs. 
 
 <!-- commenting out for Google Docs version 
-{% include 'include/horizon-jobaccounting.md' %}
+{% include 'include/horizon-Jobaccounting.md' %}
+
+#### TACC Charging Policy { #sunotice }
+
+**All running jobs are charged a minimum of 15 minutes (.25 hrs) of queue time regardless of actual runtime.**
+
+For example:  a 2-node job in Vista's [`gh` queue](#queues) which runs for one minute would be charged as follows:
+
+        2 nodes * 0.25 hrs * 1 SU = .5 SUs
+
+These changes are necessary to ensure equal access to the queues for all users as TACC's user base expands.  Larger jobs may be the most affected and we encourage users to do thorough testing at smaller node counts before increasing the size of their jobs in order to reduce the impact of this change.
+
 
 ### Submitting Batch Jobs with `sbatch` { #running-sbatch }
 

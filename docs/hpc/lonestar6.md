@@ -707,8 +707,6 @@ wait
 
 This section provides an overview of how compute jobs are charged to allocations and describes the **S**imple **L**inux **U**tility for **R**esource **M**anagement (Slurm) batch environment, Lonestar6 queue structure, lists basic Slurm job control and monitoring commands along with options.
 
-{% include 'include/lonestar6-jobaccounting.md' %}
-
 ### Production Queues 
 
 Lonestar6's new queue, `vm-small` is designed for users who only need a subset of a node's entire 128 cores in the "normal" queue.  Run your jobs in this queue if your job requires 16 cores or less and needs less than 29 GB of memory.  If your job is memory bandwidth dependent, your performance may decrease since your job will be possibly sharing memory bandwidth with other jobs.  
@@ -769,6 +767,19 @@ Queue Name | Min/Max Nodes per Job<br>(assoc'd cores)&#42; | Max Job<br>Duration
 &#42; Access to the `large` queue is restricted. To request more nodes than are available in the normal queue, submit a consulting (help desk) ticket through the TACC User Portal. Include in your request reasonable evidence of your readiness to run under the conditions you're requesting. In most cases this should include your own strong or weak scaling results from Lonestar6.
 
 &#42;&#42; The `gpu-a100-small` and `vm-small` queues contain virtual nodes with fewer resources (cores) than the nodes in the other queues.
+
+{% include 'include/lonestar6-jobaccounting.md' %}
+
+#### TACC Charging Policy { #sunotice }
+
+**All running jobs are charged a minimum of 15 minutes (.25 hrs) of queue time regardless of actual runtime.**
+
+For example:  a 3-node job in Lonestar6's [`gpu-a100` queue](#queues) which runs for four minutes would be charged as follows:
+
+	3 nodes * 0.25 hrs * 3 SU = .5 SUs
+
+These changes are necessary to ensure equal access to the queues for all users as TACC's user base expands.  Larger jobs may be the most affected and we encourage users to do thorough testing at smaller node counts before increasing the size of their jobs in order to reduce the impact of this change.
+
 
 
 ### Submitting Batch Jobs with `sbatch` { #running-sbatch }

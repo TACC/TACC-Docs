@@ -1,7 +1,5 @@
 ## Running Jobs { #running }
 
-{% include 'include/stampede3-jobaccounting.md' %}
-
 ### Slurm Partitions (Queues) 
 
 Stampede3's job scheduler is the Slurm Workload Manager. Slurm commands enable you to submit, manage, monitor, and control your jobs.  See the [Job Management](#jobs) section below for further information. 
@@ -50,6 +48,19 @@ pvc          | PVC       | 4 nodes<br>(384 cores)               | 48 hrs        
 skx          | SKX       | 256 nodes<br>(12288 cores)           | 48 hrs           | 256                   | 40      | 60         | 1 SU
 skx-dev      | SKX       | 16 nodes<br>(768 cores)              | 2 hrs            | 16                    | 2       | 4          | 1 SU
 spr          | SPR       | 32 nodes<br>(3584 cores)             | 48 hrs           | 40                    | 24      | 36         | 2 SUs
+
+{% include 'include/stampede3-jobaccounting.md' %}
+
+#### TACC Charging Policy { #sunotice }
+
+**All running jobs are charged a minimum of 15 minutes (.25 hrs) of queue time regardless of actual runtime.**
+
+For example:  a 4-node job in Stampede3's [`spr` queue](#queues) which runs for three minutes would be charged as follows:
+
+        4 nodes * 0.25 hrs * 2 SU = 2 SUs
+
+These changes are necessary to ensure equal access to the queues for all users as TACC's user base expands.  Larger jobs may be the most affected and we encourage users to do thorough testing at smaller node counts before increasing the size of their jobs in order to reduce the impact of this change.
+
 
 
 ### Submitting Batch Jobs with `sbatch` { #running-sbatch }
