@@ -1,11 +1,10 @@
 ### Job Accounting { #jobaccounting }
 
-Like all TACC systems, Vista's accounting system is based on node-hours: one unadjusted Service Unit (SU) represents a single compute node used for one hour (a node-hour). For any given job, the total cost in SUs is the use of one compute node for one hour of wall clock time plus any charges or discounts for the use of specialized queues, e.g. Stampede3's `pvc` queue, Lonestar6's `gpu-a100` queue, and Frontera's `flex` queue. The [queue charge rates](#queues) are determined by the supply and demand for that particular queue or type of node used and are subject to change.  
+Like all TACC systems, Vista's accounting and allocation system is based on node-hours: one unadjusted Service Unit (SU) represents a single compute node used for one hour (a node-hour). For any given job, the total cost in SUs is the use of one compute node for one hour of wall clock time plus any charges or discounts for the use of specialized queues, e.g. Stampede3's `pvc` queue, Lonestar6's `gpu-a100` queue, and Frontera's `flex` queue. The [queue charge rates](#queues) are determined by the supply and demand for that particular queue or type of node used and are subject to change.  
 
 The Slurm scheduler tracks and charges for usage to a granularity of a few seconds of wall clock time. **The system charges only for the resources you actually use, not those you request.** If your job finishes early and exits properly, Slurm will release the nodes back into the pool of available nodes. Your job will only be charged for as long as you are using the nodes.
 
-!!! note
-	TACC does not implement node-sharing on any compute resource. Each Vista compute node can be assigned to only one user at a time; hence a complete node is dedicated to a user's job and accrues wall-clock time for all the node's cores/GPUs whether or not all cores/GPUs are used.
+TACC does not implement node-sharing on any compute resource. Each Vista compute node can be assigned to only one user at a time; hence a complete node is dedicated to a user's job and accrues wall-clock time for all the node's cores/GPUs whether or not all cores/GPUs are used.
 
 #### TACC Charging Policy
 
@@ -13,9 +12,9 @@ The Slurm scheduler tracks and charges for usage to a granularity of a few secon
 
 All running jobs are charged a minimum of 15 minutes (.25 hrs) of queue time regardless of actual runtime. This policy ensures equal access to the queues for all users as TACC's user base expands.
 
-For example: a 4-node job in Vista's [`QUEUE` queue](#queues) which runs for five minutes would be charged as follows:
+For example: a 4-node job in Vista's [`gh` queue](#queues) which runs for five minutes would be charged as follows:
 
-	SUCALC
+	4 nodes * 0.25 hrs * 1 SU/node-hour = .5 SUs
 
 We strongly encourage users launching large jobs to do thorough testing of your code at smaller node counts prior to maximizing your runs.
 

@@ -301,17 +301,8 @@ It's safe to execute module commands in job scripts. In fact, this is a good way
 
 ## Running Jobs { #running }
 
+Vista's job scheduler is the <a href="http://schedmd.com">Slurm Workload Manager</a>. Slurm commands enable you to submit, manage, monitor, and control your jobs. Jobs submitted to the scheduler are queued, then run on the compute nodes. Each job consumes Service Units (SUs) which are then charged to your allocation. See the [Job Management](#jobs) section below for further information.
 
-<!-- ### Slurm Job Scheduler { #running-slurm } -->
-
-### Slurm Partitions (Queues) 
-
-Vista's job scheduler is the Slurm Workload Manager. Slurm commands enable you to submit, manage, monitor, and control your jobs.  See the [Job Management](#jobs) section below for further information.
-
-!!! important
-    **Queue limits are subject to change without notice.**
-    Vista admins may occasionally adjust queue <!--the QOS--> settings in order to ensure fair scheduling for the entire user community.
-    TACC's `qlimits` utility will display the latest queue configurations.
 
 <!-- Requested per Dan 5/18/26...we may also want to add this to the good conduct page.  -->
 !!! warning
@@ -319,6 +310,12 @@ Vista's job scheduler is the Slurm Workload Manager. Slurm commands enable you t
     Do not request specific nodes when submitting jobs without prior approval from staff.  Allow Slurm to allocate nodes as appropriate.
 
     Any job requesting specific compute nodes via batch scripts, `idev` invocations, or MPI hostfiles will be deleted from the queue.
+
+
+!!! important
+    **Queue limits are subject to change without notice.**
+    Vista admins may occasionally adjust queue <!--the QOS--> settings in order to ensure fair scheduling for the entire user community.
+    TACC's `qlimits` utility will display the latest queue configurations.
 
 
 <!--
@@ -353,17 +350,8 @@ Queue Name  | Node Type     | Max Nodes per Job<br>(assoc'd cores) | Max Job<br>
 `gh`        | Grace/Hopper  | 64 nodes<br>(4608 cores/64 gpus)     | 48 hrs              | 192                     | 20       | 40        | 1 SUs
 `gh-dev`    | Grace Hopper  | 8 nodes<br>(576 cores)               |  2 hrs              | 8                       | 1        | 3         | 1 SU
 
+
 {% include 'include/vista-jobaccounting.md' %}
-
-#### TACC Charging Policy { #sunotice }
-
-**All running jobs are charged a minimum of 15 minutes (.25 hrs) of queue time regardless of actual runtime.** This policy ensures equal access to the queues for all users as TACC's user base expands. 
-
-For example:  a 2-node job in Vista's [`gh` queue](#queues) which runs for one minute would be charged as follows:
-
-	2 nodes * 0.25 hrs * 1 SU = .5 SUs
-
-We strongly encourage users launching large jobs to do thorough testing of your code at smaller node counts prior to maximizing your runs.  
 
 ### Submitting Batch Jobs with `sbatch` { #running-sbatch }
 

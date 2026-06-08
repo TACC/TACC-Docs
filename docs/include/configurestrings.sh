@@ -8,6 +8,7 @@ then
 	echo "building includes for Frontera user guide"
 	machinename="Frontera"
 	lcmachinename="frontera"
+
 	helpoutputfile="frontera-help.md"
 	jobaccountingoutputfile="frontera-jobaccounting.md"
 	crontaboutputfile="frontera-crontab.md"
@@ -16,43 +17,16 @@ then
 	helpmsg="Be sure to include \"$machinename\" in the Resource field."
 
 	# billing examples
-	queue="gh"
-	sucalc="4 nodes * 0.25 hrs * 1 SU = .5 SUs"
+	queue="rtx"
+	sucalc="4 nodes * 0.25 hrs * 3 SUs\/node-hour = 3 SUs charged"
 
 	sed	-e "s/MACHINENAME/$machinename/g" \
 		-e "s/QUEUE/$queue/g" \
 	    -e "s/SUCALC/$sucalc/g" < jobaccountingsrc.md > $jobaccountingoutputfile
 
-	sed	-e "s/MACHINENAME/$machinename/g" < jobaccountingsrc.md > $jobaccountingoutputfile
 	sed	-e "s/MACHINENAME/$lcmachinename/g" < crontabsrc.md > $crontaboutputfile
 
 	sed	-e "s/HWTHREADS/$hwthreads/g" < mklsrc.md > $mkloutputfile
-
-	sed	-e "s/MACHINENAME/$machinename/g" \
-		-e "s/HELPMSG/$helpmsg/g" < helpsrc.md > $helpoutputfile
-
-### Horizon
-elif [ "$1" = "horizon" ] 
-then
-	echo "building includes for Horizon user guide"
-	machinename="Horizon"
-	lcmachinename="horizon"
-	helpoutputfile="horizon-help.md"
-	jobaccountingoutputfile="horizon-jobaccounting.md"
-	crontaboutputfile="horizon-crontab.md"
-	helpmsg="Be sure to include \"$machinename\" in the Resource field."
-
-	# billing examples
-	queue="gh"
-	sucalc="4 nodes * 0.25 hrs * 1 SU = .5 SUs"
-
-	sed	-e "s/MACHINENAME/$machinename/g" \
-		-e "s/QUEUE/$queue/g" \
-	    -e "s/SUCALC/$sucalc/g" < jobaccountingsrc.md > $jobaccountingoutputfile
-
-	sed	-e "s/MACHINENAME/$machinename/g" < jobaccountingsrc.md > $jobaccountingoutputfile
-
-	sed	-e "s/MACHINENAME/$lcmachinename/g" < crontabsrc.md > $crontaboutputfile
 
 	sed	-e "s/MACHINENAME/$machinename/g" \
 		-e "s/HELPMSG/$helpmsg/g" < helpsrc.md > $helpoutputfile
@@ -70,13 +44,11 @@ then
 
 	# billing examples
 	queue="gh"
-	sucalc="4 nodes * 0.25 hrs * 1 SU = .5 SUs"
+	sucalc="4 nodes * 0.25 hrs * 1 SU\/node-hour = .5 SUs"
 
 	sed	-e "s/MACHINENAME/$machinename/g" \
 		-e "s/QUEUE/$queue/g" \
 	    -e "s/SUCALC/$sucalc/g" < jobaccountingsrc.md > $jobaccountingoutputfile
-
-	sed	-e "s/MACHINENAME/$machinename/g" < jobaccountingsrc.md > $jobaccountingoutputfile
 
 	sed	-e "s/MACHINENAME/$lcmachinename/g" < crontabsrc.md > $crontaboutputfile
 
@@ -97,8 +69,8 @@ then
 	helpmsg="Be sure to include \"$machinename\" in the Resource field."
 
 	# billing examples
-	queue="gh"
-	sucalc="4 nodes * 0.25 hrs * 1 SU = .5 SUs"
+	queue="gpu-a100"
+	sucalc="4 nodes * 0.25 hrs * 3 SUs\/node-hour = 3 SUs"
 
 	sed	-e "s/MACHINENAME/$machinename/g" \
 		-e "s/QUEUE/$queue/g" \
@@ -123,14 +95,12 @@ then
 	helpmsg="Be sure to include \"$machinename\" in the Resource field."
 
 	# billing examples
-	queue="gh"
-	sucalc="4 nodes * 0.25 hrs * 1 SU = .5 SUs"
+	queue="spr"
+	sucalc="4 nodes * 0.25 hrs * 2 SUs\/node-hour = 2 SUs"
 
 	sed	-e "s/MACHINENAME/$machinename/g" \
 		-e "s/QUEUE/$queue/g" \
 	    -e "s/SUCALC/$sucalc/g" < jobaccountingsrc.md > $jobaccountingoutputfile
-
-	sed	-e "s/MACHINENAME/$machinename/g" < jobaccountingsrc.md > $jobaccountingoutputfile
 
 	sed	-e "s/MACHINENAME/$lcmachinename/g" < crontabsrc.md > $crontaboutputfile
 
@@ -144,6 +114,30 @@ then
 	machinename="Ranch"
 	helpoutputfile="ranch-help.md"
 	helpmsg="Be sure to include \"$machinename\" in the Resource field."
+
+	sed	-e "s/MACHINENAME/$machinename/g" \
+		-e "s/HELPMSG/$helpmsg/g" < helpsrc.md > $helpoutputfile
+
+### Horizon
+elif [ "$1" = "horizon" ] 
+then
+	echo "building includes for Horizon user guide"
+	machinename="Horizon"
+	lcmachinename="horizon"
+	helpoutputfile="horizon-help.md"
+	jobaccountingoutputfile="horizon-jobaccounting.md"
+	crontaboutputfile="horizon-crontab.md"
+	helpmsg="Be sure to include \"$machinename\" in the Resource field."
+
+	# billing examples
+	queue="gh"
+	sucalc="4 nodes * 0.25 hrs * 1 SUs\/node-hour = .5 SUs"
+
+	sed	-e "s/MACHINENAME/$machinename/g" \
+		-e "s/QUEUE/$queue/g" \
+	    -e "s/SUCALC/$sucalc/g" < jobaccountingsrc.md > $jobaccountingoutputfile
+
+	sed	-e "s/MACHINENAME/$lcmachinename/g" < crontabsrc.md > $crontaboutputfile
 
 	sed	-e "s/MACHINENAME/$machinename/g" \
 		-e "s/HELPMSG/$helpmsg/g" < helpsrc.md > $helpoutputfile

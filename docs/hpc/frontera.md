@@ -751,8 +751,6 @@ wait
 
 Frontera's job scheduler is the <a href="http://schedmd.com">Slurm Workload Manager</a>. Slurm commands enable you to submit, manage, monitor, and control your jobs. Jobs submitted to the scheduler are queued, then run on the compute nodes. Each job consumes Service Units (SUs) which are then charged to your allocation.
 
-{%include 'include/frontera-jobaccounting.md' %}
-
 ### Requesting Resources  { #running-requesting } 
 
 Be sure to request computing resources e.g., number of nodes, number of tasks per node, max time per job, that are consistent with the type of application(s) you are running:
@@ -764,7 +762,6 @@ Be sure to request computing resources e.g., number of nodes, number of tasks pe
 
 <a id="queues">
 ### Frontera Production Queues { #running-queues } 
-
 
 Frontera's Slurm partitions (queues), maximum node limits and charge rates are summarized in the table below. **Queues and limits are subject to change without notice.** Execute `qlimits` on Frontera for real-time information regarding limits on available queues. See [Job Accounting](#jobaccounting) to learn how jobs are charged to your allocation.
 
@@ -850,10 +847,11 @@ nvdimm:2.0
 | <code>nvdimm</code>           | 4 nodes                           | N/A         | 48 hrs           |    6 nodes  |  3     |   8 | 2 SUs 
 | <code>small</code>            | 1-2 nodes                         | N/A         | 48 hrs           |   25 nodes  | 15     |  80 | 1 SU
 
-
    
 &#42; **Jobs in the `flex` queue are charged less than jobs in other queues but are eligible for preemption after running for more than one hour.**  
 &#42;&#42; **Access to the large queue is restricted**. To request more nodes than are available in the `normal` queue, [submit a consulting ticket][HELPDESK].  Include in your request reasonable evidence of your readiness to run under the conditions you're requesting. In most cases this should include your own strong or weak scaling results from Frontera.
+
+{%include 'include/frontera-jobaccounting.md' %}
 
 
 

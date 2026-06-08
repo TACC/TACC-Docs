@@ -1,12 +1,11 @@
 ## Running Jobs { #running }
 
-### Slurm Partitions (Queues) 
+Stampede3's job scheduler is the <a href="http://schedmd.com">Slurm Workload Manager</a>. Slurm commands enable you to submit, manage, monitor, and control your jobs. Jobs submitted to the scheduler are queued, then run on the compute nodes. Each job consumes Service Units (SUs) which are then charged to your allocation. See the [Job Management](#jobs) section below for further information.
 
-Stampede3's job scheduler is the Slurm Workload Manager. Slurm commands enable you to submit, manage, monitor, and control your jobs.  See the [Job Management](#jobs) section below for further information. 
 
 !!! important
     **Queue limits are subject to change without notice.**
-    Frontera admins may occasionally adjust queue <!--the QOS--> settings in order to ensure fair scheduling for the entire user community.
+    Stampede3 admins may occasionally adjust queue <!--the QOS--> settings in order to ensure fair scheduling for the entire user community.
     TACC's `qlimits` utility will display the latest queue configurations.
 
 <!--
@@ -50,17 +49,6 @@ skx-dev      | SKX       | 16 nodes<br>(768 cores)              | 2 hrs         
 spr          | SPR       | 32 nodes<br>(3584 cores)             | 48 hrs           | 40                    | 24      | 36         | 2 SUs
 
 {% include 'include/stampede3-jobaccounting.md' %}
-
-#### TACC Charging Policy { #sunotice }
-
-**All running jobs are charged a minimum of 15 minutes (.25 hrs) of queue time regardless of actual runtime.**
-
-For example:  a 4-node job in Stampede3's [`spr` queue](#queues) which runs for three minutes would be charged as follows:
-
-        4 nodes * 0.25 hrs * 2 SU = 2 SUs
-
-These changes are necessary to ensure equal access to the queues for all users as TACC's user base expands.  Larger jobs may be the most affected and we encourage users to do thorough testing at smaller node counts before increasing the size of their jobs in order to reduce the impact of this change.
-
 
 
 ### Submitting Batch Jobs with `sbatch` { #running-sbatch }

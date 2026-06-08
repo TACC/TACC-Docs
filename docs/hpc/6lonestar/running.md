@@ -1,6 +1,7 @@
 ## Running Jobs { #running }
 
-This section provides an overview of how compute jobs are charged to allocations and describes the **S**imple **L**inux **U**tility for **R**esource **M**anagement (Slurm) batch environment, Lonestar6 queue structure, lists basic Slurm job control and monitoring commands along with options.
+Lonestar6's job scheduler is the <a href="http://schedmd.com">Slurm Workload Manager</a>. Slurm commands enable you to submit, manage, monitor, and control your jobs. Jobs submitted to the scheduler are queued, then run on the compute nodes. Each job consumes Service Units (SUs) which are then charged to your allocation. See the [Job Management](#jobs) section below for further information.
+
 
 ### Production Queues 
 
@@ -64,17 +65,6 @@ Queue Name | Min/Max Nodes per Job<br>(assoc'd cores)&#42; | Max Job<br>Duration
 &#42;&#42; The `gpu-a100-small` and `vm-small` queues contain virtual nodes with fewer resources (cores) than the nodes in the other queues.
 
 {% include 'include/lonestar6-jobaccounting.md' %}
-
-#### TACC Charging Policy { #sunotice }
-
-**All running jobs are charged a minimum of 15 minutes (.25 hrs) of queue time regardless of actual runtime.**
-
-For example:  a 3-node job in Lonestar6's [`gpu-a100` queue](#queues) which runs for four minutes would be charged as follows:
-
-	3 nodes * 0.25 hrs * 3 SU = .5 SUs
-
-These changes are necessary to ensure equal access to the queues for all users as TACC's user base expands.  Larger jobs may be the most affected and we encourage users to do thorough testing at smaller node counts before increasing the size of their jobs in order to reduce the impact of this change.
-
 
 
 ### Submitting Batch Jobs with `sbatch` { #running-sbatch }
