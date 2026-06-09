@@ -31,23 +31,6 @@ After logging in again the system will generate a properly configured key pair.
 
 Regardless of your research workflow, <b>you'll need to master Linux basics</b> and a Linux-based text editor (e.g. `emacs`, `nano`, `gedit`, or `vi/vim`) to use the system properly. However, this user guide does not address these topics. There are numerous resources in a variety of formats that are available to help you learn Linux<!-- , SDL including some listed on the <a href="https://xortal.tacc.utexas.edu/training/course-materials">TACC</a> and training sites-->. If you encounter a term or concept in this user guide that is new to you, a quick internet search should help you resolve the matter quickly.
 
-## Account Administration { #admin }
-
-### Check your Allocation Status { #admin-allocations }
-
-**You must be added to a Lonestar6 allocation in order to have access/login to Lonestar6.** The ability to log on to the TACC User Portal does NOT signify access to Lonestar6 or any TACC resource. Submit Lonestar6 allocations requests via [TACC's Resource Allocation System](https://tacc-submit.xras.xsede.org/). Continue to [manage your allocation's users][TACCALLOCATIONS] via the TACC Portal. 
-
-### Multi-Factor Authentication { #admin-mfa }
-
-Access to all TACC systems now requires Multi-Factor Authentication (MFA). You can create an MFA pairing on the TACC User Portal. After login on the portal, go to your account profile (Home->Account Profile), then click the "Manage" button under "Multi-Factor Authentication" on the right side of the page. See [Multi-Factor Authentication at TACC][TACCMFA] for further information. 
-
-<!-- SDL 
-### Password Management { #admin-password }
-
-Use your TACC User Portal password for direct logins to TACC resources. You can change your TACC password through the [TACC User Portal](http://xortal.tacc.utexas.edu/). Log into the portal, then select "Change Password" under the "HOME" tab. If you've forgotten your password, go to the [TACC User Portal](http://xortal.tacc.utexas.edu/) home page and select "Password Reset" under the Home tab.
-
--->
-
 
 ### Linux Shell { #admin-shell }
 
@@ -180,6 +163,5 @@ See [Lmod's online documentation](http://lmod.readthedocs.org) for more extensiv
 It's safe to execute module commands in job scripts. In fact, this is a good way to write self-documenting, portable job scripts that produce reproducible results. If you use `module save` to define a personal default module collection, it's rarely necessary to execute module commands in shell startup scripts, and it can be tricky to do so safely. If you do wish to put module commands in your startup scripts, see Lonestar6's default startup scripts for a safe way to do so.
 
 {% include 'include/lonestar6-crontab.md' %}
-
 
 {% include 'include/tacctips.md' %}

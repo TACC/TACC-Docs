@@ -1,8 +1,10 @@
 LONESTAR6_OBJS	=	\
 	notices.md \
+	intro.md \
 	system.md \
+	allocations.md \
+	access.md \
 	files.md \
-	admin.md \
 	building.md \
 	launching.md \
 	running.md \
