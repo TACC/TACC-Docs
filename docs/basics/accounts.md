@@ -1,5 +1,5 @@
 # Managing your TACC Account
-*Last update: May 4, 2026*
+*Last update: June 10, 2026*
 
 ## Notices
 
@@ -153,9 +153,6 @@ Login requirements: an "[Active](#table1)" TACC account
 
 The [TACC User Portal][TACCUSERPORTAL] provides the following services:
 
-* Monitor your HPC jobs 
-* Monitor HPC Resource status
-* Monitor your allocation usage and SU consumption
 * PI's may add users to their allocations
 * Check your MFA pairing status
 
