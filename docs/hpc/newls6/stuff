@@ -1,0 +1,296 @@
+# Lonestar6 User Guide Information Architecture Review
+
+## 1. Revised Outline
+
+### 1. Getting Started
+
+#### Notices and Important Policies
+- Queue restrictions
+- AI usage guidance
+- SU charging responsibilities
+
+#### What is Lonestar6?
+- System purpose
+- Supported research areas
+- Partner institutions
+
+#### Allocations and Access
+- Who can use Lonestar6
+- Requesting allocations
+- Joining a project
+- Checking allocation status
+
+#### Multi-Factor Authentication
+
+#### Logging In
+- SSH access
+- Login nodes
+- First login checklist
+
+#### Quick Start: Submit Your First Job
+- Create a test script
+- Submit with `sbatch`
+- Monitor with `squeue`
+- View output
+
+---
+
+### 2. System Overview
+
+#### Architecture Overview
+
+#### Compute Nodes
+
+#### GPU Nodes
+
+#### Login Nodes
+
+#### Network
+
+#### Queue Summary
+| Queue | Intended Use | Node Type | Max Runtime |
+|---------|---------|---------|---------|
+
+---
+
+### 3. Storage and Data Management
+
+#### Filesystem Overview
+
+#### HOME
+
+#### WORK / Stockyard
+
+#### SCRATCH
+
+#### Node Local Storage (`/tmp`)
+
+#### Quotas and Purge Policies
+
+#### Data Transfer
+- `scp`
+- `rsync`
+- Globus
+
+#### Ranch Archive Storage
+
+---
+
+### 4. Running Jobs
+
+#### Slurm Fundamentals
+
+#### Job Accounting
+
+#### Queue Charge Rates
+
+#### Production Queues
+
+#### Basic Job Scripts
+
+##### Serial Jobs
+
+##### OpenMP Jobs
+
+##### MPI Jobs
+
+##### Hybrid MPI/OpenMP Jobs
+
+##### GPU Jobs
+
+#### Interactive Jobs
+
+#### Job Dependencies
+
+#### HTC and Parameter Sweeps
+
+---
+
+### 5. Software and Development
+
+#### Environment Modules
+
+#### Environment Variables
+
+#### Building Software
+
+#### Intel Compilers
+
+#### GCC and Other Toolchains
+
+#### Libraries and MPI
+
+#### Python Environments
+
+#### Containers
+
+---
+
+### 6. AI, GPUs, and Machine Learning
+
+#### GPU Resource Overview
+
+#### GPU Queues
+
+#### Environment Setup
+
+#### PyTorch
+
+#### Accelerate
+
+#### Single-Node Training
+
+#### Multi-Node Training
+
+#### AI Usage Policies
+
+---
+
+### 7. Interactive Computing and Visualization
+
+#### Overview
+
+#### Development Queue for Interactive Work
+
+#### Remote Desktop Access
+
+#### DCV Sessions
+
+#### VNC Sessions
+
+#### OpenSWR Rendering
+
+#### Visualization Applications
+
+---
+
+### 8. Monitoring and Performance
+
+#### Queue Monitoring
+
+#### `sinfo`
+
+#### `showq`
+
+#### `qlimits`
+
+#### Job Monitoring
+
+#### Understanding Pending Jobs
+
+#### Performance Best Practices
+
+#### CPU Utilization
+
+#### Memory Usage
+
+#### GPU Monitoring
+
+---
+
+### 9. Troubleshooting
+
+#### Login Problems
+
+#### MFA Problems
+
+#### Allocation Problems
+
+#### Filesystem Quota Issues
+
+#### Scratch Purge Issues
+
+#### Jobs Stuck Pending
+
+#### MPI Launch Problems
+
+#### GPU Job Failures
+
+#### Common Slurm Errors
+
+#### When to Contact Support
+
+---
+
+### 10. Reference
+
+#### Node Specifications
+
+#### Filesystem Specifications
+
+#### Queue Specifications
+
+#### Environment Variables Reference
+
+#### Common Commands Cheat Sheet
+
+#### Glossary
+
+---
+
+### 11. Support and Community
+
+#### Help Desk
+
+#### Writing Effective Support Tickets
+
+#### User News and Status Information
+
+---
+
+## 2. Navigation Tree
+
+```text
+Lonestar6 User Guide
+├── Getting Started
+├── System Overview
+├── Storage and Data Management
+├── Running Jobs
+├── Software and Development
+├── AI, GPUs, and Machine Learning
+├── Interactive Computing and Visualization
+├── Monitoring and Performance
+├── Troubleshooting
+├── Reference
+└── Support and Community
+```
+
+---
+
+## 3. Content Mapping Table
+
+| Current Section      | Proposed Section |
+|----------------      |------------------|
+| Introduction         | Getting Started → What is Lonestar6? |
+| Notices              | Getting Started → Notices and Important Policies |
+| System Architecture  | System Overview |
+| Compute Nodes        | System Overview → Compute Nodes |
+| GPU Nodes            | System Overview → GPU Nodes |
+| Login Nodes          | System Overview → Login Nodes |
+| Network              | System Overview → Network |
+| Managing Files       | Storage and Data Management |
+| HOME                 | Storage and Data Management → HOME |
+| WORK / Stockyard     | Storage and Data Management → WORK / Stockyard |
+| SCRATCH              | Storage and Data Management → SCRATCH |
+| Account Administration | Split between Getting Started and Software & Development |
+| Environment Variables | Software and Development → Environment Variables |
+| Basics of Building Software | Software and Development → Building Software |
+| Intel Compilers      | Software and Development → Intel Compilers |
+| Running Jobs         | Running Jobs |
+| Job Accounting       | Running Jobs → Job Accounting |
+| Production Queues    | Running Jobs → Production Queues |
+| Serial Job Example   | Running Jobs → Serial Jobs |
+| OpenMP Job Example   | Running Jobs → OpenMP Jobs |
+| MPI Job Example      | Running Jobs → MPI Jobs |
+| Dependent Jobs       | Running Jobs → Job Dependencies |
+| PyLauncher           | Running Jobs → HTC and Parameter Sweeps |
+| Machine Learning     | AI, GPUs, and Machine Learning |
+| ML Environment Setup | AI, GPUs, and Machine Learning → Environment Setup |
+| PyTorch              | AI, GPUs, and Machine Learning → PyTorch |
+| Accelerate           | AI, GPUs, and Machine Learning → Accelerate |
+| Distributed Training | AI, GPUs, and Machine Learning → Multi-Node Training |
+| Visualization        | Interactive Computing and Visualization |
+| Remote Desktop Access | Interactive Computing and Visualization → Remote Desktop Access |
+| OpenSWR              | Interactive Computing and Visualization → OpenSWR Rendering |
+| Queue Monitoring Tools | Monitoring and Performance |
+| Help Desk            | Support and Community → Help Desk |
