@@ -6,10 +6,84 @@ Welcome to TACC's Technical Documentation Site.
 ///
 
 
-TACC's technical documentation is broadly divided into four categories: TACC Essentials, High Performance Computing (HPC) Resource Guides, Software Packages at TACC, and Tutorials which can be accessed via the left-hand navigation.
+TACC's technical documentation is broadly divided into the following categories.  All guides can be accessed via the left-hand navigation,.
+
+* TACC Essentials 
+* High Performance Computing (HPC) and Storage Resource User Guides 
+* Software Packages 
+* Tutorials 
 
 Additional training opportunities such as the TACC Institute Series, can be found on the [Training Page](https://www.tacc.utexas.edu/use-tacc/training/#institutes) on our main site.
 
+See also [TACC's Training YouTube channel](https://www.youtube.com/@TACC_training) featuring many instructional quick-start and how-to videos.
+
+/// html | section.section--light.section--has-border
+
+# HPC Resource Guides
+
+//// html | div.grid
+///// html | div[style="grid-column: span 2"]
+
+Each of our HPC resources has a user guide, with extensive instructions and information.  Learn how to access and use our High Performance Computing (HPC) resources.
+/////
+
+<!-- begin Horizon block -->
+///// html | a.card--plain.card--image-top[href="./hpc/horizon/"]
+     markdown: block
+
+////// html | img[alt="TACC's Horizon"][src="imgs/home/horizon.jpg" height="400"]
+//////
+
+<h3>Horizon</h3>
+
+*Coming Soon* Horizon is a national computing resource, the centerpiece of the National Science Foundation's LCCF program. 
+
+/////
+<!-- end Horizon block -->
+
+<!-- begin Lonestar6 block -->
+///// html | a.card--plain.card--image-top[href="./hpc/lonestar6/"]
+     markdown: block
+
+////// html | img[alt="TACC's Lonestar6"][src="imgs/home/lonestar6.jpg" height="400"]
+//////
+
+<h3>Lonestar6</h3>
+Lonestar6 is the latest of the Lonestar series and supports and serves Texas researchers.
+/////
+<!-- end Lonestar6 block -->
+
+<!-- begin Vista block -->
+///// html | a.card--plain.card--image-top[href="./hpc/vista/"]
+     markdown: block
+
+////// html | img[alt="TACC's Vista AI supercomputer"][src="imgs/home/vista.jpg" height="400"]
+//////
+
+<h3>Vista</h3>
+
+Vista is TACC's first AI-focused supercomputer with Arm-based NVIDIA technology.
+
+/////
+<!-- end Vista block -->
+
+
+<!-- begin Stampede3 block -->
+///// html | a.card--plain.card--image-top[href="./hpc/stampede3/"]
+     markdown: block
+
+////// html | img[alt="TACC's Stampede3"][src="imgs/home/stampede3.jpg" height="400"]
+//////
+
+<h3>Stampede3</h3>
+Stampede3 is the latest in the series of flagship resources for National Science Foundation's Access ecosystem.
+
+/////
+<!-- end Stampede3 block -->
+
+////
+///
+<!-- end HPC User Guides -->
 
 /// html | section.section--muted.section--has-border
 
@@ -45,52 +119,53 @@ Solve login problems, check your account status, and other TACC account manageme
 
 <h3>Good Conduct</h3>
 
-Good conduct on the system ensures stability and helps TACC provide a reliable service to all users.
+Good conduct on all systems ensures stability and helps TACC provide a reliable service to all users.
 
 /////
 ////
 ///
-
-
+<!-- begin Storage Resource User Guides -->
 /// html | section.section--light.section--has-border
 
-# HPC Resource Guides
+# Storage Resource User Guides
 
 //// html | div.grid
 ///// html | div[style="grid-column: span 2"]
 
-Each of our HPC resources has a user guide, with extensive instructions and information.  Learn how to access and use our High Performance Computing (HPC) resources.
+<!-- Storage blurb goes here -->
 /////
 
-
-
-
-///// html | a.card--plain.card--image-top[href="./hpc/vista/"]
+<!-- begin Ranch block -->
+///// html | a.card--plain.card--image-top[href="./hpc/ranch/"]
      markdown: block
 
-////// html | img[alt="TACC's Vista AI supercomputer"][src="imgs/home/vista.png" height="400"]
+////// html | img[alt="TACC's Ranch"][src="imgs/home/ranch.jpg" height="400"]
 //////
 
-<h3>Vista</h3>
+<h3>Ranch</h3>
 
-Vista is TACC's first AI-focused supercomputer with Arm-based NVIDIA technology.
+Long-term data archive.
 
 /////
+<!-- end Ranch block -->
 
-///// html | a.card--plain.card--image-top[href="./hpc/lonestar6/"]
+<!-- begin Corral block -->
+///// html | a.card--plain.card--image-top[href="./hpc/corral/"]
      markdown: block
 
-////// html | img[alt="TACC's Lonestar6"][src="imgs/home/lonestar6.png" height="400"]
+////// html | img[alt="TACC's Corral"][src="imgs/home/corral.jpg" height="400"]
 //////
 
-<h3>Lonestar6</h3>
-
-Lonestar6 is the latest of the Lonestar series and supports and serves Texas researchers.
-
+<h3>Corral</h3>
+Storage and Data Management Resource.
 /////
+<!-- end Corral block -->
+
 ////
 ///
 
+
+<!-- end Storage Resource User Guides -->
 /// html | section.section--muted.section--has-border
 
 # Software Packages at TACC
