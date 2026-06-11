@@ -45,11 +45,12 @@ Solve login problems, check your account status, and other TACC account manageme
 
 <h3>Good Conduct</h3>
 
-Good conduct on the system ensures stability and helps TACC provide a reliable service to all users.
+Good conduct on all systems ensures stability and helps TACC provide a reliable service to all users.
 
 /////
 ////
 ///
+
 
 
 /// html | section.section--light.section--has-border
@@ -66,7 +67,7 @@ Each of our HPC resources has a user guide, with extensive instructions and info
 ///// html | a.card--plain.card--image-top[href="./hpc/horizon/"]
      markdown: block
 
-////// html | img[alt="TACC's Horizon"][src="imgs/home/horizon.png" height="400"]
+////// html | img[alt="TACC's Horizon"][src="imgs/home/horizon.jpg" height="400"]
 //////
 
 <h3>Horizon</h3>
@@ -80,7 +81,7 @@ Each of our HPC resources has a user guide, with extensive instructions and info
 ///// html | a.card--plain.card--image-top[href="./hpc/lonestar6/"]
      markdown: block
 
-////// html | img[alt="TACC's Lonestar6"][src="imgs/home/lonestar6.png" height="400"]
+////// html | img[alt="TACC's Lonestar6"][src="imgs/home/lonestar6.jpg" height="400"]
 //////
 
 <h3>Lonestar6</h3>
@@ -92,7 +93,7 @@ Lonestar6 is the latest of the Lonestar series and supports and serves Texas res
 ///// html | a.card--plain.card--image-top[href="./hpc/vista/"]
      markdown: block
 
-////// html | img[alt="TACC's Vista AI supercomputer"][src="imgs/home/vista.png" height="400"]
+////// html | img[alt="TACC's Vista AI supercomputer"][src="imgs/home/vista.jpg" height="400"]
 //////
 
 <h3>Vista</h3>
@@ -117,11 +118,52 @@ Vista is TACC's first AI-focused supercomputer with Arm-based NVIDIA technology.
 /////
 <!-- end Stampede3 block -->
 
+////
+///
+<!-- end HPC User Guides -->
 
+<!-- begin Storage Resource User Guides -->
+/// html | section.section--light.section--has-border
+
+# Storage Resource User Guides
+
+//// html | div.grid
+///// html | div[style="grid-column: span 2"]
+
+<!-- Storage blurb goes here -->
+/////
+
+<!-- begin Ranch block -->
+///// html | a.card--plain.card--image-top[href="./hpc/ranch/"]
+     markdown: block
+
+////// html | img[alt="TACC's Ranch"][src="imgs/home/ranch.jpg" height="400"]
+//////
+
+<h3>Ranch</h3>
+
+<!-- Ranch blurb goes here -->
+
+/////
+<!-- end Ranch block -->
+
+<!-- begin Corral block -->
+///// html | a.card--plain.card--image-top[href="./hpc/corral/"]
+     markdown: block
+
+////// html | img[alt="TACC's Corral"][src="imgs/home/corral.jpg" height="400"]
+//////
+
+<h3>Corral</h3>
+<!-- Corral blurb goes here -->
+/////
+<!-- end Corral block -->
 
 ////
 ///
 
+
+<!-- end Storage Resource User Guides -->
 /// html | section.section--muted.section--has-border
 
 # Software Packages at TACC
