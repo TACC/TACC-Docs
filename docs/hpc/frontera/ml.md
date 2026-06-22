@@ -32,8 +32,8 @@ To test your installation of PyTorch we point you to a few benchmark calculation
 1. Download the benchmark:
 	```cmd-line
 	c123-456$ cd $SCRATCH 
+	c123-456$ git clone https://github.com/pytorch/examples.git
 	```
-c123-456$  git clone https://github.com/pytorch/examples.git
 1. Run the benchmark on one node (4 GPUs):
 	```cmd-line
 	c123-456$ torchrun --nproc_per_node=4 examples/distributed/ddp-tutorial-series/multigpu_torchrun.py 50 10
