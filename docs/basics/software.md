@@ -1,5 +1,5 @@
 # Software at TACC
-Last update: *May 27, 2025*
+Last update: *June 22, 2025*
 
 ## System-Installed 
 
@@ -10,7 +10,7 @@ TACC maintains a database of currently installed software packages and libraries
 
 If the software search results are inconclusive you have two choices:
 
-1. Request TACC staff make a global, system-wide, installation of your software package
+1. Submit a support ticket and request a global, system-wide, installation of your software package
 1. Install the software package in your own workspace as outlined below.  You can always make the resulting executable available to project members.
 
 
@@ -28,23 +28,28 @@ See each resource user guide's Building Software and Performance sections for ar
 
 You are welcome to download third-party research software and build and install it in your own account. In most cases you'll want to download the source code and build the software so it's compatible with the resource's software environment.
 
-!!!warning
+!!! warning
+	TACC's `$WORK` file system is a globally accessible repo across all TACC HPC resources, but is not optimized to handle Python/Conda installations.  Conda and Python environments should NOT be run from `$WORK` as it can overload the file system for all users. 
+
+
+!!!note
 	You cannot use the `sudo` command or any package manager or installation process that requires elevated or "root" user privileges.
 
 Instead, the key is to specify an installation directory for which you have write permissions. Details vary; you should consult the package's documentation and be prepared to experiment. Using the [three-step autotools build process](https://www.gnu.org/software/automake/manual/html_node/Autotools-Introduction.html), the standard approach is to use the `$PREFIX` environment variable to specify a non-default, user-owned installation directory at the time you execute `configure` or `make`:
 
 ```cmd-line
-$ export INSTALLDIR=$WORK/apps/fftw3
+$ export INSTALLDIR=$HOME/apps/fftw3
 $ ./configure --prefix=$INSTALLDIR
 $ make
 $ make install
 ```
 
+
 CMake based installations have a similar workflow where you specify the install location. Unlike with `configure`, you create a separate build location and tell `cmake` where to find the source:
 
 ```cmd-line
 $ mkdir build && cd build
-$ cmake -D CMAKE_INSTALL_PREFIX=$WORK/apps/yourpackage /home/you/src/yourpackage
+$ cmake -D CMAKE_INSTALL_PREFIX=$HOME/apps/yourpackage /home/you/src/yourpackage
 $ make
 $ make install
 ```
