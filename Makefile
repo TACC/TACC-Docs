@@ -9,6 +9,17 @@ DOCKER_IMAGE_LATEST := $(DOCKERHUB_REPO):latest
 # `DOCKER_IMAGE_BRANCH` tag is the git tag for the commit if it exists, else the branch on which the commit exists
 DOCKER_IMAGE_BRANCH := $(DOCKERHUB_REPO):$(shell git describe --exact-match --tags 2> /dev/null || git symbolic-ref --short HEAD | sed 's/[^[:alnum:]\.\_\-]/-/g')
 
+
+# To regenerate requirements.txt from poetry.lock
+# CAVEAT: Using .PHONY to skip Make's dependency check
+#         of poetry.lock until it is reliable or proven useless
+.PHONY: requirements.txt
+requirements.txt: poetry.lock
+	poetry self add poetry-plugin-export \
+	&& poetry export -f requirements.txt --output requirements.txt \
+	&& poetry self remove poetry-plugin-export
+
+
 .PHONY: build
 build:
 	$(DOCKER_COMPOSE_CMD) -f ./docker-compose.yml build
