@@ -1697,7 +1697,6 @@ To test your installation of PyTorch we point you to a few benchmark calculation
 	c123-456$ ibrun -np 2 ./run.sh c123-456 2
 	```
 
-
 ## Visualization and VNC Sessions { #vis }
 
 <p class="introtext">Frontera uses Intel's Cascade Lake (CLX) processors for all visualization and rendering operations. We use the Intel OpenSWR library to render raster graphics with OpenGL, and the Intel OSPRay framework for ray traced images inside visualization software. OpenSWR can be loaded by executing <code>module load swr</code>.</p>

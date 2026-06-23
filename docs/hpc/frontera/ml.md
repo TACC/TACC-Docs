@@ -65,4 +65,3 @@ To test your installation of PyTorch we point you to a few benchmark calculation
 	c123-456$ ibrun -np 2 ./run.sh c123-456 2
 	```
 
-
