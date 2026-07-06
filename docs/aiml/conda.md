@@ -219,3 +219,73 @@ Typically, conda environments are managed in a file called **environment.yml**, 
 
         conda env export > environment.yml
 -->
+
+
+
+## Installing and Running Conda 
+
+Quick review: each TACC HPC resource has access to three file systems, $HOME, $WORK, and $SCRATCH.  The $HOME and $SCRATCH file systems are *local* to each resource, and the $WORK file system is accessible and available across *all* resources.  
+
+TACC's `$WORK` file system is a globally accessible repo across all TACC HPC resources, but is not optimized to handle Python/Conda installations on the order of TACC's increasing user-base.  Conda and Python environments especially cause extremely high loads on this file system leading to disruptions for all users and account suspensions.  
+
+Therefore TACC staff advises you to install your python virtual environments and Conda installation in either the $SCRATCH or $HOME directories, with regular  backups to the `$WORK` directory.
+
+TACC staff recommends the following Conda workflow.
+
+1. Install Conda in either $HOME or $SCRATCH file system
+
+	```cmd-line
+	login1$ cd $SCRATCH
+	login1$ conda init
+	```
+
+	| File System | $HOME | $SCRATCH |
+	-- | -- | -- | 
+	| Pros | not purged | unlimited disk space |
+	| Cons | very limited disk space - | subject to purge
+
+	&#42; if you're close to your quota limit, can interfere with job submissions | occasionally purged |
+
+2. Backup this installation to your $WORK directory via the `rsync` utility.
+
+	```cmd-line
+	login$ cd $SCRATCH
+	login$ rsync mycondainstallation $WORK/
+	```
+
+3. All job scripts and/or interactive sessions via `idev` or the TACC Analysis Portal (TAP) **must** point to your Conda installation in `$HOME` or `$WORK`.  
+4. Bash edits
+
+	QUESTION: initializing conda in the .bash script - problem right?
+
+	what are common env var initializations?
+
+		LD_LIBRARY_PATH, PYTHON_PATH
+		export LD_LIBRARY_PATH=$SCRATCH/miniconda3/envs/py311/lib:$LD_LIBRARY_PATH
+		export PYTHONPATH=$WORK:$SCRATCH/miniconda3/envs/py311:$PYTHONPATH
+
+
+
+<!-- Erik Ferlanti
+No problem. Happy to help! Let me gather some of my notes that will answer these questions and more, clean them up, and send them your way.
+Susan Lindsey  [11:10 AM]
+Thank you so much!
+Susan Lindsey  [11:27 AM]
+Don't forget about me :wink:
+Erik Ferlanti  [1:54 PM]
+Hey @slindsey, the first thing I would recommend is that users install the conda-forge version called miniforge (located at https://conda-forge.org/ or https://github.com/conda-forge/miniforge). It’s the open-source, community-maintained version of “conda” vs anaconda/miniconda which is owned by a company, Anaconda, Inc. It works the same way and uses the conda-forge repos to grab its packages. The installer is just a shell script which you can download from the above sites and installed like:
+$ wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh
+$ bash ./Miniforge3-Linux-x86_64.shIt’s an interactive installer where you just accept the license, override the install directory (it defaults to HOME), and let it run conda init which modifies .bashrc. In general, it’s not a good idea to have it activate the base environment on login, so after you install, log out, log back in again and run:
+$ conda config --set auto_activate_base falseThis will make it so to load a conda environment, you must explicity activate it, i.e. conda activate base. These configurations are stored in a file called HOME/.condarc.
+
+I like the idea of installing to SCRATCH and rsyncing to WORK, but I can see lots of users forgetting that step and having their conda installs purged.
+
+Also, in terms of using “conda”, I would commit to it. Don’t try and mix it with the module installed python or the system python, especially if you do things like pip install --user <package>. This will install the python packages to HOME/.local (called PYTHONUSERBASE) and even the conda python will load that if it detects it (we’ve seen lots of issues with this). So, basically, if you’re going to use conda, unload module python, and don’t set any Python ENV variables. Let the “conda” install take care of everything.
+
+The main reason our users choose “conda” (other than it’s the first line of the bioinformatics tool tutorial that says “install conda”) is that it gives them control. With conda, you’re able to install as many python environments as you need including different versions of python. It will also install c-libraries if the python library needs it and all in a self-contained environment. The downsides to this are that conda environments frequently contain LOTS of files (which is why it’s not so Lustre-friendly).
+
+In terms of python virtual environments, an improvement is that you can have self-contained environments (and the environment can live with your code), but you’re stuck with the python versions that we have installed on the system.
+
+I don’t know if you’re including any info on using “conda” for Jupyter notebooks through TAP, but that’s also workable. Basically, you have to have jupyter and/or jupyter-lab installed in one of your conda environments, and you also need to have that load at login so TAP can find it. For instance, say you had a “conda” environment name “jupyter” with the jupyter packages and any other packages you needed installed, you need to add at the end of you .bashrc, conda activate jupyter.
+
+-->
