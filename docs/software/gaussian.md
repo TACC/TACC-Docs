@@ -1,5 +1,5 @@
 # Gaussian at TACC
-*Last update: April 22, 2024* 
+*Last update: July 7, 2026* 
 
 <!-- ![Gaussian logo](../imgs/gaussian-logo.png){ .align-right width="300" } -->
 <img src="../imgs/gaussian-logo.webp" width="300" alt="Gaussian logo" align="right">
@@ -15,7 +15,7 @@ TACC's Gaussian license allows academic users who have signed a Usage Agreement 
 
 ### User Agreement { #access }
 
-Please fill out the [Usage Agreement]PLEASE UPDATE TO POINT AT NEW DOC and open a consulting ticket with the agreement as an attachment to the ticket.  TACC maintains digital copies of Usage Agreements for all TACC users. Once you have sent in a signed version of the [required agreement]PLEASE UPDATE TO POINT AT NEW DOC, TACC staff can open up access to you of the Gaussian module on all systems on which the module is installed.  
+Please fill out the [Usage Agreement](../taccdocs/TACC_GAUSSIAN_Usage_Agreement.pdf) and open a consulting ticket with the agreement as an attachment to the ticket.  TACC maintains digital copies of Usage Agreements for all TACC users. Once you have sent in a signed version of the [required agreement](../taccdocs/TACC_GAUSSIAN_Usage_Agreement.pdf), TACC staff can open up access to you of the Gaussian module on all systems on which the module is installed.  
 
 
 ## Running Gaussian { #running }
