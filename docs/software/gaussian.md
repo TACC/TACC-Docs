@@ -15,7 +15,7 @@ TACC's Gaussian license allows academic users who have signed a Usage Agreement 
 
 ### User Agreement { #access }
 
-Please fill out the [Usage Agreement](../taccdocs/TACC_GAUSSIAN_Usage_Agreement.pdf) and open a consulting ticket with the agreement as an attachment to the ticket.  TACC maintains digital copies of Usage Agreements for all TACC users. Once you have sent in a signed version of the [required agreement](../taccdocs/TACC_GAUSSIAN_Usage_Agreement.pdf), TACC staff can open up access to you of the Gaussian module on all systems on which the module is installed.  
+Please fill out the [Usage Agreement](../../taccdocs/TACC_GAUSSIAN_Usage_Agreement.pdf) and open a consulting ticket with the agreement as an attachment to the ticket.  TACC maintains digital copies of Usage Agreements for all TACC users. Once you have sent in a signed version of the [required agreement](../../taccdocs/TACC_GAUSSIAN_Usage_Agreement.pdf), TACC staff can open up access to you of the Gaussian module on all systems on which the module is installed.  
 
 
 ## Running Gaussian { #running }
