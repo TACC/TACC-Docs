@@ -97,7 +97,7 @@ Transfers run **asynchronously** — you may close your browser.
 
 If you want to compare your data transfer performance to others, you can use the [TACC NetSage Portal](https://tacc.netsage.io/). For example [this page](https://tacc.netsage.io/grafana/d/-l3_u8nWl/1b22d62) shows transfer rates for Globus jobs between TACC and the rest of the world. In general, you should be able to get at least 1 Gbps transfer speeds.
 
-TACC also has a [Test Data Transfer Node (DTN)](dtn.md), which is useful for getting a performance baseline.
+<!-- TACC also has a [Test Data Transfer Node (DTN)](dtn.md), which is useful for getting a performance baseline. -->
 
 ### Using the Globus CLI (Advanced)
 
