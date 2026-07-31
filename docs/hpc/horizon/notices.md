@@ -1,14 +1,13 @@
 # Horizon User Guide 
-*Last update: April 20, 2026*
+*Last update: July 24, 2026*
 
 ---
-
 *This user guide is in progress*
-
 ---
 
 ## Notices { #notices }
 
+* Horizon is still limited only to internal users. (07/24/2026)
 * See the latest TACC Announcement regarding [Horizon opportunities](https://tacc.utexas.edu/news/user-updates/107622/). (04/17/2026)
 * **[Subscribe][TACCSUBSCRIBE] to Horizon User News**. Stay up-to-date on Horizon's status, scheduled maintenances and other notifications.  (04/15/2026) 
 {% include 'include/ai.md' %}
