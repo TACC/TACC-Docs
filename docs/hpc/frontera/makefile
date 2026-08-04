@@ -16,7 +16,6 @@ SRC =   \
 	ml.md \
 	vis.md \
 	jupyter.md \
-	cloud.md \
 	containers.md \
 	../../include/frontera-help.md \
 	refs.md

@@ -1,22 +1,12 @@
 # Frontera User Guide
-*Last update: April 24, 2026*
+*Last update: August 4, 2026*
 
-<!-- **Important**: (10-15-2024) Please note [TACC's new SU charge policy](#sunotice). -->
-
-<!-- SDL <a href="https://frontera-xortal.tacc.utexas.edu/user-guide/docs/user-guide.pdf">Download PDF <i class="fa fa-file-pdf-o"></i></a></span>-->
 ## Notices
 
 {% include 'include/ai.md' %}
 
 * Frontera's `/scratch1` file system has developed persistent problems that have led to frequent system downtimes.  The `/scratch1` file system has now been mounted as a read-only file system and will be decommissioned on December 3rd.  You will need to migrate any wanted data in `/scratch1` to your [new Frontera scratch file system](#scratch-notice) immediately.  Going forward, users will have access to either the `/scratch2` or `/scratch3` file system, but not both.  See more [below](#scratch-notice).  (11-17-2025)
 
-
-
-<!-- * Users are limited to using one and only one of Frontera's `scratch` file systems. (10/22/2025) -->
-<!-- 
-* Navigate to the [Frontera Web Portal](https://frontera-portal.tacc.utexas.edu/) to manage your Frontera allocations and access your [Frontera Workbench](https://frontera-portal.tacc.utexas.edu/workbench/dashboard). (04/19/2023)
-
--->
 ## Introduction { #intro } 
 
 Frontera is funded by the National Science Foundation (NSF) through award #1818253, [Computing for the Endless Frontier](https://www.nsf.gov/awardsearch/showAward?AWD_ID=1818253). Frontera is the largest cluster dedicated to open science in the United States and is the Texas Advanced Computing Center's latest flagship system. <!-- Frontera enters production in early summer 2019, building on the successes of the Stampede1 and Stampede2 systems.  -->
@@ -29,7 +19,7 @@ Frontera is also breaking new ground in its support for science applications. Du
 
 <!-- Following the initial CPU-only rollout, the system will also provide users with access to the latest accelerator cards from NVIDIA with outstanding single-precision support especially targeted for machine-learning workloads. Later this summer a separate system will enter production to provide users with access to the latest double-precision HPC cards from NVIDIA, designed to serve more "traditional" science and engineering simulation needs.   -->
 
-Frontera's design also includes a totally new integration with web services, and provides users with new options for data storage and access to emerging computer technologies. The award includes an innovative partnership with the three major commercial cloud providers, Google, Amazon and Microsoft, to provide users with additional high-integrity storage, sustainable archive options, and to keep the project regularly refreshed with novel computing technologies. 
+Frontera's design also includes a totally new integration with web services, and provides users with new options for data storage and access to emerging computer technologies. <!-- The award includes an innovative partnership with the three major commercial cloud providers, Google, Amazon and Microsoft, to provide users with additional high-integrity storage, sustainable archive options, and to keep the project regularly refreshed with novel computing technologies. -->
 
 ## Quickstart { #quickstart }
 
@@ -1895,6 +1885,7 @@ You can launch a Jupyter session via the Frontera User Portal.
 
 * [Jupyter Documentation](https://jupyter-notebook.readthedocs.io/en/stable/notebook.html)
 
+
 ## Containers { #containers }
 
 Frontera provides seamless, integrated support for the use of Singularity containers (both custom containers made by users and containers from standard repositories). The use of containers greatly enhances the number of people who contribute to the Frontera software base, promotes portability with other resources, and greatly expands the supported software catalog beyond that found on TACC's other HPC systems.
@@ -1988,3 +1979,4 @@ TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for 
 [DOWNLOADCYBERDUCK]: https://cyberduck.io/download/ "Download Cyberduck"
 [CYBERDUCK]: https://cyberduck.io "Download Cyberduck"
 [TACCSOFTWARELIST]: https://tacc.utexas.edu/use-tacc/software-list/ "TACC Software List"
+[TACCGAUSSIANAGREEMENT]: https://tacc.utexas.edu/taccdocs/TACC_GAUSSIAN_Usage_Agreement.pdf "TACC GAUSSIAN Usage Agreement"
