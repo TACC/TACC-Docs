@@ -1,6 +1,5 @@
 # Corral User Guide
-*Last update: October 14, 2024*
-
+*Last update: August 4, 2026*
 
 ## System Overview { #overview }
 
@@ -31,6 +30,7 @@ Please direct any further questions you may have regarding the cloud storage int
 
 
 ## System Access { #access }
+
 Corral is available to researchers at all UT System campuses, including both academic and health institutions. Corral is intended to support research activities involving large quantities of data and/or complex data management requirements. There is no requirement that users have allocations on other TACC systems, and Corral can be utilized independently of TACC computational and visualization resources. 
 
 You may request an allocation on Corral through the TACC User Portal. When requesting an allocation, indicate the quantity of storage you expect to utilize in terabytes, the nature of the research project that will be supported through the use of Corral, and the service or services you expect to utilize. It is also helpful if you provide a suggested name for the directory or a collection name under which your data will be stored on Corral.  Once your allocation has been granted, you will receive an e-mail indicating the location of your data in the file system accessible from the Corral login/data movement nodes.
@@ -67,11 +67,12 @@ When creating files on Corral, it is important that you be aware of your current
 Files on Corral are never "purged" using automated processes, however each allocation lasts for only one year and must be renewed at the end of that year.  Once an allocation has expired, data will typically be retained for 6 months after the expiration of the allocation, however data may be deleted at any time at the discretion of the system administrators unless there is an allocation request pending. Important data should never be stored on only one system, and users are encouraged to maintain a second copy of their most important data on another system at TACC or elsewhere. 
 
 
-
 ## Transferring your Files to Corral { #transferring }
 
+!!! important 
+	**For Secure data:** Corral does not offer a general-purpose secure data transfer node for protected data users. Protected data allocations which include an HPC resource will receive special instructions and access to a login node with access to Corral-secure and the protected compute queues. Protected data requests which will only encompass storage and need special arrangements for access to the protected data locations should indicate this in their request text and/or submit a ticket requesting access to a data-transfer-only node.
 
-**For Secure data:** All the instructions for SCP and Cyberduck as shown below can be used for transferring data to a secure location on Corral, however please substitute the hostname `secure.corral.tacc.utexas.edu` for `data.tacc.utexas.edu`. You will be given access to this system when you are granted access to a secure Corral folder, and this system can be used exclusively for accessing your secure data area on Corral. Secure locations on Corral are not generally accessible from TACC data transfer and login nodes.
+	All the SCP and Cyberduck instructions shown below can be used for transferring data to your secure location on Corral.
 
 ### Command-line data transfer { #transferring-cl }
 
