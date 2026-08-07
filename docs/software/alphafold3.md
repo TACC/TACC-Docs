@@ -1,5 +1,5 @@
 # AlphaFold3 at TACC
-*Last update: April 29, 2026*
+*Last update: August 7, 2026*
 
 <img src="../imgs/alphafold3-logo.png" width="250" alt="AlphaFold3 logo" class="align-right">
 
@@ -18,10 +18,10 @@ We encourage researchers interested in making protein structure predictions with
 
 HPC Resource | Latest Version
 -- | --
-Lonestar6 | AlphaFold3: v3.0.2<br>**Data**: `/scratch/tacc/apps/bio/alphafold3/3.0.2/data`<br>**Examples**: `/scratch/tacc/apps/bio/alphafold3/3.0.2/examples`<br>**Module**: `/scratch/tacc/apps/bio/alphafold3/modulefiles`
+Lonestar6 | AlphaFold3: v3.0.4<br>**Data**: `/scratch/tacc/apps/bio/alphafold3/3.0.4/data`<br>**Examples**: `/scratch/tacc/apps/bio/alphafold3/3.0.4/examples`<br>**Module**: `/scratch/tacc/apps/bio/alphafold3/modulefiles`
 Frontera | AlphaFold3: v3.0.2<br>**Data**: `/scratch2/projects/bio/alphafold3/3.0.2/data`<br>**Examples**: `/scratch2/projects/bio/alphafold3/3.0.2/examples`<br>**Module**: `/scratch2/projects/bio/alphafold3/modulefiles`
-Vista | AlphaFold3: v3.0.2<br>**Data**: `/scratch/tacc/apps/bio/alphafold3/3.0.2/data`<br>**Examples**: `/scratch/tacc/apps/bio/alphafold3/3.0.2/examples`<br>**Module**: `/scratch/tacc/apps/bio/alphafold3/modulefiles`
-Stampede3 | AlphaFold3: v3.0.2<br> *Coming soon*
+Vista | AlphaFold3: v3.0.4<br>**Data**: `/scratch/tacc/apps/bio/alphafold3/3.0.4/data`<br>**Examples**: `/scratch/tacc/apps/bio/alphafold3/3.0.4/examples`<br>**Module**: `/scratch/tacc/apps/bio/alphafold3/modulefiles`
+Horizon | *Coming soon*
 
 ## Access
 
@@ -75,7 +75,7 @@ A valid protein chain may look like:
 
 ### SLURM Job Script Preparation
 
-Next, prepare a batch job submission script for running AlphaFold3. *Model inference must be run on a GPU*. See the [Running MSA and Inference Separately](#split-stages) section of this page and the [AlphaFold3 performance documentation](https://github.com/google-deepmind/alphafold3/blob/main/docs/performance.md) for more information on executing AlphaFold3 jobs in stages to optimize resource utilization. 
+Next, prepare a batch job submission script for running AlphaFold3. *Model inference runs fastest on a GPU, and a GPU is recommended* (as of v3.0.4, CPU-only inference is also supported — see the note below). See the [Running MSA and Inference Separately](#split-stages) section of this page and the [AlphaFold3 performance documentation](https://github.com/google-deepmind/alphafold3/blob/main/docs/performance.md) for more information on executing AlphaFold3 jobs in stages to optimize resource utilization. 
 
 Templates for batch job submission scripts are provided within the "Examples" paths listed in [Table 1.](#table1) above. The example templates need to be customized before they can be used. Copy the desired tample to your `$WORK` or `$SCRATCH` space along with the input `.json` file. After necessary customizations, a batch script for running AlphaFold3 on Lonestar6 may look like the following :
 
@@ -93,7 +93,7 @@ Templates for batch job submission scripts are provided within the "Examples" pa
  
 # Load required modules
 module use /scratch/tacc/apps/bio/alphafold3/modulefiles
-module load alphafold3/3.0.2-ctr
+module load alphafold3/3.0.4-ctr
  
 # Set environment variable definitions to point to your input, output, and model parameters directories:
 export AF3_INPUT_DIR=$SCRATCH/input/
@@ -105,6 +105,14 @@ run_alphafold3 --json_path=$AF3_INPUT_DIR/input.json           # MODIFY name of 
 ```
 
 In the batch script, make sure to specify the partition (queue) (`#SBATCH -p`), node / wallclock limits, and allocation name (`#SBATCH -A`) appropriate to the machine you are running on. Also, make sure the path shown in the `module use` line matches the machine-specific "Module" path listed in [Table 1.](#table1) above.
+
+!!! note "CPU-only inference (v3.0.4+)"
+    Inference runs fastest on a GPU, which remains the recommended setup. As of v3.0.4, you can also run AlphaFold3 on CPU-only nodes by exporting `AF3_CPU=1` before calling `run_alphafold3` and submitting to a CPU queue. CPU inference is substantially slower and is intended for cases where GPU nodes are unavailable.
+
+```bash
+export AF3_CPU=1          # drop GPU passthrough; run inference on CPU (much slower)
+run_alphafold3 --json_path=$AF3_INPUT_DIR/input.json
+```
 
 When preparing a batch job script to run AlphaFold3, users must set several environment variables to point to their input, output, and model directories. The table below describes each variable and the necessary edits. 
 
