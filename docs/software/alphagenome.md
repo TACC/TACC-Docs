@@ -1,33 +1,19 @@
 # AlphaGenome at TACC
-*Last update: August 6, 2026*
+*Last update: August 10, 2026*
 
-<img src="../imgs/alphagenome-logo.png" width="250" alt="AlphaGenome logo" class="align-right">
+<img src="../imgs/alphagenome-logo.png" width="250" alt="AlphaGenome logo" class="align-right">  
 
-AlphaGenome is Google DeepMind's unified DNA sequence model for regulatory variant-effect
-prediction and studying genome function. It analyzes DNA sequences of up to 1 million base pairs
-and produces predictions at single base-pair resolution across many modalities, including gene
-expression, splicing, chromatin accessibility, and contact maps. The model is described in the
-[Nature paper](https://www.nature.com/articles/s41586-025-10014-0) and the source code is
-available on [GitHub](https://github.com/google-deepmind/alphagenome_research); see also the
-official [AlphaGenome documentation](https://www.alphagenomedocs.com/).
+AlphaGenome is Google DeepMind's unified DNA sequence model for regulatory variant-effect prediction and studying genome function. It analyzes DNA sequences of up to 1 million base pairs and produces predictions at single base-pair resolution across many modalities, including gene expression, splicing, chromatin accessibility, and contact maps. The model is described in the [Nature paper](https://www.nature.com/articles/s41586-025-10014-0) and the source code is available on [GitHub](https://github.com/google-deepmind/alphagenome_research); see also the official [AlphaGenome documentation](https://www.alphagenomedocs.com/).
 
-At TACC, AlphaGenome is provided as a containerized environment module on **Vista** and
-**Stampede3**. The container bundles Python, JAX with GPU support, and the
-AlphaGenome code; you provide your own model weights and run predictions with a short Python
-script through the `run_alphagenome` command.
+At TACC, AlphaGenome is provided as a containerized environment module on **Vista** and **Stampede3**. The container bundles Python, JAX with GPU support, and the AlphaGenome code; you provide your own model weights and run predictions with a short Python script through the `run_alphagenome` command.
 
 !!! note
-    AlphaGenome runs on **GPU nodes** (Vista Grace-Hopper, Stampede3 H100). You use its 
-    Python API, either interactively or from a script. The module wraps this 
-    in a `run_alphagenome` command.
+    AlphaGenome runs on **GPU nodes** (Vista Grace-Hopper, Stampede3 H100). You use its Python API, either interactively or from a script. The module wraps this in a `run_alphagenome` command.
 
 ## Installations at TACC { #installations }
 
 !!! important
-    To run AlphaGenome at TACC you **must obtain the model weights yourself** by accepting
-    DeepMind's non-commercial
-    [AlphaGenome Model Terms of Use](https://deepmind.google.com/science/alphagenome/model-terms).
-    TACC cannot distribute the model weights. See [Access](#access) below.
+    To run AlphaGenome at TACC you **must obtain the model weights yourself** by accepting DeepMind's non-commercial [AlphaGenome Model Terms of Use](https://deepmind.google.com/science/alphagenome/model-terms).  TACC cannot distribute the model weights. See [Access](#access) below.
 
 ### Table 1. Installations at TACC { #table 1 }
 
@@ -39,8 +25,7 @@ Horizon | *Coming soon*
 
 ## Access
 
-Because of AlphaGenome's licensing restrictions, users must obtain the model weights
-**directly from Google DeepMind**. To obtain and stage the weights:
+Because of AlphaGenome's licensing restrictions, users must obtain the model weights **directly from Google DeepMind**. To obtain and stage the weights:
 
 1. Accept the AlphaGenome Model Terms of use from [Kaggle](https://www.kaggle.com/models/google/alphagenome) or [Hugging Face](https://huggingface.co/collections/google/alphagenome).
 2. Download all five AlphaGenome models. The per-fold tarball is the easiest format to download.
@@ -55,22 +40,18 @@ Because of AlphaGenome's licensing restrictions, users must obtain the model wei
     └── fold_3/
     ```
 
-4. Point the module at that directory in your shell or job script:
+4. Set the module's environment variable to point at that directory in your shell or job script:
 
     ```bash
     export AG_MODELS_DIR=$WORK/alphagenome/models
     ```
 
 !!! note
-    TACC cannot distribute the AlphaGenome model weights. Each user must download their own after
-    accepting the model terms.
+    TACC cannot distribute the AlphaGenome model weights. Each user must download their own after accepting the model terms.
 
 ## Running AlphaGenome { #running }
 
-AlphaGenome has no dedicated command-line tool. Instead you use its Python API — either
-interactively or from a script — and run it with `run_alphagenome`, which executes
-Python inside a container on the GPU. `run_alphagenome my_script.py` runs a script;
-`run_alphagenome` with no argument opens an interactive Python session.
+AlphaGenome has no dedicated command-line tool. Instead you use its Python API — either interactively or from a script — and run it with `run_alphagenome`, which executes Python inside a container on the GPU. `run_alphagenome my_script.py` runs a script; `run_alphagenome` with no argument opens an interactive Python session.
 
 ### Load the module
 
@@ -104,15 +85,13 @@ alphagenome_project/
 
 ### Writing an analysis script
 
-A complete working example is provided at `$AG_EXAMPLES_DIR/variant_pred.py`. Copy it as a
-starting point:
+A complete working example is provided at `$AG_EXAMPLES_DIR/variant_pred.py`. Copy it as a starting point:
 
 ```bash
 cp $AG_EXAMPLES_DIR/variant_pred.py .
 ```
 
-It reads `AG_MODELS_DIR` and `AG_REFERENCE_DIR` from the environment, builds the model, scores a
-variant, and writes a plot (`pv.png`). The essential structure:
+It reads `AG_MODELS_DIR` and `AG_REFERENCE_DIR` from the environment, builds the model, scores a variant, and writes a plot (`pv.png`). The essential structure:
 
 ```python
 import os
@@ -148,15 +127,14 @@ For the full API and more examples, see the official
 
 ### Interactive development (idev)
 
-Grab a GPU node with `idev` (queue `gh` on Vista, `h100` on Stampede3), load the module, and set
-your weights:
+Grab a GPU node with `idev` (queue `gh` on Vista, `h100` on Stampede3), load the module, and set your weights:
 
-```bash
-idev -p gh -N 1 -t 01:00:00  # request 1 Vista Grace-Hopper GPU node for 1 hour
-
-module use /scratch/tacc/apps/bio/alphagenome/modulefiles
-module load alphagenome/0.3.0-ctr
-export AG_MODELS_DIR=$WORK/alphagenome/models
+```cmd-line
+login1$ idev -p gh -N 1 -t 01:00:00  # request 1 Vista Grace-Hopper GPU node for 1 hour
+...
+c123-456$ module use /scratch/tacc/apps/bio/alphagenome/modulefiles
+c123-456$ module load alphagenome/0.3.0-ctr
+c123-456$ export AG_MODELS_DIR=$WORK/alphagenome/models
 ```
 
 From there you can work interactively:
@@ -172,7 +150,9 @@ An example job script is provided in `$AG_EXAMPLES_DIR`. A minimal batch job:
 
 #### Vista
 
-```bash
+Modify the following job script for use on Stampede3.
+
+```job-script
 #!/bin/bash
 #SBATCH -J alphagenome
 #SBATCH -o alphagenome.%j.out
@@ -181,7 +161,7 @@ An example job script is provided in `$AG_EXAMPLES_DIR`. A minimal batch job:
 #SBATCH -N 1
 #SBATCH -n 1
 #SBATCH -t 01:00:00
-#SBATCH -A your-project       # <-- your allocation
+#SBATCH -A your-project       # your allocation
 
 module use /scratch/tacc/apps/bio/alphagenome/modulefiles
 module load alphagenome/0.3.0-ctr
@@ -193,8 +173,7 @@ run_alphagenome variant_pred.py
 
 ##### Large sequences: unified memory (Vista)
 
-On Vista's GH200, you can let the GPU spill to host RAM for very long sequences by exporting these
-before `run_alphagenome`:
+On Vista's GH200, you can let the GPU spill to host RAM for very long sequences by setting and exporting the following environment variables prior to running `run_alphagenome`:
 
 ```bash
 export XLA_PYTHON_CLIENT_PREALLOCATE=false
@@ -205,7 +184,9 @@ export XLA_CLIENT_MEM_FRACTION=3.2
 
 #### Stampede3
 
-```bash
+Modify the following job script for use on Stampede3.
+
+```job-script
 #!/bin/bash
 #SBATCH -J alphagenome
 #SBATCH -o alphagenome.%j.out
@@ -224,8 +205,13 @@ cp $AG_EXAMPLES_DIR/variant_pred.py .
 run_alphagenome variant_pred.py
 ```
 
-Submit with `sbatch alphagenome.slurm`. Outputs (such as `pv.png`) are written to the directory
-you submitted from.
+Submit your job script on the command-line:
+
+```cmd-line
+$ sbatch alphagenome.slurm
+```
+
+Program outputs, such as `pv.png`, are written to the directory you submitted from.
 
 ## Citation { #citation }
 
@@ -243,11 +229,11 @@ and acknowledge:
 
 ## References { #refs }
 
-- AlphaGenome source code: <https://github.com/google-deepmind/alphagenome_research>
-- AlphaGenome documentation: <https://www.alphagenomedocs.com/>
-- Model weights (Kaggle): <https://www.kaggle.com/models/google/alphagenome>
-- Model weights (Hugging Face): <https://huggingface.co/collections/google/alphagenome>
-- Model Terms of Use: <https://deepmind.google.com/science/alphagenome/model-terms>
-- Community: <https://www.alphagenomecommunity.com>
+* [AlphaGenome source code](https://github.com/google-deepmind/alphagenome_research)
+* [AlphaGenome documentation](https://www.alphagenomedocs.com/)
+* [Model weights (Kaggle)](https://www.kaggle.com/models/google/alphagenome)
+* [Model weights (Hugging Face)](https://huggingface.co/collections/google/alphagenome)
+* [Model Terms of Use](https://deepmind.google.com/science/alphagenome/model-terms)
+* [AlphaGenome Community](https://www.alphagenomecommunity.com)
 
 {% include 'aliases.md' %}
