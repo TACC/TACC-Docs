@@ -1,5 +1,5 @@
 # AlphaGenome at TACC
-*Last update: August 10, 2026*
+*Last update: August 11, 2026*
 
 <img src="../imgs/alphagenome-logo.png" width="250" alt="AlphaGenome logo" class="align-right">  
 
@@ -39,13 +39,6 @@ Because of AlphaGenome's licensing restrictions, users must obtain the model wei
     ├── fold_2/
     └── fold_3/
     ```
-
-4. Set the module's environment variable to point at that directory in your shell or job script:
-
-    ```bash
-    export AG_MODELS_DIR=$WORK/alphagenome/models
-    ```
-
 !!! note
     TACC cannot distribute the AlphaGenome model weights. Each user must download their own after accepting the model terms.
 
