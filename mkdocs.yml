@@ -76,6 +76,7 @@ nav:
     - ABAQUS : software/abaqus.md
     - AlphaFold2 : software/alphafold.md
     - AlphaFold3 : software/alphafold3.md
+    - AlphaGenome : software/alphagenome.md
     - ANSYS: software/ansys.md
     - CD Tools: software/cdtools.md
     - Gaussian: software/gaussian.md
