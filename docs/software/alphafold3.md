@@ -18,9 +18,9 @@ We encourage researchers interested in making protein structure predictions with
 
 HPC Resource | Latest Version
 -- | --
-Lonestar6 | AlphaFold3: v3.0.4<br>**Data**: `/scratch/tacc/apps/bio/alphafold3/3.0.4/data`<br>**Examples**: `/scratch/tacc/apps/bio/alphafold3/3.0.4/examples`<br>**Module**: `/scratch/tacc/apps/bio/alphafold3/modulefiles`
-Frontera | AlphaFold3: v3.0.2<br>**Data**: `/scratch2/projects/bio/alphafold3/3.0.2/data`<br>**Examples**: `/scratch2/projects/bio/alphafold3/3.0.2/examples`<br>**Module**: `/scratch2/projects/bio/alphafold3/modulefiles`
-Vista | AlphaFold3: v3.0.4<br>**Data**: `/scratch/tacc/apps/bio/alphafold3/3.0.4/data`<br>**Examples**: `/scratch/tacc/apps/bio/alphafold3/3.0.4/examples`<br>**Module**: `/scratch/tacc/apps/bio/alphafold3/modulefiles`
+Lonestar6 | AlphaFold3: v3.0.4<br>**Data**: `/scratch/tacc/apps/bio/alphafold3/3.0.4/data`<br>**Examples**: `/scratch/tacc/apps/bio/alphafold3/examples`<br>**Module**: `/scratch/tacc/apps/bio/alphafold3/modulefiles`
+Frontera | AlphaFold3: v3.0.2<br>**Data**: `/scratch2/projects/bio/alphafold3/3.0.2/data`<br>**Examples**: `/scratch2/projects/bio/alphafold3/examples`<br>**Module**: `/scratch2/projects/bio/alphafold3/modulefiles`
+Vista | AlphaFold3: v3.0.4<br>**Data**: `/scratch/tacc/apps/bio/alphafold3/3.0.4/data`<br>**Examples**: `/scratch/tacc/apps/bio/alphafold3/examples`<br>**Module**: `/scratch/tacc/apps/bio/alphafold3/modulefiles`
 Horizon | *Coming soon*
 
 ## Access
