@@ -1,14 +1,11 @@
 # Horizon User Guide 
-*Last update: July 24, 2026*
+*Last update: August 12, 2026*
 
----
-*This user guide is in progress*
----
 
 ## Notices { #notices }
 
+* *This user guide is in progress*
 * Horizon is still limited only to internal users. (07/24/2026)
-* See the latest TACC Announcement regarding [Horizon opportunities](https://tacc.utexas.edu/news/user-updates/107622/). (04/17/2026)
 * **[Subscribe][TACCSUBSCRIBE] to Horizon User News**. Stay up-to-date on Horizon's status, scheduled maintenances and other notifications.  (04/15/2026) 
 {% include 'include/ai.md' %}
 
@@ -18,9 +15,9 @@ Horizon is a National Science Foundation-funded system that is part of the the L
 
 ### Allocations { #intro-allocations }
 
-* NAIRR: NAIRR <https://nairrpilot.org/>
-* TxRAS: Submit to opportunities, including LRAC at <https://submit-tacc.xras.org/>
-* See the latest TACC Announcement regarding [Horizon opportunities](https://tacc.utexas.edu/news/user-updates/107622/). 
+* [LCCF Allocations](https://lccf.tacc.utexas.edu/allocations/)
+* [National Artificial Intelligence Research Resource Pilot (NAIRR)](https://nairrpilot.org/)
+* [TxRAS](https://submit-tacc.xras.org) 
 
 
 
@@ -184,4 +181,5 @@ Reminder: A Grace Blackwell node contains 1 Grace CPU and 2 Blackwell GPUs.
 [DOWNLOADCYBERDUCK]: https://cyberduck.io/download/ "Download Cyberduck"
 [CYBERDUCK]: https://cyberduck.io "Download Cyberduck"
 [TACCSOFTWARELIST]: https://tacc.utexas.edu/use-tacc/software-list/ "TACC Software List"
-[TACCGAUSSIANAGREEMENT]: https://tacc.utexas.edu/taccdocs/TACC_GAUSSIAN_Usage_Agreement.pdf "TACC GAUSSIAN Usage Agreement"
+[TACCGAUSSIANAGREEMENT]: https://docs.tacc.utexas.edu/taccdocs/TACC_GAUSSIAN_Usage_Agreement.pdf "TACC GAUSSIAN Usage Agreement"
+
