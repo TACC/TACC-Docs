@@ -1,22 +1,13 @@
 # Frontera User Guide
-*Last update: April 24, 2026*
-
-<!-- **Important**: (10-15-2024) Please note [TACC's new SU charge policy](#sunotice). -->
-
-<!-- SDL <a href="https://frontera-xortal.tacc.utexas.edu/user-guide/docs/user-guide.pdf">Download PDF <i class="fa fa-file-pdf-o"></i></a></span>-->
-## Notices
-
-{% include 'include/ai.md' %}
-
-* Frontera's `/scratch1` file system has developed persistent problems that have led to frequent system downtimes.  The `/scratch1` file system has now been mounted as a read-only file system and will be decommissioned on December 3rd.  You will need to migrate any wanted data in `/scratch1` to your [new Frontera scratch file system](#scratch-notice) immediately.  Going forward, users will have access to either the `/scratch2` or `/scratch3` file system, but not both.  See more [below](#scratch-notice).  (11-17-2025)
+*Last update: September 16, 2026*
 
 
+!!! warning
+	[Frontera Queues Closing October 15th](https://tacc.utexas.edu/news/user-updates/107639/) (09/16/2026)
 
-<!-- * Users are limited to using one and only one of Frontera's `scratch` file systems. (10/22/2025) -->
-<!-- 
-* Navigate to the [Frontera Web Portal](https://frontera-portal.tacc.utexas.edu/) to manage your Frontera allocations and access your [Frontera Workbench](https://frontera-portal.tacc.utexas.edu/workbench/dashboard). (04/19/2023)
+	After seven years and billions of computing cycles, Frontera will be riding off into decommission sunset.  On October 15, 2026, the Frontera queues will be closed permanently.  You will still be able to access Frontera’s file systems to transfer any data needed.
 
--->
+
 ## Introduction { #intro } 
 
 Frontera is funded by the National Science Foundation (NSF) through award #1818253, [Computing for the Endless Frontier](https://www.nsf.gov/awardsearch/showAward?AWD_ID=1818253). Frontera is the largest cluster dedicated to open science in the United States and is the Texas Advanced Computing Center's latest flagship system. <!-- Frontera enters production in early summer 2019, building on the successes of the Stampede1 and Stampede2 systems.  -->
@@ -29,7 +20,7 @@ Frontera is also breaking new ground in its support for science applications. Du
 
 <!-- Following the initial CPU-only rollout, the system will also provide users with access to the latest accelerator cards from NVIDIA with outstanding single-precision support especially targeted for machine-learning workloads. Later this summer a separate system will enter production to provide users with access to the latest double-precision HPC cards from NVIDIA, designed to serve more "traditional" science and engineering simulation needs.   -->
 
-Frontera's design also includes a totally new integration with web services, and provides users with new options for data storage and access to emerging computer technologies. The award includes an innovative partnership with the three major commercial cloud providers, Google, Amazon and Microsoft, to provide users with additional high-integrity storage, sustainable archive options, and to keep the project regularly refreshed with novel computing technologies. 
+Frontera's design also includes a totally new integration with web services, and provides users with new options for data storage and access to emerging computer technologies. <!-- The award includes an innovative partnership with the three major commercial cloud providers, Google, Amazon and Microsoft, to provide users with additional high-integrity storage, sustainable archive options, and to keep the project regularly refreshed with novel computing technologies. -->
 
 ## Quickstart { #quickstart }
 
@@ -1697,7 +1688,6 @@ To test your installation of PyTorch we point you to a few benchmark calculation
 	c123-456$ ibrun -np 2 ./run.sh c123-456 2
 	```
 
-
 ## Visualization and VNC Sessions { #vis }
 
 <p class="introtext">Frontera uses Intel's Cascade Lake (CLX) processors for all visualization and rendering operations. We use the Intel OpenSWR library to render raster graphics with OpenGL, and the Intel OSPRay framework for ray traced images inside visualization software. OpenSWR can be loaded by executing <code>module load swr</code>.</p>
@@ -1897,116 +1887,6 @@ You can launch a Jupyter session via the Frontera User Portal.
 * [Jupyter Documentation](https://jupyter-notebook.readthedocs.io/en/stable/notebook.html)
 
 
-## Cloud Services Integration { #cloudservices }
-
-Frontera's design includes a totally new integration with cloud services, providing users with new options for data storage and access to emerging computing technologies. 
-
-For projects utilizing data of exceptional importance - such as may result from an especially difficult physical experiment or a long-running simulation that is impractical to repeat - users have access to a cloud-based storage mirror that provides protection beyond the level already provided with TACC's redundant archive storage system. This capability relies upon the storage solutions of our cloud partners Microsoft, Google, and Amazon. For users who need this level of data protection, we provide storage capacity during the term of Frontera's operation by awarding credits for users to store data with our cloud partners. 
-
-Users may access emerging computational capabilities (such as Tensor processors) that run on specially-designated processors at Google, Microsoft, and Amazon. This allows us to regularly refresh the project with novel computing technologies, while providing a real-world platform for users to explore the future of their science applications.
-
-!!!note 
-	04/30/2025 TACC no longer offers Microsoft's Azure service.
-
-### Google Cloud Platform { #cloudservices-google }
-
-TACC now offers Frontera users access to Google Cloud Platform.
-
-#### Request Access { #cloudservices-google-requestaccess }
-
-Please [create a support ticket][HELPDESK] requesting access to TACC Frontera's Google Cloud Platform. Do not proceed with the following steps until an admin has responded and configured your account appropriately.
-
-
-1. Install
-
-	Follow these detailed instructions to install the Google Cloud SDK on Linux platforms: [Installing Google Cloud SDK](https://cloud.google.com/sdk/docs/install#linux).
-
-1. Download and extract
-
-	```cmd-line
-	login1$ curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-335.0.0-linux-x86_64.tar.gz
-	login1$ tar -xzf google-cloud-sdk-335.0.0-linux-x86_64.tar.gz
-	```
-
-1. Authenticate and configure
-
-	```cmd-line
-	login1$ ./google-cloud-sdk/bin/gcloud auth login
-	```
-
-	* You'll be presented a URL to paste into a browser; Log in using the appropriate Google account. 
-	* You'll then be presented an authentication string. Copy and paste this string when promped with: "Enter verification code:".  
-	* Configure the CLI for the correct project. For Frontera, use `ut-tacc-np-sandbox-1`.
-
-	```cmd-line
-	login1$ ./google-cloud-sdk/bin/gcloud config set project ut-tacc-np-sandbox-1
-	```
-
-#### Storage basics { #cloudservices-google-storage }
-
-Learn the basic `gsutil` commands: [Quickstart: Using the `gsutil` tool](https://cloud.google.com/storage/docs/quickstart-gsutil)
-
-**Example: list storage elements:**
-
-```cmd-line
-login1$ ./google-cloud-sdk/bin/gsutil ls
-```
-
-### Amazon Web Services (AWS) { #cloudservices-amazon }
-
-TACC now offers Frontera users access to Amazon Web Services. 
-
-#### Request Access { #cloudservices-amazon-requestaccess }
-
-Please [create a support ticket][HELPDESK] requesting access to TACC Frontera's Amazon Web Services. Do not proceed with the following steps until an admin has responded and configured your account appropriately.
-
-#### Log In to the Console { #cloudservices-amazon-login }
-
-If you are a new user then you should have received an email "Welcome to Amazon Web Services" containing a temporary password. Follow the instructions below to set up your AWS account.
-
-Log in to the [Amazon Web Services Console](https://console.aws.amazon.com) with the following information: 
-
-* Enter "203416866386" in the "Account ID" field 
-* Enter your [Frontera User Portal](https://frontera-portal.tacc.utexas.edu/) ID in the "IAM user name" field.
-* New users enter the temporary password contained in your welcome email, then reset your password.  
-	<figure id="login"><img alt="AWS-login" src="../imgs/frontera/AWS-login.png"> 
-	<figcaption></figcaption></figure>
-
-#### Add MFA { #cloudservices-amazon-mfa }
-
-Follow these instructions to enable MFA on your account. **Do not navigate away from the MFA window during the pairing process, or else your account may be left in an unstable state.** 
-
-1. From the top menu "username@2034-1686-6386", select "My Security Credentials"  
-	<figure id="securitycredentials"><img alt="AWS-securitycredentials" src="../imgs/frontera/AWS-securitycredentials.png"> 
-	<figcaption></figcaption></figure>
-
-1. Click on the "Assign MFA device" button in the "Multi-Factor Authentication (MFA)" section. Then, select the "Virtual MFA device" option and click "Continue".  
-	<figure id="managemfadevice"><img alt="AWS-managemfadevice" src="../imgs/frontera/AWS-managemfadevice.png"> 
-	<figcaption></figcaption></figure>
-
-1. Choose an Authentication method. Scroll down to see a list of free options. Many TACC users employ Duo Mobile or Google Authenticator. Open the authenticator app of your choice, scan the displayed QR code to add the account, then input the MFA codes as directed. 
-	<figure id="mfaapplications"><img alt="AWS-mfaapplications" src="../imgs/frontera/AWS-mfaapplications.png"> 
-	<figcaption></figcaption></figure>
-
-1. Once the pairing process is completed, sign out and then log back in. **You will not be able to successfully proceed to the next step without doing so.**
-
-#### Add CLI and API access key { #cloudservices-amazon-keys }
-
-!!! important
-	You must set up MFA and use it to log in to the AWS console prior to viewing or editing your access keys.
-
-1. Once again, select "My Security Credentials" from the top menu, then click the "Create access key" button in the "Access keys for CLI, SDK, & API access" section.  
-	<figure id="accesskeyavailable"><img alt="AWS-accesskeyavailable" src="../imgs/frontera/AWS-accesskeyavailable.png"> 
-	<figcaption></figcaption></figure>
-
-1. Install CLI: Follow the instructions at <https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html>.
-1. For more info see [Managing Access Keys for IAM Users](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html)
-
-#### All Set { #cloudservices-amazon-allset }
-
-Now that your account is set up, you have access to the AWS S3 functionality. See the full documentation at <https://docs.aws.amazon.com/s3/index.html>.
-
-
 ## Containers { #containers }
 
 Frontera provides seamless, integrated support for the use of Singularity containers (both custom containers made by users and containers from standard repositories). The use of containers greatly enhances the number of people who contribute to the Frontera software base, promotes portability with other resources, and greatly expands the supported software catalog beyond that found on TACC's other HPC systems.
@@ -2100,3 +1980,5 @@ TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for 
 [DOWNLOADCYBERDUCK]: https://cyberduck.io/download/ "Download Cyberduck"
 [CYBERDUCK]: https://cyberduck.io "Download Cyberduck"
 [TACCSOFTWARELIST]: https://tacc.utexas.edu/use-tacc/software-list/ "TACC Software List"
+[TACCGAUSSIANAGREEMENT]: https://docs.tacc.utexas.edu/taccdocs/TACC_GAUSSIAN_Usage_Agreement.pdf "TACC GAUSSIAN Usage Agreement"
+
