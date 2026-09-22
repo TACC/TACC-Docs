@@ -1,5 +1,5 @@
 # Stampede3 User Guide 
-*Last update: June 2, 2026*
+*Last update: September 18, 2026*
 
 ## Notices { #notices }
 
@@ -414,7 +414,25 @@ pvc                    1        4  2-00:00:00          4          2           4
 skx                    1      256  2-00:00:00        256         40          60
 skx-dev                1       16    02:00:00         16          2           4
 spr                    1       32  2-00:00:00         40         24          36
--- 
+--
+09/17/2026
+[slindsey@login3 ~]$ <1001> qlimits
+Current queue/partition limits on TACC's stampede3 system:
+
+Name             MinNode  MaxNode     MaxWall  MaxNodePU  MaxJobsPU   MaxSubmit
+amd-rtx                1        1  2-00:00:00          1          1           2 UT Robotics don't publish
+h100                   1        4  2-00:00:00          4          2           4
+icx                    1       32  2-00:00:00         48         12          20
+nvdimm                 1        1  2-00:00:00          1          2           4
+pvc                    1        4  2-00:00:00          4          2           4
+rtx-small              1        1  2-00:00:00          1          1           2 UT Robotics don't publish
+skx                    1      256  2-00:00:00        256         40          60
+skx-dev                1       16    02:00:00         16          2           4
+spr                    1       64  2-00:00:00         96         24          36
+--> 
+
+<!--
+04/15/2026
 [slindsey@login1 ~]$ <1004>  m /usr/local/etc/queue.map
 # stampede3
 amd-rtx:8.0
@@ -425,6 +443,30 @@ pvc:3.0
 skx:1.0
 skx-dev:1.0
 spr:2.0
+--
+09/17/2026
+[slindsey@login3 ~]$ <1002> m /usr/local/etc/queue.map
+# stampede3
+skx-dev:1.0
+skx:1.0
+nvdimm:4.0
+icx:1.5
+spr:2.0
+pvc:3.0
+h100:4.0
+rtx-small:2.0
+amd-rtx:8.0
+systest-skx:0.0
+systest-nvdimm:0.0
+systest-icx:0.0
+systest-spr:0.0
+systest-pvc:0.0
+systest-grx:0.0
+systest-h100:0.0
+systest-amd-rtx:0.0
+systest-spr400:0.0
+systest-rtx-small:0.0
+simcenter:1.0
 -->
 
 

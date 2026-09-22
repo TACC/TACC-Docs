@@ -9,31 +9,34 @@ Stampede3's job scheduler is the <a href="http://schedmd.com">Slurm Workload Man
     TACC's `qlimits` utility will display the latest queue configurations.
 
 <!--
-04/15/2026
-[slindsey@login1 ~]$ <1003> qlimits
+09/17/2026
+[slindsey@login3 ~]$ <1001> qlimits
+Current queue/partition limits on TACC's stampede3 system:
 
 Name             MinNode  MaxNode     MaxWall  MaxNodePU  MaxJobsPU   MaxSubmit
-amd-rtx                1        1  2-00:00:00          1          1           2
+amd-rtx                1        1  2-00:00:00          1          1           2 UT Robotics don't publish
 h100                   1        4  2-00:00:00          4          2           4
 icx                    1       32  2-00:00:00         48         12          20
 nvdimm                 1        1  2-00:00:00          1          2           4
 pvc                    1        4  2-00:00:00          4          2           4
+rtx-small              1        1  2-00:00:00          1          1           2 UT Robotics don't publish
 skx                    1      256  2-00:00:00        256         40          60
 skx-dev                1       16    02:00:00         16          2           4
-spr                    1       32  2-00:00:00         40         24          36
--- 
-[slindsey@login1 ~]$ <1004>  m /usr/local/etc/queue.map
+spr                    1       64  2-00:00:00         96         24          36
+
+09/17/2026
+[slindsey@login3 ~]$ <1002> m /usr/local/etc/queue.map
 # stampede3
 amd-rtx:8.0
 h100:4.0
 icx:1.5
 nvdimm:4.0
 pvc:3.0
+rtx-small:2.0
 skx:1.0
 skx-dev:1.0
 spr:2.0
 -->
-
 
 <a id="queues"></a>
 #### Table 8. Production Queues { #table8 }
