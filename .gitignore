@@ -1,5 +1,8 @@
-# Ignore site
+# Dist
 site/
+
+# IDEs
+.vscode/
 
 # Temporary files
 .DS_Store
