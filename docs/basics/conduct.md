@@ -1,5 +1,5 @@
 # Good Conduct on TACC's HPC Systems { #conduct }
-*Last Update: April 28, 2026*
+*Last Update: July 6, 2026*
 
 ## Notices 
 
@@ -7,10 +7,9 @@
 * VSCode users please [see below](#vscode) for updated guidance. (11/05/2025) 
 
 
-**You share TACC's HPC resources with many, sometimes hundreds, of other users, and what you do on the resource affects others**. All TACC account holders  must follow a set of good practices which entail limiting activities that may impact the system for other users. Exercise good conduct to ensure that your activity does not adversely impact the resource and the research community with whom you share it.
+**You share TACC's HPC resources with many, sometimes hundreds, of other users, and what you do on the resource affects other users**. All TACC account holders  must follow a set of good practices which entail limiting activities that may impact the system for other users. Exercise good conduct to ensure that your activity does not adversely impact the resource and the research community with whom you share it.
 
-TACC staff has developed the following guidelines to good conduct on all TACC resources. Please familiarize yourself with all the following guidelines.
-
+Please familiarize yourself with the following guidelines to good conduct on all TACC resources. 
 
 
 ## 1. Do Not Run Jobs on the Login Nodes { #conduct-loginnodes }
@@ -36,15 +35,7 @@ All batch jobs and executables, as well as development and debugging sessions, m
 
 Please be aware of the following policies regarding the use of Artificial Intelligence agents and tools on TACC resources.
 
-!!! warning
-	Failure to follow these guidelines will result in degraded access to TACC resources or administrative action to protect system stability.
-
 * **All AI-assisted workloads must be executed on compute nodes only**.  
-
-<!-- This includes: * Polling the login nodes for job status  -->
-	
-	
-
 * YOU are responsible for all your processes initiated on TACC resources, including those launched via AI tools or agents.
 * All Service Units (SUs) consumed by AI-related workloads will be charged against your allocation.
 
@@ -53,15 +44,16 @@ Suggested Workflow:
 1. Grab one or more compute nodes via TACC's [`idev`][TACCIDEV] utility.
 1. Once your `idev` session begins, then use your AI tool to connect to the alloted compute node/s.
 
+!!! warning
+	Failure to follow these guidelines will result in degraded access to TACC resources or administrative action to protect system stability.
+
 
 ### VSCode Users { #vscode }
 
-VSCode consumes significant resources when running and can interfere with the needs of a multi-user environment such as the shared login nodes on each resource.  TACC staff encourages all VSCode users to run the program on a compute node and not any of the login nodes.
+VSCode consumes significant resources when running and can interfere with the needs of a multi-user environment such as each resource's shared login nodes.  TACC staff encourages all VSCode users to run the program on a compute node and not any of the login nodes.
 
 !!! warning
-    If you choose to run VSCode on the login node and it begins to impact the system or other users, your account will be suspended and we will ask you to move to a compute node.
-
-    Also note that VSCode access is **prohibited** on TACC's Ranch and Corral storage resources.
+    Using VSCode to access TACC's Ranch and Corral storage resources is **prohibited**.
 
 
 ### Dos &amp; Don'ts on the Login Nodes { #conduct-loginnodes-examples }
@@ -89,7 +81,7 @@ VSCode consumes significant resources when running and can interfere with the ne
 
 * **Do not launch too many simultaneous processes;** 
 
-	While it's fine to compile on a login node, a command like "`make -j 16`" (which compiles on 16 cores) may impact other users.  Similarly, do not launch to many transfer sessions on the login nodes. 
+	While it's fine to compile on a login node, a command like "`make -j 16`" (which compiles on 16 cores) may impact other users.  Similarly, do not launch too many transfer sessions on the login nodes. 
 
 <!--
 	!!! hint "Do This"
