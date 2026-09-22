@@ -1,4 +1,4 @@
-FROM python:3.11-bullseye as python-base
+FROM python:3.12-bookworm as python-base
 
 LABEL maintainer="TACC COA CMD <coa-cmd@tacc.utexas.edu>"
 
