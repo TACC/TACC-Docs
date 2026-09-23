@@ -1,5 +1,5 @@
 # Frontera User Guide
-*Last update: September 16, 2026*
+*Last update: September 18, 2026*
 
 
 !!! warning
@@ -771,67 +771,40 @@ Frontera's `flex` queue offers users a low cost queue for lower priority/node co
     TACC's `qlimits` utility will display the latest queue configurations.  
 
 <!--
-01/20/2026
-frontera2(1)$ qlimits
-           Name       MinNode       MaxNode   PreemptExemptTime     MaxWall     MaxNodePU MaxJobsPU MaxSubmit
-           flex             1           128            01:00:00  2-00:00:00          2048        15        60
-    development                          40                        02:00:00            40         2         2
-         normal             1           512                      2-00:00:00          1280        75       200
-          large           513          2048                      2-00:00:00          3072         2         8
-          debug                        8368                      2-00:00:00          8368        30        60
-            rtx                          16                      2-00:00:00            32        20        36
-        rtx-dev                           2                        02:00:00             2         2         2
-         nvdimm                           4                      2-00:00:00             6         4         8
-          small             1             2                      2-00:00:00            30        22        80
-          grace                          30                      5-00:00:00            30        30       100
-         corral                         512                      2-00:00:00          2048       100       200
-             gh                           1                        02:00:00             1         2         2
+09/18/2026
+(base) frontera2(1)$ qlimits
+Current queue/partition limits on TACC's Frontera system:
 
-frontera2(2)$ m /usr/local/etc/queue.map
-flex:0.8
-development:1.0
-normal:1.0
-large:1.0
-rtx:3.0
-rtx-dev:3.0
-nvdimm:2.0
-small:1.0
--->
-<!--
-(base) frontera1(1)$ qlimits
            Name       MinNode       MaxNode   PreemptExemptTime     MaxWall     MaxNodePU MaxJobsPU MaxSubmit
            flex             1           128            01:00:00  2-00:00:00          2048        15        60
     development                          40                        02:00:00            40         2         2
-         normal             1           512                      2-00:00:00          1280        75       200
+         normal             1           512                      2-00:00:00          2048        75       200
           large           513          2048                      2-00:00:00          3072         2         8
           debug                        8368                      2-00:00:00          8368        30        60
-            rtx                          16                      2-00:00:00            32        20        36
+            rtx                          24                      2-00:00:00            32        24        36
         rtx-dev                           2                        02:00:00             2         2         2
          nvdimm                           4                      2-00:00:00             6         4         8
-          small             1             2                      2-00:00:00            30        22        80
-          grace                          30                      5-00:00:00            30        30       100
-         corral                         512                      2-00:00:00          2048       100       200
-             gh                           1                        02:00:00             1         2         2
---
-(base) frontera1(2)$  m /usr/local/etc/queue.map
+          small             1             2                      2-00:00:00            25        22        80
+
+09/18/2026
+(base) frontera2(2)$ m /usr/local/etc/queue.map
 # frontera
 flex:0.8
-development:1.0
 normal:1.0
-large:1.0
+development:1.0
 serial:1.0
-small:1.0
+large:1.0
 rtx:3.0
 rtx-dev:3.0
-rtxsystest:0.0
 nvdimm:2.0
+small:1.0
 -->
 
 | Queue Name | Min-Max Nodes per Job<br>(assoc'd cores) | Pre-empt<br>Exempt Time | Max Job Duration | Max Nodes per User | Max Jobs per User | Max Submit | Charge Rate<br>per node-hour
 | ------                        | -----                             | ----        | ----             | ----        | ----   |    | ----
-| <code>flex&#42;</code>        | 1-128 nodes<br>(7,168 cores)      | 1 hour      | 48 hrs           | 6400 nodes  | 15     |  60 | .8 Service Units (SUs) 
-| <code>development</code>      | 1-40 nodes<br>(2,240 cores)       | N/A         | 2 hrs            |   40 nodes  |  1     |   2 | 1 SU 
-| <code>normal</code>           | 3-512 nodes<br>(28,672 cores)     | N/A         | 48 hrs           | 1024 nodes  | 75     | 200 | 1 SU   
+| <code>flex&#42;</code>        | 1-128 nodes<br>(7,168 cores)      | 1 hour      | 48 hrs           | 2048 nodes  | 15     |  60 | .8 Service Units (SUs) 
+| <code>development</code>      | 1-40 nodes<br>(2,240 cores)       | N/A         | 2 hrs            |   40 nodes  |  2     |   2 | 1 SU 
+| <code>normal</code>           | 3-512 nodes<br>(28,672 cores)     | N/A         | 48 hrs           | 2048 nodes  | 75     | 200 | 1 SU   
 | <code>large&#42;&#42;</code>  | 513-2048 nodes<br>(114,688 cores) | N/A         | 48 hrs           | 3072 nodes  |  1     |   8 | 1 SU
 | <code>rtx</code>              | 16 nodes                          | N/A         | 48 hrs           |   32 nodes  | 12     |  36 | 3 SUs
 | <code>rtx-dev</code>          | 2 nodes                           | N/A         | 2 hrs            |    2 nodes  |  1     |   2 | 3 SUs

@@ -1,5 +1,5 @@
 # Frontera User Guide
-*Last update: September 16, 2026*
+*Last update: September 18, 2026*
 
 
 !!! warning

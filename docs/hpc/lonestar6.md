@@ -1,5 +1,5 @@
 # Lonestar6 User Guide
-*Last update: June 9, 2026*
+*Last update: September 18, 2026*
 
 ## Notices 
 
@@ -733,27 +733,39 @@ The jobs in this queue consume 1/7 the resources of a full node.  Jobs are charg
     Any job requesting specific compute nodes via batch scripts, `idev` invocations, or MPI hostfiles will be deleted from the queue.
 
 <!--
-login1.ls6(568)$ qlimits
+09/18/2026
+login2.ls6(658)$ qlimits
+Current queue/partition limits on TACC's ls6 system:
+
 Name             MinNode  MaxNode     MaxWall  MaxNodePU  MaxJobsPU   MaxSubmit
 development            1        8    02:00:00          8          1           3
 gpu-a100               1        8  2-00:00:00         12          8          32
 gpu-a100-dev           1        2    02:00:00          2          1           3
 gpu-a100-small         1        1  2-00:00:00          3          3          12
 gpu-h100               1        1  2-00:00:00          1          1           4
+grace                  1       64  2-00:00:00         64         20         100 - reserved not in UG
+grace-serial           1       64  5-00:00:00         64         20          80 - reserved not in UG
 large                 65      256  2-00:00:00        256          1           4
 normal                 1       64  2-00:00:00         64         20         100
 vm-small               1        1  2-00:00:00          4          4          16
+login2.ls6(659)$
 --
-login1.ls6(569)$ m /usr/local/etc/queue.map
-# ls6
-development:1.0
-gpu-a100:3.0
-gpu-a100-dev:3.0
-gpu-a100-small:1.5
-gpu-h100:6.0
-large:1.0
+09/18/2026
+login2.ls6(660)$ m !$
+m /usr/local/etc/queue.map
+# lonestar6
+systest:0.0
 normal:1.0
+development:1.0
+large:1.0
+debug:1.0
+gpu-a100:3.0
+gpu_a100:3.0
 vm-small:0.143
+gpu-a100-dev:3.0
+gpu-a100-shared:1.0
+gpu-h100:6.0
+gpu-a100-small:1.5
 -->
 
 <a id="queues"></a>
