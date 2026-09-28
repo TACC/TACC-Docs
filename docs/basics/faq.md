@@ -1,5 +1,5 @@
 # User Services Frequently Asked Questions
-*Last update: May 6, 2026*
+*Last update: September 28, 2026*
 
 
 * [Accounts and Access](#accounts)
@@ -15,6 +15,14 @@ ANSWER
 -->
 
 ## Accounts and Access { #accounts }
+
+/// details | I'm attempting to login to TACC with VSCode and I keep encountering the message "`bash: fork: retry: Resource temporarily unavailable`" error.  How can I log in?
+VSCode is notorious for launching too many login processes.   You must clean this up yourself by logging in with a terminal session and killing these extra/abandoned/unknown processes.
+///
+
+/// details | I can log into the TACC User Portal, but the same password doesn't work on Frontera/Lonestar6/Stampede3/Vista. How can I log in to my machine?
+Your account must be approved and associated with an active project in order to log on to resources associated with that project.  Make sure that your account has an active allocation.  Examine your allocations on the [TACC User Portal](https://tacc.utexas.edu/portal/projects).
+///
 
 /// details | I can log into the TACC User Portal, but the same password doesn't work on Frontera/Lonestar6/Stampede3/Vista. How can I log in to my machine?
 Your account must be approved and associated with an active project in order to log on to resources associated with that project.  Make sure that your account has an active allocation.  Examine your allocations on the [TACC User Portal](https://tacc.utexas.edu/portal/projects).   
