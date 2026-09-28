@@ -1,9 +1,15 @@
 # Globus Data Transfer Guide at TACC
-*Last update: March 17, 2026*
+*Last update: September 28, 2026*
 
 Globus is the preferred, safest, and fastest way to move very large datasets to and from TACC systems.  Globus minimizes user effort while maximizing throughput and reliability, especially over long‑distance or unstable networks.  TACC User Support recommends Globus for transferring very large datasets (e.g. 200 GB to many PB) to and from TACC and other research computing facilities. 
 
 For datasets &lt; 200GB, see the [TACC SSH-based Tools Guide](./ssh.md). 
+
+## Sharing Files
+
+Due to security and export restrictions, the Globus sharing feature for anonymous internet users is disabled on all TACC HPC systems.  Researchers that you wish to share data with will need a TACC userid and the permissions modified on your directory to allow access to your HPC systems directories.
+
+
 
 ## Using Globus
 
@@ -13,9 +19,8 @@ This document walks you through the steps required to set up access to Globus at
 
 To start using Globus, you need to do two things: Generate a unique identifier, or **ePPN**, for all Globus services, and enroll the machine you are transferring data to/from with Globus.  This can be your personal laptop or desktop, or a server to which you have access. Follow this one-time process to set up the Globus file transfer capability.
 
-
 !!! important 
-	You must use your institution's credentials and **not your personal email account (e.g. Google, Yahoo!, AOL)** when setting up Globus.  You will encounter problems with the transfer endpoints (e.g. Frontera, Stampede3, Corral, Ranch) if you use your personal account information.
+	You must use your institution's credentials and **not your personal email account (e.g. Google, Yahoo!, AOL)** when setting up Globus.  You will encounter problems with the transfer endpoints (e.g. Vista, Stampede3, Corral, Ranch) if you use your personal account information.
 
 
 ### Step 1. **Retrieve your Unique ePPN**.  { #step1 }
