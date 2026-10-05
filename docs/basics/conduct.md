@@ -44,7 +44,7 @@ Suggested Workflow:
 1. Grab one or more compute nodes via TACC's [`idev`][TACCIDEV] utility.
 1. Once your `idev` session begins, then use your AI tool to connect to the alloted compute node/s.
 
-!!! warning
+!!! caution
 	Failure to follow these guidelines will result in degraded access to TACC resources or administrative action to protect system stability.
 
 
@@ -52,7 +52,7 @@ Suggested Workflow:
 
 VSCode consumes significant resources when running and can interfere with the needs of a multi-user environment such as each resource's shared login nodes.  TACC staff encourages all VSCode users to run the program on a compute node and not any of the login nodes.
 
-!!! warning
+!!! caution
     Using VSCode to access TACC's Ranch and Corral storage resources is **prohibited**.
 
 

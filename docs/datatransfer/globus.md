@@ -36,7 +36,7 @@ Login to [CILogon](https://cilogon.org) and click on "User Attributes".  Make no
 
 Login to the [TACC Accounts Portal][TACCACCOUNTS], click "Account Information" in the left-hand menu, then add or edit your ePPN from Step 1.
 
-!!! warning
+!!! caution
 	The institution (ePPN) listed in your [TACC account profile](https://accounts.tacc.utexas.edu/account_info) must match the ePPN you are using to log into Globus.  
 
 

@@ -113,7 +113,7 @@ Like all other current TACC systems, Horizon employs the Slurm Workload Manager 
 
 ### Slurm Partitions (Queues) { #queues }
 
-!!! warning
+!!! caution
     **Queue limits are subject to change without notice.**
     Horizon admins may occasionally adjust queue settings in order to ensure fair scheduling for the entire user community.
     TACC's `qlimits` utility will display the latest queue configurations.

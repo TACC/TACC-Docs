@@ -726,7 +726,7 @@ The jobs in this queue consume 1/7 the resources of a full node.  Jobs are charg
     Frontera admins may occasionally adjust queue <!--the QOS--> settings in order to ensure fair scheduling for the entire user community.
     TACC's `qlimits` utility will display the latest queue configurations.
 
-!!! warning
+!!! caution
     **Queue Restrictions**
     Do not request specific nodes when submitting jobs without prior approval from staff.  Allow Slurm to allocate nodes as appropriate.
 
@@ -1234,7 +1234,7 @@ You can use `sbatch` to help manage workflows that involve multiple steps: the `
 login1$ sbatch --dependency=afterok:173210 myjobscript
 ```
 
-!!! warning
+!!! caution
 	It is not possible to add resources to a job (e.g. allow more time, increase number of nodes) once you've submitted the job to the queue.
 
 For more information see the [Slurm online documentation](http://www.schedmd.com). Note that you can use `$SLURM_JOBID` from one job to find the jobid you'll need to construct the `sbatch` launch line for a subsequent one. But also remember that you can't use `sbatch` to submit a job from a compute node.

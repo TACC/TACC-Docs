@@ -99,7 +99,7 @@ Since Old Ranch is a read-only file system, you must copy, not move, your data o
 
 Transfer speeds via either method are equivalent.
 
-!!! warning
+!!! caution
 	**Do not use VSCode to access or manage data on Ranch.**  
 
 <!-- **VSCode users: Accessing Ranch and managing transfers via VSCode is prohibited.**  Ranch is an archival file system, not a computational resource.  Please use a terminal application to manage your Ranch data.-->

@@ -305,7 +305,7 @@ Vista's job scheduler is the <a href="http://schedmd.com">Slurm Workload Manager
 
 
 <!-- Requested per Dan 5/18/26...we may also want to add this to the good conduct page.  -->
-!!! warning
+!!! caution
     **Queue Restrictions**
     Do not request specific nodes when submitting jobs without prior approval from staff.  Allow Slurm to allocate nodes as appropriate.
 
@@ -538,7 +538,7 @@ C448-004$
 
 Be sure to distinguish between internal Slurm replacement symbols (e.g. `%j` described above) and Linux environment variables defined by Slurm (e.g. `SLURM_JOBID`). Execute `env | grep SLURM` from within your job script to see the full list of Slurm environment variables and their values. You can use Slurm replacement symbols like `%j` only to construct a Slurm filename pattern; they are not meaningful to your Linux shell. Conversely, you can use Slurm environment variables in the shell portion of your job script but not in an `#SBATCH` directive.
 
-!!! warning 
+!!! caution 
 	For example, the following directive will not work the way you might think:
 	``` job-script
 	#SBATCH -o myMPI.o${SLURM_JOB_ID}   # incorrect
@@ -707,7 +707,7 @@ You can use `sbatch` to help manage workflows that involve multiple steps: the `
 login1$ sbatch --dependency=afterok:173210 myjobscript
 ```
 
-!!! warning
+!!! caution
 	It is not possible to add resources to a job (e.g. allow more time, increase number of nodes) once you've submitted the job to the queue.
 
 For more information see the [Slurm online documentation](http://www.schedmd.com). Note that you can use `$SLURM_JOBID` from one job to find the jobid you'll need to construct the `sbatch` launch line for a subsequent one. But also remember that you can't use `sbatch` to submit a job from a compute node.

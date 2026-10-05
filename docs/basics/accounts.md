@@ -32,7 +32,7 @@ To create a new account:
 1. If your account status is "Pending" then your account request will need further review by our User Services team. No action is required and a team member will reach to you.
 1. Once your account is "Active" log onto the [TACC User Portal][TACCUSERPORTAL] to view your allocation status.
 
-!!! warning 
+!!! caution 
 	An individual may not have more than one TACC account.  Shared accounts and/or multi-user accounts are strictly prohibited.  
 
 <!-- repeated above
