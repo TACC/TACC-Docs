@@ -15,7 +15,7 @@ In order to access any TACC compute or storage resource you must maintain an "Ac
 
 
 !!! tip
-	If your [account status](#table1) is "Active" and you still can't login, try [un-pairing and re-pairing your MFA device](https://docs.tacc.utexas.edu/basics/mfa/#unpair).
+	If your [account status](#table1) is "Active" and you still can't login, try [un-pairing and re-pairing your MFA device](/basics/mfa/#unpair).
 
 ## New Accounts { #newaccounts }
 
@@ -32,7 +32,7 @@ To create a new account:
 1. If your account status is "Pending" then your account request will need further review by our User Services team. No action is required and a team member will reach to you.
 1. Once your account is "Active" log onto the [TACC User Portal][TACCUSERPORTAL] to view your allocation status.
 
-!!! warning 
+!!! caution 
 	An individual may not have more than one TACC account.  Shared accounts and/or multi-user accounts are strictly prohibited.  
 
 <!-- repeated above
@@ -205,10 +205,10 @@ Login requirements: An "[Active](#active)" TACC Portal account AND belong to a p
 
 Currently our HPC resources consist of:
 
-*  <a href="http://docs.tacc.utexas.edu/hpc/frontera">Frontera</a>
-*  <a href="http://docs.tacc.utexas.edu/hpc/lonestar6">Lonestar6</a>
-*  <a href="http://docs.tacc.utexas.edu/hpc/stampede3">Stampede3</a>
-*  <a href="http://docs.tacc.utexas.edu/hpc/vista">Vista</a>
+*  <a href="/hpc/frontera">Frontera</a>
+*  <a href="/hpc/lonestar6">Lonestar6</a>
+*  <a href="/hpc/stampede3">Stampede3</a>
+*  <a href="/hpc/vista">Vista</a>
 
 /////
 

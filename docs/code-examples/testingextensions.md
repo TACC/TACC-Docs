@@ -14,7 +14,7 @@
 !!! tip
     This is a tip box
 
-!!! warning
+!!! caution
     This is a warning box
 
 
@@ -151,8 +151,8 @@ See <a href="/code-examples">Fiddling: Code Examples</a>.
 
 I use "attention", "note", "warning" the most
 
-!!! caution
-    ````caution` Do not run jobs or perform intensive computational activity on the login nodes or the shared file systems. Your account may be __suspended__ and you will lose access to the queues if your jobs are impacting other users.
+!!! warning
+    ````warning` Do not run jobs or perform intensive computational activity on the login nodes or the shared file systems. Your account may be __suspended__ and you will lose access to the queues if your jobs are impacting other users.
 
 !!! important
     ````important` Example: <https://portal.tacc.utexas.edu/user-guides/stampede2#files-striping>
@@ -160,8 +160,8 @@ I use "attention", "note", "warning" the most
 !!! error
     ````error`
 
-!!! warning
-    ````warning` Your account may be __suspended__ and you will lose access to the queues if your jobs are impacting other users.
+!!! caution
+    ````caution` Your account may be __suspended__ and you will lose access to the queues if your jobs are impacting other users.
 
 !!! tip
     ````tip` This box should hold a useful bit of info for a user, not a general message. We can use the notes for that.

@@ -3,7 +3,7 @@
 
 ## Notices { #notices } 
 
-!!! warning
+!!! caution
 	**09/24/2025**: As part of a year-long Ranch system replacement, all Ranch users are required to migrate their own or their project's data from the "Old Ranch" to the "New Ranch" system.
 
 	Consult the [Ranch Data Migration Guide](../../hpc/ranch-migration-2025) for important information and directions.. 

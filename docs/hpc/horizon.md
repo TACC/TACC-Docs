@@ -113,7 +113,7 @@ Like all other current TACC systems, Horizon employs the Slurm Workload Manager 
 
 ### Slurm Partitions (Queues) { #queues }
 
-!!! warning
+!!! caution
     **Queue limits are subject to change without notice.**
     Horizon admins may occasionally adjust queue settings in order to ensure fair scheduling for the entire user community.
     TACC's `qlimits` utility will display the latest queue configurations.
@@ -137,23 +137,23 @@ Reminder: A Grace Blackwell node contains 1 Grace CPU and 2 Blackwell GPUs.
 [HELPDESK]: https://tacc.utexas.edu/about/help/ "Help Desk"
 
 
-[TACCGOODCONDUCT]: https://docs.tacc.utexas.edu/basics/conduct/ "TACC Good Conduct Guide"
-[TACCSOFTWARE]: https://docs.tacc.utexas.edu/basics/software/ "Software at TACC"
+[TACCGOODCONDUCT]: /basics/conduct/ "TACC Good Conduct Guide"
+[TACCSOFTWARE]: /basics/software/ "Software at TACC"
 
-[TACCDOCS]: https://docs.tacc.utexas.edu "TACC Documentation Portal"
-[TACCACCESSCONTROLLISTS]: https://docs.tacc.utexas.edu/tutorials/acls "Access Control Lists"
-[TACCACLS]: https://docs.tacc.utexas.edu/tutorials/acls "Manage Permissions with Access Control Lists"
-[TACCBASHQUICKSTART]: https://docs.tacc.utexas.edu/tutorials/bashstartup "Bash Quick Start Guide"
-[TACCIDEV]: https://docs.tacc.utexas.edu/software/idev "idev at TACC"
+/ "TACC Documentation Portal"
+[TACCACCESSCONTROLLISTS]: /tutorials/acls "Access Control Lists"
+[TACCACLS]: /tutorials/acls "Manage Permissions with Access Control Lists"
+[TACCBASHQUICKSTART]: /tutorials/bashstartup "Bash Quick Start Guide"
+[TACCIDEV]: /software/idev "idev at TACC"
 [TACCLMOD]: https://lmod.readthedocs.io/en/latest/ "Lmod"
-[TACCMANAGINGACCOUNT]: https://docs.tacc.utexas.edu/basics/accounts "Managing your TACC Account"
-[TACCMANAGINGIO]: https://docs.tacc.utexas.edu/tutorials/managingio "Managing I/O at TACC"
-[TACCMANAGINGPERMISSIONS]: https://docs.tacc.utexas.edu/tutorials/permissions "Unix Group Permissions and Environment"
-[TACCMFA]: https://docs.tacc.utexas.edu/basics/mfa "Multi-Factor Authentication at TACC"
-[TACCPYLAUNCHER]: https://docs.tacc.utexas.edu/software/pylauncher "PyLauncher at TACC"
-[TACCPARAVIEW]: https://docs.tacc.utexas.edu/software/paraview "Paraview at TACC"
-[TACCREMOTEDESKTOPACCESS]: https://docs.tacc.utexas.edu/tutorials/remotedesktopaccess "TACC Remote Desktop Access"
-[TACCSHARINGPROJECTFILES]: https://docs.tacc.utexas.edu/tutorials/sharingprojectfiles "Sharing Project Files"
+[TACCMANAGINGACCOUNT]: /basics/accounts "Managing your TACC Account"
+[TACCMANAGINGIO]: /tutorials/managingio "Managing I/O at TACC"
+[TACCMANAGINGPERMISSIONS]: /tutorials/permissions "Unix Group Permissions and Environment"
+[TACCMFA]: /basics/mfa "Multi-Factor Authentication at TACC"
+[TACCPYLAUNCHER]: /software/pylauncher "PyLauncher at TACC"
+[TACCPARAVIEW]: /software/paraview "Paraview at TACC"
+[TACCREMOTEDESKTOPACCESS]: /tutorials/remotedesktopaccess "TACC Remote Desktop Access"
+[TACCSHARINGPROJECTFILES]: /tutorials/sharingprojectfiles "Sharing Project Files"
 
 [TACCUSERPORTAL]: https://tacc.utexas.edu/portal/login "TACC User Portal login"
 [TACCDASHBOARD]: https://tacc.utexas.edu/portal/dashboard "TACC Dashboard"
@@ -168,18 +168,18 @@ Reminder: A Grace Blackwell node contains 1 Grace CPU and 2 Blackwell GPUs.
 [TACCAUP]: https://tacc.utexas.edu/use-tacc/user-policies/ "TACC Acceptable Use Policy"
 [TACCCITE]: https://tacc.utexas.edu/about/citing-tacc/ "Citing TACC"
 
-[TACCSTAMPEDE3UG]: https://docs.tacc.utexas.edu/hpc/stampede3/ "TACC Stampede3 User Guide"
-[TACCLONESTAR6UG]: https://docs.tacc.utexas.edu/hpc/lonestar6/ "TACC Lonestar6 User Guide"
-[TACCFRONTERAUG]: https://docs.tacc.utexas.edu/hpc/frontera/ "TACC Frontera User Guide"
-[TACCVISTAUG]: https://docs.tacc.utexas.edu/hpc/vista/ "TACC Vista User Guide"
-[TACCHORIZONAUG]: https://docs.tacc.utexas.edu/hpc/horizon/ "TACC Horizon User Guide"
-[TACCRANCHUG]: https://docs.tacc.utexas.edu/hpc/ranch/ "TACC Ranch User Guide"
-[TACCCORRALUG]: https://docs.tacc.utexas.edu/hpc/corral/ "TACC Corral User Guide"
+[TACCSTAMPEDE3UG]: /hpc/stampede3/ "TACC Stampede3 User Guide"
+[TACCLONESTAR6UG]: /hpc/lonestar6/ "TACC Lonestar6 User Guide"
+[TACCFRONTERAUG]: /hpc/frontera/ "TACC Frontera User Guide"
+[TACCVISTAUG]: /hpc/vista/ "TACC Vista User Guide"
+[TACCHORIZONAUG]: /hpc/horizon/ "TACC Horizon User Guide"
+[TACCRANCHUG]: /hpc/ranch/ "TACC Ranch User Guide"
+[TACCCORRALUG]: /hpc/corral/ "TACC Corral User Guide"
 [TACCSTOCKYARD]: https://tacc.utexas.edu/systems/stockyard  "Stockyard File System"
 [TACCANALYSISPORTAL]: http://tap.tacc.utexas.edu "TACC Analysis Portal"
 
 [DOWNLOADCYBERDUCK]: https://cyberduck.io/download/ "Download Cyberduck"
 [CYBERDUCK]: https://cyberduck.io "Download Cyberduck"
 [TACCSOFTWARELIST]: https://tacc.utexas.edu/use-tacc/software-list/ "TACC Software List"
-[TACCGAUSSIANAGREEMENT]: https://docs.tacc.utexas.edu/taccdocs/TACC_GAUSSIAN_Usage_Agreement.pdf "TACC GAUSSIAN Usage Agreement"
+[TACCGAUSSIANAGREEMENT]: /taccdocs/TACC_GAUSSIAN_Usage_Agreement.pdf "TACC GAUSSIAN Usage Agreement"
 
