@@ -4,6 +4,8 @@
 !!! warning
 	Frontera queues close today at 11:59pm.  Logins and file systems remain up for data transfer.
 
+	"Thank you, Frontera, for many years of successful operations, remarkable breakthroughs, impactful work, and important discoveries, especially the groundbreaking contributions that made a difference during the COVID-19 pandemic." - Amit Ruhela
+
 !!! important
 	[Frontera Queues Closing October 15th](https://tacc.utexas.edu/news/user-updates/107639/) (09/16/2026)
 
