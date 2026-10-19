@@ -1,7 +1,6 @@
 # Horizon User Guide 
 *Last update: August 12, 2026*
 
-
 ## Notices { #notices }
 
 * *This user guide is in progress*
@@ -56,6 +55,7 @@ A GB node provides 80 TFlops of FP64 performance (~160 TFlops DGEMM performance 
 | Local storage: | 130 GiB |
 | DRAM: | LPDDR5 |
 
+<!--
 ### Vera Vera Compute Nodes
 
 #### Table 2. Vera Vera Specifications
@@ -73,6 +73,8 @@ A GB node provides 80 TFlops of FP64 performance (~160 TFlops DGEMM performance 
 | DRAM: | LPDDR5 |
 
 Horizon hosts 4752 "Vera Vera" (VV) nodes with 176 cores each. Each VV node provides a performance increase of  over 3x compared to Frontera's CLX nodes and ~2x compared to the Grace Grace nodes of Vista.  This improved performance per node is due to increase in core count, 176 vs 144, an increase in vector units per core, 6 vs 4, and an increase in memory bandwidth, 2.4 TB/s vs 1 TB/s. Each VV node provides over 13 TFlops of double precision performance and over 2 TiB/s of memory bandwidth.
+
+-->
 
 ### Login Nodes
 
@@ -126,9 +128,12 @@ Like all other current TACC systems, Horizon employs the Slurm Workload Manager 
 | `gb`       | Grace Blackwell | 128               | 48 hrs           | 1 SU 
 | `gb-dev`   | Grace Blackwell | 16                | 2 hrs            | 1 SU 
 | `gb-large` | Grace Blackwell | 512               | 48 hrs           | 1 SU 
+
+<!-- 
 | `vv`       | Vera Vera       | 256               | 48 hrs           | 0.25 SUs 
 | `vv-dev`   | Vera Vera       | 32                | 2 hrs            | 0.25 SUs 
 | `vv-large` | Vera Vera       | 1024              | 48 hrs           | 0.25 SUs 
+-->
 
 Reminder: A Grace Blackwell node contains 1 Grace CPU and 2 Blackwell GPUs. 
 

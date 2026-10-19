@@ -19,9 +19,12 @@ Like all other current TACC systems, Horizon employs the Slurm Workload Manager 
 | `gb`       | Grace Blackwell | 128               | 48 hrs           | 1 SU 
 | `gb-dev`   | Grace Blackwell | 16                | 2 hrs            | 1 SU 
 | `gb-large` | Grace Blackwell | 512               | 48 hrs           | 1 SU 
+
+<!-- 
 | `vv`       | Vera Vera       | 256               | 48 hrs           | 0.25 SUs 
 | `vv-dev`   | Vera Vera       | 32                | 2 hrs            | 0.25 SUs 
 | `vv-large` | Vera Vera       | 1024              | 48 hrs           | 0.25 SUs 
+-->
 
 Reminder: A Grace Blackwell node contains 1 Grace CPU and 2 Blackwell GPUs. 
 

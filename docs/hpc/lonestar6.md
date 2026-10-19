@@ -723,7 +723,7 @@ The jobs in this queue consume 1/7 the resources of a full node.  Jobs are charg
 
 !!! important
     **Queue limits are subject to change without notice.**
-    Frontera admins may occasionally adjust queue <!--the QOS--> settings in order to ensure fair scheduling for the entire user community.
+    Lonestar6 admins may occasionally adjust queue <!--the QOS--> settings in order to ensure fair scheduling for the entire user community.
     TACC's `qlimits` utility will display the latest queue configurations.
 
 !!! caution

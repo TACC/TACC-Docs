@@ -361,7 +361,7 @@ Stampede3 mounts three file systems that are shared across all nodes: the home, 
 
 ### Navigating the Shared File Systems { #files-filesystems }
 
-Stampede3's `/home` and `/scratch` file systems are mounted only on Stampede3, but the work file system mounted on Stampede3 is the Global Shared File System hosted on [Stockyard](https://tacc.utexas.edu/systems/stockyard/).  Stockyard is the same work file system that is currently available on Frontera, Lonestar6, and several other TACC resources.
+Stampede3's `/home` and `/scratch` file systems are mounted only on Stampede3, but the work file system mounted on Stampede3 is the Global Shared File System hosted on [Stockyard](https://tacc.utexas.edu/systems/stockyard/).  Stockyard is the same work file system that is currently available on Vista, Lonestar6, and several other TACC resources.
 
 The `$STOCKYARD` environment variable points to the highest-level directory that you own on the Global Shared File System. The definition of the `$STOCKYARD` environment variable is of course account-specific, but you will see the same value on all TACC systems that provide access to the Global Shared File System. This directory is an excellent place to store files you want to access regularly from multiple TACC resources.
 
@@ -402,19 +402,6 @@ Stampede3's job scheduler is the <a href="http://schedmd.com">Slurm Workload Man
     TACC's `qlimits` utility will display the latest queue configurations.
 
 <!--
-04/15/2026
-[slindsey@login1 ~]$ <1003> qlimits
-
-Name             MinNode  MaxNode     MaxWall  MaxNodePU  MaxJobsPU   MaxSubmit
-amd-rtx                1        1  2-00:00:00          1          1           2
-h100                   1        4  2-00:00:00          4          2           4
-icx                    1       32  2-00:00:00         48         12          20
-nvdimm                 1        1  2-00:00:00          1          2           4
-pvc                    1        4  2-00:00:00          4          2           4
-skx                    1      256  2-00:00:00        256         40          60
-skx-dev                1       16    02:00:00         16          2           4
-spr                    1       32  2-00:00:00         40         24          36
---
 09/17/2026
 [slindsey@login3 ~]$ <1001> qlimits
 Current queue/partition limits on TACC's stampede3 system:
@@ -429,46 +416,20 @@ rtx-small              1        1  2-00:00:00          1          1           2 
 skx                    1      256  2-00:00:00        256         40          60
 skx-dev                1       16    02:00:00         16          2           4
 spr                    1       64  2-00:00:00         96         24          36
---> 
 
-<!--
-04/15/2026
-[slindsey@login1 ~]$ <1004>  m /usr/local/etc/queue.map
-# stampede3
-amd-rtx:8.0
-h100:4.0
-icx:1.5
-nvdimm:4.0
-pvc:3.0
-skx:1.0
-skx-dev:1.0
-spr:2.0
---
 09/17/2026
 [slindsey@login3 ~]$ <1002> m /usr/local/etc/queue.map
 # stampede3
-skx-dev:1.0
-skx:1.0
-nvdimm:4.0
-icx:1.5
-spr:2.0
-pvc:3.0
-h100:4.0
-rtx-small:2.0
 amd-rtx:8.0
-systest-skx:0.0
-systest-nvdimm:0.0
-systest-icx:0.0
-systest-spr:0.0
-systest-pvc:0.0
-systest-grx:0.0
-systest-h100:0.0
-systest-amd-rtx:0.0
-systest-spr400:0.0
-systest-rtx-small:0.0
-simcenter:1.0
+h100:4.0
+icx:1.5
+nvdimm:4.0
+pvc:3.0
+rtx-small:2.0
+skx:1.0
+skx-dev:1.0
+spr:2.0
 -->
-
 
 <a id="queues"></a>
 #### Table 8. Production Queues { #table8 }
