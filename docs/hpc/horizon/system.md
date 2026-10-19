@@ -33,6 +33,7 @@ A GB node provides 80 TFlops of FP64 performance (~160 TFlops DGEMM performance 
 | Local storage: | 130 GiB |
 | DRAM: | LPDDR5 |
 
+<!--
 ### Vera Vera Compute Nodes
 
 #### Table 2. Vera Vera Specifications
@@ -50,6 +51,8 @@ A GB node provides 80 TFlops of FP64 performance (~160 TFlops DGEMM performance 
 | DRAM: | LPDDR5 |
 
 Horizon hosts 4752 "Vera Vera" (VV) nodes with 176 cores each. Each VV node provides a performance increase of  over 3x compared to Frontera's CLX nodes and ~2x compared to the Grace Grace nodes of Vista.  This improved performance per node is due to increase in core count, 176 vs 144, an increase in vector units per core, 6 vs 4, and an increase in memory bandwidth, 2.4 TB/s vs 1 TB/s. Each VV node provides over 13 TFlops of double precision performance and over 2 TiB/s of memory bandwidth.
+
+-->
 
 ### Login Nodes
 
