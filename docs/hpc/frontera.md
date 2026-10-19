@@ -1,17 +1,17 @@
 # Frontera User Guide
-*Last update: October 15, 2026*
-
-!!! warning
-	Frontera queues close today at 11:59pm.  Logins and file systems remain up for data transfer.
-
-	"Thank you, Frontera, for many years of successful operations, remarkable breakthroughs, impactful work, and important discoveries, especially the groundbreaking contributions that made a difference during the COVID-19 pandemic." - Amit Ruhela
+*Last update: October 19, 2026*
 
 !!! important
-	[Frontera Queues Closing October 15th](https://tacc.utexas.edu/news/user-updates/107639/) (09/16/2026)
 
-	After seven years and billions of computing cycles, Frontera will be riding off into decommission sunset.  On October 15, 2026, the Frontera queues will be closed permanently.  You will still be able to access Frontera’s file systems to transfer any data needed.
+	After seven years and billions of computing cycles, Frontera has ridden off into the decommissioned sunset.   
+
+	Frontera's queues are now permanently closed.  Frontera's login nodes and file systems remain up for data transfer.
+
+	Thank you Frontera admins and operators for seven years of successful operations, remarkable breakthroughs, impactful work, and important discoveries, especially the groundbreaking contributions during the COVID-19 pandemic.
 
 ---
+
+* [Frontera Queues Closing October 15th](https://tacc.utexas.edu/news/user-updates/107639/) (09/16/2026)
 
 ## Introduction { #intro } 
 
