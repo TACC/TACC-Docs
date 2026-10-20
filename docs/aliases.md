@@ -6,7 +6,7 @@
 [TACCGOODCONDUCT]: /basics/conduct/ "TACC Good Conduct Guide"
 [TACCSOFTWARE]: /basics/software/ "Software at TACC"
 
-/ "TACC Documentation Portal"
+[TACCDOCS]: / "TACC Documentation Portal"
 [TACCACCESSCONTROLLISTS]: /tutorials/acls "Access Control Lists"
 [TACCACLS]: /tutorials/acls "Manage Permissions with Access Control Lists"
 [TACCBASHQUICKSTART]: /tutorials/bashstartup "Bash Quick Start Guide"
