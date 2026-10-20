@@ -261,14 +261,14 @@ test = ["mkdocs-d2-plugin", "mkdocs-include-markdown-plugin", "mkdocs-macros-tes
 
 [[package]]
 name = "mkdocs-tacc"
-version = "1.0.4"
+version = "1.0.5rc2"
 description = "TACC-specific MkDocs theme"
 optional = false
 python-versions = "<3.13,>=3.10"
 groups = ["main"]
 files = [
-    {file = "mkdocs_tacc-1.0.4-py3-none-any.whl", hash = "sha256:1029eafd35b9996e19fb560aae9d1174d4262e1e3a3c3c5ed3518f7d5cd0a16a"},
-    {file = "mkdocs_tacc-1.0.4.tar.gz", hash = "sha256:9945a00aeb67ca27609d7a15e63e6495fe4bc404af1ac8ac4731507a814470db"},
+    {file = "mkdocs_tacc-1.0.5rc2-py3-none-any.whl", hash = "sha256:6e5555d0235c5489d2a61c26f771b9007d5ec67e9df2ef5e9db61538192b5f19"},
+    {file = "mkdocs_tacc-1.0.5rc2.tar.gz", hash = "sha256:8aeb9d126402f9cae3b88a29d4096ad3685c904acab84615f0cf6da42c8ed8c3"},
 ]
 
 [package.dependencies]
@@ -510,4 +510,4 @@ watchmedo = ["PyYAML (>=3.10)"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<3.13"
-content-hash = "f2515d43dde6671253d514de7a017e0c09507100a998a3118d001e62281ddee2"
+content-hash = "bdc9e0feeb5db1fa0b9f04bb3b8eeeec6d37a4afe7f4e0ea702c145d52c81c5d"

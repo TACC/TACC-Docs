@@ -107,7 +107,7 @@ Using the scheme above with `full_dbs` precision, we expect each job to take bet
 
 ### Batch Structure Predictions from Independent Sequences { #running-independentsequences }
 
-!!! caution
+!!! warning
 	**Limit your concurrent AlphaFold2 processes per node to a maximum of three**.<br>The multiple sequence alignment step of the AlphaFold workflow is exceedingly I/O intensive. 
 
 To perform 3-D protein structure prediction with AlphaFold2 for many protein sequences, we recommend using TACC's <a href="https://docs.tacc.utexas.edu/software/pylauncher/">PyLauncher</a> utility. First review the instructions for submitting single sequence predictions above, then make the following adjustments:
@@ -194,7 +194,7 @@ login1$ sbatch af2_pylauncher_job.slurm
 
 ### Structure Prediction from Multiple Sequences (Multimer) { #running-multiplesequences } 
 
-!!! caution
+!!! warning
 	Alphafold2 supports multimer folding, but as mentioned in the <a href="https://github.com/google-deepmind/alphafold">AlphaFold2 Documentation</a>, it is a work in progress and is not expected to be as stable as monomer folding. 
 
 Nevertheless, we provide example flag files, job scripts, and sequences in the "Examples" paths listed above to test multimer folding. In our experience, the success rates of multimer folding jobs decrease as input sequence length increases.

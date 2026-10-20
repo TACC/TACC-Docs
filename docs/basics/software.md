@@ -28,7 +28,7 @@ See each resource user guide's Building Software and Performance sections for ar
 
 You are welcome to download third-party research software and build and install it in your own account. In most cases you'll want to download the source code and build the software so it's compatible with the resource's software environment.
 
-!!! warning
+!!! caution
 	TACC's `$WORK` file system is a globally accessible repo across all TACC HPC resources, but is not optimized to handle Python/Conda installations.  Conda and Python environments should NOT be run from `$WORK` as it can overload the file system for all users. 
 
 

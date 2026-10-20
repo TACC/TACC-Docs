@@ -305,7 +305,7 @@ Vista's job scheduler is the <a href="http://schedmd.com">Slurm Workload Manager
 
 
 <!-- Requested per Dan 5/18/26...we may also want to add this to the good conduct page.  -->
-!!! warning
+!!! caution
     **Queue Restrictions**
     Do not request specific nodes when submitting jobs without prior approval from staff.  Allow Slurm to allocate nodes as appropriate.
 
@@ -538,7 +538,7 @@ C448-004$
 
 Be sure to distinguish between internal Slurm replacement symbols (e.g. `%j` described above) and Linux environment variables defined by Slurm (e.g. `SLURM_JOBID`). Execute `env | grep SLURM` from within your job script to see the full list of Slurm environment variables and their values. You can use Slurm replacement symbols like `%j` only to construct a Slurm filename pattern; they are not meaningful to your Linux shell. Conversely, you can use Slurm environment variables in the shell portion of your job script but not in an `#SBATCH` directive.
 
-!!! warning 
+!!! caution 
 	For example, the following directive will not work the way you might think:
 	``` job-script
 	#SBATCH -o myMPI.o${SLURM_JOB_ID}   # incorrect
@@ -707,7 +707,7 @@ You can use `sbatch` to help manage workflows that involve multiple steps: the `
 login1$ sbatch --dependency=afterok:173210 myjobscript
 ```
 
-!!! warning
+!!! caution
 	It is not possible to add resources to a job (e.g. allow more time, increase number of nodes) once you've submitted the job to the queue.
 
 For more information see the [Slurm online documentation](http://www.schedmd.com). Note that you can use `$SLURM_JOBID` from one job to find the jobid you'll need to construct the `sbatch` launch line for a subsequent one. But also remember that you can't use `sbatch` to submit a job from a compute node.
@@ -1224,23 +1224,23 @@ TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for 
 [HELPDESK]: https://tacc.utexas.edu/about/help/ "Help Desk"
 
 
-[TACCGOODCONDUCT]: https://docs.tacc.utexas.edu/basics/conduct/ "TACC Good Conduct Guide"
-[TACCSOFTWARE]: https://docs.tacc.utexas.edu/basics/software/ "Software at TACC"
+[TACCGOODCONDUCT]: /basics/conduct/ "TACC Good Conduct Guide"
+[TACCSOFTWARE]: /basics/software/ "Software at TACC"
 
-[TACCDOCS]: https://docs.tacc.utexas.edu "TACC Documentation Portal"
-[TACCACCESSCONTROLLISTS]: https://docs.tacc.utexas.edu/tutorials/acls "Access Control Lists"
-[TACCACLS]: https://docs.tacc.utexas.edu/tutorials/acls "Manage Permissions with Access Control Lists"
-[TACCBASHQUICKSTART]: https://docs.tacc.utexas.edu/tutorials/bashstartup "Bash Quick Start Guide"
-[TACCIDEV]: https://docs.tacc.utexas.edu/software/idev "idev at TACC"
+/ "TACC Documentation Portal"
+[TACCACCESSCONTROLLISTS]: /tutorials/acls "Access Control Lists"
+[TACCACLS]: /tutorials/acls "Manage Permissions with Access Control Lists"
+[TACCBASHQUICKSTART]: /tutorials/bashstartup "Bash Quick Start Guide"
+[TACCIDEV]: /software/idev "idev at TACC"
 [TACCLMOD]: https://lmod.readthedocs.io/en/latest/ "Lmod"
-[TACCMANAGINGACCOUNT]: https://docs.tacc.utexas.edu/basics/accounts "Managing your TACC Account"
-[TACCMANAGINGIO]: https://docs.tacc.utexas.edu/tutorials/managingio "Managing I/O at TACC"
-[TACCMANAGINGPERMISSIONS]: https://docs.tacc.utexas.edu/tutorials/permissions "Unix Group Permissions and Environment"
-[TACCMFA]: https://docs.tacc.utexas.edu/basics/mfa "Multi-Factor Authentication at TACC"
-[TACCPYLAUNCHER]: https://docs.tacc.utexas.edu/software/pylauncher "PyLauncher at TACC"
-[TACCPARAVIEW]: https://docs.tacc.utexas.edu/software/paraview "Paraview at TACC"
-[TACCREMOTEDESKTOPACCESS]: https://docs.tacc.utexas.edu/tutorials/remotedesktopaccess "TACC Remote Desktop Access"
-[TACCSHARINGPROJECTFILES]: https://docs.tacc.utexas.edu/tutorials/sharingprojectfiles "Sharing Project Files"
+[TACCMANAGINGACCOUNT]: /basics/accounts "Managing your TACC Account"
+[TACCMANAGINGIO]: /tutorials/managingio "Managing I/O at TACC"
+[TACCMANAGINGPERMISSIONS]: /tutorials/permissions "Unix Group Permissions and Environment"
+[TACCMFA]: /basics/mfa "Multi-Factor Authentication at TACC"
+[TACCPYLAUNCHER]: /software/pylauncher "PyLauncher at TACC"
+[TACCPARAVIEW]: /software/paraview "Paraview at TACC"
+[TACCREMOTEDESKTOPACCESS]: /tutorials/remotedesktopaccess "TACC Remote Desktop Access"
+[TACCSHARINGPROJECTFILES]: /tutorials/sharingprojectfiles "Sharing Project Files"
 
 [TACCUSERPORTAL]: https://tacc.utexas.edu/portal/login "TACC User Portal login"
 [TACCDASHBOARD]: https://tacc.utexas.edu/portal/dashboard "TACC Dashboard"
@@ -1255,18 +1255,18 @@ TACC Consulting operates from 8am to 5pm CST, Monday through Friday, except for 
 [TACCAUP]: https://tacc.utexas.edu/use-tacc/user-policies/ "TACC Acceptable Use Policy"
 [TACCCITE]: https://tacc.utexas.edu/about/citing-tacc/ "Citing TACC"
 
-[TACCSTAMPEDE3UG]: https://docs.tacc.utexas.edu/hpc/stampede3/ "TACC Stampede3 User Guide"
-[TACCLONESTAR6UG]: https://docs.tacc.utexas.edu/hpc/lonestar6/ "TACC Lonestar6 User Guide"
-[TACCFRONTERAUG]: https://docs.tacc.utexas.edu/hpc/frontera/ "TACC Frontera User Guide"
-[TACCVISTAUG]: https://docs.tacc.utexas.edu/hpc/vista/ "TACC Vista User Guide"
-[TACCHORIZONAUG]: https://docs.tacc.utexas.edu/hpc/horizon/ "TACC Horizon User Guide"
-[TACCRANCHUG]: https://docs.tacc.utexas.edu/hpc/ranch/ "TACC Ranch User Guide"
-[TACCCORRALUG]: https://docs.tacc.utexas.edu/hpc/corral/ "TACC Corral User Guide"
+[TACCSTAMPEDE3UG]: /hpc/stampede3/ "TACC Stampede3 User Guide"
+[TACCLONESTAR6UG]: /hpc/lonestar6/ "TACC Lonestar6 User Guide"
+[TACCFRONTERAUG]: /hpc/frontera/ "TACC Frontera User Guide"
+[TACCVISTAUG]: /hpc/vista/ "TACC Vista User Guide"
+[TACCHORIZONAUG]: /hpc/horizon/ "TACC Horizon User Guide"
+[TACCRANCHUG]: /hpc/ranch/ "TACC Ranch User Guide"
+[TACCCORRALUG]: /hpc/corral/ "TACC Corral User Guide"
 [TACCSTOCKYARD]: https://tacc.utexas.edu/systems/stockyard  "Stockyard File System"
 [TACCANALYSISPORTAL]: http://tap.tacc.utexas.edu "TACC Analysis Portal"
 
 [DOWNLOADCYBERDUCK]: https://cyberduck.io/download/ "Download Cyberduck"
 [CYBERDUCK]: https://cyberduck.io "Download Cyberduck"
 [TACCSOFTWARELIST]: https://tacc.utexas.edu/use-tacc/software-list/ "TACC Software List"
-[TACCGAUSSIANAGREEMENT]: https://docs.tacc.utexas.edu/taccdocs/TACC_GAUSSIAN_Usage_Agreement.pdf "TACC GAUSSIAN Usage Agreement"
+[TACCGAUSSIANAGREEMENT]: /taccdocs/TACC_GAUSSIAN_Usage_Agreement.pdf "TACC GAUSSIAN Usage Agreement"
 
