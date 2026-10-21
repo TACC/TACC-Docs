@@ -3,7 +3,7 @@
 
 ## Notices { #notices } 
 
-!!! warning
+!!! caution
     The connection to OldRanchData will be severed at midnight on October 31st, 2026.
 
     TACC staff will unmount and delete the `OldRanchData` symbolic links originally created in the `/projects` and user home directories.

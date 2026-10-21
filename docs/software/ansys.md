@@ -34,7 +34,7 @@ Lonestar6 | 2025R2 | Structures, Fluids, Electronics, LS-Dyna | <code>/scratch/t
 
 ANSYS can be launched with the ANSYS GUI used in interactive mode. Use the [TACC Analysis Portal](https://tap.tacc.utexas.edu/) or create a VNC session following the directions in the [Remote Desktop Access](../../hpc/stampede3#vis-remote) section.
 
-!!! caution
+!!! warning
 	Do NOT launch ANSYS, or any other codes, on the login nodes.
 
 ANSYS is managed under [Lmod](https://lmod.readthedocs.io/en/latest/) Environmental Module System on TACC resources. Within the VNC session, load the ANSYS module with the following command:

@@ -1,7 +1,8 @@
 # Frontera User Guide
 *Last update: October 19, 2026*
 
-!!! warning
+!!! caution
+	[Frontera Queues Closing October 15th](https://tacc.utexas.edu/news/user-updates/107639/) (09/16/2026)
 
 	Frontera's queues are now permanently closed.  Frontera's login nodes and file systems remain up for data transfer.
 

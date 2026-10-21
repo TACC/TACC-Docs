@@ -22,7 +22,7 @@ File System | Quota | Key Features
 
 #### Important Notice about `/scratch1` { #scratch-notice }
 
-!!! warning
+!!! caution
 
 	Frontera's `/scratch1` file system has developed persistent problems that have led to frequent system downtimes.  The `/scratch1` file system has now been mounted as a read-only file system and will be decommissioned on December 3rd.  (11-17-2025)
 
@@ -66,7 +66,7 @@ File System | Quota | Key Features
  
 <s>All new projects are assigned to `/scratch1` as their default `$SCRATCH` file system.</s>  After running on Frontera, TACC staff may reassign users and projects to `/scratch2` or `/scratch3` depending on the resources required by their workflow.  The `/scratch3` file system employs twice as many OST's offering twice the available I/O bandwidth of `/scratch1` and `/scratch2`.  Frontera's three `$SCRATCH` file systems are further described below:
 
-<!-- !!! warning
+<!-- !!! caution
 	Users are restricted to the use of one, and only one, of Frontera's `/scratch` file system. -->
 
 File System | Characteristics	| Purpose |
@@ -82,7 +82,7 @@ amended to include Frontera's multiple scratch file systems-->
 
 ### Scratch File System Purge Policy { #scratchpolicy }
 
-!!! warning
+!!! caution
 	The <code>$SCRATCH</code> file systems, as their name indicates, is a **temporary storage space**.  Files that have not been accessed&#42; in ten days are subject to purge.  This policy applies to ALL scratch file systems on Frontera: `scratch1`, `scratch2` and `scratch3`.   
 
 	Deliberately modifying file access time (using any method, tool, or program) for the purpose of circumventing purge policies is prohibited.

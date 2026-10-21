@@ -38,7 +38,7 @@
 
     {% include 'code-examples/_preferred-way-pro-con.md' %}
 
-!!! caution "Avoided"
+!!! warning "Avoided"
 
             <pre class="cmd-line"><code>module <strong>load <em>kitten</em></strong></code></pre>
 
@@ -90,7 +90,7 @@
 
     {% include 'code-examples/_preferred-way-pro-con.md' %}
 
-!!! caution "Avoided"
+!!! warning "Avoided"
 
             <pre class="job-script">
             <code>#!/bin/bash

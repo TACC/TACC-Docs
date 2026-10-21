@@ -139,7 +139,7 @@ C448-004$
 
 Be sure to distinguish between internal Slurm replacement symbols (e.g. `%j` described above) and Linux environment variables defined by Slurm (e.g. `SLURM_JOBID`). Execute `env | grep SLURM` from within your job script to see the full list of Slurm environment variables and their values. You can use Slurm replacement symbols like `%j` only to construct a Slurm filename pattern; they are not meaningful to your Linux shell. Conversely, you can use Slurm environment variables in the shell portion of your job script but not in an `#SBATCH` directive.
 
-!!! warning 
+!!! caution 
 	For example, the following directive will not work the way you might think:
 	``` job-script
 	#SBATCH -o myMPI.o${SLURM_JOB_ID}   # incorrect

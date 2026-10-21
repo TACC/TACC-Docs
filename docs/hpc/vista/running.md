@@ -4,7 +4,7 @@ Vista's job scheduler is the <a href="http://schedmd.com">Slurm Workload Manager
 
 
 <!-- Requested per Dan 5/18/26...we may also want to add this to the good conduct page.  -->
-!!! warning
+!!! caution
     **Queue Restrictions**
     Do not request specific nodes when submitting jobs without prior approval from staff.  Allow Slurm to allocate nodes as appropriate.
 
