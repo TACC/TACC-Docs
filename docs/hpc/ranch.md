@@ -1,10 +1,12 @@
 # Ranch User Guide
-*Last update: January 26, 2025*
+*Last update: October 21, 2026*
 
 ## Notices { #notices } 
 
 !!! warning
-	**09/24/2025**: As part of a year-long Ranch system replacement, all Ranch users are required to migrate their own or their project's data from the "Old Ranch" to the "New Ranch" system.
+    The connection to OldRanchData will be severed at midnight on October 31st, 2026.
+
+    TACC staff will unmount and delete the `OldRanchData` symbolic links originally created in the `/projects` and user home directories.
 
 	Consult the [Ranch Data Migration Guide](../../hpc/ranch-migration-2025) for important information and directions.. 
 

@@ -6,9 +6,17 @@ Recursive cp or rsync is reasonable way to transfer.  The key here is that user 
 -->
 
 # Ranch System Replacement<br>Data Migration Instructions for all Users
-*Last update: March 10, 2026*
+*Last update: October 21, 2026*
 
 ## Notices
+
+!!! warning
+	The connection to OldRanchData will be severed at midnight on October 31st, 2026.
+
+	TACC staff will unmount and delete the `OldRanchData` symbolic links originally created in the `/projects` and user home directories.  
+
+	Please submit a support ticket with any questions.
+
 
 * 10/20/2025 You may now use Globus Online to manage transfers between New Ranch and Old Ranch.
 * 10/08/2025 **VSCode users: Accessing Ranch and managing transfers via VSCode is prohibited.**  Ranch is an archival file system, not a computational resource.  Please use a terminal application to manage your Ranch data.
