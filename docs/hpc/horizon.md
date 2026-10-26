@@ -44,7 +44,7 @@ A GB node provides 80 TFlops of FP64 performance (~160 TFlops DGEMM performance 
 | Specification | Value |
 | ----- | ----- |
 | GPU: | Blackwell, GB200 |
-| GPU Memory: | 185 Mib |
+| GPU Memory: | 185 Gib |
 | CPU: | NVIDIA Grace CPU |
 | Total CPU cores per node: | 72 cores on one socket |
 | Hardware threads per core: | 1 |
