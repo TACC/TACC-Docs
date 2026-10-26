@@ -1,5 +1,5 @@
 # AlphaFold3 at TACC
-*Last update: August 7, 2026*
+*Last update: October 26, 2026*
 
 <img src="../imgs/alphafold3-logo.png" width="250" alt="AlphaFold3 logo" class="align-right">
 
@@ -85,7 +85,7 @@ Templates for batch job submission scripts are provided within the "Examples" pa
 #SBATCH -J AF3_protein             # Job name
 #SBATCH -o AF3_protein.o%j         # Name of stdout output file
 #SBATCH -e AF3_protein.e%j         # Name of stderr error file
-#SBATCH -p gpu-a100-small          # Queue (partition) name
+#SBATCH -p gpu-a100                # Queue (partition) name
 #SBATCH -N 1                       # Total # of nodes
 #SBATCH -t 01:00:00                # Run time (hh:mm:ss)
 #SBATCH -A my-project              # Allocation name
@@ -104,7 +104,9 @@ export AF3_MODEL_PARAMETERS_DIR=$WORK/af3_parameters
 run_alphafold3 --json_path=$AF3_INPUT_DIR/input.json           # MODIFY name of input.json                             
 ```
 
-In the batch script, make sure to specify the partition (queue) (`#SBATCH -p`), node / wallclock limits, and allocation name (`#SBATCH -A`) appropriate to the machine you are running on. Also, make sure the path shown in the `module use` line matches the machine-specific "Module" path listed in [Table 1.](#table1) above.
+In the batch script, make sure to specify the partition (queue) (`#SBATCH -p`), node / wallclock limits, and allocation name (`#SBATCH -A`) appropriate to the machine you are running on. NOTE: Do NOT employ Lonestar6's `gpu-a100-small` nodes as they do not contain sufficient memory to run AlphaFold3. Also, make sure the path shown in the `module use` line matches the machine-specific "Module" path listed in [Table 1.](#table1) above.
+
+
 
 !!! note "CPU-only inference (v3.0.4+)"
     Inference runs fastest on a GPU, which remains the recommended setup. As of v3.0.4, you can also run AlphaFold3 on CPU-only nodes by exporting `AF3_CPU=1` before calling `run_alphafold3` and submitting to a CPU queue. CPU inference is substantially slower and is intended for cases where GPU nodes are unavailable.
