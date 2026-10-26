@@ -104,7 +104,7 @@ export AF3_MODEL_PARAMETERS_DIR=$WORK/af3_parameters
 run_alphafold3 --json_path=$AF3_INPUT_DIR/input.json           # MODIFY name of input.json                             
 ```
 
-In the batch script, make sure to specify the partition (queue) (`#SBATCH -p`), node / wallclock limits, and allocation name (`#SBATCH -A`) appropriate to the machine you are running on. NOTE: Do NOT employ Lonestar6's `gpu-a100-small` nodes as they do not contain sufficient memory to run AlphaFold3. Also, make sure the path shown in the `module use` line matches the machine-specific "Module" path listed in [Table 1.](#table1) above.
+In the batch script, make sure to specify the partition (queue) (`#SBATCH -p`), node / wallclock limits, and allocation name (`#SBATCH -A`) appropriate to the machine you are running on. (Exception: Lonestar6's `gpu-a100-small` nodes are incompatible with AlphaFold3.) Also, make sure the path shown in the `module use` line matches the machine-specific "Module" path listed in [Table 1.](#table1) above.
 
 
 
