@@ -436,7 +436,7 @@ spr:2.0
 
 Queue Name   | Node Type | Max Nodes per Job<br>(assoc'd cores) | Max Job<br>Duration | Max Nodes<br>per User | Max Jobs<br>per User | Max Submit |  Charge Rate<br>(per node-hour)
 --           | --        | --                                   | --               | --                    | --      |--          |-- 
-h100         | H100      | 4 nodes<br>(384 cores)               | 48 hrs           | 4                     | 2       | 4          | 4 SUs
+h100         | H100      | 4 nodes<br>(384 cores)               | 48 hrs           | 4                     | 2       | 4          | 8 SUs
 icx          | ICX       | 32 nodes<br>(2560 cores)             | 48 hrs           | 48                    | 12      | 20         | 1.5 SUs
 nvdimm       | ICX       | 1 node<br>(80 cores)                 | 48 hrs           | 1                     | 2       | 4          | 4 SUs 
 pvc          | PVC       | 4 nodes<br>(384 cores)               | 48 hrs           | 4                     | 2       | 4          | 3 SUs
