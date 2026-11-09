@@ -56,7 +56,7 @@ Horizon hosts 4752 "Vera Vera" (VV) nodes with 176 cores each. Each VV node prov
 
 ### Login Nodes
 
-The Horizon login nodes are Grace Grace (GG) nodes with 144 cores and 237 GB of LPDDR. They are compatible with the NVIDA and GNU software stacks installed for the GB and VV nodes.
+The Horizon login nodes are Grace Grace (GG) nodes with 144 cores and 237 GB of LPDDR. They are compatible with the NVIDIA and GNU software stacks installed for the GB and VV nodes.
 
 ### Network
 

@@ -1,5 +1,5 @@
 # Horizon User Guide 
-*Last update: August 12, 2026*
+*Last update: November 9, 2026*
 
 ## Notices { #notices }
 
