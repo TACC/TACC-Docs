@@ -1,11 +1,14 @@
 # Horizon User Guide 
 *Last update: November 9, 2026*
 
+!!! important
+	This user guide is a draft and is in progress.  Please submit feedback via ticket or PR.
+
 ## Notices { #notices }
 
-* *This user guide is in progress*
 * Horizon is still limited only to internal users. (07/24/2026)
 * **[Subscribe][TACCSUBSCRIBE] to Horizon User News**. Stay up-to-date on Horizon's status, scheduled maintenances and other notifications.  (04/15/2026) 
+
 {% include 'include/ai.md' %}
 
 ## Introduction { #intro }

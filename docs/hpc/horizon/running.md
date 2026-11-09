@@ -20,7 +20,7 @@ There are shared queues that allow a user to request one or two GPUs to efficien
 
 | Queue Name    | Node Type       | Max Nodes per Job     | Max Job Duration | Charge Rate (per node-hour) 
 | -----         | -----           | -----                 | -----            | -----                       
-| `gpu-shared`  | Grace Blackwell | 2 (Max GPUs per job)  | 48 hrs           | .5 SUs (per GPU-hour)
+| `gpu-shared`  | Grace Blackwell | 3 (Max GPUs per job)  | 48 hrs           | .5 SUs (per GPU-hour)
 | `gpu-dev`     | Grace Blackwell | 8                     | 2 hrs            | 2 SUs
 | `gpu`         | Grace Blackwell | 64                    | 48 hrs           | 2 SUs
 | `gpu-large`   | Grace Blackwell | 256                   | 48 hrs           | 2 SUs

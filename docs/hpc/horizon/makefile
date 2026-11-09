@@ -1,10 +1,14 @@
 HORIZON_OBJS	=	\
 	notices.md \
 	system.md \
-	running.md 
-#	files.md \
-#	mps.md \
-#	nvidia.md 
+	files.md \
+	running.md \
+	launching.md \
+	jobmanagement.md \
+	building.md \
+	mps.md \
+	nvidia.md \
+	../../include/horizon-help.md 
 
 #	mkl.md \
 #	scripts.md \
@@ -13,10 +17,6 @@ HORIZON_OBJS	=	\
 #	vis.md \
 #	access.md \
 #	admin.md \
-#	launching.md \
-#	jobmanagement.md \
-#	building.md \
-#	../../include/horizon-help.md \
 #	refs.md
 #	ml.md \
 

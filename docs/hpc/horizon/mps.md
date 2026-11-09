@@ -53,8 +53,8 @@ Incorporating the above elements into a job script may look like this:
 #SBATCH -o mps_job.%j.out        # Output file (%j = job ID)
 #SBATCH -t 01:00:00              # Wall time (1 hour)
 #SBATCH -N 2                     # Number of nodes
-#SBATCH -n 8                     # Total tasks (4 per node)
-#SBATCH -p gh                    # GPU partition (modify as needed)
+#SBATCH -n 32                    # Total tasks (16 per node)
+#SBATCH -p gpu                   # GPU partition (modify as needed)
 #SBATCH -A your_project          # Project allocation
 
 # 1. Configure environment
