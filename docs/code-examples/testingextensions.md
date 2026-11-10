@@ -15,7 +15,19 @@
     This is a tip box
 
 !!! caution
-    This is a warning box
+    This is a caution box
+
+!!! warning
+	This is a warning box
+
+!!! note
+	This is a note box
+
+!!! important
+	This is an important box
+
+!!! admonition
+	This is an admonition box
 
 
 

@@ -577,7 +577,7 @@ Slurm's `sinfo` command allows you to monitor the status of the queues. If you e
 ```cmd-line
 login1$ sinfo -S+P -o "%18P %8a %20F"    # compact summary of queue status
 ```
-his command's output might look like this:
+This command's output might look like this:
 
 ```cmd-line
 PARTITION          AVAIL    NODES(A/I/O/T)

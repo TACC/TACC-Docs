@@ -63,24 +63,3 @@ The Horizon login nodes are Grace Grace (GG) nodes with 144 cores and 237 GB of 
 The interconnect is based on Mellanox XDR technology with full XDR (800 Gb/s) connectivity between the switches and the GB GPU nodes and with XDR400 (400 Gb/s) connectivity to the VV compute nodes. A fat tree topology fully connects the compute nodes and the GPU nodes within separate trees with no over subscription within each tree.  Every GB node is fully connected using full XDR (800 Gb/s) to every other GB node.  Every VV node is fully connected using XDR400 (400 Gb/s) to every other VV node. Both sets of nodes are connected to the `$HOME` and `$SCRATCH` file systems via Infiniband.
 
 
-### File Systems 
-
-Horizon will use a shared VAST file system for the `$HOME` and `$SCRATCH` directories.
-
-!!!  warning
-	The $WORK filesystem will not be available for early users.  A `$WORK` filesystem will be available in late 2026.  The `/tmp` partition is also available to users but is local to each node. 
-
-
-#### Table 3. File Systems { #table3 }
-
-*in progress*
-
-| File System | Type     | Quota                               | Key Features
-| -----       | -----    | -----                               | -----|
-| `$HOME`    | VAST      | TBD                                 | Not intended for parallel or high−intensity file operations.<br>Backed up daily. 
-| `$WORK`    | VAST      | TBD                                 | Not backed up.
-| `$SCRATCH` | VAST      | no quota Overall capacity ~400 PB. | Not backed up.<br>Files are subject to purge if access time\* is more than 10 days old. See TACC's Scratch File System Purge Policy below.
-
-
-{% include 'include/scratchpolicy.md' %}
-

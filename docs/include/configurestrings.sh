@@ -130,8 +130,8 @@ then
 	helpmsg="Be sure to include \"$machinename\" in the Resource field."
 
 	# billing examples
-	queue="gh"
-	sucalc="4 nodes * 0.25 hrs * 1 SUs\/node-hour = .5 SUs"
+	queue="gpu"
+	sucalc="4 nodes * 0.25 hrs * 2 SUs\/node-hour = 2 SUs"
 
 	sed	-e "s/MACHINENAME/$machinename/g" \
 		-e "s/QUEUE/$queue/g" \

@@ -1,10 +1,33 @@
 ## Managing Your Files { #files }
 
+### Horizon Filesystems
+
+Horizon will use a shared VAST file system for the `$HOME` and `$SCRATCH` directories.
+
+!!! warning
+	The `$WORK` filesystem will not be available for early users.  A `$WORK` filesystem will be available in late 2026.  The `/tmp` partition is also available to users but is local to each node. 
+
+
+#### Table 3. File Systems { #table3 }
+
+*in progress*
+
+| File System | Type     | Quota                               | Key Features
+| -----       | -----    | -----                               | -----|
+| `$HOME`    | VAST      | TBD                                 | Not intended for parallel or high−intensity file operations.<br>Backed up daily. 
+| `$WORK`    | VAST      | TBD                                 | Not backed up.
+| `$SCRATCH` | VAST      | no quota Overall capacity ~400 PB. | Not backed up.<br>Files are subject to purge if access time\* is more than 10 days old. See TACC's Scratch File System Purge Policy below.
+
+
+{% include 'include/scratchpolicy.md' %}
+
+
+### Navigating the Shared File Systems { #files-filesystems }
+
 Horizon mounts three file systems that are shared across all nodes: the home, work, and scratch file systems. Horizon's startup mechanisms define corresponding account-level environment variables `$HOME`, `$SCRATCH`, and `$WORK` that store the paths to directories that you own on each of these file systems.  <!-- Consult the Horizon [File Systems](#table6) table for the basic characteristics of these file systems, [File Operations: I/O Performance](#programming-io) for advice on performance issues, and [Good Conduct][TACCGOODCONDUCT] for tips on file system etiquette. -->
 
 {% include 'include/spacetip.md' %}
 
-### Navigating the Shared File Systems { #files-filesystems }
 
 Horizon's `/home` and `/scratch` file systems are mounted only on Horizon, but the work file system mounted on Horizon is the Global Shared File System hosted on [Stockyard](https://tacc.utexas.edu/systems/stockyard/).  Stockyard is the same work file system that is currently available on Frontera, Lonestar6, and several other TACC resources.
 
@@ -22,7 +45,7 @@ See the example for fictitious user bjones in the figure below.  All directories
 
 Note that the resource-specific sub-directories of `$STOCKYARD` are nothing more than convenient ways to manage your resource-specific files. You have access to any such sub-directory from any TACC resources. If you are logged into Horizon, for example, executing the alias cdw (equivalent to cd `$WORK`) will take you to the resource-specific sub-directory `$STOCKYARD/horizon`. But you can access this directory from other TACC systems as well by executing cd `$STOCKYARD/horizon`. These commands allow you to share files across TACC systems. In fact, several convenient account-level aliases make it even easier to navigate across the directories you own in the shared file systems:
 
-### Table 7. Built-in Account Level Aliases { #table7 }
+### Table X. Built-in Account Level Aliases { #table7 }
 
 Alias | Command
 --- | ---
