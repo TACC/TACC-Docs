@@ -1,7 +1,6 @@
 HORIZON_OBJS	=	\
 	notices.md \
 	system.md \
-	allocations.md \
 	access.md \
 	admin.md \
 	files.md \
