@@ -1,12 +1,15 @@
 HORIZON_OBJS	=	\
 	notices.md \
 	system.md \
+	allocations.md \
+	access.md \
+	admin.md \
 	files.md \
 	running.md \
 	launching.md \
 	jobmanagement.md \
-	building.md \
 	mps.md \
+	building.md \
 	nvidia.md \
 	../../include/horizon-help.md 
 

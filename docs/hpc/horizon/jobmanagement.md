@@ -56,7 +56,7 @@ The `squeue` command's default output format lists all nodes assigned to display
 	```
 ### Job and Queue Status Meanings 
 
-The `squeue` command's output displays two columns of interest, the column labeled `ST` displays each job's status, and the last column, labeled `NODELIST/REASON`, includes a nodelist for running/completing jobs, or a reason for pending jobs.  See [Table 6](#table6) and [Table 7](#table7) below for detailed explanations.
+The `squeue` command's output displays two columns of interest, the column labeled `ST` displays each job's status, and the last column, labeled `NODELIST/REASON`, includes a nodelist for running/completing jobs, or a reason for pending jobs.  See [Table 7](#table7) and [Table 8](#table8) below for detailed explanations.
 
 <figure id="figure2">
 ```cmd-line
@@ -85,7 +85,7 @@ The `squeue` command's output displays two columns of interest, the column label
 </figure><figcaption>Figure 2. Sample <code>squeue</code> output</figcaption></figure>
 
 
-##### Table 6. Job Status Meanings { #table6 }
+##### Table 7. Job Status Meanings { #table7 }
 
 Status Code | Status          | Description
 --          | --              | --
@@ -101,7 +101,7 @@ Status Code | Status          | Description
 
 
 
-##### Table 7. Pending Jobs Reason { #table7 }
+##### Table 8. Pending Jobs Reason { #table8 }
 
 The last column, labeled `NODELIST/REASON`, includes a nodelist for running/completing jobs, or a reason for pending jobs.  
 

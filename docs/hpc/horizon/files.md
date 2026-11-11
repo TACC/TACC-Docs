@@ -10,7 +10,6 @@ Horizon will use a shared VAST file system for the `$HOME` and `$SCRATCH` direct
 
 #### Table 3. File Systems { #table3 }
 
-*in progress*
 
 | File System | Type     | Quota                               | Key Features
 | -----       | -----    | -----                               | -----|
@@ -45,7 +44,7 @@ See the example for fictitious user bjones in the figure below.  All directories
 
 Note that the resource-specific sub-directories of `$STOCKYARD` are nothing more than convenient ways to manage your resource-specific files. You have access to any such sub-directory from any TACC resources. If you are logged into Horizon, for example, executing the alias cdw (equivalent to cd `$WORK`) will take you to the resource-specific sub-directory `$STOCKYARD/horizon`. But you can access this directory from other TACC systems as well by executing cd `$STOCKYARD/horizon`. These commands allow you to share files across TACC systems. In fact, several convenient account-level aliases make it even easier to navigate across the directories you own in the shared file systems:
 
-### Table X. Built-in Account Level Aliases { #table7 }
+### Table 4. Built-in Account Level Aliases { #table4 }
 
 Alias | Command
 --- | ---
@@ -58,38 +57,4 @@ Alias | Command
 ### Sharing Files with Collaborators { #files-sharing }
 
 If you wish to share files and data with collaborators in your project, see [Sharing Project Files on TACC Systems][TACCSHARINGPROJECTFILES] for step-by-step instructions. Project managers or delegates can use Unix group permissions and commands to create read-only or read-write shared workspaces that function as data repositories and provide a common work area to all project members.
-
-----
-File Systems
-
-Horizon will use a shared VAST file system for the $HOME and $SCRATCH directories.
-
-!!! important 
-	Horizon's $HOME and $SCRATCH file systems are NOT Lustre file systems and do not support setting a stripe count or stripe size.  
-
-!!! important
-	The $WORK filesystem will not be available for early users.  A $WORK filesystem will be made available later in 2026.  Each node's `/tmp` partition is also available to users but is local to each node. 
-
-
-Table 3. File Systems
-File System
-Type
-Quota
-Key Features
-$HOME
-VAST
-TBD 
-Not intended for parallel or high−intensity file operations.
-Backed up regularly.
-$WORK
-VAST
-TBD
-Not backed up.
-$SCRATCH
-VAST
-no quota
-Overall capacity ~400 PB.
-Not backed up.
-Files are subject to purge if access time* is more than 10 days old. See TACC's Scratch File System Purge Policy below.
-
 

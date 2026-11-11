@@ -18,7 +18,7 @@ Horizon hosts 1,000 Grace Blackwell (GB) nodes. The Grace Blackwell (GB) subsyst
 A GB node provides 160 TFlops of FP64 performance and 20 PFlops of FP16 performance for ML workflows. The GB subsystem is housed in 28 racks, each containing 36 GB nodes. These nodes connect via an NVIDIA dual-rail InfiniBand 800 Gb/s fabric to NVIDIA XDR InfiniBand switches using a fully connected two-level fat-tree topology. There are two 800 Gb/s connections per node.
 
 
-#### Table 1. Grace Blackwell Specifications
+#### Table 1. Grace Blackwell Specifications { #table1 } 
 
 | Specification | Value |
 | ----- | ----- |
@@ -37,7 +37,7 @@ A GB node provides 160 TFlops of FP64 performance and 20 PFlops of FP16 performa
 
 ### Vera Vera Compute Nodes
 
-#### Table 2. Vera Vera Specifications
+#### Table 2. Vera Vera Specifications { #table2 }
 
 | Specification | Value |
 | ----- | ----- |

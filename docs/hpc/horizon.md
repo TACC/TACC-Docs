@@ -1,5 +1,5 @@
 # Horizon User Guide 
-*Last update: November 10, 2026*
+*Last update: November 11, 2026*
 
 !!! info 
 	This user guide is a draft in progress.  You may submit feedback via support ticket or PR.
@@ -43,7 +43,7 @@ Horizon hosts 1,000 Grace Blackwell (GB) nodes. The Grace Blackwell (GB) subsyst
 A GB node provides 160 TFlops of FP64 performance and 20 PFlops of FP16 performance for ML workflows. The GB subsystem is housed in 28 racks, each containing 36 GB nodes. These nodes connect via an NVIDIA dual-rail InfiniBand 800 Gb/s fabric to NVIDIA XDR InfiniBand switches using a fully connected two-level fat-tree topology. There are two 800 Gb/s connections per node.
 
 
-#### Table 1. Grace Blackwell Specifications
+#### Table 1. Grace Blackwell Specifications { #table1 } 
 
 | Specification | Value |
 | ----- | ----- |
@@ -62,7 +62,7 @@ A GB node provides 160 TFlops of FP64 performance and 20 PFlops of FP16 performa
 
 ### Vera Vera Compute Nodes
 
-#### Table 2. Vera Vera Specifications
+#### Table 2. Vera Vera Specifications { #table2 }
 
 | Specification | Value |
 | ----- | ----- |
@@ -88,6 +88,207 @@ The Horizon login nodes are Grace Grace (GG) nodes with 144 cores and 237 GB of 
 The interconnect is based on Mellanox XDR technology with full XDR (800 Gb/s) connectivity between the switches and the GB GPU nodes and with XDR400 (400 Gb/s) connectivity to the VV compute nodes. A fat tree topology fully connects the compute nodes and the GPU nodes within separate trees with no over subscription within each tree.  Every GB node is fully connected using full XDR (800 Gb/s) to every other GB node.  Every VV node is fully connected using XDR400 (400 Gb/s) to every other VV node. Both sets of nodes are connected to the `$HOME` and `$SCRATCH` file systems via Infiniband.
 
 
+Ticket Chttps://consult.tacc.utexas.edu/Ticket/Display.html?id=115717
+
+Depending on your PI eligibility, you can request allocations through a few methods.
+
+One of the most common is to find a PI, such as your advisor, that already has an allocation on a TACC resource and request to be invited.
+
+If you are eligible to be a PI, you can request a startup allocation through TxRAS. Details on that can be found on TACC's Allocation site, here: https://tacc.utexas.edu/use-tacc/allocations/
+
+If you aren't faculty or post-doc eligible, you may be eligible for an Explore allocation through ACCESS. Details about ACCESS can be found here: https://allocations.access-ci.org/project-types
+
+Finally, you may be eligible through NAIRR: https://www.nsf.gov/focus-areas/ai/nairr
+
+ 
+
+
+## Accessing the System { #access }
+
+Access to all TACC systems requires Multi-Factor Authentication (MFA). You can create an MFA pairing under "Manage Account" in the TACC Portal.  See [Multi-Factor Authentication at TACC][TACCMFA] for further information.
+
+!!! important
+	You will be able to log on to Horizon **only if** you have an allocation on Horizon, otherwise your password will be rejected.  
+	Monitor your projects &amp; allocations the via the [TACC Portal](https://tacc.utexas.edu/portal/projects).
+
+### Secure Shell (SSH) { #access-ssh }
+
+The `ssh` command (Secure Shell, or SSH protocol) is the standard way to connect to Horizon and initiate a login session. SSH also includes support for the UNIX file transfer utilities `scp` and `sftp`.  These commands are available within Linux and the Terminal application within Mac OS. If you are using Windows, you will need a modern terminal application such as [Windows Terminal](https://apps.microsoft.com/detail/9N0DX20HK701?hl=en-US&gl=US), [MobaXterm](https://mobaxterm.mobatek.net/) or [Cyberduck](https://cyberduck.io/download/).  
+
+Initiate an SSH session using the `ssh` command or the equivalent: 
+
+	localhost$ ssh taccusername@horizon.tacc.utexas.edu
+
+The above command will rotate connections across all available login nodes and route your connection to the next available node. 
+
+!!! important
+	Horizon's login nodes are a *shared resource*. See TACC's [Good Conduct Policy][TACCGOODCONDUCT] for more information.
+
+
+To connect to a specific login node, use its full domain name:
+
+	localhost$ ssh taccusername@login2.horizon.tacc.utexas.edu
+
+To connect with X11 support on Horizon (usually required for applications with graphical user interfaces), use the `-X` or `-Y` option:
+
+	localhost$ ssh -X taccusername@horizon.tacc.utexas.edu
+
+Use your TACC portal password for direct logins to TACC resources. You can change or reset your TACC password via the [TACC Portal][TACCUSERPORTAL] under "Manage Account".  To report a connection problem, execute the `ssh` command with the `-vvv` option and include this command's verbose output when submitting a help ticket.
+
+Do not run the `ssh-keygen` command on Horizon. This command will create and configure a key pair that will interfere with the execution of job scripts in the batch system.  If you do this by mistake, you can recover by renaming or deleting the `.ssh` directory located in your home directory; the system will automatically generate a new pair for you when you next log into Horizon.
+
+1. execute `mv .ssh dot.ssh.old`
+1. log out
+1. log into Horizon again
+
+After logging in again, the system will generate a properly configured key SSH pair.
+
+## Account Administration { #admin }
+
+This section explores ways to configure and manage your Linux account on Horizon.  Regardless of your research workflow, you'll likely need to master Linux command-line basics along with a Linux-based text editor (e.g. `emacs`, `nano`, `gedit`, or `vi`/`vim`) to use the system properly. If you encounter a term or concept in this user guide that is new to you, a quick internet search should help you resolve the matter quickly.
+
+### Allocation Status { #admin-allocation }
+
+If your password is rejected while attempting to log in, it's possible your account or project has not been added to a Horizon allocation.  You can list and manage your allocations via the [TACC Portal](https://tacc.utexas.edu/portal/projects).  
+
+### Linux Shell { #admin-linux }
+
+The default login shell for your user account is Bash. To determine your current login shell, examine the contents of the `$SHELL` environment variable: 
+
+```cmd-line
+$ echo $SHELL
+```
+
+!!! tip
+	If you'd like to change your login shell to `csh`, `tcsh`, or `zsh`, [submit a help ticket][HELPDESK]. 
+	The `chsh` ("change shell") command will not work on TACC systems.
+
+When you start a shell on Horizon, system-level startup files initialize your account-level environment and aliases before the system sources your own user-level startup scripts. You can use these startup scripts to customize your shell by defining your own environment variables, aliases, and functions. These scripts (e.g. `.profile` and `.bashrc`) are generally hidden files: so-called "dotfiles" that begin with a period, visible when you execute: `ls -a`.
+
+Before editing your startup files, however, it's worth taking the time to understand the basics of how your shell manages startup. Bash startup behavior is very different from the simpler `csh` behavior, for example. The Bash startup sequence varies depending on how you start the shell (e.g. using `ssh` to open a login shell, executing the `bash` command to begin an interactive shell, or launching a script to start a non-interactive shell). Moreover, Bash does not automatically source your `.bashrc` file when you start a login shell by using `ssh` to connect to a node. Unless you have specialized needs, however, this is undoubtedly more flexibility than you want: you will probably want your environment to be the same regardless of how you start the shell. The easiest way to achieve this is to execute `source ~/.bashrc` from your `.profile`, then put all your customizations in your `.bashrc` file. The system-generated default startup scripts demonstrate this approach. We recommend that you use these default files as templates.
+
+For more information see the [Bash Users' Startup Files: Quick Start Guide][TACCBASHQUICKSTART] and other online resources that explain shell startup. To recover the originals that appear in a newly created account, execute `/usr/local/startup_scripts/install_default_scripts`.
+
+
+{% include 'include/checklist.md' %}
+
+### Environment Variables { #admin-envvars }
+
+Your environment includes the environment variables and functions defined in your current shell: those initialized by the system, those you define or modify in your account-level startup scripts, and those defined or modified by the modules that you load to configure your software environment. Be sure to distinguish between an environment variable's name (e.g. `HISTSIZE`) and its value (`$HISTSIZE`). Understand as well that a sub-shell (e.g. a script) inherits environment variables from its parent, but does not inherit ordinary shell variables or aliases. Use `export` (in Bash) or `setenv` (in `csh`) to define an environment variable.
+
+Execute the `env` command to see the environment variables that define the way your shell and child shells behave.
+Pipe the results of `env` into `grep` to focus on specific environment variables. For example, to see all environment variables that contain the string GIT (in all caps), execute:
+	
+```cmd-line
+$ env | grep GIT
+```
+
+The environment variables, `PATH` and `LD_LIBRARY_PATH`, are especially important. The `PATH` is a colon-separated list of directory paths that determines where the system looks for your executables.  The `LD_LIBRARY_PATH` environment variable is a similar list that determines where the system looks for shared libraries.
+
+
+### Using Modules { #admin-modules }
+
+Lmod, a module system developed and maintained at TACC, makes it easy to manage your environment so you have access to the software packages and versions that you need to using your research. This is especially important on a system like Horizon that serves thousands of users with an enormous range of needs and software. Loading a module amounts to choosing a specific package from among available alternatives:
+
+```cmd-line
+$ module load intel          # load the default Intel compiler
+$ module load intel/24.0.0   # load a specific version of Intel compiler
+```
+
+A module does its job by defining or modifying environment variables (and sometimes aliases and functions). For example, a module may prepend appropriate paths to `$PATH` and `$LD_LIBRARY_PATH` so that the system can find the executables and libraries associated with a given software package. The module creates the illusion that the system is installing software for your personal use. Unloading a module reverses these changes and creates the illusion that the system just uninstalled the software:
+
+```cmd-line
+$ module load   ddt  # defines DDT-related env vars; modifies others
+$ module unload ddt  # undoes changes made by load
+```
+
+The module system does more, however. When you load a given module, the module system can automatically replace or deactivate modules to ensure the packages you have loaded are compatible with each other. In the example below, the module system automatically unloads one compiler when you load another, and replaces Intel-compatible versions of IMPI and PETSc with versions compatible with `gcc`:
+
+```cmd-line
+$ module load intel
+$ module load petsc
+$ module load gcc
+
+Lmod is automatically replacing "intel/24.0" with "gcc/13.2.0".
+
+
+Due to MODULEPATH changes, the following have been reloaded:
+  1) catch2/3.8.1     2) petsc/3.24
+
+The following have been reloaded with a version change:
+  1) impi/21.11 => impi/21.9
+```
+
+!!! tip
+	See [Lmod's documentation](https://lmod.readthedocs.io/en/latest/) for extensive information. The online documentation addresses the basics in more detail, but also covers several topics beyond the scope of the help text (e.g. writing and using your own module files).
+
+On Horizon, modules generally adhere to a TACC naming convention when defining environment variables that are helpful for building and running software. For example, the papi module defines `TACC_PAPI_BIN` (the path to PAPI executables), `TACC_PAPI_LIB` (the path to PAPI libraries), `TACC_PAPI_INC` (the path to PAPI include files), and `TACC_PAPI_DIR` (top-level PAPI directory). After loading a module, here are some easy ways to observe its effects:
+
+```cmd-line
+$ module show papi   # see what this module does to your environment
+$ env | grep PAPI    # see env vars that contain the string PAPI
+$ env | grep -i papi # case-insensitive search for 'papi' in environment
+```
+
+To see the modules you currently have loaded:
+
+```cmd-line
+$ module list
+```
+
+To see all modules that you can load right now because they are compatible with the currently loaded modules:
+
+```cmd-line
+$ module avail
+```
+
+To see all installed modules, even if they are not currently available because they are incompatible with your currently loaded modules:
+
+```cmd-line
+$ module spider                  # list all modules, even those not available to load
+```
+
+To filter your search:
+
+```cmd-line
+$ module spider slep             # all modules with names containing 'slep'
+$ module spider sundials/2.5.0   # additional details on a specific module
+```
+
+Among other things, the latter command will tell you which modules you need to load before the module is available to load. You might also search for modules that are tagged with a keyword related to your needs (though your success here depends on the diligence of the module writers). For example:
+
+```cmd-line
+$ module keyword performance
+```
+
+You can save a collection of modules as a personal default collection that will load every time you log into Horizon. To do so, load the modules you want in your collection, then execute:
+
+```cmd-line
+$ module save            # save the currently loaded collection of modules
+```
+
+Two commands make it easy to return to a known, reproducible state:
+
+```cmd-line
+$ module reset           # load the system default collection of modules
+$ module restore         # load your personal default collection of modules
+```
+
+On TACC systems, the command `module reset` is equivalent to `module purge; module load` TACC. It's a safer, easier way to get to a known baseline state than issuing the two commands separately.
+
+Help text is available for both individual modules and the module system itself:
+
+```cmd-line
+$ module help swr        # show help text for software package swr
+$ module help            # show help text for the module system itself
+```
+
+It's safe to execute module commands in job scripts. In fact, this is a good way to write self-documenting, portable job scripts that produce reproducible results.  If you use `module save` to define a personal default module collection, it's rarely necessary to execute module commands in shell startup scripts, and it can be tricky to do so safely. If you do wish to put module commands in your startup scripts, see Horizon's default startup scripts in `/usr/local/startup_scripts` for a safe way to do so.
+
+{% include 'include/horizon-crontab.md' %}
+
+{% include 'include/tacctips.md' %}
+
 ## Managing Your Files { #files }
 
 ### Horizon Filesystems
@@ -100,7 +301,6 @@ Horizon will use a shared VAST file system for the `$HOME` and `$SCRATCH` direct
 
 #### Table 3. File Systems { #table3 }
 
-*in progress*
 
 | File System | Type     | Quota                               | Key Features
 | -----       | -----    | -----                               | -----|
@@ -135,7 +335,7 @@ See the example for fictitious user bjones in the figure below.  All directories
 
 Note that the resource-specific sub-directories of `$STOCKYARD` are nothing more than convenient ways to manage your resource-specific files. You have access to any such sub-directory from any TACC resources. If you are logged into Horizon, for example, executing the alias cdw (equivalent to cd `$WORK`) will take you to the resource-specific sub-directory `$STOCKYARD/horizon`. But you can access this directory from other TACC systems as well by executing cd `$STOCKYARD/horizon`. These commands allow you to share files across TACC systems. In fact, several convenient account-level aliases make it even easier to navigate across the directories you own in the shared file systems:
 
-### Table X. Built-in Account Level Aliases { #table7 }
+### Table 4. Built-in Account Level Aliases { #table4 }
 
 Alias | Command
 --- | ---
@@ -148,40 +348,6 @@ Alias | Command
 ### Sharing Files with Collaborators { #files-sharing }
 
 If you wish to share files and data with collaborators in your project, see [Sharing Project Files on TACC Systems][TACCSHARINGPROJECTFILES] for step-by-step instructions. Project managers or delegates can use Unix group permissions and commands to create read-only or read-write shared workspaces that function as data repositories and provide a common work area to all project members.
-
-----
-File Systems
-
-Horizon will use a shared VAST file system for the $HOME and $SCRATCH directories.
-
-!!! important 
-	Horizon's $HOME and $SCRATCH file systems are NOT Lustre file systems and do not support setting a stripe count or stripe size.  
-
-!!! important
-	The $WORK filesystem will not be available for early users.  A $WORK filesystem will be made available later in 2026.  Each node's `/tmp` partition is also available to users but is local to each node. 
-
-
-Table 3. File Systems
-File System
-Type
-Quota
-Key Features
-$HOME
-VAST
-TBD 
-Not intended for parallel or high−intensity file operations.
-Backed up regularly.
-$WORK
-VAST
-TBD
-Not backed up.
-$SCRATCH
-VAST
-no quota
-Overall capacity ~400 PB.
-Not backed up.
-Files are subject to purge if access time* is more than 10 days old. See TACC's Scratch File System Purge Policy below.
-
 
 ## Running Jobs { #running }
 
@@ -201,7 +367,7 @@ A Grace Blackwell node contains 2 Grace CPUs and 4 Blackwell GPUs. The node is c
 There are shared queues that allow a user to request one or two GPUs to efficiently use the system.  In the shared queue, the charge is .5 SUs per GPU.  <!-- Examples submitting to the shared queues are below. -->
 
 
-#### Table 4. Production Queues { #table4 }
+#### Table 5. Production Queues { #table5 }
 
 | Queue Name    | Node Type       | Max Nodes per Job     | Max Job Duration | Charge Rate (per node-hour) 
 | -----         | -----           | -----                 | -----            | -----                       
@@ -242,14 +408,14 @@ In your job script you (1) use `#SBATCH` directives to request computing resourc
 
 Your job will run in the environment it inherits at submission time; this environment includes the modules you have loaded and the current working directory. In most cases you should run your applications(s) after loading the same modules that you used to build them. You can of course use your job submission script to modify this environment by defining new environment variables; changing the values of existing environment variables; loading or unloading modules; changing directory; or specifying relative or absolute paths to files. **Do not** use the Slurm `--export` option to manage your job's environment: doing so can interfere with the way the system propagates the inherited environment.
 
-[Table 5.](#table5) below describes some of the most common `sbatch` command options. Slurm directives begin with `#SBATCH`; most have a short form (e.g. `-N`) and a long form (e.g. `--nodes`). You can pass options to `sbatch` using either the command line or job script; most users find that the job script is the easier approach. The first line of your job script must specify the interpreter that will parse non-Slurm commands; in most cases `#!/bin/bash` or `#!/bin/csh` is the right choice. Avoid `#!/bin/sh` (its startup behavior can lead to subtle problems on Horizon), and do not include comments or any other characters on this first line. All `#SBATCH` directives must precede all shell commands. Note also that certain `#SBATCH` options or combinations of options are mandatory, while others are not available on Horizon.
+[Table 6.](#table6) below describes some of the most common `sbatch` command options. Slurm directives begin with `#SBATCH`; most have a short form (e.g. `-N`) and a long form (e.g. `--nodes`). You can pass options to `sbatch` using either the command line or job script; most users find that the job script is the easier approach. The first line of your job script must specify the interpreter that will parse non-Slurm commands; in most cases `#!/bin/bash` or `#!/bin/csh` is the right choice. Avoid `#!/bin/sh` (its startup behavior can lead to subtle problems on Horizon), and do not include comments or any other characters on this first line. All `#SBATCH` directives must precede all shell commands. Note also that certain `#SBATCH` options or combinations of options are mandatory, while others are not available on Horizon.
 
 By default, Slurm writes all console output to a file named "`slurm-%j.out`", where `%j` is the numerical job ID. To specify a different filename use the `-o` option. To save `stdout` (standard out) and `stderr` (standard error) to separate files, specify both `-o` and `-e` options.
 
 !!! tip
 	The maximum runtime for any individual job is 48 hours.  However, if you have good checkpointing implemented, you can easily chain jobs such that the outputs of one job are the inputs of the next, effectively running indefinitely for as long as needed.  See Slurm's `-d` option.
 
-#### Table 5. Common `sbatch` Options { #table5 }
+#### Table 6. Common `sbatch` Options { #table6 }
 
 Option | Argument | Comments
 --- | --- | ---
@@ -508,7 +674,7 @@ The `squeue` command's default output format lists all nodes assigned to display
 	```
 ### Job and Queue Status Meanings 
 
-The `squeue` command's output displays two columns of interest, the column labeled `ST` displays each job's status, and the last column, labeled `NODELIST/REASON`, includes a nodelist for running/completing jobs, or a reason for pending jobs.  See [Table 6](#table6) and [Table 7](#table7) below for detailed explanations.
+The `squeue` command's output displays two columns of interest, the column labeled `ST` displays each job's status, and the last column, labeled `NODELIST/REASON`, includes a nodelist for running/completing jobs, or a reason for pending jobs.  See [Table 7](#table7) and [Table 8](#table8) below for detailed explanations.
 
 <figure id="figure2">
 ```cmd-line
@@ -537,7 +703,7 @@ The `squeue` command's output displays two columns of interest, the column label
 </figure><figcaption>Figure 2. Sample <code>squeue</code> output</figcaption></figure>
 
 
-##### Table 6. Job Status Meanings { #table6 }
+##### Table 7. Job Status Meanings { #table7 }
 
 Status Code | Status          | Description
 --          | --              | --
@@ -553,7 +719,7 @@ Status Code | Status          | Description
 
 
 
-##### Table 7. Pending Jobs Reason { #table7 }
+##### Table 8. Pending Jobs Reason { #table8 }
 
 The last column, labeled `NODELIST/REASON`, includes a nodelist for running/completing jobs, or a reason for pending jobs.  
 
@@ -629,6 +795,102 @@ For more information see the [Slurm online documentation](http://www.schedmd.com
 	```cmd-line
 	login1$ scontrol show job=170361
 	```
+
+## NVIDIA  MPS { #mps }
+
+NVIDIA's [Multi-Process Service](https://docs.nvidia.com/deploy/mps/) (MPS) allows multiple processes to share a GPU efficiently by reducing scheduling overhead. MPS can improve GPU resource sharing between processes when a single process cannot fully saturate the GPU's compute capacity. 
+
+Follow these steps to configure MPS on Horizon for optimized multi-process workflows:
+
+1. **Configure Environment Variables**
+
+	Set environment variables to define where MPS stores its runtime pipes and logs. In the example below, these are placed in each node's `/tmp` directory.  The `/tmp` directory is ephemeral and cleared after a job ends or a node reboots.  Add these lines to your job script or shell session:
+
+	```job-script
+	# Set MPS environment variables
+	export CUDA_MPS_PIPE_DIRECTORY=/tmp/nvidia-mps
+	export CUDA_MPS_LOG_DIRECTORY=/tmp/nvidia-log
+	```
+
+	To retain these logs for later analysis, specify directories in `$SCRATCH`, `$WORK`, or `$HOME` file systems instead of `/tmp`. 
+
+2. **Launch MPS Control Daemon**
+
+	Use `ibrun` to start the MPS daemon across all allocated nodes. This ensures one MPS control process per node:
+
+	```job-script
+	# Launch MPS daemon on all nodes
+	export TACC_TASKS_PER_NODE=1     # Force one task per node
+	ibrun -np $SLURM_NNODES nvidia-cuda-mps-control -d
+	unset TACC_TASKS_PER_NODE        # Reset to default task distribution
+	```
+
+3. **Submit Your GPU Job**
+
+	After enabling MPS, run your CUDA application as usual. For example:
+
+	```job-script
+	ibrun ./your_cuda_executable 
+	```
+
+4. **Optional: Quit MPS daemon on all nodes**
+
+	```job-script
+	export TACC_TASKS_PER_NODE=1     # Force 1 task/node
+	ibrun -np $SLURM_NNODES bash -c "echo quit | nvidia-cuda-mps-control"
+	unset TACC_TASKS_PER_NODE
+	```
+
+### Sample Job Script { #scripts }
+
+Incorporating the above elements into a job script may look like this:
+
+```job-script
+#!/bin/bash
+#SBATCH -J mps_gpu_job           # Job name
+#SBATCH -o mps_job.%j.out        # Output file (%j = job ID)
+#SBATCH -t 01:00:00              # Wall time (1 hour)
+#SBATCH -N 2                     # Number of nodes
+#SBATCH -n 32                    # Total tasks (16 per node)
+#SBATCH -p gpu                   # GPU partition (modify as needed)
+#SBATCH -A your_project          # Project allocation
+
+# 1. Configure environment
+export CUDA_MPS_PIPE_DIRECTORY=/tmp/nvidia-mps
+export CUDA_MPS_LOG_DIRECTORY=/tmp/nvidia-log
+
+# 2. Launch MPS daemon on all nodes
+echo "Starting MPS daemon..."
+export TACC_TASKS_PER_NODE=1     # Force 1 task/node
+ibrun -np $SLURM_NNODES nvidia-cuda-mps-control -d
+unset TACC_TASKS_PER_NODE
+sleep 5                          # Wait for daemons to initialize
+
+# 3. Run your CUDA application
+echo "Launching application..."
+ibrun ./your_cuda_executable     # Replace with your executable
+```
+
+### Notes on Performance
+
+MPS is particularly effective for workloads characterized by:
+
+* Fine-grained GPU operations (many small kernel launches)
+* Concurrent processes sharing the same GPU
+* Underutilized GPU resources in single-process workflows
+
+You may verify performance gains for your use case using the following command to monitor the node that your job is running on (e.g., `c608-052`):
+
+```cmd-line
+login1$ ssh c608-052
+c608-052$ nvidia-smi dmon --gpm-metrics=3,12 -s u
+```
+
+The side-by-side plots in Figure 1 illustrate the performance enhancement obtained by running two GPU processes simultaneous on a single Hopper node with MPS. The GPU performance improvement is ~12%, compared to no improvement without MPS. Also, the setup cost on the CPU (about 12 seconds) is completely overlapped, resulting in in a 1.2x total improvement for 2 simultaneous Amber executions. Even better performance is expected for applications which don't load the GPU as much as Amber.
+
+ 
+<figure><img src="../imgs/vista/MPS-graphs.png" width="800"><figcaption>Figure 1.  Usage (SM, Memory and FP32) and SM occupancy percentages for single and dual Amber GPU executions (single-precision) on Hopper H200.</figcaption></figure>
+
 
 ## Building Software { #building } 
 
@@ -753,102 +1015,6 @@ You can also use the environment variable `$TACC_VEC_FLAGS`.  This environment v
 If you use GNU compilers, you can optimize for the Grace architecture using the -mcpu=neoverse-v2 option.  You can also use TACC_VEC_FLAGS as with the NVIDIA compilers.  It enables the following flags:
 
 	-O3 -mcpu-neoverse-v2 
-
-## NVIDIA  MPS { #mps }
-
-NVIDIA's [Multi-Process Service](https://docs.nvidia.com/deploy/mps/) (MPS) allows multiple processes to share a GPU efficiently by reducing scheduling overhead. MPS can improve GPU resource sharing between processes when a single process cannot fully saturate the GPU's compute capacity. 
-
-Follow these steps to configure MPS on Horizon for optimized multi-process workflows:
-
-1. **Configure Environment Variables**
-
-	Set environment variables to define where MPS stores its runtime pipes and logs. In the example below, these are placed in each node's `/tmp` directory.  The `/tmp` directory is ephemeral and cleared after a job ends or a node reboots.  Add these lines to your job script or shell session:
-
-	```job-script
-	# Set MPS environment variables
-	export CUDA_MPS_PIPE_DIRECTORY=/tmp/nvidia-mps
-	export CUDA_MPS_LOG_DIRECTORY=/tmp/nvidia-log
-	```
-
-	To retain these logs for later analysis, specify directories in `$SCRATCH`, `$WORK`, or `$HOME` file systems instead of `/tmp`. 
-
-2. **Launch MPS Control Daemon**
-
-	Use `ibrun` to start the MPS daemon across all allocated nodes. This ensures one MPS control process per node:
-
-	```job-script
-	# Launch MPS daemon on all nodes
-	export TACC_TASKS_PER_NODE=1     # Force one task per node
-	ibrun -np $SLURM_NNODES nvidia-cuda-mps-control -d
-	unset TACC_TASKS_PER_NODE        # Reset to default task distribution
-	```
-
-3. **Submit Your GPU Job**
-
-	After enabling MPS, run your CUDA application as usual. For example:
-
-	```job-script
-	ibrun ./your_cuda_executable 
-	```
-
-4. **Optional: Quit MPS daemon on all nodes**
-
-	```job-script
-	export TACC_TASKS_PER_NODE=1     # Force 1 task/node
-	ibrun -np $SLURM_NNODES bash -c "echo quit | nvidia-cuda-mps-control"
-	unset TACC_TASKS_PER_NODE
-	```
-
-### Sample Job Script { #scripts }
-
-Incorporating the above elements into a job script may look like this:
-
-```job-script
-#!/bin/bash
-#SBATCH -J mps_gpu_job           # Job name
-#SBATCH -o mps_job.%j.out        # Output file (%j = job ID)
-#SBATCH -t 01:00:00              # Wall time (1 hour)
-#SBATCH -N 2                     # Number of nodes
-#SBATCH -n 32                    # Total tasks (16 per node)
-#SBATCH -p gpu                   # GPU partition (modify as needed)
-#SBATCH -A your_project          # Project allocation
-
-# 1. Configure environment
-export CUDA_MPS_PIPE_DIRECTORY=/tmp/nvidia-mps
-export CUDA_MPS_LOG_DIRECTORY=/tmp/nvidia-log
-
-# 2. Launch MPS daemon on all nodes
-echo "Starting MPS daemon..."
-export TACC_TASKS_PER_NODE=1     # Force 1 task/node
-ibrun -np $SLURM_NNODES nvidia-cuda-mps-control -d
-unset TACC_TASKS_PER_NODE
-sleep 5                          # Wait for daemons to initialize
-
-# 3. Run your CUDA application
-echo "Launching application..."
-ibrun ./your_cuda_executable     # Replace with your executable
-```
-
-### Notes on Performance
-
-MPS is particularly effective for workloads characterized by:
-
-* Fine-grained GPU operations (many small kernel launches)
-* Concurrent processes sharing the same GPU
-* Underutilized GPU resources in single-process workflows
-
-You may verify performance gains for your use case using the following command to monitor the node that your job is running on (e.g., `c608-052`):
-
-```cmd-line
-login1$ ssh c608-052
-c608-052$ nvidia-smi dmon --gpm-metrics=3,12 -s u
-```
-
-The side-by-side plots in Figure 1 illustrate the performance enhancement obtained by running two GPU processes simultaneous on a single Hopper node with MPS. The GPU performance improvement is ~12%, compared to no improvement without MPS. Also, the setup cost on the CPU (about 12 seconds) is completely overlapped, resulting in in a 1.2x total improvement for 2 simultaneous Amber executions. Even better performance is expected for applications which don't load the GPU as much as Amber.
-
- 
-<figure><img src="../imgs/vista/MPS-graphs.png" width="800"><figcaption>Figure 1.  Usage (SM, Memory and FP32) and SM occupancy percentages for single and dual Amber GPU executions (single-precision) on Hopper H200.</figcaption></figure>
-
 
 ## NVIDIA Performance Libraries (NVPL) {nvpl}
 
