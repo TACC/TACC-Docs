@@ -6,7 +6,7 @@
 
 ## Notices { #notices }
 
-* Horizon is still limited only to internal users. (07/24/2026)
+* Horizon access is currently limited only to internal users. (11/10/2026)
 * **[Subscribe][TACCSUBSCRIBE] to Horizon User News**. Stay up-to-date on Horizon's status, scheduled maintenances and other notifications.  (04/15/2026) 
 
 {% include 'include/ai.md' %}
@@ -21,6 +21,22 @@ Horizon is a National Science Foundation-funded system that is part of the the L
 * [National Artificial Intelligence Research Resource Pilot (NAIRR)](https://nairrpilot.org/)
 * [TxRAS](https://submit-tacc.xras.org) 
 
+<!-- integrate 
+
+Ticket Chttps://consult.tacc.utexas.edu/Ticket/Display.html?id=115717
+
+Depending on your PI eligibility, you can request allocations through a few methods.
+
+One of the most common is to find a PI, such as your advisor, that already has an allocation on a TACC resource and request to be invited.
+
+If you are eligible to be a PI, you can request a startup allocation through TxRAS. Details on that can be found on TACC's Allocation site, here: https://tacc.utexas.edu/use-tacc/allocations/
+
+If you aren't faculty or post-doc eligible, you may be eligible for an Explore allocation through ACCESS. Details about ACCESS can be found here: https://allocations.access-ci.org/project-types
+
+Finally, you may be eligible through NAIRR: https://www.nsf.gov/focus-areas/ai/nairr
+
+-->
+ 
 
 
 ## System Specifications  { #system }
@@ -87,20 +103,33 @@ The Horizon login nodes are Grace Grace (GG) nodes with 144 cores and 237 GB of 
 
 The interconnect is based on Mellanox XDR technology with full XDR (800 Gb/s) connectivity between the switches and the GB GPU nodes and with XDR400 (400 Gb/s) connectivity to the VV compute nodes. A fat tree topology fully connects the compute nodes and the GPU nodes within separate trees with no over subscription within each tree.  Every GB node is fully connected using full XDR (800 Gb/s) to every other GB node.  Every VV node is fully connected using XDR400 (400 Gb/s) to every other VV node. Both sets of nodes are connected to the `$HOME` and `$SCRATCH` file systems via Infiniband.
 
+### Horizon Filesystems
 
-Ticket Chttps://consult.tacc.utexas.edu/Ticket/Display.html?id=115717
+Horizon will use a shared VAST file system for the `$HOME` and `$SCRATCH` directories.
 
-Depending on your PI eligibility, you can request allocations through a few methods.
+!!! warning
+	The `$WORK` filesystem will not be available for early users.  A `$WORK` filesystem will be available in late 2026.  The `/tmp` partition is also available to users but is local to each node. 
 
-One of the most common is to find a PI, such as your advisor, that already has an allocation on a TACC resource and request to be invited.
+The Work file system does not utilize the high-performance Infiniband network for IO, and as a result will have increased latency and lower overall bandwidth when compared to the `$SCRATCH` file system. 
 
-If you are eligible to be a PI, you can request a startup allocation through TxRAS. Details on that can be found on TACC's Allocation site, here: https://tacc.utexas.edu/use-tacc/allocations/
+!!! important
+	In order to achieve optimal performance and make the best use of the GPU resources, **TACC Staff advises staging compute jobs out of Horizon's `$SCRATCH` file system, rather than the `$WORK` file system**.  
 
-If you aren't faculty or post-doc eligible, you may be eligible for an Explore allocation through ACCESS. Details about ACCESS can be found here: https://allocations.access-ci.org/project-types
+#### Table 3. File Systems { #table3 }
 
-Finally, you may be eligible through NAIRR: https://www.nsf.gov/focus-areas/ai/nairr
+| Name        | File System | Type     | Quota                | Key Features
+| -----       | -----       | -----    | -----                | -----|
+| Home        | `$HOME`    | VAST      | TBD                  | Not intended for parallel or high−intensity file operations.<br>Backed up daily. 
+| Work        | `$WORK`    | VAST      | TBD                  | Not backed up.
+| Scratch     | `$SCRATCH` | VAST      | no quota Overall capacity ~400 PB. | Not backed up.<br>Files are subject to purge if access time\* is more than 10 days old. See [TACC's Scratch File System Purge Policy](#scratchpurgepolicy) below.
 
- 
+### Corral and Horizon
+
+A Corral mount, `/corral`, will be available on the Horizon login nodes but will not be mounted on compute nodes/within jobs. The Corral system is intended for data sharing and publication purposes and as such is not appropriate for use directly in compute tasks. 
+
+Beginning in early 2027, you may  request that your Corral project directory be moved to the Work file system, which will be available on Horizon compute nodes.
+
+{% include 'include/scratchpolicy.md' %}
 
 
 ## Accessing the System { #access }
@@ -290,27 +319,6 @@ It's safe to execute module commands in job scripts. In fact, this is a good way
 {% include 'include/tacctips.md' %}
 
 ## Managing Your Files { #files }
-
-### Horizon Filesystems
-
-Horizon will use a shared VAST file system for the `$HOME` and `$SCRATCH` directories.
-
-!!! warning
-	The `$WORK` filesystem will not be available for early users.  A `$WORK` filesystem will be available in late 2026.  The `/tmp` partition is also available to users but is local to each node. 
-
-The `$WORK` file system does not utilize the high-performance Infiniband network for IO, and as a result will have increased latency and lower overall bandwidth when compared to the `$SCRATCH` file system. Users are advised to utilize `$SCRATCH` within compute jobs whenever possible to achieve optimal performance and make the best use of the GPU resources.
-
-#### Table 3. File Systems { #table3 }
-
-
-| File System | Type     | Quota                               | Key Features
-| -----       | -----    | -----                               | -----|
-| `$HOME`    | VAST      | TBD                                 | Not intended for parallel or high−intensity file operations.<br>Backed up daily. 
-| `$WORK`    | VAST      | TBD                                 | Not backed up.
-| `$SCRATCH` | VAST      | no quota Overall capacity ~400 PB. | Not backed up.<br>Files are subject to purge if access time\* is more than 10 days old. See TACC's Scratch File System Purge Policy below.
-
-
-{% include 'include/scratchpolicy.md' %}
 
 
 ### Navigating the Shared File Systems { #files-filesystems }
