@@ -7,6 +7,7 @@ Horizon will use a shared VAST file system for the `$HOME` and `$SCRATCH` direct
 !!! warning
 	The `$WORK` filesystem will not be available for early users.  A `$WORK` filesystem will be available in late 2026.  The `/tmp` partition is also available to users but is local to each node. 
 
+The `$WORK` file system does not utilize the high-performance Infiniband network for IO, and as a result will have increased latency and lower overall bandwidth when compared to the `$SCRATCH` file system. Users are advised to utilize `$SCRATCH` within compute jobs whenever possible to achieve optimal performance and make the best use of the GPU resources.
 
 #### Table 3. File Systems { #table3 }
 
