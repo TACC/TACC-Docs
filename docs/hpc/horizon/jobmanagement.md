@@ -85,7 +85,7 @@ The `squeue` command's output displays two columns of interest, the column label
 </figure><figcaption>Figure 2. Sample <code>squeue</code> output</figcaption></figure>
 
 
-##### Table 7. Job Status Meanings { #table7 }
+#### Table 7. Job Status Meanings { #table7 }
 
 Status Code | Status          | Description
 --          | --              | --
@@ -101,7 +101,7 @@ Status Code | Status          | Description
 
 
 
-##### Table 8. Pending Jobs Reason { #table8 }
+#### Table 8. Pending Jobs Reason { #table8 }
 
 The last column, labeled `NODELIST/REASON`, includes a nodelist for running/completing jobs, or a reason for pending jobs.  
 

@@ -61,8 +61,25 @@ A GB node provides 160 TFlops of FP64 performance and 20 PFlops of FP16 performa
 
 #### Table 1. Grace Blackwell Specifications { #table1 } 
 
-| Specification | Value |
-| ----- | ----- |
+| Specification        | Value 
+| -----                | ----- 
+| Server platform	   | Dell PowerEdge XE8712, NVIDIA GB200 NVL4
+| GPUs per node	       | 4 × NVIDIA Blackwell (GB200)
+| GPU memory	       | 185 GiB HBM3e per GPU (~740 GiB per node)
+| GPU interconnect	   | NVLink; every GPU pair is connected by 6 NVLinks (about 600 GB/s bidirectional per pair)
+| CPUs per node	       | 2 × NVIDIA Grace (72 Arm Neoverse V2 cores each, Armv9)
+| CPU cores per node   | 144 (2 sockets × 72)
+| Hardware threads	   | 1 per core, 144 per node
+| Clock rate	       | Up to 3.4 GHz
+| CPU memory	       | 478 GiB LPDDR5X per CPU (~956 GiB per node)
+| Cache	               | 64 KiB L1 data and 64 KiB L1 instruction per core<br>1 MiB L2 per core<br>114 MiB L3 per CPU (228 MiB per node)
+| GPU–CPU affinity	   | GPUs 0–1 with CPU 0 (cores 0–71)<br> GPUs 2–3 with CPU 1 (cores 72–143)
+| Network	           | 2 × 800 Gb/s InfiniBand ports per node, one per CPU socket
+| Local storage	       | 480 GB NVMe SSD; /tmp is about 156 GiB (XFS)
+| Operating system	   | Rocky Linux 10.x, Arm64 kernel with 64 KiB pages
+
+
+<!-- 
 | GPU: | Blackwell, GB200 |
 | GPU Memory: | 185 Gib |
 | Total GPUs per node: | 4 GB200s, NVLink connected
@@ -75,6 +92,7 @@ A GB node provides 160 TFlops of FP64 performance and 20 PFlops of FP16 performa
 | Cache: | 64 KB L1 data cache per core; 1MB L2 per core; 114 MB L3 |
 | Local storage: | 57 GiB |
 | DRAM: | LPDDR5 |
+-->
 
 ### Vera Vera Compute Nodes
 
@@ -712,7 +730,7 @@ The `squeue` command's output displays two columns of interest, the column label
 </figure><figcaption>Figure 2. Sample <code>squeue</code> output</figcaption></figure>
 
 
-##### Table 7. Job Status Meanings { #table7 }
+#### Table 7. Job Status Meanings { #table7 }
 
 Status Code | Status          | Description
 --          | --              | --
@@ -728,7 +746,7 @@ Status Code | Status          | Description
 
 
 
-##### Table 8. Pending Jobs Reason { #table8 }
+#### Table 8. Pending Jobs Reason { #table8 }
 
 The last column, labeled `NODELIST/REASON`, includes a nodelist for running/completing jobs, or a reason for pending jobs.  
 
