@@ -6,13 +6,13 @@ include:
 	echo "====== Building includes ======"
 	cd ../include; make;
 
-frontera: FORCE
-	echo "====== Building Frontera ======"
-	cd frontera; make;
-
 horizon: FORCE
 	echo "====== Building Horizon ======"
 	cd horizon; make;
+
+frontera: FORCE
+	echo "====== Building Frontera ======"
+	cd frontera; make;
 
 lonestar6: FORCE
 	echo "====== Building Lonestar6  ======"
