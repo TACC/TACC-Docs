@@ -1,11 +1,20 @@
-### Account-Level Diagnostics { #using-account-diagnostics }
+### Account-Level Diagnostics { #admin-diagnostics }
 
-TACC's `checklist` module loads an account-level diagnostic package that detects common account-level issues and often walks you through the fixes. You should certainly run the package's `checklist` utility when you encounter unexpected behavior. You may also want to run `checklist` periodically as preventive maintenance. To run `checklist`'s account-level diagnostics, execute the following commands:
+TACC's `checklist` utility detects and diagnoses common account-level issues. Checklist evaluates the access/availability of critical HPC components in a user's environment such as queue availability and access, file system availability and quotas, allocations, SSH keys and more.  
+
+Run this utility when you encounter unexpected account behavior and periodically as preventive maintenance.  
 
 ```cmd-line
-login1$ module load checklist
-login1$ checklist
-```
+login1.ls6$ checklist -t          # display terse output
 
-Execute `module help checklist` for more information.
+ [PASS] 01 SSH: OK Permissions: keys & .ssh dir; pub key in authorized_keys file.
+ [PASS] 02 FILE SYSTEMS: Defined and Accessible (HOME SCRATCH WORK STOCKYARD)
+ [PASS] 03 FILESYSTEM QUOTAS: (/tmp 75%  /home1 80%  /work 99%   %remaining)
+ [PASS] 04 MODULES: TACC and intel Loaded.
+ [PASS] 05 COMPILERS: intel: icc icpc ifort gcc: gcc g++ gfortran
+ [PASS] 06 PROJECTS: (A-ccsc 85%  A-cciq 96%  OTH24028 12%  %remain)
+ [PASS] 07 BATCH: SLURM cmds found: sbatch scancel squeue.  ALL QUEUES UP.
+ [PASS] 08 RESERVATIONS: None.
+ [PASS] 09 QUEUE ACCESS:  No Restrictions.
+```
 

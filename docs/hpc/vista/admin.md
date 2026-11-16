@@ -40,6 +40,7 @@ $ env | grep GIT
 
 The environment variables, `PATH` and `LD_LIBRARY_PATH`, are especially important. The `PATH` is a colon-separated list of directory paths that determines where the system looks for your executables.  The `LD_LIBRARY_PATH` environment variable is a similar list that determines where the system looks for shared libraries.
 
+{% include 'include/checklist.md' %}
 
 ### Using Modules { #admin-modules }
 

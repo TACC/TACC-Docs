@@ -24,16 +24,6 @@ Before editing your startup files, however, it's worth taking the time to unders
 
 For more information see the [Bash Users' Startup Files: Quick Start Guide][TACCBASHQUICKSTART] and other online resources that explain shell startup. To recover the originals that appear in a newly created account, execute `/usr/local/startup_scripts/install_default_scripts`.
 
-### Diagnostics { #admin-diagnostics }
-
-TACC's `sanitytool` module loads an account-level diagnostic package that detects common account-level issues and often walks you through the fixes. You should certainly run the package's `sanitycheck` utility when you encounter unexpected behavior. You may also want to run `sanitycheck` periodically as preventive maintenance. To run `sanitytool`'s account-level diagnostics, execute the following commands:
-
-```cmd-line
-login1$ module load sanitytool
-login1$ sanitycheck
-```
-
-Execute `module help sanitytool` for more information.
 
 ### Environment Variables { #admin-envvars }
 
@@ -48,6 +38,7 @@ $ env | grep GIT
 
 The environment variables `PATH` and `LD_LIBRARY_PATH` are especially important. The `PATH` is a colon-separated list of directory paths that determines where the system looks for your executables.  The `LD_LIBRARY_PATH` environment variable is a similar list that determines where the system looks for shared libraries.
 
+{% include 'include/checklist.md' %}
 
 ### Using Modules { #admin-modules }
 
