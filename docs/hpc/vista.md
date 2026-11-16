@@ -180,6 +180,8 @@ Before editing your startup files, however, it's worth taking the time to unders
 For more information see the [Bash Users' Startup Files: Quick Start Guide][TACCBASHQUICKSTART] and other online resources that explain shell startup. To recover the originals that appear in a newly created account, execute `/usr/local/startup_scripts/install_default_scripts`.
 
 
+### Account-level Diagnostics
+
 {% include 'include/checklist.md' %}
 
 ### Environment Variables { #admin-envvars }

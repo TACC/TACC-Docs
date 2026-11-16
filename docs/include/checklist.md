@@ -1,5 +1,3 @@
-### Account-Level Diagnostics { #admin-diagnostics }
-
 TACC's `checklist` utility detects and diagnoses common account-level issues. Checklist evaluates the access/availability of critical HPC components in a user's environment such as queue availability and access, file system availability and quotas, allocations, SSH keys and more.  
 
 Run this utility when you encounter unexpected account behavior and periodically as preventive maintenance.  

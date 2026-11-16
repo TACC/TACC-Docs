@@ -67,6 +67,10 @@ Recent upgrades by Microsoft to the VSCode application have resulted in the prog
 
 	Also note that VSCode access is **prohibited** on TACC's Ranch and Corral storage resources.
 
+## Account-level Diagnostics
+
+{% include 'include/checklist.md' %}
+
 ## Login Problems: `Improper ssh configuration!`
 
 If you see this message:
@@ -93,8 +97,6 @@ This is most likely because you have modified your `./ssh/known_hosts` file.  Th
 	```
 
 3. Log out of the system and then log back in.  This will auto-generate a new `.ssh` folder and key for you. 
-
-{% include 'include/checklist.md' %}
 
 
 ## Table 1. TACC Account Status { #table1 }
