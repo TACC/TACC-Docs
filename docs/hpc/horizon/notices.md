@@ -1,5 +1,5 @@
 # Horizon User Guide 
-*Last update: November 15, 2026*
+*Last update: November 16, 2026*
 
 !!! info 
 	This user guide is a draft in progress.  You may submit feedback via support ticket or PR.

@@ -1,5 +1,5 @@
 
-all:	include frontera lonestar6 stampede3 vista
+all:	include frontera lonestar6 stampede3 vista horizon
 
 
 include:

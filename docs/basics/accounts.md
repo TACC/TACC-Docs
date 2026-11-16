@@ -1,5 +1,5 @@
 # Managing your TACC Account
-*Last update: June 10, 2026*
+*Last update: November 16, 2026*
 
 ## Notices
 
@@ -94,6 +94,7 @@ This is most likely because you have modified your `./ssh/known_hosts` file.  Th
 
 3. Log out of the system and then log back in.  This will auto-generate a new `.ssh` folder and key for you. 
 
+{% include 'include/checklist.md' %}
 
 
 ## Table 1. TACC Account Status { #table1 }
