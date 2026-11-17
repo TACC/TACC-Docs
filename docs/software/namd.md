@@ -1,5 +1,5 @@
 # NAMD at TACC
-*Last update: May 27, 2026*
+*Last update: November 17, 2026*
 
 <!-- ![NAMD logo](../imgs/namd-logo.png){ .align-right width="300" } -->
 <img src="../imgs/namd-logo.png" width="300" alt="NAMD logo" class="align-right">
@@ -8,7 +8,7 @@
 
 ## Installations { #installations }
 
-NAMD is currently installed on TACC's [Frontera][TACCFRONTERAUG], [Stampede3][TACCSTAMPEDE3UG], [Lonestar6][TACCLONESTAR6UG] and [Vista][TACCVISTAUG] compute resources.  NAMD is managed under the [Lmod][TACCLMOD] module system on TACC resources. 
+NAMD is currently installed on TACC's [Stampede3][TACCSTAMPEDE3UG], [Lonestar6][TACCLONESTAR6UG] and [Vista][TACCVISTAUG] compute resources.  NAMD is managed under the [Lmod][TACCLMOD] module system on TACC resources. 
 
 !!! important
 	Read the following instructions carefully. NAMD performance is particularly sensitive to its configuration.  Try running benchmarks with different configurations to find your optimal NAMD set up. You can initiate interactive [`idev`][TACCIDEV] debugging sessions on all systems.
@@ -74,69 +74,6 @@ module load namd/3.0.1
 srun --mpi=pmi2 namd3 +ppn 17 +pemap 1-17,19-35,37-53,55-71,73-89,91-107,109-125,127-143 +commap 0,18,36,54,72,90,108,126 input &> output
 ```
 
-## Frontera { #frontera }
-
-The recommended and latest installed NAMD version is 3.0 on Frontera. 
-
-``` cmd-line
-login1$ module load namd/3.0
-```
-!!! tip
-	TACC staff recommends you attempt runs with 4 tasks per node and 8 tasks per node (scales better at large number of nodes), then pick the configuration that provides the best performance.
-
-The following sample job scripts demonstrate how to run NAMD on Frontera's [Cascade Lake](../../hpc/frontera/#system-clx) and [GPU](../../hpc/frontera/#system-gpu) nodes.
-
-### CLX 4 Tasks per Node
-
-Job script for Frontera's Cascade Lake nodes: 4 tasks per node.
-
-``` job-script
-#SBATCH -J test         # Job Name
-#SBATCH -o test.o%j
-#SBATCH -N 2            # Total number of nodes
-#SBATCH -n 8            # Total number of mpi tasks
-#SBATCH -p normal       # Queue (partition) name 
-#SBATCH -t 24:00:00     # Run time (hh:mm:ss) - 24 hours
-
-module load namd/3.0
-ibrun namd3 +ppn 13 \
-			+pemap 2-26:2,30-54:2,3-27:2,31-55:2 \
-			+commap 0,28,1,29 input &> output
-```
-
-### CLX 8 Tasks per Node
-
-Job script for Frontera's Cascade Lake nodes: 8 tasks per node.
-
-``` job-script
-#SBATCH -J test         # Job Name
-#SBATCH -o test.o%j
-#SBATCH -N 12           # Total number of nodes
-#SBATCH -n 96           # Total number of mpi tasks
-#SBATCH -p normal       # Queue (partition) name -- skx-normal, skx-dev, etc.
-#SBATCH -t 24:00:00     # Run time (hh:mm:ss) - 24 hours
-
-module load namd/3.0
-ibrun namd3 +ppn 6 \
-			+pemap 2-12:2,16-26:2,30-40:2,44-54:2,3-13:2,17-27:2,31-41:2,45-55:2\
-			+commap 0,14,28,42,1,15,29,43 input &> output
-```
-
-### GPU 1 Task per Node
-
-Job script for Frontera's GPU nodes: 1 task per node.
-
-``` job-script
-#!/bin/bash
-#SBATCH -J test         # Job Name
-#SBATCH -o test.o%j
-#SBATCH -N 2            # Total number of nodes
-#SBATCH -n 2            # Total number of mpi tasks
-#SBATCH -p gtx          # Queue name
-#SBATCH -t 24:00:00     # Run time (hh:mm:ss) - 24 hours
-
-run_namd_gpu namd_input output
-```
 
 ## Stampede3 { #stampede3 }
 

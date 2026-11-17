@@ -46,7 +46,7 @@ Developed in collaboration with Dell Technologies, NVIDIA, VAST Data, Spectra Lo
 
 | Specification                      | Value
 | -----                              | ----- |
-| Performance<br>GPU component only) | 160 petaflops (FP64 units)<br>320 petaflops (FP32 units)<p>~288 petaflops<br>(DGEMM using Ozaki method)
+| Performance<br>(GPU component only) | 160 petaflops (FP64 units)<br>320 petaflops (FP32 units)<p>~288 petaflops<br>(DGEMM using Ozaki method)
 | AI Performance                     | 20 exaflops for AI at BF16/FP16<br>40 exaflops for AI at FP8<br>80 exaflops for AI at FP4 |
 | Scale                              | NVIDIA Grace Blackwell platform featuring 4,000 GPUs and NVIDIA Vera Vera servers featuring 4752 nodes |
 | Networking                         | Interconnected by the NVIDIA Quantum-x800 InfiniBand networking platform |

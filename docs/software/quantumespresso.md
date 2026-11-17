@@ -1,5 +1,5 @@
 # Quantum Espresso at TACC
-*Last update: March 23, 2026*
+*Last update: November 17, 2026*
 
 <img src="../imgs/qespresso-logo.png" width="200" alt="Quantum Espresso logo" class="align-right">
 
@@ -7,7 +7,7 @@ Quantum Espresso (QE) is an integrated suite of open-source codes for electronic
 
 ## Installations { #installations }
 
-The latest QE stable release is installed on TACC's [Frontera][TACCFRONTERAUG], [Stampede3][TACCSTAMPEDE3UG], [Lonestar6][TACCLONESTAR6UG], and [Vista][TACCVISTAUG] systems. Use `module` commands to load the latest installed version by default, and to list all installed versions.  
+The latest QE stable release is installed on TACC's [Stampede3][TACCSTAMPEDE3UG], [Lonestar6][TACCLONESTAR6UG], and [Vista][TACCVISTAUG] systems. Use `module` commands to load the latest installed version by default, and to list all installed versions.  
 
 ``` cmd-line
 $ module load qe
@@ -21,7 +21,7 @@ Quantum Espresso executables have many optional command line arguments described
 !!!tip
 	TACC staff strongly recommends you refer to the [Quantum Espresso documentation](http://www.quantum-espresso.org/resources/users-manual) to learn how to construct input files, and learn the correct and optimal way to run your codes.
 
-Use the following job scripts for Quantum Espresso runs on Lonestar6, Frontera, Stampede3, and Vista. 
+Use the following job scripts for Quantum Espresso runs on Lonestar6, Stampede3, and Vista. 
 
 ### Sample Job Script: Lonestar6 { #jobscript-lonestar6 }
 
@@ -32,25 +32,6 @@ Use the following job scripts for Quantum Espresso runs on Lonestar6, Frontera, 
 #SBATCH -e qe.%j.err 
 #SBATCH -N 2                                # request 2 nodes 
 #SBATCH -n 256                              # 256 total tasks = 128 tasks/node
-#SBATCH -p normal                           # submit to "normal" queue 
-#SBATCH -t 4:00:00                          # run for 4 hours max 
-#SBATCH -A projectname
-
-module load qe/7.3                          # setup environment
-ibrun pw.x -input qeinput > qe_test.out     # launch job
-```
-
-### Sample Job Script: Frontera { #jobscript-frontera }
-
-The script below submits a Quantum Espresso job to Frontera's normal queue (CLX compute nodes), requesting 4 nodes and 224 tasks for a maximum of 4 hours. Refer to Frontera's [Running Jobs](../../hpc/frontera#running) section for more Slurm options.
-
-``` job-script
-#!/bin/bash 
-#SBATCH -J qe                               # define the job name
-#SBATCH -o qe.%j.out                        # define stdout & stderr output files 
-#SBATCH -e qe.%j.err 
-#SBATCH -N 4                                # request 4 nodes 
-#SBATCH -n 224                              # 224 total tasks = 56 tasks/node
 #SBATCH -p normal                           # submit to "normal" queue 
 #SBATCH -t 4:00:00                          # run for 4 hours max 
 #SBATCH -A projectname

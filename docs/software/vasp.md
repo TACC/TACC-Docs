@@ -1,5 +1,5 @@
 # VASP at TACC
-*Last update: May 12, 2025*
+*Last update: November 17, 2026*
 
 <img src="../imgs/vasp-logo.svg" width="300" alt="VASP logo" class="align-right">
 
@@ -21,7 +21,7 @@ TACC will confirm the license by using this email address on the VASP portal. If
 
 ## Installations { #installations }
 
-The latest stable release of VASP is installed on Stampede3, Lonestar6 and Frontera systems. 
+The latest stable release of VASP is installed on Stampede3, Vista and Lonestar6 systems. 
 
 !!! important
 	You cannot load any VASP module until your license is confirmed. [See above](#licenses).
@@ -41,7 +41,7 @@ login1$ module load vasp/6.3.0
 
 ## Running VASP Jobs { #running }
 
-You may use and customize the following sample job scripts for VASP jobs on TACC's Stampede3, Lonestar6 and Frontera resources.
+You may use and customize the following sample job scripts for VASP jobs on TACC's Stampede3, Vista and Lonestar6 resources.
 
 ### Sample Job Script: VASP on Vista { #running-vista }
 
@@ -91,24 +91,6 @@ module load vasp/5.4.4.pl2
 ibrun vasp_std > vasp_test.out
 ```
 
-### Sample Job Script: VASP on Frontera { #running-frontera }
-
-The script below submits a VASP job to [Frontera's `normal` queue](../../hpc/frontera/#queues) (CLX compute nodes), requesting 4 nodes and 224 tasks for a maximum of 4 hours. 
-
-``` job-script
-#!/bin/bash 
-#SBATCH -J vasp          
-#SBATCH -o vasp.%j.out     
-#SBATCH -e vasp.%j.err 
-#SBATCH -n 224         
-#SBATCH -N 4 
-#SBATCH -p normal      
-#SBATCH -t 4:00:00        
-#SBATCH -A projectnumber
-
-module load vasp/5.4.4.pl2
-ibrun vasp_std > vasp_test.out
-```
 ### Sample Job Script: VASP on Lonestar6 { #running-lonestar6 }
 
 The script below submits a VASP job to [Lonestar6's `normal` queue](../../hpc/lonestar6#queues) ( Milan compute nodes), requesting 2 nodes and 256 tasks for a maximum of 4 hours. 
