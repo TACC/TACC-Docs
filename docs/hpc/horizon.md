@@ -1,12 +1,13 @@
 # Horizon User Guide 
-*Last update: November 16, 2026*
+*Last update: November 17, 2026*
 
 !!! info 
 	This user guide is a draft in progress.  You may submit feedback via support ticket or PR.
 
 ## Notices { #notices }
 
-* Horizon access is currently limited only to internal users. (11/10/2026)
+* Horizon is now [open to early users](https://tacc.utexas.edu/news/latest-news/2026/11/17/horizon-opens-to-early-users-americas-most-powerful-academic-supercomputer-begins-serving-science/). (11/17/2026)
+
 * **[Subscribe][TACCSUBSCRIBE] to Horizon User News**. Stay up-to-date on Horizon's status, scheduled maintenances and other notifications.  (04/15/2026) 
 
 {% include 'include/ai.md' %}
